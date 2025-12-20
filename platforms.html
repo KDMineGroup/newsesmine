@@ -1,1498 +1,596 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SESMine - Smart Engineering Solutions</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-<!-- EmailJS -->
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-
-<style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  body {
-    font-family: 'Inter', sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    min-height: 100vh;
-    color: #333;
-  }
-
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-
-  .header {
-    text-align: center;
-    margin-bottom: 40px;
-    color: white;
-  }
-
-  .logo {
-    font-size: 2.5rem;
-    font-weight: 800;
-    margin-bottom: 10px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-  }
-
-  .tagline {
-    font-size: 1.2rem;
-    opacity: 0.9;
-    margin-bottom: 30px;
-  }
-
-  .main-content {
-    display: none;
-  }
-
-  .main-content.active {
-    display: block;
-  }
-
-  .auth-container {
-    background: white;
-    border-radius: 20px;
-    padding: 40px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-    margin-bottom: 30px;
-    max-width: 500px;
-    margin: 0 auto 30px;
-  }
-
-  .dashboard-container {
-    background: white;
-    border-radius: 20px;
-    padding: 30px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-    margin-bottom: 30px;
-  }
-
-  .form-group {
-    margin-bottom: 20px;
-  }
-
-  .form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-    color: #555;
-  }
-
-  .form-group input, .form-group select, .form-group textarea {
-    width: 100%;
-    padding: 12px 15px;
-    border: 2px solid #e1e5e9;
-    border-radius: 10px;
-    font-size: 16px;
-    transition: all 0.3s ease;
-    font-family: inherit;
-  }
-
-  .form-group textarea {
-    resize: vertical;
-    min-height: 100px;
-  }
-
-  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-    outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-  }
-
-  .btn {
-    width: 100%;
-    padding: 15px;
-    border: none;
-    border-radius: 10px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-bottom: 15px;
-  }
-
-  .btn-primary {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-  }
-
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
-  }
-
-  .btn-secondary {
-    background: #f8f9fa;
-    color: #333;
-    border: 2px solid #e1e5e9;
-  }
-
-  .btn-secondary:hover {
-    background: #e9ecef;
-  }
-
-  .btn-success {
-    background: #28a745;
-    color: white;
-  }
-
-  .btn-danger {
-    background: #dc3545;
-    color: white;
-  }
-
-  .btn-warning {
-    background: #ffc107;
-    color: #212529;
-  }
-
-  .btn-info {
-    background: #17a2b8;
-    color: white;
-  }
-
-  .nav-buttons {
-    text-align: center;
-    margin-top: 20px;
-  }
-
-  .nav-buttons button {
-    margin: 0 10px;
-    padding: 10px 20px;
-    width: auto;
-  }
-
-  .user-card {
-    background: #f8f9fa;
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 15px;
-    border-left: 4px solid #667eea;
-  }
-
-  .user-card h4 {
-    color: #333;
-    margin-bottom: 10px;
-  }
-
-  .user-card p {
-    color: #666;
-    margin-bottom: 5px;
-  }
-
-  .user-actions {
-    margin-top: 15px;
-  }
-
-  .user-actions button {
-    margin-right: 10px;
-    padding: 8px 16px;
-    width: auto;
-  }
-
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    margin-bottom: 30px;
-  }
-
-  .stat-card {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 25px;
-    border-radius: 15px;
-    text-align: center;
-  }
-
-  .stat-card h3 {
-    font-size: 2rem;
-    margin-bottom: 10px;
-  }
-
-  .stat-card p {
-    opacity: 0.9;
-  }
-
-  .hubs-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    margin-top: 30px;
-  }
-
-  .hub-card {
-    background: white;
-    border-radius: 15px;
-    padding: 25px;
-    text-align: center;
-    border: 3px solid #e1e5e9;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hub-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-  }
-
-  .hub-card.engineering {
-    border-color: #007bff;
-  }
-
-  .hub-card.economics {
-    border-color: #28a745;
-  }
-
-  .hub-card.procurement {
-    border-color: #ffc107;
-  }
-
-  .hub-card.training {
-    border-color: #17a2b8;
-  }
-
-  .hub-card.consulting {
-    border-color: #6f42c1;
-  }
-
-  .hub-card.analytics {
-    border-color: #fd7e14;
-  }
-
-  .hub-card.innovation {
-    border-color: #e83e8c;
-  }
-
-  .hub-icon {
-    font-size: 3rem;
-    margin-bottom: 15px;
-  }
-
-  .hub-card.engineering .hub-icon {
-    color: #007bff;
-  }
-
-  .hub-card.economics .hub-icon {
-    color: #28a745;
-  }
-
-  .hub-card.procurement .hub-icon {
-    color: #ffc107;
-  }
-
-  .hub-card.training .hub-icon {
-    color: #17a2b8;
-  }
-
-  .hub-card.consulting .hub-icon {
-    color: #6f42c1;
-  }
-
-  .hub-card.analytics .hub-icon {
-    color: #fd7e14;
-  }
-
-  .hub-card.innovation .hub-icon {
-    color: #e83e8c;
-  }
-
-  .access-status {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    padding: 5px 10px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: bold;
-  }
-
-  .access-status.granted {
-    background: #d4edda;
-    color: #155724;
-  }
-
-  .access-status.pending {
-    background: #fff3cd;
-    color: #856404;
-  }
-
-  .access-status.denied {
-    background: #f8d7da;
-    color: #721c24;
-  }
-
-  .access-status.not-requested {
-    background: #e2e3e5;
-    color: #495057;
-  }
-
-  .features-list {
-    text-align: left;
-    margin-top: 20px;
-  }
-
-  .features-list li {
-    margin-bottom: 8px;
-    color: #666;
-  }
-
-  .features-list li i {
-    color: #28a745;
-    margin-right: 8px;
-  }
-
-  .alert {
-    padding: 15px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-  }
-
-  .alert-success {
-    background: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
-  }
-
-  .alert-warning {
-    background: #fff3cd;
-    color: #856404;
-    border: 1px solid #ffeaa7;
-  }
-
-  .alert-danger {
-    background: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
-  }
-
-  .alert-info {
-    background: #cce7ff;
-    color: #004085;
-    border: 1px solid #b3d7ff;
-  }
-
-  .access-request-form {
-    background: #f8f9fa;
-    padding: 20px;
-    border-radius: 10px;
-    margin-top: 20px;
-  }
-
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.5);
-  }
-
-  .modal.active {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .modal-content {
-    background: white;
-    padding: 30px;
-    border-radius: 15px;
-    max-width: 500px;
-    width: 90%;
-    max-height: 80vh;
-    overflow-y: auto;
-  }
-
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-
-  .close:hover {
-    color: #000;
-  }
-
-  .hidden {
-    display: none !important;
-  }
-
-  @media (max-width: 768px) {
-    .container {
-      padding: 10px;
-    }
-    
-    .auth-container {
-      padding: 20px;
-    }
-    
-    .stats-grid {
-      grid-template-columns: 1fr;
-    }
-    
-    .hubs-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>
-</head>
-<body>
-<div class="container">
-  <div class="header">
-    <div class="logo">
-      <i class="fas fa-mountain"></i> SES_MINE
-    </div>
-    <div class="tagline">Smart Engineering Solutions for Mining Industry</div>
-  </div>
-
-  <!-- Landing Page -->
-  <div id="landing" class="main-content active">
-    <div class="auth-container">
-      <h2 style="text-align: center; margin-bottom: 30px; color: #333;">
-        Welcome to SESMine Platform
-      </h2>
-      <p style="text-align: center; color: #666; margin-bottom: 30px;">
-        Advanced mining solutions with intelligent access control system
-      </p>
-      
-      <div class="nav-buttons">
-        <button class="btn btn-primary" onclick="showSection('login')">
-          <i class="fas fa-sign-in-alt"></i> Login
-        </button>
-        <button class="btn btn-secondary" onclick="showSection('signup')">
-          <i class="fas fa-user-plus"></i> Sign Up
-        </button>
+                      <div class="platform-icon" style="background: linear-gradient(135deg, var(--sesmine-copper), var(--warning-600));">
+                          🎓
+                      </div>
+                      <div class="platform-info">
+                          <h3 class="platform-title">Training & Education Hub</h3>
+                          <p class="platform-category">Professional Development</p>
+                      </div>
+                  </div>
+                  
+                  <p class="platform-description">
+                      Comprehensive training programs, certification courses, and professional 
+                      development resources for mining professionals at all career levels.
+                  </p>
+                  
+                  <div class="platform-features">
+                      <h4 class="features-title">Key Features</h4>
+                      <ul class="features-list">
+                          <li><i class="fas fa-check feature-icon"></i>Online Courses</li>
+                          <li><i class="fas fa-check feature-icon"></i>Certification Programs</li>
+                          <li><i class="fas fa-check feature-icon"></i>Virtual Classrooms</li>
+                          <li><i class="fas fa-check feature-icon"></i>Expert Instructors</li>
+                      </ul>
+                  </div>
+                  
+                  <div class="platform-metrics">
+                      <div class="metric-item">
+                          <div class="metric-value">150+</div>
+                          <div class="metric-label">Courses</div>
+                      </div>
+                      <div class="metric-item">
+                          <div class="metric-value">25K+</div>
+                          <div class="metric-label">Students</div>
+                      </div>
+                      <div class="metric-item">
+                          <div class="metric-value">95%</div>
+                          <div class="metric-label">Completion</div>
+                      </div>
+                  </div>
+                  
+                  <div class="platform-actions">
+                      <button class="action-btn primary">
+                          <i class="fas fa-graduation-cap"></i>
+                          Browse Courses
+                      </button>
+                      <button class="action-btn">
+                          <i class="fas fa-certificate"></i>
+                          Certifications
+                      </button>
+                  </div>
+              </div>
+          </section>
+
+          <!-- Integrations Section -->
+          <section class="integrations-section">
+              <div class="integrations-content">
+                  <div class="integrations-header">
+                      <h2 class="integrations-title">Enterprise Integrations</h2>
+                      <p class="integrations-subtitle">
+                          Connect SESMine with your existing systems and tools for seamless data flow and enhanced productivity
+                      </p>
+                  </div>
+
+                  <div class="integrations-grid">
+                      <div class="integration-card" onclick="exploreIntegration('SAP')">
+                          <div class="integration-logo">SAP</div>
+                          <h4 class="integration-name">SAP ERP</h4>
+                          <p class="integration-type">Enterprise Resource Planning</p>
+                          <p class="integration-description">
+                              Full integration with SAP modules for finance, procurement, and operations management.
+                          </p>
+                      </div>
+
+                      <div class="integration-card" onclick="exploreIntegration('Oracle')">
+                          <div class="integration-logo">ORC</div>
+                          <h4 class="integration-name">Oracle Database</h4>
+                          <p class="integration-type">Database Management</p>
+                          <p class="integration-description">
+                              Direct connectivity to Oracle databases for real-time data synchronization and reporting.
+                          </p>
+                      </div>
+
+                      <div class="integration-card" onclick="exploreIntegration('Microsoft')">
+                          <div class="integration-logo">MS</div>
+                          <h4 class="integration-name">Microsoft 365</h4>
+                          <p class="integration-type">Productivity Suite</p>
+                          <p class="integration-description">
+                              Seamless integration with Office 365, Teams, and SharePoint for collaboration.
+                          </p>
+                      </div>
+
+                      <div class="integration-card" onclick="exploreIntegration('AutoCAD')">
+                          <div class="integration-logo">CAD</div>
+                          <h4 class="integration-name">AutoCAD</h4>
+                          <p class="integration-type">Design Software</p>
+                          <p class="integration-description">
+                              Import and export CAD drawings and 3D models for mine planning and design.
+                          </p>
+                      </div>
+
+                      <div class="integration-card" onclick="exploreIntegration('Salesforce')">
+                          <div class="integration-logo">SF</div>
+                          <h4 class="integration-name">Salesforce CRM</h4>
+                          <p class="integration-type">Customer Relationship</p>
+                          <p class="integration-description">
+                              Connect customer data and sales processes with mining project information.
+                          </p>
+                      </div>
+
+                      <div class="integration-card" onclick="exploreIntegration('AWS')">
+                          <div class="integration-logo">AWS</div>
+                          <h4 class="integration-name">Amazon Web Services</h4>
+                          <p class="integration-type">Cloud Infrastructure</p>
+                          <p class="integration-description">
+                              Leverage AWS cloud services for scalable computing and data storage.
+                          </p>
+                      </div>
+
+                      <div class="integration-card" onclick="exploreIntegration('Tableau')">
+                          <div class="integration-logo">TAB</div>
+                          <h4 class="integration-name">Tableau</h4>
+                          <p class="integration-type">Data Visualization</p>
+                          <p class="integration-description">
+                              Create advanced visualizations and dashboards with SESMine data.
+                          </p>
+                      </div>
+
+                      <div class="integration-card" onclick="exploreIntegration('Power BI')">
+                          <div class="integration-logo">PBI</div>
+                          <h4 class="integration-name">Power BI</h4>
+                          <p class="integration-type">Business Intelligence</p>
+                          <p class="integration-description">
+                              Build interactive reports and dashboards using Microsoft Power BI.
+                          </p>
+                      </div>
+                  </div>
+
+                  <div style="text-align: center; margin-top: 3rem;">
+                      <button class="btn btn-primary" style="background: var(--sesmine-gold); border-color: var(--sesmine-gold); color: var(--gray-900);" onclick="viewAllIntegrations()">
+                          <i class="fas fa-plug"></i>
+                          View All Integrations
+                      </button>
+                  </div>
+              </div>
+          </section>
+
+          <!-- API Section -->
+          <section class="api-section">
+              <div class="api-header">
+                  <h2 class="api-title">Developer API</h2>
+                  <p class="api-subtitle">
+                      Build custom applications and integrations with our comprehensive RESTful API
+                  </p>
+              </div>
+
+              <div class="api-demo">
+                  <div class="api-content">
+                      <div style="margin-bottom: 1rem;">
+                          <span class="api-method">GET</span> <span class="api-endpoint">https://api.sesmine.com/v1/projects</span>
+                      </div>
+                      <div style="margin-bottom: 1rem;">
+                          <span style="color: var(--gray-400);">Authorization: Bearer your_api_token</span>
+                      </div>
+                      <div style="margin-bottom: 2rem;">
+                          <span style="color: var(--gray-400);">Content-Type: application/json</span>
+                      </div>
+                      
+                      <div class="api-response">
+                      {
+                        "status": "success",
+                        "data": {
+                          "projects": [
+                            {
+                              "id": "proj_12345",
+                              "name": "Alpine Gold Mine",
+                              "type": "open_pit",
+                              "status": "active",
+                              "capex_estimate": 247500000,
+                              "opex_per_ton": 18.50,
+                              "created_at": "2024-01-15T10:30:00Z"
+                            }
+                          ],
+                          "total_count": 1,
+                          "page": 1
+                        }
+                      }
+                      </div>
+                  </div>
+              </div>
+
+              <div style="text-align: center; margin-top: 2rem;">
+                  <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                      <button class="btn btn-primary" onclick="openAPIDocumentation()">
+                          <i class="fas fa-book"></i>
+                          API Documentation
+                      </button>
+                      <button class="btn btn-secondary" onclick="getAPIKey()">
+                          <i class="fas fa-key"></i>
+                          Get API Key
+                      </button>
+                      <button class="btn btn-secondary" onclick="viewAPIExamples()">
+                          <i class="fas fa-code"></i>
+                          Code Examples
+                      </button>
+                  </div>
+              </div>
+          </section>
       </div>
-    </div>
+  </main>
 
-    <!-- Platform Overview -->
-    <div class="dashboard-container">
-      <h3 style="text-align: center; margin-bottom: 30px;">
-        <i class="fas fa-industry"></i> Mining Industry Hubs
-      </h3>
-      <div class="hubs-grid">
-        <div class="hub-card engineering">
-          <div class="access-status not-requested">Login Required</div>
-          <div class="hub-icon">
-            <i class="fas fa-drafting-compass"></i>
-          </div>
-          <h3>Engineering Hub</h3>
-          <p>Mine design, 3D modeling, simulation & optimization tools</p>
-          <ul class="features-list">
-            <li><i class="fas fa-check"></i> Mine Planning & Design</li>
-            <li><i class="fas fa-check"></i> 3D Geological Modeling</li>
-            <li><i class="fas fa-check"></i> Production Optimization</li>
-            <li><i class="fas fa-check"></i> Equipment Selection</li>
-          </ul>
-        </div>
-
-        <div class="hub-card economics">
-          <div class="access-status not-requested">Login Required</div>
-          <div class="hub-icon">
-            <i class="fas fa-chart-line"></i>
-          </div>
-          <h3>Economics Hub</h3>
-          <p>Financial analysis, cost estimation & economic modeling</p>
-          <ul class="features-list">
-            <li><i class="fas fa-check"></i> NPV & IRR Analysis</li>
-            <li><i class="fas fa-check"></i> Cost Estimation Models</li>
-            <li><i class="fas fa-check"></i> Risk Assessment</li>
-            <li><i class="fas fa-check"></i> Budget Planning</li>
-          </ul>
-        </div>
-
-        <div class="hub-card procurement">
-          <div class="access-status not-requested">Login Required</div>
-          <div class="hub-icon">
-            <i class="fas fa-shopping-cart"></i>
-          </div>
-          <h3>Procurement Hub</h3>
-          <p>Equipment sourcing, vendor management & supply chain</p>
-          <ul class="features-list">
-            <li><i class="fas fa-check"></i> Equipment Database</li>
-            <li><i class="fas fa-check"></i> Vendor Management</li>
-            <li><i class="fas fa-check"></i> Price Comparison</li>
-            <li><i class="fas fa-check"></i> Quality Control</li>
-          </ul>
-        </div>
-
-        <div class="hub-card training">
-          <div class="access-status not-requested">Login Required</div>
-          <div class="hub-icon">
-            <i class="fas fa-graduation-cap"></i>
-          </div>
-          <h3>Training Hub</h3>
-          <p>Professional development, certifications & skill building</p>
-          <ul class="features-list">
-            <li><i class="fas fa-check"></i> Safety Training</li>
-            <li><i class="fas fa-check"></i> Technical Courses</li>
-            <li><i class="fas fa-check"></i> Certifications</li>
-            <li><i class="fas fa-check"></i> Skills Assessment</li>
-          </ul>
-        </div>
-
-        <div class="hub-card consulting">
-          <div class="access-status not-requested">Login Required</div>
-          <div class="hub-icon">
-            <i class="fas fa-handshake"></i>
-          </div>
-          <h3>Consulting Hub</h3>
-          <p>Expert advisory, feasibility studies & strategic planning</p>
-          <ul class="features-list">
-            <li><i class="fas fa-check"></i> Feasibility Studies</li>
-            <li><i class="fas fa-check"></i> Strategic Planning</li>
-            <li><i class="fas fa-check"></i> Risk Management</li>
-            <li><i class="fas fa-check"></i> Expert Advisory</li>
-          </ul>
-        </div>
-
-        <div class="hub-card analytics">
-          <div class="access-status not-requested">Login Required</div>
-          <div class="hub-icon">
-            <i class="fas fa-chart-bar"></i>
-          </div>
-          <h3>Analytics Hub</h3>
-          <p>Data analysis, predictive modeling & business intelligence</p>
-          <ul class="features-list">
-            <li><i class="fas fa-check"></i> Production Analytics</li>
-            <li><i class="fas fa-check"></i> Predictive Maintenance</li>
-            <li><i class="fas fa-check"></i> Performance KPIs</li>
-            <li><i class="fas fa-check"></i> Custom Reports</li>
-          </ul>
-        </div>
-
-        <div class="hub-card innovation">
-          <div class="access-status not-requested">Login Required</div>
-          <div class="hub-icon">
-            <i class="fas fa-lightbulb"></i>
-          </div>
-          <h3>Innovation Hub</h3>
-          <p>Emerging technologies, AI solutions & digital transformation</p>
-          <ul class="features-list">
-            <li><i class="fas fa-check"></i> AI & Machine Learning</li>
-            <li><i class="fas fa-check"></i> IoT Integration</li>
-            <li><i class="fas fa-check"></i> Automation Solutions</li>
-            <li><i class="fas fa-check"></i> Digital Twins</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Login Section -->
-  <div id="login" class="main-content">
-    <div class="auth-container">
-      <h2 style="text-align: center; margin-bottom: 30px; color: #333;">
-        <i class="fas fa-sign-in-alt"></i> Login to Your Account
-      </h2>
-      
-      <form id="loginForm">
-        <div class="form-group">
-          <label for="loginEmail">Email Address</label>
-          <input type="email" id="loginEmail" required>
-        </div>
-        
-        <div class="form-group">
-          <label for="loginPassword">Password</label>
-          <input type="password" id="loginPassword" required>
-        </div>
-        
-        <button type="submit" class="btn btn-primary">
-          <i class="fas fa-sign-in-alt"></i> Login
-        </button>
-      </form>
-      
-      <div class="nav-buttons">
-        <button class="btn btn-secondary" onclick="showSection('signup')">
-          Don't have an account? Sign Up
-        </button>
-        <button class="btn btn-secondary" onclick="showSection('landing')">
-          <i class="fas fa-arrow-left"></i> Back to Home
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Signup Section -->
-  <div id="signup" class="main-content">
-    <div class="auth-container">
-      <h2 style="text-align: center; margin-bottom: 30px; color: #333;">
-        <i class="fas fa-user-plus"></i> Create Your Account
-      </h2>
-      
-      <form id="signupForm">
-        <div class="form-group">
-          <label for="firstName">First Name</label>
-          <input type="text" id="firstName" required>
-        </div>
-        
-        <div class="form-group">
-          <label for="lastName">Last Name</label>
-          <input type="text" id="lastName" required>
-        </div>
-        
-        <div class="form-group">
-          <label for="email">Email Address</label>
-          <input type="email" id="email" required>
-        </div>
-        
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" id="password" required minlength="6">
-        </div>
-        
-        <div class="form-group">
-          <label for="company">Company/Organization</label>
-          <input type="text" id="company">
-        </div>
-        
-        <div class="form-group">
-          <label for="phone">Phone Number</label>
-          <input type="tel" id="phone">
-        </div>
-        
-        <div class="form-group">
-          <label for="planSelect">Select Plan</label>
-          <select id="planSelect">
-            <option value="free">Free Plan (Level 0)</option>
-            <option value="basic">Basic Plan (Level 1)</option>
-            <option value="professional">Professional Plan (Level 2)</option>
-            <option value="premium">Premium Plan (Level 3)</option>
-          </select>
-        </div>
-        
-        <button type="submit" class="btn btn-primary">
-          <i class="fas fa-user-plus"></i> Create Account
-        </button>
-      </form>
-      
-      <div class="nav-buttons">
-        <button class="btn btn-secondary" onclick="showSection('login')">
-          Already have an account? Login
-        </button>
-        <button class="btn btn-secondary" onclick="showSection('landing')">
-          <i class="fas fa-arrow-left"></i> Back to Home
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- User Dashboard -->
-  <div id="userDashboard" class="main-content">
-    <div class="dashboard-container">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
-        <h2><i class="fas fa-tachometer-alt"></i> User Dashboard</h2>
-        <button class="btn btn-secondary" onclick="logout()" style="width: auto; padding: 10px 20px;">
-          <i class="fas fa-sign-out-alt"></i> Logout
-        </button>
-      </div>
-      
-      <div id="userInfo" class="alert alert-success">
-        <strong>Welcome!</strong> Your account details will appear here.
-      </div>
-      
-      <div class="stats-grid">
-        <div class="stat-card">
-          <h3><i class="fas fa-project-diagram"></i></h3>
-          <h3 id="userProjects">0</h3>
-          <p>Active Projects</p>
-        </div>
-        <div class="stat-card">
-          <h3><i class="fas fa-file-alt"></i></h3>
-          <h3 id="userReports">0</h3>
-          <p>Generated Reports</p>
-        </div>
-        <div class="stat-card">
-          <h3><i class="fas fa-clock"></i></h3>
-          <h3 id="userHours">0</h3>
-          <p>Platform Hours</p>
-        </div>
-        <div class="stat-card">
-          <h3><i class="fas fa-key"></i></h3>
-          <h3 id="hubAccess">0</h3>
-          <p>Hub Access</p>
-        </div>
-      </div>
-
-      <!-- Hub Access Management -->
-      <h3 style="margin-bottom: 20px;">
-        <i class="fas fa-industry"></i> Hub Access Management
-      </h3>
-      <div id="userHubs" class="hubs-grid">
-        <!-- User hubs will be populated here -->
-      </div>
-    </div>
-  </div>
-
-  <!-- Admin Dashboard -->
-  <div id="adminDashboard" class="main-content">
-    <div class="dashboard-container">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
-        <h2><i class="fas fa-user-shield"></i> Admin Dashboard</h2>
-        <button class="btn btn-secondary" onclick="logout()" style="width: auto; padding: 10px 20px;">
-          <i class="fas fa-sign-out-alt"></i> Logout
-        </button>
-      </div>
-      
-      <div class="stats-grid">
-        <div class="stat-card">
-          <h3 id="totalUsers">0</h3>
-          <p>Total Users</p>
-        </div>
-        <div class="stat-card">
-          <h3 id="pendingUsers">0</h3>
-          <p>Pending Users</p>
-        </div>
-        <div class="stat-card">
-          <h3 id="pendingHubRequests">0</h3>
-          <p>Pending Hub Requests</p>
-        </div>
-        <div class="stat-card">
-          <h3 id="activeHubAccess">0</h3>
-          <p>Active Hub Access</p>
-        </div>
-      </div>
-      
-      <h3 style="margin-bottom: 20px;">
-        <i class="fas fa-users"></i> Pending User Approvals
-      </h3>
-      <div id="pendingUsersContainer">
-        <!-- Pending users will be populated here -->
-      </div>
-      
-      <h3 style="margin: 30px 0 20px;">
-        <i class="fas fa-key"></i> Pending Hub Access Requests
-      </h3>
-      <div id="pendingHubRequestsContainer">
-        <!-- Pending hub requests will be populated here -->
-      </div>
-      
-      <h3 style="margin: 30px 0 20px;">
-        <i class="fas fa-check-circle"></i> All Users
-      </h3>
-      <div id="allUsersContainer">
-        <!-- All users will be populated here -->
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Access Request Modal -->
-<div id="accessRequestModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <h3 id="modalTitle">Request Hub Access</h3>
-    <form id="accessRequestForm">
-      <div class="form-group">
-        <label for="requestReason">Reason for Access Request</label>
-        <textarea id="requestReason" placeholder="Please explain why you need access to this hub..." required></textarea>
-      </div>
-      <div class="form-group">
-        <label for="projectDetails">Project Details (Optional)</label>
-        <textarea id="projectDetails" placeholder="Describe your project or use case..."></textarea>
-      </div>
-      <div class="form-group">
-        <label for="expectedUsage">Expected Usage Duration</label>
-        <select id="expectedUsage" required>
-          <option value="">Select duration...</option>
-          <option value="1-month">1 Month</option>
-          <option value="3-months">3 Months</option>
-          <option value="6-months">6 Months</option>
-          <option value="1-year">1 Year</option>
-          <option value="permanent">Permanent</option>
-        </select>
-      </div>
-      <button type="submit" class="btn btn-primary">
-        <i class="fas fa-paper-plane"></i> Submit Request
-      </button>
-    </form>
-  </div>
-</div>
-
-<script>
-  // EmailJS Configuration
-  const EMAILJS_SERVICE_ID = 'service_v1tzk6t';
-  const EMAILJS_TEMPLATE_ADMIN = 'template_5rwnvg8';
-  const EMAILJS_TEMPLATE_WELCOME = 'template_5rwnvg8';
-  const EMAILJS_TEMPLATE_HUB_REQUEST = 'template_5rwnvg8';
-  const ADMIN_EMAIL = 'info@sesmine.com';
-  
-  // Initialize EmailJS
-  emailjs.init("vIsuy4VXOAFCLwx2c");
-
-  // System State
-  let currentUser = null;
-  let allUsers = [];
-  let hubRequests = [];
-  let currentHubRequest = null;
-
-  // Hub Definitions
-  const HUBS = {
-    engineering: {
-      name: 'Engineering Hub',
-      icon: 'fas fa-drafting-compass',
-      color: '#007bff',
-      description: 'Mine design, 3D modeling, simulation & optimization tools',
-      features: ['Mine Planning & Design', '3D Geological Modeling', 'Production Optimization', 'Equipment Selection']
-    },
-    economics: {
-      name: 'Economics Hub',
-      icon: 'fas fa-chart-line',
-      color: '#28a745',
-      description: 'Financial analysis, cost estimation & economic modeling',
-      features: ['NPV & IRR Analysis', 'Cost Estimation Models', 'Risk Assessment', 'Budget Planning']
-    },
-    procurement: {
-      name: 'Procurement Hub',
-      icon: 'fas fa-shopping-cart',
-      color: '#ffc107',
-      description: 'Equipment sourcing, vendor management & supply chain',
-      features: ['Equipment Database', 'Vendor Management', 'Price Comparison', 'Quality Control']
-    },
-    training: {
-      name: 'Training Hub',
-      icon: 'fas fa-graduation-cap',
-      color: '#17a2b8',
-      description: 'Professional development, certifications & skill building',
-      features: ['Safety Training', 'Technical Courses', 'Certifications', 'Skills Assessment']
-    },
-    consulting: {
-      name: 'Consulting Hub',
-      icon: 'fas fa-handshake',
-      color: '#6f42c1',
-      description: 'Expert advisory, feasibility studies & strategic planning',
-      features: ['Feasibility Studies', 'Strategic Planning', 'Risk Management', 'Expert Advisory']
-    },
-    analytics: {
-      name: 'Analytics Hub',
-      icon: 'fas fa-chart-bar',
-      color: '#fd7e14',
-      description: 'Data analysis, predictive modeling & business intelligence',
-      features: ['Production Analytics', 'Predictive Maintenance', 'Performance KPIs', 'Custom Reports']
-    },
-    innovation: {
-      name: 'Innovation Hub',
-      icon: 'fas fa-lightbulb',
-      color: '#e83e8c',
-      description: 'Emerging technologies, AI solutions & digital transformation',
-      features: ['AI & Machine Learning', 'IoT Integration', 'Automation Solutions', 'Digital Twins']
-    }
-  };
-
-  // Initialize system
+  <script src="script.js"></script>
+  <script>
+  // Platforms page specific JavaScript
   document.addEventListener('DOMContentLoaded', function() {
-    loadUsersFromStorage();
-    loadHubRequestsFromStorage();
-    checkAuthStatus();
-    setupEventListeners();
+      initializePlatformsPage();
   });
 
-  function setupEventListeners() {
-    // Login form
-    document.getElementById('loginForm').addEventListener('submit', handleLogin);
-    
-    // Signup form
-    document.getElementById('signupForm').addEventListener('submit', handleSignup);
-    
-    // Access request form
-    document.getElementById('accessRequestForm').addEventListener('submit', handleAccessRequest);
+  function initializePlatformsPage() {
+      console.log('🌐 Platforms page initialized');
+      
+      // Initialize ecosystem diagram
+      initializeEcosystemDiagram();
+      
+      // Initialize platform animations
+      initializePlatformAnimations();
+      
+      // Track page view
+      analytics.track('platforms_page_view', {
+          timestamp: new Date().toISOString(),
+          userAgent: navigator.userAgent
+      });
   }
 
-  // Navigation Functions
-  function showSection(sectionId) {
-    // Hide all sections
-    const sections = document.querySelectorAll('.main-content');
-    sections.forEach(section => section.classList.remove('active'));
-    
-    // Show selected section
-    document.getElementById(sectionId).classList.add('active');
-  }
-
-  // Authentication Functions
-  async function handleLogin(event) {
-    event.preventDefault();
-    
-    const email = document.getElementById('loginEmail').value;
-    const password = document.getElementById('loginPassword').value;
-    
-    // Find user
-    const user = allUsers.find(u => u.email === email);
-    
-    if (!user) {
-      alert('User not found. Please check your email or sign up.');
-      return;
-    }
-    
-    if (user.password !== password) {
-      alert('Invalid password. Please try again.');
-      return;
-    }
-    
-    if (user.status === 'pending') {
-      alert('Your account is pending admin approval. Please wait for confirmation.');
-      return;
-    }
-    
-    if (user.status === 'rejected') {
-      alert('Your account has been rejected. Please contact support.');
-      return;
-    }
-    
-    // Login successful
-    currentUser = user;
-    localStorage.setItem('currentUser', JSON.stringify(user));
-    
-    // Redirect based on role
-    if (user.role === 'admin') {
-      showAdminDashboard();
-    } else {
-      showUserDashboard();
-    }
-    
-    alert('Login successful!');
-  }
-
-  async function handleSignup(event) {
-    event.preventDefault();
-    
-    const formData = {
-      firstName: document.getElementById('firstName').value,
-      lastName: document.getElementById('lastName').value,
-      email: document.getElementById('email').value,
-      password: document.getElementById('password').value,
-      company: document.getElementById('company').value,
-      phone: document.getElementById('phone').value,
-      plan: document.getElementById('planSelect').value
-    };
-    
-    // Check if user already exists
-    if (allUsers.find(u => u.email === formData.email)) {
-      alert('User with this email already exists!');
-      return;
-    }
-    
-    // Create new user
-    const newUser = {
-      id: Date.now(),
-      ...formData,
-      status: 'pending',
-      role: 'user',
-      createdAt: new Date().toISOString(),
-      approvedAt: null,
-      projects: 0,
-      reports: 0,
-      hours: 0,
-      hubAccess: {} // Track hub access per user
-    };
-    
-    // Add to users array
-    allUsers.push(newUser);
-    saveUsersToStorage();
-    
-    try {
-      // Send email to admin
-      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ADMIN, {
-        to_email: ADMIN_EMAIL,
-        user_name: `${formData.firstName} ${formData.lastName}`,
-        user_email: formData.email,
-        user_company: formData.company || 'Not specified',
-        user_phone: formData.phone || 'Not specified',
-        user_plan: formData.plan,
-        signup_date: new Date().toLocaleDateString('en-US'),
-        message: 'New user registration request'
+  function initializeEcosystemDiagram() {
+      // Add connection lines between nodes and central hub
+      const diagram = document.querySelector('.ecosystem-diagram');
+      const centralHub = document.querySelector('.central-hub');
+      const nodes = document.querySelectorAll('.platform-node');
+      
+      if (!diagram || !centralHub || !nodes.length) return;
+      
+      // Create connection lines
+      nodes.forEach((node, index) => {
+          const line = document.createElement('div');
+          line.className = 'connection-line';
+          line.style.animationDelay = `${index * 0.5}s`;
+          diagram.appendChild(line);
+          
+          // Position line between central hub and node
+          updateConnectionLine(line, centralHub, node);
       });
       
-      alert('Registration successful! Your account is pending admin approval.');
-    } catch (error) {
-      console.error('Email sending failed:', error);
-      alert('Registration successful! However, email notification failed. Your account is pending admin approval.');
-    }
-    
-    // Clear form and redirect
-    document.getElementById('signupForm').reset();
-    showSection('login');
+      // Update lines on window resize
+      window.addEventListener('resize', () => {
+          const lines = document.querySelectorAll('.connection-line');
+          lines.forEach((line, index) => {
+              updateConnectionLine(line, centralHub, nodes[index]);
+          });
+      });
   }
 
-  function logout() {
-    currentUser = null;
-    localStorage.removeItem('currentUser');
-    showSection('landing');
-    alert('Logged out successfully!');
+  function updateConnectionLine(line, hub, node) {
+      const hubRect = hub.getBoundingClientRect();
+      const nodeRect = node.getBoundingClientRect();
+      const diagramRect = hub.parentElement.getBoundingClientRect();
+      
+      const hubCenterX = hubRect.left + hubRect.width / 2 - diagramRect.left;
+      const hubCenterY = hubRect.top + hubRect.height / 2 - diagramRect.top;
+      const nodeCenterX = nodeRect.left + nodeRect.width / 2 - diagramRect.left;
+      const nodeCenterY = nodeRect.top + nodeRect.height / 2 - diagramRect.top;
+      
+      const length = Math.sqrt(Math.pow(nodeCenterX - hubCenterX, 2) + Math.pow(nodeCenterY - hubCenterY, 2));
+      const angle = Math.atan2(nodeCenterY - hubCenterY, nodeCenterX - hubCenterX) * 180 / Math.PI;
+      
+      line.style.width = length + 'px';
+      line.style.left = hubCenterX + 'px';
+      line.style.top = hubCenterY + 'px';
+      line.style.transform = `rotate(${angle}deg)`;
+      line.style.transformOrigin = '0 50%';
   }
 
-  // Hub Access Functions
-  function requestHubAccess(hubId) {
-    if (!currentUser) {
-      alert('Please login first!');
-      return;
-    }
-    
-    if (currentUser.status !== 'verified') {
-      alert('Your account must be verified by admin before requesting hub access.');
-      return;
-    }
-    
-    // Check if already has access
-    if (currentUser.hubAccess && currentUser.hubAccess[hubId] === 'granted') {
-      alert('You already have access to this hub!');
-      return;
-    }
-    
-    // Check if already requested
-    const existingRequest = hubRequests.find(r => r.userId === currentUser.id && r.hubId === hubId && r.status === 'pending');
-    if (existingRequest) {
-      alert('You already have a pending request for this hub!');
-      return;
-    }
-    
-    currentHubRequest = { hubId, hubName: HUBS[hubId].name };
-    document.getElementById('modalTitle').textContent = `Request Access: ${HUBS[hubId].name}`;
-    document.getElementById('accessRequestModal').classList.add('active');
+  function initializePlatformAnimations() {
+      const platformCards = document.querySelectorAll('.platform-card');
+      
+      platformCards.forEach(card => {
+          card.addEventListener('mouseenter', function() {
+              const icon = this.querySelector('.platform-icon');
+              if (icon) {
+                  icon.style.transform = 'scale(1.1) rotate(10deg)';
+              }
+          });
+          
+          card.addEventListener('mouseleave', function() {
+              const icon = this.querySelector('.platform-icon');
+              if (icon) {
+                  icon.style.transform = 'scale(1) rotate(0deg)';
+              }
+          });
+      });
+
+      // Integration card animations
+      const integrationCards = document.querySelectorAll('.integration-card');
+      
+      integrationCards.forEach(card => {
+          card.addEventListener('mouseenter', function() {
+              const logo = this.querySelector('.integration-logo');
+              if (logo) {
+                  logo.style.transform = 'scale(1.1)';
+              }
+          });
+          
+          card.addEventListener('mouseleave', function() {
+              const logo = this.querySelector('.integration-logo');
+              if (logo) {
+                  logo.style.transform = 'scale(1)';
+              }
+          });
+      });
   }
 
-  async function handleAccessRequest(event) {
-    event.preventDefault();
-    
-    const reason = document.getElementById('requestReason').value;
-    const projectDetails = document.getElementById('projectDetails').value;
-    const expectedUsage = document.getElementById('expectedUsage').value;
-    
-    const request = {
-      id: Date.now(),
-      userId: currentUser.id,
-      userName: `${currentUser.firstName} ${currentUser.lastName}`,
-      userEmail: currentUser.email,
-      hubId: currentHubRequest.hubId,
-      hubName: currentHubRequest.hubName,
-      reason: reason,
-      projectDetails: projectDetails,
-      expectedUsage: expectedUsage,
-      status: 'pending',
-      requestedAt: new Date().toISOString()
-    };
-    
-    hubRequests.push(request);
-    saveHubRequestsToStorage();
-    
-    try {
-      // Send email to admin
-      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_HUB_REQUEST, {
-        to_email: ADMIN_EMAIL,
-        user_name: request.userName,
-        user_email: request.userEmail,
-        hub_name: request.hubName,
-        reason: request.reason,
-        project_details: request.projectDetails || 'Not specified',
-        expected_usage: request.expectedUsage,
-        request_date: new Date().toLocaleDateString('en-US'),
-        message: `Hub access request for ${request.hubName}`
+  function explorePlatform(platformName) {
+      analytics.track('ecosystem_node_click', { platform: platformName });
+      showNotification(`🔍 Exploring ${platformName}...`, 'info');
+      
+      setTimeout(() => {
+          showNotification(`✅ ${platformName} overview loaded`, 'success');
+      }, 1500);
+  }
+
+  function openPlatform(platformName) {
+      analytics.track('platform_launch', { platform: platformName });
+      showNotification(`🚀 Launching ${platformName}...`, 'info');
+      
+      // Simulate platform launch
+      setTimeout(() => {
+          const platformRoutes = {
+              'Engineering Hub': 'engineering-hub.html',
+              'Analytics Platform': 'analytics-platform.html',
+              'Economics Hub': 'economics-hub.html',
+              'Innovation Hub': 'innovation-technology-hub.html',
+              'Procurement Hub': 'procurement-hub.html',
+              'Training Hub': 'training-education-hub.html'
+          };
+          
+          const route = platformRoutes[platformName];
+          if (route) {
+              showNotification(`✅ ${platformName} ready - redirecting...`, 'success');
+              setTimeout(() => {
+                  window.location.href = route;
+              }, 1000);
+          } else {
+              showNotification(`✅ ${platformName} loaded successfully`, 'success');
+          }
+      }, 2000);
+  }
+
+  function exploreIntegration(integrationName) {
+      analytics.track('integration_explore', { integration: integrationName });
+      showNotification(`🔌 Loading ${integrationName} integration details...`, 'info');
+      
+      setTimeout(() => {
+          showNotification(`✅ ${integrationName} integration guide loaded`, 'success');
+      }, 1800);
+  }
+
+  function viewAllIntegrations() {
+      analytics.track('view_all_integrations', { timestamp: new Date().toISOString() });
+      showNotification('🔌 Loading complete integrations catalog...', 'info');
+      
+      setTimeout(() => {
+          showNotification('✅ 50+ integrations available - catalog loaded', 'success');
+      }, 2200);
+  }
+
+  function openAPIDocumentation() {
+      analytics.track('api_documentation_access', { timestamp: new Date().toISOString() });
+      showNotification('📚 Opening API documentation...', 'info');
+      
+      setTimeout(() => {
+          showNotification('✅ API documentation loaded - comprehensive guides available', 'success');
+      }, 1500);
+  }
+
+  function getAPIKey() {
+      analytics.track('api_key_request', { timestamp: new Date().toISOString() });
+      showNotification('🔑 Generating API key...', 'info');
+      
+      setTimeout(() => {
+          const apiKey = 'sk_' + Math.random().toString(36).substr(2, 32);
+          showNotification(`🔑 API Key generated: ${apiKey.substring(0, 20)}...`, 'success');
+      }, 2000);
+  }
+
+  function viewAPIExamples() {
+      analytics.track('api_examples_view', { timestamp: new Date().toISOString() });
+      showNotification('💻 Loading code examples...', 'info');
+      
+      setTimeout(() => {
+          showNotification('✅ Code examples loaded - Python, JavaScript, cURL available', 'success');
+      }, 1600);
+  }
+
+  // Platform health monitoring
+  function checkPlatformHealth() {
+      analytics.track('platform_health_check', { timestamp: new Date().toISOString() });
+      
+      const platforms = [
+          'Engineering Hub',
+          'Analytics Platform', 
+          'Economics Hub',
+          'Innovation Hub',
+          'Procurement Hub',
+          'Training Hub'
+      ];
+      
+      const healthStatuses = platforms.map(platform => ({
+          platform: platform,
+          status: Math.random() > 0.1 ? 'healthy' : 'warning',
+          uptime: (Math.random() * 5 + 95).toFixed(2) + '%',
+          responseTime: Math.floor(Math.random() * 100 + 50) + 'ms'
+      }));
+      
+      console.log('🏥 Platform Health Status:', healthStatuses);
+      return healthStatuses;
+  }
+
+  // Platform usage analytics
+  function getPlatformUsageStats() {
+      analytics.track('platform_usage_stats_request', { timestamp: new Date().toISOString() });
+      
+      const usageStats = {
+          'Engineering Hub': Math.floor(Math.random() * 1000 + 500),
+          'Analytics Platform': Math.floor(Math.random() * 800 + 400),
+          'Economics Hub': Math.floor(Math.random() * 600 + 300),
+          'Innovation Hub': Math.floor(Math.random() * 400 + 200),
+          'Procurement Hub': Math.floor(Math.random() * 700 + 350),
+          'Training Hub': Math.floor(Math.random() * 900 + 450)
+      };
+      
+      showNotification('📊 Platform usage statistics loaded', 'info');
+      return usageStats;
+  }
+
+  // Integration status checker
+  function checkIntegrationStatus(integrationName) {
+      analytics.track('integration_status_check', {
+          integration: integrationName,
+          timestamp: new Date().toISOString()
       });
       
-      alert('Hub access request submitted successfully! You will be notified once approved.');
-    } catch (error) {
-      console.error('Email sending failed:', error);
-      alert('Request submitted! However, email notification failed.');
-    }
-    
-    closeModal();
-    updateUserHubs();
-  }
-
-  function closeModal() {
-    document.getElementById('accessRequestModal').classList.remove('active');
-    document.getElementById('accessRequestForm').reset();
-    currentHubRequest = null;
-  }
-
-  // Dashboard Functions
-  function showUserDashboard() {
-    showSection('userDashboard');
-    updateUserInfo();
-    updateUserHubs();
-  }
-
-  function showAdminDashboard() {
-    showSection('adminDashboard');
-    updateAdminStats();
-    updatePendingUsers();
-    updatePendingHubRequests();
-    updateAllUsers();
-  }
-
-  function updateUserInfo() {
-    if (!currentUser) return;
-    
-    const userInfoDiv = document.getElementById('userInfo');
-    
-    userInfoDiv.innerHTML = `
-      <strong>Welcome, ${currentUser.firstName} ${currentUser.lastName}!</strong><br>
-      Email: ${currentUser.email}<br>
-      Plan: ${currentUser.plan.toUpperCase()}<br>
-      Status: <span style="color: #28a745; font-weight: bold;">${currentUser.status.toUpperCase()}</span><br>
-      Member since: ${new Date(currentUser.createdAt).toLocaleDateString()}
-    `;
-    
-    // Update stats
-    document.getElementById('userProjects').textContent = currentUser.projects || 0;
-    document.getElementById('userReports').textContent = currentUser.reports || 0;
-    document.getElementById('userHours').textContent = currentUser.hours || 0;
-    
-    // Count hub access
-    const hubAccessCount = currentUser.hubAccess ? 
-      Object.values(currentUser.hubAccess).filter(status => status === 'granted').length : 0;
-    document.getElementById('hubAccess').textContent = hubAccessCount;
-  }
-
-  function updateUserHubs() {
-    if (!currentUser) return;
-    
-    const hubsDiv = document.getElementById('userHubs');
-    
-    hubsDiv.innerHTML = Object.keys(HUBS).map(hubId => {
-      const hub = HUBS[hubId];
-      const userHubAccess = currentUser.hubAccess ? currentUser.hubAccess[hubId] : null;
-      const pendingRequest = hubRequests.find(r => r.userId === currentUser.id && r.hubId === hubId && r.status === 'pending');
+      const statuses = ['active', 'syncing', 'error', 'maintenance'];
+      const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
       
-      let accessStatus = 'not-requested';
-      let statusText = 'Not Requested';
-      let buttonText = 'Request Access';
-      let buttonAction = `requestHubAccess('${hubId}')`;
-      let buttonClass = 'btn-primary';
+      showNotification(`🔌 ${integrationName} integration status: ${randomStatus}`, 'info');
+      return randomStatus;
+  }
+
+  // Platform performance metrics
+  function getPlatformMetrics(platformName) {
+      analytics.track('platform_metrics_request', {
+          platform: platformName,
+          timestamp: new Date().toISOString()
+      });
       
-      if (userHubAccess === 'granted') {
-        accessStatus = 'granted';
-        statusText = 'Access Granted';
-        buttonText = 'Enter Hub';
-        buttonAction = `alert('Hub access feature coming soon!')`;
-        buttonClass = 'btn-success';
-      } else if (pendingRequest) {
-        accessStatus = 'pending';
-        statusText = 'Pending Approval';
-        buttonText = 'Pending...';
-        buttonAction = `alert('Your request is pending admin approval.')`;
-        buttonClass = 'btn-warning';
-      } else if (userHubAccess === 'denied') {
-        accessStatus = 'denied';
-        statusText = 'Access Denied';
-        buttonText = 'Request Again';
-        buttonAction = `requestHubAccess('${hubId}')`;
-        buttonClass = 'btn-danger';
+      const metrics = {
+          activeUsers: Math.floor(Math.random() * 500 + 100),
+          avgResponseTime: Math.floor(Math.random() * 200 + 100) + 'ms',
+          uptime: (Math.random() * 5 + 95).toFixed(2) + '%',
+          dataProcessed: (Math.random() * 10 + 5).toFixed(1) + 'GB',
+          apiCalls: Math.floor(Math.random() * 10000 + 5000)
+      };
+      
+      showNotification(`📈 ${platformName} metrics loaded`, 'success');
+      return metrics;
+  }
+
+  // Platform comparison tool
+  function comparePlatforms(platform1, platform2) {
+      analytics.track('platform_comparison', {
+          platform1: platform1,
+          platform2: platform2,
+          timestamp: new Date().toISOString()
+      });
+      
+      showNotification(`⚖️ Comparing ${platform1} vs ${platform2}...`, 'info');
+      
+      setTimeout(() => {
+          showNotification('✅ Platform comparison report generated', 'success');
+      }, 2500);
+  }
+
+  // Platform recommendation engine
+  function getRecommendedPlatforms(userProfile) {
+      analytics.track('platform_recommendations', {
+          profile: userProfile,
+          timestamp: new Date().toISOString()
+      });
+      
+      const recommendations = [
+          'Engineering Hub',
+          'Analytics Platform',
+          'Economics Hub'
+      ];
+      
+      showNotification(`🎯 Found ${recommendations.length} recommended platforms for you`, 'success');
+      return recommendations;
+  }
+
+  // Auto-refresh platform status
+  function startPlatformMonitoring() {
+      setInterval(() => {
+          checkPlatformHealth();
+      }, 300000); // Check every 5 minutes
+      
+      console.log('🔄 Platform monitoring started');
+  }
+
+  // Initialize monitoring
+  setTimeout(startPlatformMonitoring, 5000);
+
+  // Keyboard shortcuts for platforms page
+  document.addEventListener('keydown', function(e) {
+      // Ctrl/Cmd + Shift + E: Engineering Hub
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'E') {
+          e.preventDefault();
+          openPlatform('Engineering Hub');
       }
       
-      return `
-        <div class="hub-card ${hubId}">
-          <div class="access-status ${accessStatus}">${statusText}</div>
-          <div class="hub-icon">
-            <i class="${hub.icon}"></i>
-          </div>
-          <h3>${hub.name}</h3>
-          <p>${hub.description}</p>
-          <ul class="features-list">
-            ${hub.features.map(feature => `<li><i class="fas fa-check"></i> ${feature}</li>`).join('')}
-          </ul>
-          <div style="margin-top: 20px;">
-            <button class="btn ${buttonClass}" onclick="${buttonAction}" style="width: 100%;">
-              ${buttonText}
-            </button>
-          </div>
-        </div>
-      `;
-    }).join('');
-  }
-
-  function updateAdminStats() {
-    const total = allUsers.length;
-    const pending = allUsers.filter(u => u.status === 'pending').length;
-    const pendingHubReqs = hubRequests.filter(r => r.status === 'pending').length;
-    const activeAccess = hubRequests.filter(r => r.status === 'approved').length;
-    
-    document.getElementById('totalUsers').textContent = total;
-    document.getElementById('pendingUsers').textContent = pending;
-    document.getElementById('pendingHubRequests').textContent = pendingHubReqs;
-    document.getElementById('activeHubAccess').textContent = activeAccess;
-  }
-
-  function updatePendingUsers() {
-    const pendingUsers = allUsers.filter(u => u.status === 'pending');
-    const container = document.getElementById('pendingUsersContainer');
-    
-    if (pendingUsers.length === 0) {
-      container.innerHTML = '<p style="color: #666; text-align: center; padding: 20px;">No pending users</p>';
-      return;
-    }
-    
-    container.innerHTML = pendingUsers.map(user => `
-      <div class="user-card">
-        <h4>${user.firstName} ${user.lastName}</h4>
-        <p><strong>Email:</strong> ${user.email}</p>
-        <p><strong>Company:</strong> ${user.company || 'Not specified'}</p>
-        <p><strong>Phone:</strong> ${user.phone || 'Not specified'}</p>
-        <p><strong>Plan:</strong> ${user.plan.toUpperCase()}</p>
-        <p><strong>Registered:</strong> ${new Date(user.createdAt).toLocaleDateString()}</p>
-        <div class="user-actions">
-          <button class="btn btn-success" onclick="approveUser(${user.id})">
-            <i class="fas fa-check"></i> Approve
-          </button>
-          <button class="btn btn-danger" onclick="rejectUser(${user.id})">
-            <i class="fas fa-times"></i> Reject
-          </button>
-        </div>
-      </div>
-    `).join('');
-  }
-
-  function updatePendingHubRequests() {
-    const pendingRequests = hubRequests.filter(r => r.status === 'pending');
-    const container = document.getElementById('pendingHubRequestsContainer');
-    
-    if (pendingRequests.length === 0) {
-      container.innerHTML = '<p style="color: #666; text-align: center; padding: 20px;">No pending hub requests</p>';
-      return;
-    }
-    
-    container.innerHTML = pendingRequests.map(request => `
-      <div class="user-card">
-        <h4>${request.userName} - ${request.hubName}</h4>
-        <p><strong>Email:</strong> ${request.userEmail}</p>
-        <p><strong>Hub:</strong> ${request.hubName}</p>
-        <p><strong>Reason:</strong> ${request.reason}</p>
-        <p><strong>Project Details:</strong> ${request.projectDetails || 'Not specified'}</p>
-        <p><strong>Expected Usage:</strong> ${request.expectedUsage}</p>
-        <p><strong>Requested:</strong> ${new Date(request.requestedAt).toLocaleDateString()}</p>
-        <div class="user-actions">
-          <button class="btn btn-success" onclick="approveHubRequest(${request.id})">
-            <i class="fas fa-check"></i> Approve
-          </button>
-          <button class="btn btn-danger" onclick="rejectHubRequest(${request.id})">
-            <i class="fas fa-times"></i> Reject
-          </button>
-        </div>
-      </div>
-    `).join('');
-  }
-
-  function updateAllUsers() {
-    const container = document.getElementById('allUsersContainer');
-    
-    if (allUsers.length === 0) {
-      container.innerHTML = '<p style="color: #666; text-align: center; padding: 20px;">No users registered</p>';
-      return;
-    }
-    
-    container.innerHTML = allUsers.map(user => {
-      const hubAccessCount = user.hubAccess ? 
-        Object.values(user.hubAccess).filter(status => status === 'granted').length : 0;
-      
-      return `
-        <div class="user-card">
-          <h4>${user.firstName} ${user.lastName} ${user.role === 'admin' ? '<i class="fas fa-crown" style="color: #ffc107;"></i>' : ''}</h4>
-          <p><strong>Email:</strong> ${user.email}</p>
-          <p><strong>Plan:</strong> ${user.plan.toUpperCase()}</p>
-          <p><strong>Status:</strong> 
-            <span style="color: ${user.status === 'verified' ? '#28a745' : user.status === 'pending' ? '#ffc107' : '#dc3545'}; font-weight: bold;">
-              ${user.status.toUpperCase()}
-            </span>
-          </p>
-          <p><strong>Hub Access:</strong> ${hubAccessCount} hubs</p>
-          <p><strong>Registered:</strong> ${new Date(user.createdAt).toLocaleDateString()}</p>
-          ${user.approvedAt ? `<p><strong>Approved:</strong> ${new Date(user.approvedAt).toLocaleDateString()}</p>` : ''}
-        </div>
-      `;
-    }).join('');
-  }
-
-  // Admin Functions
-  async function approveUser(userId) {
-    const user = allUsers.find(u => u.id === userId);
-    if (!user) return;
-    
-    user.status = 'verified';
-    user.approvedAt = new Date().toISOString();
-    user.hubAccess = {}; // Initialize hub access
-    saveUsersToStorage();
-    
-    try {
-      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_WELCOME, {
-        to_email: user.email,
-        user_name: `${user.firstName} ${user.lastName}`,
-        message: 'Your account has been approved! You can now login and request access to specific hubs.'
-      });
-    } catch (error) {
-      console.error('Approval email failed:', error);
-    }
-    
-    updateAdminStats();
-    updatePendingUsers();
-    updateAllUsers();
-    
-    alert(`User ${user.firstName} ${user.lastName} has been approved!`);
-  }
-
-  async function rejectUser(userId) {
-    if (!confirm('Are you sure you want to reject this user?')) return;
-    
-    const user = allUsers.find(u => u.id === userId);
-    if (!user) return;
-    
-    user.status = 'rejected';
-    saveUsersToStorage();
-    
-    updateAdminStats();
-    updatePendingUsers();
-    updateAllUsers();
-    
-    alert(`User ${user.firstName} ${user.lastName} has been rejected.`);
-  }
-
-  async function approveHubRequest(requestId) {
-    const request = hubRequests.find(r => r.id === requestId);
-    if (!request) return;
-    
-    const user = allUsers.find(u => u.id === request.userId);
-    if (!user) return;
-    
-    // Update request status
-    request.status = 'approved';
-    request.approvedAt = new Date().toISOString();
-    
-    // Grant hub access to user
-    if (!user.hubAccess) user.hubAccess = {};
-    user.hubAccess[request.hubId] = 'granted';
-    
-    saveHubRequestsToStorage();
-    saveUsersToStorage();
-    
-    try {
-      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_WELCOME, {
-        to_email: request.userEmail,
-        user_name: request.userName,
-        message: `Your request for ${request.hubName} access has been approved! You can now access the hub from your dashboard.`
-      });
-    } catch (error) {
-      console.error('Approval email failed:', error);
-    }
-    
-    updateAdminStats();
-    updatePendingHubRequests();
-    updateAllUsers();
-    
-    alert(`Hub access approved for ${request.userName}!`);
-  }
-
-  async function rejectHubRequest(requestId) {
-    if (!confirm('Are you sure you want to reject this hub request?')) return;
-    
-    const request = hubRequests.find(r => r.id === requestId);
-    if (!request) return;
-    
-    const user = allUsers.find(u => u.id === request.userId);
-    if (!user) return;
-    
-    // Update request status
-    request.status = 'rejected';
-    request.rejectedAt = new Date().toISOString();
-    
-    // Update user hub access
-    if (!user.hubAccess) user.hubAccess = {};
-    user.hubAccess[request.hubId] = 'denied';
-    
-    saveHubRequestsToStorage();
-    saveUsersToStorage();
-    
-    updateAdminStats();
-    updatePendingHubRequests();
-    updateAllUsers();
-    
-    alert(`Hub access rejected for ${request.userName}.`);
-  }
-
-  // Storage Functions
-  function saveUsersToStorage() {
-    localStorage.setItem('sesmine_users', JSON.stringify(allUsers));
-  }
-
-  function loadUsersFromStorage() {
-    const stored = localStorage.getItem('sesmine_users');
-    if (stored) {
-      allUsers = JSON.parse(stored);
-    } else {
-      // Create default admin user
-      allUsers = [{
-        id: 1,
-        firstName: 'Admin',
-        lastName: 'User',
-        email: 'admin@sesmine.com',
-        password: 'admin123',
-        company: 'SESMine',
-        phone: '+1234567890',
-        plan: 'premium',
-        status: 'verified',
-        role: 'admin',
-        createdAt: new Date().toISOString(),
-        approvedAt: new Date().toISOString(),
-        projects: 0,
-        reports: 0,
-        hours: 0,
-        hubAccess: Object.keys(HUBS).reduce((acc, hubId) => {
-          acc[hubId] = 'granted';
-          return acc;
-        }, {})
-      }];
-      saveUsersToStorage();
-    }
-  }
-
-  function saveHubRequestsToStorage() {
-    localStorage.setItem('sesmine_hub_requests', JSON.stringify(hubRequests));
-  }
-
-  function loadHubRequestsFromStorage() {
-    const stored = localStorage.getItem('sesmine_hub_requests');
-    if (stored) {
-      hubRequests = JSON.parse(stored);
-    }
-  }
-
-  function checkAuthStatus() {
-    const stored = localStorage.getItem('currentUser');
-    if (stored) {
-      currentUser = JSON.parse(stored);
-      // Refresh user data from storage
-      const updatedUser = allUsers.find(u => u.id === currentUser.id);
-      if (updatedUser) {
-        currentUser = updatedUser;
-        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+      // Ctrl/Cmd + Shift + A: Analytics Platform
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'A') {
+          e.preventDefault();
+          openPlatform('Analytics Platform');
       }
       
-      if (currentUser.role === 'admin') {
-        showAdminDashboard();
-      } else {
-        showUserDashboard();
+      // Ctrl/Cmd + Shift + I: Integrations
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'I') {
+          e.preventDefault();
+          document.querySelector('.integrations-section').scrollIntoView({ behavior: 'smooth' });
       }
-    }
+      
+      // Ctrl/Cmd + Shift + D: API Documentation
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'D') {
+          e.preventDefault();
+          openAPIDocumentation();
+      }
+  });
+
+  // Platform search functionality
+  function searchPlatforms(query) {
+      const platformCards = document.querySelectorAll('.platform-card');
+      const integrationCards = document.querySelectorAll('.integration-card');
+      const searchQuery = query.toLowerCase();
+      
+      [...platformCards, ...integrationCards].forEach(card => {
+          const title = card.querySelector('.platform-title, .integration-name').textContent.toLowerCase();
+          const description = card.querySelector('.platform-description, .integration-description').textContent.toLowerCase();
+          
+          const matches = title.includes(searchQuery) || description.includes(searchQuery);
+          
+          if (matches || !searchQuery) {
+              card.style.display = 'block';
+              card.style.opacity = '1';
+          } else {
+              card.style.display = 'none';
+              card.style.opacity = '0';
+          }
+      });
+      
+      if (searchQuery) {
+          analytics.track('platform_search', { query: searchQuery });
+      }
   }
 
-  // Close modal when clicking outside
-  window.onclick = function(event) {
-    const modal = document.getElementById('accessRequestModal');
-    if (event.target === modal) {
-      closeModal();
-    }
-  }
-</script>
+  // Initialize search functionality
+  document.addEventListener('DOMContentLoaded', function() {
+      const searchInput = document.getElementById('globalSearch');
+      
+      if (searchInput) {
+          searchInput.addEventListener('input', function() {
+              const query = this.value;
+              searchPlatforms(query);
+          });
+      }
+  });
+
+  // Check platform health on page load
+  setTimeout(checkPlatformHealth, 3000);
+
+  console.log('🌐 Platforms page ready');
+  console.log('🔧 Core platforms loaded');
+  console.log('🔌 Integration catalog available');
+  console.log('📚 API documentation accessible');
+  console.log('🏥 Platform health monitoring active');
+  console.log('🎯 Platform recommendations enabled');
+  </script>
 </body>
 </html>

@@ -3,1223 +3,1953 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="SESMine Features - Discover all the powerful features and capabilities of our comprehensive mining solutions platform">
-  <title>Features - SESMine</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <title>Features - SESMine Platform</title>
+  <meta name="description" content="Explore comprehensive features of SESMine platform - Advanced mining tools, analytics, cost estimation, and more">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/x-icon" href="https://www.sesmine.com/favicon.ico">
+  
   <style>
-      :root {
-          --primary-color: #8e44ad;
-          --secondary-color: #9b59b6;
-          --accent-color: #3498db;
-          --success-color: #27ae60;
-          --dark-bg: #0a1628;
-          --light-bg: #f8f9fa;
-          --text-dark: #2c3e50;
-          --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-          --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-          --shadow-sm: 0 2px 8px rgba(0,0,0,0.1);
-          --shadow-md: 0 4px 16px rgba(0,0,0,0.15);
-          --shadow-lg: 0 8px 32px rgba(0,0,0,0.2);
-          --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Features page specific styles */
+  .features-hero {
+      background: linear-gradient(135deg, var(--primary-600) 0%, var(--sesmine-accent) 50%, var(--sesmine-secondary) 100%);
+      color: white;
+      padding: 5rem 0;
+      margin-bottom: 4rem;
+      position: relative;
+      overflow: hidden;
+  }
+  
+  .features-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="features-pattern" width="35" height="35" patternUnits="userSpaceOnUse"><star cx="17.5" cy="17.5" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="8" cy="8" r="1" fill="rgba(255,255,255,0.05)"/><circle cx="27" cy="27" r="1.5" fill="rgba(255,255,255,0.08)"/><rect x="15" y="15" width="5" height="1" fill="rgba(255,255,255,0.06)" rx="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23features-pattern)"/></svg>');
+      opacity: 0.3;
+  }
+  
+  .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      text-align: center;
+  }
+  
+  .hero-icon {
+      width: 120px;
+      height: 120px;
+      background: linear-gradient(135deg, var(--sesmine-gold), var(--sesmine-copper));
+      border-radius: var(--border-radius-2xl);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      margin: 0 auto 2.5rem;
+      box-shadow: var(--shadow-2xl);
+      animation: featuresGlow 4s ease-in-out infinite;
+  }
+  
+  @keyframes featuresGlow {
+      0%, 100% { 
+          transform: scale(1);
+          box-shadow: var(--shadow-2xl), 0 0 0 0 rgba(214, 158, 46, 0.7);
       }
-
-      * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
+      50% { 
+          transform: scale(1.05);
+          box-shadow: var(--shadow-2xl), 0 0 0 25px rgba(214, 158, 46, 0);
       }
-
-      body {
-          font-family: 'Inter', sans-serif;
-          color: var(--text-dark);
-          line-height: 1.6;
-          overflow-x: hidden;
-      }
-
-      h1, h2, h3, h4, h5, h6 {
-          font-family: 'Poppins', sans-serif;
-          font-weight: 700;
-      }
-
-      /* Navigation */
-      .navbar {
-          position: fixed;
-          top: 0;
-          width: 100%;
-          background: rgba(255, 255, 255, 0.98);
-          backdrop-filter: blur(10px);
-          box-shadow: var(--shadow-sm);
-          z-index: 1000;
-      }
-
-      .nav-container {
-          max-width: 1400px;
-          margin: 0 auto;
-          padding: 0 30px;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          height: 80px;
-      }
-
-      .logo {
-          font-size: 28px;
-          font-weight: 800;
-          background: var(--gradient-1);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          cursor: pointer;
-          text-decoration: none;
-      }
-
-      .nav-menu {
-          display: flex;
-          list-style: none;
-          gap: 40px;
-      }
-
-      .nav-menu a {
-          text-decoration: none;
-          color: var(--text-dark);
-          font-weight: 500;
-          transition: var(--transition);
-      }
-
-      .nav-menu a:hover {
-          color: var(--primary-color);
-      }
-
-      .btn {
-          padding: 12px 28px;
-          border-radius: 50px;
-          text-decoration: none;
-          font-weight: 600;
-          transition: var(--transition);
-          cursor: pointer;
-          border: none;
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-      }
-
-      .btn-primary {
-          background: var(--gradient-1);
-          color: white;
-          box-shadow: var(--shadow-sm);
-      }
-
-      .btn-primary:hover {
-          transform: translateY(-2px);
-          box-shadow: var(--shadow-md);
-      }
-
-      /* Hero Section */
-      .hero {
-          margin-top: 80px;
-          min-height: 80vh;
-          position: relative;
-          overflow: hidden;
-          display: flex;
-          align-items: center;
-          background: var(--gradient-1);
-      }
-
-      .hero::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=80');
-          background-size: cover;
-          background-position: center;
-          opacity: 0.1;
-      }
-
-      .hero-content {
-          max-width: 1400px;
-          margin: 0 auto;
-          padding: 80px 30px;
-          position: relative;
-          z-index: 1;
-          text-align: center;
-          color: white;
-      }
-
-      .hero-content h1 {
-          font-size: 56px;
-          margin-bottom: 20px;
-          animation: fadeInUp 0.8s ease-out;
-      }
-
-      .hero-content p {
-          font-size: 22px;
-          opacity: 0.95;
-          max-width: 800px;
-          margin: 0 auto 40px;
-          animation: fadeInUp 0.8s ease-out 0.2s backwards;
-      }
-
-      @keyframes fadeInUp {
-          from {
-              opacity: 0;
-              transform: translateY(30px);
-          }
-          to {
-              opacity: 1;
-              transform: translateY(0);
-          }
-      }
-
-      /* Feature Categories */
-      .categories {
-          padding: 100px 30px;
-          background: white;
-      }
-
-      .categories-container {
-          max-width: 1400px;
-          margin: 0 auto;
-      }
-
-      .section-header {
-          text-align: center;
-          max-width: 800px;
-          margin: 0 auto 60px;
-      }
-
-      .section-tag {
-          display: inline-block;
-          background: var(--gradient-1);
-          color: white;
-          padding: 8px 20px;
-          border-radius: 50px;
-          font-size: 14px;
-          font-weight: 600;
-          margin-bottom: 15px;
-      }
-
-      .section-header h2 {
-          font-size: 42px;
-          margin-bottom: 20px;
-      }
-
-      .section-header p {
-          font-size: 18px;
-          color: #666;
-      }
-
-      .categories-grid {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 25px;
-      }
-
-      .category-tab {
-          background: var(--light-bg);
-          padding: 25px;
-          border-radius: 15px;
-          text-align: center;
-          cursor: pointer;
-          transition: var(--transition);
-          border: 3px solid transparent;
-      }
-
-      .category-tab:hover,
-      .category-tab.active {
-          background: white;
-          box-shadow: var(--shadow-md);
-          border-color: var(--primary-color);
-          transform: translateY(-5px);
-      }
-
-      .category-icon {
-          width: 60px;
-          height: 60px;
-          background: var(--gradient-1);
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 28px;
-          color: white;
-          margin: 0 auto 15px;
-      }
-
-      .category-tab h3 {
-          font-size: 16px;
-          color: var(--text-dark);
-      }
-
-      /* Features Grid */
-      .features {
-          padding: 100px 30px;
-          background: var(--light-bg);
-      }
-
-      .features-container {
-          max-width: 1400px;
-          margin: 0 auto;
-      }
-
+  }
+  
+  .hero-title {
+      font-size: 4rem;
+      font-weight: 800;
+      margin-bottom: 2rem;
+      background: linear-gradient(135deg, white, rgba(255, 255, 255, 0.8), var(--sesmine-gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.1;
+  }
+  
+  .hero-subtitle {
+      font-size: 1.75rem;
+      opacity: 0.9;
+      margin-bottom: 3rem;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.4;
+  }
+  
+  .feature-categories {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+  }
+  
+  .category-card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: var(--border-radius-xl);
+      padding: 2rem;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      text-align: center;
+      transition: var(--transition-all);
+      cursor: pointer;
+  }
+  
+  .category-card:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-6px);
+  }
+  
+  .category-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--sesmine-gold);
+  }
+  
+  .category-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+  }
+  
+  .category-count {
+      font-size: 0.9rem;
+      opacity: 0.8;
+      font-weight: 600;
+  }
+  
+  .features-nav {
+      background: white;
+      border-radius: var(--border-radius-xl);
+      padding: 2rem;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--gray-200);
+      margin-bottom: 3rem;
+      position: sticky;
+      top: 2rem;
+      z-index: 100;
+  }
+  
+  .nav-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--sesmine-primary);
+      margin-bottom: 1.5rem;
+      text-align: center;
+  }
+  
+  .nav-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+  }
+  
+  .nav-tab {
+      padding: 0.75rem 1.5rem;
+      border: 2px solid var(--gray-300);
+      background: white;
+      color: var(--gray-700);
+      border-radius: var(--border-radius-lg);
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition-all);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+  }
+  
+  .nav-tab:hover {
+      border-color: var(--sesmine-accent);
+      color: var(--sesmine-accent);
+  }
+  
+  .nav-tab.active {
+      background: linear-gradient(135deg, var(--sesmine-accent), var(--sesmine-secondary));
+      border-color: var(--sesmine-accent);
+      color: white;
+      box-shadow: var(--shadow-md);
+  }
+  
+  .features-section {
+      margin-bottom: 5rem;
+  }
+  
+  .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+  }
+  
+  .section-title {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--sesmine-primary);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+  }
+  
+  .section-subtitle {
+      font-size: 1.25rem;
+      color: var(--gray-600);
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
+  }
+  
+  .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2.5rem;
+      margin-bottom: 4rem;
+  }
+  
+  .feature-card {
+      background: white;
+      border-radius: var(--border-radius-xl);
+      padding: 3rem;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--gray-200);
+      transition: var(--transition-all);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+  }
+  
+  .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, var(--sesmine-accent), var(--sesmine-secondary), var(--sesmine-gold));
+  }
+  
+  .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-2xl);
+      border-color: var(--sesmine-accent);
+  }
+  
+  .feature-header {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+  }
+  
+  .feature-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: var(--border-radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      color: white;
+      box-shadow: var(--shadow-lg);
+      transition: var(--transition-transform);
+      flex-shrink: 0;
+  }
+  
+  .feature-card:hover .feature-icon {
+      transform: scale(1.1) rotate(5deg);
+  }
+  
+  .feature-info {
+      flex: 1;
+  }
+  
+  .feature-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--sesmine-primary);
+      margin-bottom: 0.75rem;
+  }
+  
+  .feature-category {
+      color: var(--sesmine-copper);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+  }
+  
+  .feature-description {
+      color: var(--gray-600);
+      line-height: 1.6;
+      margin-bottom: 2rem;
+      font-size: 1rem;
+  }
+  
+  .feature-highlights {
+      margin-bottom: 2rem;
+  }
+  
+  .highlights-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--sesmine-primary);
+      margin-bottom: 1rem;
+  }
+  
+  .highlights-list {
+      list-style: none;
+  }
+  
+  .highlights-list li {
+      padding: 0.5rem 0;
+      color: var(--gray-700);
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+  }
+  
+  .highlight-icon {
+      width: 16px;
+      height: 16px;
+      color: var(--sesmine-emerald);
+      flex-shrink: 0;
+  }
+  
+  .feature-actions {
+      display: flex;
+      gap: 1rem;
+  }
+  
+  .action-btn {
+      flex: 1;
+      padding: 1rem;
+      border: 2px solid var(--gray-300);
+      background: white;
+      color: var(--gray-700);
+      border-radius: var(--border-radius-md);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition-all);
+      text-align: center;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+  }
+  
+  .action-btn:hover {
+      border-color: var(--sesmine-accent);
+      color: var(--sesmine-accent);
+  }
+  
+  .action-btn.primary {
+      background: var(--sesmine-accent);
+      border-color: var(--sesmine-accent);
+      color: white;
+  }
+  
+  .action-btn.primary:hover {
+      background: var(--sesmine-secondary);
+      border-color: var(--sesmine-secondary);
+  }
+  
+  .feature-showcase {
+      background: linear-gradient(135deg, var(--gray-50), var(--primary-50));
+      border-radius: var(--border-radius-2xl);
+      padding: 4rem 3rem;
+      margin: 4rem 0;
+      border: 1px solid var(--gray-200);
+  }
+  
+  .showcase-header {
+      text-align: center;
+      margin-bottom: 3rem;
+  }
+  
+  .showcase-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--sesmine-primary);
+      margin-bottom: 1rem;
+  }
+  
+  .showcase-subtitle {
+      font-size: 1.25rem;
+      color: var(--gray-600);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+  }
+  
+  .showcase-demo {
+      background: white;
+      border-radius: var(--border-radius-xl);
+      padding: 3rem;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--gray-200);
+      position: relative;
+      overflow: hidden;
+  }
+  
+  .demo-screen {
+      background: var(--gray-900);
+      border-radius: var(--border-radius-lg);
+      padding: 2rem;
+      color: var(--sesmine-gold);
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      position: relative;
+      overflow: hidden;
+  }
+  
+  .demo-screen::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 30px;
+      background: linear-gradient(90deg, var(--danger-500), var(--warning-500), var(--success-500));
+      border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+  }
+  
+  .demo-content {
+      margin-top: 1rem;
+      position: relative;
+      z-index: 1;
+  }
+  
+  .demo-line {
+      margin-bottom: 0.5rem;
+      opacity: 0;
+      animation: typewriter 0.5s ease-in-out forwards;
+  }
+  
+  .demo-line:nth-child(1) { animation-delay: 0.5s; }
+  .demo-line:nth-child(2) { animation-delay: 1s; }
+  .demo-line:nth-child(3) { animation-delay: 1.5s; }
+  .demo-line:nth-child(4) { animation-delay: 2s; }
+  .demo-line:nth-child(5) { animation-delay: 2.5s; }
+  
+  @keyframes typewriter {
+      from { opacity: 0; transform: translateX(-10px); }
+      to { opacity: 1; transform: translateX(0); }
+  }
+  
+  .demo-prompt {
+      color: var(--sesmine-accent);
+  }
+  
+  .demo-success {
+      color: var(--sesmine-emerald);
+  }
+  
+  .demo-warning {
+      color: var(--warning-500);
+  }
+  
+  .comparison-section {
+      background: var(--gray-900);
+      color: white;
+      border-radius: var(--border-radius-2xl);
+      padding: 4rem 3rem;
+      margin: 4rem 0;
+      position: relative;
+      overflow: hidden;
+  }
+  
+  .comparison-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="comparison-pattern" width="50" height="50" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="2" fill="rgba(49,130,206,0.1)"/><rect x="20" y="20" width="10" height="2" fill="rgba(49,130,206,0.05)" rx="1"/></pattern></defs><rect width="100" height="100" fill="url(%23comparison-pattern)"/></svg>');
+      opacity: 0.3;
+  }
+  
+  .comparison-content {
+      position: relative;
+      z-index: 1;
+  }
+  
+  .comparison-header {
+      text-align: center;
+      margin-bottom: 3rem;
+  }
+  
+  .comparison-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, white, var(--sesmine-gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+  }
+  
+  .comparison-table {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: var(--border-radius-xl);
+      padding: 2rem;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      overflow-x: auto;
+  }
+  
+  .comparison-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 1rem;
+      min-width: 600px;
+  }
+  
+  .comparison-header-cell {
+      padding: 1rem;
+      font-weight: 700;
+      text-align: center;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+      font-size: 1.1rem;
+  }
+  
+  .comparison-cell {
+      padding: 1rem;
+      text-align: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .comparison-cell:first-child {
+      text-align: left;
+      font-weight: 600;
+  }
+  
+  .check-icon {
+      color: var(--sesmine-emerald);
+      font-size: 1.25rem;
+  }
+  
+  .cross-icon {
+      color: var(--danger-400);
+      font-size: 1.25rem;
+  }
+  
+  .pricing-section {
+      background: linear-gradient(135deg, var(--warning-50), var(--success-50));
+      border-radius: var(--border-radius-2xl);
+      padding: 4rem 3rem;
+      margin: 4rem 0;
+      border: 1px solid var(--warning-200);
+  }
+  
+  .pricing-header {
+      text-align: center;
+      margin-bottom: 3rem;
+  }
+  
+  .pricing-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--sesmine-primary);
+      margin-bottom: 1rem;
+  }
+  
+  .pricing-subtitle {
+      font-size: 1.25rem;
+      color: var(--gray-600);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+  }
+  
+  .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+  }
+  
+  .pricing-card {
+      background: white;
+      border-radius: var(--border-radius-xl);
+      padding: 3rem;
+      box-shadow: var(--shadow-lg);
+      border: 2px solid var(--gray-200);
+      text-align: center;
+      transition: var(--transition-all);
+      position: relative;
+      overflow: hidden;
+  }
+  
+  .pricing-card.featured {
+      border-color: var(--sesmine-gold);
+      transform: scale(1.05);
+  }
+  
+  .pricing-card.featured::before {
+      content: 'Most Popular';
+      position: absolute;
+      top: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--sesmine-gold);
+      color: white;
+      padding: 0.5rem 1.5rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+  }
+  
+  .pricing-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-2xl);
+  }
+  
+  .pricing-card.featured:hover {
+      transform: translateY(-8px) scale(1.05);
+  }
+  
+  .plan-name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--sesmine-primary);
+      margin-bottom: 1rem;
+      margin-top: 1rem;
+  }
+  
+  .plan-price {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--sesmine-copper);
+      margin-bottom: 0.5rem;
+      font-family: var(--font-mono);
+  }
+  
+  .plan-period {
+      color: var(--gray-600);
+      font-size: 1rem;
+      margin-bottom: 2rem;
+  }
+  
+  .plan-features {
+      list-style: none;
+      margin-bottom: 2rem;
+      text-align: left;
+  }
+  
+  .plan-features li {
+      padding: 0.75rem 0;
+      color: var(--gray-700);
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      border-bottom: 1px solid var(--gray-200);
+  }
+  
+  .plan-features li:last-child {
+      border-bottom: none;
+  }
+  
+  .plan-cta {
+      padding: 1.25rem 2rem;
+      background: var(--sesmine-accent);
+      color: white;
+      border: none;
+      border-radius: var(--border-radius-lg);
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition-all);
+      width: 100%;
+      box-shadow: var(--shadow-md);
+  }
+  
+  .plan-cta:hover {
+      background: var(--sesmine-secondary);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+  }
+  
+  .pricing-card.featured .plan-cta {
+      background: var(--sesmine-gold);
+      color: var(--gray-900);
+  }
+  
+  .pricing-card.featured .plan-cta:hover {
+      background: var(--sesmine-copper);
+  }
+  
+  @media (max-width: 1024px) {
       .features-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 30px;
+          grid-template-columns: 1fr;
       }
-
-      .feature-card {
-          background: white;
-          border-radius: 20px;
-          padding: 40px;
-          transition: var(--transition);
-          border: 3px solid transparent;
+      
+      .nav-tabs {
+          justify-content: flex-start;
+          overflow-x: auto;
+          padding-bottom: 1rem;
       }
-
-      .feature-card:hover {
-          box-shadow: var(--shadow-lg);
-          transform: translateY(-10px);
-          border-color: var(--primary-color);
+      
+      .comparison-grid {
+          font-size: 0.9rem;
       }
-
-      .feature-icon {
-          width: 70px;
-          height: 70px;
-          background: var(--gradient-1);
-          border-radius: 15px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 32px;
-          color: white;
-          margin-bottom: 25px;
+  }
+  
+  @media (max-width: 768px) {
+      .hero-title {
+          font-size: 2.5rem;
       }
-
-      .feature-card:nth-child(3n+2) .feature-icon {
-          background: var(--gradient-2);
+      
+      .hero-subtitle {
+          font-size: 1.25rem;
       }
-
-      .feature-card:nth-child(3n+3) .feature-icon {
-          background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      
+      .feature-categories {
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       }
-
-      .feature-card h3 {
-          font-size: 22px;
-          margin-bottom: 15px;
-          color: var(--text-dark);
-      }
-
-      .feature-card p {
-          color: #666;
-          line-height: 1.8;
-          margin-bottom: 20px;
-      }
-
-      .feature-list {
-          list-style: none;
-      }
-
-      .feature-list li {
-          padding: 8px 0;
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          font-size: 14px;
-          color: #555;
-      }
-
-      .feature-list i {
-          color: var(--success-color);
-      }
-
-      /* Comparison Table */
-      .comparison {
-          padding: 100px 30px;
-          background: white;
-      }
-
-      .comparison-container {
-          max-width: 1400px;
-          margin: 0 auto;
-      }
-
-      .comparison-table {
-          background: white;
-          border-radius: 20px;
-          overflow: hidden;
-          box-shadow: var(--shadow-lg);
-      }
-
-      .comparison-table table {
-          width: 100%;
-          border-collapse: collapse;
-      }
-
-      .comparison-table thead {
-          background: var(--gradient-1);
-          color: white;
-      }
-
-      .comparison-table th {
-          padding: 25px;
-          text-align: left;
-          font-size: 18px;
-      }
-
-      .comparison-table td {
-          padding: 20px 25px;
-          border-bottom: 1px solid var(--light-bg);
-      }
-
-      .comparison-table tbody tr:hover {
-          background: var(--light-bg);
-      }
-
-      .check-icon {
-          color: var(--success-color);
-          font-size: 20px;
-      }
-
-      .cross-icon {
-          color: #e74c3c;
-          font-size: 20px;
-      }
-
-      /* Integration Section */
-      .integrations {
-          padding: 100px 30px;
-          background: var(--light-bg);
-      }
-
-      .integrations-container {
-          max-width: 1400px;
-          margin: 0 auto;
-      }
-
-      .integration-grid {
-          display: grid;
-          grid-template-columns: repeat(6, 1fr);
-          gap: 25px;
-      }
-
-      .integration-item {
-          background: white;
-          padding: 30px;
-          border-radius: 15px;
-          display: flex;
+      
+      .section-title {
+          font-size: 2rem;
           flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          transition: var(--transition);
-          cursor: pointer;
-          height: 140px;
+          gap: 0.5rem;
       }
-
-      .integration-item:hover {
-          box-shadow: var(--shadow-md);
-          transform: translateY(-5px);
-      }
-
-      .integration-item i {
-          font-size: 42px;
-          color: var(--primary-color);
-          margin-bottom: 12px;
-      }
-
-      .integration-item span {
-          font-size: 13px;
-          font-weight: 600;
-          color: var(--text-dark);
+      
+      .feature-header {
+          flex-direction: column;
           text-align: center;
       }
-
-      /* Benefits */
-      .benefits {
-          padding: 100px 30px;
-          background: white;
+      
+      .feature-actions {
+          flex-direction: column;
       }
-
-      .benefits-container {
-          max-width: 1400px;
-          margin: 0 auto;
+      
+      .pricing-grid {
+          grid-template-columns: 1fr;
       }
-
-      .benefits-grid {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 40px;
+      
+      .pricing-card.featured {
+          transform: none;
       }
-
-      .benefit-card {
-          display: flex;
-          gap: 25px;
-          background: var(--light-bg);
-          padding: 35px;
-          border-radius: 20px;
-          transition: var(--transition);
+      
+      .pricing-card.featured:hover {
+          transform: translateY(-8px);
       }
-
-      .benefit-card:hover {
-          background: white;
-          box-shadow: var(--shadow-lg);
-          transform: translateX(10px);
-      }
-
-      .benefit-icon {
-          width: 70px;
-          height: 70px;
-          background: var(--gradient-1);
-          border-radius: 15px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 32px;
-          color: white;
-          flex-shrink: 0;
-      }
-
-      .benefit-content h3 {
-          font-size: 24px;
-          margin-bottom: 12px;
-      }
-
-      .benefit-content p {
-          color: #666;
-          line-height: 1.8;
-      }
-
-      /* CTA Section */
-      .cta {
-          padding: 100px 30px;
-          background: var(--gradient-1);
-          text-align: center;
-          color: white;
-          position: relative;
-          overflow: hidden;
-      }
-
-      .cta::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background-image: url('https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1920&q=80');
-          background-size: cover;
-          background-position: center;
-          opacity: 0.1;
-      }
-
-      .cta-content {
-          max-width: 800px;
-          margin: 0 auto;
-          position: relative;
-          z-index: 1;
-      }
-
-      .cta h2 {
-          font-size: 48px;
-          margin-bottom: 20px;
-      }
-
-      .cta p {
-          font-size: 20px;
-          opacity: 0.95;
-          margin-bottom: 40px;
-      }
-
-      .btn-white {
-          background: white;
-          color: var(--primary-color);
-      }
-
-      .btn-outline-white {
-          border: 2px solid white;
-          color: white;
-          background: transparent;
-      }
-
-      .btn-outline-white:hover {
-          background: white;
-          color: var(--primary-color);
-      }
-
-      /* Footer */
-      .footer {
-          background: var(--dark-bg);
-          color: white;
-          padding: 60px 30px 30px;
-      }
-
-      .footer-content {
-          max-width: 1400px;
-          margin: 0 auto;
-          display: grid;
-          grid-template-columns: 2fr 1fr 1fr 1fr;
-          gap: 50px;
-          margin-bottom: 40px;
-      }
-
-      .footer-brand h3 {
-          font-size: 26px;
-          margin-bottom: 15px;
-          background: var(--gradient-1);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-      }
-
-      .footer-brand p {
-          color: rgba(255, 255, 255, 0.7);
-          line-height: 1.8;
-      }
-
-      .footer-column h4 {
-          font-size: 18px;
-          margin-bottom: 20px;
-      }
-
-      .footer-links {
-          list-style: none;
-      }
-
-      .footer-links li {
-          margin-bottom: 12px;
-      }
-
-      .footer-links a {
-          color: rgba(255, 255, 255, 0.7);
-          text-decoration: none;
-          transition: var(--transition);
-      }
-
-      .footer-links a:hover {
-          color: white;
-          padding-left: 5px;
-      }
-
-      .footer-bottom {
-          max-width: 1400px;
-          margin: 0 auto;
-          padding-top: 30px;
-          border-top: 1px solid rgba(255, 255, 255, 0.1);
-          text-align: center;
-          color: rgba(255, 255, 255, 0.7);
-      }
-
-      /* Responsive */
-      @media (max-width: 1024px) {
-          .categories-grid {
-              grid-template-columns: repeat(2, 1fr);
-          }
-
-          .features-grid {
-              grid-template-columns: repeat(2, 1fr);
-          }
-
-          .integration-grid {
-              grid-template-columns: repeat(3, 1fr);
-          }
-
-          .benefits-grid {
-              grid-template-columns: 1fr;
-          }
-
-          .footer-content {
-              grid-template-columns: 1fr 1fr;
-          }
-      }
-
-      @media (max-width: 768px) {
-          .hero-content h1 {
-              font-size: 36px;
-          }
-
-          .categories-grid {
-              grid-template-columns: 1fr;
-          }
-
-          .features-grid {
-              grid-template-columns: 1fr;
-          }
-
-          .integration-grid {
-              grid-template-columns: repeat(2, 1fr);
-          }
-
-          .comparison-table {
-              overflow-x: auto;
-          }
-
-          .footer-content {
-              grid-template-columns: 1fr;
-          }
-      }
-
-      /* Scroll Animations */
-      .animate-on-scroll {
-          opacity: 0;
-          transform: translateY(30px);
-          transition: all 0.6s ease-out;
-      }
-
-      .animate-on-scroll.animated {
-          opacity: 1;
-          transform: translateY(0);
-      }
+  }
   </style>
 </head>
 <body>
-  <!-- Navigation -->
-  <nav class="navbar">
-      <div class="nav-container">
-          <a href="index.html" class="logo">
-              <i class="fas fa-gem"></i>
-              SESMine
-          </a>
-          <ul class="nav-menu">
-              <li><a href="index.html">Home</a></li>
-              <li><a href="#features">Features</a></li>
-              <li><a href="#comparison">Comparison</a></li>
-              <li><a href="#integrations">Integrations</a></li>
-              <li><a href="contact.html">Contact</a></li>
-          </ul>
-          <a href="home.html" class="btn btn-primary">Get Started <i class="fas fa-arrow-right"></i></a>
-      </div>
-  </nav>
-
-  <!-- Hero Section -->
-  <section class="hero">
-      <div class="hero-content">
-          <h1>Powerful Features for Modern Mining</h1>
-          <p>Discover the comprehensive suite of tools and capabilities that make SESMine the leading mining solutions platform</p>
-          <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
-              <a href="#features" class="btn btn-white">Explore Features <i class="fas fa-th-large"></i></a>
-              <a href="contact.html" class="btn btn-outline-white">Request Demo <i class="fas fa-play-circle"></i></a>
+  <!-- Universal Navigation Header -->
+  <header class="sesmine-header" id="sesmineHeader">
+      <div class="header-content">
+          <div class="logo-section">
+              <button class="header-btn mobile-menu-toggle" id="mobileMenuToggle">
+                  <i class="fas fa-bars"></i>
+              </button>
+              <a href="index.html" class="logo">
+                  <div class="logo-icon">🏔️</div>
+                  <div class="logo-text">
+                      <div class="logo-main">SESMine</div>
+                      <div class="logo-subtitle">Smart Engineering Solutions</div>
+                  </div>
+              </a>
+          </div>
+          
+          <nav class="main-nav" id="mainNav">
+              <a href="home.html" class="nav-link">
+                  <i class="fas fa-home"></i> Dashboard
+              </a>
+              <div class="nav-dropdown">
+                  <button class="nav-link dropdown-toggle">
+                      <i class="fas fa-th-large"></i> Hubs <i class="fas fa-chevron-down"></i>
+                  </button>
+                  <div class="dropdown-menu">
+                      <a href="engineering-hub.html" class="dropdown-item">
+                          <i class="fas fa-hard-hat"></i> Engineering Hub
+                      </a>
+                      <a href="analytics-platform.html" class="dropdown-item">
+                          <i class="fas fa-chart-area"></i> Analytics Platform
+                      </a>
+                      <a href="economics-hub.html" class="dropdown-item">
+                          <i class="fas fa-coins"></i> Economics Hub
+                      </a>
+                      <a href="innovation-technology-hub.html" class="dropdown-item">
+                          <i class="fas fa-rocket"></i> Innovation & Technology
+                      </a>
+                      <a href="procurement-hub.html" class="dropdown-item">
+                          <i class="fas fa-truck"></i> Procurement Hub
+                      </a>
+                      <a href="consulting-hub.html" class="dropdown-item">
+                          <i class="fas fa-user-tie"></i> Consulting Hub
+                      </a>
+                      <a href="training-education-hub.html" class="dropdown-item">
+                          <i class="fas fa-graduation-cap"></i> Training & Education
+                      </a>
+                      <a href="admin-dashboard.html" class="dropdown-item">
+                          <i class="fas fa-shield-alt"></i> Admin Dashboard
+                      </a>
+                  </div>
+              </div>
+              <a href="platforms.html" class="nav-link">
+                  <i class="fas fa-layer-group"></i> Platforms
+              </a>
+              <a href="features.html" class="nav-link active">
+                  <i class="fas fa-star"></i> Features
+              </a>
+              <a href="about.html" class="nav-link">
+                  <i class="fas fa-info-circle"></i> About
+              </a>
+              <a href="contact.html" class="nav-link">
+                  <i class="fas fa-phone"></i> Contact
+              </a>
+          </nav>
+          
+          <div class="header-actions">
+              <div class="search-container">
+                  <i class="fas fa-search search-icon"></i>
+                  <input type="text" class="search-input" placeholder="Search features..." id="globalSearch">
+              </div>
+              <button class="header-btn" title="Notifications">
+                  <i class="fas fa-bell"></i>
+              </button>
+              <button class="header-btn" title="Settings" onclick="window.location.href='setting.html'">
+                  <i class="fas fa-cog"></i>
+              </button>
+              <div class="user-menu">
+                  <div class="user-avatar">MS</div>
+                  <div class="user-info">
+                      <div class="user-name">Mining Specialist</div>
+                      <div class="user-email">specialist@sesmine.com</div>
+                  </div>
+                  <div class="user-dropdown">
+                      <a href="setting.html" class="dropdown-item">
+                          <i class="fas fa-cog"></i> Settings
+                      </a>
+                      <a href="login.html" class="dropdown-item">
+                          <i class="fas fa-sign-out-alt"></i> Logout
+                      </a>
+                  </div>
+              </div>
           </div>
       </div>
-  </section>
+  </header>
 
-  <!-- Feature Categories -->
-  <section class="categories">
-      <div class="categories-container">
-          <div class="section-header">
-              <span class="section-tag">FEATURE CATEGORIES</span>
-              <h2>Explore by Platform</h2>
-              <p>Browse features organized by our specialized platforms</p>
+  <!-- Main Content -->
+  <main class="main-content">
+      <!-- Features Hero Section -->
+      <section class="features-hero">
+          <div class="hero-content">
+              <div class="hero-icon">⭐</div>
+              <h1 class="hero-title">Platform Features</h1>
+              <p class="hero-subtitle">
+                  Discover the comprehensive suite of tools and capabilities that make SESMine 
+                  the most advanced mining technology platform in the industry.
+              </p>
+              
+              <div class="feature-categories">
+                  <div class="category-card" onclick="scrollToSection('engineering')">
+                      <div class="category-icon">🔧</div>
+                      <div class="category-title">Engineering Tools</div>
+                      <div class="category-count">15+ Features</div>
+                  </div>
+                  <div class="category-card" onclick="scrollToSection('analytics')">
+                      <div class="category-icon">📊</div>
+                      <div class="category-title">Analytics & AI</div>
+                      <div class="category-count">12+ Features</div>
+                  </div>
+                  <div class="category-card" onclick="scrollToSection('management')">
+                      <div class="category-icon">📋</div>
+                      <div class="category-title">Project Management</div>
+                      <div class="category-count">10+ Features</div>
+                  </div>
+                  <div class="category-card" onclick="scrollToSection('integration')">
+                      <div class="category-icon">🔗</div>
+                      <div class="category-title">Integrations</div>
+                      <div class="category-count">8+ Features</div>
+                  </div>
+              </div>
           </div>
-          <div class="categories-grid">
-              <div class="category-tab active animate-on-scroll">
-                  <div class="category-icon">
+      </section>
+
+      <div class="content-container">
+          <!-- Features Navigation -->
+          <nav class="features-nav">
+              <h3 class="nav-title">Feature Categories</h3>
+              <div class="nav-tabs">
+                  <a href="#engineering" class="nav-tab active" onclick="showFeatureSection('engineering', this)">
                       <i class="fas fa-hard-hat"></i>
-                  </div>
-                  <h3>Engineering</h3>
-              </div>
-
-              <div class="category-tab animate-on-scroll">
-                  <div class="category-icon">
-                      <i class="fas fa-chart-line"></i>
-                  </div>
-                  <h3>Economics</h3>
-              </div>
-
-              <div class="category-tab animate-on-scroll">
-                  <div class="category-icon">
-                      <i class="fas fa-users"></i>
-                  </div>
-                  <h3>Consulting</h3>
-              </div>
-
-              <div class="category-tab animate-on-scroll">
-                  <div class="category-icon">
-                      <i class="fas fa-shopping-cart"></i>
-                  </div>
-                  <h3>Procurement</h3>
-              </div>
-
-              <div class="category-tab animate-on-scroll">
-                  <div class="category-icon">
+                      Engineering
+                  </a>
+                  <a href="#analytics" class="nav-tab" onclick="showFeatureSection('analytics', this)">
+                      <i class="fas fa-chart-area"></i>
+                      Analytics
+                  </a>
+                  <a href="#management" class="nav-tab" onclick="showFeatureSection('management', this)">
+                      <i class="fas fa-tasks"></i>
+                      Management
+                  </a>
+                  <a href="#automation" class="nav-tab" onclick="showFeatureSection('automation', this)">
                       <i class="fas fa-robot"></i>
-                  </div>
-                  <h3>Innovation</h3>
-              </div>
-
-              <div class="category-tab animate-on-scroll">
-                  <div class="category-icon">
-                      <i class="fas fa-chart-bar"></i>
-                  </div>
-                  <h3>Analytics</h3>
-              </div>
-
-              <div class="category-tab animate-on-scroll">
-                  <div class="category-icon">
-                      <i class="fas fa-graduation-cap"></i>
-                  </div>
-                  <h3>Training</h3>
-              </div>
-
-              <div class="category-tab animate-on-scroll">
-                  <div class="category-icon">
-                      <i class="fas fa-th-large"></i>
-                  </div>
-                  <h3>All Features</h3>
-              </div>
-          </div>
-      </div>
-  </section>
-
-  <!-- Features Grid -->
-  <section class="features" id="features">
-      <div class="features-container">
-          <div class="section-header">
-              <span class="section-tag">CORE FEATURES</span>
-              <h2>Everything You Need to Succeed</h2>
-              <p>Comprehensive tools and capabilities for every aspect of mining operations</p>
-          </div>
-          <div class="features-grid">
-              <!-- Feature 1 -->
-              <div class="feature-card animate-on-scroll">
-                  <div class="feature-icon">
-                      <i class="fas fa-drafting-compass"></i>
-                  </div>
-                  <h3>Advanced Mine Planning</h3>
-                  <p>Sophisticated mine planning tools with 3D visualization and optimization algorithms.</p>
-                  <ul class="feature-list">
-                      <li><i class="fas fa-check-circle"></i> 3D Mine Design</li>
-                      <li><i class="fas fa-check-circle"></i> Production Scheduling</li>
-                      <li><i class="fas fa-check-circle"></i> Pit Optimization</li>
-                      <li><i class="fas fa-check-circle"></i> Resource Modeling</li>
-                  </ul>
-              </div>
-
-              <!-- Feature 2 -->
-              <div class="feature-card animate-on-scroll">
-                  <div class="feature-icon">
-                      <i class="fas fa-calculator"></i>
-                  </div>
-                  <h3>Financial Analysis Tools</h3>
-                  <p>Comprehensive economic evaluation and financial modeling capabilities.</p>
-                  <ul class="feature-list">
-                      <li><i class="fas fa-check-circle"></i> NPV/IRR Calculators</li>
-                      <li><i class="fas fa-check-circle"></i> Cash Flow Modeling</li>
-                      <li><i class="fas fa-check-circle"></i> Sensitivity Analysis</li>
-                      <li><i class="fas fa-check-circle"></i> Risk Assessment</li>
-                  </ul>
-              </div>
-
-              <!-- Feature 3 -->
-              <div class="feature-card animate-on-scroll">
-                  <div class="feature-icon">
-                      <i class="fas fa-brain"></i>
-                  </div>
-                  <h3>AI-Powered Analytics</h3>
-                  <p>Machine learning algorithms for predictive maintenance and optimization.</p>
-                  <ul class="feature-list">
-                      <li><i class="fas fa-check-circle"></i> Predictive Maintenance</li>
-                      <li><i class="fas fa-check-circle"></i> Anomaly Detection</li>
-                      <li><i class="fas fa-check-circle"></i> Production Forecasting</li>
-                      <li><i class="fas fa-check-circle"></i> Smart Recommendations</li>
-                  </ul>
-              </div>
-
-              <!-- Feature 4 -->
-              <div class="feature-card animate-on-scroll">
-                  <div class="feature-icon">
-                      <i class="fas fa-tachometer-alt"></i>
-                  </div>
-                  <h3>Real-Time Dashboards</h3>
-                  <p>Live operational dashboards with customizable KPIs and metrics.</p>
-                  <ul class="feature-list">
-                      <li><i class="fas fa-check-circle"></i> Live Data Streaming</li>
-                      <li><i class="fas fa-check-circle"></i> Custom Widgets</li>
-                      <li><i class="fas fa-check-circle"></i> Mobile Access</li>
-                      <li><i class="fas fa-check-circle"></i> Automated Alerts</li>
-                  </ul>
-              </div>
-
-              <!-- Feature 5 -->
-              <div class="feature-card animate-on-scroll">
-                  <div class="feature-icon">
-                      <i class="fas fa-network-wired"></i>
-                  </div>
-                  <h3>IoT Integration</h3>
-                  <p>Connect and monitor equipment with advanced IoT sensor networks.</p>
-                  <ul class="feature-list">
-                      <li><i class="fas fa-check-circle"></i> Sensor Management</li>
-                      <li><i class="fas fa-check-circle"></i> Equipment Tracking</li>
-                      <li><i class="fas fa-check-circle"></i> Environmental Monitoring</li>
-                      <li><i class="fas fa-check-circle"></i> Data Integration</li>
-                  </ul>
-              </div>
-
-              <!-- Feature 6 -->
-              <div class="feature-card animate-on-scroll">
-                  <div class="feature-icon">
-                      <i class="fas fa-handshake"></i>
-                  </div>
-                  <h3>Supplier Network</h3>
-                  <p>Access to 2,500+ verified suppliers across all mining categories.</p>
-                  <ul class="feature-list">
-                      <li><i class="fas fa-check-circle"></i> Verified Suppliers</li>
-                      <li><i class="fas fa-check-circle"></i> RFQ Management</li>
-                      <li><i class="fas fa-check-circle"></i> Price Comparison</li>
-                      <li><i class="fas fa-check-circle"></i> Contract Management</li>
-                  </ul>
-              </div>
-
-              <!-- Feature 7 -->
-              <div class="feature-card animate-on-scroll">
-                  <div class="feature-icon">
-                      <i class="fas fa-shield-alt"></i>
-                  </div>
-                  <h3>Safety Management</h3>
-                  <p>Comprehensive safety tracking and compliance management tools.</p>
-                  <ul class="feature-list">
-                      <li><i class="fas fa-check-circle"></i> Incident Tracking</li>
-                      <li><i class="fas fa-check-circle"></i> Safety Audits</li>
-                      <li><i class="fas fa-check-circle"></i> Compliance Monitoring</li>
-                      <li><i class="fas fa-check-circle"></i> Training Records</li>
-                  </ul>
-              </div>
-
-              <!-- Feature 8 -->
-              <div class="feature-card animate-on-scroll">
-                  <div class="feature-icon">
-                      <i class="fas fa-cube"></i>
-                  </div>
-                  <h3>Digital Twin Technology</h3>
-                  <p>Create virtual replicas of your operations for simulation and testing.</p>
-                  <ul class="feature-list">
-                      <li><i class="fas fa-check-circle"></i> Virtual Simulation</li>
-                      <li><i class="fas fa-check-circle"></i> Scenario Testing</li>
-                      <li><i class="fas fa-check-circle"></i> Process Optimization</li>
-                      <li><i class="fas fa-check-circle"></i> Training Environment</li>
-                  </ul>
-              </div>
-
-              <!-- Feature 9 -->
-              <div class="feature-card animate-on-scroll">
-                  <div class="feature-icon">
-                      <i class="fas fa-book-open"></i>
-                  </div>
-                  <h3>Learning Management</h3>
-                  <p>Complete training platform with 250+ courses and certifications.</p>
-                  <ul class="feature-list">
-                      <li><i class="fas fa-check-circle"></i> Online Courses</li>
-                      <li><i class="fas fa-check-circle"></i> Certifications</li>
-                      <li><i class="fas fa-check-circle"></i> Progress Tracking</li>
-                      <li><i class="fas fa-check-circle"></i> Expert Instructors</li>
-                  </ul>
-              </div>
-          </div>
-      </div>
-  </section>
-
-  <!-- Comparison Table -->
-  <section class="comparison" id="comparison">
-      <div class="comparison-container">
-          <div class="section-header">
-              <span class="section-tag">FEATURE COMPARISON</span>
-              <h2>Compare Platform Capabilities</h2>
-              <p>See what's included in each platform</p>
-          </div>
-          <div class="comparison-table animate-on-scroll">
-              <table>
-                  <thead>
-                      <tr>
-                          <th>Feature</th>
-                          <th>Basic</th>
-                          <th>Professional</th>
-                          <th>Enterprise</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      <tr>
-                          <td><strong>Mine Planning Tools</strong></td>
-                          <td><i class="fas fa-check check-icon"></i></td>
-                          <td><i class="fas fa-check check-icon"></i></td>
-                          <td><i class="fas fa-check check-icon"></i></td>
-                      </tr>
-                      <tr>
-                          <td><strong>Financial Calculators</strong></td>
-                          <td><i class="fas fa-check check-icon"></i></td>
-                          <td><i class="fas fa-check check-icon"></i></td>
-                          <td><i class="fas fa-check check-icon"></i></td>
-                      </tr>
-                      <tr>
-                          <td><strong>Real-Time Analytics</strong></td>
-                          <td><i class="fas fa-times cross-icon"></i></td>
-                          <td><i class="fas fa-check check-icon"></i></td>
-                          <td><i class="fas fa-check check-icon"></i></td>
-                      </tr>
-                      <tr>
-                          <td><strong>AI-Powered Insights</strong></td>
-                          <td><i class="fas fa-times cross-icon"></i></td>
-                          <td><i class="fas fa-check check-icon"></i></td>
-                          <td><i class="fas fa-check check-icon"></i></td>
-                      </tr>
-                      <tr>
-                          <td><strong>IoT Integration</strong></td>
-                          <td><i class="fas fa-times cross-icon"></i></td>
-                          <td><i class="fas fa-times cross-icon"></i></td>
-                          <td><i class="fas fa-check check-icon"></i></td>
-                      </tr>
-                      <tr>
-                          <td><strong>Digital Twin</strong></td>
-                          <td><i class="fas fa-times cross-icon"></i></td>
-                          <td><i class="fas fa-times cross-icon"></i></td>
-                          <td><i class="fas fa-check check-icon"></i></td>
-                      </tr>
-                      <tr>
-                          <td><strong>Supplier Network Access</strong></td>
-                          <td>Limited</td>
-                          <td><i class="fas fa-check check-icon"></i></td>
-                          <td><i class="fas fa-check check-icon"></i></td>
-                      </tr>
-                      <tr>
-                          <td><strong>Training Courses</strong></td>
-                          <td>10 courses</td>
-                          <td>50 courses</td>
-                          <td>Unlimited</td>
-                      </tr>
-                      <tr>
-                          <td><strong>Priority Support</strong></td>
-                          <td><i class="fas fa-times cross-icon"></i></td>
-                          <td><i class="fas fa-check check-icon"></i></td>
-                          <td><i class="fas fa-check check-icon"></i></td>
-                      </tr>
-                      <tr>
-                          <td><strong>Dedicated Account Manager</strong></td>
-                          <td><i class="fas fa-times cross-icon"></i></td>
-                          <td><i class="fas fa-times cross-icon"></i></td>
-                          <td><i class="fas fa-check check-icon"></i></td>
-                      </tr>
-                  </tbody>
-              </table>
-          </div>
-      </div>
-  </section>
-
-  <!-- Integrations -->
-  <section class="integrations" id="integrations">
-      <div class="integrations-container">
-          <div class="section-header">
-              <span class="section-tag">INTEGRATIONS</span>
-              <h2>Connect With Your Existing Tools</h2>
-              <p>Seamless integration with popular mining and business software</p>
-          </div>
-          <div class="integration-grid">
-              <div class="integration-item animate-on-scroll">
-                  <i class="fas fa-database"></i>
-                  <span>SQL Databases</span>
-              </div>
-              <div class="integration-item animate-on-scroll">
-                  <i class="fas fa-file-excel"></i>
-                  <span>Excel & CSV</span>
-              </div>
-              <div class="integration-item animate-on-scroll">
-                  <i class="fas fa-cloud"></i>
-                  <span>Cloud Storage</span>
-              </div>
-              <div class="integration-item animate-on-scroll">
-                  <i class="fas fa-industry"></i>
-                  <span>SCADA Systems</span>
-              </div>
-              <div class="integration-item animate-on-scroll">
-                  <i class="fas fa-network-wired"></i>
-                  <span>IoT Platforms</span>
-              </div>
-              <div class="integration-item animate-on-scroll">
-                  <i class="fas fa-code"></i>
-                  <span>REST APIs</span>
-              </div>
-              <div class="integration-item animate-on-scroll">
-                  <i class="fas fa-chart-line"></i>
-                  <span>Power BI</span>
-              </div>
-              <div class="integration-item animate-on-scroll">
-                  <i class="fas fa-table"></i>
-                  <span>Tableau</span>
-              </div>
-              <div class="integration-item animate-on-scroll">
-                  <i class="fas fa-project-diagram"></i>
-                  <span>SAP</span>
-              </div>
-              <div class="integration-item animate-on-scroll">
-                  <i class="fas fa-box"></i>
-                  <span>Oracle</span>
-              </div>
-              <div class="integration-item animate-on-scroll">
-                  <i class="fab fa-microsoft"></i>
-                  <span>Microsoft 365</span>
-              </div>
-              <div class="integration-item animate-on-scroll">
-                  <i class="fab fa-google"></i>
-                  <span>Google Workspace</span>
-              </div>
-          </div>
-      </div>
-  </section>
-
-  <!-- Benefits -->
-  <section class="benefits">
-      <div class="benefits-container">
-          <div class="section-header">
-              <span class="section-tag">KEY BENEFITS</span>
-              <h2>Why Choose SESMine</h2>
-              <p>The advantages that set us apart from the competition</p>
-          </div>
-          <div class="benefits-grid">
-              <div class="benefit-card animate-on-scroll">
-                  <div class="benefit-icon">
-                      <i class="fas fa-rocket"></i>
-                  </div>
-                  <div class="benefit-content">
-                      <h3>Increased Productivity</h3>
-                      <p>Boost operational efficiency by up to 35% with automated workflows, real-time insights, and optimized processes that eliminate bottlenecks and reduce manual work.</p>
-                  </div>
-              </div>
-
-              <div class="benefit-card animate-on-scroll">
-                  <div class="benefit-icon">
-                      <i class="fas fa-dollar-sign"></i>
-                  </div>
-                  <div class="benefit-content">
-                      <h3>Cost Reduction</h3>
-                      <p>Reduce operating costs by 20-30% through intelligent resource allocation, predictive maintenance, and data-driven decision-making that minimizes waste.</p>
-                  </div>
-              </div>
-
-              <div class="benefit-card animate-on-scroll">
-                  <div class="benefit-icon">
-                      <i class="fas fa-shield-alt"></i>
-                  </div>
-                  <div class="benefit-content">
-                      <h3>Enhanced Safety</h3>
-                      <p>Improve safety metrics by 40% with comprehensive tracking, real-time alerts, and proactive risk management tools that prevent incidents before they occur.</p>
-                  </div>
-              </div>
-
-              <div class="benefit-card animate-on-scroll">
-                  <div class="benefit-icon">
-                      <i class="fas fa-clock"></i>
-                  </div>
-                  <div class="benefit-content">
-                      <h3>Time Savings</h3>
-                      <p>Save 15+ hours per week with automated reporting, streamlined workflows, and integrated tools that eliminate redundant tasks and manual data entry.</p>
-                  </div>
-              </div>
-
-              <div class="benefit-card animate-on-scroll">
-                  <div class="benefit-icon">
-                      <i class="fas fa-chart-line"></i>
-                  </div>
-                  <div class="benefit-content">
-                      <h3>Better Decision Making</h3>
-                      <p>Make informed decisions with AI-powered analytics, predictive insights, and comprehensive data visualization that reveals hidden patterns and opportunities.</p>
-                  </div>
-              </div>
-
-              <div class="benefit-card animate-on-scroll">
-                  <div class="benefit-icon">
+                      Automation
+                  </a>
+                  <a href="#collaboration" class="nav-tab" onclick="showFeatureSection('collaboration', this)">
                       <i class="fas fa-users"></i>
+                      Collaboration
+                  </a>
+                  <a href="#integration" class="nav-tab" onclick="showFeatureSection('integration', this)">
+                      <i class="fas fa-plug"></i>
+                      Integration
+                  </a>
+              </div>
+          </nav>
+
+          <!-- Engineering Features Section -->
+          <section id="engineering-section" class="features-section">
+              <div class="section-header">
+                  <h2 class="section-title">
+                      <i class="fas fa-hard-hat"></i>
+                      Engineering Tools
+                  </h2>
+                  <p class="section-subtitle">
+                      Professional-grade engineering tools following AACE standards for accurate 
+                      cost estimation, mine planning, and technical analysis.
+                  </p>
+              </div>
+
+              <div class="features-grid">
+                  <div class="feature-card" onclick="exploreFeature('AACE Cost Estimation')">
+                      <div class="feature-header">
+                          <div class="feature-icon" style="background: linear-gradient(135deg, var(--sesmine-accent), var(--sesmine-secondary));">
+                              💰
+                          </div>
+                          <div class="feature-info">
+                              <h3 class="feature-title">AACE Cost Estimation</h3>
+                              <p class="feature-category">Engineering Core</p>
+                          </div>
+                      </div>
+                      <p class="feature-description">
+                          Professional cost estimation following AACE International standards with 
+                          comprehensive equipment databases, labor rates, and material pricing.
+                      </p>
+                      <div class="feature-highlights">
+                          <h4 class="highlights-title">Key Capabilities</h4>
+                          <ul class="highlights-list">
+                              <li><i class="fas fa-check highlight-icon"></i>AACE Class 1-5 Estimates</li>
+                              <li><i class="fas fa-check highlight-icon"></i>Equipment Cost Database</li>
+                              <li><i class="fas fa-check highlight-icon"></i>Labor & Material Pricing</li>
+                              <li><i class="fas fa-check highlight-icon"></i>Risk Analysis Integration</li>
+                          </ul>
+                      </div>
+                      <div class="feature-actions">
+                          <button class="action-btn primary">
+                              <i class="fas fa-play"></i>
+                              Try Demo
+                          </button>
+                          <button class="action-btn">
+                              <i class="fas fa-info-circle"></i>
+                              Learn More
+                          </button>
+                      </div>
                   </div>
-                  <div class="benefit-content">
-                      <h3>Improved Collaboration</h3>
-                      <p>Enhance team collaboration with centralized data, shared dashboards, and real-time communication tools that keep everyone aligned and informed.</p>
+
+                  <div class="feature-card" onclick="exploreFeature('3D Mine Planning')">
+                      <div class="feature-header">
+                          <div class="feature-icon" style="background: linear-gradient(135deg, var(--success-500), var(--sesmine-emerald));">
+                              🗻
+                          </div>
+                          <div class="feature-info">
+                              <h3 class="feature-title">3D Mine Planning</h3>
+                              <p class="feature-category">Design & Planning</p>
+                          </div>
+                      </div>
+                      <p class="feature-description">
+                          Advanced 3D visualization and planning tools for open-pit and underground 
+                          mine design with optimization algorithms and scheduling capabilities.
+                      </p>
+                      <div class="feature-highlights">
+                          <h4 class="highlights-title">Key Capabilities</h4>
+                          <ul class="highlights-list">
+                              <li><i class="fas fa-check highlight-icon"></i>3D Geological Modeling</li>
+                              <li><i class="fas fa-check highlight-icon"></i>Pit Optimization</li>
+                              <li><i class="fas fa-check highlight-icon"></i>Production Scheduling</li>
+                              <li><i class="fas fa-check highlight-icon"></i>Equipment Simulation</li>
+                          </ul>
+                      </div>
+                      <div class="feature-actions">
+                          <button class="action-btn primary">
+                              <i class="fas fa-cube"></i>
+                              View 3D Demo
+                          </button>
+                          <button class="action-btn">
+                              <i class="fas fa-download"></i>
+                              Get Trial
+                          </button>
+                      </div>
+                  </div>
+
+                  <div class="feature-card" onclick="exploreFeature('Equipment Sizing')">
+                      <div class="feature-header">
+                          <div class="feature-icon" style="background: linear-gradient(135deg, var(--warning-500), var(--sesmine-gold));">
+                              ⚙️
+                          </div>
+                          <div class="feature-info">
+                              <h3 class="feature-title">Equipment Sizing</h3>
+                              <p class="feature-category">Technical Analysis</p>
+                          </div>
+                      </div>
+                      <p class="feature-description">
+                          Intelligent equipment selection and sizing based on production requirements, 
+                          geological conditions, and operational constraints.
+                      </p>
+                      <div class="feature-highlights">
+                          <h4 class="highlights-title">Key Capabilities</h4>
+                          <ul class="highlights-list">
+                              <li><i class="fas fa-check highlight-icon"></i>Automated Sizing Calculations</li>
+                              <li><i class="fas fa-check highlight-icon"></i>Performance Optimization</li>
+                              <li><i class="fas fa-check highlight-icon"></i>Cost-Benefit Analysis</li>
+                              <li><i class="fas fa-check highlight-icon"></i>Vendor Comparison</li>
+                          </ul>
+                      </div>
+                      <div class="feature-actions">
+                          <button class="action-btn primary">
+                              <i class="fas fa-calculator"></i>
+                              Start Sizing
+                          </button>
+                          <button class="action-btn">
+                              <i class="fas fa-book"></i>
+                              Documentation
+                          </button>
+                      </div>
+                  </div>
+
+                  <div class="feature-card" onclick="exploreFeature('Process Simulation')">
+                      <div class="feature-header">
+                          <div class="feature-icon" style="background: linear-gradient(135deg, var(--danger-500), var(--danger-600));">
+                              🔬
+                          </div>
+                          <div class="feature-info">
+                              <h3 class="feature-title">Process Simulation</h3>
+                              <p class="feature-category">Process Engineering</p>
+                          </div>
+                      </div>
+                      <p class="feature-description">
+                          Advanced process simulation for mineral processing plants with mass balance 
+                          calculations, recovery optimization, and plant design validation.
+                      </p>
+                      <div class="feature-highlights">
+                          <h4 class="highlights-title">Key Capabilities</h4>
+                          <ul class="highlights-list">
+                              <li><i class="fas fa-check highlight-icon"></i>Mass Balance Modeling</li>
+                              <li><i class="fas fa-check highlight-icon"></i>Recovery Optimization</li>
+                              <li><i class="fas fa-check highlight-icon"></i>Plant Performance Analysis</li>
+                              <li><i class="fas fa-check highlight-icon"></i>Scenario Comparison</li>
+                          </ul>
+                      </div>
+                      <div class="feature-actions">
+                          <button class="action-btn primary">
+                              <i class="fas fa-flask"></i>
+                              Run Simulation
+                          </button>
+                          <button class="action-btn">
+                              <i class="fas fa-chart-line"></i>
+                              View Results
+                          </button>
+                      </div>
                   </div>
               </div>
-          </div>
-      </div>
-  </section>
+          </section>
 
-  <!-- CTA Section -->
-  <section class="cta">
-      <div class="cta-content">
-          <h2>Experience the Power of SESMine</h2>
-          <p>Start your free trial today and discover how our features can transform your mining operations</p>
-          <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
-              <a href="home.html" class="btn btn-large btn-white">Start Free Trial <i class="fas fa-rocket"></i></a>
-              <a href="contact.html" class="btn btn-large btn-outline-white">Contact Sales <i class="fas fa-phone"></i></a>
-          </div>
-      </div>
-  </section>
+          <!-- Analytics Features Section -->
+          <section id="analytics-section" class="features-section" style="display: none;">
+              <div class="section-header">
+                  <h2 class="section-title">
+                      <i class="fas fa-chart-area"></i>
+                      Analytics & Intelligence
+                  </h2>
+                  <p class="section-subtitle">
+                      Powerful analytics and AI-driven insights to optimize operations, predict outcomes, 
+                      and make data-driven decisions with confidence.
+                  </p>
+              </div>
 
-  <!-- Footer -->
-  <footer class="footer">
-      <div class="footer-content">
-          <div class="footer-brand">
-              <h3>SESMine</h3>
-              <p>Leading provider of comprehensive mining solutions, combining engineering excellence, economic expertise, and innovative technology.</p>
-          </div>
-          <div class="footer-column">
-              <h4>Platforms</h4>
-              <ul class="footer-links">
-                  <li><a href="engineering-hub.html">Engineering Hub</a></li>
-                  <li><a href="economics-hub.html">Economics Hub</a></li>
-                  <li><a href="consulting-hub.html">Consulting Hub</a></li>
-                  <li><a href="procurement-hub.html">Procurement Hub</a></li>
-              </ul>
-          </div>
-          <div class="footer-column">
-              <h4>Company</h4>
-              <ul class="footer-links">
-                  <li><a href="about.html">About Us</a></li>
-                  <li><a href="contact.html">Contact</a></li>
-                  <li><a href="#">Careers</a></li>
-                  <li><a href="#">Privacy Policy</a></li>
-              </ul>
-          </div>
-          <div class="footer-column">
-              <h4>Resources</h4>
-              <ul class="footer-links">
-                  <li><a href="#">Documentation</a></li>
-                  <li><a href="#">Case Studies</a></li>
-                  <li><a href="#">Blog</a></li>
-                  <li><a href="#">Support</a></li>
-              </ul>
-          </div>
-      </div>
-      <div class="footer-bottom">
-          <p>&copy; 2025 SESMine. All rights reserved. | Empowering Mining Excellence Worldwide</p>
-      </div>
-  </footer>
+              <div class="features-grid">
+                  <div class="feature-card" onclick="exploreFeature('Predictive Analytics')">
+                      <div class="feature-header">
+                          <div class="feature-icon" style="background: linear-gradient(135deg, var(--primary-500), var(--primary-600));">
+                              🔮
+                          </div>
+                          <div class="feature-info">
+                              <h3 class="feature-title">Predictive Analytics</h3>
+                              <p class="feature-category">AI & Machine Learning</p>
+                          </div>
+                      </div>
+                      <p class="feature-description">
+                          Advanced machine learning algorithms for equipment failure prediction, 
+                          production forecasting, and market trend analysis.
+                      </p>
+                      <div class="feature-highlights">
+                          <h4 class="highlights-title">Key Capabilities</h4>
+                          <ul class="highlights-list">
+                              <li><i class="fas fa-check highlight-icon"></i>Equipment Failure Prediction</li>
+                              <li><i class="fas fa-check highlight-icon"></i>Production Forecasting</li>
+                              <li><i class="fas fa-check highlight-icon"></i>Market Trend Analysis</li>
+                              <li><i class="fas fa-check highlight-icon"></i>Risk Assessment</li>
+                          </ul>
+                      </div>
+                      <div class="feature-actions">
+                          <button class="action-btn primary">
+                              <i class="fas fa-brain"></i>
+                              AI Demo
+                          </button>
+                          <button class="action-btn">
+                              <i class="fas fa-chart-line"></i>
+                              View Predictions
+                          </button>
+                      </div>
+                  </div>
 
+                  <div class="feature-card" onclick="exploreFeature('Real-time Monitoring')">
+                      <div class="feature-header">
+                          <div class="feature-icon" style="background: linear-gradient(135deg, var(--sesmine-emerald), var(--success-600));">
+                              📡
+                          </div>
+                          <div class="feature-info">
+                              <h3 class="feature-title">Real-time Monitoring</h3>
+                              <p class="feature-category">IoT & Sensors</p>
+                          </div>
+                      </div>
+                      <p class="feature-description">
+                          Comprehensive real-time monitoring of equipment, environmental conditions, 
+                          and production metrics with instant alerts and notifications.
+                      </p>
+                      <div class="feature-highlights">
+                          <h4 class="highlights-title">Key Capabilities</h4>
+                          <ul class="highlights-list">
+                              <li><i class="fas fa-check highlight-icon"></i>Equipment Health Monitoring</li>
+                              <li><i class="fas fa-check highlight-icon"></i>Environmental Tracking</li>
+                              <li><i class="fas fa-check highlight-icon"></i>Production Metrics</li>
+                              <li><i class="fas fa-check highlight-icon"></i>Instant Alerts</li>
+                          </ul>
+                      </div>
+                      <div class="feature-actions">
+                          <button class="action-btn primary">
+                              <i class="fas fa-eye"></i>
+                              Live Dashboard
+                          </button>
+                          <button class="action-btn">
+                              <i class="fas fa-bell"></i>
+                              Setup Alerts
+                          </button>
+                      </div>
+                  </div>
+
+                  <div class="feature-card" onclick="exploreFeature('Performance Analytics')">
+                      <div class="feature-header">
+                          <div class="feature-icon" style="background: linear-gradient(135deg, var(--warning-500), var(--warning-600));">
+                              📈
+                          </div>
+                          <div class="feature-info">
+                              <h3 class="feature-title">Performance Analytics</h3>
+                              <p class="feature-category">Business Intelligence</p>
+                          </div>
+                      </div>
+                      <p class="feature-description">
+                          Comprehensive performance analytics with KPI tracking, benchmarking, 
+                          and automated reporting for operational excellence.
+                      </p>
+                      <div class="feature-highlights">
+                          <h4 class="highlights-title">Key Capabilities</h4>
+                          <ul class="highlights-list">
+                              <li><i class="fas fa-check highlight-icon"></i>KPI Dashboard</li>
+                              <li><i class="fas fa-check highlight-icon"></i>Benchmarking Analysis</li>
+                              <li><i class="fas fa-check highlight-icon"></i>Automated Reports</li>
+                              <li><i class="fas fa-check highlight-icon"></i>Trend Analysis</li>
+                          </ul>
+                      </div>
+                      <div class="feature-actions">
+                          <button class="action-btn primary">
+                              <i class="fas fa-tachometer-alt"></i>
+                              View KPIs
+                          </button>
+                          <button class="action-btn">
+                              <i class="fas fa-file-alt"></i>
+                              Generate Report
+                          </button>
+                      </div>
+                  </div>
+              </div>
+          </section>
+
+          <!-- Feature Showcase -->
+          <section class="feature-showcase">
+              <div class="showcase-header">
+                  <h2 class="showcase-title">Live Feature Demo</h2>
+                  <p class="showcase-subtitle">
+                      Experience the power of SESMine's cost estimation engine in action
+                  </p>
+              </div>
+
+              <div class="showcase-demo">
+                  <div class="demo-screen">
+                      <div class="demo-content">
+                          <div class="demo-line"><span class="demo-prompt">sesmine@cost-engine:~$</span> initialize_project --type=open_pit --capacity=50000</div>
+                          <div class="demo-line"><span class="demo-success">✓</span> Project initialized successfully</div>
+                          <div class="demo-line"><span class="demo-prompt">sesmine@cost-engine:~$</span> run_estimation --class=AACE_3 --confidence=75</div>
+                          <div class="demo-line"><span class="demo-success">✓</span> CAPEX Estimate: $247.5M (+/- 25%)</div>
+                          <div class="demo-line"><span class="demo-success">✓</span> OPEX Estimate: $18.50/ton (+/- 20%)</div>
+                          <div class="demo-line"><span class="demo-warning">⚠</span> Risk factors identified: 3 medium, 1 high</div>
+                          <div class="demo-line"><span class="demo-prompt">sesmine@cost-engine:~$</span> generate_report --format=pdf</div>
+                          <div class="demo-line"><span class="demo-success">✓</span> Report generated: project_estimate_2024.pdf</div>
+                      </div>
+                  </div>
+              </div>
+          </section>
+
+          <!-- Comparison Section -->
+          <section class="comparison-section">
+              <div class="comparison-content">
+                  <div class="comparison-header">
+                      <h2 class="comparison-title">Why Choose SESMine?</h2>
+                      <p style="font-size: 1.25rem; opacity: 0.9; margin-bottom: 2rem;">
+                          See how SESMine compares to traditional mining software solutions
+                      </p>
+                  </div>
+
+                  <div class="comparison-table">
+                      <div class="comparison-grid">
+                          <div class="comparison-header-cell">Feature</div>
+                          <div class="comparison-header-cell">SESMine</div>
+                          <div class="comparison-header-cell">Traditional Software</div>
+                          <div class="comparison-header-cell">Spreadsheets</div>
+                          
+                          <div class="comparison-cell">AACE Standards Compliance</div>
+                          <div class="comparison-cell"><i class="fas fa-check check-icon"></i></div>
+                          <div class="comparison-cell"><i class="fas fa-times cross-icon"></i></div>
+                          <div class="comparison-cell"><i class="fas fa-times cross-icon"></i></div>
+                          
+                          <div class="comparison-cell">Real-time Collaboration</div>
+                          <div class="comparison-cell"><i class="fas fa-check check-icon"></i></div>
+                          <div class="comparison-cell"><i class="fas fa-times cross-icon"></i></div>
+                          <div class="comparison-cell"><i class="fas fa-times cross-icon"></i></div>
+                          
+                          <div class="comparison-cell">AI-Powered Analytics</div>
+                          <div class="comparison-cell"><i class="fas fa-check check-icon"></i></div>
+                          <div class="comparison-cell"><i class="fas fa-times cross-icon"></i></div>
+                          <div class="comparison-cell"><i class="fas fa-times cross-icon"></i></div>
+                          
+                          <div class="comparison-cell">Cloud-Based Platform</div>
+                          <div class="comparison-cell"><i class="fas fa-check check-icon"></i></div>
+                          <div class="comparison-cell"><i class="fas fa-check check-icon"></i></div>
+                          <div class="comparison-cell"><i class="fas fa-times cross-icon"></i></div>
+                          
+                          <div class="comparison-cell">Mobile Access</div>
+                          <div class="comparison-cell"><i class="fas fa-check check-icon"></i></div>
+                          <div class="comparison-cell"><i class="fas fa-times cross-icon"></i></div>
+                          <div class="comparison-cell"><i class="fas fa-times cross-icon"></i></div>
+                          
+                          <div class="comparison-cell">Integrated Training</div>
+                          <div class="comparison-cell"><i class="fas fa-check check-icon"></i></div>
+                          <div class="comparison-cell"><i class="fas fa-times cross-icon"></i></div>
+                          <div class="comparison-cell"><i class="fas fa-times cross-icon"></i></div>
+                      </div>
+                  </div>
+              </div>
+          </section>
+
+          <!-- Pricing Section -->
+          <section class="pricing-section">
+              <div class="pricing-header">
+                  <h2 class="pricing-title">Choose Your Plan</h2>
+                  <p class="pricing-subtitle">
+                      Flexible pricing options designed to scale with your mining operations
+                  </p>
+              </div>
+
+              <div class="pricing-grid">
+                  <div class="pricing-card">
+                      <h3 class="plan-name">Starter</h3>
+                      <div class="plan-price">$299</div>
+                      <p class="plan-period">per month</p>
+                      <ul class="plan-features">
+                          <li><i class="fas fa-check check-icon"></i>Basic Cost Estimation</li>
+                          <li><i class="fas fa-check check-icon"></i>Equipment Database</li>
+                          <li><i class="fas fa-check check-icon"></i>5 Projects</li>
+                          <li><i class="fas fa-check check-icon"></i>Email Support</li>
+                          <li><i class="fas fa-check check-icon"></i>Standard Reports</li>
+                      </ul>
+                      <button class="plan-cta" onclick="selectPlan('starter')">
+                          Get Started
+                      </button>
+                  </div>
+
+                  <div class="pricing-card featured">
+                      <h3 class="plan-name">Professional</h3>
+                      <div class="plan-price">$799</div>
+                      <p class="plan-period">per month</p>
+                      <ul class="plan-features">
+                          <li><i class="fas fa-check check-icon"></i>Advanced Analytics</li>
+                          <li><i class="fas fa-check check-icon"></i>3D Mine Planning</li>
+                          <li><i class="fas fa-check check-icon"></i>Unlimited Projects</li>
+                          <li><i class="fas fa-check check-icon"></i>Priority Support</li>
+                          <li><i class="fas fa-check check-icon"></i>Custom Reports</li>
+                          <li><i class="fas fa-check check-icon"></i>Team Collaboration</li>
+                          <li><i class="fas fa-check check-icon"></i>API Access</li>
+                      </ul>
+                      <button class="plan-cta" onclick="selectPlan('professional')">
+                          Start Free Trial
+                      </button>
+                  </div>
+
+                  <div class="pricing-card">
+                      <h3 class="plan-name">Enterprise</h3>
+                      <div class="plan-price">Custom</div>
+                      <p class="plan-period">contact us</p>
+                      <ul class="plan-features">
+                          <li><i class="fas fa-check check-icon"></i>Full Platform Access</li>
+                          <li><i class="fas fa-check check-icon"></i>Custom Integrations</li>
+                          <li><i class="fas fa-check check-icon"></i>Dedicated Support</li>
+                          <li><i class="fas fa-check check-icon"></i>On-site Training</li>
+                          <li><i class="fas fa-check check-icon"></i>White-label Options</li>
+                          <li><i class="fas fa-check check-icon"></i>SLA Guarantee</li>
+                          <li><i class="fas fa-check check-icon"></i>Custom Development</li>
+                      </ul>
+                      <button class="plan-cta" onclick="selectPlan('enterprise')">
+                          Contact Sales
+                      </button>
+                  </div>
+              </div>
+          </section>
+      </div>
+  </main>
+
+  <script src="script.js"></script>
   <script>
-      // Scroll Animation
-      const observerOptions = {
-          threshold: 0.1,
-          rootMargin: '0px 0px -50px 0px'
-      };
+  // Features page specific JavaScript
+  document.addEventListener('DOMContentLoaded', function() {
+      initializeFeaturesPage();
+  });
 
+  function initializeFeaturesPage() {
+      console.log('⭐ Features page initialized');
+      
+      // Initialize feature animations
+      initializeFeatureAnimations();
+      
+      // Initialize demo animations
+      initializeDemoAnimations();
+      
+      // Track page view
+      analytics.track('features_page_view', {
+          timestamp: new Date().toISOString(),
+          userAgent: navigator.userAgent
+      });
+  }
+
+  function initializeFeatureAnimations() {
+      const featureCards = document.querySelectorAll('.feature-card');
+      
+      featureCards.forEach(card => {
+          card.addEventListener('mouseenter', function() {
+              const icon = this.querySelector('.feature-icon');
+              if (icon) {
+                  icon.style.transform = 'scale(1.1) rotate(5deg)';
+              }
+          });
+          
+          card.addEventListener('mouseleave', function() {
+              const icon = this.querySelector('.feature-icon');
+              if (icon) {
+                  icon.style.transform = 'scale(1) rotate(0deg)';
+              }
+          });
+      });
+  }
+
+  function initializeDemoAnimations() {
+      // Animate demo lines on scroll
+      const demoLines = document.querySelectorAll('.demo-line');
+      
       const observer = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
               if (entry.isIntersecting) {
-                  entry.target.classList.add('animated');
-              }
-          });
-      }, observerOptions);
-
-      document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
-
-      // Smooth scroll for anchor links
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-          anchor.addEventListener('click', function (e) {
-              e.preventDefault();
-              const target = document.querySelector(this.getAttribute('href'));
-              if (target) {
-                  target.scrollIntoView({
-                      behavior: 'smooth',
-                      block: 'start'
+                  const lines = entry.target.querySelectorAll('.demo-line');
+                  lines.forEach((line, index) => {
+                      setTimeout(() => {
+                          line.style.opacity = '1';
+                          line.style.transform = 'translateX(0)';
+                      }, index * 500);
                   });
               }
           });
       });
+      
+      const demoScreen = document.querySelector('.demo-screen');
+      if (demoScreen) {
+          observer.observe(demoScreen);
+      }
+  }
+
+  function scrollToSection(sectionName) {
+      const section = document.getElementById(sectionName + '-section');
+      if (section) {
+          section.scrollIntoView({ behavior: 'smooth' });
+          
+          // Update active tab
+          showFeatureSection(sectionName, document.querySelector(`[href="#${sectionName}"]`));
+      }
+      
+      analytics.track('feature_category_click', { category: sectionName });
+  }
+
+  function showFeatureSection(sectionName, tabElement) {
+      // Hide all sections
+      const sections = document.querySelectorAll('.features-section');
+      sections.forEach(section => {
+          section.style.display = 'none';
+      });
+      
+      // Show selected section
+      const targetSection = document.getElementById(sectionName + '-section');
+      if (targetSection) {
+          targetSection.style.display = 'block';
+      }
+      
+      // Update active tab
+      const tabs = document.querySelectorAll('.nav-tab');
+      tabs.forEach(tab => {
+          tab.classList.remove('active');
+      });
+      
+      if (tabElement) {
+          tabElement.classList.add('active');
+      }
+      
+      // Track section view
+      analytics.track('feature_section_view', {
+          section: sectionName,
+          timestamp: new Date().toISOString()
+      });
+  }
+
+  function exploreFeature(featureName) {
+      analytics.track('feature_explore', { feature: featureName });
+      showNotification(`🔍 Exploring ${featureName}...`, 'info');
+      
+      setTimeout(() => {
+          showNotification(`✅ ${featureName} details loaded`, 'success');
+      }, 1500);
+  }
+
+  function selectPlan(planName) {
+      analytics.track('plan_selected', {
+          plan: planName,
+          timestamp: new Date().toISOString()
+      });
+      
+      if (planName === 'enterprise') {
+          showNotification('📞 Redirecting to sales team...', 'info');
+          setTimeout(() => {
+              window.location.href = 'contact.html';
+          }, 2000);
+      } else {
+          showNotification(`🚀 Starting ${planName} plan setup...`, 'info');
+          setTimeout(() => {
+              showNotification(`✅ ${planName.charAt(0).toUpperCase() + planName.slice(1)} plan activated!`, 'success');
+          }, 2500);
+      }
+  }
+
+  // Feature card interactions
+  document.addEventListener('DOMContentLoaded', function() {
+      const featureCards = document.querySelectorAll('.feature-card');
+      
+      featureCards.forEach(card => {
+          card.addEventListener('click', function() {
+              const featureTitle = this.querySelector('.feature-title').textContent;
+              analytics.track('feature_card_click', { feature: featureTitle });
+              
+              // Add visual feedback
+              this.style.transform = 'translateY(-10px) scale(1.02)';
+              setTimeout(() => {
+                  this.style.transform = 'translateY(-10px) scale(1)';
+              }, 200);
+          });
+      });
+  });
+
+  // Action button handlers
+  document.addEventListener('DOMContentLoaded', function() {
+      const actionButtons = document.querySelectorAll('.action-btn');
+      
+      actionButtons.forEach(button => {
+          button.addEventListener('click', function(e) {
+              e.stopPropagation();
+              
+              const buttonText = this.textContent.trim();
+              const featureCard = this.closest('.feature-card');
+              const featureName = featureCard ? featureCard.querySelector('.feature-title').textContent : 'Unknown';
+              
+              analytics.track('feature_action_click', {
+                  feature: featureName,
+                  action: buttonText
+              });
+              
+              // Handle different actions
+              if (buttonText.includes('Demo')) {
+                  showNotification(`🎮 Loading ${featureName} demo...`, 'info');
+              } else if (buttonText.includes('Trial')) {
+                  showNotification(`🆓 Starting free trial for ${featureName}...`, 'info');
+              } else if (buttonText.includes('Learn More')) {
+                  showNotification(`📚 Opening ${featureName} documentation...`, 'info');
+              }
+              
+              // Visual feedback
+              this.style.transform = 'scale(0.95)';
+              setTimeout(() => {
+                  this.style.transform = 'scale(1)';
+              }, 150);
+          });
+      });
+  });
+
+  // Category card interactions
+  document.addEventListener('DOMContentLoaded', function() {
+      const categoryCards = document.querySelectorAll('.category-card');
+      
+      categoryCards.forEach(card => {
+          card.addEventListener('click', function() {
+              const categoryTitle = this.querySelector('.category-title').textContent;
+              analytics.track('category_card_click', { category: categoryTitle });
+              
+              // Add ripple effect
+              const ripple = document.createElement('div');
+              ripple.style.position = 'absolute';
+              ripple.style.borderRadius = '50%';
+              ripple.style.background = 'rgba(255, 255, 255, 0.3)';
+              ripple.style.transform = 'scale(0)';
+              ripple.style.animation = 'ripple 0.6s linear';
+              ripple.style.left = '50%';
+              ripple.style.top = '50%';
+              ripple.style.width = '100px';
+              ripple.style.height = '100px';
+              ripple.style.marginLeft = '-50px';
+              ripple.style.marginTop = '-50px';
+              
+              this.style.position = 'relative';
+              this.appendChild(ripple);
+              
+              setTimeout(() => {
+                  ripple.remove();
+              }, 600);
+          });
+      });
+  });
+
+  // Pricing card interactions
+  document.addEventListener('DOMContentLoaded', function() {
+      const pricingCards = document.querySelectorAll('.pricing-card');
+      
+      pricingCards.forEach(card => {
+          card.addEventListener('mouseenter', function() {
+              if (!this.classList.contains('featured')) {
+                  this.style.transform = 'translateY(-8px) scale(1.02)';
+              }
+          });
+          
+          card.addEventListener('mouseleave', function() {
+              if (!this.classList.contains('featured')) {
+                  this.style.transform = 'translateY(0) scale(1)';
+              } else {
+                  this.style.transform = 'translateY(0) scale(1.05)';
+              }
+          });
+      });
+  });
+
+  // Smooth scrolling for navigation tabs
+  document.addEventListener('DOMContentLoaded', function() {
+      const navTabs = document.querySelectorAll('.nav-tab');
+      
+      navTabs.forEach(tab => {
+          tab.addEventListener('click', function(e) {
+              e.preventDefault();
+              
+              const targetId = this.getAttribute('href').substring(1);
+              const targetSection = document.getElementById(targetId + '-section');
+              
+              if (targetSection) {
+                  // Smooth scroll to section
+                  targetSection.scrollIntoView({
+                      behavior: 'smooth',
+                      block: 'start'
+                  });
+                  
+                  // Update URL without triggering scroll
+                  history.pushState(null, null, this.getAttribute('href'));
+              }
+          });
+      });
+  });
+
+  // Feature search functionality
+  function searchFeatures(query) {
+      const featureCards = document.querySelectorAll('.feature-card');
+      const searchQuery = query.toLowerCase();
+      
+      featureCards.forEach(card => {
+          const title = card.querySelector('.feature-title').textContent.toLowerCase();
+          const description = card.querySelector('.feature-description').textContent.toLowerCase();
+          const category = card.querySelector('.feature-category').textContent.toLowerCase();
+          
+          const matches = title.includes(searchQuery) || 
+                         description.includes(searchQuery) || 
+                         category.includes(searchQuery);
+          
+          if (matches || !searchQuery) {
+              card.style.display = 'block';
+              card.style.opacity = '1';
+          } else {
+              card.style.display = 'none';
+              card.style.opacity = '0';
+          }
+      });
+      
+      if (searchQuery) {
+          analytics.track('feature_search', { query: searchQuery });
+      }
+  }
+
+  // Initialize search functionality
+  document.addEventListener('DOMContentLoaded', function() {
+      const searchInput = document.getElementById('globalSearch');
+      
+      if (searchInput) {
+          searchInput.addEventListener('input', function() {
+              const query = this.value;
+              searchFeatures(query);
+          });
+      }
+  });
+
+  // Comparison table interactions
+  document.addEventListener('DOMContentLoaded', function() {
+      const comparisonCells = document.querySelectorAll('.comparison-cell');
+      
+      comparisonCells.forEach(cell => {
+          cell.addEventListener('mouseenter', function() {
+              const row = this.parentElement;
+              const cells = row.querySelectorAll('.comparison-cell');
+              
+              cells.forEach(c => {
+                  c.style.background = 'rgba(255, 255, 255, 0.1)';
+              });
+          });
+          
+          cell.addEventListener('mouseleave', function() {
+              const row = this.parentElement;
+              const cells = row.querySelectorAll('.comparison-cell');
+              
+              cells.forEach(c => {
+                  c.style.background = 'transparent';
+              });
+          });
+      });
+  });
+
+  // Feature highlights animation
+  function animateFeatureHighlights() {
+      const highlightLists = document.querySelectorAll('.highlights-list');
+      
+      const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                  const listItems = entry.target.querySelectorAll('li');
+                  
+                  listItems.forEach((item, index) => {
+                      setTimeout(() => {
+                          item.style.opacity = '1';
+                          item.style.transform = 'translateX(0)';
+                      }, index * 100);
+                  });
+              }
+          });
+      });
+      
+      highlightLists.forEach(list => {
+          const listItems = list.querySelectorAll('li');
+          listItems.forEach(item => {
+              item.style.opacity = '0';
+              item.style.transform = 'translateX(-20px)';
+              item.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+          });
+          
+          observer.observe(list);
+      });
+  }
+
+  // Initialize highlight animations
+  setTimeout(animateFeatureHighlights, 1000);
+
+  // Keyboard shortcuts for features page
+  document.addEventListener('keydown', function(e) {
+      // Ctrl/Cmd + Shift + 1-6: Navigate to feature sections
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey) {
+          const sectionMap = {
+              '1': 'engineering',
+              '2': 'analytics',
+              '3': 'management',
+              '4': 'automation',
+              '5': 'collaboration',
+              '6': 'integration'
+          };
+          
+          const section = sectionMap[e.key];
+          if (section) {
+              e.preventDefault();
+              scrollToSection(section);
+          }
+      }
+      
+      // Ctrl/Cmd + Shift + P: Scroll to pricing
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'P') {
+          e.preventDefault();
+          document.querySelector('.pricing-section').scrollIntoView({ behavior: 'smooth' });
+      }
+      
+      // Ctrl/Cmd + Shift + D: View demo
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'D') {
+          e.preventDefault();
+          document.querySelector('.feature-showcase').scrollIntoView({ behavior: 'smooth' });
+      }
+  });
+
+  // Feature comparison functionality
+  function compareFeatures(feature1, feature2) {
+      analytics.track('feature_comparison', {
+          feature1: feature1,
+          feature2: feature2,
+          timestamp: new Date().toISOString()
+      });
+      
+      showNotification(`📊 Comparing ${feature1} vs ${feature2}...`, 'info');
+      
+      setTimeout(() => {
+          showNotification('✅ Comparison report generated', 'success');
+      }, 2000);
+  }
+
+  // Feature recommendation engine
+  function getFeatureRecommendations(userProfile) {
+      analytics.track('feature_recommendations_request', {
+          profile: userProfile,
+          timestamp: new Date().toISOString()
+      });
+      
+      const recommendations = [
+          'AACE Cost Estimation',
+          'Predictive Analytics',
+          '3D Mine Planning',
+          'Real-time Monitoring'
+      ];
+      
+      showNotification('🤖 AI is analyzing your needs to recommend features...', 'info');
+      
+      setTimeout(() => {
+          showNotification(`✅ Found ${recommendations.length} recommended features for you`, 'success');
+      }, 2500);
+      
+      return recommendations;
+  }
+
+  // Feature usage analytics
+  function trackFeatureUsage(featureName, action) {
+      analytics.track('feature_usage', {
+          feature: featureName,
+          action: action,
+          timestamp: new Date().toISOString(),
+          sessionId: generateSessionId()
+      });
+  }
+
+  function generateSessionId() {
+      return 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+  }
+
+  // Feature feedback system
+  function submitFeatureFeedback(featureName, rating, feedback) {
+      analytics.track('feature_feedback', {
+          feature: featureName,
+          rating: rating,
+          feedback: feedback,
+          timestamp: new Date().toISOString()
+      });
+      
+      showNotification(`⭐ Thank you for rating ${featureName}!`, 'success');
+  }
+
+  // Feature request system
+  function requestFeature(featureName, description, priority) {
+      analytics.track('feature_request', {
+          feature: featureName,
+          description: description,
+          priority: priority,
+          timestamp: new Date().toISOString()
+      });
+      
+      showNotification(`💡 Feature request submitted: ${featureName}`, 'info');
+      
+      setTimeout(() => {
+          showNotification('✅ Our product team will review your request', 'success');
+      }, 1500);
+  }
+
+  // Feature availability checker
+  function checkFeatureAvailability(featureName, planType) {
+      const featureMatrix = {
+          'starter': ['Basic Cost Estimation', 'Equipment Database', 'Standard Reports'],
+          'professional': ['Advanced Analytics', '3D Mine Planning', 'Team Collaboration', 'API Access'],
+          'enterprise': ['Custom Integrations', 'Dedicated Support', 'White-label Options']
+      };
+      
+      const availableFeatures = featureMatrix[planType] || [];
+      const isAvailable = availableFeatures.includes(featureName);
+      
+      analytics.track('feature_availability_check', {
+          feature: featureName,
+          plan: planType,
+          available: isAvailable
+      });
+      
+      return isAvailable;
+  }
+
+  // Feature tour system
+  function startFeatureTour(startingFeature) {
+      analytics.track('feature_tour_start', {
+          startingFeature: startingFeature,
+          timestamp: new Date().toISOString()
+      });
+      
+      showNotification('🎯 Starting guided feature tour...', 'info');
+      
+      setTimeout(() => {
+          showNotification('👋 Welcome to the SESMine features tour!', 'success');
+      }, 1000);
+  }
+
+  // Feature integration checker
+  function checkFeatureIntegration(feature1, feature2) {
+      analytics.track('feature_integration_check', {
+          feature1: feature1,
+          feature2: feature2,
+          timestamp: new Date().toISOString()
+      });
+      
+      showNotification(`🔗 Checking integration between ${feature1} and ${feature2}...`, 'info');
+      
+      setTimeout(() => {
+          showNotification('✅ Features are fully integrated and compatible', 'success');
+      }, 1800);
+  }
+
+  // Feature performance metrics
+  function getFeaturePerformanceMetrics(featureName) {
+      analytics.track('feature_performance_request', {
+          feature: featureName,
+          timestamp: new Date().toISOString()
+      });
+      
+      const mockMetrics = {
+          usage: Math.floor(Math.random() * 1000) + 500,
+          satisfaction: (Math.random() * 2 + 3).toFixed(1),
+          performance: Math.floor(Math.random() * 20) + 80
+      };
+      
+      showNotification(`📊 ${featureName} Metrics: ${mockMetrics.usage} users, ${mockMetrics.satisfaction}★ rating, ${mockMetrics.performance}% uptime`, 'info');
+      
+      return mockMetrics;
+  }
+
+  // Auto-save feature preferences
+  function saveFeaturePreferences(preferences) {
+      localStorage.setItem('sesmine_feature_preferences', JSON.stringify(preferences));
+      
+      analytics.track('feature_preferences_saved', {
+          preferences: preferences,
+          timestamp: new Date().toISOString()
+      });
+      
+      showNotification('💾 Feature preferences saved', 'success');
+  }
+
+  function loadFeaturePreferences() {
+      const saved = localStorage.getItem('sesmine_feature_preferences');
+      return saved ? JSON.parse(saved) : {};
+  }
+
+  // Initialize feature preferences
+  document.addEventListener('DOMContentLoaded', function() {
+      const preferences = loadFeaturePreferences();
+      
+      if (Object.keys(preferences).length > 0) {
+          console.log('📋 Loaded user feature preferences:', preferences);
+      }
+  });
+
+  // Feature update notifications
+  function checkFeatureUpdates() {
+      analytics.track('feature_updates_check', { timestamp: new Date().toISOString() });
+      
+      const updates = [
+          'Enhanced 3D Mine Planning with VR support',
+          'New AI-powered cost prediction models',
+          'Improved real-time monitoring dashboard'
+      ];
+      
+      if (updates.length > 0) {
+          showNotification(`🆕 ${updates.length} feature updates available!`, 'info');
+      }
+      
+      return updates;
+  }
+
+  // Check for updates on page load
+  setTimeout(checkFeatureUpdates, 5000);
+
+  console.log('⭐ Features page ready');
+  console.log('🔧 Engineering tools showcased');
+  console.log('📊 Analytics features displayed');
+  console.log('💰 Pricing plans loaded');
+  console.log('🔍 Feature search enabled');
+  console.log('🎯 Interactive demos ready');
+  console.log('📈 Comparison tables active');
+  console.log('🚀 Feature tour system available');
   </script>
+
+  <style>
+  @keyframes ripple {
+      to {
+          transform: scale(4);
+          opacity: 0;
+      }
+  }
+  </style>
 </body>
 </html>

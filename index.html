@@ -3,283 +3,1513 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SESMine - Smart Engineering Solutions for Mining</title>
-  <meta name="description" content="Complete Smart Engineering Solutions for Mining Platform">
+  <title>SESMine - Transform Mining Operations with AI-Driven Engineering Solutions</title>
+  <meta name="description" content="Revolutionary mining technology platform combining AACE standards, AI analytics, and intelligent engineering solutions for next-generation mining operations.">
+  <meta name="keywords" content="mining technology, AACE standards, cost estimation, mine planning, AI analytics, engineering solutions">
+  
+  <!-- Preload critical resources -->
+  <link rel="preload" href="style.css" as="style">
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+  
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="icon" type="image/x-icon" href="https://www.sesmine.com/favicon.ico">
   
+  <!-- Optimized Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
   <style>
-  /* Router-specific styles */
-  .router-container {
+  /* Enhanced Landing Page Styles */
+  :root {
+      --primary-gradient: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #60a5fa 100%);
+      --secondary-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+      --accent-gradient: linear-gradient(135deg, #d97706 0%, #f59e0b 50%, #fbbf24 100%);
+      --success-gradient: linear-gradient(135deg, #059669 0%, #10b981 50%, #34d399 100%);
+      --tech-gradient: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 50%, #a78bfa 100%);
+      --mining-gradient: linear-gradient(135deg, #dc2626 0%, #ef4444 50%, #f87171 100%);
+      
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --glass-border: rgba(255, 255, 255, 0.2);
+      --dark-glass-bg: rgba(15, 23, 42, 0.8);
+      --dark-glass-border: rgba(59, 130, 246, 0.3);
+      
+      --shadow-glow: 0 0 30px rgba(59, 130, 246, 0.3);
+      --shadow-intense: 0 20px 60px rgba(0, 0, 0, 0.3);
+      --text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+  }
+  
+  body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: #ffffff;
+      overflow-x: hidden;
+      background: var(--secondary-gradient);
+  }
+  
+  /* Animated Background */
+  .animated-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      background: var(--secondary-gradient);
+      overflow: hidden;
+  }
+  
+  .bg-particles {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-image: 
+          radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+          radial-gradient(circle at 80% 20%, rgba(245, 158, 11, 0.1) 0%, transparent 50%),
+          radial-gradient(circle at 40% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+      animation: particleFloat 20s ease-in-out infinite;
+  }
+  
+  @keyframes particleFloat {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      33% { transform: translateY(-20px) rotate(120deg); }
+      66% { transform: translateY(10px) rotate(240deg); }
+  }
+  
+  .tech-grid {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+          linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: gridMove 30s linear infinite;
+  }
+  
+  @keyframes gridMove {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(50px, 50px); }
+  }
+  
+  /* Enhanced Header */
+  .main-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: var(--dark-glass-bg);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--dark-glass-border);
+      transition: all 0.3s ease;
+  }
+  
+  .main-header.scrolled {
+      background: rgba(15, 23, 42, 0.95);
+      box-shadow: var(--shadow-glow);
+  }
+  
+  .header-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+  }
+  
+  .logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+      color: white;
+      font-weight: 800;
+      font-size: 1.5rem;
+      transition: all 0.3s ease;
+  }
+  
+  .logo:hover {
+      transform: scale(1.05);
+  }
+  
+  .logo-icon {
+      width: 50px;
+      height: 50px;
+      background: var(--accent-gradient);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      box-shadow: var(--shadow-glow);
+      animation: logoGlow 3s ease-in-out infinite;
+  }
+  
+  @keyframes logoGlow {
+      0%, 100% { box-shadow: var(--shadow-glow); }
+      50% { box-shadow: 0 0 40px rgba(245, 158, 11, 0.5); }
+  }
+  
+  .main-nav {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+  }
+  
+  .nav-link {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      position: relative;
+  }
+  
+  .nav-link:hover {
+      color: white;
+      background: var(--glass-bg);
+      transform: translateY(-2px);
+  }
+  
+  .nav-link.active {
+      color: #fbbf24;
+      background: var(--glass-bg);
+  }
+  
+  .cta-button {
+      background: var(--accent-gradient);
+      color: #1f2937;
+      padding: 0.75rem 1.5rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: all 0.3s ease;
+      box-shadow: var(--shadow-intense);
+  }
+  
+  .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 25px 70px rgba(245, 158, 11, 0.4);
+  }
+  
+  /* Hero Section */
+  .hero-section {
       min-height: 100vh;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
       align-items: center;
-      background: linear-gradient(135deg, #1a365d 0%, #2d5a87 50%, #3182ce 100%);
-      color: white;
-      text-align: center;
-      padding: 2rem;
+      justify-content: center;
+      position: relative;
+      padding: 8rem 2rem 4rem;
   }
   
-  .router-logo {
-      width: 120px;
-      height: 120px;
-      background: linear-gradient(135deg, #d69e2e, #b7791f);
-      border-radius: 20px;
+  .hero-content {
+      max-width: 1400px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+  }
+  
+  .hero-text {
+      z-index: 10;
+  }
+  
+  .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(10px);
+      animation: badgeFloat 3s ease-in-out infinite;
+  }
+  
+  @keyframes badgeFloat {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-5px); }
+  }
+  
+  .hero-title {
+      font-size: 4rem;
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 2rem;
+      background: linear-gradient(135deg, #ffffff 0%, #3b82f6 50%, #fbbf24 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: var(--text-shadow);
+      animation: titleGlow 4s ease-in-out infinite;
+  }
+  
+  @keyframes titleGlow {
+      0%, 100% { filter: brightness(1); }
+      50% { filter: brightness(1.2); }
+  }
+  
+  .hero-subtitle {
+      font-size: 1.25rem;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 3rem;
+      line-height: 1.6;
+  }
+  
+  .hero-buttons {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+  }
+  
+  .btn-primary {
+      background: var(--accent-gradient);
+      color: #1f2937;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: var(--shadow-intense);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+  }
+  
+  .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 25px 70px rgba(245, 158, 11, 0.4);
+  }
+  
+  .btn-secondary {
+      background: var(--glass-bg);
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+  }
+  
+  .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-3px);
+  }
+  
+  .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+  }
+  
+  .stat-item {
+      text-align: center;
+  }
+  
+  .stat-number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-family: 'JetBrains Mono', monospace;
+  }
+  
+  .stat-label {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+  }
+  
+  /* Hero Visual */
+  .hero-visual {
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 3rem;
-      margin-bottom: 2rem;
-      animation: pulse 2s infinite;
   }
   
-  .router-title {
+  .tech-dashboard {
+      width: 100%;
+      max-width: 600px;
+      background: var(--dark-glass-bg);
+      border-radius: 20px;
+      padding: 2rem;
+      border: 1px solid var(--dark-glass-border);
+      backdrop-filter: blur(20px);
+      box-shadow: var(--shadow-intense);
+      position: relative;
+      overflow: hidden;
+  }
+  
+  .tech-dashboard::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--accent-gradient);
+  }
+  
+  .dashboard-header {
+      display: flex;
+      justify-content: between;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--dark-glass-border);
+  }
+  
+  .dashboard-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #fbbf24;
+  }
+  
+  .dashboard-status {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      color: #10b981;
+  }
+  
+  .status-dot {
+      width: 8px;
+      height: 8px;
+      background: #10b981;
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+  }
+  
+  @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+  }
+  
+  .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+  }
+  
+  .metric-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 1.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+  }
+  
+  .metric-card:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+  }
+  
+  .metric-value {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #3b82f6;
+      font-family: 'JetBrains Mono', monospace;
+      margin-bottom: 0.5rem;
+  }
+  
+  .metric-label {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.7);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+  }
+  
+  .chart-container {
+      height: 120px;
+      background: rgba(59, 130, 246, 0.1);
+      border-radius: 8px;
+      position: relative;
+      overflow: hidden;
+  }
+  
+  .chart-bars {
+      display: flex;
+      align-items: end;
+      height: 100%;
+      padding: 1rem;
+      gap: 4px;
+  }
+  
+  .chart-bar {
+      flex: 1;
+      background: var(--primary-gradient);
+      border-radius: 2px;
+      animation: barGrow 2s ease-in-out infinite;
+  }
+  
+  .chart-bar:nth-child(1) { height: 60%; animation-delay: 0.1s; }
+  .chart-bar:nth-child(2) { height: 80%; animation-delay: 0.2s; }
+  .chart-bar:nth-child(3) { height: 45%; animation-delay: 0.3s; }
+  .chart-bar:nth-child(4) { height: 90%; animation-delay: 0.4s; }
+  .chart-bar:nth-child(5) { height: 70%; animation-delay: 0.5s; }
+  .chart-bar:nth-child(6) { height: 85%; animation-delay: 0.6s; }
+  .chart-bar:nth-child(7) { height: 55%; animation-delay: 0.7s; }
+  .chart-bar:nth-child(8) { height: 95%; animation-delay: 0.8s; }
+  
+  @keyframes barGrow {
+      0%, 100% { transform: scaleY(1); }
+      50% { transform: scaleY(1.1); }
+  }
+  
+  /* Features Section */
+  .features-section {
+      padding: 8rem 2rem;
+      background: rgba(15, 23, 42, 0.5);
+      backdrop-filter: blur(10px);
+  }
+  
+  .section-container {
+      max-width: 1400px;
+      margin: 0 auto;
+  }
+  
+  .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+  }
+  
+  .section-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--tech-gradient);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+  }
+  
+  .section-title {
       font-size: 3rem;
       font-weight: 800;
-      margin-bottom: 1rem;
-      background: linear-gradient(135deg, white, rgba(255, 255, 255, 0.8), #d69e2e);
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, #ffffff 0%, #3b82f6 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
   }
   
-  .router-subtitle {
+  .section-subtitle {
       font-size: 1.25rem;
-      opacity: 0.9;
-      margin-bottom: 3rem;
-      max-width: 600px;
+      color: rgba(255, 255, 255, 0.7);
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
   }
   
-  .quick-nav {
+  .features-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-      max-width: 1000px;
-      width: 100%;
-      margin-bottom: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
   }
   
-  .nav-button {
-      background: rgba(255, 255, 255, 0.1);
-      border: 2px solid rgba(255, 255, 255, 0.2);
-      color: white;
-      padding: 1rem;
-      border-radius: 12px;
-      text-decoration: none;
+  .feature-card {
+      background: var(--dark-glass-bg);
+      border-radius: 20px;
+      padding: 2.5rem;
+      border: 1px solid var(--dark-glass-border);
+      backdrop-filter: blur(20px);
       transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+  }
+  
+  .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--accent-gradient);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+  }
+  
+  .feature-card:hover::before {
+      transform: scaleX(1);
+  }
+  
+  .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-intense);
+      border-color: rgba(59, 130, 246, 0.5);
+  }
+  
+  .feature-icon {
+      width: 70px;
+      height: 70px;
+      background: var(--accent-gradient);
+      border-radius: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.5rem;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-glow);
+  }
+  
+  .feature-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: white;
+  }
+  
+  .feature-description {
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+  }
+  
+  .feature-link {
+      color: #fbbf24;
+      text-decoration: none;
       font-weight: 600;
-      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
   }
   
-  .nav-button:hover {
-      background: rgba(255, 255, 255, 0.2);
-      border-color: #d69e2e;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+  .feature-link:hover {
+      color: #f59e0b;
+      transform: translateX(5px);
   }
   
-  .loading-indicator {
-      display: none;
-      margin-top: 2rem;
+  /* Technology Showcase */
+  .tech-showcase {
+      padding: 8rem 2rem;
+      background: var(--secondary-gradient);
   }
   
-  .loading-bar {
-      width: 300px;
-      height: 4px;
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 2px;
+  .showcase-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+  }
+  
+  .showcase-content h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, #ffffff 0%, #10b981 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+  }
+  
+  .showcase-content p {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+  }
+  
+  .tech-list {
+      list-style: none;
+      margin-bottom: 2rem;
+  }
+  
+  .tech-list li {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.75rem 0;
+      font-weight: 500;
+  }
+  
+  .tech-list .icon {
+      width: 24px;
+      height: 24px;
+      background: var(--success-gradient);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 0.8rem;
+  }
+  
+  .tech-visual {
+      position: relative;
+      height: 400px;
+      background: var(--dark-glass-bg);
+      border-radius: 20px;
+      border: 1px solid var(--dark-glass-border);
+      backdrop-filter: blur(20px);
       overflow: hidden;
-      margin: 1rem auto;
   }
   
-  .loading-progress {
-      height: 100%;
-      background: linear-gradient(90deg, #d69e2e, #b7791f);
-      border-radius: 2px;
-      animation: loading 2s ease-in-out;
+  .tech-visual::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+          radial-gradient(circle at 30% 30%, rgba(59, 130, 246, 0.3) 0%, transparent 50%),
+          radial-gradient(circle at 70% 70%, rgba(16, 185, 129, 0.3) 0%, transparent 50%);
+      animation: techGlow 4s ease-in-out infinite;
   }
   
-  @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
+  @keyframes techGlow {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 0.8; }
   }
   
-  @keyframes loading {
-      0% { width: 0%; }
-      100% { width: 100%; }
+  /* CTA Section */
+  .cta-section {
+      padding: 6rem 2rem;
+      background: var(--primary-gradient);
+      text-align: center;
+  }
+  
+  .cta-content h2 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      color: white;
+      text-shadow: var(--text-shadow);
+  }
+  
+  .cta-content p {
+      font-size: 1.25rem;
+      margin-bottom: 3rem;
+      color: rgba(255, 255, 255, 0.9);
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+  }
+  
+  .cta-buttons {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+  }
+  
+  /* Footer */
+  .main-footer {
+      background: var(--secondary-gradient);
+      padding: 4rem 2rem 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .footer-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      margin-bottom: 2rem;
+  }
+  
+  .footer-section h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: #fbbf24;
+  }
+  
+  .footer-section p,
+  .footer-section a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      line-height: 1.6;
+      transition: color 0.3s ease;
+  }
+  
+  .footer-section a:hover {
+      color: #fbbf24;
+  }
+  
+  .footer-links {
+      list-style: none;
+  }
+  
+  .footer-links li {
+      margin-bottom: 0.75rem;
+  }
+  
+  .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.6);
+  }
+  
+  /* Mobile Responsive */
+  @media (max-width: 1024px) {
+      .hero-content {
+          grid-template-columns: 1fr;
+          text-align: center;
+          gap: 3rem;
+      }
+      
+      .showcase-grid {
+          grid-template-columns: 1fr;
+      }
+      
+      .main-nav {
+          display: none;
+      }
   }
   
   @media (max-width: 768px) {
-      .router-title {
+      .hero-title {
+          font-size: 2.5rem;
+      }
+      
+      .section-title {
           font-size: 2rem;
       }
       
-      .router-subtitle {
-          font-size: 1rem;
+      .hero-buttons {
+          flex-direction: column;
+          align-items: center;
       }
       
-      .quick-nav {
-          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      .hero-stats {
+          grid-template-columns: 1fr;
+          gap: 1rem;
       }
       
-      .nav-button {
-          padding: 0.75rem;
-          font-size: 0.85rem;
+      .features-grid {
+          grid-template-columns: 1fr;
       }
+      
+      .cta-buttons {
+          flex-direction: column;
+          align-items: center;
+      }
+  }
+  
+  /* Loading Animation */
+  .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--secondary-gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+  }
+  
+  .loading-spinner {
+      width: 60px;
+      height: 60px;
+      border: 3px solid rgba(255, 255, 255, 0.1);
+      border-top: 3px solid #fbbf24;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+  }
+  
+  .loading-overlay.hidden {
+      opacity: 0;
+      pointer-events: none;
+  }
+  
+  /* Scroll Animations */
+  .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+  }
+  
+  .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+  }
+  
+  /* Performance Optimizations */
+  .will-change {
+      will-change: transform;
+  }
+  
+  .gpu-accelerated {
+      transform: translateZ(0);
+      backface-visibility: hidden;
   }
   </style>
 </head>
 <body>
-  <div class="router-container">
-      <div class="router-logo">
-          🏔️
-      </div>
-      
-      <h1 class="router-title">SESMine Platform</h1>
-      <p class="router-subtitle">
-          Smart Engineering Solutions for Mining - Choose your destination
-      </p>
-      
-      <div class="quick-nav">
-          <a href="home.html" class="nav-button" onclick="showLoading()">
-              🏠 Dashboard
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" id="loadingOverlay">
+      <div class="loading-spinner"></div>
+  </div>
+
+  <!-- Animated Background -->
+  <div class="animated-background">
+      <div class="bg-particles"></div>
+      <div class="tech-grid"></div>
+  </div>
+
+  <!-- Enhanced Header -->
+  <header class="main-header" id="mainHeader">
+      <div class="header-content">
+          <a href="#" class="logo">
+              <div class="logo-icon">🏔️</div>
+              <div>
+                  <div style="font-size: 1.5rem; font-weight: 800;">SESMine</div>
+                  <div style="font-size: 0.8rem; opacity: 0.8;">Smart Engineering Solutions</div>
+              </div>
           </a>
-          <a href="login.html" class="nav-button" onclick="showLoading()">
-              🔐 Login
-          </a>
-          <a href="engineering-hub.html" class="nav-button" onclick="showLoading()">
-              ⛑️ Engineering Hub
-          </a>
-          <a href="analytics-platform.html" class="nav-button" onclick="showLoading()">
-              📊 Analytics Platform
-          </a>
-          <a href="economics-hub.html" class="nav-button" onclick="showLoading()">
-              💰 Economics Hub
-          </a>
-          <a href="innovation-technology-hub.html" class="nav-button" onclick="showLoading()">
-              🚀 Innovation & Technology
-          </a>
-          <a href="procurement-hub.html" class="nav-button" onclick="showLoading()">
-              🚛 Procurement Hub
-          </a>
-          <a href="consulting-hub.html" class="nav-button" onclick="showLoading()">
-              👔 Consulting Hub
-          </a>
-          <a href="training-education-hub.html" class="nav-button" onclick="showLoading()">
-              🎓 Training & Education
-          </a>
-          <a href="admin-dashboard.html" class="nav-button" onclick="showLoading()">
-              🛡️ Admin Dashboard
-          </a>
-          <a href="platforms.html" class="nav-button" onclick="showLoading()">
-              📋 All Platforms
-          </a>
-          <a href="features.html" class="nav-button" onclick="showLoading()">
-              ✨ Features
-          </a>
-          <a href="about.html" class="nav-button" onclick="showLoading()">
-              ℹ️ About SESMine
-          </a>
-          <a href="contact.html" class="nav-button" onclick="showLoading()">
-              📞 Contact Us
-          </a>
-          <a href="setting.html" class="nav-button" onclick="showLoading()">
-              ⚙️ Settings
+          
+          <nav class="main-nav">
+              <a href="#home" class="nav-link active">Home</a>
+              <a href="#features" class="nav-link">Features</a>
+              <a href="#technology" class="nav-link">Technology</a>
+              <a href="#solutions" class="nav-link">Solutions</a>
+              <a href="#about" class="nav-link">About</a>
+              <a href="#contact" class="nav-link">Contact</a>
+          </nav>
+          
+          <a href="home.html" class="cta-button">
+              <i class="fas fa-rocket"></i>
+              Get Started
           </a>
       </div>
-      
-      <div class="loading-indicator" id="loadingIndicator">
-          <p>Loading SESMine Platform...</p>
-          <div class="loading-bar">
-              <div class="loading-progress"></div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section" id="home">
+      <div class="hero-content">
+          <div class="hero-text">
+              <div class="hero-badge">
+                  <i class="fas fa-star"></i>
+                  Revolutionary Mining Technology Platform
+              </div>
+              
+              <h1 class="hero-title">
+                  Transform Mining Operations with AI-Driven Engineering Solutions
+              </h1>
+              
+              <p class="hero-subtitle">
+                  Our comprehensive platform integrates AACE standards, advanced cost estimation, 
+                  equipment databases, and AI-powered analytics to revolutionize mining operations 
+                  worldwide. Experience the future of mining technology today.
+              </p>
+              
+              <div class="hero-buttons">
+                  <a href="home.html" class="btn-primary">
+                      <i class="fas fa-rocket"></i>
+                      Launch Platform
+                  </a>
+                  <a href="#features" class="btn-secondary">
+                      <i class="fas fa-play"></i>
+                      Watch Demo
+                  </a>
+              </div>
+              
+              <div class="hero-stats">
+                  <div class="stat-item">
+                      <div class="stat-number">500+</div>
+                      <div class="stat-label">Projects Completed</div>
+                  </div>
+                  <div class="stat-item">
+                      <div class="stat-number">50+</div>
+                      <div class="stat-label">Countries Served</div>
+                  </div>
+                  <div class="stat-item">
+                      <div class="stat-number">98%</div>
+                      <div class="stat-label">Client Satisfaction</div>
+                  </div>
+              </div>
+          </div>
+          
+          <div class="hero-visual">
+              <div class="tech-dashboard">
+                  <div class="dashboard-header">
+                      <h3 class="dashboard-title">Mining Operations Center</h3>
+                      <div class="dashboard-status">
+                          <div class="status-dot"></div>
+                          Live Data
+                      </div>
+                  </div>
+                  
+                  <div class="dashboard-grid">
+                      <div class="metric-card">
+                          <div class="metric-value">$247M</div>
+                          <div class="metric-label">CAPEX Estimate</div>
+                      </div>
+                      <div class="metric-card">
+                          <div class="metric-value">18.5</div>
+                          <div class="metric-label">OPEX $/ton</div>
+                      </div>
+                      <div class="metric-card">
+                          <div class="metric-value">95%</div>
+                          <div class="metric-label">Accuracy</div>
+                      </div>
+                      <div class="metric-card">
+                          <div class="metric-value">24/7</div>
+                          <div class="metric-label">Monitoring</div>
+                      </div>
+                  </div>
+                  
+                  <div class="chart-container">
+                      <div class="chart-bars">
+                          <div class="chart-bar"></div>
+                          <div class="chart-bar"></div>
+                          <div class="chart-bar"></div>
+                          <div class="chart-bar"></div>
+                          <div class="chart-bar"></div>
+                          <div class="chart-bar"></div>
+                          <div class="chart-bar"></div>
+                          <div class="chart-bar"></div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features-section" id="features">
+      <div class="section-container">
+          <div class="section-header fade-in">
+              <div class="section-badge">
+                  <i class="fas fa-cogs"></i>
+                  Core Features
+              </div>
+              <h2 class="section-title">Comprehensive Mining Solutions</h2>
+              <p class="section-subtitle">
+                  Discover our suite of professional-grade tools designed to optimize 
+                  every aspect of your mining operations from planning to execution.
+              </p>
+          </div>
+          
+          <div class="features-grid">
+              <div class="feature-card fade-in">
+                  <div class="feature-icon">
+                      <i class="fas fa-calculator"></i>
+                  </div>
+                  <h3 class="feature-title">AACE Cost Estimation</h3>
+                  <p class="feature-description">
+                      Professional cost estimation following AACE International standards 
+                      with comprehensive equipment databases and real-time pricing data.
+                  </p>
+                  <a href="engineering-hub.html" class="feature-link">
+                      Explore Cost Tools <i class="fas fa-arrow-right"></i>
+                  </a>
+              </div>
+              
+              <div class="feature-card fade-in">
+                  <div class="feature-icon">
+                      <i class="fas fa-chart-line"></i>
+                  </div>
+                  <h3 class="feature-title">AI-Powered Analytics</h3>
+                  <p class="feature-description">
+                      Advanced machine learning algorithms for predictive maintenance, 
+                      production optimization, and intelligent decision-making support.
+                  </p>
+                  <a href="analytics-platform.html" class="feature-link">
+                      View Analytics <i class="fas fa-arrow-right"></i>
+                  </a>
+              </div>
+              
+              <div class="feature-card fade-in">
+                  <div class="feature-icon">
+                      <i class="fas fa-cube"></i>
+                  </div>
+                  <h3 class="feature-title">3D Mine Planning</h3>
+                  <p class="feature-description">
+                      Advanced 3D visualization and planning tools for open-pit and 
+                      underground mine design with optimization algorithms.
+                  </p>
+                  <a href="engineering-hub.html" class="feature-link">
+                      Start Planning <i class="fas fa-arrow-right"></i>
+                  </a>
+              </div>
+              
+              <div class="feature-card fade-in">
+                  <div class="feature-icon">
+                      <i class="fas fa-coins"></i>
+                  </div>
+                  <h3 class="feature-title">Financial Modeling</h3>
+                  <p class="feature-description">
+                      Comprehensive financial analysis tools including NPV/IRR calculations, 
+                      risk assessment, and market intelligence integration.
+                  </p>
+                  <a href="economics-hub.html" class="feature-link">
+                      Financial Tools <i class="fas fa-arrow-right"></i>
+                  </a>
+              </div>
+              
+              <div class="feature-card fade-in">
+                  <div class="feature-icon">
+                      <i class="fas fa-network-wired"></i>
+                  </div>
+                  <h3 class="feature-title">IoT Integration</h3>
+                  <p class="feature-description">
+                      Real-time monitoring and control of mining equipment with IoT sensors, 
+                      automated alerts, and performance optimization.
+                  </p>
+                  <a href="innovation-technology-hub.html" class="feature-link">
+                      IoT Solutions <i class="fas fa-arrow-right"></i>
+                  </a>
+              </div>
+              
+              <div class="feature-card fade-in">
+                  <div class="feature-icon">
+                      <i class="fas fa-graduation-cap"></i>
+                  </div>
+                  <h3 class="feature-title">Training & Certification</h3>
+                  <p class="feature-description">
+                      Professional development programs with industry certifications, 
+                      virtual classrooms, and expert-led training sessions.
+                  </p>
+                  <a href="training-education-hub.html" class="feature-link">
+                      Browse Courses <i class="fas fa-arrow-right"></i>
+                  </a>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <!-- Technology Showcase -->
+  <section class="tech-showcase" id="technology">
+      <div class="section-container">
+          <div class="showcase-grid">
+              <div class="showcase-content fade-in">
+                  <h2>Cutting-Edge Technology Stack</h2>
+                  <p>
+                      Built on modern cloud infrastructure with enterprise-grade security, 
+                      our platform leverages the latest advances in artificial intelligence, 
+                      machine learning, and IoT technologies to deliver unparalleled mining solutions.
+                  </p>
+                  
+                  <ul class="tech-list">
+                      <li>
+                          <div class="icon"><i class="fas fa-check"></i></div>
+                          Cloud-Native Architecture
+                      </li>
+                      <li>
+                          <div class="icon"><i class="fas fa-check"></i></div>
+                          Machine Learning & AI
+                      </li>
+                      <li>
+                          <div class="icon"><i class="fas fa-check"></i></div>
+                          Real-Time Data Processing
+                      </li>
+                      <li>
+                          <div class="icon"><i class="fas fa-check"></i></div>
+                          Enterprise Security
+                      </li>
+                      <li>
+                          <div class="icon"><i class="fas fa-check"></i></div>
+                          API-First Integration
+                      </li>
+                  </ul>
+                  
+                  <a href="innovation-technology-hub.html" class="btn-primary">
+                      <i class="fas fa-rocket"></i>
+                      Explore Technology
+                  </a>
+              </div>
+              
+              <div class="tech-visual fade-in">
+                  <!-- Animated tech visualization -->
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+      <div class="section-container">
+          <div class="cta-content fade-in">
+              <h2>Ready to Transform Your Mining Operations?</h2>
+              <p>
+                  Join hundreds of mining companies worldwide who trust SESMine to optimize 
+                  their operations, reduce costs, and achieve sustainable growth.
+              </p>
+              
+              <div class="cta-buttons">
+                  <a href="signup.html" class="btn-primary">
+                      <i class="fas fa-rocket"></i>
+                      Start Free Trial
+                  </a>
+                  <a href="contact.html" class="btn-secondary">
+                      <i class="fas fa-phone"></i>
+                      Contact Sales
+                  </a>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+      <div class="footer-content">
+          <div class="footer-section">
+              <h3>SESMine</h3>
+              <p>
+                  Transforming mining operations with intelligent engineering solutions. 
+                  Professional-grade tools for the modern mining industry.
+              </p>
+          </div>
+          
+          <div class="footer-section">
+              <h3>Platform</h3>
+              <ul class="footer-links">
+                  <li><a href="engineering-hub.html">Engineering Hub</a></li>
+                  <li><a href="analytics-platform.html">Analytics Platform</a></li>
+                  <li><a href="economics-hub.html">Economics Hub</a></li>
+                  <li><a href="innovation-technology-hub.html">Innovation Hub</a></li>
+              </ul>
+          </div>
+          
+          <div class="footer-section">
+              <h3>Resources</h3>
+              <ul class="footer-links">
+                  <li><a href="training-education-hub.html">Training</a></li>
+                  <li><a href="consulting-hub.html">Consulting</a></li>
+                  <li><a href="features.html">Features</a></li>
+                  <li><a href="platforms.html">Integrations</a></li>
+              </ul>
+          </div>
+          
+          <div class="footer-section">
+              <h3>Company</h3>
+              <ul class="footer-links">
+                  <li><a href="about.html">About Us</a></li>
+                  <li><a href="contact.html">Contact</a></li>
+                  <li><a href="#careers">Careers</a></li>
+                  <li><a href="#privacy">Privacy Policy</a></li>
+              </ul>
           </div>
       </div>
       
-      <p style="opacity: 0.7; margin-top: 2rem; font-size: 0.9rem;">
-          www.sesmine.com | Complete Mining Solutions Platform | Version 2.1.0
-      </p>
-  </div>
+      <div class="footer-bottom">
+          <p>&copy; 2024 SESMine. All rights reserved. | Smart Engineering Solutions for Mining Excellence</p>
+      </div>
+  </footer>
 
-  <script src="script.js"></script>
   <script>
-  // Router functionality
-  function showLoading() {
-      const indicator = document.getElementById('loadingIndicator');
-      indicator.style.display = 'block';
-  }
-  
-  // Auto-redirect to dashboard if coming from direct URL
-  window.addEventListener('load', function() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const page = urlParams.get('page');
-      
-      if (page) {
-          const pageRoutes = {
-              'dashboard': 'home.html',
-              'login': 'login.html',
-              'signup': 'signup.html',
-              'engineering': 'engineering-hub.html',
-              'analytics': 'analytics-platform.html',
-              'economics': 'economics-hub.html',
-              'innovation': 'innovation-technology-hub.html',
-              'procurement': 'procurement-hub.html',
-              'consulting': 'consulting-hub.html',
-              'training': 'training-education-hub.html',
-              'admin': 'admin-dashboard.html',
-              'platforms': 'platforms.html',
-              'features': 'features.html',
-              'about': 'about.html',
-              'contact': 'contact.html',
-              'settings': 'setting.html'
-          };
-          
-          if (pageRoutes[page]) {
-              showLoading();
-              setTimeout(() => {
-                  window.location.href = pageRoutes[page];
-              }, 1000);
-          }
-      }
+  // Enhanced Landing Page JavaScript
+  document.addEventListener('DOMContentLoaded', function() {
+      initializeLandingPage();
   });
-  
-  // Global navigation function for all pages
-  window.navigateToPage = function(pageId) {
-      const pageRoutes = {
-          'dashboard': 'home.html',
-          'login': 'login.html',
-          'signup': 'signup.html',
-          'engineering': 'engineering-hub.html',
-          'analytics': 'analytics-platform.html',
-          'economics': 'economics-hub.html',
-          'innovation': 'innovation-technology-hub.html',
-          'procurement': 'procurement-hub.html',
-          'consulting': 'consulting-hub.html',
-          'training': 'training-education-hub.html',
-          'admin': 'admin-dashboard.html',
-          'platforms': 'platforms.html',
-          'features': 'features.html',
-          'about': 'about.html',
-          'contact': 'contact.html',
-          'settings': 'setting.html'
+
+  function initializeLandingPage() {
+      console.log('🚀 SESMine Landing Page Initialized');
+      
+      // Remove loading overlay
+      setTimeout(() => {
+          const loadingOverlay = document.getElementById('loadingOverlay');
+          loadingOverlay.classList.add('hidden');
+      }, 1500);
+      
+      // Initialize scroll effects
+      initializeScrollEffects();
+      
+      // Initialize animations
+      initializeAnimations();
+      
+      // Initialize performance optimizations
+      initializePerformanceOptimizations();
+      
+      // Track page load
+      trackPageLoad();
+  }
+
+  function initializeScrollEffects() {
+      const header = document.getElementById('mainHeader');
+      
+      window.addEventListener('scroll', () => {
+          if (window.scrollY > 100) {
+              header.classList.add('scrolled');
+          } else {
+              header.classList.remove('scrolled');
+          }
+      });
+      
+      // Intersection Observer for fade-in animations
+      const observerOptions = {
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px'
       };
       
-      if (pageRoutes[pageId]) {
-          showLoading();
-          setTimeout(() => {
-              window.location.href = pageRoutes[pageId];
-          }, 500);
+      const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                  entry.target.classList.add('visible');
+              }
+          });
+      }, observerOptions);
+      
+      document.querySelectorAll('.fade-in').forEach(el => {
+          observer.observe(el);
+      });
+  }
+
+  function initializeAnimations() {
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', function (e) {
+              e.preventDefault();
+              const target = document.querySelector(this.getAttribute('href'));
+              if (target) {
+                  target.scrollIntoView({
+                      behavior: 'smooth',
+                      block: 'start'
+                  });
+              }
+          });
+      });
+      
+      // Dynamic counter animation
+      animateCounters();
+      
+      // Chart bars animation
+      animateChartBars();
+  }
+
+  function animateCounters() {
+      const counters = document.querySelectorAll('.stat-number');
+      
+      const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                  const counter = entry.target;
+                  const target = parseInt(counter.textContent.replace(/[^0-9]/g, ''));
+                  const duration = 2000;
+                  const step = target / (duration / 16);
+                  let current = 0;
+                  
+                  const timer = setInterval(() => {
+                      current += step;
+                      if (current >= target) {
+                          current = target;
+                          clearInterval(timer);
+                      }
+                      
+                      const suffix = counter.textContent.replace(/[0-9]/g, '');
+                      counter.textContent = Math.floor(current) + suffix;
+                  }, 16);
+                  
+                  observer.unobserve(counter);
+              }
+          });
+      });
+      
+      counters.forEach(counter => observer.observe(counter));
+  }
+
+  function animateChartBars() {
+      const chartContainer = document.querySelector('.chart-container');
+      
+      const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                  const bars = entry.target.querySelectorAll('.chart-bar');
+                  bars.forEach((bar, index) => {
+                      setTimeout(() => {
+                          bar.style.opacity = '1';
+                          bar.style.transform = 'scaleY(1)';
+                      }, index * 100);
+                  });
+                  observer.unobserve(entry.target);
+              }
+          });
+      });
+      
+      if (chartContainer) {
+          observer.observe(chartContainer);
       }
-  };
-  
-  console.log('🏔️ SESMine Router Initialized');
-  console.log('📧 Contact: www.sesmine.com');
-  console.log('🚀 Version: 2.1.0');
+  }
+
+  function initializePerformanceOptimizations() {
+      // Add will-change property to animated elements
+      const animatedElements = document.querySelectorAll('.hero-icon, .chart-bar, .feature-card');
+      animatedElements.forEach(el => {
+          el.classList.add('will-change', 'gpu-accelerated');
+      });
+      
+      // Lazy load images
+      if ('IntersectionObserver' in window) {
+          const imageObserver = new IntersectionObserver((entries) => {
+              entries.forEach(entry => {
+                  if (entry.isIntersecting) {
+                      const img = entry.target;
+                      img.src = img.dataset.src;
+                      img.classList.remove('lazy');
+                      imageObserver.unobserve(img);
+                  }
+              });
+          });
+          
+          document.querySelectorAll('img[data-src]').forEach(img => {
+              imageObserver.observe(img);
+          });
+      }
+      
+      // Preload critical resources
+      preloadCriticalResources();
+  }
+
+  function preloadCriticalResources() {
+      const criticalPages = [
+          'home.html',
+          'engineering-hub.html',
+          'analytics-platform.html'
+      ];
+      
+      criticalPages.forEach(page => {
+          const link = document.createElement('link');
+          link.rel = 'prefetch';
+          link.href = page;
+          document.head.appendChild(link);
+      });
+  }
+
+  function trackPageLoad() {
+      // Performance tracking
+      window.addEventListener('load', () => {
+          const loadTime = performance.now();
+          console.log(`⚡ Page loaded in ${loadTime.toFixed(2)}ms`);
+          
+          // Track user engagement
+          trackUserEngagement();
+      });
+  }
+
+  function trackUserEngagement() {
+      // Track scroll depth
+      let maxScroll = 0;
+      window.addEventListener('scroll', () => {
+          const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+          maxScroll = Math.max(maxScroll, scrollPercent);
+      });
+      
+      // Track time on page
+      const startTime = Date.now();
+      
+      window.addEventListener('beforeunload', () => {
+          const timeOnPage = Date.now() - startTime;
+          console.log(`📊 User engagement: ${(timeOnPage / 1000).toFixed(1)}s, ${maxScroll.toFixed(1)}% scroll`);
+      });
+      
+      // Track feature card interactions
+      document.querySelectorAll('.feature-card').forEach(card => {
+          card.addEventListener('click', () => {
+              const featureTitle = card.querySelector('.feature-title').textContent;
+              console.log(`🎯 Feature clicked: ${featureTitle}`);
+          });
+      });
+      
+      // Track CTA button clicks
+      document.querySelectorAll('.btn-primary, .btn-secondary').forEach(btn => {
+          btn.addEventListener('click', () => {
+              const btnText = btn.textContent.trim();
+              console.log(`🚀 CTA clicked: ${btnText}`);
+          });
+      });
+  }
+
+  // Advanced features
+  function createParticleEffect() {
+      const particles = document.createElement('div');
+      particles.className = 'particles';
+      particles.style.cssText = `
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          pointer-events: none;
+          z-index: -1;
+      `;
+      
+      for (let i = 0; i < 50; i++) {
+          const particle = document.createElement('div');
+          particle.style.cssText = `
+              position: absolute;
+              width: 2px;
+              height: 2px;
+              background: rgba(59, 130, 246, 0.5);
+              border-radius: 50%;
+              animation: float ${5 + Math.random() * 10}s linear infinite;
+              left: ${Math.random() * 100}%;
+              top: ${Math.random() * 100}%;
+          `;
+          particles.appendChild(particle);
+      }
+      
+      document.body.appendChild(particles);
+  }
+
+  // Initialize particle effect
+  setTimeout(createParticleEffect, 2000);
+
+  // Keyboard shortcuts
+  document.addEventListener('keydown', (e) => {
+      // Ctrl/Cmd + K: Focus search
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+          e.preventDefault();
+          console.log('🔍 Search shortcut activated');
+      }
+      
+      // Ctrl/Cmd + Enter: Quick start
+      if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+          e.preventDefault();
+          window.location.href = 'home.html';
+      }
+  });
+
+  console.log('🏔️ SESMine Platform Ready');
+  console.log('⚡ Performance optimizations active');
+  console.log('🎨 Advanced animations loaded');
+  console.log('📊 Analytics tracking enabled');
+  console.log('🚀 Ready for mining transformation!');
   </script>
 </body>
 </html>

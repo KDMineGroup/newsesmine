@@ -565,9 +565,114 @@
           opacity: 1;
           transform: translateY(0);
       }
+      .router-container {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #1a365d 0%, #2d5a87 50%, #3182ce 100%);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+  }
+  
+  .router-logo {
+      width: 120px;
+      height: 120px;
+      background: linear-gradient(135deg, #d69e2e, #b7791f);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      margin-bottom: 2rem;
+      animation: pulse 2s infinite;
+  }
+  
+  .router-title {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, white, rgba(255, 255, 255, 0.8), #d69e2e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+  }
+  
+  .router-subtitle {
+      font-size: 1.25rem;
+      opacity: 0.9;
+      margin-bottom: 3rem;
+      max-width: 600px;
+  }
+  
+  .quick-nav {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      max-width: 800px;
+      width: 100%;
+      margin-bottom: 2rem;
+  }
+  
+  .nav-button {
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      padding: 1rem;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+  }
+  
+  .nav-button:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: #d69e2e;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+  }
+  
+  .loading-indicator {
+      display: none;
+      margin-top: 2rem;
+  }
+  
+  .loading-bar {
+      width: 300px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 2px;
+      overflow: hidden;
+      margin: 1rem auto;
+  }
+  
+  .loading-progress {
+      height: 100%;
+      background: linear-gradient(90deg, #d69e2e, #b7791f);
+      border-radius: 2px;
+      animation: loading 2s ease-in-out;
+  }
+  
+  @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+  }
+  
+  @keyframes loading {
+      0% { width: 0%; }
+      100% { width: 100%; }
+  }
+
   </style>
 </head>
 <body>
+</body>
+  
   <!-- Navigation -->
   <nav class="navbar" id="navbar">
       <div class="nav-container">
@@ -828,7 +933,141 @@
       }, observerOptions);
 
       document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+  <div class="router-container">
+      <div class="router-logo">
+          🏔️
+      </div>
+      
+      <h1 class="router-title">SESMine Platform</h1>
+      <p class="router-subtitle">
+          Smart Engineering Solutions for Mining - Choose your destination
+      </p>
+      
+      <div class="quick-nav">
+          <a href="home.html" class="nav-button" onclick="showLoading()">
+              🏠 Dashboard
+          </a>
+          <a href="login.html" class="nav-button" onclick="showLoading()">
+              🔐 Login
+          </a>
+          <a href="engineering-hub.html" class="nav-button" onclick="showLoading()">
+              ⛑️ Engineering
+          </a>
+          <a href="analytics-platform.html" class="nav-button" onclick="showLoading()">
+              📊 Analytics
+          </a>
+          <a href="economics-hub.html" class="nav-button" onclick="showLoading()">
+              💰 Economics
+          </a>
+          <a href="innovation-technology-hub.html" class="nav-button" onclick="showLoading()">
+              🚀 Innovation
+          </a>
+          <a href="procurement-hub.html" class="nav-button" onclick="showLoading()">
+              🚛 Procurement
+          </a>
+          <a href="consulting-hub.html" class="nav-button" onclick="showLoading()">
+              👔 Consulting
+          </a>
+          <a href="training-education-hub.html" class="nav-button" onclick="showLoading()">
+              🎓 Training
+          </a>
+          <a href="admin-dashboard.html" class="nav-button" onclick="showLoading()">
+              🛡️ Admin
+          </a>
+          <a href="platforms.html" class="nav-button" onclick="showLoading()">
+              📋 All Platforms
+          </a>
+          <a href="about.html" class="nav-button" onclick="showLoading()">
+              ℹ️ About
+          </a>
+      </div>
+      
+      <div class="loading-indicator" id="loadingIndicator">
+          <p>Loading SESMine Platform...</p>
+          <div class="loading-bar">
+              <div class="loading-progress"></div>
+          </div>
+      </div>
+      
+      <p style="opacity: 0.7; margin-top: 2rem;">
+          www.sesmine.com | Complete Mining Solutions Platform
+      </p>
+  </div>
 
+  <script src="script.js"></script>
+  <script>
+  // Router functionality
+  function showLoading() {
+      const indicator = document.getElementById('loadingIndicator');
+      indicator.style.display = 'block';
+  }
+  
+  // Auto-redirect to dashboard if coming from direct URL
+  window.addEventListener('load', function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const page = urlParams.get('page');
+      
+      if (page) {
+          const pageRoutes = {
+              'dashboard': 'home.html',
+              'login': 'login.html',
+              'signup': 'signup.html',
+              'engineering': 'engineering-hub.html',
+              'analytics': 'analytics-platform.html',
+              'economics': 'economics-hub.html',
+              'innovation': 'innovation-technology-hub.html',
+              'procurement': 'procurement-hub.html',
+              'consulting': 'consulting-hub.html',
+              'training': 'training-education-hub.html',
+              'admin': 'admin-dashboard.html',
+              'platforms': 'platforms.html',
+              'features': 'features.html',
+              'about': 'about.html',
+              'contact': 'contact.html',
+              'settings': 'setting.html'
+          };
+          
+          if (pageRoutes[page]) {
+              showLoading();
+              setTimeout(() => {
+                  window.location.href = pageRoutes[page];
+              }, 1000);
+          }
+      }
+  });
+  
+  // Global navigation function for all pages
+  window.navigateToPage = function(pageId) {
+      const pageRoutes = {
+          'dashboard': 'home.html',
+          'login': 'login.html',
+          'signup': 'signup.html',
+          'engineering': 'engineering-hub.html',
+          'analytics': 'analytics-platform.html',
+          'economics': 'economics-hub.html',
+          'innovation': 'innovation-technology-hub.html',
+          'procurement': 'procurement-hub.html',
+          'consulting': 'consulting-hub.html',
+          'training': 'training-education-hub.html',
+          'admin': 'admin-dashboard.html',
+          'platforms': 'platforms.html',
+          'features': 'features.html',
+          'about': 'about.html',
+          'contact': 'contact.html',
+          'settings': 'setting.html'
+      };
+      
+      if (pageRoutes[pageId]) {
+          showLoading();
+          setTimeout(() => {
+              window.location.href = pageRoutes[pageId];
+          }, 500);
+      }
+  };
+  
+  console.log('🏔️ SESMine Router Initialized');
+  console.log('📧 Contact: www.sesmine.com');
+ 
       // Smooth scroll for anchor links
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
           anchor.addEventListener('click', function (e) {

@@ -3,188 +3,364 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SESMine - Smart Engineering Solutions for Mining | Professional Mining Intelligence Platform</title>
-  <meta name="description" content="SESMine provides comprehensive mining intelligence solutions including cost estimation, equipment analysis, and project management tools. Trusted by mining professionals worldwide.">
-  <meta name="keywords" content="mining software, cost estimation, AACE standards, mining equipment, project management, mining intelligence, engineering solutions">
+  <title>SESMine - Smart Engineering Solutions for Mining | Advanced Mining Intelligence Platform</title>
   
-  <!-- Professional Meta Tags -->
+  <!-- Enhanced SEO Meta Tags -->
+  <meta name="description" content="SESMine provides cutting-edge mining intelligence solutions with AI-powered cost estimation, real-time analytics, and comprehensive project management tools. Transform your mining operations with smart engineering solutions.">
+  <meta name="keywords" content="mining software, cost estimation, AACE standards, mining equipment, project management, mining intelligence, engineering solutions, mining analytics, smart mining, digital mining">
+  <meta name="author" content="SESMine - Smart Engineering Solutions">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.sesmine.com">
+  
+  <!-- Open Graph Meta Tags -->
   <meta property="og:title" content="SESMine - Smart Engineering Solutions for Mining">
-  <meta property="og:description" content="Comprehensive mining intelligence platform with specialized hubs for engineering, economics, procurement, and analytics.">
+  <meta property="og:description" content="Transform your mining operations with AI-powered intelligence, advanced analytics, and comprehensive project management solutions.">
   <meta property="og:image" content="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
+  <meta property="og:url" content="https://www.sesmine.com">
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="SESMine">
+  
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SESMine - Smart Engineering Solutions for Mining">
+  <meta name="twitter:description" content="Transform your mining operations with AI-powered intelligence and advanced analytics.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
+  
+  <!-- Favicon and App Icons -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏔️</text></svg>">
+  <link rel="apple-touch-icon" sizes="180x180" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏔️</text></svg>">
   
   <!-- Preload Critical Resources -->
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" as="style">
-  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" as="style">
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style">
   
   <!-- External Stylesheets -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap">
-  
-  <!-- EmailJS SDK -->
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
   <!-- AOS Animation Library -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "SESMine",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "description": "Smart Engineering Solutions for Mining - Advanced mining intelligence platform with AI-powered cost estimation and analytics",
+      "url": "https://www.sesmine.com",
+      "author": {
+          "@type": "Organization",
+          "name": "SESMine"
+      },
+      "offers": {
+          "@type": "Offer",
+          "price": "29",
+          "priceCurrency": "USD"
+      }
+  }
+  </script>
 
   <style>
-  /* Professional Design System */
-  :root {
-      /* Enhanced Color Palette */
-      --primary-dark: #1a1a1a;
-      --primary-light: #f4f4f2;
-      --accent-primary: #5c6b50;
-      --accent-secondary: #8c9a8c;
-      --accent-gold: #d69e2e;
-      --accent-blue: #3182ce;
-      --accent-success: #38a169;
-      --accent-warning: #dd6b20;
-      --accent-error: #e53e3e;
-      
-      /* Professional Gradients */
-      --gradient-primary: linear-gradient(135deg, var(--primary-dark) 0%, var(--accent-primary) 50%, var(--accent-blue) 100%);
-      --gradient-accent: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
-      --gradient-hero: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(92, 107, 80, 0.8) 50%, rgba(49, 130, 206, 0.7) 100%);
-      
-      /* Glass Morphism */
-      --glass-bg: rgba(255, 255, 255, 0.1);
-      --glass-border: rgba(255, 255, 255, 0.2);
-      --dark-glass: rgba(26, 26, 26, 0.9);
-      
-      /* Professional Shadows */
-      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
-      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.12);
-      --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.16);
-      --shadow-xl: 0 24px 60px rgba(0, 0, 0, 0.2);
-      
-      /* Spacing System */
-      --space-xs: 0.25rem;
-      --space-sm: 0.5rem;
-      --space-md: 1rem;
-      --space-lg: 1.5rem;
-      --space-xl: 2rem;
-      --space-2xl: 3rem;
-      --space-3xl: 4rem;
-      
-      /* Border Radius */
-      --radius-sm: 6px;
-      --radius-md: 12px;
-      --radius-lg: 18px;
-      --radius-xl: 24px;
-      
-      /* Transitions */
-      --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-      --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      --transition-enterprise: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
-  
-  * {
+  /* ===== MODERN CSS RESET & BASE STYLES ===== */
+  *, *::before, *::after {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
   }
-  
+
+  :root {
+      /* Enhanced Color System */
+      --color-primary: #0a0a0a;
+      --color-primary-light: #1a1a1a;
+      --color-secondary: #2d3436;
+      --color-accent: #00b894;
+      --color-accent-light: #00cec9;
+      --color-accent-dark: #00a085;
+      --color-gold: #fdcb6e;
+      --color-copper: #e17055;
+      --color-silver: #b2bec3;
+      --color-emerald: #00b894;
+      --color-sapphire: #0984e3;
+      --color-ruby: #e84393;
+      
+      /* Semantic Colors */
+      --color-success: #00b894;
+      --color-warning: #fdcb6e;
+      --color-error: #e17055;
+      --color-info: #0984e3;
+      
+      /* Neutral Colors */
+      --color-white: #ffffff;
+      --color-gray-50: #f8fafc;
+      --color-gray-100: #f1f5f9;
+      --color-gray-200: #e2e8f0;
+      --color-gray-300: #cbd5e1;
+      --color-gray-400: #94a3b8;
+      --color-gray-500: #64748b;
+      --color-gray-600: #475569;
+      --color-gray-700: #334155;
+      --color-gray-800: #1e293b;
+      --color-gray-900: #0f172a;
+      
+      /* Advanced Gradients */
+      --gradient-primary: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 50%, var(--color-sapphire) 100%);
+      --gradient-accent: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-light) 100%);
+      --gradient-hero: linear-gradient(135deg, rgba(10, 10, 10, 0.95) 0%, rgba(0, 184, 148, 0.8) 50%, rgba(9, 132, 227, 0.7) 100%);
+      --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+      --gradient-text: linear-gradient(135deg, var(--color-accent) 0%, var(--color-sapphire) 50%, var(--color-ruby) 100%);
+      
+      /* Glass Morphism */
+      --glass-bg: rgba(255, 255, 255, 0.08);
+      --glass-border: rgba(255, 255, 255, 0.12);
+      --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+      --dark-glass: rgba(10, 10, 10, 0.8);
+      
+      /* Advanced Shadows */
+      --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+      --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
+      --shadow-2xl: 0 25px 50px rgba(0, 0, 0, 0.15);
+      --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+      --shadow-glow: 0 0 20px rgba(0, 184, 148, 0.3);
+      --shadow-glow-lg: 0 0 40px rgba(0, 184, 148, 0.2);
+      
+      /* Typography Scale */
+      --font-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-family-mono: 'JetBrains Mono', 'SF Mono', Monaco, 'Cascadia Code', monospace;
+      
+      --font-size-xs: 0.75rem;
+      --font-size-sm: 0.875rem;
+      --font-size-base: 1rem;
+      --font-size-lg: 1.125rem;
+      --font-size-xl: 1.25rem;
+      --font-size-2xl: 1.5rem;
+      --font-size-3xl: 1.875rem;
+      --font-size-4xl: 2.25rem;
+      --font-size-5xl: 3rem;
+      --font-size-6xl: 3.75rem;
+      --font-size-7xl: 4.5rem;
+      --font-size-8xl: 6rem;
+      --font-size-9xl: 8rem;
+      
+      /* Spacing Scale */
+      --space-px: 1px;
+      --space-0: 0;
+      --space-1: 0.25rem;
+      --space-2: 0.5rem;
+      --space-3: 0.75rem;
+      --space-4: 1rem;
+      --space-5: 1.25rem;
+      --space-6: 1.5rem;
+      --space-8: 2rem;
+      --space-10: 2.5rem;
+      --space-12: 3rem;
+      --space-16: 4rem;
+      --space-20: 5rem;
+      --space-24: 6rem;
+      --space-32: 8rem;
+      --space-40: 10rem;
+      --space-48: 12rem;
+      --space-56: 14rem;
+      --space-64: 16rem;
+      
+      /* Border Radius */
+      --radius-none: 0;
+      --radius-sm: 0.125rem;
+      --radius-base: 0.25rem;
+      --radius-md: 0.375rem;
+      --radius-lg: 0.5rem;
+      --radius-xl: 0.75rem;
+      --radius-2xl: 1rem;
+      --radius-3xl: 1.5rem;
+      --radius-full: 9999px;
+      
+      /* Transitions */
+      --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-bounce: 500ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      
+      /* Z-Index Scale */
+      --z-dropdown: 1000;
+      --z-sticky: 1020;
+      --z-fixed: 1030;
+      --z-modal-backdrop: 1040;
+      --z-modal: 1050;
+      --z-popover: 1060;
+      --z-tooltip: 1070;
+      --z-toast: 1080;
+  }
+
+  /* Enhanced Base Styles */
+  html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
   body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-family: var(--font-family-primary);
+      font-size: var(--font-size-base);
       line-height: 1.6;
-      color: var(--primary-dark);
-      background: var(--primary-light);
+      color: var(--color-gray-900);
+      background: var(--color-white);
       overflow-x: hidden;
-      font-feature-settings: "kern" 1, "liga" 1;
+      font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
       text-rendering: optimizeLegibility;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      font-synthesis: none;
   }
-  
-  /* Professional Background System */
+
+  /* Enhanced Typography */
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.025em;
+      margin: 0;
+  }
+
+  h1 { font-size: var(--font-size-5xl); }
+  h2 { font-size: var(--font-size-4xl); }
+  h3 { font-size: var(--font-size-3xl); }
+  h4 { font-size: var(--font-size-2xl); }
+  h5 { font-size: var(--font-size-xl); }
+  h6 { font-size: var(--font-size-lg); }
+
+  p {
+      margin: 0;
+      line-height: 1.7;
+  }
+
+  a {
+      color: var(--color-accent);
+      text-decoration: none;
+      transition: all var(--transition-fast);
+  }
+
+  a:hover {
+      color: var(--color-accent-dark);
+  }
+
+  /* ===== ADVANCED BACKGROUND SYSTEM ===== */
   .hero-background {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: -2;
+      z-index: -10;
       background: 
           var(--gradient-hero),
           url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover;
-      animation: subtleParallax 30s ease-in-out infinite;
+      background-attachment: fixed;
   }
-  
-  @keyframes subtleParallax {
-      0%, 100% { transform: scale(1) translateY(0px); }
-      50% { transform: scale(1.02) translateY(-10px); }
-  }
-  
-  .content-overlay {
+
+  .hero-background::before {
+      content: '';
       position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
+      right: 0;
+      bottom: 0;
       background: 
-          radial-gradient(circle at 25% 25%, rgba(92, 107, 80, 0.15) 0%, transparent 50%),
-          radial-gradient(circle at 75% 75%, rgba(49, 130, 206, 0.1) 0%, transparent 50%);
-      z-index: -1;
+          radial-gradient(circle at 20% 20%, rgba(0, 184, 148, 0.15) 0%, transparent 50%),
+          radial-gradient(circle at 80% 80%, rgba(9, 132, 227, 0.1) 0%, transparent 50%),
+          radial-gradient(circle at 50% 50%, rgba(232, 67, 147, 0.05) 0%, transparent 50%);
+      animation: backgroundFlow 20s ease-in-out infinite;
   }
-  
-  /* Professional Header */
+
+  @keyframes backgroundFlow {
+      0%, 100% { 
+          background: 
+              radial-gradient(circle at 20% 20%, rgba(0, 184, 148, 0.15) 0%, transparent 50%),
+              radial-gradient(circle at 80% 80%, rgba(9, 132, 227, 0.1) 0%, transparent 50%);
+      }
+      33% { 
+          background: 
+              radial-gradient(circle at 80% 20%, rgba(232, 67, 147, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 20% 80%, rgba(0, 184, 148, 0.15) 0%, transparent 50%);
+      }
+      66% { 
+          background: 
+              radial-gradient(circle at 50% 80%, rgba(9, 132, 227, 0.12) 0%, transparent 50%),
+              radial-gradient(circle at 50% 20%, rgba(253, 203, 110, 0.08) 0%, transparent 50%);
+      }
+  }
+
+  /* ===== MODERN HEADER SYSTEM ===== */
   .main-header {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      z-index: 1000;
+      z-index: var(--z-fixed);
       background: var(--dark-glass);
       backdrop-filter: blur(20px) saturate(180%);
-      border-bottom: 1px solid rgba(92, 107, 80, 0.3);
-      transition: all var(--transition-smooth);
-      box-shadow: var(--shadow-sm);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all var(--transition-base);
   }
-  
+
   .main-header.scrolled {
-      background: rgba(26, 26, 26, 0.98);
-      box-shadow: var(--shadow-md);
+      background: rgba(10, 10, 10, 0.95);
+      box-shadow: var(--shadow-lg);
+      border-bottom-color: rgba(0, 184, 148, 0.3);
   }
-  
+
   .header-container {
-      max-width: 1440px;
+      max-width: 1400px;
       margin: 0 auto;
-      padding: var(--space-md) var(--space-xl);
+      padding: var(--space-4) var(--space-6);
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: var(--space-8);
   }
-  
+
   .logo-section {
       display: flex;
       align-items: center;
-      gap: var(--space-md);
+      gap: var(--space-4);
       text-decoration: none;
-      color: var(--primary-light);
-      font-weight: 700;
-      font-size: 1.5rem;
-      transition: all var(--transition-smooth);
+      color: var(--color-white);
+      font-weight: 800;
+      font-size: var(--font-size-xl);
+      transition: all var(--transition-base);
+      position: relative;
   }
-  
+
   .logo-section:hover {
-      transform: translateY(-1px);
+      transform: translateY(-2px);
+      color: var(--color-accent-light);
   }
-  
+
   .logo-icon {
-      width: 48px;
-      height: 48px;
+      width: 56px;
+      height: 56px;
       background: var(--gradient-accent);
-      border-radius: var(--radius-md);
+      border-radius: var(--radius-xl);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
-      box-shadow: var(--shadow-md);
+      font-size: var(--font-size-2xl);
+      box-shadow: var(--shadow-glow);
       position: relative;
       overflow: hidden;
+      transition: all var(--transition-base);
   }
-  
+
   .logo-icon::before {
       content: '';
       position: absolute;
@@ -192,55 +368,68 @@
       left: -50%;
       width: 200%;
       height: 200%;
-      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
       transform: rotate(45deg);
-      animation: logoShimmer 4s ease-in-out infinite;
+      animation: logoShimmer 3s ease-in-out infinite;
   }
-  
+
   @keyframes logoShimmer {
       0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
       50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
       100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
   }
-  
+
+  .logo-section:hover .logo-icon {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: var(--shadow-glow-lg);
+  }
+
   .logo-text {
       display: flex;
       flex-direction: column;
+      gap: var(--space-1);
   }
-  
+
   .company-name {
-      font-size: 1.5rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      color: var(--primary-light);
+      font-size: var(--font-size-2xl);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      background: var(--gradient-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
   }
-  
+
   .company-tagline {
-      font-size: 0.75rem;
+      font-size: var(--font-size-xs);
       opacity: 0.8;
       font-weight: 500;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--accent-secondary);
+      color: var(--color-accent-light);
   }
-  
+
+  /* Enhanced Navigation */
   .main-nav {
       display: flex;
-      gap: var(--space-xl);
+      gap: var(--space-8);
       align-items: center;
   }
-  
+
   .nav-link {
-      color: rgba(244, 244, 242, 0.85);
+      color: rgba(255, 255, 255, 0.85);
       text-decoration: none;
       font-weight: 500;
-      font-size: 0.95rem;
-      padding: var(--space-sm) var(--space-md);
-      border-radius: var(--radius-sm);
-      transition: all var(--transition-smooth);
+      font-size: var(--font-size-sm);
+      padding: var(--space-2) var(--space-4);
+      border-radius: var(--radius-lg);
+      transition: all var(--transition-base);
       position: relative;
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
   }
-  
+
   .nav-link::before {
       content: '';
       position: absolute;
@@ -249,69 +438,135 @@
       width: 0;
       height: 2px;
       background: var(--gradient-accent);
-      transition: all var(--transition-smooth);
+      transition: all var(--transition-base);
       transform: translateX(-50%);
+      border-radius: var(--radius-full);
   }
-  
+
   .nav-link:hover::before,
   .nav-link.active::before {
       width: 80%;
   }
-  
+
   .nav-link:hover {
-      color: var(--primary-light);
+      color: var(--color-white);
       background: var(--glass-bg);
+      transform: translateY(-1px);
   }
-  
+
   .nav-link.active {
-      color: var(--accent-secondary);
+      color: var(--color-accent-light);
+      background: rgba(0, 184, 148, 0.1);
   }
-  
-  .auth-buttons {
+
+  /* Header Actions */
+  .header-actions {
       display: flex;
-      gap: var(--space-md);
+      gap: var(--space-4);
       align-items: center;
   }
-  
-  .btn-login {
-      color: var(--primary-light);
-      text-decoration: none;
-      font-weight: 500;
-      padding: var(--space-sm) var(--space-lg);
-      border-radius: var(--radius-sm);
-      transition: all var(--transition-smooth);
-      border: 1px solid var(--glass-border);
+
+  .search-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+  }
+
+  .search-input {
       background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-3) var(--space-4) var(--space-3) var(--space-12);
+      color: var(--color-white);
+      font-size: var(--font-size-sm);
+      width: 280px;
       backdrop-filter: blur(10px);
+      transition: all var(--transition-base);
+  }
+
+  .search-input::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+  }
+
+  .search-input:focus {
+      outline: none;
+      border-color: var(--color-accent);
+      background: rgba(255, 255, 255, 0.15);
+      width: 320px;
+      box-shadow: var(--shadow-glow);
+  }
+
+  .search-icon {
+      position: absolute;
+      left: var(--space-4);
+      color: rgba(255, 255, 255, 0.6);
+      font-size: var(--font-size-sm);
+      pointer-events: none;
+  }
+
+  .header-btn {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      color: var(--color-white);
+      padding: var(--space-3);
+      border-radius: var(--radius-lg);
+      cursor: pointer;
+      transition: all var(--transition-base);
+      backdrop-filter: blur(10px);
+      width: 44px;
+      height: 44px;
       display: flex;
       align-items: center;
-      gap: var(--space-sm);
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
   }
-  
-  .btn-login:hover {
+
+  .header-btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: all var(--transition-base);
+  }
+
+  .header-btn:hover::before {
+      width: 100%;
+      height: 100%;
+  }
+
+  .header-btn:hover {
       background: rgba(255, 255, 255, 0.2);
       transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--color-accent);
   }
-  
-  .btn-signup {
+
+  .cta-button {
       background: var(--gradient-accent);
-      color: var(--primary-dark);
-      padding: var(--space-sm) var(--space-lg);
-      border-radius: var(--radius-sm);
+      color: var(--color-white);
+      padding: var(--space-3) var(--space-6);
+      border-radius: var(--radius-2xl);
       text-decoration: none;
       font-weight: 600;
-      transition: all var(--transition-enterprise);
-      box-shadow: var(--shadow-md);
+      font-size: var(--font-size-sm);
+      transition: all var(--transition-bounce);
+      box-shadow: var(--shadow-glow);
       position: relative;
       overflow: hidden;
       border: none;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: var(--space-sm);
+      gap: var(--space-2);
   }
-  
-  .btn-signup::before {
+
+  .cta-button::before {
       content: '';
       position: absolute;
       top: 0;
@@ -319,206 +574,302 @@
       width: 100%;
       height: 100%;
       background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-      transition: left 0.5s ease;
+      transition: left 0.6s ease;
   }
-  
-  .btn-signup:hover::before {
+
+  .cta-button:hover::before {
       left: 100%;
   }
-  
-  .btn-signup:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-lg);
+
+  .cta-button:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: var(--shadow-glow-lg);
   }
-  
-  /* Hero Section */
+
+  /* Mobile Menu Toggle */
+  .mobile-menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--color-white);
+      font-size: var(--font-size-xl);
+      cursor: pointer;
+      padding: var(--space-2);
+      border-radius: var(--radius-md);
+      transition: all var(--transition-base);
+  }
+
+  .mobile-menu-toggle:hover {
+      background: var(--glass-bg);
+      transform: scale(1.1);
+  }
+
+  /* ===== HERO SECTION ===== */
   .hero-section {
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       position: relative;
-      padding: 8rem var(--space-xl) 4rem;
+      padding: var(--space-32) var(--space-6) var(--space-16);
+      overflow: hidden;
   }
-  
+
   .hero-container {
-      max-width: 1440px;
+      max-width: 1400px;
+      width: 100%;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: var(--space-3xl);
+      gap: var(--space-16);
       align-items: center;
   }
-  
+
   .hero-content {
       z-index: 10;
+      position: relative;
   }
-  
+
   .hero-badge {
       display: inline-flex;
       align-items: center;
-      gap: var(--space-sm);
+      gap: var(--space-2);
       background: var(--glass-bg);
       border: 1px solid var(--glass-border);
-      padding: var(--space-sm) var(--space-md);
-      border-radius: 50px;
-      font-size: 0.85rem;
+      padding: var(--space-2) var(--space-4);
+      border-radius: var(--radius-full);
+      font-size: var(--font-size-sm);
       font-weight: 600;
-      margin-bottom: var(--space-xl);
-      backdrop-filter: blur(10px);
-      transition: all var(--transition-smooth);
+      margin-bottom: var(--space-8);
+      backdrop-filter: blur(20px);
+      transition: all var(--transition-base);
       cursor: pointer;
-      color: var(--primary-light);
+      color: var(--color-white);
+      box-shadow: var(--shadow-md);
   }
-  
+
   .hero-badge:hover {
       background: rgba(255, 255, 255, 0.15);
       transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
   }
-  
+
+  .hero-badge .badge-icon {
+      width: 20px;
+      height: 20px;
+      background: var(--gradient-accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-size-xs);
+  }
+
   .hero-title {
-      font-size: 4rem;
-      font-weight: 800;
+      font-size: var(--font-size-7xl);
+      font-weight: 900;
       line-height: 1.1;
-      margin-bottom: var(--space-xl);
-      background: linear-gradient(135deg, var(--primary-light) 0%, var(--accent-blue) 30%, var(--accent-primary) 70%, var(--accent-success) 100%);
+      margin-bottom: var(--space-8);
+      background: linear-gradient(135deg, var(--color-white) 0%, var(--color-accent-light) 30%, var(--color-sapphire) 70%, var(--color-ruby) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       background-size: 400% 400%;
-      animation: gradientFlow 12s ease-in-out infinite;
-      letter-spacing: -0.02em;
+      animation: gradientFlow 8s ease-in-out infinite;
+      letter-spacing: -0.04em;
+      position: relative;
   }
-  
+
   @keyframes gradientFlow {
       0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
+      25% { background-position: 100% 50%; }
+      50% { background-position: 100% 100%; }
+      75% { background-position: 0% 100%; }
   }
-  
+
+  .hero-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 120px;
+      height: 4px;
+      background: var(--gradient-accent);
+      border-radius: var(--radius-full);
+      animation: titleUnderline 2s ease-out 0.5s both;
+  }
+
+  @keyframes titleUnderline {
+      from { width: 0; opacity: 0; }
+      to { width: 120px; opacity: 1; }
+  }
+
   .hero-description {
-      font-size: 1.25rem;
-      color: rgba(244, 244, 242, 0.9);
-      margin-bottom: var(--space-2xl);
-      line-height: 1.7;
+      font-size: var(--font-size-xl);
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: var(--space-10);
+      line-height: 1.8;
       font-weight: 400;
+      max-width: 600px;
   }
-  
+
   .hero-actions {
       display: flex;
-      gap: var(--space-lg);
-      margin-bottom: var(--space-2xl);
+      gap: var(--space-6);
+      margin-bottom: var(--space-12);
+      flex-wrap: wrap;
   }
-  
+
   .btn-primary {
       background: var(--gradient-accent);
-      color: var(--primary-dark);
-      padding: var(--space-md) var(--space-xl);
-      border-radius: var(--radius-md);
+      color: var(--color-white);
+      padding: var(--space-4) var(--space-8);
+      border-radius: var(--radius-2xl);
       text-decoration: none;
       font-weight: 600;
-      font-size: 1.1rem;
-      transition: all var(--transition-enterprise);
-      box-shadow: var(--shadow-md);
+      font-size: var(--font-size-lg);
+      transition: all var(--transition-bounce);
+      box-shadow: var(--shadow-glow);
       display: flex;
       align-items: center;
-      gap: var(--space-sm);
+      gap: var(--space-3);
       border: none;
       cursor: pointer;
+      position: relative;
+      overflow: hidden;
   }
-  
+
+  .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.6s ease;
+  }
+
+  .btn-primary:hover::before {
+      left: 100%;
+  }
+
   .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-lg);
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: var(--shadow-glow-lg);
   }
-  
+
   .btn-secondary {
       background: var(--glass-bg);
-      color: var(--primary-light);
-      padding: var(--space-md) var(--space-xl);
-      border-radius: var(--radius-md);
+      color: var(--color-white);
+      padding: var(--space-4) var(--space-8);
+      border-radius: var(--radius-2xl);
       text-decoration: none;
       font-weight: 600;
-      font-size: 1.1rem;
-      transition: all var(--transition-smooth);
+      font-size: var(--font-size-lg);
+      transition: all var(--transition-base);
       border: 1px solid var(--glass-border);
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(20px);
       display: flex;
       align-items: center;
-      gap: var(--space-sm);
+      gap: var(--space-3);
+      box-shadow: var(--shadow-md);
   }
-  
+
   .btn-secondary:hover {
       background: rgba(255, 255, 255, 0.2);
-      transform: translateY(-3px);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
   }
-  
+
+  /* Hero Stats */
   .hero-stats {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: var(--space-lg);
+      gap: var(--space-8);
   }
-  
+
   .stat-item {
       text-align: center;
-      padding: var(--space-lg);
+      padding: var(--space-6);
       background: var(--glass-bg);
-      border-radius: var(--radius-md);
-      backdrop-filter: blur(10px);
+      border-radius: var(--radius-2xl);
+      backdrop-filter: blur(20px);
       border: 1px solid var(--glass-border);
-      transition: all var(--transition-smooth);
+      transition: all var(--transition-base);
       cursor: pointer;
+      position: relative;
+      overflow: hidden;
   }
-  
+
+  .stat-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--gradient-accent);
+      transform: scaleX(0);
+      transition: transform var(--transition-base);
+  }
+
+  .stat-item:hover::before {
+      transform: scaleX(1);
+  }
+
   .stat-item:hover {
-      transform: translateY(-5px);
+      transform: translateY(-6px);
       background: rgba(255, 255, 255, 0.15);
+      box-shadow: var(--shadow-lg);
   }
-  
+
   .stat-number {
-      font-size: 2.5rem;
+      font-size: var(--font-size-4xl);
       font-weight: 800;
       background: var(--gradient-accent);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      font-family: 'Inter', monospace;
-      margin-bottom: var(--space-sm);
+      font-family: var(--font-family-mono);
+      margin-bottom: var(--space-2);
+      display: block;
   }
-  
+
   .stat-label {
-      color: rgba(244, 244, 242, 0.8);
-      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: var(--font-size-sm);
       font-weight: 500;
       text-transform: uppercase;
       letter-spacing: 0.1em;
   }
-  
-  /* Platform Preview */
+
+  /* Hero Visual */
   .hero-visual {
       position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
   }
-  
+
   .platform-preview {
       width: 100%;
-      max-width: 650px;
+      max-width: 700px;
       background: var(--dark-glass);
-      border-radius: var(--radius-xl);
-      padding: var(--space-2xl);
-      border: 1px solid rgba(92, 107, 80, 0.3);
-      backdrop-filter: blur(25px);
-      box-shadow: var(--shadow-xl);
+      border-radius: var(--radius-3xl);
+      padding: var(--space-8);
+      border: 1px solid rgba(0, 184, 148, 0.3);
+      backdrop-filter: blur(30px);
+      box-shadow: var(--shadow-2xl);
       position: relative;
       overflow: hidden;
-      transition: all var(--transition-smooth);
+      transition: all var(--transition-slow);
   }
-  
+
   .platform-preview:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 40px 120px rgba(0, 0, 0, 0.4);
+      transform: translateY(-12px) rotateX(5deg);
+      box-shadow: 0 50px 100px rgba(0, 0, 0, 0.3);
   }
-  
+
   .platform-preview::before {
       content: '';
       position: absolute;
@@ -527,348 +878,539 @@
       right: 0;
       height: 4px;
       background: var(--gradient-accent);
+      border-radius: var(--radius-3xl) var(--radius-3xl) 0 0;
   }
-  
+
   .preview-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: var(--space-xl);
-      padding-bottom: var(--space-md);
-      border-bottom: 1px solid rgba(92, 107, 80, 0.3);
+      margin-bottom: var(--space-8);
+      padding-bottom: var(--space-4);
+      border-bottom: 1px solid rgba(0, 184, 148, 0.2);
   }
-  
+
   .preview-title {
-      font-size: 1.4rem;
+      font-size: var(--font-size-xl);
       font-weight: 700;
-      color: var(--accent-secondary);
+      color: var(--color-accent-light);
       display: flex;
       align-items: center;
-      gap: var(--space-sm);
+      gap: var(--space-3);
   }
-  
+
   .preview-status {
       display: flex;
       align-items: center;
-      gap: var(--space-sm);
-      font-size: 0.9rem;
-      color: var(--accent-success);
+      gap: var(--space-2);
+      font-size: var(--font-size-sm);
+      color: var(--color-accent);
+      font-weight: 500;
   }
-  
+
   .status-dot {
-      width: 10px;
-      height: 10px;
-      background: var(--accent-success);
+      width: 8px;
+      height: 8px;
+      background: var(--color-accent);
       border-radius: 50%;
       animation: pulse 2s ease-in-out infinite;
-      box-shadow: 0 0 10px rgba(56, 161, 105, 0.5);
+      box-shadow: 0 0 10px rgba(0, 184, 148, 0.5);
   }
-  
+
   @keyframes pulse {
       0%, 100% { opacity: 1; transform: scale(1); }
       50% { opacity: 0.7; transform: scale(1.2); }
   }
-  
+
   .platform-hubs {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: var(--space-md);
-      margin-bottom: var(--space-xl);
+      gap: var(--space-4);
+      margin-bottom: var(--space-8);
   }
-  
+
   .hub-item {
       background: rgba(255, 255, 255, 0.05);
-      border-radius: var(--radius-md);
-      padding: var(--space-lg);
+      border-radius: var(--radius-xl);
+      padding: var(--space-5);
       border: 1px solid rgba(255, 255, 255, 0.1);
-      transition: all var(--transition-smooth);
+      transition: all var(--transition-base);
       cursor: pointer;
       text-decoration: none;
       color: inherit;
-  }
-  
-  .hub-item:hover {
-      background: rgba(255, 255, 255, 0.1);
-      transform: translateY(-2px);
-      border-color: var(--accent-secondary);
-  }
-  
-  .hub-icon {
-      font-size: 1.5rem;
-      color: var(--accent-blue);
-      margin-bottom: var(--space-sm);
-  }
-  
-  .hub-name {
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--primary-light);
-      margin-bottom: var(--space-xs);
-  }
-  
-  .hub-description {
-      font-size: 0.8rem;
-      color: rgba(244, 244, 242, 0.7);
-      line-height: 1.4;
-  }
-  
-  /* Registration Modal */
-  .modal {
-      display: none;
-      position: fixed;
-      z-index: 10000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(5px);
-  }
-  
-  .modal-content {
-      background: white;
-      margin: 5% auto;
-      padding: 0;
-      border-radius: var(--radius-xl);
-      width: 90%;
-      max-width: 500px;
-      box-shadow: var(--shadow-xl);
       position: relative;
       overflow: hidden;
-      animation: modalSlideIn 0.3s ease-out;
   }
-  
-  @keyframes modalSlideIn {
-      from { transform: translateY(-50px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-  }
-  
-  .modal-header {
-      background: var(--gradient-primary);
-      color: white;
-      padding: var(--space-xl);
-      text-align: center;
-      position: relative;
-  }
-  
-  .modal-header h2 {
-      font-size: 1.8rem;
-      font-weight: 700;
-      margin-bottom: var(--space-sm);
-  }
-  
-  .modal-header p {
-      opacity: 0.9;
-      font-size: 0.95rem;
-  }
-  
-  .close-modal {
+
+  .hub-item::before {
+      content: '';
       position: absolute;
-      top: var(--space-md);
-      right: var(--space-md);
-      color: white;
-      font-size: 1.5rem;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transition: left 0.6s ease;
+  }
+
+  .hub-item:hover::before {
+      left: 100%;
+  }
+
+  .hub-item:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-3px);
+      border-color: var(--color-accent-light);
+      box-shadow: var(--shadow-md);
+  }
+
+  .hub-icon {
+      font-size: var(--font-size-2xl);
+      margin-bottom: var(--space-3);
+      display: block;
+  }
+
+  .hub-name {
+      font-size: var(--font-size-base);
+      font-weight: 600;
+      color: var(--color-white);
+      margin-bottom: var(--space-1);
+  }
+
+  .hub-description {
+      font-size: var(--font-size-sm);
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.4;
+  }
+
+  /* ===== FEATURES SECTION ===== */
+  .features-section {
+      padding: var(--space-32) var(--space-6);
+      background: var(--color-white);
+      position: relative;
+      overflow: hidden;
+  }
+
+  .features-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+          radial-gradient(circle at 20% 20%, rgba(0, 184, 148, 0.05) 0%, transparent 50%),
+          radial-gradient(circle at 80% 80%, rgba(9, 132, 227, 0.03) 0%, transparent 50%);
+      z-index: 0;
+  }
+
+  .section-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+  }
+
+  .section-header {
+      text-align: center;
+      margin-bottom: var(--space-20);
+  }
+
+  .section-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      background: var(--gradient-accent);
+      color: var(--color-white);
+      padding: var(--space-2) var(--space-4);
+      border-radius: var(--radius-full);
+      font-size: var(--font-size-sm);
+      font-weight: 600;
+      margin-bottom: var(--space-6);
+      box-shadow: var(--shadow-glow);
+  }
+
+  .section-title {
+      font-size: var(--font-size-6xl);
+      font-weight: 900;
+      margin-bottom: var(--space-6);
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 50%, var(--color-sapphire) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+  }
+
+  .section-description {
+      font-size: var(--font-size-xl);
+      color: var(--color-gray-600);
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.8;
+  }
+
+  /* Features Grid */
+  .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: var(--space-8);
+      margin-top: var(--space-16);
+  }
+
+  .feature-card {
+      background: var(--color-white);
+      border-radius: var(--radius-3xl);
+      padding: var(--space-8);
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--color-gray-200);
+      transition: all var(--transition-slow);
+      position: relative;
+      overflow: hidden;
       cursor: pointer;
-      width: 32px;
-      height: 32px;
+  }
+
+  .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient-accent);
+      transform: scaleX(0);
+      transition: transform var(--transition-base);
+  }
+
+  .feature-card:hover::before {
+      transform: scaleX(1);
+  }
+
+  .feature-card:hover {
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: var(--shadow-2xl);
+      border-color: var(--color-accent);
+  }
+
+  .feature-icon {
+      width: 80px;
+      height: 80px;
+      background: var(--gradient-accent);
+      border-radius: var(--radius-2xl);
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.1);
-      transition: all var(--transition-smooth);
-  }
-  
-  .close-modal:hover {
-      background: rgba(255, 255, 255, 0.2);
-      transform: rotate(90deg);
-  }
-  
-  .modal-body {
-      padding: var(--space-2xl);
-  }
-  
-  .form-group {
-      margin-bottom: var(--space-lg);
-  }
-  
-  .form-label {
-      display: block;
-      margin-bottom: var(--space-sm);
-      font-weight: 600;
-      color: var(--primary-dark);
-  }
-  
-  .form-input,
-  .form-select,
-  .form-textarea {
-      width: 100%;
-      padding: var(--space-md);
-      border: 2px solid #e2e8f0;
-      border-radius: var(--radius-md);
-      font-size: 1rem;
-      transition: all var(--transition-smooth);
-      font-family: inherit;
-  }
-  
-  .form-input:focus,
-  .form-select:focus,
-  .form-textarea:focus {
-      outline: none;
-      border-color: var(--accent-primary);
-      box-shadow: 0 0 0 3px rgba(92, 107, 80, 0.1);
-  }
-  
-  .form-textarea {
-      resize: vertical;
-      min-height: 100px;
-  }
-  
-  .access-levels {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: var(--space-md);
-      margin-top: var(--space-md);
-  }
-  
-  .access-level {
-      border: 2px solid #e2e8f0;
-      border-radius: var(--radius-md);
-      padding: var(--space-lg);
-      text-align: center;
-      cursor: pointer;
-      transition: all var(--transition-smooth);
+      font-size: var(--font-size-3xl);
+      margin-bottom: var(--space-6);
+      box-shadow: var(--shadow-glow);
+      transition: all var(--transition-base);
       position: relative;
+      overflow: hidden;
   }
-  
-  .access-level:hover {
-      border-color: var(--accent-primary);
-      background: rgba(92, 107, 80, 0.05);
+
+  .feature-card:hover .feature-icon {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: var(--shadow-glow-lg);
   }
-  
-  .access-level.selected {
-      border-color: var(--accent-primary);
-      background: rgba(92, 107, 80, 0.1);
-  }
-  
-  .access-level input[type="radio"] {
+
+  .feature-icon::before {
+      content: '';
       position: absolute;
-      opacity: 0;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transform: rotate(45deg);
+      transition: transform 0.6s ease;
   }
-  
-  .access-icon {
-      font-size: 2rem;
-      color: var(--accent-primary);
-      margin-bottom: var(--space-sm);
+
+  .feature-card:hover .feature-icon::before {
+      transform: translateX(100%) translateY(100%) rotate(45deg);
   }
-  
-  .access-title {
-      font-weight: 600;
-      margin-bottom: var(--space-xs);
-      color: var(--primary-dark);
+
+  .feature-title {
+      font-size: var(--font-size-2xl);
+      font-weight: 700;
+      margin-bottom: var(--space-4);
+      color: var(--color-primary);
   }
-  
-  .access-description {
-      font-size: 0.85rem;
-      color: var(--accent-secondary);
-      line-height: 1.4;
+
+  .feature-description {
+      color: var(--color-gray-600);
+      line-height: 1.7;
+      margin-bottom: var(--space-6);
+      font-size: var(--font-size-base);
   }
-  
-  .form-actions {
-      display: flex;
-      gap: var(--space-md);
-      justify-content: flex-end;
-      margin-top: var(--space-xl);
-      padding-top: var(--space-lg);
-      border-top: 1px solid #e2e8f0;
+
+  .feature-list {
+      list-style: none;
+      margin-bottom: var(--space-6);
   }
-  
-  .btn-cancel {
-      background: #f7fafc;
-      color: var(--accent-secondary);
-      border: 1px solid #e2e8f0;
-      padding: var(--space-md) var(--space-xl);
-      border-radius: var(--radius-md);
-      cursor: pointer;
-      font-weight: 500;
-      transition: all var(--transition-smooth);
-  }
-  
-  .btn-cancel:hover {
-      background: #edf2f7;
-  }
-  
-  .btn-submit {
-      background: var(--gradient-accent);
-      color: var(--primary-dark);
-      border: none;
-      padding: var(--space-md) var(--space-xl);
-      border-radius: var(--radius-md);
-      cursor: pointer;
-      font-weight: 600;
-      transition: all var(--transition-smooth);
-      box-shadow: var(--shadow-sm);
+
+  .feature-list li {
       display: flex;
       align-items: center;
-      gap: var(--space-sm);
-  }
-  
-  .btn-submit:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
-  }
-  
-  .btn-submit:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-      transform: none;
+      gap: var(--space-3);
+      margin-bottom: var(--space-3);
+      font-size: var(--font-size-sm);
+      color: var(--color-gray-700);
+      transition: all var(--transition-fast);
   }
 
-  /* Loading States */
-  .loading-spinner {
+  .feature-list li:hover {
+      color: var(--color-accent);
+      transform: translateX(5px);
+  }
+
+  .feature-list li::before {
+      content: '✓';
+      color: var(--color-accent);
+      font-weight: bold;
+      font-size: var(--font-size-base);
       width: 20px;
       height: 20px;
-      border: 2px solid rgba(26, 26, 26, 0.3);
-      border-top: 2px solid var(--primary-dark);
+      background: rgba(0, 184, 148, 0.1);
       border-radius: 50%;
-      animation: spin 1s linear infinite;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
   }
 
-  @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+  .feature-link {
+      color: var(--color-accent);
+      text-decoration: none;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      transition: all var(--transition-base);
+      font-size: var(--font-size-sm);
   }
-  
-  /* Responsive Design */
+
+  .feature-link:hover {
+      color: var(--color-accent-dark);
+      transform: translateX(5px);
+  }
+
+  /* ===== CTA SECTION ===== */
+  .cta-section {
+      padding: var(--space-32) var(--space-6);
+      background: var(--gradient-primary);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+  }
+
+  .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+          url('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover;
+      opacity: 0.1;
+      z-index: 0;
+  }
+
+  .cta-content {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+  }
+
+  .cta-title {
+      font-size: var(--font-size-6xl);
+      font-weight: 900;
+      margin-bottom: var(--space-8);
+      color: var(--color-white);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+  }
+
+  .cta-description {
+      font-size: var(--font-size-xl);
+      margin-bottom: var(--space-12);
+      color: rgba(255, 255, 255, 0.95);
+      line-height: 1.7;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+  }
+
+  .cta-actions {
+      display: flex;
+      gap: var(--space-6);
+      justify-content: center;
+      flex-wrap: wrap;
+  }
+
+  /* ===== FOOTER ===== */
+  .main-footer {
+      background: var(--color-primary);
+      padding: var(--space-20) var(--space-6) var(--space-8);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+  }
+
+  .footer-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--space-12);
+      margin-bottom: var(--space-12);
+  }
+
+  .footer-section h3 {
+      font-size: var(--font-size-xl);
+      font-weight: 700;
+      margin-bottom: var(--space-6);
+      color: var(--color-accent-light);
+  }
+
+  .footer-section p,
+  .footer-section a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      line-height: 1.7;
+      transition: color var(--transition-fast);
+  }
+
+  .footer-section a:hover {
+      color: var(--color-accent-light);
+  }
+
+  .footer-links {
+      list-style: none;
+  }
+
+  .footer-links li {
+      margin-bottom: var(--space-3);
+  }
+
+  .footer-links a {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-1) 0;
+      transition: all var(--transition-fast);
+  }
+
+  .footer-links a:hover {
+      transform: translateX(5px);
+      color: var(--color-accent-light);
+  }
+
+  .social-links {
+      display: flex;
+      gap: var(--space-4);
+      margin-top: var(--space-6);
+  }
+
+  .social-link {
+      width: 44px;
+      height: 44px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-white);
+      transition: all var(--transition-base);
+      backdrop-filter: blur(10px);
+  }
+
+  .social-link:hover {
+      background: var(--color-accent);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-glow);
+  }
+
+  .footer-bottom {
+      text-align: center;
+      padding-top: var(--space-8);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.7);
+      font-size: var(--font-size-sm);
+  }
+
+  /* ===== RESPONSIVE DESIGN ===== */
   @media (max-width: 1024px) {
       .hero-container {
           grid-template-columns: 1fr;
           text-align: center;
-          gap: var(--space-2xl);
+          gap: var(--space-12);
       }
       
       .main-nav {
           display: none;
       }
       
+      .mobile-menu-toggle {
+          display: block;
+      }
+      
+      .search-input {
+          width: 200px;
+      }
+      
+      .search-input:focus {
+          width: 240px;
+      }
+      
       .hero-title {
-          font-size: 3rem;
+          font-size: var(--font-size-5xl);
+      }
+      
+      .section-title {
+          font-size: var(--font-size-4xl);
+      }
+      
+      .cta-title {
+          font-size: var(--font-size-4xl);
+      }
+      
+      .features-grid {
+          grid-template-columns: 1fr;
       }
   }
   
   @media (max-width: 768px) {
-      .hero-title {
-          font-size: 2.5rem;
+      .header-container {
+          padding: var(--space-4);
       }
       
-      .hero-actions {
+      .hero-section {
+          padding: var(--space-24) var(--space-4) var(--space-12);
+      }
+      
+      .hero-title {
+          font-size: var(--font-size-4xl);
+      }
+      
+      .section-title {
+          font-size: var(--font-size-3xl);
+      }
+      
+      .cta-title {
+          font-size: var(--font-size-3xl);
+      }
+      
+      .hero-actions,
+      .cta-actions {
           flex-direction: column;
           align-items: center;
       }
       
       .hero-stats {
           grid-template-columns: 1fr;
-          gap: var(--space-md);
+          gap: var(--space-4);
       }
       
       .platform-hubs {
@@ -876,50 +1418,190 @@
       }
       
       .platform-preview {
-          margin: 0 var(--space-md);
+          margin: 0 var(--space-4);
+          padding: var(--space-6);
       }
       
-      .access-levels {
+      .search-container {
+          display: none;
+      }
+      
+      .features-grid {
+          gap: var(--space-6);
+      }
+      
+      .feature-card {
+          padding: var(--space-6);
+      }
+      
+      .features-section,
+      .cta-section {
+          padding: var(--space-20) var(--space-4);
+      }
+      
+      .footer-container {
           grid-template-columns: 1fr;
+          gap: var(--space-8);
+      }
+  }
+  
+  @media (max-width: 480px) {
+      .hero-title {
+          font-size: var(--font-size-3xl);
       }
       
-      .form-actions {
-          flex-direction: column;
+      .section-title {
+          font-size: var(--font-size-2xl);
+      }
+      
+      .cta-title {
+          font-size: var(--font-size-2xl);
+      }
+      
+      .hero-description,
+      .section-description,
+      .cta-description {
+          font-size: var(--font-size-base);
+      }
+      
+      .btn-primary,
+      .btn-secondary {
+          padding: var(--space-3) var(--space-6);
+          font-size: var(--font-size-base);
+      }
+      
+      .stat-number {
+          font-size: var(--font-size-2xl);
+      }
+      
+      .feature-icon {
+          width: 60px;
+          height: 60px;
+          font-size: var(--font-size-2xl);
+      }
+  }
+  
+  /* ===== ACCESSIBILITY ===== */
+  @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+      }
+  }
+  
+  @media (prefers-contrast: high) {
+      .hero-title,
+      .section-title,
+      .company-name {
+          -webkit-text-fill-color: var(--color-white);
+          background: none;
+      }
+      
+      .stat-number {
+          -webkit-text-fill-color: var(--color-accent);
+          background: none;
+      }
+      
+      .feature-card {
+          border-width: 2px;
+      }
+  }
+  
+  /* ===== PERFORMANCE OPTIMIZATIONS ===== */
+  .hero-background {
+      will-change: transform;
+      transform: translateZ(0);
+  }
+  
+  .logo-icon,
+  .feature-icon,
+  .hub-item {
+      will-change: transform;
+  }
+  
+  /* ===== PRINT STYLES ===== */
+  @media print {
+      .main-header,
+      .hero-actions,
+      .cta-actions,
+      .social-links {
+          display: none;
+      }
+      
+      .hero-title,
+      .section-title {
+          color: var(--color-primary) !important;
+          -webkit-text-fill-color: var(--color-primary) !important;
+      }
+      
+      .feature-card,
+      .platform-preview {
+          box-shadow: none;
+          border: 1px solid var(--color-gray-300);
+      }
+      
+      body {
+          background: white;
       }
   }
   </style>
 </head>
 <body>
   <!-- Background System -->
-  <div class="hero-background">
-      <div class="content-overlay"></div>
-  </div>
+  <div class="hero-background"></div>
 
   <!-- Header -->
   <header class="main-header" id="mainHeader">
       <div class="header-container">
-          <a href="#" class="logo-section">
-              <div class="logo-icon">🏔️</div>
+          <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu">
+              <i class="fas fa-bars"></i>
+          </button>
+          
+          <a href="#" class="logo-section" aria-label="SESMine - Smart Engineering Solutions">
+              <div class="logo-icon" role="img" aria-label="SESMine logo">🏔️</div>
               <div class="logo-text">
                   <div class="company-name">SESMine</div>
                   <div class="company-tagline">Smart Engineering Solutions</div>
               </div>
           </a>
           
-          <nav class="main-nav">
-              <a href="#home" class="nav-link active">Home</a>
-              <a href="about.html" class="nav-link">About</a>
-              <a href="features.html" class="nav-link">Features</a>
-              <a href="contact.html" class="nav-link">Contact</a>
+          <nav class="main-nav" id="mainNav" role="navigation" aria-label="Main navigation">
+              <a href="#home" class="nav-link active" aria-current="page">
+                  <i class="fas fa-home" aria-hidden="true"></i> Home
+              </a>
+              <a href="#features" class="nav-link">
+                  <i class="fas fa-star" aria-hidden="true"></i> Features
+              </a>
+              <a href="about.html" class="nav-link">
+                  <i class="fas fa-info-circle" aria-hidden="true"></i> About
+              </a>
+              <a href="contact.html" class="nav-link">
+                  <i class="fas fa-phone" aria-hidden="true"></i> Contact
+              </a>
           </nav>
           
-          <div class="auth-buttons" id="authButtons">
-              <a href="login.html" class="btn-login">
-                  <i class="fas fa-sign-in-alt"></i>
-                  Login
-              </a>
-              <button class="btn-signup" onclick="openRegistrationModal()">
-                  <i class="fas fa-user-plus"></i>
+          <div class="header-actions">
+              <div class="search-container">
+                  <i class="fas fa-search search-icon" aria-hidden="true"></i>
+                  <input 
+                      type="search" 
+                      class="search-input" 
+                      placeholder="Search features, solutions..." 
+                      id="globalSearch"
+                      aria-label="Search SESMine platform"
+                  >
+              </div>
+              <button class="header-btn" title="Notifications" aria-label="View notifications">
+                  <i class="fas fa-bell" aria-hidden="true"></i>
+              </button>
+              <button class="header-btn" title="Settings" aria-label="Open settings">
+                  <i class="fas fa-cog" aria-hidden="true"></i>
+              </button>
+              <button class="cta-button" onclick="openRegistrationModal()" aria-label="Get started with SESMine">
+                  <i class="fas fa-rocket" aria-hidden="true"></i>
                   Get Started
               </button>
           </div>
@@ -927,748 +1609,1382 @@
   </header>
 
   <!-- Hero Section -->
-  <section class="hero-section" id="home">
+  <section class="hero-section" id="home" role="banner">
       <div class="hero-container">
-          <div class="hero-content" data-aos="fade-right" data-aos-duration="1000">
-              <div class="hero-badge" onclick="showCompanyInfo()">
-                  <i class="fas fa-award"></i>
-                  Professional Mining Intelligence Platform
+          <div class="hero-content">
+              <div class="hero-badge" onclick="showCompanyInfo()" role="button" tabindex="0" aria-label="Learn more about SESMine">
+                  <div class="badge-icon">
+                      <i class="fas fa-award" aria-hidden="true"></i>
+                  </div>
+                  Award-Winning Mining Intelligence Platform
               </div>
               
               <h1 class="hero-title">
-                  Smart Engineering Solutions for Modern Mining Operations
+                  Transform Mining Operations with Smart Intelligence
               </h1>
               
               <p class="hero-description">
-                  Comprehensive mining intelligence platform with specialized hubs for engineering, 
-                  economics, procurement, analytics, and consulting. Streamline your mining operations 
-                  with our integrated suite of professional tools and expert insights.
+                  Experience the future of mining with our AI-powered platform that combines advanced 
+                  cost estimation, real-time analytics, and comprehensive project management tools. 
+                  Optimize operations, reduce costs, and accelerate project delivery.
               </p>
               
               <div class="hero-actions">
-                  <button class="btn-primary" onclick="openRegistrationModal()">
-                      <i class="fas fa-rocket"></i>
-                      Start Free Trial
-                  </button>
-                  <a href="home.html" class="btn-secondary">
-                      <i class="fas fa-play"></i>
-                      Explore Platform
-                  </a>
-              </div>
-              
-              <div class="hero-stats">
-                  <div class="stat-item" onclick="showStatDetails('projects')">
-                      <div class="stat-number" data-target="500">0</div>
-                      <div class="stat-label">Active Projects</div>
-                  </div>
-                  <div class="stat-item" onclick="showStatDetails('users')">
-                      <div class="stat-number" data-target="1200">0</div>
-                      <div class="stat-label">Global Users</div>
-                  </div>
-                  <div class="stat-item" onclick="showStatDetails('success')">
-                      <div class="stat-number" data-target="98">0</div>
-                      <div class="stat-label">Success Rate</div>
-                  </div>
-              </div>
-          </div>
-          
-          <div class="hero-visual" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
-              <div class="platform-preview" onclick="showPlatformDemo()">
-                  <div class="preview-header">
-                      <h3 class="preview-title">
-                          <i class="fas fa-chart-line"></i>
-                          SESMine Platform Hub
-                      </h3>
-                      <div class="preview-status">
-                          <div class="status-dot"></div>
-                          Live System
-                      </div>
-                  </div>
-                  
-                  <div class="platform-hubs">
-                      <a href="engineering-hub.html" class="hub-item">
-                          <div class="hub-icon"><i class="fas fa-cogs"></i></div>
-                          <div class="hub-name">Engineering Hub</div>
-                          <div class="hub-description">Equipment analysis & cost estimation</div>
-                      </a>
-                      <a href="analytics-platform.html" class="hub-item">
-                          <div class="hub-icon"><i class="fas fa-chart-bar"></i></div>
-                          <div class="hub-name">Analytics Platform</div>
-                          <div class="hub-description">Data insights & performance metrics</div>
-                      </a>
-                      <a href="economics-hub.html" class="hub-item">
-                          <div class="hub-icon"><i class="fas fa-dollar-sign"></i></div>
-                          <div class="hub-name">Economics Hub</div>
-                          <div class="hub-description">Financial modeling & ROI analysis</div>
-                      </a>
-                      <a href="procurement-hub.html" class="hub-item">
-                          <div class="hub-icon"><i class="fas fa-shopping-cart"></i></div>
-                          <div class="hub-name">Procurement Hub</div>
-                          <div class="hub-description">Supplier management & sourcing</div>
-                      </a>
-                      <a href="consulting-hub.html" class="hub-item">
-                          <div class="hub-icon"><i class="fas fa-users"></i></div>
-                          <div class="hub-name">Consulting Hub</div>
-                          <div class="hub-description">Expert advisory & project support</div>
-                      </a>
-                      <a href="innovation-technology-hub.html" class="hub-item">
-                          <div class="hub-icon"><i class="fas fa-lightbulb"></i></div>
-                          <div class="hub-name">Innovation Hub</div>
-                          <div class="hub-description">Technology trends & R&D insights</div>
-                      </a>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </section>
+                    <button class="btn-primary" onclick="openRegistrationModal()" aria-label="Start free trial">
+                        <i class="fas fa-rocket" aria-hidden="true"></i>
+                        Start Free Trial
+                    </button>
+                    <a href="#features" class="btn-secondary" aria-label="Explore platform features">
+                        <i class="fas fa-play" aria-hidden="true"></i>
+                        Explore Platform
+                    </a>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="stat-item" onclick="showStatDetails('projects')" role="button" tabindex="0" aria-label="View project statistics">
+                        <span class="stat-number" data-target="500">0</span>
+                        <span class="stat-label">Active Projects</span>
+                    </div>
+                    <div class="stat-item" onclick="showStatDetails('users')" role="button" tabindex="0" aria-label="View user statistics">
+                        <span class="stat-number" data-target="1200">0</span>
+                        <span class="stat-label">Global Users</span>
+                    </div>
+                    <div class="stat-item" onclick="showStatDetails('success')" role="button" tabindex="0" aria-label="View success rate">
+                        <span class="stat-number" data-target="98">0</span>
+                        <span class="stat-label">Success Rate %</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="platform-preview" onclick="showPlatformDemo()" role="button" tabindex="0" aria-label="View platform demo">
+                    <div class="preview-header">
+                        <h3 class="preview-title">
+                            <i class="fas fa-chart-line" aria-hidden="true"></i>
+                            SESMine Intelligence Hub
+                        </h3>
+                        <div class="preview-status">
+                            <div class="status-dot" aria-hidden="true"></div>
+                            Live System
+                        </div>
+                    </div>
+                    
+                    <div class="platform-hubs">
+                        <a href="engineering-hub.html" class="hub-item" aria-label="Access Engineering Hub">
+                            <span class="hub-icon" aria-hidden="true">⛑️</span>
+                            <div class="hub-name">Engineering Hub</div>
+                            <div class="hub-description">Advanced cost estimation & analysis</div>
+                        </a>
+                        <a href="analytics-platform.html" class="hub-item" aria-label="Access Analytics Platform">
+                            <span class="hub-icon" aria-hidden="true">📊</span>
+                            <div class="hub-name">Analytics Platform</div>
+                            <div class="hub-description">Real-time insights & reporting</div>
+                        </a>
+                        <a href="economics-hub.html" class="hub-item" aria-label="Access Economics Hub">
+                            <span class="hub-icon" aria-hidden="true">💰</span>
+                            <div class="hub-name">Economics Hub</div>
+                            <div class="hub-description">Financial modeling & ROI analysis</div>
+                        </a>
+                        <a href="procurement-hub.html" class="hub-item" aria-label="Access Procurement Hub">
+                            <span class="hub-icon" aria-hidden="true">🚛</span>
+                            <div class="hub-name">Procurement Hub</div>
+                            <div class="hub-description">Supply chain optimization</div>
+                        </a>
+                        <a href="consulting-hub.html" class="hub-item" aria-label="Access Consulting Hub">
+                            <span class="hub-icon" aria-hidden="true">👔</span>
+                            <div class="hub-name">Consulting Hub</div>
+                            <div class="hub-description">Expert advisory services</div>
+                        </a>
+                        <a href="innovation-technology-hub.html" class="hub-item" aria-label="Access Innovation Hub">
+                            <span class="hub-icon" aria-hidden="true">🚀</span>
+                            <div class="hub-name">Innovation Hub</div>
+                            <div class="hub-description">Technology & R&D insights</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- Registration Modal -->
-  <div id="registrationModal" class="modal">
-      <div class="modal-content">
-          <div class="modal-header">
-              <span class="close-modal" onclick="closeRegistrationModal()">&times;</span>
-              <h2>Join SESMine Platform</h2>
-              <p>Create your account and select your access level</p>
-          </div>
-          <div class="modal-body">
-              <form id="registrationForm" onsubmit="handleRegistration(event)">
-                  <div class="form-group">
-                      <label class="form-label">Full Name</label>
-                      <input type="text" class="form-input" name="fullName" required>
-                  </div>
-                  
-                  <div class="form-group">
-                      <label class="form-label">Email Address</label>
-                      <input type="email" class="form-input" name="email" required>
-                  </div>
-                  
-                  <div class="form-group">
-                      <label class="form-label">Company/Organization</label>
-                      <input type="text" class="form-input" name="company" required>
-                  </div>
-                  
-                  <div class="form-group">
-                      <label class="form-label">Job Title</label>
-                      <input type="text" class="form-input" name="jobTitle" required>
-                  </div>
-                  
-                  <div class="form-group">
-                      <label class="form-label">Phone Number</label>
-                      <input type="tel" class="form-input" name="phone">
-                  </div>
-                  
-                  <div class="form-group">
-                      <label class="form-label">Select Your Access Level</label>
-                      <div class="access-levels">
-                          <label class="access-level">
-                              <input type="radio" name="accessLevel" value="basic" required>
-                              <div class="access-icon"><i class="fas fa-user"></i></div>
-                              <div class="access-title">Basic User</div>
-                              <div class="access-description">
-                                  Access to basic tools and limited features
-                              </div>
-                          </label>
-                          
-                          <label class="access-level">
-                              <input type="radio" name="accessLevel" value="professional" required>
-                              <div class="access-icon"><i class="fas fa-user-tie"></i></div>
-                              <div class="access-title">Professional</div>
-                              <div class="access-description">
-                                  Full platform access with advanced features
-                              </div>
-                          </label>
-                          
-                          <label class="access-level">
-                              <input type="radio" name="accessLevel" value="enterprise" required>
-                              <div class="access-icon"><i class="fas fa-building"></i></div>
-                              <div class="access-title">Enterprise</div>
-                              <div class="access-description">
-                                  Complete access with admin capabilities
-                              </div>
-                          </label>
-                      </div>
-                  </div>
-                  
-                  <div class="form-group">
-                      <label class="form-label">Project Description (Optional)</label>
-                      <textarea class="form-textarea" name="projectDescription" placeholder="Tell us about your mining project or requirements..."></textarea>
-                  </div>
-                  
-                  <div class="form-actions">
-                      <button type="button" class="btn-cancel" onclick="closeRegistrationModal()">
-                          Cancel
-                      </button>
-                      <button type="submit" class="btn-submit" id="submitBtn">
-                          <i class="fas fa-paper-plane"></i>
-                          Submit Registration
-                      </button>
-                  </div>
-              </form>
-          </div>
-      </div>
-  </div>
+    <!-- Features Section -->
+    <section class="features-section" id="features" role="main">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    Platform Features
+                </div>
+                <h2 class="section-title">Comprehensive Mining Intelligence Solutions</h2>
+                <p class="section-description">
+                    Discover powerful tools and features designed to revolutionize your mining operations 
+                    with cutting-edge technology, expert insights, and data-driven decision making.
+                </p>
+            </div>
+            
+            <div class="features-grid">
+                <article class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon" aria-hidden="true">⛑️</div>
+                    <h3 class="feature-title">Advanced Engineering Solutions</h3>
+                    <p class="feature-description">
+                        AACE-compliant cost estimation tools with comprehensive equipment databases, 
+                        project management capabilities, and technical analysis frameworks.
+                    </p>
+                    <ul class="feature-list">
+                        <li>AACE International Standards Compliance</li>
+                        <li>Comprehensive Equipment Database</li>
+                        <li>Real-time Cost Tracking</li>
+                        <li>Technical Risk Assessment</li>
+                        <li>Project Timeline Management</li>
+                    </ul>
+                    <a href="engineering-hub.html" class="feature-link" aria-label="Learn more about Engineering Solutions">
+                        Explore Engineering Hub <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                </article>
 
-  <!-- Scripts -->
-  <script src="config.js"></script>
-  <script src="data-manager.js"></script>
-  <script src="notification-system.js"></script>
-  <script src="auth-system.js"></script>
-  
-  <script>
-  // Initialize platform on DOM load
-  document.addEventListener('DOMContentLoaded', function() {
-      console.log('🏔️ SESMine Platform Loading...');
-      
-      // Initialize EmailJS
-      if (window.SESMineConfig && window.SESMineConfig.emailjs) {
-          emailjs.init(window.SESMineConfig.emailjs.userId);
-      }
-      
-      // Initialize AOS animations
-      if (typeof AOS !== 'undefined') {
-          AOS.init({
-              duration: 1000,
-              once: true,
-              offset: 100
-          });
-      }
-      
-      // Initialize scroll effects
-      initializeScrollEffects();
-      
-      // Initialize counter animations
-      initializeCounters();
-      
-      // Initialize interactions
-      initializeInteractions();
-      
-      // Check authentication status
-      checkAuthStatus();
-      
-      console.log('✅ SESMine Platform Ready');
-  });
+                <article class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon" aria-hidden="true">📊</div>
+                    <h3 class="feature-title">Real-time Analytics & Intelligence</h3>
+                    <p class="feature-description">
+                        Advanced analytics platform with predictive modeling, performance monitoring, 
+                        and comprehensive reporting capabilities for data-driven decisions.
+                    </p>
+                    <ul class="feature-list">
+                        <li>Predictive Analytics & Modeling</li>
+                        <li>Real-time Performance Dashboards</li>
+                        <li>Custom Report Generation</li>
+                        <li>KPI Monitoring & Alerts</li>
+                        <li>Data Visualization Tools</li>
+                    </ul>
+                    <a href="analytics-platform.html" class="feature-link" aria-label="Learn more about Analytics Platform">
+                        View Analytics Platform <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                </article>
 
-  // Check authentication status and update UI
-  function checkAuthStatus() {
-      // Wait for auth system to load
-      setTimeout(() => {
-          if (window.SESMineAuth && window.SESMineAuth.instance) {
-              const currentUser = window.SESMineAuth.instance.currentUser;
-              if (currentUser) {
-                  updateAuthButtons(currentUser);
-              }
-          }
-      }, 100);
-  }
+                <article class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon" aria-hidden="true">💰</div>
+                    <h3 class="feature-title">Economic Modeling & Analysis</h3>
+                    <p class="feature-description">
+                        Comprehensive financial modeling tools with market intelligence, investment analysis, 
+                        and economic forecasting for strategic decision making.
+                    </p>
+                    <ul class="feature-list">
+                        <li>Financial Modeling & Forecasting</li>
+                        <li>Market Intelligence & Trends</li>
+                        <li>Investment ROI Analysis</li>
+                        <li>Economic Risk Assessment</li>
+                        <li>Commodity Price Tracking</li>
+                    </ul>
+                    <a href="economics-hub.html" class="feature-link" aria-label="Learn more about Economics Hub">
+                        Access Economics Hub <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                </article>
 
-  // Update authentication buttons based on user status
-  function updateAuthButtons(user) {
-      const authButtons = document.getElementById('authButtons');
-      if (authButtons && user) {
-          authButtons.innerHTML = `
-              <div class="user-menu">
-                  <div class="user-info">
-                      <div class="user-avatar">
-                          ${user.fullName.charAt(0).toUpperCase()}
-                      </div>
-                      <div class="user-details">
-                          <div class="user-name">${user.fullName}</div>
-                          <div class="user-level">${window.SESMineConfig.accessLevels[user.accessLevel].name}</div>
-                      </div>
-                  </div>
-                  <div class="user-dropdown">
-                      <a href="home.html" class="dropdown-item">
-                          <i class="fas fa-home"></i> Dashboard
-                      </a>
-                      <a href="setting.html" class="dropdown-item">
-                          <i class="fas fa-cog"></i> Settings
-                      </a>
-                      ${user.accessLevel === 'enterprise' ? '<a href="admin-dashboard.html" class="dropdown-item"><i class="fas fa-shield-alt"></i> Admin</a>' : ''}
-                      <div class="dropdown-divider"></div>
-                      <button onclick="logoutUser()" class="dropdown-item logout-btn">
-                          <i class="fas fa-sign-out-alt"></i> Logout
-                      </button>
-                  </div>
-              </div>
-          `;
-      }
-  }
+                <article class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-icon" aria-hidden="true">🚀</div>
+                    <h3 class="feature-title">Innovation & Technology</h3>
+                    <p class="feature-description">
+                        Stay ahead with cutting-edge technology solutions, innovation management, 
+                        and digital transformation strategies for modern mining operations.
+                    </p>
+                    <ul class="feature-list">
+                        <li>Emerging Technology Insights</li>
+                        <li>Digital Transformation Strategies</li>
+                        <li>Innovation Pipeline Management</li>
+                        <li>Technology Integration Support</li>
+                        <li>R&D Collaboration Platform</li>
+                    </ul>
+                    <a href="innovation-technology-hub.html" class="feature-link" aria-label="Learn more about Innovation Hub">
+                        Explore Innovation <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                </article>
 
-  // Logout function
-  function logoutUser() {
-      if (window.SESMineAuth && window.SESMineAuth.instance) {
-          window.SESMineAuth.instance.logout();
-      }
-  }
+                <article class="feature-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="feature-icon" aria-hidden="true">🚛</div>
+                    <h3 class="feature-title">Strategic Procurement</h3>
+                    <p class="feature-description">
+                        Optimize your supply chain with strategic procurement management, supplier networks, 
+                        and cost optimization solutions tailored for mining operations.
+                    </p>
+                    <ul class="feature-list">
+                        <li>Supplier Network Management</li>
+                        <li>Supply Chain Optimization</li>
+                        <li>Contract Management Tools</li>
+                        <li>Cost Analysis & Benchmarking</li>
+                        <li>Procurement Risk Management</li>
+                    </ul>
+                    <a href="procurement-hub.html" class="feature-link" aria-label="Learn more about Procurement Hub">
+                        Launch Procurement <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                </article>
 
-  // Scroll effects
-  function initializeScrollEffects() {
-      const header = document.getElementById('mainHeader');
-      let lastScrollY = window.scrollY;
-      let ticking = false;
-      
-      function updateHeader() {
-          const scrollY = window.scrollY;
-          
-          if (scrollY > 120) {
-              header.classList.add('scrolled');
-          } else {
-              header.classList.remove('scrolled');
-          }
-          
-          lastScrollY = scrollY;
-          ticking = false;
-      }
-      
-      window.addEventListener('scroll', () => {
-          if (!ticking) {
-              requestAnimationFrame(updateHeader);
-              ticking = true;
-          }
-      });
-  }
+                <article class="feature-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="feature-icon" aria-hidden="true">👔</div>
+                    <h3 class="feature-title">Expert Consulting Services</h3>
+                    <p class="feature-description">
+                        Access world-class mining experts for strategic advisory, project guidance, 
+                        and professional consulting services to accelerate your success.
+                    </p>
+                    <ul class="feature-list">
+                        <li>Expert Advisory Services</li>
+                        <li>Strategic Project Guidance</li>
+                        <li>Technical Consulting Support</li>
+                        <li>Best Practices Implementation</li>
+                        <li>Custom Solution Development</li>
+                    </ul>
+                    <a href="consulting-hub.html" class="feature-link" aria-label="Learn more about Consulting Services">
+                        Get Consulting <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                </article>
+            </div>
+        </div>
+    </section>
 
-  // Counter animations
-  function initializeCounters() {
-      const counters = document.querySelectorAll('.stat-number');
-      
-      const animateCounter = (counter) => {
-          const target = parseInt(counter.dataset.target);
-          const duration = 3000;
-          const step = target / (duration / 16);
-          let current = 0;
-          
-          const timer = setInterval(() => {
-              current += step;
-              if (current >= target) {
-                  current = target;
-                  clearInterval(timer);
-              }
-              
-              const suffix = target === 98 ? '%' : '+';
-              counter.textContent = Math.floor(current) + suffix;
-          }, 16);
-      };
-      
-      const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                  const counter = entry.target;
-                  setTimeout(() => {
-                      animateCounter(counter);
-                  }, 800);
-                  observer.unobserve(counter);
-              }
-          });
-      });
-      
-      counters.forEach(counter => observer.observe(counter));
-  }
+    <!-- CTA Section -->
+    <section class="cta-section" role="complementary">
+        <div class="cta-content">
+            <h2 class="cta-title">Ready to Transform Your Mining Operations?</h2>
+            <p class="cta-description">
+                Join thousands of mining professionals who trust SESMine for their critical projects. 
+                Start your free trial today and experience the power of intelligent mining solutions.
+            </p>
+            <div class="cta-actions">
+                <button class="btn-primary" onclick="openRegistrationModal()" aria-label="Start your free trial">
+                    <i class="fas fa-rocket" aria-hidden="true"></i>
+                    Start Free Trial
+                </button>
+                <a href="contact.html" class="btn-secondary" aria-label="Contact our sales team">
+                    <i class="fas fa-phone" aria-hidden="true"></i>
+                    Contact Sales
+                </a>
+            </div>
+        </div>
+    </section>
 
-  // Interactive functions
-  function initializeInteractions() {
-      // Access level selection
-      const accessLevels = document.querySelectorAll('.access-level');
-      accessLevels.forEach(level => {
-          level.addEventListener('click', function() {
-              accessLevels.forEach(l => l.classList.remove('selected'));
-              this.classList.add('selected');
-              this.querySelector('input[type="radio"]').checked = true;
-          });
-      });
+    <!-- Footer -->
+    <footer class="main-footer" role="contentinfo">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>SESMine Platform</h3>
+                <p>
+                    Smart Engineering Solutions for Mining - Transforming the mining industry 
+                    with intelligent technology, expert insights, and comprehensive solutions.
+                </p>
+                <div class="social-links">
+                    <a href="#" class="social-link" aria-label="Follow us on LinkedIn">
+                        <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Follow us on Twitter">
+                        <i class="fab fa-twitter" aria-hidden="true"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Follow us on YouTube">
+                        <i class="fab fa-youtube" aria-hidden="true"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Follow us on GitHub">
+                        <i class="fab fa-github" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Platform Hubs</h3>
+                <ul class="footer-links">
+                    <li><a href="engineering-hub.html"><i class="fas fa-hard-hat" aria-hidden="true"></i> Engineering Hub</a></li>
+                    <li><a href="analytics-platform.html"><i class="fas fa-chart-area" aria-hidden="true"></i> Analytics Platform</a></li>
+                    <li><a href="economics-hub.html"><i class="fas fa-coins" aria-hidden="true"></i> Economics Hub</a></li>
+                    <li><a href="innovation-technology-hub.html"><i class="fas fa-rocket" aria-hidden="true"></i> Innovation Hub</a></li>
+                    <li><a href="procurement-hub.html"><i class="fas fa-truck" aria-hidden="true"></i> Procurement Hub</a></li>
+                    <li><a href="consulting-hub.html"><i class="fas fa-user-tie" aria-hidden="true"></i> Consulting Hub</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul class="footer-links">
+                    <li><a href="about.html"><i class="fas fa-info-circle" aria-hidden="true"></i> About Us</a></li>
+                    <li><a href="features.html"><i class="fas fa-star" aria-hidden="true"></i> Features</a></li>
+                    <li><a href="contact.html"><i class="fas fa-phone" aria-hidden="true"></i> Contact</a></li>
+                    <li><a href="support.html"><i class="fas fa-life-ring" aria-hidden="true"></i> Support</a></li>
+                    <li><a href="documentation.html"><i class="fas fa-book" aria-hidden="true"></i> Documentation</a></li>
+                    <li><a href="api.html"><i class="fas fa-code" aria-hidden="true"></i> API Reference</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Company</h3>
+                <ul class="footer-links">
+                    <li><a href="careers.html"><i class="fas fa-briefcase" aria-hidden="true"></i> Careers</a></li>
+                    <li><a href="news.html"><i class="fas fa-newspaper" aria-hidden="true"></i> News & Updates</a></li>
+                    <li><a href="partners.html"><i class="fas fa-handshake" aria-hidden="true"></i> Partners</a></li>
+                    <li><a href="privacy.html"><i class="fas fa-shield-alt" aria-hidden="true"></i> Privacy Policy</a></li>
+                    <li><a href="terms.html"><i class="fas fa-file-contract" aria-hidden="true"></i> Terms of Service</a></li>
+                    <li><a href="security.html"><i class="fas fa-lock" aria-hidden="true"></i> Security</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 SESMine - Smart Engineering Solutions for Mining. All rights reserved.</p>
+        </div>
+    </footer>
 
-      // Smooth scrolling for navigation
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-          anchor.addEventListener('click', function (e) {
-              e.preventDefault();
-              const target = document.querySelector(this.getAttribute('href'));
-              if (target) {
-                  target.scrollIntoView({
-                      behavior: 'smooth',
-                      block: 'start'
-                  });
-              }
-          });
-      });
-  }
+    <!-- Registration Modal -->
+    <div id="registrationModal" class="modal" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close-modal" onclick="closeRegistrationModal()" aria-label="Close registration modal">&times;</span>
+                <h2 id="modalTitle">Join SESMine Platform</h2>
+                <p>Create your account and select your access level</p>
+            </div>
+            <div class="modal-body">
+                <form id="registrationForm" onsubmit="handleRegistration(event)">
+                    <div class="form-group">
+                        <label class="form-label" for="fullName">Full Name</label>
+                        <input type="text" class="form-input" id="fullName" name="fullName" required aria-describedby="fullNameHelp">
+                        <small id="fullNameHelp" class="form-help">Enter your full name as it appears on official documents</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="email">Email Address</label>
+                        <input type="email" class="form-input" id="email" name="email" required aria-describedby="emailHelp">
+                        <small id="emailHelp" class="form-help">We'll use this email for account verification and updates</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="company">Company/Organization</label>
+                        <input type="text" class="form-input" id="company" name="company" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="jobTitle">Job Title</label>
+                        <input type="text" class="form-input" id="jobTitle" name="jobTitle" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="phone">Phone Number (Optional)</label>
+                        <input type="tel" class="form-input" id="phone" name="phone">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Select Your Access Level</label>
+                        <div class="access-levels" role="radiogroup" aria-labelledby="accessLevelLabel">
+                            <label class="access-level">
+                                <input type="radio" name="accessLevel" value="basic" required>
+                                <div class="access-icon"><i class="fas fa-user" aria-hidden="true"></i></div>
+                                <div class="access-title">Basic User</div>
+                                <div class="access-description">
+                                    Access to basic tools and limited features
+                                </div>
+                            </label>
+                            
+                            <label class="access-level">
+                                <input type="radio" name="accessLevel" value="professional" required>
+                                <div class="access-icon"><i class="fas fa-user-tie" aria-hidden="true"></i></div>
+                                <div class="access-title">Professional</div>
+                                <div class="access-description">
+                                    Full platform access with advanced features
+                                </div>
+                            </label>
+                            
+                            <label class="access-level">
+                                <input type="radio" name="accessLevel" value="enterprise" required>
+                                <div class="access-icon"><i class="fas fa-building" aria-hidden="true"></i></div>
+                                <div class="access-title">Enterprise</div>
+                                <div class="access-description">
+                                    Complete access with admin capabilities
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="projectDescription">Project Description (Optional)</label>
+                        <textarea class="form-textarea" id="projectDescription" name="projectDescription" 
+                                placeholder="Tell us about your mining project or requirements..." rows="4"></textarea>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn-cancel" onclick="closeRegistrationModal()">
+                            Cancel
+                        </button>
+                        <button type="submit" class="btn-submit" id="submitBtn">
+                            <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                            Submit Registration
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
-  // Registration Modal Functions
-  function openRegistrationModal() {
-      const modal = document.getElementById('registrationModal');
-      modal.style.display = 'block';
-      document.body.style.overflow = 'hidden';
-      
-      // Reset form
-      document.getElementById('registrationForm').reset();
-      document.querySelectorAll('.access-level').forEach(l => l.classList.remove('selected'));
-      
-      trackInteraction('registration_modal_opened');
-  }
-  
-  function closeRegistrationModal() {
-      const modal = document.getElementById('registrationModal');
-      modal.style.display = 'none';
-      document.body.style.overflow = 'auto';
-      
-      trackInteraction('registration_modal_closed');
-  }
+    <!-- Scripts -->
+    <script src="config.js"></script>
+    <script src="data-manager.js"></script>
+    <script src="notification-system.js"></script>
+    <script src="auth-system.js"></script>
+    
+    <script>
+    // Enhanced Website JavaScript
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('🏔️ SESMine Website Loading...');
+        initializeWebsite();
+    });
 
-  // Handle Registration
-  async function handleRegistration(event) {
-      event.preventDefault();
-      
-      const form = event.target;
-      const formData = new FormData(form);
-      const submitBtn = document.getElementById('submitBtn');
-      
-      // Validate form
-      if (!validateRegistrationForm(formData)) {
-          return;
-      }
-      
-      // Show loading state
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = '<div class="loading-spinner"></div> Processing...';
-      
-      try {
-          // Prepare registration data
-          const registrationData = {
-              id: generateId(),
-              fullName: formData.get('fullName'),
-              email: formData.get('email'),
-              company: formData.get('company'),
-              jobTitle: formData.get('jobTitle'),
-              phone: formData.get('phone'),
-              accessLevel: formData.get('accessLevel'),
-              projectDescription: formData.get('projectDescription'),
-              timestamp: new Date().toISOString(),
-              status: 'pending'
-          };
-          
-          // Store registration data
-          if (window.SESMineDataManager && window.SESMineDataManager.instance) {
-              window.SESMineDataManager.instance.saveRegistration(registrationData);
-          } else {
-              // Fallback to localStorage
-              const existingRegistrations = JSON.parse(localStorage.getItem('sesmine_registrations') || '[]');
-              existingRegistrations.push(registrationData);
-              localStorage.setItem('sesmine_registrations', JSON.stringify(existingRegistrations));
-          }
-          
-          // Send registration email
-          await sendRegistrationEmail(registrationData);
-          
-          // Show success notification
-          showNotification('Registration submitted successfully! Please check your email for confirmation.', 'success');
-          
-          // Close modal
-          closeRegistrationModal();
-          
-          // Track registration
-          trackInteraction('registration_submitted', { accessLevel: registrationData.accessLevel });
-          
-      } catch (error) {
-          console.error('Registration error:', error);
-          showNotification('Registration failed. Please try again or contact support.', 'error');
-      } finally {
-          submitBtn.disabled = false;
-          submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Registration';
-      }
-  }
+    function initializeWebsite() {
+        // Initialize EmailJS
+        if (window.SESMineConfig && window.SESMineConfig.emailjs) {
+            emailjs.init(window.SESMineConfig.emailjs.userId);
+        }
+        
+        // Initialize AOS animations
+        if (typeof AOS !== 'undefined') {
+            AOS.init({
+                duration: 1000,
+                once: true,
+                offset: 100,
+                easing: 'ease-out-cubic'
+            });
+        }
+        
+        // Initialize scroll effects
+        initializeScrollEffects();
+        
+        // Initialize counter animations
+        initializeCounters();
+        
+        // Initialize interactions
+        initializeInteractions();
+        
+        // Initialize search
+        initializeSearch();
+        
+        // Initialize mobile menu
+        initializeMobileMenu();
+        
+        // Initialize accessibility features
+        initializeAccessibility();
+        
+        // Initialize performance monitoring
+        initializePerformanceMonitoring();
+        
+        console.log('✅ SESMine Website Ready');
+    }
 
-  // Validate Registration Form
-  function validateRegistrationForm(formData) {
-      const requiredFields = ['fullName', 'email', 'company', 'jobTitle', 'accessLevel'];
-      
-      for (const field of requiredFields) {
-          if (!formData.get(field)) {
-              showNotification(`Please fill in the ${field.replace(/([A-Z])/g, ' $1').toLowerCase()} field.`, 'error');
-              return false;
-          }
-      }
-      
-      // Validate email format
-      const email = formData.get('email');
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(email)) {
-          showNotification('Please enter a valid email address.', 'error');
-          return false;
-      }
-      
-      return true;
-  }
+    // Enhanced Scroll Effects
+    function initializeScrollEffects() {
+        const header = document.getElementById('mainHeader');
+        let lastScrollY = window.scrollY;
+        let ticking = false;
+        
+        function updateHeader() {
+            const scrollY = window.scrollY;
+            
+            if (scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            
+            // Parallax effect for hero background
+            const heroBackground = document.querySelector('.hero-background');
+            if (heroBackground && scrollY < window.innerHeight) {
+                heroBackground.style.transform = `translateY(${scrollY * 0.5}px)`;
+            }
+            
+            lastScrollY = scrollY;
+            ticking = false;
+        }
+        
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(updateHeader);
+                ticking = true;
+            }
+        }, { passive: true });
+    }
 
-  // Send Registration Email
-  async function sendRegistrationEmail(data) {
-      if (!window.SESMineConfig || !window.SESMineConfig.emailjs) {
-          console.warn('EmailJS not configured');
-          return;
-      }
+    // Enhanced Counter Animations
+    function initializeCounters() {
+        const counters = document.querySelectorAll('.stat-number');
+        
+        const animateCounter = (counter) => {
+            const target = parseInt(counter.dataset.target);
+            const duration = 2500;
+            const step = target / (duration / 16);
+            let current = 0;
+            
+            const timer = setInterval(() => {
+                current += step;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                
+                const suffix = target === 98 ? '%' : target >= 1000 ? '+' : '';
+                counter.textContent = Math.floor(current) + suffix;
+            }, 16);
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target;
+                    setTimeout(() => {
+                        animateCounter(counter);
+                    }, 500);
+                    observer.unobserve(counter);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        counters.forEach(counter => observer.observe(counter));
+    }
 
-      const templateParams = {
-          to_name: 'SESMine Admin',
-          from_name: data.fullName,
-          from_email: data.email,
-          company: data.company,
-          job_title: data.jobTitle,
-          phone: data.phone || 'Not provided',
-          access_level: data.accessLevel,
-          project_description: data.projectDescription || 'Not provided',
-          timestamp: new Date(data.timestamp).toLocaleString()
-      };
-      
-      try {
-          await emailjs.send(
-              window.SESMineConfig.emailjs.serviceId, 
-              window.SESMineConfig.emailjs.templates.registration, 
-              templateParams
-          );
-      } catch (error) {
-          console.error('Email sending error:', error);
-      }
-  }
+    // Enhanced Interactions
+    function initializeInteractions() {
+        // Access level selection
+        const accessLevels = document.querySelectorAll('.access-level');
+        accessLevels.forEach(level => {
+            level.addEventListener('click', function() {
+                accessLevels.forEach(l => l.classList.remove('selected'));
+                this.classList.add('selected');
+                this.querySelector('input[type="radio"]').checked = true;
+            });
+        });
 
-  // Interactive Functions
-  function showCompanyInfo() {
-      showNotification('🏔️ SESMine: Leading provider of smart engineering solutions for mining operations worldwide!', 'info');
-      trackInteraction('company_info_clicked');
-  }
-  
-  function showStatDetails(type) {
-      const messages = {
-          projects: '500+ active mining projects across 6 continents with comprehensive support',
-          users: '1,200+ mining professionals trust SESMine for their critical project decisions',
-          success: '98% project success rate with our comprehensive platform and expert guidance'
-      };
-      
-      showNotification(`📊 ${messages[type]}`, 'info');
-      trackInteraction('stat_detail_clicked', { type });
-  }
-  
-  function showPlatformDemo() {
-      showNotification('🚀 Explore the platform by registering or logging in!', 'info');
-      trackInteraction('platform_demo_clicked');
-  }
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerHeight = document.querySelector('.main-header').offsetHeight;
+                    const targetPosition = target.offsetTop - headerHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update active nav link
+                    document.querySelectorAll('.nav-link').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                }
+            });
+        });
 
-  // Notification System
-  function showNotification(message, type = 'info') {
-      if (window.SESMineNotifications && window.SESMineNotifications.instance) {
-          window.SESMineNotifications.instance.show(message, type);
-      } else {
-          // Fallback notification
-          const notification = document.createElement('div');
-          notification.className = `notification ${type}`;
-          notification.style.cssText = `
-              position: fixed;
-              top: 120px;
-              right: 24px;
-              background: rgba(26, 26, 26, 0.95);
-              color: white;
-              padding: 1rem 1.5rem;
-              border-radius: 12px;
-              box-shadow: 0 24px 60px rgba(0, 0, 0, 0.2);
-              z-index: 10000;
-              max-width: 420px;
-              font-size: 0.95rem;
-              font-weight: 500;
-              backdrop-filter: blur(25px);
-              border: 1px solid rgba(92, 107, 80, 0.3);
-              animation: slideIn 0.3s ease-out;
-          `;
-          
-          notification.innerHTML = `
-              <div style="display: flex; align-items: center; gap: 1rem;">
-                  <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'times-circle' : type === 'warning' ? 'exclamation-triangle' : 'info-circle'}"></i>
-                  <span>${message}</span>
-                  <button onclick="this.parentElement.parentElement.remove()" style="background: none; border: none; color: rgba(255,255,255,0.7); cursor: pointer; padding: 0.25rem; margin-left: auto;">
-                      <i class="fas fa-times"></i>
-                  </button>
-              </div>
-          `;
-          
-          document.body.appendChild(notification);
-          
-          setTimeout(() => {
-              notification.remove();
-          }, 5000);
-      }
-  }
+        // Feature card interactions
+        const featureCards = document.querySelectorAll('.feature-card');
+        featureCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-12px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
 
-  // Analytics and Tracking
-  function trackInteraction(action, data = {}) {
-      console.log(`📊 User Action: ${action}`, data);
-      
-      if (window.SESMineDataManager && window.SESMineDataManager.instance) {
-          window.SESMineDataManager.instance.trackEvent(action, data);
-      }
-      
-      // Google Analytics tracking
-      if (typeof gtag !== 'undefined') {
-          gtag('event', action, {
-              event_category: 'sesmine_platform',
-              event_label: JSON.stringify(data),
-              value: 1
-          });
-      }
-  }
+        // Hub item interactions
+        const hubItems = document.querySelectorAll('.hub-item');
+        hubItems.forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px) scale(1.05)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    }
 
-  // Utility Functions
-  function generateId() {
-      return Date.now().toString(36) + Math.random().toString(36).substr(2, 9);
-  }
+    // Enhanced Search Functionality
+    function initializeSearch() {
+        const searchInput = document.getElementById('globalSearch');
+        if (!searchInput) return;
 
-  // Keyboard Shortcuts
-  document.addEventListener('keydown', (e) => {
-      // Escape: Close Modal
-      if (e.key === 'Escape') {
-          const modal = document.getElementById('registrationModal');
-          if (modal.style.display === 'block') {
-              closeRegistrationModal();
-          }
-      }
-      
-      // Ctrl/Cmd + Shift + R: Quick Registration
-      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'R') {
-          e.preventDefault();
-          openRegistrationModal();
-      }
-  });
+        let searchTimeout;
+        
+        searchInput.addEventListener('input', function(e) {
+            clearTimeout(searchTimeout);
+            const query = e.target.value.toLowerCase().trim();
+            
+            if (query.length < 2) return;
+            
+            searchTimeout = setTimeout(() => {
+                performSearch(query);
+            }, 300);
+        });
 
-  // Click outside modal to close
-  window.addEventListener('click', (e) => {
-      const modal = document.getElementById('registrationModal');
-      if (e.target === modal) {
-          closeRegistrationModal();
-      }
-  });
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                const query = e.target.value.toLowerCase().trim();
+                performSearch(query);
+            }
+        });
+    }
 
-  // Add CSS animations
-  const style = document.createElement('style');
-  style.textContent = `
-      @keyframes slideIn {
-          from { transform: translateX(450px); opacity: 0; }
-          to { transform: translateX(0); opacity: 1; }
-      }
-      
-      .user-menu {
-          position: relative;
-          display: flex;
-          align-items: center;
-          gap: var(--space-md);
-          cursor: pointer;
-      }
+    function performSearch(query) {
+        // Enhanced search with better routing
+        const searchMappings = {
+            'engineering': 'engineering-hub.html',
+            'cost': 'engineering-hub.html',
+            'estimation': 'engineering-hub.html',
+            'analytics': 'analytics-platform.html',
+            'chart': 'analytics-platform.html',
+            'report': 'analytics-platform.html',
+            'economics': 'economics-hub.html',
+            'financial': 'economics-hub.html',
+            'roi': 'economics-hub.html',
+            'innovation': 'innovation-technology-hub.html',
+            'technology': 'innovation-technology-hub.html',
+            'research': 'innovation-technology-hub.html',
+            'procurement': 'procurement-hub.html',
+            'supplier': 'procurement-hub.html',
+            'supply': 'procurement-hub.html',
+            'consulting': 'consulting-hub.html',
+            'expert': 'consulting-hub.html',
+            'advisory': 'consulting-hub.html'
+        };
 
-      .user-info {
-          display: flex;
-          align-items: center;
-          gap: var(--space-sm);
-          padding: var(--space-sm) var(--space-md);
-          border-radius: var(--radius-md);
-          background: var(--glass-bg);
-          backdrop-filter: blur(10px);
-          border: 1px solid var(--glass-border);
-          transition: all var(--transition-smooth);
-      }
+        let foundMatch = false;
+        for (const [keyword, url] of Object.entries(searchMappings)) {
+            if (query.includes(keyword)) {
+                window.location.href = url;
+                foundMatch = true;
+                break;
+            }
+        }
 
-      .user-info:hover {
-          background: rgba(255, 255, 255, 0.2);
-      }
+        if (!foundMatch) {
+            showNotification(`No results found for "${query}". Try searching for hub names or features.`, 'info');
+        }
 
-      .user-avatar {
-          width: 40px;
-          height: 40px;
-          border-radius: 50%;
-          background: var(--gradient-accent);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-weight: 700;
-          color: var(--primary-dark);
-          font-size: 1.1rem;
-      }
+        // Track search
+        trackInteraction('website_search', { query });
+    }
 
-      .user-details {
-          display: flex;
-          flex-direction: column;
-      }
+    // Mobile Menu
+    function initializeMobileMenu() {
+        const mobileToggle = document.getElementById('mobileMenuToggle');
+        const mainNav = document.getElementById('mainNav');
+        
+        if (mobileToggle && mainNav) {
+            mobileToggle.addEventListener('click', function() {
+                mainNav.classList.toggle('mobile-open');
+                this.classList.toggle('active');
+                
+                // Update aria-expanded
+                const isOpen = mainNav.classList.contains('mobile-open');
+                this.setAttribute('aria-expanded', isOpen);
+            });
+        }
+    }
 
-      .user-name {
-          font-weight: 600;
-          color: var(--primary-light);
-          font-size: 0.9rem;
-      }
+    // Accessibility Features
+    function initializeAccessibility() {
+        // Skip to content link
+        const skipLink = document.createElement('a');
+        skipLink.href = '#main-content';
+        skipLink.textContent = 'Skip to main content';
+        skipLink.className = 'skip-link';
+        skipLink.style.cssText = `
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: var(--color-primary);
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            border-radius: 4px;
+            z-index: 1000;
+            transition: top 0.3s;
+        `;
+        
+        skipLink.addEventListener('focus', function() {
+            this.style.top = '6px';
+        });
+        
+        skipLink.addEventListener('blur', function() {
+            this.style.top = '-40px';
+        });
+        
+        document.body.insertBefore(skipLink, document.body.firstChild);
 
-      .user-level {
-          font-size: 0.75rem;
-          color: rgba(244, 244, 242, 0.8);
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
-      }
+        // Keyboard navigation for interactive elements
+        document.addEventListener('keydown', function(e) {
+            // Escape key to close modal
+            if (e.key === 'Escape') {
+                const modal = document.getElementById('registrationModal');
+                if (modal && modal.style.display === 'block') {
+                    closeRegistrationModal();
+                }
+            }
+            
+            // Enter key for button-like elements
+            if (e.key === 'Enter') {
+                const target = e.target;
+                if (target.getAttribute('role') === 'button' && target.onclick) {
+                    target.onclick();
+                }
+            }
+        });
 
-      .user-dropdown {
-          position: absolute;
-          top: 100%;
-          right: 0;
-          background: white;
-          border-radius: var(--radius-md);
-          box-shadow: var(--shadow-xl);
-          border: 1px solid #e2e8f0;
-          min-width: 200px;
-          z-index: 1000;
-          opacity: 0;
-          visibility: hidden;
-          transform: translateY(-10px);
-          transition: all var(--transition-smooth);
-      }
+        // Focus management for modal
+        const modal = document.getElementById('registrationModal');
+        if (modal) {
+            modal.addEventListener('keydown', function(e) {
+                if (e.key === 'Tab') {
+                    trapFocus(e, this);
+                }
+            });
+        }
+    }
 
-      .user-menu:hover .user-dropdown {
-          opacity: 1;
-          visibility: visible;
-          transform: translateY(0);
-      }
+    function trapFocus(e, container) {
+        const focusableElements = container.querySelectorAll(
+            'a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select'
+        );
+        const firstFocusableElement = focusableElements[0];
+        const lastFocusableElement = focusableElements[focusableElements.length - 1];
 
-      .dropdown-item {
-          display: flex;
-          align-items: center;
-          gap: var(--space-sm);
-          padding: var(--space-md);
-          color: var(--primary-dark);
-          text-decoration: none;
-          transition: all var(--transition-smooth);
-          border: none;
-          background: none;
-          width: 100%;
-          text-align: left;
-          cursor: pointer;
-          font-size: 0.9rem;
-      }
+        if (e.shiftKey) {
+            if (document.activeElement === firstFocusableElement) {
+                lastFocusableElement.focus();
+                e.preventDefault();
+            }
+        } else {
+            if (document.activeElement === lastFocusableElement) {
+                firstFocusableElement.focus();
+                e.preventDefault();
+            }
+        }
+    }
 
-      .dropdown-item:hover {
-          background: #f7fafc;
-      }
+    // Performance Monitoring
+    function initializePerformanceMonitoring() {
+        // Monitor page load performance
+        window.addEventListener('load', function() {
+            if (window.performance && window.performance.timing) {
+                const loadTime = window.performance.timing.loadEventEnd - window.performance.timing.navigationStart;
+                console.log(`🚀 Page loaded in ${loadTime}ms`);
+                
+                // Track performance
+                trackInteraction('page_performance', { loadTime });
+            }
+        });
 
-      .dropdown-divider {
-          height: 1px;
-          background: #e2e8f0;
-          margin: var(--space-xs) 0;
-      }
+        // Monitor Core Web Vitals
+        if ('web-vital' in window) {
+            import('https://unpkg.com/web-vitals@3/dist/web-vitals.js').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
+                getCLS(console.log);
+                getFID(console.log);
+                getFCP(console.log);
+                getLCP(console.log);
+                getTTFB(console.log);
+            });
+        }
+    }
 
-      .logout-btn {
-          color: var(--accent-error);
-      }
+    // Registration Modal Functions
+    function openRegistrationModal() {
+        const modal = document.getElementById('registrationModal');
+        modal.style.display = 'block';
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        
+        // Focus first input
+        setTimeout(() => {
+            const firstInput = modal.querySelector('input');
+            if (firstInput) firstInput.focus();
+        }, 100);
+        
+        // Reset form
+        document.getElementById('registrationForm').reset();
+        document.querySelectorAll('.access-level').forEach(l => l.classList.remove('selected'));
+        
+        trackInteraction('registration_modal_opened');
+    }
+    
+    function closeRegistrationModal() {
+        const modal = document.getElementById('registrationModal');
+        modal.style.display = 'none';
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = 'auto';
+        
+        trackInteraction('registration_modal_closed');
+    }
 
-      .logout-btn:hover {
-          background: rgba(229, 62, 62, 0.1);
-      }
-  `;
-  document.head.appendChild(style);
+    // Enhanced Registration Handler
+    async function handleRegistration(event) {
+        event.preventDefault();
+        
+        const form = event.target;
+        const formData = new FormData(form);
+        const submitBtn = document.getElementById('submitBtn');
+        
+        // Validate form
+        if (!validateRegistrationForm(formData)) {
+            return;
+        }
+        
+        // Show loading state
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<div class="loading-spinner"></div> Processing...';
+        
+        try {
+            // Prepare registration data
+            const registrationData = {
+                id: generateId(),
+                fullName: formData.get('fullName'),
+                email: formData.get('email'),
+                company: formData.get('company'),
+                jobTitle: formData.get('jobTitle'),
+                phone: formData.get('phone'),
+                accessLevel: formData.get('accessLevel'),
+                projectDescription: formData.get('projectDescription'),
+                timestamp: new Date().toISOString(),
+                status: 'pending'
+            };
+            
+            // Store registration data
+            if (window.SESMineDataManager && window.SESMineDataManager.instance) {
+                window.SESMineDataManager.instance.saveRegistration(registrationData);
+            }
+            
+            // Send registration email
+            await sendRegistrationEmail(registrationData);
+            
+            // Show success notification
+            showNotification('Registration submitted successfully! Please check your email for confirmation.', 'success');
+            
+            // Close modal
+            closeRegistrationModal();
+            
+            // Track registration
+            trackInteraction('registration_submitted', { accessLevel: registrationData.accessLevel });
+            
+        } catch (error) {
+            console.error('Registration error:', error);
+            showNotification('Registration failed. Please try again or contact support.', 'error');
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Registration';
+        }
+    }
 
-  console.log('🏔️ SESMine Landing Page JavaScript Loaded');
-  console.log('🔐 Authentication integration ready');
-  console.log('📧 Registration system active');
-  console.log('🎨 Professional animations enabled');
-  console.log('📊 Analytics tracking configured');
-  console.log('✅ Platform ready for user interaction');
-  </script>
+    // Enhanced Form Validation
+    function validateRegistrationForm(formData) {
+        const requiredFields = ['fullName', 'email', 'company', 'jobTitle', 'accessLevel'];
+        
+        for (const field of requiredFields) {
+            if (!formData.get(field)) {
+                showNotification(`Please fill in the ${field.replace(/([A-Z])/g, ' $1').toLowerCase()} field.`, 'error');
+                return false;
+            }
+        }
+        
+        // Enhanced email validation
+        const email = formData.get('email');
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            showNotification('Please enter a valid email address.', 'error');
+            return false;
+        }
+        
+        // Phone validation (if provided)
+        const phone = formData.get('phone');
+        if (phone && phone.length > 0) {
+            const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
+            if (!phoneRegex.test(phone.replace(/[\s\-\(\)]/g, ''))) {
+                showNotification('Please enter a valid phone number.', 'error');
+                return false;
+            }
+        }
+        
+        return true;
+    }
+
+    // Enhanced Email Sending
+    async function sendRegistrationEmail(data) {
+        if (!window.SESMineConfig || !window.SESMineConfig.emailjs) {
+            console.warn('EmailJS not configured');
+            return;
+        }
+
+        const templateParams = {
+            to_name: 'SESMine Admin',
+            from_name: data.fullName,
+            from_email: data.email,
+            company: data.company,
+            job_title: data.jobTitle,
+            phone: data.phone || 'Not provided',
+            access_level: data.accessLevel,
+            project_description: data.projectDescription || 'Not provided',
+            timestamp: new Date(data.timestamp).toLocaleString(),
+            registration_id: data.id
+        };
+        
+        try {
+            await emailjs.send(
+                window.SESMineConfig.emailjs.serviceId, 
+                window.SESMineConfig.emailjs.templates.registration, 
+                templateParams
+            );
+            console.log('Registration email sent successfully');
+        } catch (error) {
+            console.error('Email sending error:', error);
+            throw error;
+        }
+    }
+
+    // Interactive Functions
+    function showCompanyInfo() {
+        showNotification('🏔️ SESMine: Leading provider of smart engineering solutions for mining operations worldwide!', 'info');
+        trackInteraction('company_info_clicked');
+    }
+    
+    function showStatDetails(type) {
+        const messages = {
+            projects: '500+ active mining projects across 6 continents with comprehensive support and expert guidance.',
+            users: '1,200+ mining professionals trust SESMine for their critical project decisions and operational excellence.',
+            success: '98% project success rate achieved through our comprehensive platform and expert consultation services.'
+        };
+        
+        showNotification(`📊 ${messages[type]}`, 'info');
+        trackInteraction('stat_detail_clicked', { type });
+    }
+    
+    function showPlatformDemo() {
+        showNotification('🚀 Explore our comprehensive platform by registering for free access!', 'info');
+        trackInteraction('platform_demo_clicked');
+    }
+
+    // Enhanced Notification System
+    function showNotification(message, type = 'info') {
+        if (window.SESMineNotifications && window.SESMineNotifications.instance) {
+            window.SESMineNotifications.instance.show(message, type);
+        } else {
+            // Enhanced fallback notification
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.style.cssText = `
+                position: fixed;
+                top: 120px;
+                right: 24px;
+                background: rgba(10, 10, 10, 0.95);
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 12px;
+                box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+                z-index: 10000;
+                max-width: 420px;
+                font-size: 0.95rem;
+                font-weight: 500;
+                backdrop-filter: blur(25px);
+                border: 1px solid rgba(0, 184, 148, 0.3);
+                animation: slideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            `;
+            
+            const iconMap = {
+                success: 'fas fa-check-circle',
+                error: 'fas fa-times-circle',
+                warning: 'fas fa-exclamation-triangle',
+                info: 'fas fa-info-circle'
+            };
+            
+            const colorMap = {
+                success: '#00b894',
+                error: '#e17055',
+                warning: '#fdcb6e',
+                info: '#0984e3'
+            };
+            
+            notification.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <i class="${iconMap[type]}" style="color: ${colorMap[type]}; font-size: 1.2rem;"></i>
+                    <span style="flex: 1;">${message}</span>
+                    <button onclick="this.parentElement.parentElement.remove()" 
+                            style="background: none; border: none; color: rgba(255,255,255,0.7); cursor: pointer; padding: 0.25rem; border-radius: 4px; transition: all 0.2s ease;"
+                            onmouseover="this.style.background='rgba(255,255,255,0.1)'"
+                            onmouseout="this.style.background='none'">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.remove();
+                }
+            }, 5000);
+        }
+    }
+
+    // Analytics and Tracking
+    function trackInteraction(action, data = {}) {
+        console.log(`📊 User Action: ${action}`, data);
+        
+        if (window.SESMineDataManager && window.SESMineDataManager.instance) {
+            window.SESMineDataManager.instance.trackEvent(action, data);
+        }
+        
+        // Google Analytics tracking
+        if (typeof gtag !== 'undefined') {
+            gtag('event', action, {
+                event_category: 'sesmine_website',
+                event_label: JSON.stringify(data),
+                value: 1
+            });
+        }
+    }
+
+    // Utility Functions
+    function generateId() {
+        return Date.now().toString(36) + Math.random().toString(36).substr(2, 9);
+    }
+
+    // Click outside modal to close
+    window.addEventListener('click', (e) => {
+        const modal = document.getElementById('registrationModal');
+        if (e.target === modal) {
+            closeRegistrationModal();
+        }
+    });
+
+    // Enhanced keyboard shortcuts
+    document.addEventListener('keydown', (e) => {
+        // Ctrl/Cmd + Shift + R: Quick Registration
+        if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'R') {
+            e.preventDefault();
+            openRegistrationModal();
+        }
+        
+        // Ctrl/Cmd + K: Focus Search
+        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+            e.preventDefault();
+            const searchInput = document.getElementById('globalSearch');
+            if (searchInput) {
+                searchInput.focus();
+            }
+        }
+    });
+
+    // Add enhanced CSS animations
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes slideIn {
+            from { transform: translateX(450px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .loading-spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top: 2px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: var(--radius-3xl);
+            width: 90%;
+            max-width: 600px;
+            box-shadow: var(--shadow-2xl);
+            position: relative;
+            overflow: hidden;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+        
+        @keyframes modalSlideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .modal-header {
+            background: var(--gradient-primary);
+            color: white;
+            padding: var(--space-8);
+            text-align: center;
+            position: relative;
+        }
+        
+        .modal-header h2 {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            margin-bottom: var(--space-2);
+        }
+        
+        .modal-header p {
+            opacity: 0.9;
+            font-size: var(--font-size-base);
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: var(--space-4);
+            right: var(--space-4);
+            color: white;
+            font-size: var(--font-size-xl);
+            cursor: pointer;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all var(--transition-base);
+        }
+        
+        .close-modal:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
+        }
+        
+        .modal-body {
+            padding: var(--space-8);
+        }
+        
+        .form-group {
+            margin-bottom: var(--space-6);
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: var(--space-2);
+            font-weight: 600;
+            color: var(--color-primary);
+            font-size: var(--font-size-sm);
+        }
+        
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: var(--space-4);
+            border: 2px solid var(--color-gray-200);
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-base);
+            transition: all var(--transition-base);
+            font-family: inherit;
+            background: var(--color-white);
+        }
+        
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--color-accent);
+            box-shadow: 0 0 0 3px rgba(0, 184, 148, 0.1);
+        }
+        
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .form-help {
+            display: block;
+            margin-top: var(--space-1);
+            font-size: var(--font-size-xs);
+            color: var(--color-gray-500);
+        }
+        
+        .access-levels {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: var(--space-4);
+            margin-top: var(--space-4);
+        }
+        
+        .access-level {
+            border: 2px solid var(--color-gray-200);
+            border-radius: var(--radius-xl);
+            padding: var(--space-6);
+            text-align: center;
+            cursor: pointer;
+            transition: all var(--transition-base);
+            position: relative;
+            background: var(--color-white);
+        }
+        
+        .access-level:hover {
+            border-color: var(--color-accent);
+            background: rgba(0, 184, 148, 0.05);
+            transform: translateY(-2px);
+        }
+        
+        .access-level.selected {
+            border-color: var(--color-accent);
+            background: rgba(0, 184, 148, 0.1);
+            box-shadow: var(--shadow-glow);
+        }
+        
+        .access-level input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+        }
+        
+        .access-icon {
+            font-size: var(--font-size-3xl);
+            color: var(--color-accent);
+            margin-bottom: var(--space-3);
+        }
+        
+        .access-title {
+            font-weight: 600;
+            margin-bottom: var(--space-1);
+            color: var(--color-primary);
+            font-size: var(--font-size-base);
+        }
+        
+        .access-description {
+            font-size: var(--font-size-xs);
+            color: var(--color-gray-600);
+            line-height: 1.4;
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: var(--space-4);
+            justify-content: flex-end;
+            margin-top: var(--space-8);
+            padding-top: var(--space-6);
+            border-top: 1px solid var(--color-gray-200);
+        }
+        
+        .btn-cancel {
+            background: var(--color-gray-100);
+            color: var(--color-gray-700);
+            border: 1px solid var(--color-gray-200);
+            padding: var(--space-3) var(--space-6);
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            font-weight: 500;
+            transition: all var(--transition-base);
+            font-size: var(--font-size-sm);
+        }
+        
+        .btn-cancel:hover {
+            background: var(--color-gray-200);
+        }
+        
+        .btn-submit {
+            background: var(--gradient-accent);
+            color: white;
+            border: none;
+            padding: var(--space-3) var(--space-6);
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            font-weight: 600;
+            transition: all var(--transition-bounce);
+            box-shadow: var(--shadow-glow);
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-size: var(--font-size-sm);
+        }
+        
+        .btn-submit:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow-lg);
+        }
+        
+        .btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        /* Mobile Menu Styles */
+        @media (max-width: 1024px) {
+            .main-nav {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: var(--dark-glass);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                justify-content: flex-start;
+                padding: var(--space-8);
+                transition: left var(--transition-base);
+                z-index: 999;
+            }
+            
+            .main-nav.mobile-open {
+                left: 0;
+            }
+            
+            .nav-link {
+                width: 100%;
+                padding: var(--space-4);
+                border-radius: var(--radius-lg);
+                font-size: var(--font-size-lg);
+                justify-content: center;
+            }
+        }
+        
+        /* Enhanced responsive styles */
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 95%;
+                margin: 2% auto;
+            }
+            
+            .modal-body {
+                padding: var(--space-6);
+            }
+            
+            .access-levels {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+
+    console.log('🏔️ SESMine Website JavaScript Loaded');
+    console.log('🎨 Enhanced animations and interactions enabled');
+    console.log('📱 Mobile-responsive design active');
+    console.log('♿ Accessibility features implemented');
+    console.log('🚀 Performance monitoring enabled');
+    console.log('🔍 Enhanced search functionality ready');
+    console.log('✅ Website fully optimized and operational');
+    </script>
 </body>
 </html>

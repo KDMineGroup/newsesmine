@@ -3,13 +3,13 @@
 // Smart Engineering Solutions for Mining
 // ============================================
 
-class SESMineAuth {
+class SESMineAuthSystem {
   constructor() {
-      this.config = window.SESMineConfig;
       this.currentUser = null;
-      this.sessionTimer = null;
+      this.sessionToken = null;
       this.loginAttempts = 0;
-      this.isLocked = false;
+      this.lockoutTime = null;
+      this.config = null;
       
       this.init();
   }
@@ -17,758 +17,624 @@ class SESMineAuth {
   init() {
       console.log('🔐 SESMine Authentication System Initializing...');
       
-      // Check for existing session
-      this.checkExistingSession();
-      
-      // Set up session monitoring
-      this.setupSessionMonitoring();
-      
-      // Set up event listeners
-      this.setupEventListeners();
-      
-      console.log('✅ Authentication System Ready');
-  }
-
-  // Session Management
-  checkExistingSession() {
-      const sessionData = this.getStoredData('session');
-      const userData = this.getStoredData('user');
-      
-      if (sessionData && userData && this.isValidSession(sessionData)) {
-          this.currentUser = userData;
-          this.startSessionTimer();
-          this.updateUIForLoggedInUser();
-          console.log('👤 Existing session restored for:', userData.fullName);
-      } else {
-          this.clearSession();
-      }
-  }
-
-  isValidSession(sessionData) {
-      if (!sessionData.timestamp || !sessionData.token) return false;
-      
-      const sessionAge = Date.now() - sessionData.timestamp;
-      const maxAge = this.config.security.sessionTimeout;
-      
-      return sessionAge < maxAge;
-  }
-
-  startSession(userData) {
-      const sessionData = {
-          token: this.generateSessionToken(),
-          timestamp: Date.now(),
-          userId: userData.id,
-          accessLevel: userData.accessLevel
-      };
-
-      // Store session data
-      this.storeData('session', sessionData);
-      this.storeData('user', userData);
-      
-      this.currentUser = userData;
-      this.startSessionTimer();
-      this.updateUIForLoggedInUser();
-      
-      console.log('🚀 Session started for:', userData.fullName);
-      this.trackEvent('login', { accessLevel: userData.accessLevel });
-  }
-
-  clearSession() {
-      // Clear stored data
-      this.removeStoredData('session');
-      this.removeStoredData('user');
-      
-      this.currentUser = null;
-      this.clearSessionTimer();
-      this.updateUIForLoggedOutUser();
-      
-      console.log('🔒 Session cleared');
-  }
-
-  startSessionTimer() {
-      this.clearSessionTimer();
-      
-      this.sessionTimer = setTimeout(() => {
-          this.showNotification('Your session has expired. Please log in again.', 'warning');
-          this.logout();
-      }, this.config.security.sessionTimeout);
-  }
-
-  clearSessionTimer() {
-      if (this.sessionTimer) {
-          clearTimeout(this.sessionTimer);
-          this.sessionTimer = null;
-      }
-  }
-
-  setupSessionMonitoring() {
-      // Monitor user activity to extend session
-      const activityEvents = ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart'];
-      let lastActivity = Date.now();
-      
-      const updateActivity = () => {
-          lastActivity = Date.now();
-          if (this.currentUser) {
-              this.startSessionTimer(); // Reset session timer on activity
-          }
-      };
-
-      activityEvents.forEach(event => {
-          document.addEventListener(event, updateActivity, true);
+      // Wait for config to be available
+      this.waitForConfig().then(() => {
+          this.config = window.SESMineConfig;
+          this.loadStoredSession();
+          this.setupSessionTimeout();
+          console.log('✅ Authentication System Ready');
       });
   }
 
-  // Authentication Methods
+  async waitForConfig() {
+      return new Promise((resolve) => {
+          const checkConfig = () => {
+              if (window.SESMineConfig) {
+                  resolve();
+              } else {
+                  setTimeout(checkConfig, 100);
+              }
+          };
+          checkConfig();
+      });
+  }
+
+  // Load stored session on page load
+  loadStoredSession() {
+      try {
+          const sessionData = this.getStoredData(this.config.storage.keys.session);
+          
+          if (sessionData && this.isValidSession(sessionData)) {
+              this.currentUser = sessionData.user;
+              this.sessionToken = sessionData.token;
+              
+              console.log('🔄 Session restored for:', this.currentUser.fullName);
+              this.triggerAuthEvent('session_restored', this.currentUser);
+              return true;
+          } else if (sessionData) {
+              // Clear invalid session
+              this.clearStoredData(this.config.storage.keys.session);
+              console.log('🗑️ Invalid session cleared');
+          }
+      } catch (error) {
+          console.error('Session restoration error:', error);
+          this.clearStoredData(this.config.storage.keys.session);
+      }
+      
+      return false;
+  }
+
+  // Validate session
+  isValidSession(sessionData) {
+      if (!sessionData || !sessionData.user || !sessionData.token || !sessionData.timestamp) {
+          return false;
+      }
+
+      // Check if session has expired
+      const sessionAge = Date.now() - sessionData.timestamp;
+      if (sessionAge > this.config.security.sessionTimeout) {
+          return false;
+      }
+
+      return true;
+  }
+
+  // Login method
   async login(email, password, rememberMe = false) {
       try {
-          if (this.isLocked) {
-              throw new Error('Account is temporarily locked due to too many failed attempts');
+          // Check if account is locked
+          if (this.isAccountLocked()) {
+              return {
+                  success: false,
+                  message: `Account temporarily locked. Try again in ${Math.ceil((this.lockoutTime - Date.now()) / 60000)} minutes.`
+              };
           }
 
-          // Validate inputs
-          if (!email || !password) {
-              throw new Error('Email and password are required');
-          }
-
-          if (!this.config.utils.isValidEmail(email)) {
-              throw new Error('Please enter a valid email address');
-          }
-
-          // Check against stored registrations (in production, this would be an API call)
-          const registrations = this.getStoredData('registrations') || [];
-          const user = registrations.find(reg => 
-              reg.email.toLowerCase() === email.toLowerCase() && 
-              reg.status === 'approved'
-          );
-
+          // Find user in registrations
+          const user = await this.findUser(email, password);
+          
           if (!user) {
               this.handleFailedLogin();
-              throw new Error('Invalid email or password, or account not approved');
+              return {
+                  success: false,
+                  message: 'Invalid email or password. Please check your credentials and try again.'
+              };
           }
 
-          // In production, verify password hash
-          // For demo, we'll simulate password verification
-          if (!this.verifyPassword(password, user.password || 'demo123')) {
-              this.handleFailedLogin();
-              throw new Error('Invalid email or password');
+          // Check if user is approved
+          if (user.status !== 'approved') {
+              return {
+                  success: false,
+                  message: 'Your account is pending approval. Please wait for admin approval or contact support.'
+              };
           }
 
-          // Reset login attempts on successful login
-          this.loginAttempts = 0;
-          this.isLocked = false;
-
-          // Create user session
-          const userData = {
-              id: user.id,
-              fullName: user.fullName,
-              email: user.email,
-              company: user.company,
-              jobTitle: user.jobTitle,
-              accessLevel: user.accessLevel,
-              registrationDate: user.timestamp,
-              lastLogin: new Date().toISOString(),
-              permissions: this.getUserPermissions(user.accessLevel)
-          };
-
-          this.startSession(userData);
-
-          // Send welcome back email if configured
-          if (this.config.features.enableNotifications) {
-              this.sendWelcomeBackEmail(userData);
-          }
-
+          // Successful login
+          this.handleSuccessfulLogin(user, rememberMe);
+          
           return {
               success: true,
-              user: userData,
-              message: 'Login successful'
+              message: `Welcome back, ${user.fullName}!`,
+              user: this.sanitizeUserData(user)
           };
 
       } catch (error) {
           console.error('Login error:', error);
           return {
               success: false,
-              message: error.message
+              message: 'An error occurred during login. Please try again.'
           };
       }
   }
 
+  // Find user in stored registrations
+  async findUser(email, password) {
+      try {
+          // Wait for data manager to be available
+          if (window.SESMineDataManager && window.SESMineDataManager.instance) {
+              const registrations = window.SESMineDataManager.instance.getRegistrations();
+              return registrations.find(user => 
+                  user.email.toLowerCase() === email.toLowerCase() && 
+                  user.password === password
+              );
+          } else {
+              // Fallback to localStorage
+              const registrations = JSON.parse(localStorage.getItem('sesmine_registrations') || '[]');
+              return registrations.find(user => 
+                  user.email.toLowerCase() === email.toLowerCase() && 
+                  user.password === password
+              );
+          }
+      } catch (error) {
+          console.error('User lookup error:', error);
+          return null;
+      }
+  }
+
+  // Handle successful login
+  handleSuccessfulLogin(user, rememberMe) {
+      // Reset login attempts
+      this.loginAttempts = 0;
+      this.lockoutTime = null;
+
+      // Set current user
+      this.currentUser = this.sanitizeUserData(user);
+      this.sessionToken = this.generateSessionToken();
+
+      // Create session data
+      const sessionData = {
+          user: this.currentUser,
+          token: this.sessionToken,
+          timestamp: Date.now(),
+          rememberMe: rememberMe,
+          loginTime: new Date().toISOString(),
+          userAgent: navigator.userAgent,
+          ipAddress: 'client-side' // In production, get from server
+      };
+
+      // Store session
+      this.storeSessionData(sessionData);
+
+      // Track login event
+      this.trackEvent('user_login', {
+          userId: this.currentUser.id,
+          accessLevel: this.currentUser.accessLevel,
+          rememberMe: rememberMe
+      });
+
+      // Trigger authentication event
+      this.triggerAuthEvent('login_success', this.currentUser);
+
+      console.log('✅ Login successful:', this.currentUser.fullName);
+  }
+
+  // Handle failed login
+  handleFailedLogin() {
+      this.loginAttempts++;
+      
+      if (this.loginAttempts >= this.config.security.maxLoginAttempts) {
+          this.lockoutTime = Date.now() + this.config.security.lockoutDuration;
+          console.log('🔒 Account locked due to multiple failed attempts');
+      }
+
+      // Track failed login
+      this.trackEvent('login_failed', {
+          attempts: this.loginAttempts,
+          locked: this.isAccountLocked()
+      });
+  }
+
+  // Check if account is locked
+  isAccountLocked() {
+      return this.lockoutTime && Date.now() < this.lockoutTime;
+  }
+
+  // Logout method
+  logout() {
+      if (this.currentUser) {
+          console.log('👋 Logging out:', this.currentUser.fullName);
+          
+          // Track logout event
+          this.trackEvent('user_logout', {
+              userId: this.currentUser.id,
+              sessionDuration: Date.now() - (this.getStoredData(this.config.storage.keys.session)?.timestamp || Date.now())
+          });
+      }
+
+      // Clear session data
+      this.currentUser = null;
+      this.sessionToken = null;
+      this.clearStoredData(this.config.storage.keys.session);
+
+      // Trigger authentication event
+      this.triggerAuthEvent('logout', null);
+
+      // Redirect to login page
+      if (window.location.pathname !== '/login.html' && window.location.pathname !== '/index.html') {
+          window.location.href = 'login.html';
+      }
+  }
+
+  // Register new user
   async register(registrationData) {
       try {
           // Validate registration data
           const validation = this.validateRegistrationData(registrationData);
-          if (!validation.isValid) {
-              throw new Error(validation.errors.join(', '));
+          if (!validation.valid) {
+              return {
+                  success: false,
+                  message: validation.message
+              };
           }
 
           // Check if email already exists
-          const existingRegistrations = this.getStoredData('registrations') || [];
-          const existingUser = existingRegistrations.find(reg => 
-              reg.email.toLowerCase() === registrationData.email.toLowerCase()
-          );
-
+          const existingUser = await this.findUserByEmail(registrationData.email);
           if (existingUser) {
-              throw new Error('An account with this email already exists');
+              return {
+                  success: false,
+                  message: 'An account with this email address already exists.'
+              };
           }
 
-          // Create registration record
-          const registration = {
-              id: this.config.utils.generateId(),
-              ...registrationData,
+          // Create user object
+          const newUser = {
+              id: this.generateUserId(),
+              fullName: registrationData.fullName,
+              email: registrationData.email.toLowerCase(),
+              company: registrationData.company,
+              jobTitle: registrationData.jobTitle,
+              phone: registrationData.phone,
+              accessLevel: registrationData.accessLevel,
+              projectDescription: registrationData.projectDescription,
+              password: registrationData.password || this.generateTemporaryPassword(),
               timestamp: new Date().toISOString(),
-              status: 'pending',
-              ipAddress: this.getUserIP(),
+              status: 'pending', // Requires admin approval
+              registrationIP: 'client-side',
               userAgent: navigator.userAgent
           };
 
           // Store registration
-          existingRegistrations.push(registration);
-          this.storeData('registrations', existingRegistrations);
+          if (window.SESMineDataManager && window.SESMineDataManager.instance) {
+              window.SESMineDataManager.instance.saveRegistration(newUser);
+          } else {
+              // Fallback to localStorage
+              const registrations = JSON.parse(localStorage.getItem('sesmine_registrations') || '[]');
+              registrations.push(newUser);
+              localStorage.setItem('sesmine_registrations', JSON.stringify(registrations));
+          }
 
-          // Send confirmation emails
-          await this.sendRegistrationEmails(registration);
-
-          this.trackEvent('registration', { accessLevel: registration.accessLevel });
+          // Track registration event
+          this.trackEvent('user_registration', {
+              userId: newUser.id,
+              accessLevel: newUser.accessLevel,
+              company: newUser.company
+          });
 
           return {
               success: true,
-              message: 'Registration submitted successfully. Please check your email for confirmation.',
-              registrationId: registration.id
+              message: 'Registration submitted successfully! Please wait for admin approval.',
+              user: this.sanitizeUserData(newUser)
           };
 
       } catch (error) {
           console.error('Registration error:', error);
           return {
               success: false,
-              message: error.message
+              message: 'Registration failed. Please try again.'
           };
       }
   }
 
-  logout() {
-      if (this.currentUser) {
-          this.trackEvent('logout', { accessLevel: this.currentUser.accessLevel });
+  // Find user by email
+  async findUserByEmail(email) {
+      try {
+          if (window.SESMineDataManager && window.SESMineDataManager.instance) {
+              const registrations = window.SESMineDataManager.instance.getRegistrations();
+              return registrations.find(user => user.email.toLowerCase() === email.toLowerCase());
+          } else {
+              const registrations = JSON.parse(localStorage.getItem('sesmine_registrations') || '[]');
+              return registrations.find(user => user.email.toLowerCase() === email.toLowerCase());
+          }
+      } catch (error) {
+          console.error('User lookup error:', error);
+          return null;
       }
-      
-      this.clearSession();
-      this.showNotification('You have been logged out successfully', 'info');
-      
-      // Redirect to home page
-      setTimeout(() => {
-          window.location.href = 'index.html';
-      }, 1000);
   }
 
-  // Access Control Methods
-  hasAccess(requiredLevel) {
-      if (!this.currentUser) return false;
+  // Validate registration data
+  validateRegistrationData(data) {
+      const required = ['fullName', 'email', 'company', 'jobTitle', 'accessLevel'];
       
-      const userLevel = this.config.accessLevels[this.currentUser.accessLevel];
-      const required = this.config.accessLevels[requiredLevel];
-      
-      return userLevel && required && userLevel.level >= required.level;
+      for (const field of required) {
+          if (!data[field] || data[field].trim() === '') {
+              return {
+                  valid: false,
+                  message: `${field.replace(/([A-Z])/g, ' $1').toLowerCase()} is required.`
+              };
+          }
+      }
+
+      // Validate email format
+      if (!this.config.utils.isValidEmail(data.email)) {
+          return {
+              valid: false,
+              message: 'Please enter a valid email address.'
+          };
+      }
+
+      // Validate access level
+      if (!this.config.accessLevels[data.accessLevel]) {
+          return {
+              valid: false,
+              message: 'Please select a valid access level.'
+          };
+      }
+
+      return { valid: true };
   }
 
+  // Check user permissions
   hasPermission(hub, permission) {
       if (!this.currentUser) return false;
       
-      return this.config.utils.hasPermission(
-          this.currentUser.accessLevel, 
-          hub, 
-          permission
-      );
-  }
-
-  getUserPermissions(accessLevel) {
-      const permissions = {};
+      const hubPermissions = this.config.permissions.hubs[hub];
+      if (!hubPermissions) return false;
       
-      Object.keys(this.config.permissions).forEach(hub => {
-          permissions[hub] = this.config.permissions[hub][accessLevel] || [];
-      });
-      
-      return permissions;
+      const userPermissions = hubPermissions[this.currentUser.accessLevel];
+      return userPermissions && userPermissions.includes(permission);
   }
 
-  checkPageAccess(page) {
-      const pagePermissions = {
-          'engineering-hub.html': { hub: 'engineering', permission: 'view_equipment' },
-          'analytics-platform.html': { hub: 'analytics', permission: 'basic_charts' },
-          'economics-hub.html': { hub: 'economics', permission: 'basic_financial_models' },
-          'procurement-hub.html': { hub: 'procurement', permission: 'supplier_directory' },
-          'consulting-hub.html': { hub: 'consulting', permission: 'knowledge_base' },
-          'innovation-technology-hub.html': { hub: 'innovation', permission: 'technology_updates' },
-          'training-education-hub.html': { hub: 'training', permission: 'basic_courses' },
-          'admin-dashboard.html': { accessLevel: 'enterprise' }
-      };
-
-      const currentPage = window.location.pathname.split('/').pop();
-      const requirement = pagePermissions[currentPage];
-
-      if (!requirement) return true; // No restrictions
-
-      if (requirement.accessLevel) {
-          return this.hasAccess(requirement.accessLevel);
-      }
-
-      if (requirement.hub && requirement.permission) {
-          return this.hasPermission(requirement.hub, requirement.permission);
-      }
-
-      return true;
+  // Get user access level info
+  getAccessLevelInfo() {
+      if (!this.currentUser) return null;
+      return this.config.accessLevels[this.currentUser.accessLevel];
   }
 
-  // UI Update Methods
-  updateUIForLoggedInUser() {
-      // Update navigation
-      const authButtons = document.querySelector('.auth-buttons');
-      if (authButtons) {
-          authButtons.innerHTML = `
-              <div class="user-menu">
-                  <div class="user-info">
-                      <div class="user-avatar">
-                          ${this.currentUser.fullName.charAt(0).toUpperCase()}
-                      </div>
-                      <div class="user-details">
-                          <div class="user-name">${this.currentUser.fullName}</div>
-                          <div class="user-level">${this.config.accessLevels[this.currentUser.accessLevel].name}</div>
-                      </div>
-                  </div>
-                  <div class="user-dropdown">
-                      <a href="setting.html" class="dropdown-item">
-                          <i class="fas fa-cog"></i> Settings
-                      </a>
-                      <a href="home.html" class="dropdown-item">
-                          <i class="fas fa-home"></i> Dashboard
-                      </a>
-                      ${this.hasAccess('enterprise') ? '<a href="admin-dashboard.html" class="dropdown-item"><i class="fas fa-shield-alt"></i> Admin</a>' : ''}
-                      <div class="dropdown-divider"></div>
-                      <button onclick="SESMineAuth.instance.logout()" class="dropdown-item logout-btn">
-                          <i class="fas fa-sign-out-alt"></i> Logout
-                      </button>
-                  </div>
-              </div>
-          `;
-      }
-
-      // Show access level indicator
-      this.showAccessLevelIndicator();
-
-      // Update page content based on access level
-      this.updateContentByAccessLevel();
+  // Check if user is admin
+  isAdmin() {
+      return this.currentUser && this.currentUser.accessLevel === 'enterprise';
   }
 
-  updateUIForLoggedOutUser() {
-      const authButtons = document.querySelector('.auth-buttons');
-      if (authButtons) {
-          authButtons.innerHTML = `
-              <a href="login.html" class="btn-login">
-                  <i class="fas fa-sign-in-alt"></i>
-                  Login
-              </a>
-              <button class="btn-signup" onclick="openRegistrationModal()">
-                  <i class="fas fa-user-plus"></i>
-                  Get Started
-              </button>
-          `;
-      }
-
-      // Hide access level indicator
-      this.hideAccessLevelIndicator();
+  // Check if user is authenticated
+  isAuthenticated() {
+      return this.currentUser !== null && this.sessionToken !== null;
   }
 
-  showAccessLevelIndicator() {
-      const indicator = document.createElement('div');
-      indicator.id = 'accessLevelIndicator';
-      indicator.className = 'access-level-indicator';
-      indicator.innerHTML = `
-          <div class="indicator-content">
-              <i class="${this.config.accessLevels[this.currentUser.accessLevel].icon}"></i>
-              <span>${this.config.accessLevels[this.currentUser.accessLevel].name}</span>
-          </div>
-      `;
-      
-      // Remove existing indicator
-      const existing = document.getElementById('accessLevelIndicator');
-      if (existing) existing.remove();
-      
-      document.body.appendChild(indicator);
-  }
-
-  hideAccessLevelIndicator() {
-      const indicator = document.getElementById('accessLevelIndicator');
-      if (indicator) indicator.remove();
-  }
-
-  updateContentByAccessLevel() {
-      if (!this.currentUser) return;
-
-      // Hide/show features based on access level
-      const restrictedElements = document.querySelectorAll('[data-access-level]');
-      restrictedElements.forEach(element => {
-          const requiredLevel = element.dataset.accessLevel;
-          if (!this.hasAccess(requiredLevel)) {
-              element.style.display = 'none';
-          }
-      });
-
-      // Update feature limitations display
-      const limitations = this.config.utils.getLimitations(this.currentUser.accessLevel);
-      const limitationElements = document.querySelectorAll('[data-limitation]');
-      limitationElements.forEach(element => {
-          const limitationType = element.dataset.limitation;
-          const limit = limitations[limitationType];
-          if (limit !== undefined) {
-              element.textContent = limit === -1 ? 'Unlimited' : limit;
-          }
-      });
-  }
-
-  // Validation Methods
-  validateRegistrationData(data) {
-      const errors = [];
-
-      if (!data.fullName || data.fullName.trim().length < 2) {
-          errors.push('Full name must be at least 2 characters long');
-      }
-
-      if (!data.email || !this.config.utils.isValidEmail(data.email)) {
-          errors.push('Please enter a valid email address');
-      }
-
-      if (!data.company || data.company.trim().length < 2) {
-          errors.push('Company name must be at least 2 characters long');
-      }
-
-      if (!data.jobTitle || data.jobTitle.trim().length < 2) {
-          errors.push('Job title must be at least 2 characters long');
-      }
-
-      if (!data.accessLevel || !this.config.accessLevels[data.accessLevel]) {
-          errors.push('Please select a valid access level');
-      }
-
-      return {
-          isValid: errors.length === 0,
-          errors: errors
-      };
-  }
-
-  verifyPassword(inputPassword, storedPassword) {
-      // In production, use proper password hashing (bcrypt, scrypt, etc.)
-      // For demo purposes, we'll use simple comparison
-      return inputPassword === storedPassword;
-  }
-
-  handleFailedLogin() {
-      this.loginAttempts++;
-      
-      if (this.loginAttempts >= this.config.security.maxLoginAttempts) {
-          this.isLocked = true;
-          setTimeout(() => {
-              this.isLocked = false;
-              this.loginAttempts = 0;
-          }, this.config.security.lockoutDuration);
-          
-          this.showNotification(
-              `Account locked for ${this.config.security.lockoutDuration / 60000} minutes due to too many failed attempts`,
-              'error'
-          );
-      }
-  }
-
-  // Email Methods
-  async sendRegistrationEmails(registration) {
-      if (!this.config.features.enableNotifications) return;
-
-      try {
-          // Send confirmation to user
-          await emailjs.send(
-              this.config.emailjs.serviceId,
-              this.config.emailjs.templates.registration,
-              {
-                  to_name: registration.fullName,
-                  to_email: registration.email,
-                  company: registration.company,
-                  access_level: registration.accessLevel,
-                  registration_date: new Date(registration.timestamp).toLocaleDateString()
-              },
-              this.config.emailjs.userId
-          );
-
-          // Send notification to admin
-          await emailjs.send(
-              this.config.emailjs.serviceId,
-              this.config.emailjs.templates.adminNotification,
-              {
-                  user_name: registration.fullName,
-                  user_email: registration.email,
-                  company: registration.company,
-                  access_level: registration.accessLevel,
-                  registration_date: new Date(registration.timestamp).toLocaleDateString(),
-                  admin_url: window.location.origin + '/admin-dashboard.html'
-              },
-              this.config.emailjs.userId
-          );
-
-      } catch (error) {
-          console.error('Email sending error:', error);
-      }
-  }
-
-  async sendWelcomeBackEmail(userData) {
-      if (!this.config.features.enableNotifications) return;
-
-      try {
-          await emailjs.send(
-              this.config.emailjs.serviceId,
-              this.config.emailjs.templates.welcome,
-              {
-                  to_name: userData.fullName,
-                  to_email: userData.email,
-                  last_login: new Date().toLocaleDateString(),
-                  access_level: this.config.accessLevels[userData.accessLevel].name,
-                  dashboard_url: window.location.origin + '/home.html'
-              },
-              this.config.emailjs.userId
-          );
-      } catch (error) {
-          console.error('Welcome email error:', error);
-      }
-  }
-
-  // Utility Methods
-  generateSessionToken() {
-      return btoa(Date.now() + Math.random().toString()).replace(/[^a-zA-Z0-9]/g, '');
-  }
-
-  getUserIP() {
-      // In production, get from server-side
-      return 'Unknown';
-  }
-
-  storeData(key, data) {
-      const storageKey = this.config.utils.getStorageKey(key);
-      localStorage.setItem(storageKey, JSON.stringify(data));
-  }
-
-  getStoredData(key) {
-      const storageKey = this.config.utils.getStorageKey(key);
-      const data = localStorage.getItem(storageKey);
-      return data ? JSON.parse(data) : null;
-  }
-
-  removeStoredData(key) {
-      const storageKey = this.config.utils.getStorageKey(key);
-      localStorage.removeItem(storageKey);
-  }
-
-  showNotification(message, type = 'info') {
-      if (window.SESMineNotifications) {
-          window.SESMineNotifications.show(message, type);
-      } else {
-          console.log(`${type.toUpperCase()}: ${message}`);
-      }
-  }
-
-  trackEvent(event, data = {}) {
-      if (this.config.analytics.enabled && typeof gtag !== 'undefined') {
-          gtag('event', event, {
-              event_category: 'sesmine_auth',
-              event_label: JSON.stringify(data),
-              value: 1
-          });
-      }
-      
-      console.log(`📊 Auth Event: ${event}`, data);
-  }
-
-  setupEventListeners() {
-      // Listen for storage changes (multi-tab support)
-      window.addEventListener('storage', (e) => {
-          if (e.key === this.config.utils.getStorageKey('session')) {
-              if (!e.newValue) {
-                  // Session cleared in another tab
-                  this.clearSession();
-              }
-          }
-      });
-
-      // Listen for page visibility changes
-      document.addEventListener('visibilitychange', () => {
-          if (document.visibilityState === 'visible' && this.currentUser) {
-              // Check if session is still valid when page becomes visible
-              const sessionData = this.getStoredData('session');
+  // Session timeout setup
+  setupSessionTimeout() {
+      setInterval(() => {
+          if (this.currentUser) {
+              const sessionData = this.getStoredData(this.config.storage.keys.session);
               if (!sessionData || !this.isValidSession(sessionData)) {
+                  console.log('⏰ Session expired');
                   this.logout();
               }
           }
+      }, 60000); // Check every minute
+  }
+
+  // Utility methods
+  generateSessionToken() {
+      return 'sess_' + Date.now().toString(36) + '_' + Math.random().toString(36).substr(2, 9);
+  }
+
+  generateUserId() {
+      return 'user_' + Date.now().toString(36) + '_' + Math.random().toString(36).substr(2, 9);
+  }
+
+  generateTemporaryPassword() {
+      return Math.random().toString(36).substr(2, 8);
+  }
+
+  sanitizeUserData(user) {
+      const { password, ...sanitizedUser } = user;
+      return sanitizedUser;
+  }
+
+  // Storage methods
+  storeSessionData(sessionData) {
+      this.storeData(this.config.storage.keys.session, sessionData);
+  }
+
+  storeData(key, data) {
+      try {
+          if (window.SESMineDataManager && window.SESMineDataManager.instance) {
+              window.SESMineDataManager.instance.set(key, data);
+          } else {
+              localStorage.setItem(this.config.storage.prefix + key, JSON.stringify(data));
+          }
+      } catch (error) {
+          console.error('Storage error:', error);
+      }
+  }
+
+  getStoredData(key) {
+      try {
+          if (window.SESMineDataManager && window.SESMineDataManager.instance) {
+              return window.SESMineDataManager.instance.get(key);
+          } else {
+              const data = localStorage.getItem(this.config.storage.prefix + key);
+              return data ? JSON.parse(data) : null;
+          }
+      } catch (error) {
+          console.error('Storage retrieval error:', error);
+          return null;
+      }
+  }
+
+  clearStoredData(key) {
+      try {
+          if (window.SESMineDataManager && window.SESMineDataManager.instance) {
+              window.SESMineDataManager.instance.remove(key);
+          } else {
+              localStorage.removeItem(this.config.storage.prefix + key);
+          }
+      } catch (error) {
+          console.error('Storage clear error:', error);
+      }
+  }
+
+  // Event tracking
+  trackEvent(event, data = {}) {
+      try {
+          if (window.SESMineDataManager && window.SESMineDataManager.instance) {
+              window.SESMineDataManager.instance.trackEvent(event, data);
+          }
+          
+          console.log(`📊 Auth Event: ${event}`, data);
+      } catch (error) {
+          console.error('Event tracking error:', error);
+      }
+  }
+
+  // Authentication events
+  triggerAuthEvent(eventType, userData) {
+      const event = new CustomEvent('sesmine-auth-change', {
+          detail: {
+              type: eventType,
+              user: userData,
+              timestamp: Date.now()
+          }
       });
+      
+      document.dispatchEvent(event);
+  }
+
+  // Password reset (placeholder for future implementation)
+  async requestPasswordReset(email) {
+      try {
+          const user = await this.findUserByEmail(email);
+          if (!user) {
+              // Don't reveal if email exists for security
+              return {
+                  success: true,
+                  message: 'If an account with this email exists, password reset instructions have been sent.'
+              };
+          }
+
+          // In production, send email with reset token
+          console.log('Password reset requested for:', email);
+          
+          this.trackEvent('password_reset_requested', { email });
+
+          return {
+              success: true,
+              message: 'Password reset instructions have been sent to your email.'
+          };
+      } catch (error) {
+          console.error('Password reset error:', error);
+          return {
+              success: false,
+              message: 'Password reset request failed. Please try again.'
+          };
+      }
+  }
+
+  // Update user profile
+  async updateProfile(updates) {
+      if (!this.currentUser) {
+          return {
+              success: false,
+              message: 'User not authenticated.'
+          };
+      }
+
+      try {
+          // Update current user
+          this.currentUser = { ...this.currentUser, ...updates };
+
+          // Update stored session
+          const sessionData = this.getStoredData(this.config.storage.keys.session);
+          if (sessionData) {
+              sessionData.user = this.currentUser;
+              this.storeSessionData(sessionData);
+          }
+
+          // Update registration record
+          if (window.SESMineDataManager && window.SESMineDataManager.instance) {
+              window.SESMineDataManager.instance.updateRegistration(this.currentUser.id, updates);
+          }
+
+          this.trackEvent('profile_updated', { userId: this.currentUser.id, fields: Object.keys(updates) });
+
+          return {
+              success: true,
+              message: 'Profile updated successfully.',
+              user: this.sanitizeUserData(this.currentUser)
+          };
+      } catch (error) {
+          console.error('Profile update error:', error);
+          return {
+              success: false,
+              message: 'Profile update failed. Please try again.'
+          };
+      }
+  }
+
+  // Get user statistics
+  getUserStats() {
+      if (!this.currentUser) return null;
+
+      const sessionData = this.getStoredData(this.config.storage.keys.session);
+      const loginTime = sessionData ? new Date(sessionData.timestamp) : new Date();
+      const sessionDuration = Date.now() - loginTime.getTime();
+
+      return {
+          userId: this.currentUser.id,
+          fullName: this.currentUser.fullName,
+          email: this.currentUser.email,
+          accessLevel: this.currentUser.accessLevel,
+          company: this.currentUser.company,
+          loginTime: loginTime.toISOString(),
+          sessionDuration: sessionDuration,
+          lastActivity: new Date().toISOString()
+      };
   }
 }
 
-// Initialize authentication system
+// Initialize Authentication System
 document.addEventListener('DOMContentLoaded', function() {
-  window.SESMineAuth = {
-      instance: new SESMineAuth()
+  // Wait for config to be loaded
+  const initAuth = () => {
+      if (window.SESMineConfig) {
+          window.SESMineAuth = {
+              instance: new SESMineAuthSystem()
+          };
+          
+          // Add global authentication methods
+          window.getCurrentUser = () => window.SESMineAuth.instance.currentUser;
+          window.isAuthenticated = () => window.SESMineAuth.instance.isAuthenticated();
+          window.hasPermission = (hub, permission) => window.SESMineAuth.instance.hasPermission(hub, permission);
+          window.isAdmin = () => window.SESMineAuth.instance.isAdmin();
+          window.logout = () => window.SESMineAuth.instance.logout();
+          
+          console.log('🔐 SESMine Authentication System Ready');
+      } else {
+          setTimeout(initAuth, 100);
+      }
   };
   
-  // Add global access methods
-  window.hasAccess = (level) => window.SESMineAuth.instance.hasAccess(level);
-  window.hasPermission = (hub, permission) => window.SESMineAuth.instance.hasPermission(hub, permission);
-  window.getCurrentUser = () => window.SESMineAuth.instance.currentUser;
-  
-  console.log('🔐 SESMine Authentication System Ready');
+  initAuth();
 });
 
-// CSS for authentication UI components
-const authStyles = `
-<style>
-.user-menu {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: var(--space-md);
-  cursor: pointer;
-}
-
-.user-info {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  padding: var(--space-sm) var(--space-md);
-  border-radius: var(--radius-md);
-  background: var(--glass-bg);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--glass-border);
-  transition: all var(--transition-smooth);
-}
-
-.user-info:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.user-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: var(--gradient-accent);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  color: white;
-  font-size: 1.1rem;
-}
-
-.user-details {
-  display: flex;
-  flex-direction: column;
-}
-
-.user-name {
-  font-weight: 600;
-  color: var(--primary-light);
-  font-size: 0.9rem;
-}
-
-.user-level {
-  font-size: 0.75rem;
-  color: rgba(244, 244, 242, 0.8);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.user-dropdown {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background: white;
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-xl);
-  border: 1px solid #e2e8f0;
-  min-width: 200px;
-  z-index: 1000;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-10px);
-  transition: all var(--transition-smooth);
-}
-
-.user-menu:hover .user-dropdown {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-.dropdown-item {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  padding: var(--space-md);
-  color: var(--primary-dark);
-  text-decoration: none;
-  transition: all var(--transition-smooth);
-  border: none;
-  background: none;
-  width: 100%;
-  text-align: left;
-  cursor: pointer;
-  font-size: 0.9rem;
-}
-
-.dropdown-item:hover {
-  background: #f7fafc;
-}
-
-.dropdown-divider {
-  height: 1px;
-  background: #e2e8f0;
-  margin: var(--space-xs) 0;
-}
-
-.logout-btn {
-  color: var(--accent-error);
-}
-
-.logout-btn:hover {
-  background: rgba(229, 62, 62, 0.1);
-}
-
-.access-level-indicator {
-  position: fixed;
-  top: 100px;
-  right: 20px;
-  background: var(--dark-glass);
-  color: var(--primary-light);
-  padding: var(--space-sm) var(--space-md);
-  border-radius: var(--radius-md);
-  backdrop-filter: blur(20px);
-  border: 1px solid var(--glass-border);
-  z-index: 999;
-  font-size: 0.85rem;
-  font-weight: 600;
-  box-shadow: var(--shadow-md);
-}
-
-.indicator-content {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-}
-
-@media (max-width: 768px) {
-  .access-level-indicator {
-      top: 80px;
-      right: 10px;
-      padding: var(--space-xs) var(--space-sm);
-      font-size: 0.75rem;
-  }
+// Listen for authentication events
+document.addEventListener('sesmine-auth-change', function(event) {
+  const { type, user } = event.detail;
   
-  .user-dropdown {
-      right: -50px;
-      min-width: 180px;
+  switch (type) {
+      case 'login_success':
+          console.log('🎉 User logged in:', user.fullName);
+          break;
+      case 'logout':
+          console.log('👋 User logged out');
+          break;
+      case 'session_restored':
+          console.log('🔄 Session restored for:', user.fullName);
+          break;
   }
-}
-</style>
-`;
+});
 
-document.head.insertAdjacentHTML('beforeend', authStyles);
+// Page protection utility
+window.requireAuth = function(redirectUrl = 'login.html') {
+  setTimeout(() => {
+      if (!window.isAuthenticated || !window.isAuthenticated()) {
+          console.log('🔒 Page requires authentication, redirecting...');
+          window.location.href = redirectUrl;
+      }
+  }, 100);
+};
+
+// Admin protection utility
+window.requireAdmin = function(redirectUrl = 'home.html') {
+  setTimeout(() => {
+      if (!window.isAdmin || !window.isAdmin()) {
+          console.log('🛡️ Page requires admin access, redirecting...');
+          window.location.href = redirectUrl;
+      }
+  }, 100);
+};
+
+console.log('🔐 SESMine Authentication System Loaded');
+console.log('🛡️ Security features: Session timeout, login attempts, permission system');
+console.log('📊 Event tracking: Login, logout, registration, profile updates');
+console.log('✅ Authentication utilities ready');

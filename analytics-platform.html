@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analytics Platform - SESMine</title>
+  <meta name="description" content="Advanced Analytics and Data Visualization Platform - SESMine">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/x-icon" href="https://www.sesmine.com/favicon.ico">
+  
+  <style>
+  /* Analytics Platform specific styles */
+  .analytics-hero {
+      background: linear-gradient(135deg, var(--sesmine-emerald) 0%, var(--success-600) 50%, var(--sesmine-accent) 100%);
+      color: white;
+      padding: 4rem 0;
+      margin-bottom: 3rem;
+      position: relative;
+      overflow: hidden;
+  }
+  
+  .analytics-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="analytics-grid" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23analytics-grid)"/></svg>');
+      opacity: 0.4;
+  }
+  
+  .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      text-align: center;
+  }
+  
+  .hero-icon {
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(135deg, var(--sesmine-gold), var(--sesmine-copper));
+      border-radius: var(--border-radius-2xl);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      margin: 0 auto 2rem;
+      box-shadow: var(--shadow-2xl);
+      animation: pulse 2s ease-in-out infinite;
+  }
+  
+  @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+  }
+  
+  .hero-title {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, white, rgba(255, 255, 255, 0.8), var(--sesmine-gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.1;
+  }
+  
+  .hero-subtitle {
+      font-size: 1.5rem;
+      opacity: 0.9;
+      margin-bottom: 2.5rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.5;
+  }
+  
+  .metrics-overview {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+  }
+  
+  .metric-card {
+      background: white;
+      border-radius: var(--border-radius-xl);
+      padding: 2rem;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--gray-200);
+      transition: var(--transition-all);
+      position: relative;
+      overflow: hidden;
+  }
+  
+  .metric-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--sesmine-emerald), var(--sesmine-accent), var(--sesmine-gold));
+  }
+  
+  .metric-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-xl);
+  }
+  
+  .metric-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+  }
+  
+  .metric-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: var(--border-radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: white;
+      box-shadow: var(--shadow-sm);
+  }
+  
+  .metric-trend {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+  }
+  
+  .trend-up { color: var(--success-500); }
+  .trend-down { color: var(--danger-500); }
+  .trend-stable { color: var(--gray-500); }
+  
+  .metric-value {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--sesmine-primary);
+      margin-bottom: 0.5rem;
+      font-family: var(--font-mono);
+  }
+  
+  .metric-label {
+      color: var(--gray-600);
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+  }
+  
+  .metric-chart {
+      height: 60px;
+      background: var(--gray-50);
+      border-radius: var(--border-radius-md);
+      position: relative;
+      overflow: hidden;
+  }
+  
+  .chart-bar {
+      position: absolute;
+      bottom: 0;
+      width: 8px;
+      background: linear-gradient(to top, var(--sesmine-accent), var(--sesmine-emerald));
+      border-radius: 2px 2px 0 0;
+      transition: var(--transition-all);
+  }
+  
+  .dashboard-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 2rem;
+      margin-bottom: 4rem;
+  }
+  
+  .main-chart {
+      background: white;
+      border-radius: var(--border-radius-xl);
+      padding: 2rem;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--gray-200);
+  }
+  
+  .chart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+  }
+  
+  .chart-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--sesmine-primary);
+  }
+  
+  .chart-controls {
+      display: flex;
+      gap: 0.5rem;
+  }
+  
+  .chart-btn {
+      padding: 0.5rem 1rem;
+      border: 2px solid var(--gray-300);
+      background: white;
+      color: var(--gray-700);
+      border-radius: var(--border-radius-md);
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition-all);
+  }
+  
+  .chart-btn.active,
+  .chart-btn:hover {
+      border-color: var(--sesmine-accent);
+      background: var(--sesmine-accent);
+      color: white;
+  }
+  
+  .chart-container {
+      height: 400px;
+      background: var(--gray-50);
+      border-radius: var(--border-radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+  }
+  
+  .chart-placeholder {
+      text-align: center;
+      color: var(--gray-500);
+  }
+  
+  .sidebar-widgets {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+  }
+  
+  .widget {
+      background: white;
+      border-radius: var(--border-radius-xl);
+      padding: 2rem;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--gray-200);
+  }
+  
+  .widget-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--sesmine-primary);
+      margin-bottom: 1.5rem;
+  }
+  
+  .alert-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      background: var(--gray-50);
+      border-radius: var(--border-radius-md);
+      margin-bottom: 1rem;
+      border-left: 4px solid;
+  }
+  
+  .alert-critical { border-left-color: var(--danger-500); }
+  .alert-warning { border-left-color: var(--warning-500); }
+  .alert-info { border-left-color: var(--sesmine-accent); }
+  
+  .alert-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 0.875rem;
+      flex-shrink: 0;
+  }
+  
+  .alert-content {
+      flex: 1;
+  }
+  
+  .alert-title {
+      font-weight: 600;
+      color: var(--gray-800);
+      font-size: 0.95rem;
+      margin-bottom: 0.25rem;
+  }
+  
+  .alert-time {
+      font-size: 0.8rem;
+      color: var(--gray-500);
+  }
+  
+  .kpi-list {
+      list-style: none;
+  }
+  
+  .kpi-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--gray-200);
+  }
+  
+  .kpi-item:last-child {
+      border-bottom: none;
+  }
+  
+  .kpi-name {
+      font-weight: 600;
+      color: var(--gray-700);
+  }
+  
+  .kpi-value {
+      font-weight: 700;
+      font-family: var(--font-mono);
+  }
+  
+  .analytics-tools {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+  }
+  
+  .tool-card {
+      background: white;
+      border-radius: var(--border-radius-xl);
+      padding: 2rem;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--gray-200);
+      transition: var(--transition-all);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+  }
+  
+  .tool-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--sesmine-emerald), var(--sesmine-accent));
+  }
+  
+  .tool-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-2xl);
+  }
+  
+  .tool-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: var(--border-radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.75rem;
+      color: white;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-md);
+  }
+  
+  .tool-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--sesmine-primary);
+      margin-bottom: 1rem;
+  }
+  
+  .tool-description {
+      color: var(--gray-600);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+  }
+  
+  .tool-features {
+      list-style: none;
+      margin-bottom: 1.5rem;
+  }
+  
+  .tool-features li {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.25rem 0;
+      font-size: 0.9rem;
+      color: var(--gray-700);
+  }
+  
+  .feature-check {
+      color: var(--success-500);
+      font-size: 0.8rem;
+  }
+  
+  .data-sources {
+      background: linear-gradient(135deg, var(--primary-50), var(--success-50));
+      border-radius: var(--border-radius-2xl);
+      padding: 3rem;
+      margin: 3rem 0;
+      border: 1px solid var(--primary-200);
+  }
+  
+  .sources-header {
+      text-align: center;
+      margin-bottom: 3rem;
+  }
+  
+  .sources-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--sesmine-primary);
+      margin-bottom: 1rem;
+  }
+  
+  .sources-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+  }
+  
+  .source-item {
+      background: white;
+      border-radius: var(--border-radius-lg);
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--gray-200);
+      transition: var(--transition-all);
+  }
+  
+  .source-item:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+  }
+  
+  .source-icon {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--sesmine-emerald), var(--success-600));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.25rem;
+      margin: 0 auto 1rem;
+  }
+  
+  .source-name {
+      font-weight: 700;
+      color: var(--sesmine-primary);
+      margin-bottom: 0.5rem;
+  }
+  
+  .source-status {
+      font-size: 0.8rem;
+      padding: 0.25rem 0.5rem;
+      border-radius: 12px;
+      font-weight: 600;
+  }
+  
+  .status-connected {
+      background: var(--success-100);
+      color: var(--success-700);
+  }
+  
+  .status-syncing {
+      background: var(--warning-100);
+      color: var(--warning-700);
+  }
+  
+  .status-error {
+      background: var(--danger-100);
+      color: var(--danger-700);
+  }
+  
+  @media (max-width: 1024px) {
+      .dashboard-grid {
+          grid-template-columns: 1fr;
+      }
+      
+      .metrics-overview {
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+  }
+  
+  @media (max-width: 768px) {
+      .hero-title {
+          font-size: 2.5rem;
+      }
+      
+      .hero-subtitle {
+          font-size: 1.25rem;
+      }
+      
+      .chart-controls {
+          flex-wrap: wrap;
+      }
+      
+      .analytics-tools {
+          grid-template-columns: 1fr;
+      }
+  }
+  </style>
+</head>
+<body>
+  <!-- Universal Navigation Header -->
+  <header class="sesmine-header" id="sesmineHeader">
+      <div class="header-content">
+          <div class="logo-section">
+              <button class="header-btn mobile-menu-toggle" id="mobileMenuToggle">
+                  <i class="fas fa-bars"></i>
+              </button>
+              <a href="index.html" class="logo">
+                  <div class="logo-icon">🏔️</div>
+                  <div class="logo-text">
+                      <div class="logo-main">SESMine</div>
+                      <div class="logo-subtitle">Smart Engineering Solutions</div>
+                  </div>
+              </a>
+          </div>
+          
+          <nav class="main-nav" id="mainNav">
+              <a href="home.html" class="nav-link">
+                  <i class="fas fa-home"></i> Dashboard
+              </a>
+              <div class="nav-dropdown">
+                  <button class="nav-link dropdown-toggle active">
+                      <i class="fas fa-th-large"></i> Hubs <i class="fas fa-chevron-down"></i>
+                  </button>
+                  <div class="dropdown-menu">
+                      <a href="engineering-hub.html" class="dropdown-item">
+                          <i class="fas fa-hard-hat"></i> Engineering Hub
+                      </a>
+                      <a href="analytics-platform.html" class="dropdown-item active">
+                          <i class="fas fa-chart-area"></i> Analytics Platform
+                      </a>
+                      <a href="economics-hub.html" class="dropdown-item">
+                          <i class="fas fa-coins"></i> Economics Hub
+                      </a>
+                      <a href="innovation-technology-hub.html" class="dropdown-item">
+                          <i class="fas fa-rocket"></i> Innovation & Technology
+                      </a>
+                      <a href="procurement-hub.html" class="dropdown-item">
+                          <i class="fas fa-truck"></i> Procurement Hub
+                      </a>
+                      <a href="consulting-hub.html" class="dropdown-item">
+                          <i class="fas fa-user-tie"></i> Consulting Hub
+                      </a>
+                      <a href="training-education-hub.html" class="dropdown-item">
+                          <i class="fas fa-graduation-cap"></i> Training & Education
+                      </a>
+                      <a href="admin-dashboard.html" class="dropdown-item">
+                          <i class="fas fa-shield-alt"></i> Admin Dashboard
+                      </a>
+                  </div>
+              </div>
+              <a href="platforms.html" class="nav-link">
+                  <i class="fas fa-layer-group"></i> Platforms
+              </a>
+              <a href="features.html" class="nav-link">
+                  <i class="fas fa-star"></i> Features
+              </a>
+              <a href="about.html" class="nav-link">
+                  <i class="fas fa-info-circle"></i> About
+              </a>
+              <a href="contact.html" class="nav-link">
+                  <i class="fas fa-phone"></i> Contact
+              </a>
+          </nav>
+          
+          <div class="header-actions">
+              <div class="search-container">
+                  <i class="fas fa-search search-icon"></i>
+                  <input type="text" class="search-input" placeholder="Search analytics..." id="globalSearch">
+              </div>
+              <button class="header-btn" title="Notifications">
+                  <i class="fas fa-bell"></i>
+              </button>
+              <button class="header-btn" title="Settings" onclick="window.location.href='setting.html'">
+                  <i class="fas fa-cog"></i>
+              </button>
+              <div class="user-menu">
+                  <div class="user-avatar">MS</div>
+                  <div class="user-info">
+                      <div class="user-name">Mining Specialist</div>
+                      <div class="user-email">specialist@sesmine.com</div>
+                  </div>
+                  <div class="user-dropdown">
+                      <a href="setting.html" class="dropdown-item">
+                          <i class="fas fa-cog"></i> Settings
+                      </a>
+                      <a href="login.html" class="dropdown-item">
+                          <i class="fas fa-sign-out-alt"></i> Logout
+                      </a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+      <!-- Analytics Hero Section -->
+      <section class="analytics-hero">
+          <div class="hero-content">
+              <div class="hero-icon">📊</div>
+              <h1 class="hero-title">Analytics Platform</h1>
+              <p class="hero-subtitle">
+                  Real-time analytics, predictive modeling, and comprehensive data visualization 
+                  for intelligent mining operations and strategic decision making.
+              </p>
+          </div>
+      </section>
+
+      <div class="content-container">
+          <!-- Key Metrics Overview -->
+          <section class="metrics-overview">
+              <div class="metric-card">
+                  <div class="metric-header">
+                      <div class="metric-icon" style="background: linear-gradient(135deg, var(--sesmine-emerald), var(--success-600));">
+                          📈
+                      </div>
+                      <div class="metric-trend trend-up">
+                          <i class="fas fa-arrow-up"></i>
+                          +12.5%
+                      </div>
+                  </div>
+                  <div class="metric-value">2.4M</div>
+                  <div class="metric-label">Tons Processed</div>
+                  <div class="metric-chart" id="productionChart">
+                      <!-- Mini chart bars will be generated by JavaScript -->
+                  </div>
+              </div>
+
+              <div class="metric-card">
+                  <div class="metric-header">
+                      <div class="metric-icon" style="background: linear-gradient(135deg, var(--sesmine-accent), var(--sesmine-secondary));">
+                          💰
+                      </div>
+                      <div class="metric-trend trend-up">
+                          <i class="fas fa-arrow-up"></i>
+                          +8.3%
+                      </div>
+                  </div>
+                  <div class="metric-value">$18.7M</div>
+                  <div class="metric-label">Revenue</div>
+                  <div class="metric-chart" id="revenueChart">
+                      <!-- Mini chart bars will be generated by JavaScript -->
+                  </div>
+              </div>
+
+              <div class="metric-card">
+                  <div class="metric-header">
+                      <div class="metric-icon" style="background: linear-gradient(135deg, var(--sesmine-gold), var(--sesmine-copper));">
+                          ⚡
+                      </div>
+                      <div class="metric-trend trend-up">
+                          <i class="fas fa-arrow-up"></i>
+                          +5.7%
+                      </div>
+                  </div>
+                  <div class="metric-value">94.2%</div>
+                  <div class="metric-label">Efficiency</div>
+                  <div class="metric-chart" id="efficiencyChart">
+                      <!-- Mini chart bars will be generated by JavaScript -->
+                  </div>
+              </div>
+
+              <div class="metric-card">
+                  <div class="metric-header">
+                      <div class="metric-icon" style="background: linear-gradient(135deg, var(--warning-500), var(--warning-600));">
+                          🛡️
+                      </div>
+                      <div class="metric-trend trend-down">
+                          <i class="fas fa-arrow-down"></i>
+                          -15.2%
+                      </div>
+                  </div>
+                  <div class="metric-value">0.23</div>
+                  <div class="metric-label">Safety Incidents</div>
+                  <div class="metric-chart" id="safetyChart">
+                      <!-- Mini chart bars will be generated by JavaScript -->
+                  </div>
+              </div>
+          </section>
+
+          <!-- Main Dashboard -->
+          <section class="dashboard-grid">
+              <div class="main-chart">
+                  <div class="chart-header">
+                      <h3 class="chart-title">Production Analytics</h3>
+                      <div class="chart-controls">
+                          <button class="chart-btn active" data-period="7d">7 Days</button>
+                          <button class="chart-btn" data-period="30d">30 Days</button>
+                          <button class="chart-btn" data-period="90d">90 Days</button>
+                          <button class="chart-btn" data-period="1y">1 Year</button>
+                      </div>
+                  </div>
+                  <div class="chart-container" id="mainChart">
+                      <div class="chart-placeholder">
+                          <i class="fas fa-chart-area" style="font-size: 4rem; color: var(--gray-400); margin-bottom: 1rem;"></i>
+                          <div>Interactive Chart Loading...</div>
+                          <div style="font-size: 0.9rem; color: var(--gray-500); margin-top: 0.5rem;">
+                              Real-time production data visualization
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="sidebar-widgets">
+                  <!-- Alerts Widget -->
+                  <div class="widget">
+                      <h4 class="widget-title">System Alerts</h4>
+                      <div class="alert-item alert-critical">
+                          <div class="alert-icon" style="background: var(--danger-500);">
+                              <i class="fas fa-exclamation-triangle"></i>
+                          </div>
+                          <div class="alert-content">
+                              <div class="alert-title">Equipment Maintenance Due</div>
+                              <div class="alert-time">2 hours ago</div>
+                          </div>
+                      </div>
+                      
+                      <div class="alert-item alert-warning">
+                          <div class="alert-icon" style="background: var(--warning-500);">
+                              <i class="fas fa-exclamation"></i>
+                          </div>
+                          <div class="alert-content">
+                              <div class="alert-title">Production Below Target</div>
+                              <div class="alert-time">4 hours ago</div>
+                          </div>
+                      </div>
+                      
+                      <div class="alert-item alert-info">
+                          <div class="alert-icon" style="background: var(--sesmine-accent);">
+                              <i class="fas fa-info"></i>
+                          </div>
+                          <div class="alert-content">
+                              <div class="alert-title">New Data Source Connected</div>
+                              <div class="alert-time">6 hours ago</div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <!-- Key Performance Indicators -->
+                  <div class="widget">
+                      <h4 class="widget-title">Key Performance Indicators</h4>
+                      <ul class="kpi-list">
+                          <li class="kpi-item">
+                              <span class="kpi-name">Overall Equipment Effectiveness</span>
+                              <span class="kpi-value" style="color: var(--success-500);">87.3%</span>
+                          </li>
+                          <li class="kpi-item">
+                              <span class="kpi-name">Cost per Ton</span>
+                              <span class="kpi-value" style="color: var(--sesmine-accent);">$24.50</span>
+                          </li>
+                          <li class="kpi-item">
+                              <span class="kpi-name">Recovery Rate</span>
+                              <span class="kpi-value" style="color: var(--success-500);">92.1%</span>
+                          </li>
+                          <li class="kpi-item">
+                              <span class="kpi-name">Energy Efficiency</span>
+                              <span class="kpi-value" style="color: var(--warning-500);">78.9%</span>
+                          </li>
+                          <li class="kpi-item">
+                              <span class="kpi-name">Water Usage</span>
+                              <span class="kpi-value" style="color: var(--sesmine-emerald);">2.1 m³/t</span>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+          </section>
+
+          <!-- Analytics Tools -->
+          <section class="analytics-tools">
+              <div class="tool-card" onclick="openPredictiveModeling()">
+                  <div class="tool-icon" style="background: linear-gradient(135deg, var(--sesmine-accent), var(--sesmine-secondary));">
+                      🔮
+                  </div>
+                  <h4 class="tool-title">Predictive Modeling</h4>
+                  <p class="tool-description">
+                      Advanced machine learning models for equipment failure prediction, production forecasting, and maintenance optimization.
+                  </p>
+                  <ul class="tool-features">
+                      <li><i class="fas fa-check feature-check"></i>Equipment Failure Prediction</li>
+                      <li><i class="fas fa-check feature-check"></i>Production Forecasting</li>
+                      <li><i class="fas fa-check feature-check"></i>Maintenance Optimization</li>
+                      <li><i class="fas fa-check feature-check"></i>Risk Assessment</li>
+                  </ul>
+              </div>
+
+              <div class="tool-card" onclick="openRealTimeMonitoring()">
+                  <div class="tool-icon" style="background: linear-gradient(135deg, var(--sesmine-emerald), var(--success-600));">
+                      📡
+                  </div>
+                  <h4 class="tool-title">Real-Time Monitoring</h4>
+                  <p class="tool-description">
+                      Live monitoring dashboards with real-time data streams from sensors, equipment, and operational systems.
+                  </p>
+                  <ul class="tool-features">
+                      <li><i class="fas fa-check feature-check"></i>Live Data Streams</li>
+                      <li><i class="fas fa-check feature-check"></i>Sensor Integration</li>
+                      <li><i class="fas fa-check feature-check"></i>Alert Systems</li>
+                      <li><i class="fas fa-check feature-check"></i>Mobile Access</li>
+                  </ul>
+              </div>
+
+              <div class="tool-card" onclick="openDataVisualization()">
+                  <div class="tool-icon" style="background: linear-gradient(135deg, var(--sesmine-gold), var(--sesmine-copper));">
+                      📊
+                  </div>
+                  <h4 class="tool-title">Data Visualization</h4>
+                  <p class="tool-description">
+                      Interactive charts, graphs, and visual reports with customizable dashboards and automated report generation.
+                  </p>
+                  <ul class="tool-features">
+                      <li><i class="fas fa-check feature-check"></i>Interactive Charts</li>
+                      <li><i class="fas fa-check feature-check"></i>Custom Dashboards</li>
+                      <li><i class="fas fa-check feature-check"></i>Automated Reports</li>
+                      <li><i class="fas fa-check feature-check"></i>Export Options</li>
+                  </ul>
+              </div>
+
+              <div class="tool-card" onclick="openPerformanceAnalytics()">
+                  <div class="tool-icon" style="background: linear-gradient(135deg, var(--primary-500), var(--primary-600));">
+                      🎯
+                  </div>
+                  <h4 class="tool-title">Performance Analytics</h4>
+                  <p class="tool-description">
+                      Comprehensive performance analysis with benchmarking, trend analysis, and optimization recommendations.
+                  </p>
+                  <ul class="tool-features">
+                      <li><i class="fas fa-check feature-check"></i>Performance Benchmarking</li>
+                      <li><i class="fas fa-check feature-check"></i>Trend Analysis</li>
+                      <li><i class="fas fa-check feature-check"></i>Optimization Insights</li>
+                      <li><i class="fas fa-check feature-check"></i>Comparative Analysis</li>
+                  </ul>
+              </div>
+
+              <div class="tool-card" onclick="openBusinessIntelligence()">
+                  <div class="tool-icon" style="background: linear-gradient(135deg, var(--warning-500), var(--warning-600));">
+                      🧠
+                  </div>
+                  <h4 class="tool-title">Business Intelligence</h4>
+                  <p class="tool-description">
+                      Strategic business intelligence with market analysis, financial modeling, and executive reporting tools.
+                  </p>
+                  <ul class="tool-features">
+                      <li><i class="fas fa-check feature-check"></i>Market Analysis</li>
+                      <li><i class="fas fa-check feature-check"></i>Financial Modeling</li>
+                      <li><i class="fas fa-check feature-check"></i>Executive Reports</li>
+                      <li><i class="fas fa-check feature-check"></i>Strategic Planning</li>
+                  </ul>
+              </div>
+
+              <div class="tool-card" onclick="openDataIntegration()">
+                  <div class="tool-icon" style="background: linear-gradient(135deg, var(--danger-500), var(--danger-600));">
+                      🔗
+                  </div>
+                  <h4 class="tool-title">Data Integration</h4>
+                  <p class="tool-description">
+                      Seamless data integration from multiple sources with ETL processes, data cleansing, and quality assurance.
+                  </p>
+                  <ul class="tool-features">
+                      <li><i class="fas fa-check feature-check"></i>Multi-Source Integration</li>
+                      <li><i class="fas fa-check feature-check"></i>ETL Processes</li>
+                      <li><i class="fas fa-check feature-check"></i>Data Quality Assurance</li>
+                      <li><i class="fas fa-check feature-check"></i>API Connectivity</li>
+                  </ul>
+              </div>
+          </section>
+
+          <!-- Data Sources -->
+          <section class="data-sources">
+              <div class="sources-header">
+                  <h2 class="sources-title">Connected Data Sources</h2>
+                  <p>Real-time integration with your mining operations and systems</p>
+              </div>
+              
+              <div class="sources-grid">
+                  <div class="source-item">
+                      <div class="source-icon">
+                          <i class="fas fa-server"></i>
+                      </div>
+                      <div class="source-name">SCADA Systems</div>
+                      <div class="source-status status-connected">Connected</div>
+                  </div>
+                  
+                  <div class="source-item">
+                      <div class="source-icon">
+                          <i class="fas fa-database"></i>
+                      </div>
+                      <div class="source-name">ERP Systems</div>
+                      <div class="source-status status-connected">Connected</div>
+                  </div>
+                  
+                  <div class="source-item">
+                      <div class="source-icon">
+                          <i class="fas fa-satellite"></i>
+                      </div>
+                      <div class="source-name">IoT Sensors</div>
+                      <div class="source-status status-syncing">Syncing</div>
+                  </div>
+                  
+                  <div class="source-item">
+                      <div class="source-icon">
+                          <i class="fas fa-chart-line"></i>
+                      </div>
+                      <div class="source-name">Financial Systems</div>
+                      <div class="source-status status-connected">Connected</div>
+                  </div>
+                  
+                  <div class="source-item">
+                      <div class="source-icon">
+                          <i class="fas fa-weather-cloudy"></i>
+                      </div>
+                      <div class="source-name">Weather Data</div>
+                      <div class="source-status status-connected">Connected</div>
+                  </div>
+                  
+                  <div class="source-item">
+                      <div class="source-icon">
+                          <i class="fas fa-truck"></i>
+                      </div>
+                      <div class="source-name">Fleet Management</div>
+                      <div class="source-status status-error">Error</div>
+                  </div>
+              </div>
+          </section>
+      </div>
+  </main>
+
+  <script src="script.js"></script>
+  <script>
+  // Analytics Platform specific JavaScript
+  document.addEventListener('DOMContentLoaded', function() {
+      initializeAnalyticsPlatform();
+  });
+
+  function initializeAnalyticsPlatform() {
+      console.log('📊 Analytics Platform initialized');
+      
+      // Initialize mini charts
+      initializeMiniCharts();
+      
+      // Initialize chart controls
+      initializeChartControls();
+      
+      // Start real-time updates
+      startRealTimeUpdates();
+      
+      // Track page view
+      analytics.track('analytics_platform_view', {
+          timestamp: new Date().toISOString(),
+          userAgent: navigator.userAgent
+      });
+  }
+
+  function initializeMiniCharts() {
+      // Generate mini chart bars for each metric card
+      const charts = ['productionChart', 'revenueChart', 'efficiencyChart', 'safetyChart'];
+      
+      charts.forEach(chartId => {
+          const chartContainer = document.getElementById(chartId);
+          if (chartContainer) {
+              generateMiniChart(chartContainer);
+          }
+      });
+  }
+
+  function generateMiniChart(container) {
+      // Clear existing content
+      container.innerHTML = '';
+      
+      // Generate random data for demo
+      const dataPoints = 12;
+      const maxHeight = 50;
+      
+      for (let i = 0; i < dataPoints; i++) {
+          const bar = document.createElement('div');
+          bar.className = 'chart-bar';
+          
+          // Random height between 20% and 100%
+          const height = Math.random() * 0.8 + 0.2;
+          bar.style.height = (height * maxHeight) + 'px';
+          bar.style.left = (i * (100 / dataPoints)) + '%';
+          
+          // Add hover effect
+          bar.addEventListener('mouseenter', function() {
+              this.style.background = 'linear-gradient(to top, var(--sesmine-gold), var(--sesmine-copper))';
+          });
+          
+          bar.addEventListener('mouseleave', function() {
+              this.style.background = 'linear-gradient(to top, var(--sesmine-accent), var(--sesmine-emerald))';
+          });
+          
+          container.appendChild(bar);
+      }
+  }
+
+  function initializeChartControls() {
+      const chartButtons = document.querySelectorAll('.chart-btn');
+      
+      chartButtons.forEach(button => {
+          button.addEventListener('click', function() {
+              // Remove active class from all buttons
+              chartButtons.forEach(btn => btn.classList.remove('active'));
+              
+              // Add active class to clicked button
+              this.classList.add('active');
+              
+              // Update chart data
+              const period = this.getAttribute('data-period');
+              updateMainChart(period);
+              
+              // Track interaction
+              analytics.track('chart_period_change', {
+                  period: period,
+                  timestamp: new Date().toISOString()
+              });
+          });
+      });
+  }
+
+  function updateMainChart(period) {
+      const chartContainer = document.getElementById('mainChart');
+      const placeholder = chartContainer.querySelector('.chart-placeholder');
+      
+      if (placeholder) {
+          // Show loading state
+          placeholder.innerHTML = `
+              <i class="fas fa-spinner fa-spin" style="font-size: 3rem; color: var(--sesmine-accent); margin-bottom: 1rem;"></i>
+              <div>Loading ${period} data...</div>
+          `;
+          
+          // Simulate data loading
+          setTimeout(() => {
+              placeholder.innerHTML = `
+                  <i class="fas fa-chart-area" style="font-size: 4rem; color: var(--sesmine-accent); margin-bottom: 1rem;"></i>
+                  <div style="color: var(--sesmine-primary); font-weight: 600;">Production Analytics - ${period}</div>
+                  <div style="font-size: 0.9rem; color: var(--gray-600); margin-top: 0.5rem;">
+                      Interactive chart would display ${period} production data
+                  </div>
+              `;
+          }, 1000);
+      }
+  }
+
+  function startRealTimeUpdates() {
+      // Update metrics every 30 seconds
+      setInterval(() => {
+          updateRealTimeMetrics();
+      }, 30000);
+      
+      console.log('🔄 Real-time updates started');
+  }
+
+  function updateRealTimeMetrics() {
+      // Simulate real-time metric updates
+      const metrics = document.querySelectorAll('.metric-value');
+      
+      metrics.forEach((metric, index) => {
+          const currentValue = metric.textContent;
+          
+          // Add subtle animation
+          metric.style.transform = 'scale(1.05)';
+          metric.style.color = 'var(--sesmine-gold)';
+          
+          setTimeout(() => {
+              metric.style.transform = 'scale(1)';
+              metric.style.color = 'var(--sesmine-primary)';
+          }, 300);
+      });
+      
+      // Regenerate mini charts with new data
+      setTimeout(() => {
+          initializeMiniCharts();
+      }, 500);
+  }
+
+  // Analytics tool functions
+  function openPredictiveModeling() {
+      analytics.track('analytics_tool_access', { tool: 'predictive_modeling' });
+      showNotification('🔮 Opening Predictive Modeling Suite...', 'info');
+      
+      // Simulate tool loading
+      setTimeout(() => {
+          showNotification('🤖 Machine Learning models loaded successfully', 'success');
+      }, 2000);
+  }
+
+  function openRealTimeMonitoring() {
+      analytics.track('analytics_tool_access', { tool: 'real_time_monitoring' });
+      showNotification('📡 Connecting to real-time data streams...', 'info');
+      
+      setTimeout(() => {
+          showNotification('✅ Real-time monitoring dashboard active', 'success');
+      }, 1500);
+  }
+
+  function openDataVisualization() {
+      analytics.track('analytics_tool_access', { tool: 'data_visualization' });
+      showNotification('📊 Loading interactive visualization tools...', 'info');
+      
+      setTimeout(() => {
+          showNotification('🎨 Visualization studio ready', 'success');
+      }, 1800);
+  }
+
+  function openPerformanceAnalytics() {
+      analytics.track('analytics_tool_access', { tool: 'performance_analytics' });
+      showNotification('🎯 Initializing performance analysis engine...', 'info');
+      
+      setTimeout(() => {
+          showNotification('📈 Performance benchmarks loaded', 'success');
+      }, 2200);
+  }
+
+  function openBusinessIntelligence() {
+      analytics.track('analytics_tool_access', { tool: 'business_intelligence' });
+      showNotification('🧠 Loading business intelligence suite...', 'info');
+      
+      setTimeout(() => {
+          showNotification('💼 BI dashboard ready for analysis', 'success');
+      }, 2500);
+  }
+
+  function openDataIntegration() {
+      analytics.track('analytics_tool_access', { tool: 'data_integration' });
+      showNotification('🔗 Checking data source connections...', 'info');
+      
+      setTimeout(() => {
+          showNotification('🔌 All data sources synchronized', 'success');
+      }, 1200);
+  }
+
+  // Simulate data source status updates
+  function updateDataSourceStatus() {
+      const sources = document.querySelectorAll('.source-status');
+      
+      sources.forEach(source => {
+          // Randomly update status for demo
+          if (Math.random() < 0.1) { // 10% chance of status change
+              const statuses = ['status-connected', 'status-syncing', 'status-error'];
+              const statusTexts = ['Connected', 'Syncing', 'Error'];
+              const randomIndex = Math.floor(Math.random() * statuses.length);
+              
+              source.className = 'source-status ' + statuses[randomIndex];
+              source.textContent = statusTexts[randomIndex];
+          }
+      });
+  }
+
+  // Update data source status every 2 minutes
+  setInterval(updateDataSourceStatus, 120000);
+
+  // Initialize real-time data simulation
+  setTimeout(() => {
+      console.log('📊 Analytics Platform fully loaded');
+      console.log('🔄 Real-time data streaming active');
+      console.log('🤖 Predictive models ready');
+      console.log('📈 Performance monitoring enabled');
+  }, 1000);
+
+  console.log('📊 Analytics Platform ready');
+  console.log('📡 Real-time monitoring active');
+  console.log('🔮 Predictive analytics enabled');
+  console.log('📈 Performance dashboards loaded');
+  </script>
+</body>
+</html>

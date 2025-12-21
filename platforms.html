@@ -1,0 +1,1758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Platforms - SESMine Ecosystem</title>
+  <meta name="description" content="Explore SESMine's comprehensive platform ecosystem - Integrations, APIs, and enterprise solutions">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/x-icon" href="https://www.sesmine.com/favicon.ico">
+  
+  <style>
+  /* Platforms page specific styles */
+  .platforms-hero {
+      background: linear-gradient(135deg, var(--sesmine-secondary) 0%, var(--primary-600) 50%, var(--sesmine-primary) 100%);
+      color: white;
+      padding: 5rem 0;
+      margin-bottom: 4rem;
+      position: relative;
+      overflow: hidden;
+  }
+  
+  .platforms-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="platforms-pattern" width="40" height="40" patternUnits="userSpaceOnUse"><rect x="15" y="15" width="10" height="10" fill="rgba(255,255,255,0.1)" rx="2"/><circle cx="8" cy="8" r="2" fill="rgba(255,255,255,0.05)"/><circle cx="32" cy="32" r="2" fill="rgba(255,255,255,0.08)"/><line x1="20" y1="5" x2="20" y2="35" stroke="rgba(255,255,255,0.03)" stroke-width="1"/><line x1="5" y1="20" x2="35" y2="20" stroke="rgba(255,255,255,0.04)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23platforms-pattern)"/></svg>');
+      opacity: 0.3;
+  }
+  
+  .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      text-align: center;
+  }
+  
+  .hero-icon {
+      width: 120px;
+      height: 120px;
+      background: linear-gradient(135deg, var(--sesmine-gold), var(--sesmine-copper));
+      border-radius: var(--border-radius-2xl);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      margin: 0 auto 2.5rem;
+      box-shadow: var(--shadow-2xl);
+      animation: platformsOrbit 8s linear infinite;
+  }
+  
+  @keyframes platformsOrbit {
+      0% { 
+          transform: rotate(0deg) scale(1);
+          box-shadow: var(--shadow-2xl), 0 0 0 0 rgba(214, 158, 46, 0.7);
+      }
+      25% { 
+          transform: rotate(90deg) scale(1.05);
+          box-shadow: var(--shadow-2xl), 0 0 0 15px rgba(214, 158, 46, 0.3);
+      }
+      50% { 
+          transform: rotate(180deg) scale(1);
+          box-shadow: var(--shadow-2xl), 0 0 0 25px rgba(214, 158, 46, 0);
+      }
+      75% { 
+          transform: rotate(270deg) scale(1.05);
+          box-shadow: var(--shadow-2xl), 0 0 0 15px rgba(214, 158, 46, 0.3);
+      }
+      100% { 
+          transform: rotate(360deg) scale(1);
+          box-shadow: var(--shadow-2xl), 0 0 0 0 rgba(214, 158, 46, 0.7);
+      }
+  }
+  
+  .hero-title {
+      font-size: 4rem;
+      font-weight: 800;
+      margin-bottom: 2rem;
+      background: linear-gradient(135deg, white, rgba(255, 255, 255, 0.8), var(--sesmine-gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.1;
+  }
+  
+  .hero-subtitle {
+      font-size: 1.75rem;
+      opacity: 0.9;
+      margin-bottom: 3rem;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.4;
+  }
+  
+  .platform-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+  }
+  
+  .platform-stat {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: var(--border-radius-xl);
+      padding: 2rem;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: var(--transition-all);
+      text-align: center;
+  }
+  
+  .platform-stat:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-4px);
+  }
+  
+  .stat-value {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      font-family: var(--font-mono);
+      color: var(--sesmine-gold);
+  }
+  
+  .stat-label {
+      font-size: 1rem;
+      opacity: 0.9;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+  }
+  
+  .ecosystem-section {
+      background: linear-gradient(135deg, var(--primary-50), var(--success-50));
+      border-radius: var(--border-radius-2xl);
+      padding: 5rem 3rem;
+      margin: 4rem 0;
+      border: 1px solid var(--primary-200);
+      position: relative;
+      overflow: hidden;
+  }
+  
+  .ecosystem-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="ecosystem-pattern" width="60" height="60" patternUnits="userSpaceOnUse"><circle cx="30" cy="30" r="3" fill="rgba(49,130,206,0.05)"/><rect x="25" y="25" width="10" height="2" fill="rgba(34,197,94,0.03)" rx="1"/><circle cx="15" cy="45" r="2" fill="rgba(49,130,206,0.04)"/><circle cx="45" cy="15" r="2" fill="rgba(34,197,94,0.06)"/></pattern></defs><rect width="100" height="100" fill="url(%23ecosystem-pattern)"/></svg>');
+      opacity: 0.3;
+  }
+  
+  .ecosystem-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+  }
+  
+  .ecosystem-title {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--sesmine-primary);
+      margin-bottom: 2rem;
+  }
+  
+  .ecosystem-subtitle {
+      font-size: 1.5rem;
+      color: var(--gray-700);
+      margin-bottom: 4rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+  }
+  
+  .ecosystem-diagram {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto 4rem;
+      height: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+  
+  .central-hub {
+      width: 150px;
+      height: 150px;
+      background: linear-gradient(135deg, var(--sesmine-primary), var(--sesmine-secondary));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 3rem;
+      font-weight: 800;
+      box-shadow: var(--shadow-2xl);
+      position: relative;
+      z-index: 10;
+      animation: centralPulse 4s ease-in-out infinite;
+  }
+  
+  @keyframes centralPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+  }
+  
+  .platform-node {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      font-weight: 700;
+      box-shadow: var(--shadow-lg);
+      cursor: pointer;
+      transition: var(--transition-all);
+      animation: nodeFloat 6s ease-in-out infinite;
+  }
+  
+  .platform-node:hover {
+      transform: scale(1.2);
+      z-index: 20;
+  }
+  
+  @keyframes nodeFloat {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+  }
+  
+  .node-1 { 
+      top: 50px; 
+      left: 50%; 
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, var(--sesmine-accent), var(--sesmine-secondary));
+      animation-delay: -1s;
+  }
+  .node-2 { 
+      top: 150px; 
+      right: 50px;
+      background: linear-gradient(135deg, var(--success-500), var(--sesmine-emerald));
+      animation-delay: -2s;
+  }
+  .node-3 { 
+      bottom: 150px; 
+      right: 50px;
+      background: linear-gradient(135deg, var(--warning-500), var(--sesmine-gold));
+      animation-delay: -3s;
+  }
+  .node-4 { 
+      bottom: 50px; 
+      left: 50%; 
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, var(--danger-500), var(--danger-600));
+      animation-delay: -4s;
+  }
+  .node-5 { 
+      top: 150px; 
+      left: 50px;
+      background: linear-gradient(135deg, var(--primary-500), var(--primary-600));
+      animation-delay: -5s;
+  }
+  .node-6 { 
+      bottom: 150px; 
+      left: 50px;
+      background: linear-gradient(135deg, var(--sesmine-copper), var(--warning-600));
+      animation-delay: -6s;
+  }
+  
+  .connection-line {
+      position: absolute;
+      background: linear-gradient(90deg, var(--sesmine-gold), transparent);
+      height: 2px;
+      z-index: 1;
+      animation: connectionPulse 3s ease-in-out infinite;
+  }
+  
+  @keyframes connectionPulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.8; }
+  }
+  
+  .platforms-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2.5rem;
+      margin-bottom: 4rem;
+  }
+  
+  .platform-card {
+      background: white;
+      border-radius: var(--border-radius-xl);
+      padding: 3rem;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--gray-200);
+      transition: var(--transition-all);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+  }
+  
+  .platform-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, var(--sesmine-accent), var(--sesmine-secondary), var(--sesmine-gold));
+  }
+  
+  .platform-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-2xl);
+      border-color: var(--sesmine-accent);
+  }
+  
+  .platform-header {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+  }
+  
+  .platform-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: var(--border-radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      color: white;
+      box-shadow: var(--shadow-lg);
+      transition: var(--transition-transform);
+      flex-shrink: 0;
+  }
+  
+  .platform-card:hover .platform-icon {
+      transform: scale(1.1) rotate(10deg);
+  }
+  
+  .platform-info {
+      flex: 1;
+  }
+  
+  .platform-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--sesmine-primary);
+      margin-bottom: 0.75rem;
+  }
+  
+  .platform-category {
+      color: var(--sesmine-copper);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+  }
+  
+  .platform-description {
+      color: var(--gray-600);
+      line-height: 1.6;
+      margin-bottom: 2rem;
+      font-size: 1rem;
+  }
+  
+  .platform-features {
+      margin-bottom: 2rem;
+  }
+  
+  .features-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--sesmine-primary);
+      margin-bottom: 1rem;
+  }
+  
+  .features-list {
+      list-style: none;
+  }
+  
+  .features-list li {
+      padding: 0.5rem 0;
+      color: var(--gray-700);
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+  }
+  
+  .feature-icon {
+      width: 16px;
+      height: 16px;
+      color: var(--sesmine-emerald);
+      flex-shrink: 0;
+  }
+  
+  .platform-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      background: var(--gray-50);
+      border-radius: var(--border-radius-lg);
+      border: 1px solid var(--gray-200);
+  }
+  
+  .metric-item {
+      text-align: center;
+  }
+  
+  .metric-value {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--sesmine-primary);
+      margin-bottom: 0.25rem;
+      font-family: var(--font-mono);
+  }
+  
+  .metric-label {
+      font-size: 0.8rem;
+      color: var(--gray-600);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+  }
+  
+  .platform-actions {
+      display: flex;
+      gap: 1rem;
+  }
+  
+  .action-btn {
+      flex: 1;
+      padding: 1rem;
+      border: 2px solid var(--gray-300);
+      background: white;
+      color: var(--gray-700);
+      border-radius: var(--border-radius-md);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition-all);
+      text-align: center;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+  }
+  
+  .action-btn:hover {
+      border-color: var(--sesmine-accent);
+      color: var(--sesmine-accent);
+  }
+  
+  .action-btn.primary {
+      background: var(--sesmine-accent);
+      border-color: var(--sesmine-accent);
+      color: white;
+  }
+  
+  .action-btn.primary:hover {
+      background: var(--sesmine-secondary);
+      border-color: var(--sesmine-secondary);
+  }
+  
+  .integrations-section {
+      background: var(--gray-900);
+      color: white;
+      border-radius: var(--border-radius-2xl);
+      padding: 5rem 3rem;
+      margin: 5rem 0;
+      position: relative;
+      overflow: hidden;
+  }
+  
+  .integrations-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="integrations-pattern" width="50" height="50" patternUnits="userSpaceOnUse"><rect x="20" y="20" width="10" height="10" fill="rgba(214,158,46,0.1)" rx="2"/><circle cx="10" cy="40" r="2" fill="rgba(214,158,46,0.05)"/><circle cx="40" cy="10" r="2" fill="rgba(214,158,46,0.08)"/><line x1="25" y1="5" x2="25" y2="45" stroke="rgba(214,158,46,0.03)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23integrations-pattern)"/></svg>');
+      opacity: 0.3;
+  }
+  
+  .integrations-content {
+      position: relative;
+      z-index: 1;
+  }
+  
+  .integrations-header {
+      text-align: center;
+      margin-bottom: 4rem;
+  }
+  
+  .integrations-title {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, white, var(--sesmine-gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+  }
+  
+  .integrations-subtitle {
+      font-size: 1.25rem;
+      opacity: 0.9;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
+  }
+  
+  .integrations-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+  }
+  
+  .integration-card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: var(--border-radius-lg);
+      padding: 2rem;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      text-align: center;
+      transition: var(--transition-all);
+      cursor: pointer;
+  }
+  
+  .integration-card:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-6px);
+      border-color: var(--sesmine-gold);
+  }
+  
+  .integration-logo {
+      width: 80px;
+      height: 80px;
+      background: var(--sesmine-gold);
+      border-radius: var(--border-radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gray-900);
+      font-size: 2rem;
+      font-weight: 800;
+      margin: 0 auto 1.5rem;
+      box-shadow: var(--shadow-md);
+      transition: var(--transition-transform);
+  }
+  
+  .integration-card:hover .integration-logo {
+      transform: scale(1.1);
+  }
+  
+  .integration-name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+  }
+  
+  .integration-type {
+      color: var(--sesmine-gold);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+  }
+  
+  .integration-description {
+      font-size: 0.9rem;
+      opacity: 0.8;
+      line-height: 1.5;
+  }
+  
+  .api-section {
+      background: linear-gradient(135deg, var(--warning-50), var(--primary-50));
+      border-radius: var(--border-radius-2xl);
+      padding: 4rem 3rem;
+      margin: 4rem 0;
+      border: 1px solid var(--warning-200);
+  }
+  
+  .api-header {
+      text-align: center;
+      margin-bottom: 3rem;
+  }
+  
+  .api-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--sesmine-primary);
+      margin-bottom: 1rem;
+  }
+  
+  .api-subtitle {
+      font-size: 1.25rem;
+      color: var(--gray-600);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+  }
+  
+  .api-demo {
+      background: var(--gray-900);
+      border-radius: var(--border-radius-xl);
+      padding: 2rem;
+      color: var(--sesmine-gold);
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      overflow-x: auto;
+      position: relative;
+  }
+  
+  .api-demo::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 30px;
+      background: linear-gradient(90deg, var(--danger-500), var(--warning-500), var(--success-500));
+      border-radius: var(--border-radius-xl) var(--border-radius-xl) 0 0;
+  }
+  
+  .api-content {
+      margin-top: 1.5rem;
+  }
+  
+  .api-endpoint {
+      color: var(--sesmine-accent);
+      font-weight: 700;
+  }
+  
+  .api-method {
+      color: var(--sesmine-emerald);
+      font-weight: 700;
+  }
+  
+  .api-response {
+      color: var(--warning-400);
+  }
+  
+  @media (max-width: 1024px) {
+      .platforms-grid {
+          grid-template-columns: 1fr;
+      }
+      
+      .ecosystem-diagram {
+          height: 400px;
+      }
+      
+      .platform-node {
+          width: 80px;
+          height: 80px;
+          font-size: 1.2rem;
+      }
+      
+      .central-hub {
+          width: 120px;
+          height: 120px;
+          font-size: 2.5rem;
+      }
+  }
+  
+  @media (max-width: 768px) {
+      .hero-title {
+          font-size: 2.5rem;
+      }
+      
+      .hero-subtitle {
+          font-size: 1.25rem;
+      }
+      
+      .platform-stats {
+          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      }
+      
+      .ecosystem-title {
+          font-size: 2rem;
+      }
+      
+      .ecosystem-subtitle {
+          font-size: 1.25rem;
+      }
+      
+      .platform-header {
+          flex-direction: column;
+          text-align: center;
+      }
+      
+      .platform-actions {
+          flex-direction: column;
+      }
+      
+      .platform-metrics {
+          grid-template-columns: 1fr;
+      }
+      
+      .integrations-grid {
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+  }
+  </style>
+</head>
+<body>
+  <!-- Universal Navigation Header -->
+  <header class="sesmine-header" id="sesmineHeader">
+      <div class="header-content">
+          <div class="logo-section">
+              <button class="header-btn mobile-menu-toggle" id="mobileMenuToggle">
+                  <i class="fas fa-bars"></i>
+              </button>
+              <a href="index.html" class="logo">
+                  <div class="logo-icon">🏔️</div>
+                  <div class="logo-text">
+                      <div class="logo-main">SESMine</div>
+                      <div class="logo-subtitle">Smart Engineering Solutions</div>
+                  </div>
+              </a>
+          </div>
+          
+          <nav class="main-nav" id="mainNav">
+              <a href="home.html" class="nav-link">
+                  <i class="fas fa-home"></i> Dashboard
+              </a>
+              <div class="nav-dropdown">
+                  <button class="nav-link dropdown-toggle">
+                      <i class="fas fa-th-large"></i> Hubs <i class="fas fa-chevron-down"></i>
+                  </button>
+                  <div class="dropdown-menu">
+                      <a href="engineering-hub.html" class="dropdown-item">
+                          <i class="fas fa-hard-hat"></i> Engineering Hub
+                      </a>
+                      <a href="analytics-platform.html" class="dropdown-item">
+                          <i class="fas fa-chart-area"></i> Analytics Platform
+                      </a>
+                      <a href="economics-hub.html" class="dropdown-item">
+                          <i class="fas fa-coins"></i> Economics Hub
+                      </a>
+                      <a href="innovation-technology-hub.html" class="dropdown-item">
+                          <i class="fas fa-rocket"></i> Innovation & Technology
+                      </a>
+                      <a href="procurement-hub.html" class="dropdown-item">
+                          <i class="fas fa-truck"></i> Procurement Hub
+                      </a>
+                      <a href="consulting-hub.html" class="dropdown-item">
+                          <i class="fas fa-user-tie"></i> Consulting Hub
+                      </a>
+                      <a href="training-education-hub.html" class="dropdown-item">
+                          <i class="fas fa-graduation-cap"></i> Training & Education
+                      </a>
+                      <a href="admin-dashboard.html" class="dropdown-item">
+                          <i class="fas fa-shield-alt"></i> Admin Dashboard
+                      </a>
+                  </div>
+              </div>
+              <a href="platforms.html" class="nav-link active">
+                  <i class="fas fa-layer-group"></i> Platforms
+              </a>
+              <a href="features.html" class="nav-link">
+                  <i class="fas fa-star"></i> Features
+              </a>
+              <a href="about.html" class="nav-link">
+                  <i class="fas fa-info-circle"></i> About
+              </a>
+              <a href="contact.html" class="nav-link">
+                  <i class="fas fa-phone"></i> Contact
+              </a>
+          </nav>
+          
+          <div class="header-actions">
+              <div class="search-container">
+                  <i class="fas fa-search search-icon"></i>
+                  <input type="text" class="search-input" placeholder="Search platforms..." id="globalSearch">
+              </div>
+              <button class="header-btn" title="Notifications">
+                  <i class="fas fa-bell"></i>
+              </button>
+              <button class="header-btn" title="Settings" onclick="window.location.href='setting.html'">
+                  <i class="fas fa-cog"></i>
+              </button>
+              <div class="user-menu">
+                  <div class="user-avatar">MS</div>
+                  <div class="user-info">
+                      <div class="user-name">Mining Specialist</div>
+                      <div class="user-email">specialist@sesmine.com</div>
+                  </div>
+                  <div class="user-dropdown">
+                      <a href="setting.html" class="dropdown-item">
+                          <i class="fas fa-cog"></i> Settings
+                      </a>
+                      <a href="login.html" class="dropdown-item">
+                          <i class="fas fa-sign-out-alt"></i> Logout
+                      </a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+      <!-- Platforms Hero Section -->
+      <section class="platforms-hero">
+          <div class="hero-content">
+              <div class="hero-icon">🌐</div>
+              <h1 class="hero-title">Platform Ecosystem</h1>
+              <p class="hero-subtitle">
+                  Discover the comprehensive SESMine ecosystem - integrated platforms, 
+                  powerful APIs, and seamless connections to transform your mining operations.
+              </p>
+              
+              <div class="platform-stats">
+                  <div class="platform-stat">
+                      <div class="stat-value">8</div>
+                      <div class="stat-label">Core Platforms</div>
+                  </div>
+                  <div class="platform-stat">
+                      <div class="stat-value">50+</div>
+                      <div class="stat-label">Integrations</div>
+                  </div>
+                  <div class="platform-stat">
+                      <div class="stat-value">99.9%</div>
+                      <div class="stat-label">Uptime</div>
+                  </div>
+                  <div class="platform-stat">
+                      <div class="stat-value">24/7</div>
+                      <div class="stat-label">Support</div>
+                  </div>
+              </div>
+          </div>
+      </section>
+
+      <div class="content-container">
+          <!-- Ecosystem Overview -->
+          <section class="ecosystem-section">
+              <div class="ecosystem-content">
+                  <h2 class="ecosystem-title">Integrated Ecosystem</h2>
+                  <p class="ecosystem-subtitle">
+                      All SESMine platforms work together seamlessly, sharing data and insights 
+                      to provide a unified mining intelligence experience.
+                  </p>
+                  
+                  <div class="ecosystem-diagram">
+                      <div class="central-hub">SM</div>
+                      
+                      <div class="platform-node node-1" onclick="explorePlatform('Engineering Hub')" title="Engineering Hub">
+                          🔧
+                      </div>
+                      <div class="platform-node node-2" onclick="explorePlatform('Analytics Platform')" title="Analytics Platform">
+                          📊
+                      </div>
+                      <div class="platform-node node-3" onclick="explorePlatform('Economics Hub')" title="Economics Hub">
+                          💰
+                      </div>
+                      <div class="platform-node node-4" onclick="explorePlatform('Innovation Hub')" title="Innovation Hub">
+                          🚀
+                      </div>
+                      <div class="platform-node node-5" onclick="explorePlatform('Procurement Hub')" title="Procurement Hub">
+                          🚛
+                      </div>
+                      <div class="platform-node node-6" onclick="explorePlatform('Training Hub')" title="Training Hub">
+                          🎓
+                      </div>
+                      
+                      <!-- Connection lines would be added via JavaScript for dynamic positioning -->
+                  </div>
+                  
+                  <p style="text-align: center; font-size: 1.1rem; color: var(--gray-600); margin-top: 2rem;">
+                      Click on any platform node to explore its capabilities and integrations
+                  </p>
+              </div>
+          </section>
+
+          <!-- Core Platforms -->
+          <section class="platforms-grid">
+              <div class="platform-card" onclick="openPlatform('Engineering Hub')">
+                  <div class="platform-header">
+                      <div class="platform-icon" style="background: linear-gradient(135deg, var(--sesmine-accent), var(--sesmine-secondary));">
+                          🔧
+                      </div>
+                      <div class="platform-info">
+                          <h3 class="platform-title">Engineering Hub</h3>
+                          <p class="platform-category">Core Engineering</p>
+                      </div>
+                  </div>
+                  
+                  <p class="platform-description">
+                      Professional engineering tools following AACE standards for cost estimation, 
+                      mine planning, equipment sizing, and technical analysis.
+                  </p>
+                  
+                  <div class="platform-features">
+                      <h4 class="features-title">Key Features</h4>
+                      <ul class="features-list">
+                          <li><i class="fas fa-check feature-icon"></i>AACE Cost Estimation</li>
+                          <li><i class="fas fa-check feature-icon"></i>3D Mine Planning</li>
+                          <li><i class="fas fa-check feature-icon"></i>Equipment Database</li>
+                          <li><i class="fas fa-check feature-icon"></i>Technical Reports</li>
+                      </ul>
+                  </div>
+                  
+                  <div class="platform-metrics">
+                      <div class="metric-item">
+                          <div class="metric-value">15+</div>
+                          <div class="metric-label">Tools</div>
+                      </div>
+                      <div class="metric-item">
+                          <div class="metric-value">500+</div>
+                          <div class="metric-label">Projects</div>
+                      </div>
+                      <div class="metric-item">
+                          <div class="metric-value">98%</div>
+                          <div class="metric-label">Accuracy</div>
+                      </div>
+                  </div>
+                  
+                  <div class="platform-actions">
+                      <button class="action-btn primary">
+                          <i class="fas fa-rocket"></i>
+                          Launch Platform
+                      </button>
+                      <button class="action-btn">
+                          <i class="fas fa-info-circle"></i>
+                          Learn More
+                      </button>
+                  </div>
+              </div>
+
+              <div class="platform-card" onclick="openPlatform('Analytics Platform')">
+                  <div class="platform-header">
+                      <div class="platform-icon" style="background: linear-gradient(135deg, var(--primary-500), var(--primary-600));">
+                          📊
+                      </div>
+                      <div class="platform-info">
+                          <h3 class="platform-title">Analytics Platform</h3>
+                          <p class="platform-category">Business Intelligence</p>
+                      </div>
+                  </div>
+                  
+                  <p class="platform-description">
+                      Advanced analytics and AI-powered insights for operational optimization, 
+                      predictive maintenance, and data-driven decision making.
+                  </p>
+                  
+                  <div class="platform-features">
+                      <h4 class="features-title">Key Features</h4>
+                      <ul class="features-list">
+                          <li><i class="fas fa-check feature-icon"></i>Real-time Dashboards</li>
+                          <li><i class="fas fa-check feature-icon"></i>Predictive Analytics</li>
+                          <li><i class="fas fa-check feature-icon"></i>Machine Learning</li>
+                          <li><i class="fas fa-check feature-icon"></i>Custom Reports</li>
+                      </ul>
+                  </div>
+                  
+                  <div class="platform-metrics">
+                      <div class="metric-item">
+                          <div class="metric-value">12+</div>
+                          <div class="metric-label">Models</div>
+                      </div>
+                      <div class="metric-item">
+                          <div class="metric-value">1M+</div>
+                          <div class="metric-label">Data Points</div>
+                      </div>
+                      <div class="metric-item">
+                          <div class="metric-value">95%</div>
+                          <div class="metric-label">Accuracy</div>
+                      </div>
+                  </div>
+                  
+                  <div class="platform-actions">
+                      <button class="action-btn primary">
+                          <i class="fas fa-chart-area"></i>
+                          View Analytics
+                      </button>
+                      <button class="action-btn">
+                          <i class="fas fa-play"></i>
+                          Demo
+                      </button>
+                  </div>
+              </div>
+
+              <div class="platform-card" onclick="openPlatform('Economics Hub')">
+                  <div class="platform-header">
+                      <div class="platform-icon" style="background: linear-gradient(135deg, var(--warning-500), var(--sesmine-gold));">
+                          💰
+                      </div>
+                      <div class="platform-info">
+                          <h3 class="platform-title">Economics Hub</h3>
+                          <p class="platform-category">Financial Analysis</p>
+                      </div>
+                  </div>
+                  
+                  <p class="platform-description">
+                      Comprehensive financial modeling, market intelligence, and economic analysis 
+                      tools for mining project evaluation and investment decisions.
+                  </p>
+                  
+                  <div class="platform-features">
+                      <h4 class="features-title">Key Features</h4>
+                      <ul class="features-list">
+                          <li><i class="fas fa-check feature-icon"></i>NPV/IRR Calculators</li>
+                          <li><i class="fas fa-check feature-icon"></i>Market Intelligence</li>
+                          <li><i class="fas fa-check feature-icon"></i>Risk Analysis</li>
+                          <li><i class="fas fa-check feature-icon"></i>Financial Models</li>
+                      </ul>
+                  </div>
+                  
+                  <div class="platform-metrics">
+                      <div class="metric-item">
+                          <div class="metric-value">10+</div>
+                          <div class="metric-label">Models</div>
+                      </div>
+                      <div class="metric-item">
+                          <div class="metric-value">$50B+</div>
+                          <div class="metric-label">Analyzed</div>
+                      </div>
+                      <div class="metric-item">
+                          <div class="metric-value">92%</div>
+                          <div class="metric-label">ROI Accuracy</div>
+                      </div>
+                  </div>
+                  
+                  <div class="platform-actions">
+                      <button class="action-btn primary">
+                          <i class="fas fa-calculator"></i>
+                          Financial Tools
+                      </button>
+                      <button class="action-btn">
+                          <i class="fas fa-chart-line"></i>
+                          Market Data
+                      </button>
+                  </div>
+              </div>
+
+              <div class="platform-card" onclick="openPlatform('Innovation Hub')">
+                  <div class="platform-header">
+                      <div class="platform-icon" style="background: linear-gradient(135deg, var(--danger-500), var(--danger-600));">
+                          🚀
+                      </div>
+                      <div class="platform-info">
+                          <h3 class="platform-title">Innovation & Technology Hub</h3>
+                          <p class="platform-category">Digital Transformation</p>
+                      </div>
+                  </div>
+                  
+                  <p class="platform-description">
+                      Cutting-edge technology solutions including AI, IoT, blockchain, and VR/AR 
+                      for next-generation mining operations and digital transformation.
+                  </p>
+                  
+                  <div class="platform-features">
+                      <h4 class="features-title">Key Features</h4>
+                      <ul class="features-list">
+                          <li><i class="fas fa-check feature-icon"></i>AI & Machine Learning</li>
+                          <li><i class="fas fa-check feature-icon"></i>IoT Integration</li>
+                          <li><i class="fas fa-check feature-icon"></i>Blockchain Solutions</li>
+                          <li><i class="fas fa-check feature-icon"></i>VR/AR Applications</li>
+                      </ul>
+                  </div>
+                  
+                  <div class="platform-metrics">
+                      <div class="metric-item">
+                          <div class="metric-value">8+</div>
+                          <div class="metric-label">Technologies</div>
+                      </div>
+                      <div class="metric-item">
+                          <div class="metric-value">100+</div>
+                          <div class="metric-label">Implementations</div>
+                      </div>
+                      <div class="metric-item">
+                          <div class="metric-value">40%</div>
+                          <div class="metric-label">Efficiency Gain</div>
+                      </div>
+                  </div>
+                  
+                  <div class="platform-actions">
+                      <button class="action-btn primary">
+                          <i class="fas fa-robot"></i>
+                          Explore Tech
+                      </button>
+                      <button class="action-btn">
+                          <i class="fas fa-vr-cardboard"></i>
+                          VR Demo
+                      </button>
+                  </div>
+              </div>
+
+              <div class="platform-card" onclick="openPlatform('Procurement Hub')">
+                  <div class="platform-header">
+                      <div class="platform-icon" style="background: linear-gradient(135deg, var(--success-500), var(--sesmine-emerald));">
+                          🚛
+                      </div>
+                      <div class="platform-info">
+                          <h3 class="platform-title">Procurement Hub</h3>
+                          <p class="platform-category">Supply Chain</p>
+                      </div>
+                  </div>
+                  
+                  <p class="platform-description">
+                      End-to-end procurement and supply chain management with supplier networks, 
+                      RFQ systems, and logistics optimization for mining operations.
+                  </p>
+                  
+                  <div class="platform-features">
+                      <h4 class="features-title">Key Features</h4>
+                      <ul class="features-list">
+                          <li><i class="fas fa-check feature-icon"></i>Supplier Management</li>
+                          <li><i class="fas fa-check feature-icon"></i>RFQ System</li>
+                          <li><i class="fas fa-check feature-icon"></i>Logistics Optimization</li>
+                          <li><i class="fas fa-check feature-icon"></i>Contract Management</li>
+                      </ul>
+                  </div>
+                  
+                  <div class="platform-metrics">
+                      <div class="metric-item">
+                          <div class="metric-value">1000+</div>
+                          <div class="metric-label">Suppliers</div>
+                      </div>
+                      <div class="metric-item">
+                          <div class="metric-value">$2B+</div>
+                          <div class="metric-label">Transactions</div>
+                      </div>
+                      <div class="metric-item">
+                          <div class="metric-value">25%</div>
+                          <div class="metric-label">Cost Savings</div>
+                      </div>
+                  </div>
+                  
+                  <div class="platform-actions">
+                      <button class="action-btn primary">
+                          <i class="fas fa-shopping-cart"></i>
+                          Start Procurement
+                      </button>
+                      <button class="action-btn">
+                          <i class="fas fa-users"></i>
+                          Supplier Network
+                      </button>
+                  </div>
+              </div>
+
+                      <div class="platform-icon" style="background: linear-gradient(135deg, var(--sesmine-copper), var(--warning-600));">
+                          🎓
+                      </div>
+                      <div class="platform-info">
+                          <h3 class="platform-title">Training & Education Hub</h3>
+                          <p class="platform-category">Professional Development</p>
+                      </div>
+                  </div>
+                  
+                  <p class="platform-description">
+                      Comprehensive training programs, certification courses, and professional 
+                      development resources for mining professionals at all career levels.
+                  </p>
+                  
+                  <div class="platform-features">
+                      <h4 class="features-title">Key Features</h4>
+                      <ul class="features-list">
+                          <li><i class="fas fa-check feature-icon"></i>Online Courses</li>
+                          <li><i class="fas fa-check feature-icon"></i>Certification Programs</li>
+                          <li><i class="fas fa-check feature-icon"></i>Virtual Classrooms</li>
+                          <li><i class="fas fa-check feature-icon"></i>Expert Instructors</li>
+                      </ul>
+                  </div>
+                  
+                  <div class="platform-metrics">
+                      <div class="metric-item">
+                          <div class="metric-value">150+</div>
+                          <div class="metric-label">Courses</div>
+                      </div>
+                      <div class="metric-item">
+                          <div class="metric-value">25K+</div>
+                          <div class="metric-label">Students</div>
+                      </div>
+                      <div class="metric-item">
+                          <div class="metric-value">95%</div>
+                          <div class="metric-label">Completion</div>
+                      </div>
+                  </div>
+                  
+                  <div class="platform-actions">
+                      <button class="action-btn primary">
+                          <i class="fas fa-graduation-cap"></i>
+                          Browse Courses
+                      </button>
+                      <button class="action-btn">
+                          <i class="fas fa-certificate"></i>
+                          Certifications
+                      </button>
+                  </div>
+              </div>
+          </section>
+
+          <!-- Integrations Section -->
+          <section class="integrations-section">
+              <div class="integrations-content">
+                  <div class="integrations-header">
+                      <h2 class="integrations-title">Enterprise Integrations</h2>
+                      <p class="integrations-subtitle">
+                          Connect SESMine with your existing systems and tools for seamless data flow and enhanced productivity
+                      </p>
+                  </div>
+
+                  <div class="integrations-grid">
+                      <div class="integration-card" onclick="exploreIntegration('SAP')">
+                          <div class="integration-logo">SAP</div>
+                          <h4 class="integration-name">SAP ERP</h4>
+                          <p class="integration-type">Enterprise Resource Planning</p>
+                          <p class="integration-description">
+                              Full integration with SAP modules for finance, procurement, and operations management.
+                          </p>
+                      </div>
+
+                      <div class="integration-card" onclick="exploreIntegration('Oracle')">
+                          <div class="integration-logo">ORC</div>
+                          <h4 class="integration-name">Oracle Database</h4>
+                          <p class="integration-type">Database Management</p>
+                          <p class="integration-description">
+                              Direct connectivity to Oracle databases for real-time data synchronization and reporting.
+                          </p>
+                      </div>
+
+                      <div class="integration-card" onclick="exploreIntegration('Microsoft')">
+                          <div class="integration-logo">MS</div>
+                          <h4 class="integration-name">Microsoft 365</h4>
+                          <p class="integration-type">Productivity Suite</p>
+                          <p class="integration-description">
+                              Seamless integration with Office 365, Teams, and SharePoint for collaboration.
+                          </p>
+                      </div>
+
+                      <div class="integration-card" onclick="exploreIntegration('AutoCAD')">
+                          <div class="integration-logo">CAD</div>
+                          <h4 class="integration-name">AutoCAD</h4>
+                          <p class="integration-type">Design Software</p>
+                          <p class="integration-description">
+                              Import and export CAD drawings and 3D models for mine planning and design.
+                          </p>
+                      </div>
+
+                      <div class="integration-card" onclick="exploreIntegration('Salesforce')">
+                          <div class="integration-logo">SF</div>
+                          <h4 class="integration-name">Salesforce CRM</h4>
+                          <p class="integration-type">Customer Relationship</p>
+                          <p class="integration-description">
+                              Connect customer data and sales processes with mining project information.
+                          </p>
+                      </div>
+
+                      <div class="integration-card" onclick="exploreIntegration('AWS')">
+                          <div class="integration-logo">AWS</div>
+                          <h4 class="integration-name">Amazon Web Services</h4>
+                          <p class="integration-type">Cloud Infrastructure</p>
+                          <p class="integration-description">
+                              Leverage AWS cloud services for scalable computing and data storage.
+                          </p>
+                      </div>
+
+                      <div class="integration-card" onclick="exploreIntegration('Tableau')">
+                          <div class="integration-logo">TAB</div>
+                          <h4 class="integration-name">Tableau</h4>
+                          <p class="integration-type">Data Visualization</p>
+                          <p class="integration-description">
+                              Create advanced visualizations and dashboards with SESMine data.
+                          </p>
+                      </div>
+
+                      <div class="integration-card" onclick="exploreIntegration('Power BI')">
+                          <div class="integration-logo">PBI</div>
+                          <h4 class="integration-name">Power BI</h4>
+                          <p class="integration-type">Business Intelligence</p>
+                          <p class="integration-description">
+                              Build interactive reports and dashboards using Microsoft Power BI.
+                          </p>
+                      </div>
+                  </div>
+
+                  <div style="text-align: center; margin-top: 3rem;">
+                      <button class="btn btn-primary" style="background: var(--sesmine-gold); border-color: var(--sesmine-gold); color: var(--gray-900);" onclick="viewAllIntegrations()">
+                          <i class="fas fa-plug"></i>
+                          View All Integrations
+                      </button>
+                  </div>
+              </div>
+          </section>
+
+          <!-- API Section -->
+          <section class="api-section">
+              <div class="api-header">
+                  <h2 class="api-title">Developer API</h2>
+                  <p class="api-subtitle">
+                      Build custom applications and integrations with our comprehensive RESTful API
+                  </p>
+              </div>
+
+              <div class="api-demo">
+                  <div class="api-content">
+                      <div style="margin-bottom: 1rem;">
+                          <span class="api-method">GET</span> <span class="api-endpoint">https://api.sesmine.com/v1/projects</span>
+                      </div>
+                      <div style="margin-bottom: 1rem;">
+                          <span style="color: var(--gray-400);">Authorization: Bearer your_api_token</span>
+                      </div>
+                      <div style="margin-bottom: 2rem;">
+                          <span style="color: var(--gray-400);">Content-Type: application/json</span>
+                      </div>
+                      
+                      <div class="api-response">
+                      {
+                        "status": "success",
+                        "data": {
+                          "projects": [
+                            {
+                              "id": "proj_12345",
+                              "name": "Alpine Gold Mine",
+                              "type": "open_pit",
+                              "status": "active",
+                              "capex_estimate": 247500000,
+                              "opex_per_ton": 18.50,
+                              "created_at": "2024-01-15T10:30:00Z"
+                            }
+                          ],
+                          "total_count": 1,
+                          "page": 1
+                        }
+                      }
+                      </div>
+                  </div>
+              </div>
+
+              <div style="text-align: center; margin-top: 2rem;">
+                  <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                      <button class="btn btn-primary" onclick="openAPIDocumentation()">
+                          <i class="fas fa-book"></i>
+                          API Documentation
+                      </button>
+                      <button class="btn btn-secondary" onclick="getAPIKey()">
+                          <i class="fas fa-key"></i>
+                          Get API Key
+                      </button>
+                      <button class="btn btn-secondary" onclick="viewAPIExamples()">
+                          <i class="fas fa-code"></i>
+                          Code Examples
+                      </button>
+                  </div>
+              </div>
+          </section>
+      </div>
+  </main>
+
+  <script src="script.js"></script>
+  <script>
+  // Platforms page specific JavaScript
+  document.addEventListener('DOMContentLoaded', function() {
+      initializePlatformsPage();
+  });
+
+  function initializePlatformsPage() {
+      console.log('🌐 Platforms page initialized');
+      
+      // Initialize ecosystem diagram
+      initializeEcosystemDiagram();
+      
+      // Initialize platform animations
+      initializePlatformAnimations();
+      
+      // Track page view
+      analytics.track('platforms_page_view', {
+          timestamp: new Date().toISOString(),
+          userAgent: navigator.userAgent
+      });
+  }
+
+  function initializeEcosystemDiagram() {
+      // Add connection lines between nodes and central hub
+      const diagram = document.querySelector('.ecosystem-diagram');
+      const centralHub = document.querySelector('.central-hub');
+      const nodes = document.querySelectorAll('.platform-node');
+      
+      if (!diagram || !centralHub || !nodes.length) return;
+      
+      // Create connection lines
+      nodes.forEach((node, index) => {
+          const line = document.createElement('div');
+          line.className = 'connection-line';
+          line.style.animationDelay = `${index * 0.5}s`;
+          diagram.appendChild(line);
+          
+          // Position line between central hub and node
+          updateConnectionLine(line, centralHub, node);
+      });
+      
+      // Update lines on window resize
+      window.addEventListener('resize', () => {
+          const lines = document.querySelectorAll('.connection-line');
+          lines.forEach((line, index) => {
+              updateConnectionLine(line, centralHub, nodes[index]);
+          });
+      });
+  }
+
+  function updateConnectionLine(line, hub, node) {
+      const hubRect = hub.getBoundingClientRect();
+      const nodeRect = node.getBoundingClientRect();
+      const diagramRect = hub.parentElement.getBoundingClientRect();
+      
+      const hubCenterX = hubRect.left + hubRect.width / 2 - diagramRect.left;
+      const hubCenterY = hubRect.top + hubRect.height / 2 - diagramRect.top;
+      const nodeCenterX = nodeRect.left + nodeRect.width / 2 - diagramRect.left;
+      const nodeCenterY = nodeRect.top + nodeRect.height / 2 - diagramRect.top;
+      
+      const length = Math.sqrt(Math.pow(nodeCenterX - hubCenterX, 2) + Math.pow(nodeCenterY - hubCenterY, 2));
+      const angle = Math.atan2(nodeCenterY - hubCenterY, nodeCenterX - hubCenterX) * 180 / Math.PI;
+      
+      line.style.width = length + 'px';
+      line.style.left = hubCenterX + 'px';
+      line.style.top = hubCenterY + 'px';
+      line.style.transform = `rotate(${angle}deg)`;
+      line.style.transformOrigin = '0 50%';
+  }
+
+  function initializePlatformAnimations() {
+      const platformCards = document.querySelectorAll('.platform-card');
+      
+      platformCards.forEach(card => {
+          card.addEventListener('mouseenter', function() {
+              const icon = this.querySelector('.platform-icon');
+              if (icon) {
+                  icon.style.transform = 'scale(1.1) rotate(10deg)';
+              }
+          });
+          
+          card.addEventListener('mouseleave', function() {
+              const icon = this.querySelector('.platform-icon');
+              if (icon) {
+                  icon.style.transform = 'scale(1) rotate(0deg)';
+              }
+          });
+      });
+
+      // Integration card animations
+      const integrationCards = document.querySelectorAll('.integration-card');
+      
+      integrationCards.forEach(card => {
+          card.addEventListener('mouseenter', function() {
+              const logo = this.querySelector('.integration-logo');
+              if (logo) {
+                  logo.style.transform = 'scale(1.1)';
+              }
+          });
+          
+          card.addEventListener('mouseleave', function() {
+              const logo = this.querySelector('.integration-logo');
+              if (logo) {
+                  logo.style.transform = 'scale(1)';
+              }
+          });
+      });
+  }
+
+  function explorePlatform(platformName) {
+      analytics.track('ecosystem_node_click', { platform: platformName });
+      showNotification(`🔍 Exploring ${platformName}...`, 'info');
+      
+      setTimeout(() => {
+          showNotification(`✅ ${platformName} overview loaded`, 'success');
+      }, 1500);
+  }
+
+  function openPlatform(platformName) {
+      analytics.track('platform_launch', { platform: platformName });
+      showNotification(`🚀 Launching ${platformName}...`, 'info');
+      
+      // Simulate platform launch
+      setTimeout(() => {
+          const platformRoutes = {
+              'Engineering Hub': 'engineering-hub.html',
+              'Analytics Platform': 'analytics-platform.html',
+              'Economics Hub': 'economics-hub.html',
+              'Innovation Hub': 'innovation-technology-hub.html',
+              'Procurement Hub': 'procurement-hub.html',
+              'Training Hub': 'training-education-hub.html'
+          };
+          
+          const route = platformRoutes[platformName];
+          if (route) {
+              showNotification(`✅ ${platformName} ready - redirecting...`, 'success');
+              setTimeout(() => {
+                  window.location.href = route;
+              }, 1000);
+          } else {
+              showNotification(`✅ ${platformName} loaded successfully`, 'success');
+          }
+      }, 2000);
+  }
+
+  function exploreIntegration(integrationName) {
+      analytics.track('integration_explore', { integration: integrationName });
+      showNotification(`🔌 Loading ${integrationName} integration details...`, 'info');
+      
+      setTimeout(() => {
+          showNotification(`✅ ${integrationName} integration guide loaded`, 'success');
+      }, 1800);
+  }
+
+  function viewAllIntegrations() {
+      analytics.track('view_all_integrations', { timestamp: new Date().toISOString() });
+      showNotification('🔌 Loading complete integrations catalog...', 'info');
+      
+      setTimeout(() => {
+          showNotification('✅ 50+ integrations available - catalog loaded', 'success');
+      }, 2200);
+  }
+
+  function openAPIDocumentation() {
+      analytics.track('api_documentation_access', { timestamp: new Date().toISOString() });
+      showNotification('📚 Opening API documentation...', 'info');
+      
+      setTimeout(() => {
+          showNotification('✅ API documentation loaded - comprehensive guides available', 'success');
+      }, 1500);
+  }
+
+  function getAPIKey() {
+      analytics.track('api_key_request', { timestamp: new Date().toISOString() });
+      showNotification('🔑 Generating API key...', 'info');
+      
+      setTimeout(() => {
+          const apiKey = 'sk_' + Math.random().toString(36).substr(2, 32);
+          showNotification(`🔑 API Key generated: ${apiKey.substring(0, 20)}...`, 'success');
+      }, 2000);
+  }
+
+  function viewAPIExamples() {
+      analytics.track('api_examples_view', { timestamp: new Date().toISOString() });
+      showNotification('💻 Loading code examples...', 'info');
+      
+      setTimeout(() => {
+          showNotification('✅ Code examples loaded - Python, JavaScript, cURL available', 'success');
+      }, 1600);
+  }
+
+  // Platform health monitoring
+  function checkPlatformHealth() {
+      analytics.track('platform_health_check', { timestamp: new Date().toISOString() });
+      
+      const platforms = [
+          'Engineering Hub',
+          'Analytics Platform', 
+          'Economics Hub',
+          'Innovation Hub',
+          'Procurement Hub',
+          'Training Hub'
+      ];
+      
+      const healthStatuses = platforms.map(platform => ({
+          platform: platform,
+          status: Math.random() > 0.1 ? 'healthy' : 'warning',
+          uptime: (Math.random() * 5 + 95).toFixed(2) + '%',
+          responseTime: Math.floor(Math.random() * 100 + 50) + 'ms'
+      }));
+      
+      console.log('🏥 Platform Health Status:', healthStatuses);
+      return healthStatuses;
+  }
+
+  // Platform usage analytics
+  function getPlatformUsageStats() {
+      analytics.track('platform_usage_stats_request', { timestamp: new Date().toISOString() });
+      
+      const usageStats = {
+          'Engineering Hub': Math.floor(Math.random() * 1000 + 500),
+          'Analytics Platform': Math.floor(Math.random() * 800 + 400),
+          'Economics Hub': Math.floor(Math.random() * 600 + 300),
+          'Innovation Hub': Math.floor(Math.random() * 400 + 200),
+          'Procurement Hub': Math.floor(Math.random() * 700 + 350),
+          'Training Hub': Math.floor(Math.random() * 900 + 450)
+      };
+      
+      showNotification('📊 Platform usage statistics loaded', 'info');
+      return usageStats;
+  }
+
+  // Integration status checker
+  function checkIntegrationStatus(integrationName) {
+      analytics.track('integration_status_check', {
+          integration: integrationName,
+          timestamp: new Date().toISOString()
+      });
+      
+      const statuses = ['active', 'syncing', 'error', 'maintenance'];
+      const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
+      
+      showNotification(`🔌 ${integrationName} integration status: ${randomStatus}`, 'info');
+      return randomStatus;
+  }
+
+  // Platform performance metrics
+  function getPlatformMetrics(platformName) {
+      analytics.track('platform_metrics_request', {
+          platform: platformName,
+          timestamp: new Date().toISOString()
+      });
+      
+      const metrics = {
+          activeUsers: Math.floor(Math.random() * 500 + 100),
+          avgResponseTime: Math.floor(Math.random() * 200 + 100) + 'ms',
+          uptime: (Math.random() * 5 + 95).toFixed(2) + '%',
+          dataProcessed: (Math.random() * 10 + 5).toFixed(1) + 'GB',
+          apiCalls: Math.floor(Math.random() * 10000 + 5000)
+      };
+      
+      showNotification(`📈 ${platformName} metrics loaded`, 'success');
+      return metrics;
+  }
+
+  // Platform comparison tool
+  function comparePlatforms(platform1, platform2) {
+      analytics.track('platform_comparison', {
+          platform1: platform1,
+          platform2: platform2,
+          timestamp: new Date().toISOString()
+      });
+      
+      showNotification(`⚖️ Comparing ${platform1} vs ${platform2}...`, 'info');
+      
+      setTimeout(() => {
+          showNotification('✅ Platform comparison report generated', 'success');
+      }, 2500);
+  }
+
+  // Platform recommendation engine
+  function getRecommendedPlatforms(userProfile) {
+      analytics.track('platform_recommendations', {
+          profile: userProfile,
+          timestamp: new Date().toISOString()
+      });
+      
+      const recommendations = [
+          'Engineering Hub',
+          'Analytics Platform',
+          'Economics Hub'
+      ];
+      
+      showNotification(`🎯 Found ${recommendations.length} recommended platforms for you`, 'success');
+      return recommendations;
+  }
+
+  // Auto-refresh platform status
+  function startPlatformMonitoring() {
+      setInterval(() => {
+          checkPlatformHealth();
+      }, 300000); // Check every 5 minutes
+      
+      console.log('🔄 Platform monitoring started');
+  }
+
+  // Initialize monitoring
+  setTimeout(startPlatformMonitoring, 5000);
+
+  // Keyboard shortcuts for platforms page
+  document.addEventListener('keydown', function(e) {
+      // Ctrl/Cmd + Shift + E: Engineering Hub
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'E') {
+          e.preventDefault();
+          openPlatform('Engineering Hub');
+      }
+      
+      // Ctrl/Cmd + Shift + A: Analytics Platform
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'A') {
+          e.preventDefault();
+          openPlatform('Analytics Platform');
+      }
+      
+      // Ctrl/Cmd + Shift + I: Integrations
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'I') {
+          e.preventDefault();
+          document.querySelector('.integrations-section').scrollIntoView({ behavior: 'smooth' });
+      }
+      
+      // Ctrl/Cmd + Shift + D: API Documentation
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'D') {
+          e.preventDefault();
+          openAPIDocumentation();
+      }
+  });
+
+  // Platform search functionality
+  function searchPlatforms(query) {
+      const platformCards = document.querySelectorAll('.platform-card');
+      const integrationCards = document.querySelectorAll('.integration-card');
+      const searchQuery = query.toLowerCase();
+      
+      [...platformCards, ...integrationCards].forEach(card => {
+          const title = card.querySelector('.platform-title, .integration-name').textContent.toLowerCase();
+          const description = card.querySelector('.platform-description, .integration-description').textContent.toLowerCase();
+          
+          const matches = title.includes(searchQuery) || description.includes(searchQuery);
+          
+          if (matches || !searchQuery) {
+              card.style.display = 'block';
+              card.style.opacity = '1';
+          } else {
+              card.style.display = 'none';
+              card.style.opacity = '0';
+          }
+      });
+      
+      if (searchQuery) {
+          analytics.track('platform_search', { query: searchQuery });
+      }
+  }
+
+  // Initialize search functionality
+  document.addEventListener('DOMContentLoaded', function() {
+      const searchInput = document.getElementById('globalSearch');
+      
+      if (searchInput) {
+          searchInput.addEventListener('input', function() {
+              const query = this.value;
+              searchPlatforms(query);
+          });
+      }
+  });
+
+  // Check platform health on page load
+  setTimeout(checkPlatformHealth, 3000);
+
+  console.log('🌐 Platforms page ready');
+  console.log('🔧 Core platforms loaded');
+  console.log('🔌 Integration catalog available');
+  console.log('📚 API documentation accessible');
+  console.log('🏥 Platform health monitoring active');
+  console.log('🎯 Platform recommendations enabled');
+  </script>
+</body>
+</html>

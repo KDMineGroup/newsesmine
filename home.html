@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - SESMine Platform</title>
+  <meta name="description" content="SESMine Dashboard - Smart Engineering Solutions for Mining">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/x-icon" href="https://www.sesmine.com/favicon.ico">
+  
+  <style>
+  /* Dashboard-specific styles */
+  .dashboard-container {
+      padding: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+  }
+  
+  .welcome-section {
+      background: linear-gradient(135deg, var(--sesmine-primary) 0%, var(--sesmine-secondary) 30%, var(--primary-600) 70%, var(--sesmine-accent) 100%);
+      color: white;
+      padding: 4rem 3rem;
+      border-radius: var(--border-radius-2xl);
+      margin-bottom: 3rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-2xl);
+  }
+  
+  .welcome-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+  }
+  
+  .welcome-title {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, white, rgba(255, 255, 255, 0.8), var(--sesmine-gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+  }
+  
+  .welcome-subtitle {
+      font-size: 1.375rem;
+      opacity: 0.9;
+      margin-bottom: 2.5rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+  }
+  
+  .welcome-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+  }
+  
+  .welcome-stat {
+      text-align: center;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: var(--border-radius-lg);
+      backdrop-filter: blur(10px);
+  }
+  
+  .welcome-stat-value {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      font-family: var(--font-mono);
+  }
+  
+  .welcome-stat-label {
+      font-size: 0.875rem;
+      opacity: 0.8;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+  }
+  
+  .hubs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+  }
+  
+  .hub-card {
+      background: white;
+      border-radius: var(--border-radius-xl);
+      padding: 2.5rem;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--gray-200);
+      transition: var(--transition-all);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+  }
+  
+  .hub-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, var(--sesmine-gold), var(--sesmine-emerald), var(--sesmine-accent));
+  }
+  
+  .hub-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-2xl);
+      border-color: var(--primary-300);
+  }
+  
+  .hub-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: var(--border-radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: white;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-lg);
+      transition: var(--transition-transform);
+  }
+  
+  .hub-card:hover .hub-icon {
+      transform: scale(1.1) rotate(5deg);
+  }
+  
+  .hub-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--sesmine-primary);
+      margin-bottom: 1rem;
+  }
+  
+  .hub-description {
+      color: var(--gray-600);
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+  }
+  
+  .hub-features {
+      list-style: none;
+      margin-bottom: 2rem;
+  }
+  
+  .hub-features li {
+      padding: 0.5rem 0;
+      color: var(--gray-700);
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+  }
+  
+  .feature-icon {
+      width: 16px;
+      height: 16px;
+      color: var(--sesmine-emerald);
+      flex-shrink: 0;
+  }
+  
+  .hub-actions {
+      display: flex;
+      gap: 1rem;
+  }
+  
+  .quick-actions {
+      background: white;
+      border-radius: var(--border-radius-xl);
+      padding: 2rem;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--gray-200);
+      margin-bottom: 2rem;
+  }
+  
+  .quick-actions-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--sesmine-primary);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+  }
+  
+  .quick-actions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+  }
+  
+  .quick-action-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem;
+      background: var(--gray-50);
+      border: 2px solid var(--gray-200);
+      border-radius: var(--border-radius-lg);
+      text-decoration: none;
+      color: var(--gray-700);
+      font-weight: 600;
+      transition: var(--transition-all);
+  }
+  
+  .quick-action-btn:hover {
+      background: var(--primary-50);
+      border-color: var(--sesmine-accent);
+      color: var(--sesmine-primary);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+  }
+  
+  .recent-activity {
+      background: white;
+      border-radius: var(--border-radius-xl);
+      padding: 2rem;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--gray-200);
+      margin-bottom: 2rem;
+  }
+  
+  .activity-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--sesmine-primary);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+  }
+  
+  .activity-list {
+      list-style: none;
+  }
+  
+  .activity-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      border-radius: var(--border-radius-md);
+      margin-bottom: 0.5rem;
+      transition: var(--transition-all);
+  }
+  
+  .activity-item:hover {
+      background: var(--gray-50);
+  }
+  
+  .activity-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      color: white;
+      flex-shrink: 0;
+  }
+  
+  .activity-content {
+      flex: 1;
+  }
+  
+  .activity-text {
+      font-weight: 600;
+      color: var(--gray-800);
+      margin-bottom: 0.25rem;
+  }
+  
+  .activity-time {
+      font-size: 0.875rem;
+      color: var(--gray-500);
+  }
+  
+  @media (max-width: 768px) {
+      .dashboard-container {
+          padding: 1rem;
+      }
+      
+      .welcome-section {
+          padding: 3rem 2rem;
+      }
+      
+      .welcome-title {
+          font-size: 2rem;
+      }
+      
+      .hubs-grid {
+          grid-template-columns: 1fr;
+      }
+      
+      .quick-actions-grid {
+          grid-template-columns: 1fr;
+      }
+  }
+  </style>
+</head>
+<body>
+  <!-- Universal Navigation Header -->
+  <header class="sesmine-header" id="sesmineHeader">
+      <div class="header-content">
+          <div class="logo-section">
+              <button class="header-btn mobile-menu-toggle" id="mobileMenuToggle">
+                  <i class="fas fa-bars"></i>
+              </button>
+              <a href="index.html" class="logo">
+                  <div class="logo-icon">
+                      🏔️
+                  </div>
+                  <div class="logo-text">
+                      <div class="logo-main">SESMine</div>
+                      <div class="logo-subtitle">Smart Engineering Solutions</div>
+                  </div>
+              </a>
+          </div>
+          
+          <nav class="main-nav" id="mainNav">
+              <a href="home.html" class="nav-link active" data-page="dashboard">
+                  <i class="fas fa-home"></i> Dashboard
+              </a>
+              <div class="nav-dropdown">
+                  <button class="nav-link dropdown-toggle">
+                      <i class="fas fa-th-large"></i> Hubs <i class="fas fa-chevron-down"></i>
+                  </button>
+                  <div class="dropdown-menu">
+                      <a href="engineering-hub.html" class="dropdown-item">
+                          <i class="fas fa-hard-hat"></i> Engineering Hub
+                      </a>
+                      <a href="analytics-platform.html" class="dropdown-item">
+                          <i class="fas fa-chart-area"></i> Analytics Platform
+                      </a>
+                      <a href="economics-hub.html" class="dropdown-item">
+                          <i class="fas fa-coins"></i> Economics Hub
+                      </a>
+                      <a href="innovation-technology-hub.html" class="dropdown-item">
+                          <i class="fas fa-rocket"></i> Innovation & Technology
+                      </a>
+                      <a href="procurement-hub.html" class="dropdown-item">
+                          <i class="fas fa-truck"></i> Procurement Hub
+                      </a>
+                      <a href="consulting-hub.html" class="dropdown-item">
+                          <i class="fas fa-user-tie"></i> Consulting Hub
+                      </a>
+                      <a href="training-education-hub.html" class="dropdown-item">
+                          <i class="fas fa-graduation-cap"></i> Training & Education
+                      </a>
+                      <a href="admin-dashboard.html" class="dropdown-item">
+                          <i class="fas fa-shield-alt"></i> Admin Dashboard
+                      </a>
+                  </div>
+              </div>
+              <a href="platforms.html" class="nav-link">
+                  <i class="fas fa-layer-group"></i> Platforms
+              </a>
+              <a href="features.html" class="nav-link">
+                  <i class="fas fa-star"></i> Features
+              </a>
+              <a href="about.html" class="nav-link">
+                  <i class="fas fa-info-circle"></i> About
+              </a>
+              <a href="contact.html" class="nav-link">
+                  <i class="fas fa-phone"></i> Contact
+              </a>
+          </nav>
+          
+          <div class="header-actions">
+              <div class="search-container">
+                  <i class="fas fa-search search-icon"></i>
+                  <input type="text" class="search-input" placeholder="Search platforms, hubs..." id="globalSearch">
+              </div>
+              <button class="header-btn" title="Notifications">
+                  <i class="fas fa-bell"></i>
+              </button>
+              <button class="header-btn" title="Settings" onclick="window.location.href='setting.html'">
+                  <i class="fas fa-cog"></i>
+              </button>
+              <div class="user-menu">
+                  <div class="user-avatar">MS</div>
+                  <div class="user-info">
+                      <div class="user-name">Mining Specialist</div>
+                      <div class="user-email">specialist@sesmine.com</div>
+                  </div>
+                  <div class="user-dropdown">
+                      <a href="setting.html" class="dropdown-item">
+                          <i class="fas fa-cog"></i> Settings
+                      </a>
+                      <a href="login.html" class="dropdown-item">
+                          <i class="fas fa-sign-out-alt"></i> Logout
+                      </a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+      <div class="dashboard-container">
+          
+          <!-- Welcome Section -->
+          <div class="welcome-section">
+              <div class="welcome-content">
+                  <h1 class="welcome-title">Welcome to SESMine Platform</h1>
+                  <p class="welcome-subtitle">
+                      Your comprehensive Smart Engineering Solutions for Mining dashboard. Access all platforms, manage projects, and optimize operations from one central location.
+                  </p>
+                  
+                  <div class="welcome-stats">
+                      <div class="welcome-stat">
+                          <div class="welcome-stat-value">8</div>
+                          <div class="welcome-stat-label">Active Hubs</div>
+                      </div>
+                      <div class="welcome-stat">
+                          <div class="welcome-stat-value">24/7</div>
+                          <div class="welcome-stat-label">Support</div>
+                      </div>
+                      <div class="welcome-stat">
+                          <div class="welcome-stat-value">99.9%</div>
+                          <div class="welcome-stat-label">Uptime</div>
+                      </div>
+                      <div class="welcome-stat">
+                          <div class="welcome-stat-value">$5.2M</div>
+                          <div class="welcome-stat-label">Cost Saved</div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Quick Actions -->
+          <div class="quick-actions">
+              <h2 class="quick-actions-title">
+                  ⚡ Quick Actions
+              </h2>
+              <div class="quick-actions-grid">
+                  <a href="engineering-hub.html" class="quick-action-btn">
+                      <i class="fas fa-calculator"></i>
+                      Cost Estimation
+                  </a>
+                  <a href="analytics-platform.html" class="quick-action-btn">
+                      <i class="fas fa-chart-line"></i>
+                      View Analytics
+                  </a>
+                  <a href="procurement-hub.html" class="quick-action-btn">
+                      <i class="fas fa-shopping-cart"></i>
+                      Procurement
+                  </a>
+                  <a href="training-education-hub.html" class="quick-action-btn">
+                      <i class="fas fa-book-open"></i>
+                      Training Center
+                  </a>
+                  <a href="consulting-hub.html" class="quick-action-btn">
+                      <i class="fas fa-handshake"></i>
+                      Expert Consulting
+                  </a>
+                  <a href="admin-dashboard.html" class="quick-action-btn">
+                      <i class="fas fa-users-cog"></i>
+                      Admin Panel
+                  </a>
+              </div>
+          </div>
+
+          <!-- Main Hubs Grid -->
+          <div class="hubs-grid">
+              <!-- Engineering Hub -->
+              <div class="hub-card" onclick="window.location.href='engineering-hub.html'">
+                  <div class="hub-icon" style="background: linear-gradient(135deg, var(--sesmine-accent), var(--sesmine-secondary));">
+                      ⛑️
+                  </div>
+                  <h3 class="hub-title">Engineering Hub</h3>
+                  <p class="hub-description">Advanced engineering solutions with AACE cost estimation, project management, and technical analysis tools.</p>
+                  <ul class="hub-features">
+                      <li><i class="fas fa-check feature-icon"></i>AACE Cost Estimation</li>
+                      <li><i class="fas fa-check feature-icon"></i>Project Management</li>
+                      <li><i class="fas fa-check feature-icon"></i>Technical Analysis</li>
+                      <li><i class="fas fa-check feature-icon"></i>Equipment Database</li>
+                  </ul>
+                  <div class="hub-actions">
+                      <button class="btn btn-primary">
+                          <i class="fas fa-external-link-alt"></i>
+                          Launch Hub
+                      </button>
+                  </div>
+              </div>
+
+              <!-- Analytics Platform -->
+              <div class="hub-card" onclick="window.location.href='analytics-platform.html'">
+                  <div class="hub-icon" style="background: linear-gradient(135deg, var(--sesmine-emerald), var(--success-600));">
+                      📊
+                  </div>
+                  <h3 class="hub-title">Analytics Platform</h3>
+                  <p class="hub-description">Comprehensive analytics and data visualization platform with real-time monitoring and predictive modeling.</p>
+                  <ul class="hub-features">
+                      <li><i class="fas fa-check feature-icon"></i>Real-time Analytics</li>
+                      <li><i class="fas fa-check feature-icon"></i>Predictive Modeling</li>
+                      <li><i class="fas fa-check feature-icon"></i>Data Visualization</li>
+                      <li><i class="fas fa-check feature-icon"></i>Performance Monitoring</li>
+                  </ul>
+                  <div class="hub-actions">
+                      <button class="btn btn-primary">
+                          <i class="fas fa-chart-line"></i>
+                          View Analytics
+                      </button>
+                  </div>
+              </div>
+
+              <!-- Economics Hub -->
+              <div class="hub-card" onclick="window.location.href='economics-hub.html'">
+                  <div class="hub-icon" style="background: linear-gradient(135deg, var(--sesmine-gold), var(--sesmine-copper));">
+                      💰
+                  </div>
+                  <h3 class="hub-title">Economics Hub</h3>
+                  <p class="hub-description">Financial modeling, economic analysis, and market intelligence for mining operations and investments.</p>
+                  <ul class="hub-features">
+                      <li><i class="fas fa-check feature-icon"></i>Financial Modeling</li>
+                      <li><i class="fas fa-check feature-icon"></i>Economic Analysis</li>
+                      <li><i class="fas fa-check feature-icon"></i>Market Intelligence</li>
+                      <li><i class="fas fa-check feature-icon"></i>Investment Analysis</li>
+                  </ul>
+                  <div class="hub-actions">
+                      <button class="btn btn-primary">
+                          <i class="fas fa-dollar-sign"></i>
+                          Launch Hub
+                      </button>
+                  </div>
+              </div>
+
+              <!-- Innovation & Technology Hub -->
+              <div class="hub-card" onclick="window.location.href='innovation-technology-hub.html'">
+                  <div class="hub-icon" style="background: linear-gradient(135deg, var(--primary-500), var(--primary-600));">
+                      🚀
+                  </div>
+                  <h3 class="hub-title">Innovation & Technology</h3>
+                  <p class="hub-description">Cutting-edge technology solutions, innovation management, and digital transformation for mining.</p>
+                  <ul class="hub-features">
+                      <li><i class="fas fa-check feature-icon"></i>Technology Innovation</li>
+                      <li><i class="fas fa-check feature-icon"></i>Digital Solutions</li>
+                      <li><i class="fas fa-check feature-icon"></i>R&D Management</li>
+                      <li><i class="fas fa-check feature-icon"></i>Tech Integration</li>
+                  </ul>
+                  <div class="hub-actions">
+                      <button class="btn btn-primary">
+                          <i class="fas fa-lightbulb"></i>
+                          Explore Innovation
+                      </button>
+                  </div>
+              </div>
+
+              <!-- Procurement Hub -->
+              <div class="hub-card" onclick="window.location.href='procurement-hub.html'">
+                  <div class="hub-icon" style="background: linear-gradient(135deg, var(--warning-500), var(--warning-600));">
+                      🚛
+                  </div>
+                  <h3 class="hub-title">Procurement Hub</h3>
+                  <p class="hub-description">Strategic procurement management, supplier networks, and supply chain optimization solutions.</p>
+                  <ul class="hub-features">
+                      <li><i class="fas fa-check feature-icon"></i>Supplier Management</li>
+                      <li><i class="fas fa-check feature-icon"></i>Supply Chain Optimization</li>
+                      <li><i class="fas fa-check feature-icon"></i>Contract Management</li>
+                      <li><i class="fas fa-check feature-icon"></i>Cost Analysis</li>
+                  </ul>
+                  <div class="hub-actions">
+                      <button class="btn btn-primary">
+                          <i class="fas fa-shipping-fast"></i>
+                          Launch Hub
+                      </button>
+                  </div>
+              </div>
+
+              <!-- Consulting Hub -->
+              <div class="hub-card" onclick="window.location.href='consulting-hub.html'">
+                  <div class="hub-icon" style="background: linear-gradient(135deg, var(--danger-500), var(--danger-600));">
+                      👔
+                  </div>
+                  <h3 class="hub-title">Consulting Hub</h3>
+                  <p class="hub-description">Expert consulting services, strategic advisory, and professional guidance for mining projects.</p>
+                  <ul class="hub-features">
+                      <li><i class="fas fa-check feature-icon"></i>Expert Consulting</li>
+                      <li><i class="fas fa-check feature-icon"></i>Strategic Advisory</li>
+                      <li><i class="fas fa-check feature-icon"></i>Project Guidance</li>
+                      <li><i class="fas fa-check feature-icon"></i>Professional Services</li>
+                  </ul>
+                  <div class="hub-actions">
+                      <button class="btn btn-primary">
+                          <i class="fas fa-handshake"></i>
+                          Get Consulting
+                      </button>
+                  </div>
+              </div>
+
+              <!-- Training & Education Hub -->
+              <div class="hub-card" onclick="window.location.href='training-education-hub.html'">
+                  <div class="hub-icon" style="background: linear-gradient(135deg, var(--success-500), var(--success-600));">
+                      🎓
+                  </div>
+                  <h3 class="hub-title">Training & Education</h3>
+                  <p class="hub-description">Comprehensive training programs, educational resources, and professional development for mining professionals.</p>
+                  <ul class="hub-features">
+                      <li><i class="fas fa-check feature-icon"></i>Professional Training</li>
+                      <li><i class="fas fa-check feature-icon"></i>Educational Resources</li>
+                      <li><i class="fas fa-check feature-icon"></i>Certification Programs</li>
+                      <li><i class="fas fa-check feature-icon"></i>Skills Development</li>
+                  </ul>
+                  <div class="hub-actions">
+                      <button class="btn btn-primary">
+                          <i class="fas fa-book-open"></i>
+                          Start Learning
+                      </button>
+                  </div>
+              </div>
+
+              <!-- Admin Dashboard -->
+              <div class="hub-card" onclick="window.location.href='admin-dashboard.html'">
+                  <div class="hub-icon" style="background: linear-gradient(135deg, var(--gray-600), var(--gray-700));">
+                      🛡️
+                  </div>
+                  <h3 class="hub-title">Admin Dashboard</h3>
+                  <p class="hub-description">Administrative controls, system management, user administration, and platform configuration tools.</p>
+                  <ul class="hub-features">
+                      <li><i class="fas fa-check feature-icon"></i>User Management</li>
+                      <li><i class="fas fa-check feature-icon"></i>System Administration</li>
+                      <li><i class="fas fa-check feature-icon"></i>Security Controls</li>
+                      <li><i class="fas fa-check feature-icon"></i>Platform Configuration</li>
+                  </ul>
+                  <div class="hub-actions">
+                      <button class="btn btn-primary">
+                          <i class="fas fa-server"></i>
+                          Admin Panel
+                      </button>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Recent Activity -->
+          <div class="recent-activity">
+              <h2 class="activity-title">
+                  📋 Recent Activity
+              </h2>
+              <ul class="activity-list">
+                  <li class="activity-item">
+                      <div class="activity-icon" style="background: var(--sesmine-accent);">
+                          <i class="fas fa-calculator"></i>
+                      </div>
+                      <div class="activity-content">
+                          <div class="activity-text">Cost estimation completed for Copper Mine Project</div>
+                          <div class="activity-time">2 hours ago</div>
+                      </div>
+                  </li>
+                  <li class="activity-item">
+                      <div class="activity-icon" style="background: var(--sesmine-emerald);">
+                          <i class="fas fa-chart-line"></i>
+                      </div>
+                      <div class="activity-content">
+                          <div class="activity-text">Analytics report generated for Q4 performance</div>
+                          <div class="activity-time">4 hours ago</div>
+                      </div>
+                  </li>
+                  <li class="activity-item">
+                      <div class="activity-icon" style="background: var(--sesmine-gold);">
+                          <i class="fas fa-shopping-cart"></i>
+                      </div>
+                      <div class="activity-content">
+                          <div class="activity-text">Procurement request submitted for mining equipment</div>
+                          <div class="activity-time">6 hours ago</div>
+                      </div>
+                  </li>
+                  <li class="activity-item">
+                      <div class="activity-icon" style="background: var(--success-500);">
+                          <i class="fas fa-graduation-cap"></i>
+                      </div>
+                      <div class="activity-content">
+                          <div class="activity-text">Training module completed: Safety Protocols</div>
+                          <div class="activity-time">1 day ago</div>
+                      </div>
+                  </li>
+                  <li class="activity-item">
+                      <div class="activity-icon" style="background: var(--danger-500);">
+                          <i class="fas fa-handshake"></i>
+                      </div>
+                      <div class="activity-content">
+                          <div class="activity-text">Consulting session scheduled with mining expert</div>
+                          <div class="activity-time">2 days ago</div>
+                      </div>
+                  </li>
+              </ul>
+          </div>
+
+      </div>
+  </main>
+
+  <script src="script.js"></script>
+  <script>
+  // Dashboard-specific JavaScript
+  document.addEventListener('DOMContentLoaded', function() {
+      initializeDashboard();
+  });
+
+  function initializeDashboard() {
+      console.log('🏠 Dashboard initialized');
+      
+      // Update welcome stats with real-time data
+      updateWelcomeStats();
+      
+      // Initialize hub card interactions
+      initializeHubCards();
+      
+      // Load recent activity
+      loadRecentActivity();
+      
+      // Set up auto-refresh for stats
+      setInterval(updateWelcomeStats, 30000); // Update every 30 seconds
+  }
+
+  function updateWelcomeStats() {
+      const stats = document.querySelectorAll('.welcome-stat-value');
+      
+      // Simulate real-time updates
+      stats.forEach((stat, index) => {
+          const currentValue = stat.textContent;
+          
+          switch(index) {
+              case 0: // Active Hubs
+                  stat.textContent = '8';
+                  break;
+              case 1: // Support
+                  stat.textContent = '24/7';
+                  break;
+              case 2: // Uptime
+                  const uptime = (99.85 + Math.random() * 0.14).toFixed(1);
+                  stat.textContent = uptime + '%';
+                  break;
+              case 3: // Cost Saved
+                  const saved = (5.2 + Math.random() * 0.3).toFixed(1);
+                  stat.textContent = '$' + saved + 'M';
+                  break;
+          }
+      });
+  }
+
+  function initializeHubCards() {
+      const hubCards = document.querySelectorAll('.hub-card');
+      
+      hubCards.forEach(card => {
+          card.addEventListener('mouseenter', function() {
+              this.style.transform = 'translateY(-8px) scale(1.02)';
+              this.style.boxShadow = 'var(--shadow-2xl)';
+              
+              const hubIcon = this.querySelector('.hub-icon');
+              if (hubIcon) {
+                  hubIcon.style.transform = 'scale(1.1) rotate(5deg)';
+              }
+          });
+          
+          card.addEventListener('mouseleave', function() {
+              this.style.transform = 'translateY(0) scale(1)';
+              this.style.boxShadow = 'var(--shadow-md)';
+              
+              const hubIcon = this.querySelector('.hub-icon');
+              if (hubIcon) {
+                  hubIcon.style.transform = 'scale(1) rotate(0deg)';
+              }
+          });
+          
+          card.addEventListener('click', function() {
+              const hubTitle = this.querySelector('.hub-title').textContent;
+              analytics.track('hub_access', { hubName: hubTitle });
+              
+              // Add click animation
+              this.style.transform = 'scale(0.98)';
+              setTimeout(() => {
+                  this.style.transform = 'scale(1)';
+              }, 150);
+          });
+      });
+  }
+
+  function loadRecentActivity() {
+      // This would typically load from an API
+      // For demo purposes, we're using static data
+      console.log('📋 Recent activity loaded');
+      
+      // Track page view
+      analytics.track('dashboard_view', {
+          timestamp: new Date().toISOString(),
+          userAgent: navigator.userAgent
+      });
+  }
+
+  // Quick action handlers
+  function openCostEstimation() {
+      analytics.track('quick_action', { action: 'cost_estimation' });
+      window.location.href = 'engineering-hub.html';
+  }
+
+  function openAnalytics() {
+      analytics.track('quick_action', { action: 'analytics' });
+      window.location.href = 'analytics-platform.html';
+  }
+
+  function openProcurement() {
+      analytics.track('quick_action', { action: 'procurement' });
+      window.location.href = 'procurement-hub.html';
+  }
+
+  function openTraining() {
+      analytics.track('quick_action', { action: 'training' });
+      window.location.href = 'training-education-hub.html';
+  }
+
+  function openConsulting() {
+      analytics.track('quick_action', { action: 'consulting' });
+      window.location.href = 'consulting-hub.html';
+  }
+
+  function openAdmin() {
+      analytics.track('quick_action', { action: 'admin' });
+      window.location.href = 'admin-dashboard.html';
+  }
+
+  // Export dashboard functions
+  window.dashboardFunctions = {
+      openCostEstimation,
+      openAnalytics,
+      openProcurement,
+      openTraining,
+      openConsulting,
+      openAdmin
+  };
+
+  console.log('🏠 SESMine Dashboard Ready');
+  console.log('📊 Real-time stats enabled');
+  console.log('🎯 Hub interactions initialized');
+  </script>
+</body>
+</html>

@@ -1,0 +1,2111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SESMine - Enterprise Mining Intelligence Platform | Professional Mining Solutions</title>
+  <meta name="description" content="Professional mining technology platform trusted by Fortune 500 companies. AACE International certified cost estimation, AI-powered analytics, and comprehensive mining intelligence solutions.">
+  <meta name="keywords" content="enterprise mining software, AACE cost estimation, mining intelligence platform, professional mining technology, Fortune 500 mining solutions">
+  
+  <!-- Professional Meta Tags -->
+  <meta property="og:title" content="SESMine - Enterprise Mining Intelligence Platform">
+  <meta property="og:description" content="Trusted by Fortune 500 mining companies worldwide. Professional-grade mining solutions with AACE compliance.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
+  <meta property="og:type" content="website">
+  
+  <!-- Preload Critical Resources -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" as="style">
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+  
+  <!-- Existing Stylesheets -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap">
+  
+  <!-- Three.js for Professional 3D Visualization -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  
+  <style>
+  /* Professional Enterprise Design System - Based on Your Theme */
+  :root {
+      /* Your Existing Color Palette Enhanced */
+      --bg-body: #f4f4f2;
+      --bg-surface: #ffffff;
+      --bg-sidebar: #1a1a1a;
+      --text-primary: #1a1a1a;
+      --text-secondary: #666666;
+      --text-on-dark: #f4f4f2;
+      --accent-primary: #5c6b50;
+      --accent-secondary: #8c9a8c;
+      --accent-tertiary: #d4d4d0;
+      --border-light: #e0e0e0;
+      
+      /* Professional Enhancements */
+      --enterprise-primary: #1a365d;
+      --enterprise-secondary: #2c5282;
+      --enterprise-accent: #5c6b50;
+      --enterprise-gold: #d69e2e;
+      --enterprise-success: #38a169;
+      --enterprise-warning: #dd6b20;
+      --enterprise-info: #3182ce;
+      
+      /* Professional Gradients */
+      --primary-gradient: linear-gradient(135deg, var(--enterprise-primary) 0%, var(--enterprise-secondary) 50%, var(--enterprise-info) 100%);
+      --secondary-gradient: linear-gradient(135deg, var(--bg-sidebar) 0%, #2d3748 50%, #4a5568 100%);
+      --accent-gradient: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 50%, var(--accent-tertiary) 100%);
+      --enterprise-gradient: linear-gradient(135deg, var(--enterprise-primary) 0%, var(--accent-primary) 100%);
+      
+      /* Glass Morphism - Professional */
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --glass-border: rgba(255, 255, 255, 0.2);
+      --dark-glass-bg: rgba(26, 26, 26, 0.9);
+      --dark-glass-border: rgba(92, 107, 80, 0.3);
+      
+      /* Professional Shadows */
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.12);
+      --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.16);
+      --shadow-xl: 0 24px 60px rgba(0, 0, 0, 0.2);
+      
+      /* Professional Spacing */
+      --spacing-xs: 0.25rem;
+      --spacing-sm: 0.5rem;
+      --spacing-md: 1rem;
+      --spacing-lg: 1.5rem;
+      --spacing-xl: 2rem;
+      --spacing-2xl: 3rem;
+      --spacing-3xl: 4rem;
+      
+      /* Professional Border Radius */
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+      
+      /* Professional Transitions */
+      --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-enterprise: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+  }
+  
+  body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      color: var(--text-primary);
+      overflow-x: hidden;
+      background: var(--bg-body);
+      font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Professional Background System */
+  .enterprise-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      background: var(--secondary-gradient);
+      overflow: hidden;
+  }
+  
+  .bg-mining-hero {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+          linear-gradient(135deg, rgba(26, 54, 93, 0.95) 0%, rgba(92, 107, 80, 0.8) 50%, rgba(49, 130, 206, 0.7) 100%),
+          url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover;
+      filter: blur(0.5px);
+      animation: subtleParallax 30s ease-in-out infinite;
+  }
+  
+  @keyframes subtleParallax {
+      0%, 100% { transform: scale(1) translateY(0px); }
+      50% { transform: scale(1.02) translateY(-10px); }
+  }
+  
+  .professional-overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: 
+          radial-gradient(circle at 25% 25%, rgba(92, 107, 80, 0.15) 0%, transparent 50%),
+          radial-gradient(circle at 75% 75%, rgba(49, 130, 206, 0.1) 0%, transparent 50%),
+          linear-gradient(135deg, rgba(26, 54, 93, 0.3) 0%, rgba(45, 55, 72, 0.2) 100%);
+      animation: professionalFloat 25s ease-in-out infinite;
+  }
+  
+  @keyframes professionalFloat {
+      0%, 100% { opacity: 0.8; transform: translateY(0px); }
+      50% { opacity: 1; transform: translateY(-5px); }
+  }
+  
+  /* Professional Header */
+  .enterprise-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: var(--dark-glass-bg);
+      backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid var(--dark-glass-border);
+      transition: all var(--transition-smooth);
+      box-shadow: var(--shadow-sm);
+  }
+  
+  .enterprise-header.scrolled {
+      background: rgba(26, 26, 26, 0.98);
+      box-shadow: var(--shadow-md);
+  }
+  
+  .header-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: var(--spacing-md) var(--spacing-xl);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+  }
+  
+  .enterprise-logo {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+      text-decoration: none;
+      color: var(--text-on-dark);
+      font-weight: 700;
+      font-size: 1.5rem;
+      transition: all var(--transition-smooth);
+  }
+  
+  .enterprise-logo:hover {
+      transform: translateY(-1px);
+  }
+  
+  .logo-mark {
+      width: 48px;
+      height: 48px;
+      background: var(--accent-gradient);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+  }
+  
+  .logo-mark::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transform: rotate(45deg);
+      animation: logoShimmer 4s ease-in-out infinite;
+  }
+  
+  @keyframes logoShimmer {
+      0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+      50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+      100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+  }
+  
+  .logo-text .company-name {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text-on-dark);
+  }
+  
+  .logo-text .company-tagline {
+      font-size: 0.75rem;
+      opacity: 0.8;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--accent-secondary);
+  }
+  
+  .professional-nav {
+      display: flex;
+      gap: var(--spacing-xl);
+      align-items: center;
+  }
+  
+  .nav-item {
+      color: rgba(244, 244, 242, 0.85);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      padding: var(--spacing-sm) var(--spacing-md);
+      border-radius: var(--radius-sm);
+      transition: all var(--transition-smooth);
+      position: relative;
+  }
+  
+  .nav-item::before {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: var(--accent-gradient);
+      transition: all var(--transition-smooth);
+      transform: translateX(-50%);
+  }
+  
+  .nav-item:hover::before,
+  .nav-item.active::before {
+      width: 80%;
+  }
+  
+  .nav-item:hover {
+      color: var(--text-on-dark);
+      background: var(--glass-bg);
+  }
+  
+  .nav-item.active {
+      color: var(--accent-tertiary);
+  }
+  
+  .enterprise-cta {
+      background: var(--accent-gradient);
+      color: var(--text-primary);
+      padding: var(--spacing-sm) var(--spacing-lg);
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all var(--transition-enterprise);
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+  }
+  
+  .enterprise-cta::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s ease;
+  }
+  
+  .enterprise-cta:hover::before {
+      left: 100%;
+  }
+  
+  .enterprise-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+  }
+  
+  /* Professional Hero Section */
+  .enterprise-hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 8rem var(--spacing-xl) 4rem;
+  }
+  
+  .hero-container {
+      max-width: 1440px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-3xl);
+      align-items: center;
+  }
+  
+  .hero-content {
+      z-index: 10;
+  }
+  
+  .enterprise-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      padding: var(--spacing-sm) var(--spacing-md);
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: var(--spacing-xl);
+      backdrop-filter: blur(10px);
+      transition: all var(--transition-smooth);
+      cursor: pointer;
+      color: var(--text-on-dark);
+  }
+  
+  .enterprise-badge:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-2px);
+  }
+  
+  .hero-headline {
+      font-size: 4rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: var(--spacing-xl);
+      background: linear-gradient(135deg, var(--text-on-dark) 0%, var(--enterprise-info) 30%, var(--accent-primary) 70%, var(--enterprise-success) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      background-size: 400% 400%;
+      animation: gradientFlow 12s ease-in-out infinite;
+      letter-spacing: -0.02em;
+  }
+  
+  @keyframes gradientFlow {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+  }
+  
+  .hero-description {
+      font-size: 1.25rem;
+      color: rgba(244, 244, 242, 0.9);
+      margin-bottom: var(--spacing-2xl);
+      line-height: 1.7;
+      font-weight: 400;
+  }
+  
+  .hero-actions {
+      display: flex;
+      gap: var(--spacing-lg);
+      margin-bottom: var(--spacing-2xl);
+  }
+  
+  .btn-enterprise-primary {
+      background: var(--accent-gradient);
+      color: var(--text-primary);
+      padding: var(--spacing-md) var(--spacing-xl);
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all var(--transition-enterprise);
+      box-shadow: var(--shadow-md);
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      position: relative;
+      overflow: hidden;
+  }
+  
+  .btn-enterprise-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+  }
+  
+  .btn-enterprise-secondary {
+      background: var(--glass-bg);
+      color: var(--text-on-dark);
+      padding: var(--spacing-md) var(--spacing-xl);
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all var(--transition-smooth);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+  }
+  
+  .btn-enterprise-secondary:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-3px);
+  }
+  
+  .enterprise-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--spacing-lg);
+  }
+  
+  .metric-item {
+      text-align: center;
+      padding: var(--spacing-lg);
+      background: var(--glass-bg);
+      border-radius: var(--radius-md);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      transition: all var(--transition-smooth);
+      cursor: pointer;
+  }
+  
+  .metric-item:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.15);
+  }
+  
+  .metric-value {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-family: 'Inter', monospace;
+      margin-bottom: var(--spacing-sm);
+  }
+  
+  .metric-label {
+      color: rgba(244, 244, 242, 0.8);
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+  }
+  
+  /* Professional Mining Dashboard */
+  .hero-visual {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+  
+  .enterprise-dashboard {
+      width: 100%;
+      max-width: 650px;
+      background: var(--dark-glass-bg);
+      border-radius: var(--radius-xl);
+      padding: var(--spacing-2xl);
+      border: 1px solid var(--dark-glass-border);
+      backdrop-filter: blur(25px);
+      box-shadow: var(--shadow-xl);
+      position: relative;
+      overflow: hidden;
+      transition: all var(--transition-smooth);
+  }
+  
+  .enterprise-dashboard:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 40px 120px rgba(0, 0, 0, 0.4);
+  }
+  
+  .enterprise-dashboard::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--accent-gradient);
+  }
+  
+  .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--spacing-xl);
+      padding-bottom: var(--spacing-md);
+      border-bottom: 1px solid var(--dark-glass-border);
+  }
+  
+  .dashboard-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--accent-tertiary);
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+  }
+  
+  .dashboard-status {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      font-size: 0.9rem;
+      color: var(--enterprise-success);
+  }
+  
+  .status-indicator {
+      width: 10px;
+      height: 10px;
+      background: var(--enterprise-success);
+      border-radius: 50%;
+      animation: statusPulse 2s ease-in-out infinite;
+      box-shadow: 0 0 10px rgba(56, 161, 105, 0.5);
+  }
+  
+  @keyframes statusPulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.7; transform: scale(1.2); }
+  }
+  
+  .dashboard-metrics {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--spacing-lg);
+      margin-bottom: var(--spacing-xl);
+  }
+  
+  .dashboard-metric {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-lg);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all var(--transition-smooth);
+      cursor: pointer;
+  }
+  
+  .dashboard-metric:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+      border-color: var(--accent-secondary);
+  }
+  
+  .metric-figure {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--enterprise-info);
+      font-family: 'Inter', monospace;
+      margin-bottom: var(--spacing-sm);
+  }
+  
+  .metric-description {
+      font-size: 0.9rem;
+      color: rgba(244, 244, 242, 0.7);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 500;
+  }
+  
+  .professional-chart {
+      height: 140px;
+      background: rgba(92, 107, 80, 0.1);
+      border-radius: var(--radius-md);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all var(--transition-smooth);
+  }
+  
+  .professional-chart:hover {
+      background: rgba(92, 107, 80, 0.15);
+  }
+  
+  .chart-visualization {
+      display: flex;
+      align-items: end;
+      height: 100%;
+      padding: var(--spacing-md);
+      gap: 8px;
+  }
+  
+  .chart-column {
+      flex: 1;
+      background: var(--primary-gradient);
+      border-radius: 4px;
+      transition: all var(--transition-smooth);
+      cursor: pointer;
+      position: relative;
+  }
+  
+  .chart-column:hover {
+      background: var(--accent-gradient);
+      transform: scaleY(1.05);
+  }
+  
+  .chart-column::after {
+      content: attr(data-value);
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.7rem;
+      color: var(--text-on-dark);
+      opacity: 0;
+      transition: opacity var(--transition-smooth);
+      font-weight: 600;
+  }
+  
+  .chart-column:hover::after {
+      opacity: 1;
+  }
+  
+  /* Professional Equipment Showcase */
+  .equipment-showcase {
+      padding: 8rem var(--spacing-xl);
+      background: var(--bg-surface);
+      position: relative;
+  }
+  
+  .section-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+  }
+  
+  .section-header {
+      text-align: center;
+      margin-bottom: var(--spacing-3xl);
+  }
+  
+  .section-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      background: var(--accent-gradient);
+      color: var(--text-primary);
+      padding: var(--spacing-sm) var(--spacing-md);
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: var(--spacing-lg);
+  }
+  
+  .section-headline {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: var(--spacing-lg);
+      background: linear-gradient(135deg, var(--text-primary) 0%, var(--enterprise-secondary) 50%, var(--accent-primary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.02em;
+  }
+  
+  .section-description {
+      font-size: 1.3rem;
+      color: var(--text-secondary);
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.7;
+  }
+  
+  .equipment-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: var(--spacing-2xl);
+      margin-top: var(--spacing-3xl);
+  }
+  
+  .equipment-card {
+      background: var(--bg-surface);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-md);
+      transition: all var(--transition-enterprise);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+  }
+  
+  .equipment-card:hover {
+      transform: translateY(-12px);
+      box-shadow: var(--shadow-xl);
+      border-color: var(--accent-primary);
+  }
+  
+  .equipment-image {
+      width: 100%;
+      height: 280px;
+      background-size: cover;
+      background-position: center;
+      border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+      position: relative;
+      overflow: hidden;
+  }
+  
+  .equipment-image::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(92, 107, 80, 0.2) 0%, rgba(49, 130, 206, 0.2) 100%);
+      opacity: 0;
+      transition: opacity var(--transition-smooth);
+  }
+  
+  .equipment-card:hover .equipment-image::before {
+      opacity: 1;
+  }
+  
+  .equipment-content {
+      padding: var(--spacing-2xl);
+  }
+  
+  .equipment-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: var(--spacing-md);
+      color: var(--text-primary);
+  }
+  
+  .equipment-description {
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: var(--spacing-lg);
+  }
+  
+  .equipment-specifications {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--spacing-md);
+      margin-bottom: var(--spacing-lg);
+  }
+  
+  .spec-item {
+      background: rgba(92, 107, 80, 0.05);
+      padding: var(--spacing-md);
+      border-radius: var(--radius-sm);
+      text-align: center;
+      transition: all var(--transition-smooth);
+  }
+  
+  .spec-item:hover {
+      background: rgba(92, 107, 80, 0.1);
+      transform: scale(1.02);
+  }
+  
+  .spec-value {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--accent-primary);
+      font-family: 'Inter', monospace;
+  }
+  
+  .spec-label {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+  }
+  
+  .equipment-action {
+      color: var(--enterprise-info);
+      text-decoration: none;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      transition: all var(--transition-smooth);
+  }
+  
+  .equipment-action:hover {
+      color: var(--accent-primary);
+      transform: translateX(5px);
+  }
+  
+  /* Professional CTA Section */
+  .enterprise-cta-section {
+      padding: 8rem var(--spacing-xl);
+      background: var(--enterprise-gradient);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+  }
+  
+  .enterprise-cta-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+          url('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover;
+      opacity: 0.1;
+      z-index: -1;
+  }
+  
+  .cta-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+  }
+  
+  .cta-content h2 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: var(--spacing-xl);
+      color: var(--text-on-dark);
+      letter-spacing: -0.02em;
+  }
+  
+  .cta-content p {
+      font-size: 1.4rem;
+      margin-bottom: var(--spacing-2xl);
+      color: rgba(244, 244, 242, 0.95);
+      line-height: 1.7;
+  }
+  
+  .cta-actions {
+      display: flex;
+      gap: var(--spacing-lg);
+      justify-content: center;
+      flex-wrap: wrap;
+  }
+  
+  /* Professional Footer */
+  .enterprise-footer {
+      background: var(--bg-sidebar);
+      padding: var(--spacing-3xl) var(--spacing-xl) var(--spacing-xl);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .footer-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--spacing-2xl);
+      margin-bottom: var(--spacing-xl);
+  }
+  
+  .footer-section h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: var(--spacing-lg);
+      color: var(--accent-tertiary);
+  }
+  
+  .footer-section p,
+  .footer-section a {
+      color: rgba(244, 244, 242, 0.8);
+      text-decoration: none;
+      line-height: 1.6;
+      transition: color var(--transition-smooth);
+  }
+  
+  .footer-section a:hover {
+      color: var(--accent-tertiary);
+  }
+  
+  .footer-links {
+      list-style: none;
+  }
+  
+  .footer-links li {
+      margin-bottom: var(--spacing-sm);
+  }
+  
+  .footer-bottom {
+      text-align: center;
+      padding-top: var(--spacing-xl);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(244, 244, 242, 0.7);
+  }
+  
+  /* Loading System */
+  .enterprise-loading {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--secondary-gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+  }
+  
+  .loading-content {
+      text-align: center;
+  }
+  
+  .loading-spinner {
+      width: 80px;
+      height: 80px;
+      border: 4px solid rgba(255, 255, 255, 0.1);
+      border-top: 4px solid var(--accent-primary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto var(--spacing-xl);
+  }
+  
+  @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+  }
+  
+  .loading-text {
+      color: var(--text-on-dark);
+      font-size: 1.2rem;
+      font-weight: 600;
+  }
+  
+  .enterprise-loading.hidden {
+      opacity: 0;
+      pointer-events: none;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+      .hero-container {
+          grid-template-columns: 1fr;
+          text-align: center;
+          gap: var(--spacing-2xl);
+      }
+      
+      .professional-nav {
+          display: none;
+      }
+      
+      .equipment-grid {
+          grid-template-columns: 1fr;
+      }
+  }
+  
+  @media (max-width: 768px) {
+      .hero-headline {
+          font-size: 2.5rem;
+      }
+      
+      .section-headline {
+          font-size: 2.5rem;
+      }
+      
+      .hero-actions,
+      .cta-actions {
+          flex-direction: column;
+          align-items: center;
+      }
+      
+      .enterprise-metrics {
+          grid-template-columns: 1fr;
+          gap: var(--spacing-md);
+      }
+      
+      .dashboard-metrics {
+          grid-template-columns: 1fr;
+      }
+      
+      .equipment-grid {
+          grid-template-columns: 1fr;
+      }
+      
+      .enterprise-dashboard {
+          margin: 0 var(--spacing-md);
+      }
+  }
+  
+  /* Animation Classes */
+  .fade-in {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+  }
+  
+  .slide-in-left {
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .slide-in-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+  }
+  
+  .slide-in-right {
+      opacity: 0;
+      transform: translateX(50px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .slide-in-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+  }
+  
+  /* Chart column heights for animation */
+  .chart-column:nth-child(1) { height: 60%; }
+  .chart-column:nth-child(2) { height: 80%; }
+  .chart-column:nth-child(3) { height: 45%; }
+  .chart-column:nth-child(4) { height: 90%; }
+  .chart-column:nth-child(5) { height: 70%; }
+  .chart-column:nth-child(6) { height: 85%; }
+  .chart-column:nth-child(7) { height: 55%; }
+  .chart-column:nth-child(8) { height: 95%; }
+  </style>
+</head>
+<body>
+  <!-- Enterprise Loading System -->
+  <div class="enterprise-loading" id="enterpriseLoading">
+      <div class="loading-content">
+          <div class="loading-spinner"></div>
+          <div class="loading-text">Initializing SESMine Enterprise Platform...</div>
+      </div>
+  </div>
+
+  <!-- Professional Background System -->
+  <div class="enterprise-background">
+      <div class="bg-mining-hero"></div>
+      <div class="professional-overlay"></div>
+  </div>
+
+  <!-- Professional Header -->
+  <header class="enterprise-header" id="enterpriseHeader">
+      <div class="header-container">
+          <a href="#" class="enterprise-logo">
+              <div class="logo-mark">🏔️</div>
+              <div class="logo-text">
+                  <div class="company-name">SESMine</div>
+                  <div class="company-tagline">Enterprise Mining Intelligence</div>
+              </div>
+          </a>
+          
+          <nav class="professional-nav">
+              <a href="#home" class="nav-item active">Home</a>
+              <a href="#equipment" class="nav-item">Equipment</a>
+              <a href="#solutions" class="nav-item">Solutions</a>
+              <a href="#about" class="nav-item">About</a>
+              <a href="#contact" class="nav-item">Contact</a>
+          </nav>
+          
+          <a href="home.html" class="enterprise-cta">
+              <i class="fas fa-rocket"></i>
+              Launch Platform
+          </a>
+      </div>
+  </header>
+
+  <!-- Professional Hero Section -->
+  <section class="enterprise-hero" id="home">
+      <div class="hero-container">
+          <div class="hero-content">
+              <div class="enterprise-badge" onclick="showEnterpriseInfo()">
+                  <i class="fas fa-award"></i>
+                  Fortune 500 Trusted Mining Platform
+              </div>
+              
+              <h1 class="hero-headline">
+                  Transform Mining Operations with AI-Driven Engineering Solutions
+              </h1>
+              
+              <p class="hero-description">
+                  Our comprehensive platform integrates AACE standards, advanced cost estimation, 
+                  real-time equipment monitoring, and AI-powered analytics to revolutionize mining 
+                  operations worldwide. Trusted by industry leaders for mission-critical projects.
+              </p>
+              
+              <div class="hero-actions">
+                  <a href="home.html" class="btn-enterprise-primary">
+                      <i class="fas fa-rocket"></i>
+                      Launch Enterprise Platform
+                  </a>
+                  <a href="#equipment" class="btn-enterprise-secondary">
+                      <i class="fas fa-play"></i>
+                      Explore Solutions
+                  </a>
+              </div>
+              
+              <div class="enterprise-metrics">
+                  <div class="metric-item" onclick="showMetricDetails('projects')">
+                      <div class="metric-value" data-target="500">0</div>
+                      <div class="metric-label">Enterprise Projects</div>
+                  </div>
+                  <div class="metric-item" onclick="showMetricDetails('countries')">
+                      <div class="metric-value" data-target="50">0</div>
+                      <div class="metric-label">Global Markets</div>
+                  </div>
+                  <div class="metric-item" onclick="showMetricDetails('satisfaction')">
+                      <div class="metric-value" data-target="98">0</div>
+                      <div class="metric-label">Client Success Rate</div>
+                  </div>
+              </div>
+          </div>
+          
+          <div class="hero-visual">
+              <div class="enterprise-dashboard" onclick="launchDashboard()">
+                  <div class="dashboard-header">
+                      <h3 class="dashboard-title">
+                          <i class="fas fa-chart-line"></i>
+                          Enterprise Mining Command Center
+                      </h3>
+                      <div class="dashboard-status">
+                          <div class="status-indicator"></div>
+                          Live Operations Data
+                      </div>
+                  </div>
+                  
+                  <div class="dashboard-metrics">
+                      <div class="dashboard-metric" onclick="showDashboardDetails('capex')">
+                          <div class="metric-figure">$247M</div>
+                          <div class="metric-description">CAPEX Estimate</div>
+                      </div>
+                      <div class="dashboard-metric" onclick="showDashboardDetails('opex')">
+                          <div class="metric-figure">18.5</div>
+                          <div class="metric-description">OPEX $/ton</div>
+                      </div>
+                      <div class="dashboard-metric" onclick="showDashboardDetails('accuracy')">
+                          <div class="metric-figure">95%</div>
+                          <div class="metric-description">Prediction Accuracy</div>
+                      </div>
+                      <div class="dashboard-metric" onclick="showDashboardDetails('monitoring')">
+                          <div class="metric-figure">24/7</div>
+                          <div class="metric-description">System Monitoring</div>
+                      </div>
+                  </div>
+                  
+                  <div class="professional-chart" onclick="openAnalytics()">
+                      <div class="chart-visualization">
+                          <div class="chart-column" data-value="$2.1M"></div>
+                          <div class="chart-column" data-value="$3.4M"></div>
+                          <div class="chart-column" data-value="$1.8M"></div>
+                          <div class="chart-column" data-value="$4.2M"></div>
+                          <div class="chart-column" data-value="$2.9M"></div>
+                          <div class="chart-column" data-value="$3.8M"></div>
+                          <div class="chart-column" data-value="$2.3M"></div>
+                          <div class="chart-column" data-value="$4.5M"></div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <!-- Professional Equipment Showcase -->
+  <section class="equipment-showcase" id="equipment">
+      <div class="section-container">
+          <div class="section-header fade-in">
+              <div class="section-badge">
+                  <i class="fas fa-industry"></i>
+                  Enterprise Equipment Database
+              </div>
+              <h2 class="section-headline">Professional Mining Equipment Solutions</h2>
+              <p class="section-description">
+                  Comprehensive database of enterprise-grade mining equipment with real-time pricing, 
+                  detailed specifications, and performance analytics from industry-leading manufacturers.
+              </p>
+          </div>
+          
+          <div class="equipment-grid">
+              <div class="equipment-card fade-in" onclick="exploreEquipment('excavator')">
+                  <div class="equipment-image" style="background-image: url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80')"></div>
+                  <div class="equipment-content">
+                      <h3 class="equipment-title">Ultra-Class Mining Excavators</h3>
+                      <p class="equipment-description">
+                          Enterprise-grade hydraulic excavators engineered for large-scale mining operations 
+                          with advanced productivity features and fuel efficiency optimization systems.
+                      </p>
+                      <div class="equipment-specifications">
+                          <div class="spec-item">
+                              <div class="spec-value">400T</div>
+                              <div class="spec-label">Operating Weight</div>
+                          </div>
+                          <div class="spec-item">
+                              <div class="spec-value">2,500HP</div>
+                              <div class="spec-label">Engine Power</div>
+                          </div>
+                          <div class="spec-item">
+                              <div class="spec-value">25m³</div>
+                              <div class="spec-label">Bucket Capacity</div>
+                          </div>
+                          <div class="spec-item">
+                              <div class="spec-value">$2.5M</div>
+                              <div class="spec-label">Enterprise Cost</div>
+                          </div>
+                      </div>
+                      <a href="home.html" class="equipment-action">
+                          Access Equipment Database <i class="fas fa-arrow-right"></i>
+                      </a>
+                  </div>
+              </div>
+              
+              <div class="equipment-card fade-in" onclick="exploreEquipment('haul-truck')">
+                  <div class="equipment-image" style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80')"></div>
+                  <div class="equipment-content">
+                      <h3 class="equipment-title">Ultra-Class Haul Trucks</h3>
+                      <p class="equipment-description">
+                          Mission-critical ultra-class mining trucks designed for maximum payload capacity 
+                          and operational efficiency in the most demanding mining environments worldwide.
+                      </p>
+                      <div class="equipment-specifications">
+                          <div class="spec-item">
+                              <div class="spec-value">400T</div>
+                              <div class="spec-label">Payload Capacity</div>
+                          </div>
+                          <div class="spec-item">
+                              <div class="spec-value">4,000HP</div>
+                              <div class="spec-label">Engine Power</div>
+                          </div>
+                          <div class="spec-item">
+                              <div class="spec-value">65km/h</div>
+                              <div class="spec-label">Maximum Speed</div>
+                          </div>
+                          <div class="spec-item">
+                              <div class="spec-value">$5.2M</div>
+                              <div class="spec-label">Enterprise Cost</div>
+                          </div>
+                      </div>
+                      <a href="home.html" class="equipment-action">
+                          View Technical Specifications <i class="fas fa-arrow-right"></i>
+                      </a>
+                  </div>
+              </div>
+              
+              <div class="equipment-card fade-in" onclick="exploreEquipment('drill-rig')">
+                  <div class="equipment-image" style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80')"></div>
+                  <div class="equipment-content">
+                      <h3 class="equipment-title">Advanced Rotary Blast Hole Drills</h3>
+                      <p class="equipment-description">
+                          High-performance rotary drill rigs for precision blast hole drilling with 
+                          advanced automation systems and intelligent control technologies.
+                      </p>
+                      <div class="equipment-specifications">
+                          <div class="spec-item">
+                              <div class="spec-value">381mm</div>
+                              <div class="spec-label">Hole Diameter</div>
+                          </div>
+                          <div class="spec-item">
+                              <div class="spec-value">1,475HP</div>
+                              <div class="spec-label">Engine Power</div>
+                          </div>
+                          <div class="spec-item">
+                              <div class="spec-value">60m</div>
+                              <div class="spec-label">Maximum Depth</div>
+                          </div>
+                          <div class="spec-item">
+                              <div class="spec-value">$3.8M</div>
+                              <div class="spec-label">Enterprise Cost</div>
+                          </div>
+                      </div>
+                      <a href="home.html" class="equipment-action">
+                          Calculate Enterprise Costs <i class="fas fa-arrow-right"></i>
+                      </a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <!-- Enterprise CTA Section -->
+  <section class="enterprise-cta-section">
+      <div class="section-container">
+          <div class="cta-content fade-in">
+              <h2>Ready to Transform Your Mining Enterprise?</h2>
+              <p>
+                  Join Fortune 500 mining companies worldwide who trust SESMine to optimize 
+                  their operations, reduce costs, and achieve sustainable growth through 
+                  intelligent engineering solutions and enterprise-grade technology.
+              </p>
+              
+              <div class="cta-actions">
+                  <a href="home.html" class="btn-enterprise-primary">
+                      <i class="fas fa-rocket"></i>
+                      Start Enterprise Trial
+                  </a>
+                  <a href="#contact" class="btn-enterprise-secondary">
+                      <i class="fas fa-phone"></i>
+                      Schedule Executive Demo
+                  </a>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <!-- Professional Footer -->
+  <footer class="enterprise-footer">
+      <div class="footer-container">
+          <div class="footer-section">
+              <h3>SESMine Enterprise</h3>
+              <p>
+                  Transforming mining operations with intelligent engineering solutions. 
+                  Enterprise-grade tools trusted by Fortune 500 companies worldwide for 
+                  mission-critical mining operations and strategic decision-making.
+              </p>
+              <div style="margin-top: var(--spacing-lg);">
+                  <a href="#" style="margin-right: var(--spacing-md); font-size: 1.2rem;"><i class="fab fa-linkedin"></i></a>
+                  <a href="#" style="margin-right: var(--spacing-md); font-size: 1.2rem;"><i class="fab fa-twitter"></i></a>
+                  <a href="#" style="margin-right: var(--spacing-md); font-size: 1.2rem;"><i class="fab fa-github"></i></a>
+                  <a href="#" style="font-size: 1.2rem;"><i class="fab fa-youtube"></i></a>
+              </div>
+          </div>
+          
+          <div class="footer-section">
+              <h3>Enterprise Platforms</h3>
+              <ul class="footer-links">
+                  <li><a href="home.html">Engineering Hub</a></li>
+                  <li><a href="home.html">Analytics Platform</a></li>
+                  <li><a href="home.html">Economics Hub</a></li>
+                  <li><a href="home.html">Innovation Hub</a></li>
+              </ul>
+          </div>
+          
+          <div class="footer-section">
+              <h3>Enterprise Solutions</h3>
+              <ul class="footer-links">
+                  <li><a href="home.html">Enterprise Procurement</a></li>
+                  <li><a href="home.html">Strategic Consulting</a></li>
+                  <li><a href="home.html">Executive Training</a></li>
+                  <li><a href="home.html">All Enterprise Features</a></li>
+              </ul>
+          </div>
+          
+          <div class="footer-section">
+              <h3>Company</h3>
+              <ul class="footer-links">
+                  <li><a href="#about">About SESMine</a></li>
+                  <li><a href="#contact">Enterprise Contact</a></li>
+                  <li><a href="#careers">Careers</a></li>
+                  <li><a href="#privacy">Privacy & Security</a></li>
+              </ul>
+          </div>
+      </div>
+      
+      <div class="footer-bottom">
+          <p>&copy; 2024 SESMine Enterprise. All rights reserved. | Intelligent Engineering Solutions for Next-Generation Mining Operations</p>
+      </div>
+  </footer>
+
+  <script>
+  // Professional Enterprise Landing Page JavaScript
+  document.addEventListener('DOMContentLoaded', function() {
+      initializeEnterprisePlatform();
+  });
+
+  function initializeEnterprisePlatform() {
+      console.log('🏢 SESMine Enterprise Platform Initializing...');
+      
+      // Initialize all enterprise components
+      initializeEnterpriseLoading();
+      initializeProfessionalScrollEffects();
+      initializeEnterpriseAnimations();
+      initializeProfessionalCounters();
+      initializeEnterpriseInteractions();
+      initializePerformanceOptimizations();
+      initializeEnterpriseAnalytics();
+      
+      // Track enterprise metrics
+      trackEnterpriseMetrics();
+  }
+
+  // Enterprise Loading System
+  function initializeEnterpriseLoading() {
+      const loadingOverlay = document.getElementById('enterpriseLoading');
+      const loadingText = document.querySelector('.loading-text');
+      
+      const enterpriseMessages = [
+          'Initializing SESMine Enterprise Platform...',
+          'Loading Enterprise Mining Database...',
+          'Connecting AI Intelligence Systems...',
+          'Preparing Executive Dashboard...',
+          'Establishing Secure Connections...',
+          'Enterprise Platform Ready'
+      ];
+      
+      let messageIndex = 0;
+      const messageInterval = setInterval(() => {
+          if (messageIndex < enterpriseMessages.length - 1) {
+              messageIndex++;
+              loadingText.textContent = enterpriseMessages[messageIndex];
+          } else {
+              clearInterval(messageInterval);
+          }
+      }, 600);
+      
+      // Professional loading duration
+      setTimeout(() => {
+          loadingOverlay.classList.add('hidden');
+          clearInterval(messageInterval);
+          
+          // Initialize post-load animations
+          setTimeout(() => {
+              initializePostLoadAnimations();
+          }, 400);
+      }, 3500);
+  }
+
+  // Professional Scroll Effects
+  function initializeProfessionalScrollEffects() {
+      const header = document.getElementById('enterpriseHeader');
+      let lastScrollY = window.scrollY;
+      let ticking = false;
+      
+      function updateEnterpriseHeader() {
+          const scrollY = window.scrollY;
+          
+          if (scrollY > 120) {
+              header.classList.add('scrolled');
+          } else {
+              header.classList.remove('scrolled');
+          }
+          
+          lastScrollY = scrollY;
+          ticking = false;
+      }
+      
+      window.addEventListener('scroll', () => {
+          if (!ticking) {
+              requestAnimationFrame(updateEnterpriseHeader);
+              ticking = true;
+          }
+      });
+      
+      // Professional Intersection Observer
+      const observerOptions = {
+          threshold: [0.1, 0.3, 0.5],
+          rootMargin: '0px 0px -80px 0px'
+      };
+      
+      const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+              if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
+                  entry.target.classList.add('visible');
+                  
+                  // Trigger specific enterprise animations
+                  if (entry.target.classList.contains('equipment-card')) {
+                      animateEquipmentCard(entry.target);
+                  } else if (entry.target.classList.contains('dashboard-metric')) {
+                      animateDashboardMetric(entry.target);
+                  }
+              }
+          });
+      }, observerOptions);
+      
+      // Observe all animated elements
+      document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+          observer.observe(el);
+      });
+  }
+
+  // Enterprise Animations
+  function initializeEnterpriseAnimations() {
+      // Equipment card professional hover effects
+      const equipmentCards = document.querySelectorAll('.equipment-card');
+      equipmentCards.forEach(card => {
+          card.addEventListener('mouseenter', function() {
+              this.style.transform = 'translateY(-12px) scale(1.02)';
+              
+              // Animate specifications
+              const specs = this.querySelectorAll('.spec-item');
+              specs.forEach((spec, index) => {
+                  setTimeout(() => {
+                      spec.style.transform = 'scale(1.05)';
+                      spec.style.background = 'rgba(92, 107, 80, 0.15)';
+                  }, index * 80);
+              });
+          });
+          
+          card.addEventListener('mouseleave', function() {
+              this.style.transform = 'translateY(0) scale(1)';
+              
+              const specs = this.querySelectorAll('.spec-item');
+              specs.forEach(spec => {
+                  spec.style.transform = 'scale(1)';
+                  spec.style.background = 'rgba(92, 107, 80, 0.05)';
+              });
+          });
+      });
+      
+      // Dashboard metric professional interactions
+      const dashboardMetrics = document.querySelectorAll('.dashboard-metric');
+      dashboardMetrics.forEach(metric => {
+          metric.addEventListener('click', function() {
+              // Professional ripple effect
+              const ripple = document.createElement('div');
+              ripple.style.cssText = `
+                  position: absolute;
+                  border-radius: 50%;
+                  background: rgba(92, 107, 80, 0.4);
+                  transform: scale(0);
+                  animation: enterpriseRipple 0.8s ease-out;
+                  pointer-events: none;
+              `;
+              
+              const rect = this.getBoundingClientRect();
+              const size = Math.max(rect.width, rect.height);
+              ripple.style.width = ripple.style.height = size + 'px';
+              ripple.style.left = (rect.width / 2 - size / 2) + 'px';
+              ripple.style.top = (rect.height / 2 - size / 2) + 'px';
+              
+              this.style.position = 'relative';
+              this.appendChild(ripple);
+              
+              setTimeout(() => {
+                  ripple.remove();
+              }, 800);
+              
+              // Animate metric value
+              const figure = this.querySelector('.metric-figure');
+              figure.style.transform = 'scale(1.15)';
+              figure.style.color = 'var(--accent-primary)';
+              
+              setTimeout(() => {
+                  figure.style.transform = 'scale(1)';
+                  figure.style.color = 'var(--enterprise-info)';
+              }, 400);
+          });
+      });
+  }
+
+  // Professional Counter Animations
+  function initializeProfessionalCounters() {
+      const counters = document.querySelectorAll('.metric-value');
+      
+      const animateEnterpriseCounter = (counter) => {
+          const target = parseInt(counter.dataset.target);
+          const duration = 3000;
+          const step = target / (duration / 16);
+           let current = 0;
+          
+          const timer = setInterval(() => {
+              current += step;
+              if (current >= target) {
+                  current = target;
+                  clearInterval(timer);
+              }
+              
+              const suffix = target === 98 ? '%' : target === 50 ? '+' : '+';
+              counter.textContent = Math.floor(current) + suffix;
+          }, 16);
+      };
+      
+      const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                  const counter = entry.target;
+                  setTimeout(() => {
+                      animateEnterpriseCounter(counter);
+                  }, 800);
+                  observer.unobserve(counter);
+              }
+          });
+      });
+      
+      counters.forEach(counter => observer.observe(counter));
+  }
+
+  // Enterprise Interactions
+  function initializeEnterpriseInteractions() {
+      // Chart column interactions
+      const chartColumns = document.querySelectorAll('.chart-column');
+      chartColumns.forEach(column => {
+          column.addEventListener('mouseenter', function() {
+              this.style.background = 'var(--accent-gradient)';
+              this.style.transform = 'scaleY(1.08)';
+          });
+          
+          column.addEventListener('mouseleave', function() {
+              this.style.background = 'var(--primary-gradient)';
+              this.style.transform = 'scaleY(1)';
+          });
+      });
+      
+      // Metric items interaction
+      const metricItems = document.querySelectorAll('.metric-item');
+      metricItems.forEach(item => {
+          item.addEventListener('click', function() {
+              // Highlight effect
+              this.style.background = 'rgba(92, 107, 80, 0.2)';
+              this.style.borderColor = 'var(--accent-primary)';
+              
+              setTimeout(() => {
+                  this.style.background = 'var(--glass-bg)';
+                  this.style.borderColor = 'var(--glass-border)';
+              }, 1000);
+          });
+      });
+  }
+
+  // Post-Load Animations
+  function initializePostLoadAnimations() {
+      // Animate hero elements in professional sequence
+      const heroElements = [
+          '.enterprise-badge',
+          '.hero-headline',
+          '.hero-description',
+          '.hero-actions',
+          '.enterprise-metrics'
+      ];
+      
+      heroElements.forEach((selector, index) => {
+          const element = document.querySelector(selector);
+          if (element) {
+              setTimeout(() => {
+                  element.style.opacity = '1';
+                  element.style.transform = 'translateY(0)';
+              }, index * 300);
+          }
+      });
+      
+      // Animate enterprise dashboard
+      setTimeout(() => {
+          const dashboard = document.querySelector('.enterprise-dashboard');
+          if (dashboard) {
+              dashboard.style.opacity = '1';
+              dashboard.style.transform = 'translateX(0) scale(1)';
+          }
+      }, 1200);
+  }
+
+  // Equipment Card Animation
+  function animateEquipmentCard(card) {
+      const specs = card.querySelectorAll('.spec-item');
+      specs.forEach((spec, index) => {
+          setTimeout(() => {
+              spec.style.opacity = '1';
+              spec.style.transform = 'translateY(0) scale(1)';
+          }, index * 120);
+      });
+  }
+
+  // Dashboard Metric Animation
+  function animateDashboardMetric(metric) {
+      const figure = metric.querySelector('.metric-figure');
+      if (figure) {
+          figure.style.transform = 'scale(1.1)';
+          setTimeout(() => {
+              figure.style.transform = 'scale(1)';
+          }, 400);
+      }
+  }
+
+  // Enterprise Interactive Functions
+  function showEnterpriseInfo() {
+      showEnterpriseNotification('🏆 SESMine: Trusted by Fortune 500 mining companies for mission-critical operations worldwide!', 'success');
+      trackEnterpriseInteraction('enterprise_badge_click');
+  }
+
+  function showMetricDetails(type) {
+      const enterpriseMessages = {
+          projects: '500+ enterprise mining projects successfully delivered across 6 continents with Fortune 500 clients',
+          countries: '50+ global markets served with localized support and regulatory compliance',
+          satisfaction: '98% client success rate with dedicated enterprise support and SLA guarantees'
+      };
+      
+      showEnterpriseNotification(`📊 ${enterpriseMessages[type]}`, 'info');
+      trackEnterpriseInteraction('enterprise_metric_click', { type });
+  }
+
+  function showDashboardDetails(type) {
+      const dashboardDetails = {
+          capex: 'Capital Expenditure estimation using AACE Class 2 standards with enterprise-grade accuracy',
+          opex: 'Operating costs per ton based on real-time market data and enterprise benchmarks',
+          accuracy: 'AI-powered prediction accuracy validated against Fortune 500 mining operations',
+          monitoring: 'Continuous enterprise-grade monitoring with 99.99% uptime SLA guarantee'
+      };
+      
+      showEnterpriseNotification(`💼 ${dashboardDetails[type]}`, 'info');
+      trackEnterpriseInteraction('dashboard_detail_click', { type });
+  }
+
+  function launchDashboard() {
+      showEnterpriseNotification('🚀 Launching Enterprise Mining Command Center...', 'info');
+      setTimeout(() => {
+          window.location.href = 'home.html';
+      }, 1800);
+      trackEnterpriseInteraction('enterprise_dashboard_launch');
+  }
+
+  function openAnalytics() {
+      showEnterpriseNotification('📈 Opening Enterprise Analytics Suite...', 'info');
+      setTimeout(() => {
+          window.location.href = 'home.html';
+      }, 1200);
+      trackEnterpriseInteraction('enterprise_analytics_open');
+  }
+
+  function exploreEquipment(type) {
+      const equipmentTypes = {
+          excavator: 'Ultra-Class Mining Excavators',
+          'haul-truck': 'Ultra-Class Haul Trucks',
+          'drill-rig': 'Advanced Rotary Blast Hole Drills'
+      };
+      
+      showEnterpriseNotification(`🔍 Accessing ${equipmentTypes[type]} Enterprise Database...`, 'info');
+      setTimeout(() => {
+          window.location.href = 'home.html';
+      }, 1500);
+      trackEnterpriseInteraction('enterprise_equipment_explore', { type });
+  }
+
+  // Performance Optimizations
+  function initializePerformanceOptimizations() {
+      // Enterprise-grade lazy loading
+      const images = document.querySelectorAll('img[data-src]');
+      const imageObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                  const img = entry.target;
+                  img.src = img.dataset.src;
+                  img.classList.remove('lazy');
+                  imageObserver.unobserve(img);
+              }
+          });
+      });
+      
+      images.forEach(img => imageObserver.observe(img));
+      
+      // Preload enterprise-critical resources
+      const enterprisePages = [
+          'home.html'
+      ];
+      
+      enterprisePages.forEach(page => {
+          const link = document.createElement('link');
+          link.rel = 'prefetch';
+          link.href = page;
+          document.head.appendChild(link);
+      });
+      
+      // Enterprise performance monitoring
+      if ('PerformanceObserver' in window) {
+          const observer = new PerformanceObserver((list) => {
+              list.getEntries().forEach((entry) => {
+                  console.log(`⚡ Performance: ${entry.name} - ${entry.duration.toFixed(2)}ms`);
+              });
+          });
+          
+          observer.observe({ entryTypes: ['navigation', 'resource'] });
+      }
+  }
+
+  // Enterprise Analytics
+  function initializeEnterpriseAnalytics() {
+      // Track enterprise scroll depth
+      let maxScroll = 0;
+      window.addEventListener('scroll', () => {
+          const scrollPercent = Math.round(
+              (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100
+          );
+          maxScroll = Math.max(maxScroll, scrollPercent);
+      });
+      
+      // Track enterprise session time
+      const sessionStart = Date.now();
+      
+      window.addEventListener('beforeunload', () => {
+          const sessionDuration = Date.now() - sessionStart;
+          console.log(`📊 Enterprise Session: ${(sessionDuration / 1000).toFixed(1)}s, ${maxScroll}% engagement`);
+      });
+      
+      // Track enterprise feature interactions
+      document.querySelectorAll('.equipment-card, .dashboard-metric, .metric-item').forEach(element => {
+          element.addEventListener('click', () => {
+              const elementType = element.className.split(' ')[0];
+              console.log(`🎯 Enterprise Interaction: ${elementType}`);
+          });
+      });
+  }
+
+  function trackEnterpriseInteraction(action, data = {}) {
+      console.log(`🏢 Enterprise Action: ${action}`, data);
+      
+      // Enterprise analytics integration
+      if (typeof gtag !== 'undefined') {
+          gtag('event', action, {
+              event_category: 'enterprise_platform',
+              event_label: JSON.stringify(data),
+              value: 1,
+              custom_parameter_1: 'enterprise_user'
+          });
+      }
+  }
+
+  function trackEnterpriseMetrics() {
+      window.addEventListener('load', () => {
+          const loadTime = performance.now();
+          console.log(`⚡ Enterprise Platform loaded in ${loadTime.toFixed(2)}ms`);
+          
+          // Track enterprise Core Web Vitals
+          if ('web-vital' in window) {
+              getCLS((metric) => console.log('📊 CLS:', metric));
+              getFID((metric) => console.log('📊 FID:', metric));
+              getFCP((metric) => console.log('📊 FCP:', metric));
+              getLCP((metric) => console.log('📊 LCP:', metric));
+              getTTFB((metric) => console.log('📊 TTFB:', metric));
+          }
+      });
+  }
+
+  // Enterprise Notification System
+  function showEnterpriseNotification(message, type = 'info') {
+      const notification = document.createElement('div');
+      notification.className = `enterprise-notification enterprise-notification-${type}`;
+      
+      const iconMap = {
+          info: 'fas fa-info-circle',
+          success: 'fas fa-check-circle',
+          warning: 'fas fa-exclamation-triangle',
+          error: 'fas fa-times-circle'
+      };
+      
+      notification.innerHTML = `
+          <div class="notification-content">
+              <i class="${iconMap[type]}"></i>
+              <span class="notification-message">${message}</span>
+              <button class="notification-close" onclick="this.parentElement.parentElement.remove()">
+                  <i class="fas fa-times"></i>
+              </button>
+          </div>
+      `;
+      
+      notification.style.cssText = `
+          position: fixed;
+          top: 120px;
+          right: 24px;
+          background: var(--dark-glass-bg);
+          color: var(--text-on-dark);
+          padding: var(--spacing-lg) var(--spacing-xl);
+          border-radius: var(--radius-md);
+          border: 1px solid var(--dark-glass-border);
+          backdrop-filter: blur(25px);
+          box-shadow: var(--shadow-xl);
+          z-index: 10000;
+          transform: translateX(450px);
+          transition: transform var(--transition-enterprise);
+          max-width: 420px;
+          font-size: 0.95rem;
+          font-weight: 500;
+      `;
+      
+      document.body.appendChild(notification);
+      
+      setTimeout(() => {
+          notification.style.transform = 'translateX(0)';
+      }, 100);
+      
+      setTimeout(() => {
+          notification.style.transform = 'translateX(450px)';
+          setTimeout(() => {
+              notification.remove();
+          }, 400);
+      }, 5000);
+  }
+
+  // Enterprise Keyboard Shortcuts
+  document.addEventListener('keydown', (e) => {
+      // Ctrl/Cmd + Shift + E: Enterprise Dashboard
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'E') {
+          e.preventDefault();
+          window.location.href = 'home.html';
+      }
+      
+      // Ctrl/Cmd + Shift + D: Demo mode
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'D') {
+          e.preventDefault();
+          showEnterpriseNotification('🎮 Enterprise Demo Mode Activated!', 'success');
+          document.body.classList.add('enterprise-demo-mode');
+      }
+      
+      // Ctrl/Cmd + K: Quick access
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+          e.preventDefault();
+          showEnterpriseNotification('🔍 Quick access functionality coming soon!', 'info');
+      }
+  });
+
+  // Smooth scrolling for enterprise navigation
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+              target.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'start'
+              });
+              trackEnterpriseInteraction('enterprise_nav_click', { target: this.getAttribute('href') });
+          }
+      });
+  });
+
+  // Add enterprise CSS animations
+  const enterpriseStyle = document.createElement('style');
+  enterpriseStyle.textContent = `
+      @keyframes enterpriseRipple {
+          to {
+              transform: scale(4);
+              opacity: 0;
+          }
+      }
+      
+      .notification-content {
+          display: flex;
+          align-items: center;
+          gap: var(--spacing-md);
+      }
+      
+      .notification-content i:first-child {
+          font-size: 1.2rem;
+          color: var(--accent-primary);
+      }
+      
+      .notification-close {
+          background: none;
+          border: none;
+          color: rgba(244, 244, 242, 0.7);
+          cursor: pointer;
+          padding: var(--spacing-xs);
+          border-radius: var(--radius-sm);
+          transition: all var(--transition-fast);
+          margin-left: auto;
+      }
+      
+      .notification-close:hover {
+          background: rgba(255, 255, 255, 0.1);
+          color: var(--text-on-dark);
+      }
+      
+      .enterprise-demo-mode {
+          filter: hue-rotate(30deg) brightness(1.1);
+      }
+      
+      .enterprise-demo-mode .hero-headline {
+          animation: enterpriseGlow 3s ease-in-out infinite;
+      }
+      
+      @keyframes enterpriseGlow {
+          0%, 100% { 
+              text-shadow: 0 0 20px rgba(92, 107, 80, 0.3);
+          }
+          50% { 
+              text-shadow: 0 0 40px rgba(92, 107, 80, 0.6);
+          }
+      }
+      
+      /* Initial state for animations */
+      .hero-content > * {
+          opacity: 0;
+          transform: translateY(30px);
+          transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      
+      .enterprise-dashboard {
+          opacity: 0;
+          transform: translateX(50px) scale(0.95);
+          transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      
+      /* Accessibility improvements */
+      @media (prefers-reduced-motion: reduce) {
+          *,
+          *::before,
+          *::after {
+              animation-duration: 0.01ms !important;
+              animation-iteration-count: 1 !important;
+              transition-duration: 0.01ms !important;
+          }
+      }
+      
+      @media (prefers-contrast: high) {
+          .hero-headline,
+          .section-headline {
+              -webkit-text-fill-color: var(--text-primary);
+              background: none;
+          }
+          
+          .metric-value {
+              -webkit-text-fill-color: var(--accent-primary);
+              background: none;
+          }
+      }
+      
+      /* Professional hover states */
+      .enterprise-cta:hover,
+      .btn-enterprise-primary:hover {
+          box-shadow: 0 8px 25px rgba(92, 107, 80, 0.4);
+      }
+      
+      .btn-enterprise-secondary:hover {
+          box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
+      }
+      
+      /* Loading animation improvements */
+      .loading-spinner {
+          box-shadow: 0 0 20px rgba(92, 107, 80, 0.3);
+      }
+      
+      /* Professional focus states */
+      .nav-item:focus,
+      .enterprise-cta:focus,
+      .btn-enterprise-primary:focus,
+      .btn-enterprise-secondary:focus {
+          outline: 2px solid var(--accent-primary);
+          outline-offset: 2px;
+      }
+      
+      /* Enhanced mobile experience */
+      @media (max-width: 768px) {
+          .hero-headline {
+              background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-primary) 100%);
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+              background-clip: text;
+          }
+          
+          .enterprise-dashboard {
+              box-shadow: var(--shadow-lg);
+          }
+          
+          .equipment-card:hover {
+              transform: translateY(-8px);
+          }
+      }
+      
+      /* Professional print styles */
+      @media print {
+          .enterprise-header,
+          .enterprise-loading,
+          .hero-actions,
+          .cta-actions {
+              display: none;
+          }
+          
+          .hero-headline,
+          .section-headline {
+              color: var(--text-primary) !important;
+              -webkit-text-fill-color: var(--text-primary) !important;
+          }
+          
+          .enterprise-dashboard,
+          .equipment-card {
+              box-shadow: none;
+              border: 1px solid var(--border-light);
+          }
+      }
+  `;
+  document.head.appendChild(enterpriseStyle);
+
+  console.log('🏢 SESMine Enterprise Platform Ready');
+  console.log('⚡ Enterprise performance optimizations active');
+  console.log('🎨 Professional animations loaded');
+  console.log('📊 Enterprise analytics tracking enabled');
+  console.log('🔧 Professional equipment database ready');
+  console.log('🚀 Ready for Fortune 500 mining transformation!');
+  console.log('💼 Enterprise-grade security and compliance active');
+  console.log('🌐 Global enterprise support available 24/7');
+  console.log('🎯 Professional user experience optimized');
+  console.log('📱 Mobile-first responsive design implemented');
+  </script>
+</body>
+</html>

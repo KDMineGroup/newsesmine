@@ -1,0 +1,1579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Training & Education Hub - SESMine Platform</title>
+  <meta name="description" content="Professional Training and Education for Mining - SESMine">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/x-icon" href="https://www.sesmine.com/favicon.ico">
+  
+  <style>
+  /* Training Hub specific styles */
+  .training-hero {
+      background: linear-gradient(135deg, var(--success-500) 0%, var(--success-600) 50%, var(--sesmine-emerald) 100%);
+      color: white;
+      padding: 4rem 0;
+      margin-bottom: 3rem;
+      position: relative;
+      overflow: hidden;
+  }
+  
+  .training-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="education-pattern" width="30" height="30" patternUnits="userSpaceOnUse"><circle cx="15" cy="15" r="2" fill="rgba(255,255,255,0.1)"/><rect x="10" y="10" width="10" height="2" fill="rgba(255,255,255,0.05)"/><rect x="8" y="18" width="14" height="2" fill="rgba(255,255,255,0.08)"/></pattern></defs><rect width="100" height="100" fill="url(%23education-pattern)"/></svg>');
+      opacity: 0.3;
+  }
+  
+  .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      text-align: center;
+  }
+  
+  .hero-icon {
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(135deg, var(--sesmine-gold), var(--sesmine-copper));
+      border-radius: var(--border-radius-2xl);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      margin: 0 auto 2rem;
+      box-shadow: var(--shadow-2xl);
+      animation: educationFloat 4s ease-in-out infinite;
+  }
+  
+  @keyframes educationFloat {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(5deg); }
+  }
+  
+  .hero-title {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, white, rgba(255, 255, 255, 0.8), var(--sesmine-gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.1;
+  }
+  
+  .hero-subtitle {
+      font-size: 1.5rem;
+      opacity: 0.9;
+      margin-bottom: 2.5rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.5;
+  }
+  
+  .training-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+  }
+  
+  .training-stat {
+      text-align: center;
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: var(--border-radius-xl);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .training-stat-value {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      font-family: var(--font-mono);
+      color: var(--sesmine-gold);
+  }
+  
+  .training-stat-label {
+      font-size: 0.95rem;
+      opacity: 0.8;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+  }
+  
+  .learning-paths {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+  }
+  
+  .path-card {
+      background: white;
+      border-radius: var(--border-radius-xl);
+      padding: 2.5rem;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--gray-200);
+      transition: var(--transition-all);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+  }
+  
+  .path-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, var(--success-500), var(--sesmine-emerald), var(--success-600));
+  }
+  
+  .path-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-2xl);
+      border-color: var(--success-500);
+  }
+  
+  .path-header {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+  }
+  
+  .path-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: var(--border-radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: white;
+      box-shadow: var(--shadow-lg);
+      transition: var(--transition-transform);
+      flex-shrink: 0;
+  }
+  
+  .path-card:hover .path-icon {
+      transform: scale(1.1) rotate(5deg);
+  }
+  
+  .path-info {
+      flex: 1;
+  }
+  
+  .path-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--sesmine-primary);
+      margin-bottom: 0.5rem;
+  }
+  
+  .path-level {
+      color: var(--success-600);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+  }
+  
+  .path-duration {
+      color: var(--gray-600);
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+  }
+  
+  .path-description {
+      color: var(--gray-600);
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+  }
+  
+  .path-progress {
+      margin-bottom: 2rem;
+  }
+  
+  .progress-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+  }
+  
+  .progress-label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--gray-700);
+  }
+  
+  .progress-percentage {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--success-600);
+  }
+  
+  .progress-bar {
+      width: 100%;
+      height: 8px;
+      background: var(--gray-200);
+      border-radius: 4px;
+      overflow: hidden;
+  }
+  
+  .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--success-500), var(--sesmine-emerald));
+      border-radius: 4px;
+      transition: width 0.3s ease;
+  }
+  
+  .path-modules {
+      margin-bottom: 2rem;
+  }
+  
+  .modules-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--sesmine-primary);
+      margin-bottom: 1rem;
+  }
+  
+  .modules-list {
+      list-style: none;
+  }
+  
+  .modules-list li {
+      padding: 0.5rem 0;
+      color: var(--gray-700);
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+  }
+  
+  .module-icon {
+      width: 16px;
+      height: 16px;
+      color: var(--sesmine-emerald);
+      flex-shrink: 0;
+  }
+  
+  .path-actions {
+      display: flex;
+      gap: 1rem;
+  }
+  
+  .action-btn {
+      flex: 1;
+      padding: 0.875rem;
+      border: 2px solid var(--gray-300);
+      background: white;
+      color: var(--gray-700);
+      border-radius: var(--border-radius-md);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition-all);
+      text-align: center;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+  }
+  
+  .action-btn:hover {
+      border-color: var(--success-500);
+      color: var(--success-600);
+  }
+  
+  .action-btn.primary {
+      background: var(--success-500);
+      border-color: var(--success-500);
+      color: white;
+  }
+  
+  .action-btn.primary:hover {
+      background: var(--success-600);
+      border-color: var(--success-600);
+  }
+  
+  .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+  }
+  
+  .course-card {
+      background: white;
+      border-radius: var(--border-radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--gray-200);
+      transition: var(--transition-all);
+      cursor: pointer;
+  }
+  
+  .course-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-2xl);
+  }
+  
+  .course-thumbnail {
+      height: 200px;
+      background: linear-gradient(135deg, var(--success-500), var(--sesmine-emerald));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: white;
+      position: relative;
+  }
+  
+  .course-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: var(--sesmine-gold);
+      color: white;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+  }
+  
+  .course-content {
+      padding: 2rem;
+  }
+  
+  .course-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--sesmine-primary);
+      margin-bottom: 0.75rem;
+  }
+  
+  .course-instructor {
+      color: var(--success-600);
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+  }
+  
+  .course-description {
+      color: var(--gray-600);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+  }
+  
+  .course-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+  }
+  
+  .course-duration {
+      color: var(--gray-600);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+  }
+  
+  .course-rating {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+  }
+  
+  .rating-stars {
+      color: var(--warning-500);
+  }
+  
+  .rating-score {
+      font-weight: 600;
+      color: var(--gray-700);
+  }
+  
+  .course-price {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--success-600);
+      margin-bottom: 1rem;
+      font-family: var(--font-mono);
+  }
+  
+  .certification-center {
+      background: linear-gradient(135deg, var(--primary-50), var(--success-50));
+      border-radius: var(--border-radius-2xl);
+      padding: 4rem 3rem;
+      margin: 4rem 0;
+      border: 1px solid var(--primary-200);
+  }
+  
+  .certification-header {
+      text-align: center;
+      margin-bottom: 3rem;
+  }
+  
+  .certification-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--sesmine-primary);
+      margin-bottom: 1rem;
+  }
+  
+  .certification-subtitle {
+      font-size: 1.25rem;
+      color: var(--gray-600);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+  }
+  
+  .certifications-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+  }
+  
+  .certification-card {
+      background: white;
+      border-radius: var(--border-radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+      border: 2px solid var(--gray-200);
+      transition: var(--transition-all);
+      text-align: center;
+  }
+  
+  .certification-card:hover {
+      border-color: var(--success-500);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+  }
+  
+  .cert-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--success-500), var(--sesmine-emerald));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2rem;
+      margin: 0 auto 1.5rem;
+      box-shadow: var(--shadow-md);
+  }
+  
+  .cert-name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--sesmine-primary);
+      margin-bottom: 0.75rem;
+  }
+  
+  .cert-level {
+      color: var(--success-600);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+  }
+  
+  .cert-description {
+      color: var(--gray-600);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+  }
+  
+  .cert-requirements {
+      background: var(--gray-50);
+      border-radius: var(--border-radius-md);
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.85rem;
+      color: var(--gray-600);
+  }
+  
+  .virtual-classroom {
+      background: var(--gray-900);
+      color: white;
+      border-radius: var(--border-radius-2xl);
+      padding: 4rem 3rem;
+      margin: 4rem 0;
+      position: relative;
+      overflow: hidden;
+  }
+  
+  .virtual-classroom::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="classroom-pattern" width="40" height="40" patternUnits="userSpaceOnUse"><rect x="15" y="15" width="10" height="6" fill="rgba(34,197,94,0.1)" rx="2"/><circle cx="20" cy="10" r="2" fill="rgba(34,197,94,0.05)"/><rect x="5" y="25" width="30" height="2" fill="rgba(34,197,94,0.08)"/></pattern></defs><rect width="100" height="100" fill="url(%23classroom-pattern)"/></svg>');
+      opacity: 0.3;
+  }
+  
+  .classroom-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+  }
+  
+  .classroom-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, white, var(--success-400));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+  }
+  
+  .classroom-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+  }
+  
+  .classroom-feature {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: var(--border-radius-lg);
+      padding: 2rem;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: var(--transition-all);
+  }
+  
+  .classroom-feature:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-4px);
+  }
+  
+  .feature-icon {
+      width: 60px;
+      height: 60px;
+      background: var(--success-500);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      margin: 0 auto 1rem;
+  }
+  
+  .feature-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+  }
+  
+  .feature-description {
+      font-size: 0.9rem;
+      opacity: 0.9;
+      line-height: 1.5;
+  }
+  
+  @media (max-width: 1024px) {
+      .learning-paths {
+          grid-template-columns: 1fr;
+      }
+      
+      .courses-grid {
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      }
+  }
+  
+  @media (max-width: 768px) {
+      .hero-title {
+          font-size: 2.5rem;
+      }
+      
+      .hero-subtitle {
+          font-size: 1.25rem;
+      }
+      
+      .training-stats {
+          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      }
+      
+      .path-header {
+          flex-direction: column;
+          text-align: center;
+      }
+      
+      .path-actions {
+          flex-direction: column;
+      }
+  }
+  </style>
+</head>
+<body>
+  <!-- Universal Navigation Header -->
+  <header class="sesmine-header" id="sesmineHeader">
+      <div class="header-content">
+          <div class="logo-section">
+              <button class="header-btn mobile-menu-toggle" id="mobileMenuToggle">
+                  <i class="fas fa-bars"></i>
+              </button>
+              <a href="index.html" class="logo">
+                  <div class="logo-icon">🏔️</div>
+                  <div class="logo-text">
+                      <div class="logo-main">SESMine</div>
+                      <div class="logo-subtitle">Smart Engineering Solutions</div>
+                  </div>
+              </a>
+          </div>
+          
+          <nav class="main-nav" id="mainNav">
+              <a href="home.html" class="nav-link">
+                  <i class="fas fa-home"></i> Dashboard
+              </a>
+              <div class="nav-dropdown">
+                  <button class="nav-link dropdown-toggle active">
+                      <i class="fas fa-th-large"></i> Hubs <i class="fas fa-chevron-down"></i>
+                  </button>
+                  <div class="dropdown-menu">
+                      <a href="engineering-hub.html" class="dropdown-item">
+                          <i class="fas fa-hard-hat"></i> Engineering Hub
+                      </a>
+                      <a href="analytics-platform.html" class="dropdown-item">
+                          <i class="fas fa-chart-area"></i> Analytics Platform
+                      </a>
+                      <a href="economics-hub.html" class="dropdown-item">
+                          <i class="fas fa-coins"></i> Economics Hub
+                      </a>
+                      <a href="innovation-technology-hub.html" class="dropdown-item">
+                          <i class="fas fa-rocket"></i> Innovation & Technology
+                      </a>
+                      <a href="procurement-hub.html" class="dropdown-item">
+                          <i class="fas fa-truck"></i> Procurement Hub
+                      </a>
+                      <a href="consulting-hub.html" class="dropdown-item">
+                          <i class="fas fa-user-tie"></i> Consulting Hub
+                      </a>
+                      <a href="training-education-hub.html" class="dropdown-item active">
+                          <i class="fas fa-graduation-cap"></i> Training & Education
+                      </a>
+                      <a href="admin-dashboard.html" class="dropdown-item">
+                          <i class="fas fa-shield-alt"></i> Admin Dashboard
+                      </a>
+                  </div>
+              </div>
+              <a href="platforms.html" class="nav-link">
+                  <i class="fas fa-layer-group"></i> Platforms
+              </a>
+              <a href="features.html" class="nav-link">
+                  <i class="fas fa-star"></i> Features
+              </a>
+              <a href="about.html" class="nav-link">
+                  <i class="fas fa-info-circle"></i> About
+              </a>
+              <a href="contact.html" class="nav-link">
+                  <i class="fas fa-phone"></i> Contact
+              </a>
+          </nav>
+          
+          <div class="header-actions">
+              <div class="search-container">
+                  <i class="fas fa-search search-icon"></i>
+                  <input type="text" class="search-input" placeholder="Search courses..." id="globalSearch">
+              </div>
+              <button class="header-btn" title="Notifications">
+                  <i class="fas fa-bell"></i>
+              </button>
+              <button class="header-btn" title="Settings" onclick="window.location.href='setting.html'">
+                  <i class="fas fa-cog"></i>
+              </button>
+              <div class="user-menu">
+                  <div class="user-avatar">MS</div>
+                  <div class="user-info">
+                      <div class="user-name">Mining Specialist</div>
+                      <div class="user-email">specialist@sesmine.com</div>
+                  </div>
+                  <div class="user-dropdown">
+                      <a href="setting.html" class="dropdown-item">
+                          <i class="fas fa-cog"></i> Settings
+                      </a>
+                      <a href="login.html" class="dropdown-item">
+                          <i class="fas fa-sign-out-alt"></i> Logout
+                      </a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+      <!-- Training Hero Section -->
+      <section class="training-hero">
+          <div class="hero-content">
+              <div class="hero-icon">🎓</div>
+              <h1 class="hero-title">Training & Education Hub</h1>
+              <p class="hero-subtitle">
+                  Comprehensive professional development, certification programs, and skill enhancement 
+                  for mining professionals at all career levels.
+              </p>
+              
+              <div class="training-stats">
+                  <div class="training-stat">
+                      <div class="training-stat-value">150+</div>
+                      <div class="training-stat-label">Courses Available</div>
+                  </div>
+                  <div class="training-stat">
+                      <div class="training-stat-value">25K+</div>
+                      <div class="training-stat-label">Students Trained</div>
+                  </div>
+                  <div class="training-stat">
+                      <div class="training-stat-value">95%</div>
+                      <div class="training-stat-label">Completion Rate</div>
+                  </div>
+                  <div class="training-stat">
+                      <div class="training-stat-value">12</div>
+                      <div class="training-stat-label">Certifications</div>
+                  </div>
+              </div>
+          </div>
+      </section>
+
+      <div class="content-container">
+          <!-- Learning Paths -->
+          <section class="learning-paths">
+              <div class="path-card" onclick="exploreLearningPath('Mining Engineering Fundamentals')">
+                  <div class="path-header">
+                      <div class="path-icon" style="background: linear-gradient(135deg, var(--success-500), var(--sesmine-emerald));">
+                          ⛏️
+                      </div>
+                      <div class="path-info">
+                          <div class="path-title">Mining Engineering Fundamentals</div>
+                          <div class="path-level">Beginner Level</div>
+                          <div class="path-duration">
+                              <i class="fas fa-clock"></i>
+                              8 weeks • 32 hours
+                          </div>
+                      </div>
+                  </div>
+                  
+                  <p class="path-description">
+                      Comprehensive introduction to mining engineering principles, covering geology, mine planning, 
+                      extraction methods, and safety protocols for new professionals.
+                  </p>
+                  
+                  <div class="path-progress">
+                      <div class="progress-header">
+                          <span class="progress-label">Your Progress</span>
+                          <span class="progress-percentage">65%</span>
+                      </div>
+                      <div class="progress-bar">
+                          <div class="progress-fill" style="width: 65%"></div>
+                      </div>
+                  </div>
+                  
+                  <div class="path-modules">
+                      <h4 class="modules-title">Course Modules</h4>
+                      <ul class="modules-list">
+                          <li><i class="fas fa-check-circle module-icon"></i>Introduction to Mining</li>
+                          <li><i class="fas fa-check-circle module-icon"></i>Geological Principles</li>
+                          <li><i class="fas fa-play-circle module-icon" style="color: var(--warning-500);"></i>Mine Planning & Design</li>
+                          <li><i class="fas fa-circle module-icon" style="color: var(--gray-400);"></i>Extraction Methods</li>
+                          <li><i class="fas fa-circle module-icon" style="color: var(--gray-400);"></i>Safety & Regulations</li>
+                      </ul>
+                  </div>
+                  
+                  <div class="path-actions">
+                      <button class="action-btn primary">
+                          <i class="fas fa-play"></i>
+                          Continue Learning
+                      </button>
+                      <button class="action-btn">
+                          <i class="fas fa-info-circle"></i>
+                          View Details
+                      </button>
+                  </div>
+              </div>
+
+              <div class="path-card" onclick="exploreLearningPath('Advanced Process Engineering')">
+                  <div class="path-header">
+                      <div class="path-icon" style="background: linear-gradient(135deg, var(--sesmine-accent), var(--sesmine-secondary));">
+                          🏭
+                      </div>
+                      <div class="path-info">
+                          <div class="path-title">Advanced Process Engineering</div>
+                          <div class="path-level">Advanced Level</div>
+                          <div class="path-duration">
+                              <i class="fas fa-clock"></i>
+                              12 weeks • 48 hours
+                          </div>
+                      </div>
+                  </div>
+                  
+                  <p class="path-description">
+                      Advanced mineral processing techniques, plant optimization, metallurgical processes, 
+                      and cutting-edge technologies for experienced engineers.
+                  </p>
+                  
+                  <div class="path-progress">
+                      <div class="progress-header">
+                          <span class="progress-label">Your Progress</span>
+                          <span class="progress-percentage">0%</span>
+                      </div>
+                      <div class="progress-bar">
+                          <div class="progress-fill" style="width: 0%"></div>
+                      </div>
+                  </div>
+                  
+                  <div class="path-modules">
+                      <h4 class="modules-title">Course Modules</h4>
+                      <ul class="modules-list">
+                          <li><i class="fas fa-circle module-icon" style="color: var(--gray-400);"></i>Advanced Metallurgy</li>
+                          <li><i class="fas fa-circle module-icon" style="color: var(--gray-400);"></i>Process Optimization</li>
+                          <li><i class="fas fa-circle module-icon" style="color: var(--gray-400);"></i>Plant Design & Layout</li>
+                          <li><i class="fas fa-circle module-icon" style="color: var(--gray-400);"></i>Automation Systems</li>
+                          <li><i class="fas fa-circle module-icon" style="color: var(--gray-400);"></i>Environmental Control</li>
+                      </ul>
+                  </div>
+                  
+                  <div class="path-actions">
+                      <button class="action-btn primary">
+                          <i class="fas fa-rocket"></i>
+                          Start Path
+                      </button>
+                      <button class="action-btn">
+                          <i class="fas fa-info-circle"></i>
+                          Prerequisites
+                      </button>
+                  </div>
+              </div>
+
+              <div class="path-card" onclick="exploreLearningPath('Digital Mining Technologies')">
+                  <div class="path-header">
+                      <div class="path-icon" style="background: linear-gradient(135deg, var(--primary-500), var(--primary-600));">
+                          💻
+                      </div>
+                      <div class="path-info">
+                          <div class="path-title">Digital Mining Technologies</div>
+                          <div class="path-level">Intermediate Level</div>
+                          <div class="path-duration">
+                              <i class="fas fa-clock"></i>
+                              10 weeks • 40 hours
+                          </div>
+                      </div>
+                  </div>
+                  
+                  <p class="path-description">
+                      Explore IoT, AI, automation, and digital transformation in mining operations. 
+                      Learn to implement and manage modern mining technologies.
+                  </p>
+                  
+                  <div class="path-progress">
+                      <div class="progress-header">
+                          <span class="progress-label">Your Progress</span>
+                          <span class="progress-percentage">25%</span>
+                      </div>
+                      <div class="progress-bar">
+                          <div class="progress-fill" style="width: 25%"></div>
+                      </div>
+                  </div>
+                  
+                  <div class="path-modules">
+                      <h4 class="modules-title">Course Modules</h4>
+                      <ul class="modules-list">
+                          <li><i class="fas fa-check-circle module-icon"></i>IoT in Mining</li>
+                          <li><i class="fas fa-play-circle module-icon" style="color: var(--warning-500);"></i>AI & Machine Learning</li>
+                          <li><i class="fas fa-circle module-icon" style="color: var(--gray-400);"></i>Automation Systems</li>
+                          <li><i class="fas fa-circle module-icon" style="color: var(--gray-400);"></i>Data Analytics</li>
+                          <li><i class="fas fa-circle module-icon" style="color: var(--gray-400);"></i>Digital Transformation</li>
+                      </ul>
+                  </div>
+                  
+                  <div class="path-actions">
+                      <button class="action-btn primary">
+                          <i class="fas fa-play"></i>
+                          Continue Learning
+                      </button>
+                      <button class="action-btn">
+                          <i class="fas fa-users"></i>
+                          Join Study Group
+                      </button>
+                  </div>
+              </div>
+          </section>
+
+          <!-- Featured Courses -->
+          <section class="courses-grid">
+              <div class="course-card" onclick="openCourse('Safety Management in Mining Operations')">
+                  <div class="course-thumbnail">
+                      🛡️
+                      <div class="course-badge">Popular</div>
+                  </div>
+                  <div class="course-content">
+                      <h3 class="course-title">Safety Management in Mining Operations</h3>
+                      <div class="course-instructor">By Dr. Sarah Wilson</div>
+                      <p class="course-description">
+                          Comprehensive safety management strategies, risk assessment, and regulatory compliance for mining operations.
+                      </p>
+                      <div class="course-meta">
+                          <div class="course-duration">
+                              <i class="fas fa-clock"></i>
+                              6 hours
+                          </div>
+                          <div class="course-rating">
+                              <div class="rating-stars">★★★★★</div>
+                              <div class="rating-score">4.8</div>
+                          </div>
+                      </div>
+                      <div class="course-price">$299</div>
+                      <div class="path-actions">
+                          <button class="action-btn primary">
+                              <i class="fas fa-shopping-cart"></i>
+                              Enroll Now
+                          </button>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="course-card" onclick="openCourse('Mineral Processing Fundamentals')">
+                  <div class="course-thumbnail">
+                      ⚗️
+                      <div class="course-badge">New</div>
+                  </div>
+                  <div class="course-content">
+                      <h3 class="course-title">Mineral Processing Fundamentals</h3>
+                      <div class="course-instructor">By Prof. Michael Chen</div>
+                      <p class="course-description">
+                          Learn the basics of mineral processing, from crushing and grinding to separation and concentration techniques.
+                      </p>
+                      <div class="course-meta">
+                          <div class="course-duration">
+                              <i class="fas fa-clock"></i>
+                              8 hours
+                          </div>
+                          <div class="course-rating">
+                              <div class="rating-stars">★★★★☆</div>
+                              <div class="rating-score">4.6</div>
+                          </div>
+                      </div>
+                      <div class="course-price">$399</div>
+                      <div class="path-actions">
+                          <button class="action-btn primary">
+                              <i class="fas fa-shopping-cart"></i>
+                              Enroll Now
+                          </button>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="course-card" onclick="openCourse('Environmental Impact Assessment')">
+                  <div class="course-thumbnail">
+                      🌍
+                      <div class="course-badge">Trending</div>
+                  </div>
+                  <div class="course-content">
+                      <h3 class="course-title">Environmental Impact Assessment</h3>
+                      <div class="course-instructor">By Dr. Emily Green</div>
+                      <p class="course-description">
+                          Master environmental impact assessment methodologies and sustainable mining practices for responsible operations.
+                      </p>
+                      <div class="course-meta">
+                          <div class="course-duration">
+                              <i class="fas fa-clock"></i>
+                              10 hours
+                          </div>
+                          <div class="course-rating">
+                              <div class="rating-stars">★★★★★</div>
+                              <div class="rating-score">4.9</div>
+                          </div>
+                      </div>
+                      <div class="course-price">$449</div>
+                      <div class="path-actions">
+                          <button class="action-btn primary">
+                              <i class="fas fa-shopping-cart"></i>
+                              Enroll Now
+                          </button>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="course-card" onclick="openCourse('Mine Planning & Design')">
+                  <div class="course-thumbnail">
+                      📐
+                  </div>
+                  <div class="course-content">
+                      <h3 class="course-title">Mine Planning & Design</h3>
+                      <div class="course-instructor">By James Rodriguez</div>
+                      <p class="course-description">
+                          Advanced mine planning techniques using modern software tools and optimization algorithms for efficient operations.
+                      </p>
+                      <div class="course-meta">
+                          <div class="course-duration">
+                              <i class="fas fa-clock"></i>
+                              12 hours
+                          </div>
+                          <div class="course-rating">
+                              <div class="rating-stars">★★★★★</div>
+                              <div class="rating-score">4.7</div>
+                          </div>
+                      </div>
+                      <div class="course-price">$599</div>
+                      <div class="path-actions">
+                          <button class="action-btn primary">
+                              <i class="fas fa-shopping-cart"></i>
+                              Enroll Now
+                          </button>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="course-card" onclick="openCourse('Equipment Maintenance & Reliability')">
+                  <div class="course-thumbnail">
+                      🔧
+                  </div>
+                  <div class="course-content">
+                      <h3 class="course-title">Equipment Maintenance & Reliability</h3>
+                      <div class="course-instructor">By Robert Kim</div>
+                      <p class="course-description">
+                          Predictive maintenance strategies, reliability engineering, and equipment lifecycle management for mining operations.
+                      </p>
+                      <div class="course-meta">
+                          <div class="course-duration">
+                              <i class="fas fa-clock"></i>
+                              7 hours
+                          </div>
+                          <div class="course-rating">
+                              <div class="rating-stars">★★★★☆</div>
+                              <div class="rating-score">4.5</div>
+                          </div>
+                      </div>
+                      <div class="course-price">$349</div>
+                      <div class="path-actions">
+                          <button class="action-btn primary">
+                              <i class="fas fa-shopping-cart"></i>
+                              Enroll Now
+                          </button>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="course-card" onclick="openCourse('Financial Analysis for Mining Projects')">
+                  <div class="course-thumbnail">
+                      💰
+                  </div>
+                  <div class="course-content">
+                      <h3 class="course-title">Financial Analysis for Mining Projects</h3>
+                      <div class="course-instructor">By Lisa Thompson</div>
+                      <p class="course-description">
+                          Learn financial modeling, NPV analysis, and investment evaluation techniques specific to mining projects.
+                      </p>
+                      <div class="course-meta">
+                          <div class="course-duration">
+                              <i class="fas fa-clock"></i>
+                              9 hours
+                          </div>
+                          <div class="course-rating">
+                              <div class="rating-stars">★★★★★</div>
+                              <div class="rating-score">4.8</div>
+                          </div>
+                      </div>
+                      <div class="course-price">$499</div>
+                      <div class="path-actions">
+                          <button class="action-btn primary">
+                              <i class="fas fa-shopping-cart"></i>
+                              Enroll Now
+                          </button>
+                      </div>
+                  </div>
+              </div>
+          </section>
+
+          <!-- Certification Center -->
+          <section class="certification-center">
+              <div class="certification-header">
+                  <h2 class="certification-title">Professional Certifications</h2>
+                  <p class="certification-subtitle">
+                      Earn industry-recognized certifications to advance your career and demonstrate expertise
+                  </p>
+              </div>
+
+              <div class="certifications-grid">
+                  <div class="certification-card" onclick="exploreCertification('Certified Mining Engineer')">
+                      <div class="cert-icon">🏆</div>
+                      <h4 class="cert-name">Certified Mining Engineer</h4>
+                      <div class="cert-level">Professional Level</div>
+                      <p class="cert-description">
+                          Comprehensive certification covering all aspects of mining engineering from planning to operations.
+                      </p>
+                      <div class="cert-requirements">
+                          Requirements: 5+ years experience, Complete 8 core courses, Pass final examination
+                      </div>
+                      <div class="path-actions">
+                          <button class="action-btn primary">
+                              <i class="fas fa-award"></i>
+                              Start Certification
+                          </button>
+                      </div>
+                  </div>
+
+                  <div class="certification-card" onclick="exploreCertification('Safety Management Specialist')">
+                      <div class="cert-icon">🛡️</div>
+                      <h4 class="cert-name">Safety Management Specialist</h4>
+                      <div class="cert-level">Specialist Level</div>
+                      <p class="cert-description">
+                          Specialized certification in mining safety management, risk assessment, and regulatory compliance.
+                      </p>
+                      <div class="cert-requirements">
+                          Requirements: 3+ years experience, Complete safety courses, Pass practical assessment
+                      </div>
+                      <div class="path-actions">
+                          <button class="action-btn primary">
+                              <i class="fas fa-shield-alt"></i>
+                              Get Certified
+                          </button>
+                      </div>
+                  </div>
+
+                  <div class="certification-card" onclick="exploreCertification('Process Engineering Expert')">
+                      <div class="cert-icon">⚙️</div>
+                      <h4 class="cert-name">Process Engineering Expert</h4>
+                      <div class="cert-level">Expert Level</div>
+                      <p class="cert-description">
+                          Advanced certification in mineral processing, plant design, and process optimization techniques.
+                      </p>
+                      <div class="cert-requirements">
+                          Requirements: 7+ years experience, Complete advanced courses, Portfolio review
+                      </div>
+                      <div class="path-actions">
+                          <button class="action-btn primary">
+                              <i class="fas fa-cogs"></i>
+                              Apply Now
+                          </button>
+                      </div>
+                  </div>
+
+                  <div class="certification-card" onclick="exploreCertification('Digital Mining Specialist')">
+                      <div class="cert-icon">💻</div>
+                      <h4 class="cert-name">Digital Mining Specialist</h4>
+                      <div class="cert-level">Emerging Technology</div>
+                      <p class="cert-description">
+                          Cutting-edge certification in digital technologies, AI, IoT, and automation for modern mining.
+                      </p>
+                      <div class="cert-requirements">
+                          Requirements: 2+ years tech experience, Complete digital courses, Project submission
+                      </div>
+                      <div class="path-actions">
+                          <button class="action-btn primary">
+                              <i class="fas fa-laptop"></i>
+                              Join Program
+                          </button>
+                      </div>
+                  </div>
+              </div>
+          </section>
+
+          <!-- Virtual Classroom -->
+          <section class="virtual-classroom">
+              <div class="classroom-content">
+                  <h2 class="classroom-title">Virtual Learning Environment</h2>
+                  <p style="font-size: 1.25rem; opacity: 0.9; margin-bottom: 2rem;">
+                      Experience immersive learning with our state-of-the-art virtual classroom technology
+                  </p>
+
+                  <div class="classroom-features">
+                      <div class="classroom-feature">
+                          <div class="feature-icon">📹</div>
+                          <h4 class="feature-title">Live Interactive Sessions</h4>
+                          <p class="feature-description">
+                              Real-time video conferencing with expert instructors and peer interaction capabilities.
+                          </p>
+                      </div>
+
+                      <div class="classroom-feature">
+                          <div class="feature-icon">🥽</div>
+                          <h4 class="feature-title">VR Mine Simulations</h4>
+                          <p class="feature-description">
+                              Immersive virtual reality experiences for safe hands-on learning in simulated mine environments.
+                          </p>
+                      </div>
+
+                      <div class="classroom-feature">
+                          <div class="feature-icon">📊</div>
+                          <h4 class="feature-title">Interactive Dashboards</h4>
+                          <p class="feature-description">
+                              Real-time data visualization and interactive tools for practical learning experiences.
+                          </p>
+                      </div>
+
+                      <div class="classroom-feature">
+                          <div class="feature-icon">🎯</div>
+                          <h4 class="feature-title">Personalized Learning</h4>
+                          <p class="feature-description">
+                              AI-powered learning paths adapted to your skill level, pace, and career objectives.
+                          </p>
+                      </div>
+
+                      <div class="classroom-feature">
+                          <div class="feature-icon">📱</div>
+                          <h4 class="feature-title">Mobile Learning</h4>
+                          <p class="feature-description">
+                              Access courses anytime, anywhere with our mobile-optimized learning platform.
+                          </p>
+                      </div>
+
+                      <div class="classroom-feature">
+                          <div class="feature-icon">🏆</div>
+                          <h4 class="feature-title">Gamified Progress</h4>
+                          <p class="feature-description">
+                              Earn badges, compete in challenges, and track achievements to stay motivated.
+                          </p>
+                      </div>
+                  </div>
+
+                  <div style="margin-top: 3rem;">
+                      <button class="btn btn-primary" style="background: var(--success-500); border-color: var(--success-500);" onclick="enterVirtualClassroom()">
+                          <i class="fas fa-play"></i>
+                          Enter Virtual Classroom
+                      </button>
+                  </div>
+              </div>
+          </section>
+      </div>
+  </main>
+
+  <script src="script.js"></script>
+  <script>
+  // Training Hub specific JavaScript
+  document.addEventListener('DOMContentLoaded', function() {
+      initializeTrainingHub();
+  });
+
+  function initializeTrainingHub() {
+      console.log('🎓 Training Hub initialized');
+      
+      // Initialize learning progress animations
+      initializeProgressBars();
+      
+      // Initialize course interactions
+      initializeCourseCards();
+      
+      // Track page view
+      analytics.track('training_hub_view', {
+          timestamp: new Date().toISOString(),
+          userAgent: navigator.userAgent
+      });
+  }
+
+  function initializeProgressBars() {
+      const progressBars = document.querySelectorAll('.progress-fill');
+      
+      // Animate progress bars on scroll
+      const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                  const progressBar = entry.target;
+                  const targetWidth = progressBar.style.width;
+                  
+                  // Reset and animate
+                  progressBar.style.width = '0%';
+                  setTimeout(() => {
+                      progressBar.style.width = targetWidth;
+                  }, 300);
+              }
+          });
+      });
+      
+      progressBars.forEach(bar => observer.observe(bar));
+  }
+
+  function initializeCourseCards() {
+      const courseCards = document.querySelectorAll('.course-card');
+      
+      courseCards.forEach(card => {
+          card.addEventListener('mouseenter', function() {
+              const thumbnail = this.querySelector('.course-thumbnail');
+              if (thumbnail) {
+                  thumbnail.style.transform = 'scale(1.05)';
+              }
+          });
+          
+          card.addEventListener('mouseleave', function() {
+              const thumbnail = this.querySelector('.course-thumbnail');
+              if (thumbnail) {
+                  thumbnail.style.transform = 'scale(1)';
+              }
+          });
+      });
+  }
+
+  // Learning path functions
+  function exploreLearningPath(pathName) {
+      analytics.track('learning_path_explore', { path: pathName });
+      showNotification(`📚 Loading ${pathName} learning path...`, 'info');
+      
+      setTimeout(() => {
+          showNotification(`✅ ${pathName} path loaded with detailed curriculum`, 'success');
+      }, 1500);
+  }
+
+  function openCourse(courseName) {
+      analytics.track('course_view', { course: courseName });
+      showNotification(`📖 Opening ${courseName} course...`, 'info');
+      
+      setTimeout(() => {
+          showNotification(`🎥 ${courseName} course ready - video player loaded`, 'success');
+      }, 1200);
+  }
+
+  function exploreCertification(certName) {
+      analytics.track('certification_explore', { certification: certName });
+      showNotification(`🏆 Loading ${certName} certification details...`, 'info');
+      
+      setTimeout(() => {
+          showNotification(`📋 ${certName} requirements and pathway loaded`, 'success');
+      }, 1800);
+  }
+
+  function enterVirtualClassroom() {
+      analytics.track('virtual_classroom_enter', { timestamp: new Date().toISOString() });
+      showNotification('🥽 Initializing virtual classroom environment...', 'info');
+      
+      setTimeout(() => {
+          showNotification('🎓 Virtual classroom ready - connecting to live session', 'success');
+      }, 2500);
+  }
+
+  // Advanced training features
+  function enrollInCourse(courseName, price) {
+      analytics.track('course_enrollment', { 
+          course: courseName, 
+          price: price,
+          timestamp: new Date().toISOString() 
+      });
+      
+      showNotification(`💳 Processing enrollment for ${courseName}...`, 'info');
+      
+      setTimeout(() => {
+          showNotification(`✅ Successfully enrolled in ${courseName}! Welcome to the course.`, 'success');
+      }, 2000);
+  }
+
+  function joinStudyGroup(pathName) {
+      analytics.track('study_group_join', { path: pathName });
+      showNotification(`👥 Finding study group for ${pathName}...`, 'info');
+      
+      setTimeout(() => {
+          const groupSize = Math.floor(Math.random() * 15) + 5;
+          showNotification(`🤝 Joined study group with ${groupSize} other students!`, 'success');
+      }, 1500);
+  }
+
+  function downloadCourseMaterials(courseName) {
+      analytics.track('course_materials_download', { course: courseName });
+      showNotification(`📁 Preparing course materials for ${courseName}...`, 'info');
+      
+      setTimeout(() => {
+          showNotification(`✅ Course materials downloaded - includes PDFs, videos, and exercises`, 'success');
+      }, 2200);
+  }
+
+  function scheduleExam(certName) {
+      analytics.track('exam_schedule', { certification: certName });
+      showNotification(`📅 Opening exam scheduling for ${certName}...`, 'info');
+      
+      setTimeout(() => {
+          showNotification(`🗓️ Exam scheduled for next month - preparation materials sent`, 'success');
+      }, 1800);
+  }
+
+  function requestMentorship(expertise) {
+      analytics.track('mentorship_request', { expertise: expertise });
+      showNotification(`👨‍🏫 Finding mentor for ${expertise}...`, 'info');
+      
+      setTimeout(() => {
+          showNotification(`✅ Mentor matched! Introduction session scheduled for this week.`, 'success');
+      }, 2500);
+  }
+
+  function createStudyPlan(pathName) {
+      analytics.track('study_plan_create', { path: pathName });
+      showNotification(`📋 Creating personalized study plan for ${pathName}...`, 'info');
+      
+      setTimeout(() => {
+          showNotification(`🎯 Study plan created - optimized for your schedule and goals`, 'success');
+      }, 2000);
+  }
+
+  // Progress tracking
+  function updateLearningProgress(courseId, progress) {
+      analytics.track('learning_progress_update', {
+          courseId: courseId,
+          progress: progress,
+          timestamp: new Date().toISOString()
+      });
+      
+      // Update progress bar visually
+      const progressBar = document.querySelector(`[data-course="${courseId}"] .progress-fill`);
+      if (progressBar) {
+          progressBar.style.width = progress + '%';
+      }
+      
+      // Update percentage display
+      const progressText = document.querySelector(`[data-course="${courseId}"] .progress-percentage`);
+      if (progressText) {
+          progressText.textContent = progress + '%';
+      }
+  }
+
+  // Course completion
+  function completeCourse(courseName) {
+      analytics.track('course_completion', {
+          course: courseName,
+          timestamp: new Date().toISOString()
+      });
+      
+      showNotification(`🎉 Congratulations! You've completed ${courseName}`, 'success');
+      
+      // Show certificate earned notification
+      setTimeout(() => {
+          showNotification(`🏆 Certificate of completion earned for ${courseName}`, 'success');
+      }, 2000);
+  }
+
+  // Interactive learning features
+  function startVirtualLab(labName) {
+      analytics.track('virtual_lab_start', { lab: labName });
+      showNotification(`🔬 Loading ${labName} virtual laboratory...`, 'info');
+      
+      setTimeout(() => {
+          showNotification(`⚗️ Virtual lab ready - all equipment and materials available`, 'success');
+      }, 3000);
+  }
+
+  function joinLiveSession(sessionName) {
+      analytics.track('live_session_join', { session: sessionName });
+      showNotification(`📹 Connecting to ${sessionName} live session...`, 'info');
+      
+      setTimeout(() => {
+          showNotification(`🎥 Connected to live session - 47 participants online`, 'success');
+      }, 1500);
+  }
+
+  function takeQuiz(courseName) {
+      analytics.track('quiz_start', { course: courseName });
+      showNotification(`📝 Loading quiz for ${courseName}...`, 'info');
+      
+      setTimeout(() => {
+          showNotification(`✏️ Quiz ready - 15 questions, 30 minutes time limit`, 'success');
+      }, 1000);
+  }
+
+  // Gamification features
+  function earnBadge(badgeName) {
+      analytics.track('badge_earned', { badge: badgeName });
+      showNotification(`🏅 Badge Earned: ${badgeName}!`, 'success');
+      
+      // Add visual celebration effect
+      createConfettiEffect();
+  }
+
+  function createConfettiEffect() {
+      // Simple confetti animation
+      const colors = ['var(--success-500)', 'var(--sesmine-gold)', 'var(--sesmine-accent)'];
+      
+      for (let i = 0; i < 50; i++) {
+          const confetti = document.createElement('div');
+          confetti.style.position = 'fixed';
+          confetti.style.width = '10px';
+          confetti.style.height = '10px';
+          confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+          confetti.style.left = Math.random() * window.innerWidth + 'px';
+          confetti.style.top = '-10px';
+          confetti.style.zIndex = '9999';
+          confetti.style.borderRadius = '50%';
+          confetti.style.pointerEvents = 'none';
+          
+          document.body.appendChild(confetti);
+          
+          // Animate falling
+          confetti.animate([
+              { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+              { transform: `translateY(${window.innerHeight + 100}px) rotate(720deg)`, opacity: 0 }
+          ], {
+              duration: 3000 + Math.random() * 2000,
+              easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+          }).onfinish = () => confetti.remove();
+      }
+  }
+
+  // Learning analytics
+  function generateLearningReport() {
+      analytics.track('learning_report_generate', { timestamp: new Date().toISOString() });
+      showNotification('📊 Generating comprehensive learning analytics report...', 'info');
+      
+      setTimeout(() => {
+          showNotification('📋 Learning report ready - includes progress, achievements, and recommendations', 'success');
+      }, 3000);
+  }
+
+  // Keyboard shortcuts for training
+  document.addEventListener('keydown', function(e) {
+      // Ctrl/Cmd + Shift + L: View learning paths
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'L') {
+          e.preventDefault();
+          document.querySelector('.learning-paths').scrollIntoView({ behavior: 'smooth' });
+      }
+      
+      // Ctrl/Cmd + Shift + C: Browse courses
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'C') {
+          e.preventDefault();
+          document.querySelector('.courses-grid').scrollIntoView({ behavior: 'smooth' });
+      }
+      
+      // Ctrl/Cmd + Shift + V: Enter virtual classroom
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'V') {
+          e.preventDefault();
+          enterVirtualClassroom();
+      }
+  });
+
+  console.log('🎓 Training Hub ready');
+  console.log('📚 Learning paths loaded');
+  console.log('🎥 Course catalog available');
+  console.log('🏆 Certification programs active');
+  console.log('🎓 Training Hub ready');
+  console.log('📚 Learning paths loaded');
+  console.log('🎥 Course catalog available');
+  console.log('🏆 Certification programs active');
+  console.log('🥽 Virtual classroom environment ready');
+  console.log('📊 Learning analytics enabled');
+  </script>
+</body>
+</html>

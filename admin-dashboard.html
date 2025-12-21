@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - SESMine Platform</title>
+  <meta name="description" content="Administrative Control Center - SESMine">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/x-icon" href="https://www.sesmine.com/favicon.ico">
+  
+  <style>
+  /* Admin Dashboard specific styles */
+  .admin-hero {
+      background: linear-gradient(135deg, var(--gray-800) 0%, var(--gray-900) 50%, var(--sesmine-primary) 100%);
+      color: white;
+      padding: 3rem 0;
+      margin-bottom: 3rem;
+      position: relative;
+      overflow: hidden;
+  }
+  
+  .admin-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="admin-pattern" width="25" height="25" patternUnits="userSpaceOnUse"><rect x="10" y="10" width="5" height="5" fill="rgba(255,255,255,0.05)" rx="1"/><circle cx="5" cy="5" r="1" fill="rgba(255,255,255,0.03)"/><circle cx="20" cy="20" r="1.5" fill="rgba(255,255,255,0.04)"/></pattern></defs><rect width="100" height="100" fill="url(%23admin-pattern)"/></svg>');
+      opacity: 0.3;
+  }
+  
+  .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+  }
+  
+  .hero-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--sesmine-gold), var(--sesmine-copper));
+      border-radius: var(--border-radius-xl);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      box-shadow: var(--shadow-2xl);
+      animation: adminPulse 3s ease-in-out infinite;
+      flex-shrink: 0;
+  }
+  
+  @keyframes adminPulse {
+      0%, 100% { 
+          transform: scale(1);
+          box-shadow: var(--shadow-2xl), 0 0 0 0 rgba(214, 158, 46, 0.7);
+      }
+      50% { 
+          transform: scale(1.05);
+          box-shadow: var(--shadow-2xl), 0 0 0 15px rgba(214, 158, 46, 0);
+      }
+  }
+  
+  .hero-text {
+      flex: 1;
+  }
+  
+  .hero-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, white, rgba(255, 255, 255, 0.8), var(--sesmine-gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.1;
+  }
+  
+  .hero-subtitle {
+      font-size: 1.25rem;
+      opacity: 0.9;
+      line-height: 1.5;
+  }
+  
+  .admin-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+  }
+  
+  .admin-stat {
+      background: white;
+      border-radius: var(--border-radius-lg);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--gray-200);
+      transition: var(--transition-all);
+      position: relative;
+      overflow: hidden;
+  }
+  
+  .admin-stat::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gray-800), var(--sesmine-primary));
+  }
+  
+  .admin-stat:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+  }
+  
+  .stat-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+  }
+  
+  .stat-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--border-radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      color: white;
+      box-shadow: var(--shadow-sm);
+  }
+  
+  .stat-trend {
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.25rem 0.5rem;
+      border-radius: 12px;
+  }
+  
+  .trend-up {
+      background: var(--success-100);
+      color: var(--success-700);
+  }
+  
+  .trend-down {
+      background: var(--danger-100);
+      color: var(--danger-700);
+  }
+  
+  .stat-value {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--sesmine-primary);
+      margin-bottom: 0.25rem;
+      font-family: var(--font-mono);
+  }
+  
+  .stat-label {
+      color: var(--gray-600);
+      font-size: 0.9rem;
+      font-weight: 500;
+  }
+  
+  .admin-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 2rem;
+      margin-bottom: 3rem;
+  }
+  
+  .admin-panel {
+      background: white;
+      border-radius: var(--border-radius-xl);
+      padding: 2rem;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--gray-200);
+  }
+  
+  .panel-header {
+      display: flex;
+      justify-content: between;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--gray-100);
+  }
+  
+  .panel-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--sesmine-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+  }
+  
+  .panel-actions {
+      display: flex;
+      gap: 0.5rem;
+  }
+  
+  .panel-btn {
+      padding: 0.5rem 1rem;
+      border: 2px solid var(--gray-300);
+      background: white;
+      color: var(--gray-700);
+      border-radius: var(--border-radius-md);
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition-all);
+  }
+  
+  .panel-btn:hover {
+      border-color: var(--sesmine-primary);
+      color: var(--sesmine-primary);
+  }
+  
+  .panel-btn.primary {
+      background: var(--sesmine-primary);
+      border-color: var(--sesmine-primary);
+      color: white;
+  }
+  
+  .panel-btn.primary:hover {
+      background: var(--sesmine-secondary);
+      border-color: var(--sesmine-secondary);
+  }
+  
+  .user-table {
+      width: 100%;
+      border-collapse: collapse;
+  }
+  
+  .user-table th {
+      background: var(--gray-50);
+      color: var(--gray-700);
+      font-weight: 600;
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 2px solid var(--gray-200);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+  }
+  
+  .user-table td {
+      padding: 1rem;
+      border-bottom: 1px solid var(--gray-200);
+      font-size: 0.9rem;
+  }
+  
+  .user-table tr:hover {
+      background: var(--gray-50);
+  }
+  
+  .user-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--sesmine-accent), var(--sesmine-secondary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 0.8rem;
+  }
+  
+  .user-info {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+  }
+  
+  .user-name {
+      font-weight: 600;
+      color: var(--gray-800);
+  }
+  
+  .user-email {
+      color: var(--gray-600);
+      font-size: 0.8rem;
+  }
+  
+  .status-badge {
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+  }
+  
+  .status-active {
+      background: var(--success-100);
+      color: var(--success-700);
+  }
+  
+  .status-inactive {
+      background: var(--gray-100);
+      color: var(--gray-700);
+  }
+  
+  .status-pending {
+      background: var(--warning-100);
+      color: var(--warning-700);
+  }
+  
+  .action-menu {
+      position: relative;
+  }
+  
+  .action-btn {
+      background: none;
+      border: none;
+      color: var(--gray-600);
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 0.5rem;
+      border-radius: var(--border-radius-md);
+      transition: var(--transition-all);
+  }
+  
+  .action-btn:hover {
+      background: var(--gray-100);
+      color: var(--gray-800);
+  }
+  
+  .activity-feed {
+      max-height: 400px;
+      overflow-y: auto;
+  }
+  
+  .activity-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--gray-200);
+  }
+  
+  .activity-item:last-child {
+      border-bottom: none;
+  }
+  
+  .activity-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      color: white;
+      flex-shrink: 0;
+  }
+  
+  .activity-content {
+      flex: 1;
+  }
+  
+  .activity-title {
+      font-weight: 600;
+      color: var(--gray-800);
+      margin-bottom: 0.25rem;
+      font-size: 0.9rem;
+  }
+  
+  .activity-description {
+      color: var(--gray-600);
+      font-size: 0.85rem;
+      margin-bottom: 0.5rem;
+      line-height: 1.4;
+  }
+  
+  .activity-time {
+      color: var(--gray-500);
+      font-size: 0.75rem;
+  }
+  
+  .admin-tools {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+  }
+  
+  .tool-card {
+      background: white;
+      border-radius: var(--border-radius-lg);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--gray-200);
+      transition: var(--transition-all);
+      cursor: pointer;
+      text-align: center;
+  }
+  
+  .tool-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--sesmine-accent);
+  }
+  
+  .tool-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: var(--border-radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: white;
+      margin: 0 auto 1rem;
+      box-shadow: var(--shadow-sm);
+  }
+  
+  .tool-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--sesmine-primary);
+      margin-bottom: 0.5rem;
+  }
+  
+  .tool-description {
+      color: var(--gray-600);
+      font-size: 0.85rem;
+      line-height: 1.4;
+  }
+  
+  .system-status {
+      background: var(--gray-900);
+      color: white;
+      border-radius: var(--border-radius-xl);
+      padding: 2rem;
+      margin: 2rem 0;
+  }
+  
+  .status-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+  }
+  
+  .status-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+  }
+  
+  .status-indicator {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+  }
+  
+  .status-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--success-500);
+      animation: statusPulse 2s ease-in-out infinite;
+  }
+  
+  @keyframes statusPulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+  }
+  
+  .system-metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+  }
+  
+  .metric-item {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: var(--border-radius-lg);
+      padding: 1.5rem;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .metric-name {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+  }
+  
+  .metric-value {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--sesmine-gold);
+      font-family: var(--font-mono);
+  }
+  
+  .metric-bar {
+      width: 100%;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 2px;
+      margin-top: 0.5rem;
+      overflow: hidden;
+  }
+  
+  .metric-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--sesmine-gold), var(--sesmine-copper));
+      border-radius: 2px;
+      transition: width 0.3s ease;
+  }
+  
+  @media (max-width: 1024px) {
+      .admin-grid {
+          grid-template-columns: 1fr;
+      }
+      
+      .hero-content {
+          flex-direction: column;
+          text-align: center;
+      }
+  }
+  
+  @media (max-width: 768px) {
+      .admin-stats {
+          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      }
+      
+      .admin-tools {
+          grid-template-columns: 1fr;
+      }
+      
+      .system-metrics {
+          grid-template-columns: 1fr;
+      }
+      
+      .user-table {
+          font-size: 0.8rem;
+      }
+      
+      .user-table th,
+      .user-table td {
+          padding: 0.75rem 0.5rem;
+      }
+  }
+  </style>
+</head>
+<body>
+  <!-- Universal Navigation Header -->
+  <header class="sesmine-header" id="sesmineHeader">
+      <div class="header-content">
+          <div class="logo-section">
+              <button class="header-btn mobile-menu-toggle" id="mobileMenuToggle">
+                  <i class="fas fa-bars"></i>
+              </button>
+              <a href="index.html" class="logo">
+                  <div class="logo-icon">🏔️</div>
+                  <div class="logo-text">
+                      <div class="logo-main">SESMine</div>
+                      <div class="logo-subtitle">Smart Engineering Solutions</div>
+                  </div>
+              </a>
+          </div>
+          
+          <nav class="main-nav" id="mainNav">
+              <a href="home.html" class="nav-link">
+                  <i class="fas fa-home"></i> Dashboard
+              </a>
+              <div class="nav-dropdown">
+                  <button class="nav-link dropdown-toggle active">
+                      <i class="fas fa-th-large"></i> Hubs <i class="fas fa-chevron-down"></i>
+                  </button>
+                  <div class="dropdown-menu">
+                      <a href="engineering-hub.html" class="dropdown-item">
+                          <i class="fas fa-hard-hat"></i> Engineering Hub
+                      </a>
+                      <a href="analytics-platform.html" class="dropdown-item">
+                          <i class="fas fa-chart-area"></i> Analytics Platform
+                      </a>
+                      <a href="economics-hub.html" class="dropdown-item">
+                          <i class="fas fa-coins"></i> Economics Hub
+                      </a>
+                      <a href="innovation-technology-hub.html" class="dropdown-item">
+                          <i class="fas fa-rocket"></i> Innovation & Technology
+                      </a>
+                      <a href="procurement-hub.html" class="dropdown-item">
+                          <i class="fas fa-truck"></i> Procurement Hub
+                      </a>
+                      <a href="consulting-hub.html" class="dropdown-item">
+                          <i class="fas fa-user-tie"></i> Consulting Hub
+                      </a>
+                      <a href="training-education-hub.html" class="dropdown-item">
+                          <i class="fas fa-graduation-cap"></i> Training & Education
+                      </a>
+                      <a href="admin-dashboard.html" class="dropdown-item active">
+                          <i class="fas fa-shield-alt"></i> Admin Dashboard
+                      </a>
+                  </div>
+              </div>
+              <a href="platforms.html" class="nav-link">
+                  <i class="fas fa-layer-group"></i> Platforms
+              </a>
+              <a href="features.html" class="nav-link">
+                  <i class="fas fa-star"></i> Features
+              </a>
+              <a href="about.html" class="nav-link">
+                  <i class="fas fa-info-circle"></i> About
+              </a>
+              <a href="contact.html" class="nav-link">
+                  <i class="fas fa-phone"></i> Contact
+              </a>
+          </nav>
+          
+          <div class="header-actions">
+              <div class="search-container">
+                  <i class="fas fa-search search-icon"></i>
+                  <input type="text" class="search-input" placeholder="Search admin..." id="globalSearch">
+              </div>
+              <button class="header-btn" title="Notifications">
+                  <i class="fas fa-bell"></i>
+              </button>
+              <button class="header-btn" title="Settings" onclick="window.location.href='setting.html'">
+                  <i class="fas fa-cog"></i>
+              </button>
+              <div class="user-menu">
+                  <div class="user-avatar">AD</div>
+                  <div class="user-info">
+                      <div class="user-name">Administrator</div>
+                      <div class="user-email">admin@sesmine.com</div>
+                  </div>
+                  <div class="user-dropdown">
+                      <a href="setting.html" class="dropdown-item">
+                          <i class="fas fa-cog"></i> Settings
+                      </a>
+                      <a href="login.html" class="dropdown-item">
+                          <i class="fas fa-sign-out-alt"></i> Logout
+                      </a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+      <!-- Admin Hero Section -->
+      <section class="admin-hero">
+          <div class="hero-content">
+              <div class="hero-icon">🛡️</div>
+              <div class="hero-text">
+                  <h1 class="hero-title">Admin Dashboard</h1>
+                  <p class="hero-subtitle">
+                      Comprehensive system administration, user management, and platform monitoring 
+                      for the SESMine ecosystem.
+                  </p>
+              </div>
+          </div>
+      </section>
+
+      <div class="content-container">
+          <!-- Admin Statistics -->
+          <section class="admin-stats">
+              <div class="admin-stat">
+                  <div class="stat-header">
+                      <div class="stat-icon" style="background: linear-gradient(135deg, var(--success-500), var(--sesmine-emerald));">
+                          👥
+                      </div>
+                      <div class="stat-trend trend-up">+12%</div>
+                  </div>
+                  <div class="stat-value">2,847</div>
+                  <div class="stat-label">Active Users</div>
+              </div>
+
+              <div class="admin-stat">
+                  <div class="stat-header">
+                      <div class="stat-icon" style="background: linear-gradient(135deg, var(--sesmine-accent), var(--sesmine-secondary));">
+                          🏢
+                      </div>
+                      <div class="stat-trend trend-up">+8%</div>
+                  </div>
+                  <div class="stat-value">156</div>
+                  <div class="stat-label">Organizations</div>
+              </div>
+
+              <div class="admin-stat">
+                  <div class="stat-header">
+                      <div class="stat-icon" style="background: linear-gradient(135deg, var(--warning-500), var(--warning-600));">
+                          📊
+                      </div>
+                      <div class="stat-trend trend-up">+24%</div>
+                  </div>
+                  <div class="stat-value">45,231</div>
+                  <div class="stat-label">Projects</div>
+              </div>
+
+              <div class="admin-stat">
+                  <div class="stat-header">
+                      <div class="stat-icon" style="background: linear-gradient(135deg, var(--danger-500), var(--danger-600));">
+                          💾
+                      </div>
+                      <div class="stat-trend trend-up">+5%</div>
+                  </div>
+                  <div class="stat-value">2.4TB</div>
+                  <div class="stat-label">Data Storage</div>
+              </div>
+
+              <div class="admin-stat">
+                  <div class="stat-header">
+                      <div class="stat-icon" style="background: linear-gradient(135deg, var(--primary-500), var(--primary-600));">
+                          🔒
+                      </div>
+                      <div class="stat-trend trend-down">-15%</div>
+                  </div>
+                  <div class="stat-value">3</div>
+                  <div class="stat-label">Security Alerts</div>
+              </div>
+
+              <div class="admin-stat">
+                  <div class="stat-header">
+                      <div class="stat-icon" style="background: linear-gradient(135deg, var(--sesmine-gold), var(--sesmine-copper));">
+                          💰
+                      </div>
+                      <div class="stat-trend trend-up">+18%</div>
+                  </div>
+                  <div class="stat-value">$127K</div>
+                  <div class="stat-label">Monthly Revenue</div>
+              </div>
+          </section>
+
+          <!-- Main Admin Grid -->
+          <section class="admin-grid">
+              <!-- User Management Panel -->
+              <div class="admin-panel">
+                  <div class="panel-header">
+                      <h2 class="panel-title">
+                          <i class="fas fa-users"></i>
+                          User Management
+                      </h2>
+                      <div class="panel-actions">
+                          <button class="panel-btn" onclick="exportUsers()">
+                              <i class="fas fa-download"></i> Export
+                          </button>
+                          <button class="panel-btn primary" onclick="addNewUser()">
+                              <i class="fas fa-plus"></i> Add User
+                          </button>
+                      </div>
+                  </div>
+
+                  <table class="user-table">
+                      <thead>
+                          <tr>
+                              <th>User</th>
+                              <th>Role</th>
+                              <th>Status</th>
+                              <th>Last Active</th>
+                              <th>Actions</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                              <td>
+                                  <div class="user-info">
+                                      <div class="user-avatar">JD</div>
+                                      <div>
+                                          <div class="user-name">John Doe</div>
+                                          <div class="user-email">john.doe@mining.com</div>
+                                      </div>
+                                  </div>
+                              </td>
+                              <td>Mining Engineer</td>
+                              <td><span class="status-badge status-active">Active</span></td>
+                              <td>2 hours ago</td>
+                              <td>
+                                  <div class="action-menu">
+                                      <button class="action-btn" onclick="showUserActions('John Doe')">
+                                          <i class="fas fa-ellipsis-v"></i>
+                                      </button>
+                                  </div>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td>
+                                  <div class="user-info">
+                                      <div class="user-avatar">SM</div>
+                                      <div>
+                                          <div class="user-name">Sarah Mitchell</div>
+                                          <div class="user-email">sarah.mitchell@consultant.com</div>
+                                      </div>
+                                  </div>
+                              </td>
+                              <td>Consultant</td>
+                              <td><span class="status-badge status-active">Active</span></td>
+                              <td>1 day ago</td>
+                              <td>
+                                  <div class="action-menu">
+                                      <button class="action-btn" onclick="showUserActions('Sarah Mitchell')">
+                                          <i class="fas fa-ellipsis-v"></i>
+                                      </button>
+                                  </div>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td>
+                                  <div class="user-info">
+                                      <div class="user-avatar">MJ</div>
+                                      <div>
+                                          <div class="user-name">Michael Johnson</div>
+                                          <div class="user-email">michael.johnson@operations.com</div>
+                                      </div>
+                                  </div>
+                              </td>
+                              <td>Operations Manager</td>
+                              <td><span class="status-badge status-pending">Pending</span></td>
+                              <td>3 days ago</td>
+                              <td>
+                                  <div class="action-menu">
+                                      <button class="action-btn" onclick="showUserActions('Michael Johnson')">
+                                          <i class="fas fa-ellipsis-v"></i>
+                                      </button>
+                                  </div>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td>
+                                  <div class="user-info">
+                                      <div class="user-avatar">EC</div>
+                                      <div>
+                                          <div class="user-name">Emily Chen</div>
+                                          <div class="user-email">emily.chen@environmental.com</div>
+                                      </div>
+                                  </div>
+                              </td>
+                              <td>Environmental Specialist</td>
+                              <td><span class="status-badge status-active">Active</span></td>
+                              <td>5 hours ago</td>
+                              <td>
+                                  <div class="action-menu">
+                                      <button class="action-btn" onclick="showUserActions('Emily Chen')">
+                                          <i class="fas fa-ellipsis-v"></i>
+                                      </button>
+                                  </div>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td>
+                                  <div class="user-info">
+                                      <div class="user-avatar">RK</div>
+                                      <div>
+                                          <div class="user-name">Robert Kim</div>
+                                          <div class="user-email">robert.kim@maintenance.com</div>
+                                      </div>
+                                  </div>
+                              </td>
+                              <td>Maintenance Engineer</td>
+                              <td><span class="status-badge status-inactive">Inactive</span></td>
+                              <td>1 week ago</td>
+                              <td>
+                                  <div class="action-menu">
+                                      <button class="action-btn" onclick="showUserActions('Robert Kim')">
+                                          <i class="fas fa-ellipsis-v"></i>
+                                      </button>
+                                  </div>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+
+              <!-- Activity Feed Panel -->
+              <div class="admin-panel">
+                  <div class="panel-header">
+                      <h2 class="panel-title">
+                          <i class="fas fa-activity"></i>
+                          Recent Activity
+                      </h2>
+                      <div class="panel-actions">
+                          <button class="panel-btn" onclick="refreshActivity()">
+                              <i class="fas fa-sync"></i> Refresh
+                          </button>
+                      </div>
+                  </div>
+
+                  <div class="activity-feed">
+                      <div class="activity-item">
+                          <div class="activity-icon" style="background: var(--success-500);">
+                              <i class="fas fa-user-plus"></i>
+                          </div>
+                          <div class="activity-content">
+                              <div class="activity-title">New User Registration</div>
+                              <div class="activity-description">
+                                  David Wilson registered as Mining Engineer
+                              </div>
+                              <div class="activity-time">2 minutes ago</div>
+                          </div>
+                      </div>
+
+                      <div class="activity-item">
+                          <div class="activity-icon" style="background: var(--warning-500);">
+                              <i class="fas fa-exclamation-triangle"></i>
+                          </div>
+                          <div class="activity-content">
+                              <div class="activity-title">Security Alert</div>
+                              <div class="activity-description">
+                                  Multiple failed login attempts detected
+                              </div>
+                              <div class="activity-time">15 minutes ago</div>
+                          </div>
+                      </div>
+
+                      <div class="activity-item">
+                          <div class="activity-icon" style="background: var(--sesmine-accent);">
+                              <i class="fas fa-file-upload"></i>
+                          </div>
+                          <div class="activity-content">
+                              <div class="activity-title">Data Upload</div>
+                              <div class="activity-description">
+                                  Large dataset uploaded to Mining Project Alpha
+                              </div>
+                              <div class="activity-time">1 hour ago</div>
+                          </div>
+                      </div>
+
+                      <div class="activity-item">
+                          <div class="activity-icon" style="background: var(--danger-500);">
+                              <i class="fas fa-server"></i>
+                          </div>
+                          <div class="activity-content">
+                              <div class="activity-title">System Maintenance</div>
+                              <div class="activity-description">
+                                  Scheduled maintenance completed successfully
+                              </div>
+                              <div class="activity-time">3 hours ago</div>
+                          </div>
+                      </div>
+
+                      <div class="activity-item">
+                          <div class="activity-icon" style="background: var(--primary-500);">
+                              <i class="fas fa-chart-line"></i>
+                          </div>
+                          <div class="activity-content">
+                              <div class="activity-title">Report Generated</div>
+                              <div class="activity-description">
+                                  Monthly analytics report generated
+                              </div>
+                              <div class="activity-time">6 hours ago</div>
+                          </div>
+                      </div>
+
+                      <div class="activity-item">
+                          <div class="activity-icon" style="background: var(--sesmine-emerald);">
+                              <i class="fas fa-graduation-cap"></i>
+                          </div>
+                          <div class="activity-content">
+                              <div class="activity-title">Course Completion</div>
+                              <div class="activity-description">
+                                  25 users completed Safety Management course
+                              </div>
+                              <div class="activity-time">1 day ago</div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </section>
+
+          <!-- Admin Tools -->
+          <section class="admin-tools">
+              <div class="tool-card" onclick="openSystemSettings()">
+                  <div class="tool-icon" style="background: linear-gradient(135deg, var(--gray-700), var(--gray-800));">
+                      <i class="fas fa-cogs"></i>
+                  </div>
+                  <h4 class="tool-title">System Settings</h4>
+                  <p class="tool-description">Configure platform settings, integrations, and system preferences.</p>
+              </div>
+
+              <div class="tool-card" onclick="openUserRoles()">
+                  <div class="tool-icon" style="background: linear-gradient(135deg, var(--sesmine-accent), var(--sesmine-secondary));">
+                      <i class="fas fa-user-shield"></i>
+                  </div>
+                  <h4 class="tool-title">User Roles & Permissions</h4>
+                  <p class="tool-description">Manage user roles, permissions, and access control policies.</p>
+              </div>
+
+              <div class="tool-card" onclick="openSecurityCenter()">
+                  <div class="tool-icon" style="background: linear-gradient(135deg, var(--danger-500), var(--danger-600));">
+                      <i class="fas fa-shield-alt"></i>
+                  </div>
+                  <h4 class="tool-title">Security Center</h4>
+                  <p class="tool-description">Monitor security events, manage threats, and configure security policies.</p>
+              </div>
+
+              <div class="tool-card" onclick="openBackupRestore()">
+                  <div class="tool-icon" style="background: linear-gradient(135deg, var(--warning-500), var(--warning-600));">
+                      <i class="fas fa-database"></i>
+                  </div>
+                  <h4 class="tool-title">Backup & Restore</h4>
+                  <p class="tool-description">Manage data backups, restore points, and disaster recovery procedures.</p>
+              </div>
+
+              <div class="tool-card" onclick="openAnalyticsReports()">
+                  <div class="tool-icon" style="background: linear-gradient(135deg, var(--success-500), var(--sesmine-emerald));">
+                      <i class="fas fa-chart-bar"></i>
+                  </div>
+                  <h4 class="tool-title">Analytics & Reports</h4>
+                  <p class="tool-description">Generate system reports, usage analytics, and performance metrics.</p>
+              </div>
+
+              <div class="tool-card" onclick="openIntegrations()">
+                  <div class="tool-icon" style="background: linear-gradient(135deg, var(--primary-500), var(--primary-600));">
+                      <i class="fas fa-plug"></i>
+                  </div>
+                  <h4 class="tool-title">Integrations</h4>
+                  <p class="tool-description">Manage third-party integrations, APIs, and external service connections.</p>
+              </div>
+
+              <div class="tool-card" onclick="openAuditLogs()">
+                  <div class="tool-icon" style="background: linear-gradient(135deg, var(--sesmine-gold), var(--sesmine-copper));">
+                      <i class="fas fa-clipboard-list"></i>
+                  </div>
+                  <h4 class="tool-title">Audit Logs</h4>
+                  <p class="tool-description">Review system audit logs, user activities, and compliance reports.</p>
+              </div>
+
+              <div class="tool-card" onclick="openNotificationCenter()">
+                  <div class="tool-icon" style="background: linear-gradient(135deg, var(--warning-400), var(--warning-500));">
+                      <i class="fas fa-bell"></i>
+                  </div>
+                  <h4 class="tool-title">Notification Center</h4>
+                  <p class="tool-description">Configure system notifications, alerts, and communication preferences.</p>
+              </div>
+          </section>
+
+          <!-- System Status -->
+          <section class="system-status">
+              <div class="status-header">
+                  <h2 class="status-title">System Status</h2>
+                  <div class="status-indicator">
+                      <div class="status-dot"></div>
+                      All Systems Operational
+                  </div>
+              </div>
+
+              <div class="system-metrics">
+                  <div class="metric-item">
+                      <div class="metric-name">CPU Usage</div>
+                      <div class="metric-value">34%</div>
+                      <div class="metric-bar">
+                          <div class="metric-fill" style="width: 34%"></div>
+                      </div>
+                  </div>
+
+                  <div class="metric-item">
+                      <div class="metric-name">Memory Usage</div>
+                      <div class="metric-value">67%</div>
+                      <div class="metric-bar">
+                          <div class="metric-fill" style="width: 67%"></div>
+                      </div>
+                  </div>
+
+                  <div class="metric-item">
+                      <div class="metric-name">Disk Usage</div>
+                      <div class="metric-value">45%</div>
+                      <div class="metric-bar">
+                          <div class="metric-fill" style="width: 45%"></div>
+                      </div>
+                  </div>
+
+                  <div class="metric-item">
+                      <div class="metric-name">Network I/O</div>
+                      <div class="metric-value">23%</div>
+                      <div class="metric-bar">
+                          <div class="metric-fill" style="width: 23%"></div>
+                      </div>
+                  </div>
+
+                  <div class="metric-item">
+                      <div class="metric-name">Database Load</div>
+                      <div class="metric-value">56%</div>
+                      <div class="metric-bar">
+                          <div class="metric-fill" style="width: 56%"></div>
+                      </div>
+                  </div>
+
+                  <div class="metric-item">
+                      <div class="metric-name">API Response Time</div>
+                      <div class="metric-value">127ms</div>
+                      <div class="metric-bar">
+                          <div class="metric-fill" style="width: 15%"></div>
+                      </div>
+                  </div>
+              </div>
+          </section>
+      </div>
+  </main>
+
+  <script src="script.js"></script>
+  <script>
+  // Admin Dashboard specific JavaScript
+  document.addEventListener('DOMContentLoaded', function() {
+      initializeAdminDashboard();
+  });
+
+  function initializeAdminDashboard() {
+      console.log('🛡️ Admin Dashboard initialized');
+      
+      // Initialize real-time updates
+      startSystemMonitoring();
+      
+      // Initialize user management
+      initializeUserManagement();
+      
+      // Track admin access
+      analytics.track('admin_dashboard_access', {
+          timestamp: new Date().toISOString(),
+          userAgent: navigator.userAgent
+      });
+  }
+
+  function startSystemMonitoring() {
+      // Update system metrics every 30 seconds
+      setInterval(() => {
+          updateSystemMetrics();
+      }, 30000);
+      
+      // Update activity feed every 2 minutes
+      setInterval(() => {
+          updateActivityFeed();
+      }, 120000);
+      
+      console.log('📊 System monitoring started');
+  }
+
+  function updateSystemMetrics() {
+      const metrics = document.querySelectorAll('.metric-fill');
+      
+      metrics.forEach(metric => {
+          // Simulate metric fluctuation
+          const currentWidth = parseFloat(metric.style.width);
+          const variation = (Math.random() - 0.5) * 10; // ±5% variation
+          const newWidth = Math.max(0, Math.min(100, currentWidth + variation));
+          
+          metric.style.width = newWidth + '%';
+      });
+      
+      // Update metric values
+      const metricValues = document.querySelectorAll('.system-metrics .metric-value');
+      metricValues.forEach((value, index) => {
+          if (index < 5) { // First 5 are percentages
+              const currentValue = parseFloat(value.textContent);
+              const variation = (Math.random() - 0.5) * 10;
+              const newValue = Math.max(0, Math.min(100, currentValue + variation));
+              value.textContent = Math.round(newValue) + '%';
+          } else { // Last one is response time
+              const currentValue = parseFloat(value.textContent);
+              const variation = (Math.random() - 0.5) * 20;
+              const newValue = Math.max(50, currentValue + variation);
+              value.textContent = Math.round(newValue) + 'ms';
+          }
+      });
+  }
+
+  function updateActivityFeed() {
+      // Simulate new activity
+      const activities = [
+          { icon: 'fas fa-user-plus', bg: 'var(--success-500)', title: 'New User Registration', desc: 'New mining engineer joined the platform' },
+          { icon: 'fas fa-file-upload', bg: 'var(--sesmine-accent)', title: 'Data Upload', desc: 'Project data uploaded successfully' },
+          { icon: 'fas fa-chart-line', bg: 'var(--primary-500)', title: 'Report Generated', desc: 'Weekly analytics report created' },
+          { icon: 'fas fa-cog', bg: 'var(--warning-500)', title: 'System Update', desc: 'Platform updated to latest version' }
+      ];
+      
+      const randomActivity = activities[Math.floor(Math.random() * activities.length)];
+      
+      // Add new activity to the top of the feed
+      const activityFeed = document.querySelector('.activity-feed');
+      const newActivity = document.createElement('div');
+      newActivity.className = 'activity-item';
+      newActivity.innerHTML = `
+          <div class="activity-icon" style="background: ${randomActivity.bg};">
+              <i class="${randomActivity.icon}"></i>
+          </div>
+          <div class="activity-content">
+              <div class="activity-title">${randomActivity.title}</div>
+              <div class="activity-description">${randomActivity.desc}</div>
+              <div class="activity-time">Just now</div>
+          </div>
+      `;
+      
+      activityFeed.insertBefore(newActivity, activityFeed.firstChild);
+      
+      // Remove last item if more than 6 activities
+      const activities_list = activityFeed.querySelectorAll('.activity-item');
+      if (activities_list.length > 6) {
+          activityFeed.removeChild(activities_list[activities_list.length - 1]);
+      }
+  }
+
+  function initializeUserManagement() {
+      // Add click handlers for user actions
+      const actionButtons = document.querySelectorAll('.action-btn');
+      actionButtons.forEach(button => {
+          button.addEventListener('click', function(e) {
+              e.stopPropagation();
+              // Visual feedback
+              this.style.transform = 'scale(0.95)';
+              setTimeout(() => {
+                  this.style.transform = 'scale(1)';
+              }, 150);
+          });
+      });
+  }
+
+  // Admin tool functions
+  function openSystemSettings() {
+      analytics.track('admin_tool_access', { tool: 'system_settings' });
+      showNotification('⚙️ Opening System Settings...', 'info');
+      
+      setTimeout(() => {
+          showNotification('🔧 System Settings panel loaded', 'success');
+      }, 1500);
+  }
+
+  function openUserRoles() {
+      analytics.track('admin_tool_access', { tool: 'user_roles' });
+      showNotification('👥 Loading User Roles & Permissions...', 'info');
+      
+      setTimeout(() => {
+          showNotification('🛡️ User management panel ready', 'success');
+      }, 1200);
+  }
+
+  function openSecurityCenter() {
+      analytics.track('admin_tool_access', { tool: 'security_center' });
+      showNotification('🔒 Accessing Security Center...', 'info');
+      
+      setTimeout(() => {
+          showNotification('🛡️ Security dashboard loaded - 3 alerts pending', 'success');
+      }, 1800);
+  }
+
+  function openBackupRestore() {
+      analytics.track('admin_tool_access', { tool: 'backup_restore' });
+      showNotification('💾 Opening Backup & Restore Center...', 'info');
+      
+      setTimeout(() => {
+          showNotification('📦 Backup management ready - Last backup: 2 hours ago', 'success');
+      }, 2000);
+  }
+
+  function openAnalyticsReports() {
+      analytics.track('admin_tool_access', { tool: 'analytics_reports' });
+      showNotification('📊 Loading Analytics & Reports...', 'info');
+      
+      setTimeout(() => {
+          showNotification('📈 Analytics dashboard ready with latest metrics', 'success');
+      }, 1600);
+  }
+
+  function openIntegrations() {
+      analytics.track('admin_tool_access', { tool: 'integrations' });
+      showNotification('🔌 Opening Integrations Manager...', 'info');
+      
+      setTimeout(() => {
+          showNotification('⚡ Integration dashboard loaded - 12 active connections', 'success');
+      }, 1400);
+  }
+
+  function openAuditLogs() {
+      analytics.track('admin_tool_access', { tool: 'audit_logs' });
+      showNotification('📋 Loading Audit Logs...', 'info');
+      
+      setTimeout(() => {
+          showNotification('📝 Audit log viewer ready - 1,247 entries this month', 'success');
+      }, 2200);
+  }
+
+  function openNotificationCenter() {
+      analytics.track('admin_tool_access', { tool: 'notification_center' });
+      showNotification('🔔 Opening Notification Center...', 'info');
+      
+      setTimeout(() => {
+          showNotification('📢 Notification management panel loaded', 'success');
+      }, 1300);
+  }
+
+  // User management functions
+  function addNewUser() {
+      analytics.track('admin_user_action', { action: 'add_user' });
+      showNotification('👤 Opening new user registration form...', 'info');
+      
+      setTimeout(() => {
+          showNotification('✅ User registration form ready', 'success');
+      }, 1000);
+  }
+
+  function exportUsers() {
+      analytics.track('admin_user_action', { action: 'export_users' });
+      showNotification('📤 Exporting user data...', 'info');
+      
+      setTimeout(() => {
+          showNotification('✅ User data exported successfully - CSV file downloaded', 'success');
+      }, 2500);
+  }
+
+  function showUserActions(userName) {
+      analytics.track('admin_user_action', { action: 'view_user_actions', user: userName });
+      showNotification(`👤 Loading actions for ${userName}...`, 'info');
+      
+      setTimeout(() => {
+          showNotification(`📋 User actions menu ready for ${userName}`, 'success');
+      }, 800);
+  }
+
+  function refreshActivity() {
+      analytics.track('admin_activity_refresh', { timestamp: new Date().toISOString() });
+      showNotification('🔄 Refreshing activity feed...', 'info');
+      
+      // Simulate refresh
+      updateActivityFeed();
+      
+      setTimeout(() => {
+          showNotification('✅ Activity feed updated', 'success');
+      }, 1000);
+  }
+
+  // Advanced admin functions
+  function performSystemMaintenance() {
+      analytics.track('system_maintenance_start', { timestamp: new Date().toISOString() });
+      showNotification('🔧 Starting system maintenance...', 'info');
+      
+      setTimeout(() => {
+          showNotification('⚠️ System maintenance in progress - some features may be unavailable', 'warning');
+      }, 2000);
+      
+      setTimeout(() => {
+          showNotification('✅ System maintenance completed successfully', 'success');
+      }, 10000);
+  }
+
+  function generateSystemReport() {
+      analytics.track('system_report_generate', { timestamp: new Date().toISOString() });
+      showNotification('📊 Generating comprehensive system report...', 'info');
+      
+      setTimeout(() => {
+          showNotification('📋 System report generated - includes performance, security, and usage metrics', 'success');
+      }, 4000);
+  }
+
+  function manageSystemAlerts() {
+      analytics.track('system_alerts_manage', { timestamp: new Date().toISOString() });
+      showNotification('🚨 Opening system alerts management...', 'info');
+      
+      setTimeout(() => {
+          showNotification('⚠️ Alert management panel loaded - 3 active alerts require attention', 'success');
+      }, 1500);
+  }
+
+  // Real-time system status updates
+  function updateSystemStatus() {
+      const statusDot = document.querySelector('.status-dot');
+      const statusText = document.querySelector('.status-indicator');
+      
+      // Simulate occasional status changes
+      if (Math.random() < 0.05) { // 5% chance of status change
+          const statuses = [
+              { color: 'var(--success-500)', text: 'All Systems Operational' },
+              { color: 'var(--warning-500)', text: 'Minor Issues Detected' },
+              { color: 'var(--danger-500)', text: 'System Maintenance Required' }
+          ];
+          
+          const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
+          statusDot.style.background = randomStatus.color;
+          statusText.textContent = randomStatus.text;
+      }
+  }
+
+  // Update system status every 5 minutes
+  setInterval(updateSystemStatus, 300000);
+
+  // Keyboard shortcuts for admin
+  document.addEventListener('keydown', function(e) {
+      // Ctrl/Cmd + Shift + U: User management
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'U') {
+          e.preventDefault();
+          openUserRoles();
+      }
+      
+      // Ctrl/Cmd + Shift + S: System settings
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'S') {
+          e.preventDefault();
+          openSystemSettings();
+      }
+      
+      // Ctrl/Cmd + Shift + R: Generate report
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'R') {
+          e.preventDefault();
+          generateSystemReport();
+      }
+  });
+
+  console.log('🛡️ Admin Dashboard ready');
+  console.log('👥 User management system loaded');
+  console.log('📊 System monitoring active');
+  console.log('🔒 Security center operational');
+  console.log('📋 Activity tracking enabled');
+  console.log('⚙️ Administrative tools available');
+  </script>
+</body>
+</html>

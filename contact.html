@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - SESMine Platform</title>
+  <meta name="description" content="Get in touch with SESMine - Contact, Support, and Customer Service">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/x-icon" href="https://www.sesmine.com/favicon.ico">
+  
+  <style>
+  /* Contact page specific styles */
+  .contact-hero {
+      background: linear-gradient(135deg, var(--sesmine-accent) 0%, var(--sesmine-secondary) 50%, var(--primary-600) 100%);
+      color: white;
+      padding: 4rem 0;
+      margin-bottom: 3rem;
+      position: relative;
+      overflow: hidden;
+  }
+  
+  .contact-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="contact-pattern" width="25" height="25" patternUnits="userSpaceOnUse"><circle cx="12.5" cy="12.5" r="1.5" fill="rgba(255,255,255,0.1)"/><rect x="8" y="8" width="9" height="2" fill="rgba(255,255,255,0.05)" rx="1"/><rect x="6" y="16" width="13" height="2" fill="rgba(255,255,255,0.08)" rx="1"/></pattern></defs><rect width="100" height="100" fill="url(%23contact-pattern)"/></svg>');
+      opacity: 0.3;
+  }
+  
+  .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      text-align: center;
+  }
+  
+  .hero-icon {
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(135deg, var(--sesmine-gold), var(--sesmine-copper));
+      border-radius: var(--border-radius-2xl);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      margin: 0 auto 2rem;
+      box-shadow: var(--shadow-2xl);
+      animation: contactPulse 3s ease-in-out infinite;
+  }
+  
+  @keyframes contactPulse {
+      0%, 100% { 
+          transform: scale(1);
+          box-shadow: var(--shadow-2xl), 0 0 0 0 rgba(214, 158, 46, 0.7);
+      }
+      50% { 
+          transform: scale(1.05);
+          box-shadow: var(--shadow-2xl), 0 0 0 20px rgba(214, 158, 46, 0);
+      }
+  }
+  
+  .hero-title {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, white, rgba(255, 255, 255, 0.8), var(--sesmine-gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.1;
+  }
+  
+  .hero-subtitle {
+      font-size: 1.5rem;
+      opacity: 0.9;
+      margin-bottom: 2.5rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.5;
+  }
+  
+  .contact-methods {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      max-width: 800px;
+      margin: 0 auto;
+  }
+  
+  .contact-method {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: var(--border-radius-xl);
+      padding: 1.5rem;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      text-align: center;
+      transition: var(--transition-all);
+      cursor: pointer;
+  }
+  
+  .contact-method:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-4px);
+  }
+  
+  .method-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--sesmine-gold);
+  }
+  
+  .method-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+  }
+  
+  .method-info {
+      font-size: 0.9rem;
+      opacity: 0.9;
+  }
+  
+  .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: 3rem;
+      margin-bottom: 4rem;
+  }
+  
+  .contact-form-section {
+      background: white;
+      border-radius: var(--border-radius-xl);
+      padding: 3rem;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--gray-200);
+  }
+  
+  .form-header {
+      margin-bottom: 2.5rem;
+      text-align: center;
+  }
+  
+  .form-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--sesmine-primary);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+  }
+  
+  .form-description {
+      color: var(--gray-600);
+      font-size: 1.1rem;
+      line-height: 1.6;
+  }
+  
+  .contact-form {
+      display: grid;
+      gap: 2rem;
+  }
+  
+  .form-group {
+      display: flex;
+      flex-direction: column;
+  }
+  
+  .form-label {
+      font-weight: 600;
+      color: var(--gray-700);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+  }
+  
+  .form-input {
+      padding: 1rem;
+      border: 2px solid var(--gray-300);
+      border-radius: var(--border-radius-md);
+      font-size: 1rem;
+      transition: var(--transition-all);
+  }
+  
+  .form-input:focus {
+      outline: none;
+      border-color: var(--sesmine-accent);
+      box-shadow: 0 0 0 4px rgba(49, 130, 206, 0.1);
+  }
+  
+  .form-select {
+      padding: 1rem;
+      border: 2px solid var(--gray-300);
+      border-radius: var(--border-radius-md);
+      font-size: 1rem;
+      background: white;
+      transition: var(--transition-all);
+  }
+  
+  .form-textarea {
+      resize: vertical;
+      min-height: 150px;
+      font-family: inherit;
+  }
+  
+  .priority-selector {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 0.5rem;
+  }
+  
+  .priority-option {
+      padding: 1rem;
+      border: 2px solid var(--gray-300);
+      border-radius: var(--border-radius-md);
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition-all);
+      background: white;
+  }
+  
+  .priority-option:hover {
+      border-color: var(--sesmine-accent);
+  }
+  
+  .priority-option.selected {
+      border-color: var(--sesmine-accent);
+      background: var(--primary-50);
+      color: var(--sesmine-accent);
+  }
+  
+  .priority-low { border-color: var(--success-300); }
+  .priority-low.selected { background: var(--success-50); color: var(--success-600); border-color: var(--success-500); }
+  
+  .priority-medium { border-color: var(--warning-300); }
+  .priority-medium.selected { background: var(--warning-50); color: var(--warning-600); border-color: var(--warning-500); }
+  
+  .priority-high { border-color: var(--danger-300); }
+  .priority-high.selected { background: var(--danger-50); color: var(--danger-600); border-color: var(--danger-500); }
+  
+  .submit-btn {
+      padding: 1.25rem 2rem;
+      background: linear-gradient(135deg, var(--sesmine-accent), var(--sesmine-secondary));
+      color: white;
+      border: none;
+      border-radius: var(--border-radius-lg);
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition-all);
+      box-shadow: var(--shadow-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+  }
+  
+  .submit-btn:hover {
+      background: linear-gradient(135deg, var(--sesmine-secondary), var(--primary-700));
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+  }
+  
+  .contact-info {
+      display: grid;
+      gap: 2rem;
+  }
+  
+  .info-card {
+      background: white;
+      border-radius: var(--border-radius-xl);
+      padding: 2rem;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--gray-200);
+      transition: var(--transition-all);
+  }
+  
+  .info-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+  }
+  
+  .info-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+  }
+  
+  .info-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: var(--border-radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: white;
+      box-shadow: var(--shadow-sm);
+  }
+  
+  .info-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--sesmine-primary);
+  }
+  
+  .info-content {
+      color: var(--gray-600);
+      line-height: 1.6;
+  }
+  
+  .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--gray-200);
+  }
+  
+  .contact-detail:last-child {
+      border-bottom: none;
+  }
+  
+  .detail-icon {
+      width: 20px;
+      height: 20px;
+      color: var(--sesmine-accent);
+      flex-shrink: 0;
+  }
+  
+  .detail-text {
+      color: var(--gray-700);
+      font-weight: 500;
+  }
+  
+  .detail-link {
+      color: var(--sesmine-accent);
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition-all);
+  }
+  
+  .detail-link:hover {
+      color: var(--sesmine-secondary);
+      text-decoration: underline;
+  }
+  
+  .support-hours {
+      background: linear-gradient(135deg, var(--success-50), var(--primary-50));
+      border: 2px solid var(--success-200);
+  }
+  
+  .hours-grid {
+      display: grid;
+      gap: 0.5rem;
+      margin-top: 1rem;
+  }
+  
+  .hours-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--success-200);
+  }
+  
+  .hours-row:last-child {
+      border-bottom: none;
+  }
+  
+  .hours-day {
+      font-weight: 600;
+      color: var(--gray-700);
+  }
+  
+  .hours-time {
+      color: var(--success-600);
+      font-weight: 600;
+  }
+  
+  .faq-section {
+      background: var(--gray-50);
+      border-radius: var(--border-radius-2xl);
+      padding: 4rem 3rem;
+      margin: 4rem 0;
+      border: 1px solid var(--gray-200);
+  }
+  
+  .faq-header {
+      text-align: center;
+      margin-bottom: 3rem;
+  }
+  
+  .faq-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--sesmine-primary);
+      margin-bottom: 1rem;
+  }
+  
+  .faq-subtitle {
+      font-size: 1.25rem;
+      color: var(--gray-600);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+  }
+  
+  .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 2rem;
+  }
+  
+  .faq-item {
+      background: white;
+      border-radius: var(--border-radius-lg);
+      border: 1px solid var(--gray-200);
+      overflow: hidden;
+      transition: var(--transition-all);
+  }
+  
+  .faq-item:hover {
+      box-shadow: var(--shadow-md);
+      border-color: var(--sesmine-accent);
+  }
+  
+  .faq-question {
+      padding: 1.5rem;
+      background: var(--gray-50);
+      border-bottom: 1px solid var(--gray-200);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: var(--transition-all);
+  }
+  
+  .faq-question:hover {
+      background: var(--primary-50);
+      color: var(--sesmine-accent);
+  }
+  
+  .faq-question-text {
+      font-weight: 700;
+      font-size: 1.1rem;
+  }
+  
+  .faq-toggle {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--sesmine-accent);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      transition: var(--transition-all);
+  }
+  
+  .faq-answer {
+      padding: 1.5rem;
+      color: var(--gray-600);
+      line-height: 1.6;
+      display: none;
+  }
+  
+  .faq-item.active .faq-answer {
+      display: block;
+  }
+  
+  .faq-item.active .faq-toggle {
+      transform: rotate(45deg);
+  }
+  
+  .live-chat {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 1000;
+  }
+  
+  .chat-button {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--sesmine-accent), var(--sesmine-secondary));
+      color: white;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: var(--shadow-lg);
+      transition: var(--transition-all);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: chatBounce 3s ease-in-out infinite;
+  }
+  
+  @keyframes chatBounce {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+  }
+  
+  .chat-button:hover {
+      transform: scale(1.1);
+      box-shadow: var(--shadow-2xl);
+  }
+  
+  .chat-widget {
+      position: absolute;
+      bottom: 80px;
+      right: 0;
+      width: 350px;
+      background: white;
+      border-radius: var(--border-radius-xl);
+      box-shadow: var(--shadow-2xl);
+      border: 1px solid var(--gray-200);
+      display: none;
+      overflow: hidden;
+  }
+  
+  .chat-header {
+      background: linear-gradient(135deg, var(--sesmine-accent), var(--sesmine-secondary));
+      color: white;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  }
+  
+  .chat-title {
+      font-weight: 700;
+      font-size: 1.1rem;
+  }
+  
+  .chat-close {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.25rem;
+      cursor: pointer;
+      padding: 0.25rem;
+      border-radius: var(--border-radius-md);
+      transition: var(--transition-all);
+  }
+  
+  .chat-close:hover {
+      background: rgba(255, 255, 255, 0.2);
+  }
+  
+  .chat-messages {
+      height: 300px;
+      padding: 1rem;
+      overflow-y: auto;
+      background: var(--gray-50);
+  }
+  
+  .chat-message {
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+  }
+  
+  .message-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--sesmine-accent);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.8rem;
+      flex-shrink: 0;
+  }
+  
+  .message-content {
+      background: white;
+      padding: 0.75rem 1rem;
+      border-radius: var(--border-radius-lg);
+      box-shadow: var(--shadow-sm);
+      flex: 1;
+  }
+  
+  .message-text {
+      color: var(--gray-700);
+      font-size: 0.9rem;
+      line-height: 1.4;
+  }
+  
+  .message-time {
+      color: var(--gray-500);
+      font-size: 0.75rem;
+      margin-top: 0.25rem;
+  }
+  
+  .chat-input {
+      padding: 1rem;
+      border-top: 1px solid var(--gray-200);
+      display: flex;
+      gap: 0.75rem;
+  }
+  
+  .chat-input input {
+      flex: 1;
+      padding: 0.75rem;
+      border: 2px solid var(--gray-300);
+      border-radius: var(--border-radius-md);
+      font-size: 0.9rem;
+  }
+  
+  .chat-send {
+      padding: 0.75rem 1rem;
+      background: var(--sesmine-accent);
+      color: white;
+      border: none;
+      border-radius: var(--border-radius-md);
+      cursor: pointer;
+      transition: var(--transition-all);
+  }
+  
+  .chat-send:hover {
+      background: var(--sesmine-secondary);
+  }
+  
+  @media (max-width: 1024px) {
+      .contact-layout {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+      }
+      
+      .faq-grid {
+          grid-template-columns: 1fr;
+      }
+      
+      .chat-widget {
+          width: 300px;
+      }
+  }
+  
+  @media (max-width: 768px) {
+      .hero-title {
+          font-size: 2.5rem;
+      }
+      
+      .hero-subtitle {
+          font-size: 1.25rem;
+      }
+      
+      .contact-methods {
+          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      }
+      
+      .priority-selector {
+          grid-template-columns: 1fr;
+      }
+      
+      .live-chat {
+          bottom: 1rem;
+          right: 1rem;
+      }
+      
+      .chat-widget {
+          width: calc(100vw - 2rem);
+          right: -1rem;
+      }
+  }
+  </style>
+</head>
+<body>
+  <!-- Universal Navigation Header -->
+  <header class="sesmine-header" id="sesmineHeader">
+      <div class="header-content">
+          <div class="logo-section">
+              <button class="header-btn mobile-menu-toggle" id="mobileMenuToggle">
+                  <i class="fas fa-bars"></i>
+              </button>
+              <a href="index.html" class="logo">
+                  <div class="logo-icon">🏔️</div>
+                  <div class="logo-text">
+                      <div class="logo-main">SESMine</div>
+                      <div class="logo-subtitle">Smart Engineering Solutions</div>
+                  </div>
+              </a>
+          </div>
+          
+          <nav class="main-nav" id="mainNav">
+              <a href="home.html" class="nav-link">
+                  <i class="fas fa-home"></i> Dashboard
+              </a>
+              <div class="nav-dropdown">
+                  <button class="nav-link dropdown-toggle">
+                      <i class="fas fa-th-large"></i> Hubs <i class="fas fa-chevron-down"></i>
+                  </button>
+                  <div class="dropdown-menu">
+                      <a href="engineering-hub.html" class="dropdown-item">
+                          <i class="fas fa-hard-hat"></i> Engineering Hub
+                      </a>
+                      <a href="analytics-platform.html" class="dropdown-item">
+                          <i class="fas fa-chart-area"></i> Analytics Platform
+                      </a>
+                      <a href="economics-hub.html" class="dropdown-item">
+                          <i class="fas fa-coins"></i> Economics Hub
+                      </a>
+                      <a href="innovation-technology-hub.html" class="dropdown-item">
+                          <i class="fas fa-rocket"></i> Innovation & Technology
+                      </a>
+                      <a href="procurement-hub.html" class="dropdown-item">
+                          <i class="fas fa-truck"></i> Procurement Hub
+                      </a>
+                      <a href="consulting-hub.html" class="dropdown-item">
+                          <i class="fas fa-user-tie"></i> Consulting Hub
+                      </a>
+                      <a href="training-education-hub.html" class="dropdown-item">
+                          <i class="fas fa-graduation-cap"></i> Training & Education
+                      </a>
+                      <a href="admin-dashboard.html" class="dropdown-item">
+                          <i class="fas fa-shield-alt"></i> Admin Dashboard
+                      </a>
+                  </div>
+              </div>
+              <a href="platforms.html" class="nav-link">
+                  <i class="fas fa-layer-group"></i> Platforms
+              </a>
+              <a href="features.html" class="nav-link">
+                  <i class="fas fa-star"></i> Features
+              </a>
+              <a href="about.html" class="nav-link">
+                  <i class="fas fa-info-circle"></i> About
+              </a>
+              <a href="contact.html" class="nav-link active">
+                  <i class="fas fa-phone"></i> Contact
+              </a>
+          </nav>
+          
+          <div class="header-actions">
+              <div class="search-container">
+                  <i class="fas fa-search search-icon"></i>
+                  <input type="text" class="search-input" placeholder="Search..." id="globalSearch">
+              </div>
+              <button class="header-btn" title="Notifications">
+                  <i class="fas fa-bell"></i>
+              </button>
+              <button class="header-btn" title="Settings" onclick="window.location.href='setting.html'">
+                  <i class="fas fa-cog"></i>
+              </button>
+              <div class="user-menu">
+                  <div class="user-avatar">MS</div>
+                  <div class="user-info">
+                      <div class="user-name">Mining Specialist</div>
+                      <div class="user-email">specialist@sesmine.com</div>
+                  </div>
+                  <div class="user-dropdown">
+                      <a href="setting.html" class="dropdown-item">
+                          <i class="fas fa-cog"></i> Settings
+                      </a>
+                      <a href="login.html" class="dropdown-item">
+                          <i class="fas fa-sign-out-alt"></i> Logout
+                      </a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+      <!-- Contact Hero Section -->
+      <section class="contact-hero">
+          <div class="hero-content">
+              <div class="hero-icon">📞</div>
+              <h1 class="hero-title">Contact & Support</h1>
+              <p class="hero-subtitle">
+                  Get in touch with our expert team for support, inquiries, and professional assistance. 
+                  We're here to help you succeed with SESMine.
+              </p>
+              
+              <div class="contact-methods">
+                  <div class="contact-method" onclick="scrollToForm()">
+                      <div class="method-icon">📧</div>
+                      <div class="method-title">Email Support</div>
+                      <div class="method-info">Get detailed help</div>
+                  </div>
+                  <div class="contact-method" onclick="openLiveChat()">
+                      <div class="method-icon">💬</div>
+                      <div class="method-title">Live Chat</div>
+                      <div class="method-info">Instant assistance</div>
+                  </div>
+                  <div class="contact-method" onclick="callSupport()">
+                      <div class="method-icon">📱</div>
+                      <div class="method-title">Phone Support</div>
+                      <div class="method-info">Direct conversation</div>
+                  </div>
+                  <div class="contact-method" onclick="scheduleCall()">
+                      <div class="method-icon">📅</div>
+                      <div class="method-title">Schedule Call</div>
+                      <div class="method-info">Book consultation</div>
+                  </div>
+              </div>
+          </div>
+      </section>
+
+      <div class="content-container">
+          <!-- Contact Form and Info -->
+          <section class="contact-layout">
+              <!-- Contact Form -->
+              <div class="contact-form-section">
+                  <div class="form-header">
+                      <h2 class="form-title">
+                          <i class="fas fa-paper-plane"></i>
+                          Send us a Message
+                      </h2>
+                      <p class="form-description">
+                          Fill out the form below and we'll get back to you within 24 hours. 
+                          For urgent matters, please use our live chat or call us directly.
+                      </p>
+                  </div>
+
+                  <form class="contact-form" id="contactForm">
+                      <div class="form-group">
+                          <label class="form-label">
+                              <i class="fas fa-user"></i>
+                              Full Name
+                          </label>
+                          <input type="text" class="form-input" placeholder="Your full name" required>
+                      </div>
+
+                      <div class="form-group">
+                          <label class="form-label">
+                              <i class="fas fa-envelope"></i>
+                              Email Address
+                          </label>
+                          <input type="email" class="form-input" placeholder="your.email@company.com" required>
+                      </div>
+
+                      <div class="form-group">
+                          <label class="form-label">
+                              <i class="fas fa-building"></i>
+                              Company
+                          </label>
+                          <input type="text" class="form-input" placeholder="Your company name">
+                      </div>
+
+                      <div class="form-group">
+                          <label class="form-label">
+                              <i class="fas fa-phone"></i>
+                              Phone Number
+                          </label>
+                          <input type="tel" class="form-input" placeholder="+1 (555) 123-4567">
+                      </div>
+
+                      <div class="form-group">
+                          <label class="form-label">
+                              <i class="fas fa-list"></i>
+                              Subject Category
+                          </label>
+                          <select class="form-select" required>
+                              <option value="">Select a category</option>
+                              <option value="technical-support">Technical Support</option>
+                              <option value="billing">Billing & Payments</option>
+                              <option value="feature-request">Feature Request</option>
+                              <option value="bug-report">Bug Report</option>
+                              <option value="consultation">Consultation Request</option>
+                              <option value="partnership">Partnership Inquiry</option>
+                              <option value="training">Training & Education</option>
+                              <option value="general">General Inquiry</option>
+                          </select>
+                      </div>
+
+                      <div class="form-group">
+                          <label class="form-label">
+                              <i class="fas fa-exclamation-circle"></i>
+                              Priority Level
+                          </label>
+                          <div class="priority-selector">
+                              <div class="priority-option priority-low" onclick="selectPriority('low', this)">
+                                  <div style="font-weight: 700; margin-bottom: 0.25rem;">Low</div>
+                                  <div style="font-size: 0.8rem;">General inquiry</div>
+                              </div>
+                              <div class="priority-option priority-medium" onclick="selectPriority('medium', this)">
+                                  <div style="font-weight: 700; margin-bottom: 0.25rem;">Medium</div>
+                                  <div style="font-size: 0.8rem;">Standard support</div>
+                              </div>
+                              <div class="priority-option priority-high" onclick="selectPriority('high', this)">
+                                  <div style="font-weight: 700; margin-bottom: 0.25rem;">High</div>
+                                  <div style="font-size: 0.8rem;">Urgent issue</div>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                          <label class="form-label">
+                              <i class="fas fa-comment-alt"></i>
+                              Message
+                          </label>
+                          <textarea class="form-input form-textarea" placeholder="Please describe your inquiry in detail..." required></textarea>
+                      </div>
+
+                      <button type="submit" class="submit-btn" onclick="submitContactForm(event)">
+                          <i class="fas fa-paper-plane"></i>
+                          Send Message
+                      </button>
+                  </form>
+              </div>
+
+              <!-- Contact Information -->
+              <div class="contact-info">
+                  <div class="info-card">
+                      <div class="info-header">
+                          <div class="info-icon" style="background: linear-gradient(135deg, var(--sesmine-accent), var(--sesmine-secondary));">
+                              <i class="fas fa-map-marker-alt"></i>
+                          </div>
+                          <h3 class="info-title">Office Location</h3>
+                      </div>
+                      <div class="info-content">
+                          <div class="contact-detail">
+                              <i class="fas fa-building detail-icon"></i>
+                              <span class="detail-text">SESMine Headquarters</span>
+                          </div>
+                          <div class="contact-detail">
+                              <i class="fas fa-map-marker-alt detail-icon"></i>
+                              <span class="detail-text">1234 Mining District Ave<br>Denver, CO 80202, USA</span>
+                          </div>
+                          <div class="contact-detail">
+                              <i class="fas fa-directions detail-icon"></i>
+                              <a href="#" class="detail-link">Get Directions</a>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="info-card">
+                      <div class="info-header">
+                          <div class="info-icon" style="background: linear-gradient(135deg, var(--success-500), var(--sesmine-emerald));">
+                              <i class="fas fa-phone"></i>
+                          </div>
+                          <h3 class="info-title">Contact Details</h3>
+                      </div>
+                      <div class="info-content">
+                          <div class="contact-detail">
+                              <i class="fas fa-phone detail-icon"></i>
+                              <a href="tel:+1-800-SESMINE" class="detail-link">+1 (800) 737-6463</a>
+                          </div>
+                          <div class="contact-detail">
+                              <i class="fas fa-envelope detail-icon"></i>
+                              <a href="mailto:support@sesmine.com" class="detail-link">support@sesmine.com</a>
+                          </div>
+                          <div class="contact-detail">
+                              <i class="fas fa-globe detail-icon"></i>
+                              <a href="https://www.sesmine.com" class="detail-link">www.sesmine.com</a>
+                          </div>
+                          <div class="contact-detail">
+                              <i class="fas fa-comments detail-icon"></i>
+                              <span class="detail-text">Live Chat Available</span>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="info-card support-hours">
+                      <div class="info-header">
+                          <div class="info-icon" style="background: linear-gradient(135deg, var(--warning-500), var(--warning-600));">
+                              <i class="fas fa-clock"></i>
+                          </div>
+                          <h3 class="info-title">Support Hours</h3>
+                      </div>
+                      <div class="info-content">
+                          <div class="hours-grid">
+                              <div class="hours-row">
+                                  <span class="hours-day">Monday - Friday</span>
+                                  <span class="hours-time">8:00 AM - 6:00 PM MT</span>
+                              </div>
+                              <div class="hours-row">
+                                  <span class="hours-day">Saturday</span>
+                                  <span class="hours-time">9:00 AM - 2:00 PM MT</span>
+                              </div>
+                              <div class="hours-row">
+                                  <span class="hours-day">Sunday</span>
+                                  <span class="hours-time">Emergency Only</span>
+                              </div>
+                              <div class="hours-row">
+                                  <span class="hours-day">Emergency Line</span>
+                                  <span class="hours-time">24/7 Available</span>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </section>
+
+          <!-- FAQ Section -->
+          <section class="faq-section">
+              <div class="faq-header">
+                  <h2 class="faq-title">Frequently Asked Questions</h2>
+                  <p class="faq-subtitle">
+                      Find quick answers to common questions about SESMine platform and services
+                  </p>
+              </div>
+
+              <div class="faq-grid">
+                  <div class="faq-item" onclick="toggleFAQ(this)">
+                      <div class="faq-question">
+                          <span class="faq-question-text">How do I get started with SESMine?</span>
+                          <div class="faq-toggle">+</div>
+                      </div>
+                      <div class="faq-answer">
+                          Getting started is easy! Simply create an account, choose your subscription plan, and access our comprehensive onboarding tutorials. Our support team is available to guide you through the initial setup and help you configure the platform for your specific mining operations.
+                      </div>
+                  </div>
+
+                  <div class="faq-item" onclick="toggleFAQ(this)">
+                      <div class="faq-question">
+                          <span class="faq-question-text">What types of mining operations does SESMine support?</span>
+                          <div class="faq-toggle">+</div>
+                      </div>
+                      <div class="faq-answer">
+                          SESMine supports all major mining operations including open-pit mining, underground mining, mineral processing, and quarrying. Our platform is designed to handle various commodities such as gold, copper, iron ore, coal, and industrial minerals with specialized tools for each operation type.
+                      </div>
+                  </div>
+
+                  <div class="faq-item" onclick="toggleFAQ(this)">
+                      <div class="faq-question">
+                          <span class="faq-question-text">Is my data secure on the SESMine platform?</span>
+                          <div class="faq-toggle">+</div>
+                      </div>
+                      <div class="faq-answer">
+                          Yes, security is our top priority. We use enterprise-grade encryption, secure cloud infrastructure, regular security audits, and comply with international data protection standards. Your mining data is protected with multi-layer security protocols and access controls.
+                      </div>
+                  </div>
+
+                  <div class="faq-item" onclick="toggleFAQ(this)">
+                      <div class="faq-question">
+                          <span class="faq-question-text">Can I integrate SESMine with existing systems?</span>
+                          <div class="faq-toggle">+</div>
+                      </div>
+                      <div class="faq-answer">
+                          Absolutely! SESMine offers comprehensive API integration capabilities and supports connections with popular mining software, ERP systems, and IoT devices. Our integration team can help you connect your existing systems seamlessly.
+                      </div>
+                  </div>
+
+                  <div class="faq-item" onclick="toggleFAQ(this)">
+                      <div class="faq-question">
+                          <span class="faq-question-text">What training and support do you provide?</span>
+                          <div class="faq-toggle">+</div>
+                      </div>
+                      <div class="faq-answer">
+                          We offer comprehensive training programs including online courses, live webinars, on-site training, and certification programs. Our support includes 24/7 technical assistance, dedicated account managers, and extensive documentation and video tutorials.
+                      </div>
+                  </div>
+
+                  <div class="faq-item" onclick="toggleFAQ(this)">
+                      <div class="faq-question">
+                          <span class="faq-question-text">What are the pricing options?</span>
+                          <div class="faq-toggle">+</div>
+                      </div>
+                      <div class="faq-answer">
+                          We offer flexible pricing plans including Starter, Professional, and Enterprise tiers. Pricing is based on the number of users, features required, and data storage needs. Contact our sales team for a customized quote based on your specific requirements.
+                      </div>
+                  </div>
+              </div>
+          </section>
+      </div>
+  </main>
+
+  <!-- Live Chat Widget -->
+  <div class="live-chat">
+      <button class="chat-button" onclick="toggleChat()">
+          <i class="fas fa-comments"></i>
+      </button>
+      
+      <div class="chat-widget" id="chatWidget">
+          <div class="chat-header">
+              <span class="chat-title">Live Support</span>
+              <button class="chat-close" onclick="toggleChat()">×</button>
+          </div>
+          
+          <div class="chat-messages">
+              <div class="chat-message">
+                  <div class="message-avatar">SM</div>
+                  <div class="message-content">
+                      <div class="message-text">
+                          Hi! I'm Sarah from SESMine support. How can I help you today?
+                      </div>
+                      <div class="message-time">Just now</div>
+                  </div>
+              </div>
+          </div>
+          
+          <div class="chat-input">
+              <input type="text" placeholder="Type your message..." id="chatInput">
+              <button class="chat-send" onclick="sendChatMessage()">
+                  <i class="fas fa-paper-plane"></i>
+              </button>
+          </div>
+      </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+  // Contact page specific JavaScript
+  document.addEventListener('DOMContentLoaded', function() {
+      initializeContactPage();
+  });
+
+  function initializeContactPage() {
+      console.log('📞 Contact page initialized');
+      
+      // Initialize form validation
+      initializeFormValidation();
+      
+      // Initialize chat functionality
+      initializeLiveChat();
+      
+      // Track page view
+      analytics.track('contact_page_view', {
+          timestamp: new Date().toISOString(),
+          userAgent: navigator.userAgent
+      });
+  }
+
+  function initializeFormValidation() {
+      const form = document.getElementById('contactForm');
+      const inputs = form.querySelectorAll('input, select, textarea');
+      
+      inputs.forEach(input => {
+          input.addEventListener('blur', function() {
+              validateField(this);
+          });
+      });
+  }
+
+  function validateField(field) {
+      const value = field.value.trim();
+      
+      if (field.hasAttribute('required') && !value) {
+          field.style.borderColor = 'var(--danger-500)';
+          return false;
+      } else if (field.type === 'email' && value && !isValidEmail(value)) {
+          field.style.borderColor = 'var(--danger-500)';
+          return false;
+      } else {
+          field.style.borderColor = 'var(--success-500)';
+          return true;
+      }
+  }
+
+  function isValidEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
+  function selectPriority(priority, element) {
+      // Remove selected class from all priority options
+      const options = document.querySelectorAll('.priority-option');
+      options.forEach(option => option.classList.remove('selected'));
+      
+      // Add selected class to clicked option
+      element.classList.add('selected');
+      
+      // Track priority selection
+      analytics.track('contact_priority_selected', { priority: priority });
+  }
+
+  function submitContactForm(event) {
+      event.preventDefault();
+      
+      const form = document.getElementById('contactForm');
+      const formData = new FormData(form);
+      
+      // Validate all required fields
+      const requiredFields = form.querySelectorAll('[required]');
+      let isValid = true;
+      
+      requiredFields.forEach(field => {
+          if (!validateField(field)) {
+              isValid = false;
+          }
+      });
+      
+      if (!isValid) {
+          showNotification('❌ Please fill in all required fields correctly', 'error');
+          return;
+      }
+      
+      // Check if priority is selected
+      const selectedPriority = document.querySelector('.priority-option.selected');
+      if (!selectedPriority) {
+          showNotification('⚠️ Please select a priority level', 'warning');
+          return;
+      }
+      
+      // Simulate form submission
+      showNotification('📤 Sending your message...', 'info');
+      
+      // Track form submission
+      analytics.track('contact_form_submitted', {
+          category: formData.get('category') || 'general',
+          priority: selectedPriority ? selectedPriority.textContent.split('\n')[0].trim() : 'medium',
+          timestamp: new Date().toISOString()
+      });
+      
+      setTimeout(() => {
+          showNotification('✅ Message sent successfully! We\'ll get back to you within 24 hours.', 'success');
+          form.reset();
+          
+          // Reset priority selection
+          document.querySelectorAll('.priority-option').forEach(option => {
+              option.classList.remove('selected');
+          });
+          
+          // Reset field styles
+          const fields = form.querySelectorAll('input, select, textarea');
+          fields.forEach(field => {
+              field.style.borderColor = 'var(--gray-300)';
+          });
+      }, 2000);
+  }
+
+  function scrollToForm() {
+      document.querySelector('.contact-form-section').scrollIntoView({ behavior: 'smooth' });
+      analytics.track('contact_method_selected', { method: 'email_form' });
+  }
+
+  function openLiveChat() {
+      toggleChat();
+      analytics.track('contact_method_selected', { method: 'live_chat' });
+  }
+
+  function callSupport() {
+      analytics.track('contact_method_selected', { method: 'phone' });
+      window.open('tel:+1-800-737-6463');
+  }
+
+  function scheduleCall() {
+      analytics.track('contact_method_selected', { method: 'schedule_call' });
+      showNotification('📅 Redirecting to scheduling system...', 'info');
+      
+      setTimeout(() => {
+          showNotification('🗓️ Scheduling system opened in new tab', 'success');
+      }, 1500);
+  }
+
+  function initializeLiveChat() {
+      const chatInput = document.getElementById('chatInput');
+      
+      chatInput.addEventListener('keypress', function(e) {
+          if (e.key === 'Enter') {
+              sendChatMessage();
+          }
+      });
+  }
+
+  function toggleChat() {
+      const chatWidget = document.getElementById('chatWidget');
+      const isVisible = chatWidget.style.display === 'block';
+      
+      chatWidget.style.display = isVisible ? 'none' : 'block';
+      
+      if (!isVisible) {
+          analytics.track('live_chat_opened', { timestamp: new Date().toISOString() });
+          
+          // Simulate typing indicator
+          setTimeout(() => {
+              addChatMessage('SM', 'What specific area can I help you with today? I can assist with technical questions, billing, or general platform information.', true);
+          }, 1500);
+      }
+  }
+
+  function sendChatMessage() {
+      const chatInput = document.getElementById('chatInput');
+      const message = chatInput.value.trim();
+      
+      if (!message) return;
+      
+      // Add user message
+      addChatMessage('You', message, false);
+      
+      // Clear input
+      chatInput.value = '';
+      
+      // Track message sent
+      analytics.track('chat_message_sent', {
+          message_length: message.length,
+          timestamp: new Date().toISOString()
+      });
+      
+      // Simulate support response
+      setTimeout(() => {
+          const responses = [
+              "Thanks for your message! Let me help you with that. Can you provide more details?",
+              "I understand your concern. Let me connect you with a specialist who can assist you better.",
+              "That's a great question! I'll need to gather some information to provide the best solution.",
+              "I can definitely help with that. Let me pull up the relevant information for you."
+          ];
+          
+          const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+          addChatMessage('SM', randomResponse, true);
+      }, 2000);
+  }
+
+  function addChatMessage(sender, message, isSupport) {
+      const messagesContainer = document.querySelector('.chat-messages');
+      const messageElement = document.createElement('div');
+      messageElement.className = 'chat-message';
+      
+      const avatar = isSupport ? 'SM' : 'You';
+      const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      
+      messageElement.innerHTML = `
+          <div class="message-avatar">${avatar}</div>
+          <div class="message-content">
+              <div class="message-text">${message}</div>
+              <div class="message-time">${time}</div>
+          </div>
+      `;
+      
+      messagesContainer.appendChild(messageElement);
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  }
+
+  function toggleFAQ(faqItem) {
+      const isActive = faqItem.classList.contains('active');
+      
+      // Close all FAQ items
+      document.querySelectorAll('.faq-item').forEach(item => {
+          item.classList.remove('active');
+      });
+      
+      // Open clicked item if it wasn't active
+      if (!isActive) {
+          faqItem.classList.add('active');
+          
+          // Track FAQ interaction
+          const question = faqItem.querySelector('.faq-question-text').textContent;
+          analytics.track('faq_opened', {
+              question: question,
+              timestamp: new Date().toISOString()
+          });
+      }
+  }
+
+  // Emergency contact function
+  function emergencyContact() {
+      analytics.track('emergency_contact_initiated', { timestamp: new Date().toISOString() });
+      
+      if (confirm('This will connect you to our 24/7 emergency support line. Continue?')) {
+          showNotification('🚨 Connecting to emergency support...', 'warning');
+          window.open('tel:+1-800-737-6463');
+      }
+  }
+
+  // Keyboard shortcuts
+  document.addEventListener('keydown', function(e) {
+      // Ctrl/Cmd + Shift + C: Open live chat
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'C') {
+          e.preventDefault();
+          openLiveChat();
+      }
+      
+      // Ctrl/Cmd + Shift + F: Focus on contact form
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'F') {
+          e.preventDefault();
+          scrollToForm();
+      }
+  });
+
+  console.log('📞 Contact page ready');
+  console.log('📧 Contact form initialized');
+  console.log('💬 Live chat system active');
+  console.log('❓ FAQ system loaded');
+  console.log('📱 Emergency contact available');
+  </script>
+</body>
+</html>

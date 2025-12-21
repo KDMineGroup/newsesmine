@@ -1,439 +1,425 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SESMine - World-Class Enterprise Mining Intelligence Platform | Fortune 500 Trusted</title>
-  <meta name="description" content="The world's most advanced mining intelligence platform trusted by Fortune 500 companies. AACE International certified cost estimation, AI-powered analytics, and comprehensive enterprise solutions.">
-  <meta name="keywords" content="enterprise mining software, AACE cost estimation, mining intelligence platform, Fortune 500 mining solutions, AI mining analytics, professional mining technology">
-  
-  <!-- Enhanced Meta Tags -->
-  <meta property="og:title" content="SESMine - World-Class Enterprise Mining Intelligence">
-  <meta property="og:description" content="Trusted by Fortune 500 mining companies worldwide. The most advanced professional-grade mining solutions with AACE compliance.">
-  <meta property="og:image" content="ses-mine-logo.png">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.sesmine.com">
-  
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="SESMine - Enterprise Mining Intelligence">
-  <meta name="twitter:description" content="World-class mining intelligence platform trusted by Fortune 500 companies">
-  <meta name="twitter:image" content="ses-mine-logo.png">
-  
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="ses-mine-logo.png">
-  <link rel="apple-touch-icon" href="ses-mine-logo.png">
-  
-  <!-- Performance Optimization -->
-  <link rel="preload" href="ses-mine-logo.png" as="image">
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" as="style">
-  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
-  
-  <!-- Enhanced Stylesheets -->
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap">
-  
-  <!-- Advanced Libraries -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
-  
-  <!-- Schema.org Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "SESMine",
-    "description": "World-class enterprise mining intelligence platform",
-    "url": "https://www.sesmine.com",
-    "logo": "ses-mine-logo.png",
-    "applicationCategory": "BusinessApplication",
-    "operatingSystem": "Web",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "ratingCount": "500"
-    }
+/* ============================================
+   SESMine Logo Styles - Professional Integration
+   Using Your Actual Logo Image
+   ============================================ */
+
+/* Navigation Logo Styles */
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: var(--transition-base);
+  padding: var(--space-2) 0;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+  text-decoration: none;
+}
+
+.logo-img {
+  height: 50px;
+  width: auto;
+  display: block;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  transition: var(--transition-base);
+}
+
+.logo:hover .logo-img {
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+  transform: translateY(-2px);
+}
+
+/* Scrolled Navbar Logo */
+.navbar.scrolled .logo-img {
+  height: 40px;
+}
+
+/* Loading Screen Logo */
+.loading-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-8);
+}
+
+.loading-logo-img {
+  width: 150px;
+  height: auto;
+  animation: loadingPulse 2s ease-in-out infinite;
+}
+
+@keyframes loadingPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
   }
-  </script>
-</head>
+  50% {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+}
 
-<body>
-  <!-- Loading Overlay -->
-  <div class="loading-overlay" id="loadingOverlay">
-    <div class="loading-content">
-      <div class="loading-logo">
-        <img src="ses-mine-logo.png" alt="SESMine Logo" class="loading-logo-img">
-      </div>
-      <div class="loading-spinner"></div>
-      <p class="loading-text">Initializing World-Class Platform...</p>
-    </div>
-  </div>
+/* Hero Logo Display */
+.hero-logo-display {
+  margin-bottom: var(--space-8);
+  display: flex;
+  justify-content: center;
+}
 
-  <!-- Enhanced Navigation -->
-  <nav class="navbar" id="navbar">
-    <div class="nav-container">
-      <a href="index.html" class="logo">
-        <img src="ses-mine-logo.png" alt="SESMine - Smart Engineering Solutions" class="logo-img">
-      </a>
-      
-      <ul class="nav-menu" id="navMenu">
-        <li><a href="index.html" class="nav-link active">Home</a></li>
-        <li><a href="features.html" class="nav-link">Features</a></li>
-        <li><a href="platforms.html" class="nav-link">Platforms</a></li>
-        <li><a href="about.html" class="nav-link">About</a></li>
-        <li><a href="contact.html" class="nav-link">Contact</a></li>
-        <li class="nav-dropdown">
-          <a href="#" class="nav-link dropdown-toggle">
-            Solutions <i class="fas fa-chevron-down"></i>
-          </a>
-          <div class="dropdown-menu">
-            <a href="engineering-hub.html" class="dropdown-link">
-              <i class="fas fa-wrench"></i>
-              Engineering Hub
-            </a>
-            <a href="economics-hub.html" class="dropdown-link">
-              <i class="fas fa-dollar-sign"></i>
-              Economics Hub
-            </a>
-            <a href="analytics-platform.html" class="dropdown-link">
-              <i class="fas fa-chart-bar"></i>
-              Analytics Platform
-            </a>
-            <a href="consulting-hub.html" class="dropdown-link">
-              <i class="fas fa-handshake"></i>
-              Consulting Hub
-            </a>
-          </div>
-        </li>
-      </ul>
-      
-      <div class="nav-actions">
-        <a href="login.html" class="nav-login">
-          <i class="fas fa-sign-in-alt"></i>
-          Login
-        </a>
-        <a href="signup.html" class="cta-button">
-          <i class="fas fa-rocket"></i>
-          Get Started
-        </a>
-      </div>
-      
-      <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </div>
-  </nav>
+.hero-logo-img {
+  width: 200px;
+  height: auto;
+  animation: heroLogoFloat 6s ease-in-out infinite;
+  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
+}
 
-  <!-- World-Class Hero Section -->
-  <section class="hero" id="home">
-    <div class="hero-background">
-      <div class="hero-particles" id="heroParticles"></div>
-    </div>
-    
-    <div class="hero-container">
-      <div class="hero-content">
-        <!-- Hero Logo Display -->
-        <div class="hero-logo-display" data-aos="zoom-in">
-          <img src="ses-mine-logo.png" alt="SESMine" class="hero-logo-img">
-        </div>
-        
-        <div class="hero-badge" data-aos="fade-down">
-          <i class="fas fa-award"></i>
-          <span>Trusted by Fortune 500 Companies</span>
-        </div>
-        
-        <h1 class="hero-title" data-aos="fade-up" data-aos-delay="200">
-          World-Class Mining Intelligence Platform
-        </h1>
-        
-        <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="400">
-          The most advanced professional-grade mining solutions with AACE compliance, 
-          AI-powered analytics, and comprehensive enterprise intelligence trusted by 
-          industry leaders worldwide.
-        </p>
-        
-        <div class="hero-stats" data-aos="fade-up" data-aos-delay="600">
-          <div class="stat-item">
-            <span class="stat-number" data-count="500">0</span>
-            <span class="stat-plus">+</span>
-            <span class="stat-label">Global Clients</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-number" data-count="99.9">0</span>
-            <span class="stat-plus">%</span>
-            <span class="stat-label">Uptime SLA</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-number">24</span>
-            <span class="stat-plus">/7</span>
-            <span class="stat-label">Expert Support</span>
-          </div>
-        </div>
-        
-        <div class="hero-actions" data-aos="fade-up" data-aos-delay="800">
-          <a href="signup.html" class="btn-primary">
-            <i class="fas fa-play"></i>
-            Start Free Trial
-          </a>
-          <a href="contact.html" class="btn-secondary">
-            <i class="fas fa-calendar"></i>
-            Schedule Demo
-          </a>
-        </div>
-        
-        <div class="hero-trust" data-aos="fade-up" data-aos-delay="1000">
-          <p class="trust-text">Trusted by industry leaders:</p>
-          <div class="trust-logos">
-            <div class="trust-logo">Rio Tinto</div>
-            <div class="trust-logo">BHP</div>
-            <div class="trust-logo">Vale</div>
-            <div class="trust-logo">Glencore</div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="hero-visual" data-aos="fade-left" data-aos-delay="600">
-        <div class="hero-3d-container" id="hero3d">
-          <!-- 3D visualization will be rendered here -->
-        </div>
-        <div class="hero-visual-overlay">
-          <div class="feature-highlight">
-            <i class="fas fa-shield-check"></i>
-            <span>Enterprise Security</span>
-          </div>
-          <div class="feature-highlight">
-            <i class="fas fa-chart-line"></i>
-            <span>AI Analytics</span>
-          </div>
-          <div class="feature-highlight">
-            <i class="fas fa-globe"></i>
-            <span>Global Scale</span>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <div class="hero-scroll-indicator" data-aos="fade-up" data-aos-delay="1200">
-      <div class="scroll-mouse">
-        <div class="scroll-wheel"></div>
-      </div>
-      <span>Scroll to explore</span>
-    </div>
-  </section>
+@keyframes heroLogoFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
 
-  <!-- Enhanced Features Preview -->
-  <section class="features-preview" id="features-preview">
-    <div class="container">
-      <div class="section-header" data-aos="fade-up">
-        <h2 class="section-title">Enterprise-Grade Capabilities</h2>
-        <p class="section-subtitle">Comprehensive mining intelligence solutions designed for the world's most demanding operations</p>
-      </div>
-      
-      <div class="features-grid">
-        <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
-          <div class="feature-icon">
-            <i class="fas fa-calculator"></i>
-          </div>
-          <h3 class="feature-title">AACE Cost Estimation</h3>
-          <p class="feature-description">Industry-standard cost estimation with AACE International compliance and advanced modeling capabilities.</p>
-          <a href="engineering-hub.html" class="feature-link">
-            Explore Engineering <i class="fas fa-arrow-right"></i>
-          </a>
-        </div>
-        
-        <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
-          <div class="feature-icon">
-            <i class="fas fa-chart-line"></i>
-          </div>
-          <h3 class="feature-title">AI-Powered Analytics</h3>
-          <p class="feature-description">Machine learning algorithms for predictive insights and real-time operational optimization.</p>
-          <a href="analytics-platform.html" class="feature-link">
-            View Analytics <i class="fas fa-arrow-right"></i>
-          </a>
-        </div>
-        
-        <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
-          <div class="feature-icon">
-            <i class="fas fa-shield-alt"></i>
-          </div>
-          <h3 class="feature-title">Enterprise Security</h3>
-          <p class="feature-description">Bank-grade security with SOC 2 compliance and advanced threat protection.</p>
-          <a href="features.html" class="feature-link">
-            Security Details <i class="fas fa-arrow-right"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
+/* Footer Logo Styles */
+.footer-logo {
+  margin-bottom: var(--space-6);
+}
 
-  <!-- Platform Ecosystem -->
-  <section class="platform-ecosystem" id="platforms-preview">
-    <div class="container">
-      <div class="section-header" data-aos="fade-up">
-        <h2 class="section-title">Integrated Platform Ecosystem</h2>
-        <p class="section-subtitle">Comprehensive suite of specialized platforms working together</p>
-      </div>
-      
-      <div class="ecosystem-grid">
-        <div class="ecosystem-item" data-aos="zoom-in" data-aos-delay="100">
-          <div class="ecosystem-icon">
-            <i class="fas fa-wrench"></i>
-          </div>
-          <h3>Engineering Hub</h3>
-          <p>Advanced engineering solutions with AACE cost estimation</p>
-          <a href="engineering-hub.html" class="ecosystem-link">Access Hub</a>
-        </div>
-        
-        <div class="ecosystem-item" data-aos="zoom-in" data-aos-delay="200">
-          <div class="ecosystem-icon">
-            <i class="fas fa-dollar-sign"></i>
-          </div>
-          <h3>Economics Hub</h3>
-          <p>Financial modeling and economic analysis tools</p>
-          <a href="economics-hub.html" class="ecosystem-link">Access Hub</a>
-        </div>
-        
-        <div class="ecosystem-item" data-aos="zoom-in" data-aos-delay="300">
-          <div class="ecosystem-icon">
-            <i class="fas fa-chart-bar"></i>
-          </div>
-          <h3>Analytics Platform</h3>
-          <p>Advanced data visualization and business intelligence</p>
-          <a href="analytics-platform.html" class="ecosystem-link">Access Platform</a>
-        </div>
-        
-        <div class="ecosystem-item" data-aos="zoom-in" data-aos-delay="400">
-          <div class="ecosystem-icon">
-            <i class="fas fa-handshake"></i>
-          </div>
-          <h3>Consulting Hub</h3>
-          <p>Expert consulting services and strategic advisory</p>
-          <a href="consulting-hub.html" class="ecosystem-link">Access Hub</a>
-        </div>
-      </div>
-    </div>
-  </section>
+.footer-logo-img {
+  height: 60px;
+  width: auto;
+  display: block;
+  filter: brightness(1.2) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
 
-  <!-- Call to Action -->
-  <section class="cta-section" id="cta">
-    <div class="container">
-      <div class="cta-content" data-aos="fade-up">
-        <h2 class="cta-title">Ready to Transform Your Mining Operations?</h2>
-        <p class="cta-subtitle">Join Fortune 500 companies using SESMine for world-class mining intelligence</p>
-        <div class="cta-actions">
-          <a href="signup.html" class="btn-primary">
-            <i class="fas fa-rocket"></i>
-            Start Free Trial
-          </a>
-          <a href="contact.html" class="btn-secondary">
-            <i class="fas fa-phone"></i>
-            Contact Sales
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
+/* Logo Hover Effects */
+.logo-img,
+.footer-logo-img {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-  <!-- Enhanced Footer -->
-  <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-content">
-        <div class="footer-brand">
-          <div class="footer-logo">
-            <img src="ses-mine-logo.png" alt="SESMine - Smart Engineering Solutions" class="footer-logo-img">
-          </div>
-          <p class="footer-description">
-            The world's most advanced mining intelligence platform, trusted by Fortune 500 companies worldwide. 
-            Delivering professional-grade solutions with unmatched reliability and performance.
-          </p>
-          <div class="social-links">
-            <a href="#" class="social-link" aria-label="LinkedIn">
-              <i class="fab fa-linkedin"></i>
-            </a>
-            <a href="#" class="social-link" aria-label="Twitter">
-              <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#" class="social-link" aria-label="Facebook">
-              <i class="fab fa-facebook"></i>
-            </a>
-            <a href="#" class="social-link" aria-label="YouTube">
-              <i class="fab fa-youtube"></i>
-            </a>
-          </div>
-        </div>
-        
-        <div class="footer-section">
-          <h4>Platforms</h4>
-          <ul class="footer-links">
-            <li><a href="engineering-hub.html">Engineering Hub</a></li>
-            <li><a href="economics-hub.html">Economics Hub</a></li>
-            <li><a href="analytics-platform.html">Analytics Platform</a></li>
-            <li><a href="consulting-hub.html">Consulting Hub</a></li>
-            <li><a href="procurement-hub.html">Procurement Hub</a></li>
-            <li><a href="training-education-hub.html">Training Center</a></li>
-          </ul>
-        </div>
-        
-        <div class="footer-section">
-          <h4>Company</h4>
-          <ul class="footer-links">
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="features.html">Features</a></li>
-            <li><a href="Pricing Plans - SESMine.html">Pricing</a></li>
-            <li><a href="innovation-technology-hub.html">Innovation</a></li>
-            <li><a href="contact.html">Contact</a></li>
-          </ul>
-        </div>
-        
-        <div class="footer-section">
-          <h4>Support</h4>
-          <ul class="footer-links">
-            <li><a href="home.html">Dashboard</a></li>
-            <li><a href="setting.html">Settings</a></li>
-            <li><a href="admin-dashboard.html">Admin</a></li>
-            <li><a href="contact.html">Help Center</a></li>
-            <li><a href="contact.html">Support</a></li>
-          </ul>
-        </div>
-      </div>
-      
-      <div class="footer-bottom">
-        <div class="footer-bottom-left">
-          <p>&copy; 2024 SESMine. All rights reserved. World-class mining intelligence platform.</p>
-        </div>
-        <div class="footer-bottom-right">
-          <div class="footer-bottom-links">
-            <a href="#privacy">Privacy Policy</a>
-            <a href="#terms">Terms of Service</a>
-            <a href="#cookies">Cookie Policy</a>
-            <a href="#security">Security</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
+.logo:hover .logo-img,
+.footer-logo:hover .footer-logo-img {
+  transform: scale(1.05);
+}
 
-  <!-- Scripts -->
-  <script src="script.js"></script>
+/* Logo for Different Backgrounds */
+.logo-on-dark {
+  filter: brightness(1.2) contrast(1.1);
+}
+
+.logo-on-light {
+  filter: brightness(1) contrast(1);
+}
+
+/* Responsive Logo Sizes */
+@media (max-width: 1024px) {
+  .logo-img {
+    height: 45px;
+  }
   
-  <!-- Performance Monitoring -->
-  <script>
-    window.addEventListener('load', function() {
-      const loadTime = performance.now();
-      console.log(`🚀 SESMine Platform loaded in ${Math.round(loadTime)}ms`);
-    });
-  </script>
-</body>
-</html>
+  .navbar.scrolled .logo-img {
+    height: 38px;
+  }
+  
+  .hero-logo-img {
+    width: 160px;
+  }
+  
+  .footer-logo-img {
+    height: 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  .logo-img {
+    height: 40px;
+  }
+  
+  .navbar.scrolled .logo-img {
+    height: 35px;
+  }
+  
+  .hero-logo-img {
+    width: 140px;
+  }
+  
+  .footer-logo-img {
+    height: 45px;
+  }
+  
+  .loading-logo-img {
+    width: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-img {
+    height: 35px;
+  }
+  
+  .navbar.scrolled .logo-img {
+    height: 32px;
+  }
+  
+  .hero-logo-img {
+    width: 120px;
+  }
+  
+  .footer-logo-img {
+    height: 40px;
+  }
+  
+  .loading-logo-img {
+    width: 100px;
+  }
+}
+
+/* Logo Animation on Page Load */
+@keyframes logoFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.logo-img {
+  animation: logoFadeIn 0.6s ease-out;
+}
+
+/* Logo Preloader */
+.logo-preload {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10000;
+}
+
+.logo-preload img {
+  width: 150px;
+  height: auto;
+  animation: preloadSpin 2s linear infinite;
+}
+
+@keyframes preloadSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Logo Watermark (Optional) */
+.logo-watermark {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  opacity: 0.3;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.logo-watermark img {
+  width: 60px;
+  height: auto;
+}
+
+/* Logo in Cards/Components */
+.card-logo,
+.component-logo {
+  height: 30px;
+  width: auto;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Logo Badge Style */
+.logo-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: white;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-md);
+}
+
+.logo-badge img {
+  height: 24px;
+  width: auto;
+}
+
+.logo-badge span {
+  font-weight: 600;
+  color: var(--sesmine-primary);
+  font-size: var(--font-size-sm);
+}
+
+/* Logo Print Styles */
+@media print {
+  .logo-img,
+  .footer-logo-img {
+    filter: grayscale(100%);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+
+/* Logo Accessibility */
+.logo-img,
+.footer-logo-img,
+.hero-logo-img,
+.loading-logo-img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* Logo Focus State for Accessibility */
+.logo:focus {
+  outline: 2px solid var(--sesmine-accent);
+  outline-offset: 4px;
+  border-radius: var(--radius-md);
+}
+
+.logo:focus .logo-img {
+  transform: scale(1.05);
+}
+
+/* High Performance Logo Loading */
+.logo-img[loading="lazy"] {
+  content-visibility: auto;
+}
+
+/* Logo Skeleton Loader */
+.logo-skeleton {
+  width: 150px;
+  height: 50px;
+  background: linear-gradient(
+    90deg,
+    var(--gray-200) 25%,
+    var(--gray-300) 50%,
+    var(--gray-200) 75%
+  );
+  background-size: 200% 100%;
+  animation: logoSkeletonLoading 1.5s ease-in-out infinite;
+  border-radius: var(--radius-md);
+}
+
+@keyframes logoSkeletonLoading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Logo Error Fallback */
+.logo-img[alt]::after {
+  content: attr(alt);
+  display: block;
+  font-size: var(--font-size-sm);
+  color: var(--gray-600);
+  text-align: center;
+}
+
+/* Logo with Text Combination */
+.logo-with-text {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.logo-with-text img {
+  height: 40px;
+  width: auto;
+}
+
+.logo-with-text .text-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-with-text .brand-name {
+  font-size: var(--font-size-xl);
+  font-weight: 800;
+  color: var(--sesmine-primary);
+  line-height: 1;
+}
+
+.logo-with-text .brand-tagline {
+  font-size: var(--font-size-xs);
+  color: var(--gray-600);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Dark Mode Logo Adjustments */
+@media (prefers-color-scheme: dark) {
+  .logo-img,
+  .footer-logo-img {
+    filter: brightness(1.2) contrast(0.9);
+  }
+}
+
+/* Logo Animation Classes */
+.logo-bounce {
+  animation: logoBounce 1s ease-in-out;
+}
+
+@keyframes logoBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.logo-pulse {
+  animation: logoPulse 2s ease-in-out infinite;
+}
+
+@keyframes logoPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.logo-shake {
+  animation: logoShake 0.5s ease-in-out;
+}
+
+@keyframes logoShake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+/* Logo Glow Effect */
+.logo-glow {
+  filter: drop-shadow(0 0 10px rgba(49, 130, 206, 0.5));
+}
+
+.logo:hover .logo-glow {
+  filter: drop-shadow(0 0 20px rgba(49, 130, 206, 0.7));
+}

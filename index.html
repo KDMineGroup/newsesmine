@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SESMine - Enterprise Mining Intelligence Platform | Professional Mining Solutions</title>
-  <meta name="description" content="Professional mining technology platform trusted by Fortune 500 companies. AACE International certified cost estimation, AI-powered analytics, and comprehensive mining intelligence solutions.">
-  <meta name="keywords" content="enterprise mining software, AACE cost estimation, mining intelligence platform, professional mining technology, Fortune 500 mining solutions">
+  <title>SESMine - Smart Engineering Solutions for Mining | Professional Mining Intelligence Platform</title>
+  <meta name="description" content="SESMine provides comprehensive mining intelligence solutions including cost estimation, equipment analysis, and project management tools. Trusted by mining professionals worldwide.">
+  <meta name="keywords" content="mining software, cost estimation, AACE standards, mining equipment, project management, mining intelligence, engineering solutions">
   
   <!-- Professional Meta Tags -->
-  <meta property="og:title" content="SESMine - Enterprise Mining Intelligence Platform">
-  <meta property="og:description" content="Trusted by Fortune 500 mining companies worldwide. Professional-grade mining solutions with AACE compliance.">
+  <meta property="og:title" content="SESMine - Smart Engineering Solutions for Mining">
+  <meta property="og:description" content="Comprehensive mining intelligence platform with specialized hubs for engineering, economics, procurement, and analytics.">
   <meta property="og:image" content="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
   <meta property="og:type" content="website">
   
@@ -17,48 +17,40 @@
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" as="style">
   <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
   
-  <!-- Existing Stylesheets -->
+  <!-- External Stylesheets -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap">
   
-  <!-- Three.js for Professional 3D Visualization -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  
+  <!-- AOS Animation Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   
   <style>
-  /* Professional Enterprise Design System - Based on Your Theme */
+  /* Professional Design System */
   :root {
-      /* Your Existing Color Palette Enhanced */
-      --bg-body: #f4f4f2;
-      --bg-surface: #ffffff;
-      --bg-sidebar: #1a1a1a;
-      --text-primary: #1a1a1a;
-      --text-secondary: #666666;
-      --text-on-dark: #f4f4f2;
+      /* Enhanced Color Palette */
+      --primary-dark: #1a1a1a;
+      --primary-light: #f4f4f2;
       --accent-primary: #5c6b50;
       --accent-secondary: #8c9a8c;
-      --accent-tertiary: #d4d4d0;
-      --border-light: #e0e0e0;
-      
-      /* Professional Enhancements */
-      --enterprise-primary: #1a365d;
-      --enterprise-secondary: #2c5282;
-      --enterprise-accent: #5c6b50;
-      --enterprise-gold: #d69e2e;
-      --enterprise-success: #38a169;
-      --enterprise-warning: #dd6b20;
-      --enterprise-info: #3182ce;
+      --accent-gold: #d69e2e;
+      --accent-blue: #3182ce;
+      --accent-success: #38a169;
+      --accent-warning: #dd6b20;
+      --accent-error: #e53e3e;
       
       /* Professional Gradients */
-      --primary-gradient: linear-gradient(135deg, var(--enterprise-primary) 0%, var(--enterprise-secondary) 50%, var(--enterprise-info) 100%);
-      --secondary-gradient: linear-gradient(135deg, var(--bg-sidebar) 0%, #2d3748 50%, #4a5568 100%);
-      --accent-gradient: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 50%, var(--accent-tertiary) 100%);
-      --enterprise-gradient: linear-gradient(135deg, var(--enterprise-primary) 0%, var(--accent-primary) 100%);
+      --gradient-primary: linear-gradient(135deg, var(--primary-dark) 0%, var(--accent-primary) 50%, var(--accent-blue) 100%);
+      --gradient-accent: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+      --gradient-hero: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(92, 107, 80, 0.8) 50%, rgba(49, 130, 206, 0.7) 100%);
       
-      /* Glass Morphism - Professional */
+      /* Glass Morphism */
       --glass-bg: rgba(255, 255, 255, 0.1);
       --glass-border: rgba(255, 255, 255, 0.2);
-      --dark-glass-bg: rgba(26, 26, 26, 0.9);
-      --dark-glass-border: rgba(92, 107, 80, 0.3);
+      --dark-glass: rgba(26, 26, 26, 0.9);
       
       /* Professional Shadows */
       --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
@@ -66,22 +58,22 @@
       --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.16);
       --shadow-xl: 0 24px 60px rgba(0, 0, 0, 0.2);
       
-      /* Professional Spacing */
-      --spacing-xs: 0.25rem;
-      --spacing-sm: 0.5rem;
-      --spacing-md: 1rem;
-      --spacing-lg: 1.5rem;
-      --spacing-xl: 2rem;
-      --spacing-2xl: 3rem;
-      --spacing-3xl: 4rem;
+      /* Spacing System */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2rem;
+      --space-2xl: 3rem;
+      --space-3xl: 4rem;
       
-      /* Professional Border Radius */
+      /* Border Radius */
       --radius-sm: 6px;
       --radius-md: 12px;
       --radius-lg: 18px;
       --radius-xl: 24px;
       
-      /* Professional Transitions */
+      /* Transitions */
       --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
       --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       --transition-enterprise: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -96,37 +88,26 @@
   body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       line-height: 1.6;
-      color: var(--text-primary);
+      color: var(--primary-dark);
+      background: var(--primary-light);
       overflow-x: hidden;
-      background: var(--bg-body);
-      font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+      font-feature-settings: "kern" 1, "liga" 1;
       text-rendering: optimizeLegibility;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
   }
   
   /* Professional Background System */
-  .enterprise-background {
+  .hero-background {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       z-index: -2;
-      background: var(--secondary-gradient);
-      overflow: hidden;
-  }
-  
-  .bg-mining-hero {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
       background: 
-          linear-gradient(135deg, rgba(26, 54, 93, 0.95) 0%, rgba(92, 107, 80, 0.8) 50%, rgba(49, 130, 206, 0.7) 100%),
+          var(--gradient-hero),
           url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover;
-      filter: blur(0.5px);
       animation: subtleParallax 30s ease-in-out infinite;
   }
   
@@ -135,37 +116,33 @@
       50% { transform: scale(1.02) translateY(-10px); }
   }
   
-  .professional-overlay {
+  .content-overlay {
       position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
       background: 
           radial-gradient(circle at 25% 25%, rgba(92, 107, 80, 0.15) 0%, transparent 50%),
-          radial-gradient(circle at 75% 75%, rgba(49, 130, 206, 0.1) 0%, transparent 50%),
-          linear-gradient(135deg, rgba(26, 54, 93, 0.3) 0%, rgba(45, 55, 72, 0.2) 100%);
-      animation: professionalFloat 25s ease-in-out infinite;
-  }
-  
-  @keyframes professionalFloat {
-      0%, 100% { opacity: 0.8; transform: translateY(0px); }
-      50% { opacity: 1; transform: translateY(-5px); }
+          radial-gradient(circle at 75% 75%, rgba(49, 130, 206, 0.1) 0%, transparent 50%);
+      z-index: -1;
   }
   
   /* Professional Header */
-  .enterprise-header {
+  .main-header {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       z-index: 1000;
-      background: var(--dark-glass-bg);
+      background: var(--dark-glass);
       backdrop-filter: blur(20px) saturate(180%);
-      border-bottom: 1px solid var(--dark-glass-border);
+      border-bottom: 1px solid rgba(92, 107, 80, 0.3);
       transition: all var(--transition-smooth);
       box-shadow: var(--shadow-sm);
   }
   
-  .enterprise-header.scrolled {
+  .main-header.scrolled {
       background: rgba(26, 26, 26, 0.98);
       box-shadow: var(--shadow-md);
   }
@@ -173,31 +150,31 @@
   .header-container {
       max-width: 1440px;
       margin: 0 auto;
-      padding: var(--spacing-md) var(--spacing-xl);
+      padding: var(--space-md) var(--space-xl);
       display: flex;
       align-items: center;
       justify-content: space-between;
   }
   
-  .enterprise-logo {
+  .logo-section {
       display: flex;
       align-items: center;
-      gap: var(--spacing-md);
+      gap: var(--space-md);
       text-decoration: none;
-      color: var(--text-on-dark);
+      color: var(--primary-light);
       font-weight: 700;
       font-size: 1.5rem;
       transition: all var(--transition-smooth);
   }
   
-  .enterprise-logo:hover {
+  .logo-section:hover {
       transform: translateY(-1px);
   }
   
-  .logo-mark {
+  .logo-icon {
       width: 48px;
       height: 48px;
-      background: var(--accent-gradient);
+      background: var(--gradient-accent);
       border-radius: var(--radius-md);
       display: flex;
       align-items: center;
@@ -208,7 +185,7 @@
       overflow: hidden;
   }
   
-  .logo-mark::before {
+  .logo-icon::before {
       content: '';
       position: absolute;
       top: -50%;
@@ -226,14 +203,19 @@
       100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
   }
   
-  .logo-text .company-name {
+  .logo-text {
+      display: flex;
+      flex-direction: column;
+  }
+  
+  .company-name {
       font-size: 1.5rem;
       font-weight: 800;
       letter-spacing: -0.02em;
-      color: var(--text-on-dark);
+      color: var(--primary-light);
   }
   
-  .logo-text .company-tagline {
+  .company-tagline {
       font-size: 0.75rem;
       opacity: 0.8;
       font-weight: 500;
@@ -242,64 +224,86 @@
       color: var(--accent-secondary);
   }
   
-  .professional-nav {
+  .main-nav {
       display: flex;
-      gap: var(--spacing-xl);
+      gap: var(--space-xl);
       align-items: center;
   }
   
-  .nav-item {
+  .nav-link {
       color: rgba(244, 244, 242, 0.85);
       text-decoration: none;
       font-weight: 500;
       font-size: 0.95rem;
-      padding: var(--spacing-sm) var(--spacing-md);
+      padding: var(--space-sm) var(--space-md);
       border-radius: var(--radius-sm);
       transition: all var(--transition-smooth);
       position: relative;
   }
   
-  .nav-item::before {
+  .nav-link::before {
       content: '';
       position: absolute;
       bottom: -2px;
       left: 50%;
       width: 0;
       height: 2px;
-      background: var(--accent-gradient);
+      background: var(--gradient-accent);
       transition: all var(--transition-smooth);
       transform: translateX(-50%);
   }
   
-  .nav-item:hover::before,
-  .nav-item.active::before {
+  .nav-link:hover::before,
+  .nav-link.active::before {
       width: 80%;
   }
   
-  .nav-item:hover {
-      color: var(--text-on-dark);
+  .nav-link:hover {
+      color: var(--primary-light);
       background: var(--glass-bg);
   }
   
-  .nav-item.active {
-      color: var(--accent-tertiary);
+  .nav-link.active {
+      color: var(--accent-secondary);
   }
   
-  .enterprise-cta {
-      background: var(--accent-gradient);
-      color: var(--text-primary);
-      padding: var(--spacing-sm) var(--spacing-lg);
+  .auth-buttons {
+      display: flex;
+      gap: var(--space-md);
+      align-items: center;
+  }
+  
+  .btn-login {
+      color: var(--primary-light);
+      text-decoration: none;
+      font-weight: 500;
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: var(--radius-sm);
+      transition: all var(--transition-smooth);
+      border: 1px solid var(--glass-border);
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+  }
+  
+  .btn-login:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+  }
+  
+  .btn-signup {
+      background: var(--gradient-accent);
+      color: var(--primary-dark);
+      padding: var(--space-sm) var(--space-lg);
       border-radius: var(--radius-sm);
       text-decoration: none;
       font-weight: 600;
-      font-size: 0.9rem;
       transition: all var(--transition-enterprise);
       box-shadow: var(--shadow-md);
       position: relative;
       overflow: hidden;
   }
   
-  .enterprise-cta::before {
+  .btn-signup::before {
       content: '';
       position: absolute;
       top: 0;
@@ -310,30 +314,30 @@
       transition: left 0.5s ease;
   }
   
-  .enterprise-cta:hover::before {
+  .btn-signup:hover::before {
       left: 100%;
   }
   
-  .enterprise-cta:hover {
+  .btn-signup:hover {
       transform: translateY(-2px);
       box-shadow: var(--shadow-lg);
   }
   
-  /* Professional Hero Section */
-  .enterprise-hero {
+  /* Hero Section */
+  .hero-section {
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       position: relative;
-      padding: 8rem var(--spacing-xl) 4rem;
+      padding: 8rem var(--space-xl) 4rem;
   }
   
   .hero-container {
       max-width: 1440px;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: var(--spacing-3xl);
+      gap: var(--space-3xl);
       align-items: center;
   }
   
@@ -341,34 +345,34 @@
       z-index: 10;
   }
   
-  .enterprise-badge {
+  .hero-badge {
       display: inline-flex;
       align-items: center;
-      gap: var(--spacing-sm);
+      gap: var(--space-sm);
       background: var(--glass-bg);
       border: 1px solid var(--glass-border);
-      padding: var(--spacing-sm) var(--spacing-md);
+      padding: var(--space-sm) var(--space-md);
       border-radius: 50px;
       font-size: 0.85rem;
       font-weight: 600;
-      margin-bottom: var(--spacing-xl);
+      margin-bottom: var(--space-xl);
       backdrop-filter: blur(10px);
       transition: all var(--transition-smooth);
       cursor: pointer;
-      color: var(--text-on-dark);
+      color: var(--primary-light);
   }
   
-  .enterprise-badge:hover {
+  .hero-badge:hover {
       background: rgba(255, 255, 255, 0.15);
       transform: translateY(-2px);
   }
   
-  .hero-headline {
+  .hero-title {
       font-size: 4rem;
       font-weight: 800;
       line-height: 1.1;
-      margin-bottom: var(--spacing-xl);
-      background: linear-gradient(135deg, var(--text-on-dark) 0%, var(--enterprise-info) 30%, var(--accent-primary) 70%, var(--enterprise-success) 100%);
+      margin-bottom: var(--space-xl);
+      background: linear-gradient(135deg, var(--primary-light) 0%, var(--accent-blue) 30%, var(--accent-primary) 70%, var(--accent-success) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -385,21 +389,21 @@
   .hero-description {
       font-size: 1.25rem;
       color: rgba(244, 244, 242, 0.9);
-      margin-bottom: var(--spacing-2xl);
+      margin-bottom: var(--space-2xl);
       line-height: 1.7;
       font-weight: 400;
   }
   
   .hero-actions {
       display: flex;
-      gap: var(--spacing-lg);
-      margin-bottom: var(--spacing-2xl);
+      gap: var(--space-lg);
+      margin-bottom: var(--space-2xl);
   }
   
-  .btn-enterprise-primary {
-      background: var(--accent-gradient);
-      color: var(--text-primary);
-      padding: var(--spacing-md) var(--spacing-xl);
+  .btn-primary {
+      background: var(--gradient-accent);
+      color: var(--primary-dark);
+      padding: var(--space-md) var(--space-xl);
       border-radius: var(--radius-md);
       text-decoration: none;
       font-weight: 600;
@@ -408,20 +412,20 @@
       box-shadow: var(--shadow-md);
       display: flex;
       align-items: center;
-      gap: var(--spacing-sm);
-      position: relative;
-      overflow: hidden;
+      gap: var(--space-sm);
+      border: none;
+      cursor: pointer;
   }
   
-  .btn-enterprise-primary:hover {
+  .btn-primary:hover {
       transform: translateY(-3px);
       box-shadow: var(--shadow-lg);
   }
   
-  .btn-enterprise-secondary {
+  .btn-secondary {
       background: var(--glass-bg);
-      color: var(--text-on-dark);
-      padding: var(--spacing-md) var(--spacing-xl);
+      color: var(--primary-light);
+      padding: var(--space-md) var(--space-xl);
       border-radius: var(--radius-md);
       text-decoration: none;
       font-weight: 600;
@@ -431,23 +435,23 @@
       backdrop-filter: blur(10px);
       display: flex;
       align-items: center;
-      gap: var(--spacing-sm);
+      gap: var(--space-sm);
   }
   
-  .btn-enterprise-secondary:hover {
+  .btn-secondary:hover {
       background: rgba(255, 255, 255, 0.2);
       transform: translateY(-3px);
   }
   
-  .enterprise-metrics {
+  .hero-stats {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: var(--spacing-lg);
+      gap: var(--space-lg);
   }
   
-  .metric-item {
+  .stat-item {
       text-align: center;
-      padding: var(--spacing-lg);
+      padding: var(--space-lg);
       background: var(--glass-bg);
       border-radius: var(--radius-md);
       backdrop-filter: blur(10px);
@@ -456,23 +460,23 @@
       cursor: pointer;
   }
   
-  .metric-item:hover {
+  .stat-item:hover {
       transform: translateY(-5px);
       background: rgba(255, 255, 255, 0.15);
   }
   
-  .metric-value {
+  .stat-number {
       font-size: 2.5rem;
       font-weight: 800;
-      background: var(--accent-gradient);
+      background: var(--gradient-accent);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       font-family: 'Inter', monospace;
-      margin-bottom: var(--spacing-sm);
+      margin-bottom: var(--space-sm);
   }
   
-  .metric-label {
+  .stat-label {
       color: rgba(244, 244, 242, 0.8);
       font-size: 0.9rem;
       font-weight: 500;
@@ -480,7 +484,7 @@
       letter-spacing: 0.1em;
   }
   
-  /* Professional Mining Dashboard */
+  /* Platform Preview */
   .hero-visual {
       position: relative;
       display: flex;
@@ -488,13 +492,13 @@
       justify-content: center;
   }
   
-  .enterprise-dashboard {
+  .platform-preview {
       width: 100%;
       max-width: 650px;
-      background: var(--dark-glass-bg);
+      background: var(--dark-glass);
       border-radius: var(--radius-xl);
-      padding: var(--spacing-2xl);
-      border: 1px solid var(--dark-glass-border);
+      padding: var(--space-2xl);
+      border: 1px solid rgba(92, 107, 80, 0.3);
       backdrop-filter: blur(25px);
       box-shadow: var(--shadow-xl);
       position: relative;
@@ -502,189 +506,139 @@
       transition: all var(--transition-smooth);
   }
   
-  .enterprise-dashboard:hover {
+  .platform-preview:hover {
       transform: translateY(-8px);
       box-shadow: 0 40px 120px rgba(0, 0, 0, 0.4);
   }
   
-  .enterprise-dashboard::before {
+  .platform-preview::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       height: 4px;
-      background: var(--accent-gradient);
+      background: var(--gradient-accent);
   }
   
-  .dashboard-header {
+  .preview-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: var(--spacing-xl);
-      padding-bottom: var(--spacing-md);
-      border-bottom: 1px solid var(--dark-glass-border);
+      margin-bottom: var(--space-xl);
+      padding-bottom: var(--space-md);
+      border-bottom: 1px solid rgba(92, 107, 80, 0.3);
   }
   
-  .dashboard-title {
+  .preview-title {
       font-size: 1.4rem;
       font-weight: 700;
-      color: var(--accent-tertiary);
+      color: var(--accent-secondary);
       display: flex;
       align-items: center;
-      gap: var(--spacing-sm);
+      gap: var(--space-sm);
   }
   
-  .dashboard-status {
+  .preview-status {
       display: flex;
       align-items: center;
-      gap: var(--spacing-sm);
+      gap: var(--space-sm);
       font-size: 0.9rem;
-      color: var(--enterprise-success);
+      color: var(--accent-success);
   }
   
-  .status-indicator {
+  .status-dot {
       width: 10px;
       height: 10px;
-      background: var(--enterprise-success);
+      background: var(--accent-success);
       border-radius: 50%;
-      animation: statusPulse 2s ease-in-out infinite;
+      animation: pulse 2s ease-in-out infinite;
       box-shadow: 0 0 10px rgba(56, 161, 105, 0.5);
   }
   
-  @keyframes statusPulse {
+  @keyframes pulse {
       0%, 100% { opacity: 1; transform: scale(1); }
       50% { opacity: 0.7; transform: scale(1.2); }
   }
   
-  .dashboard-metrics {
+  .platform-hubs {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: var(--spacing-lg);
-      margin-bottom: var(--spacing-xl);
+      gap: var(--space-md);
+      margin-bottom: var(--space-xl);
   }
   
-  .dashboard-metric {
+  .hub-item {
       background: rgba(255, 255, 255, 0.05);
       border-radius: var(--radius-md);
-      padding: var(--spacing-lg);
+      padding: var(--space-lg);
       border: 1px solid rgba(255, 255, 255, 0.1);
       transition: all var(--transition-smooth);
       cursor: pointer;
+      text-decoration: none;
+      color: inherit;
   }
   
-  .dashboard-metric:hover {
+  .hub-item:hover {
       background: rgba(255, 255, 255, 0.1);
       transform: translateY(-2px);
       border-color: var(--accent-secondary);
   }
   
-  .metric-figure {
-      font-size: 2.2rem;
-      font-weight: 800;
-      color: var(--enterprise-info);
-      font-family: 'Inter', monospace;
-      margin-bottom: var(--spacing-sm);
+  .hub-icon {
+      font-size: 1.5rem;
+      color: var(--accent-blue);
+      margin-bottom: var(--space-sm);
   }
   
-  .metric-description {
-      font-size: 0.9rem;
-      color: rgba(244, 244, 242, 0.7);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      font-weight: 500;
-  }
-  
-  .professional-chart {
-      height: 140px;
-      background: rgba(92, 107, 80, 0.1);
-      border-radius: var(--radius-md);
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-      transition: all var(--transition-smooth);
-  }
-  
-  .professional-chart:hover {
-      background: rgba(92, 107, 80, 0.15);
-  }
-  
-  .chart-visualization {
-      display: flex;
-      align-items: end;
-      height: 100%;
-      padding: var(--spacing-md);
-      gap: 8px;
-  }
-  
-  .chart-column {
-      flex: 1;
-      background: var(--primary-gradient);
-      border-radius: 4px;
-      transition: all var(--transition-smooth);
-      cursor: pointer;
-      position: relative;
-  }
-  
-  .chart-column:hover {
-      background: var(--accent-gradient);
-      transform: scaleY(1.05);
-  }
-  
-  .chart-column::after {
-      content: attr(data-value);
-      position: absolute;
-      top: -30px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 0.7rem;
-      color: var(--text-on-dark);
-      opacity: 0;
-      transition: opacity var(--transition-smooth);
+  .hub-name {
+      font-size: 1rem;
       font-weight: 600;
+      color: var(--primary-light);
+      margin-bottom: var(--space-xs);
   }
   
-  .chart-column:hover::after {
-      opacity: 1;
+  .hub-description {
+      font-size: 0.8rem;
+      color: rgba(244, 244, 242, 0.7);
+      line-height: 1.4;
   }
   
-  /* Professional Equipment Showcase */
-  .equipment-showcase {
-      padding: 8rem var(--spacing-xl);
-      background: var(--bg-surface);
+  /* Services Section */
+  .services-section {
+      padding: 8rem var(--space-xl);
+      background: var(--primary-light);
       position: relative;
   }
   
   .section-container {
       max-width: 1440px;
       margin: 0 auto;
-      position: relative;
-      z-index: 1;
   }
   
   .section-header {
       text-align: center;
-      margin-bottom: var(--spacing-3xl);
+      margin-bottom: var(--space-3xl);
   }
   
   .section-badge {
       display: inline-flex;
       align-items: center;
-      gap: var(--spacing-sm);
-      background: var(--accent-gradient);
-      color: var(--text-primary);
-      padding: var(--spacing-sm) var(--spacing-md);
+      gap: var(--space-sm);
+      background: var(--gradient-accent);
+      color: var(--primary-dark);
+      padding: var(--space-sm) var(--space-md);
       border-radius: 50px;
       font-size: 0.9rem;
       font-weight: 600;
-      margin-bottom: var(--spacing-lg);
+      margin-bottom: var(--space-lg);
   }
   
-  .section-headline {
+  .section-title {
       font-size: 3.5rem;
       font-weight: 800;
-      margin-bottom: var(--spacing-lg);
-      background: linear-gradient(135deg, var(--text-primary) 0%, var(--enterprise-secondary) 50%, var(--accent-primary) 100%);
+      margin-bottom: var(--space-lg);
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--accent-blue) 50%, var(--accent-primary) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -693,138 +647,335 @@
   
   .section-description {
       font-size: 1.3rem;
-      color: var(--text-secondary);
+      color: var(--accent-secondary);
       max-width: 800px;
       margin: 0 auto;
       line-height: 1.7;
   }
   
-  .equipment-grid {
+  .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-      gap: var(--spacing-2xl);
-      margin-top: var(--spacing-3xl);
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: var(--space-2xl);
+      margin-top: var(--space-3xl);
   }
   
-  .equipment-card {
-      background: var(--bg-surface);
+  .service-card {
+      background: white;
       border-radius: var(--radius-xl);
-      border: 1px solid var(--border-light);
+      padding: var(--space-2xl);
       box-shadow: var(--shadow-md);
       transition: all var(--transition-enterprise);
       position: relative;
       overflow: hidden;
       cursor: pointer;
+      border: 1px solid rgba(92, 107, 80, 0.1);
   }
   
-  .equipment-card:hover {
+  .service-card:hover {
       transform: translateY(-12px);
       box-shadow: var(--shadow-xl);
       border-color: var(--accent-primary);
   }
   
-  .equipment-image {
-      width: 100%;
-      height: 280px;
-      background-size: cover;
-      background-position: center;
-      border-radius: var(--radius-xl) var(--radius-xl) 0 0;
-      position: relative;
-      overflow: hidden;
-  }
-  
-  .equipment-image::before {
+  .service-card::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
-      bottom: 0;
-      background: linear-gradient(135deg, rgba(92, 107, 80, 0.2) 0%, rgba(49, 130, 206, 0.2) 100%);
-      opacity: 0;
-      transition: opacity var(--transition-smooth);
+      height: 4px;
+      background: var(--gradient-accent);
+      transform: scaleX(0);
+      transition: transform var(--transition-smooth);
   }
   
-  .equipment-card:hover .equipment-image::before {
-      opacity: 1;
+  .service-card:hover::before {
+      transform: scaleX(1);
   }
   
-  .equipment-content {
-      padding: var(--spacing-2xl);
+  .service-icon {
+      width: 80px;
+      height: 80px;
+      background: var(--gradient-accent);
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: white;
+      margin-bottom: var(--space-lg);
+      box-shadow: var(--shadow-md);
   }
   
-  .equipment-title {
+  .service-title {
       font-size: 1.5rem;
       font-weight: 700;
-      margin-bottom: var(--spacing-md);
-      color: var(--text-primary);
+      margin-bottom: var(--space-md);
+      color: var(--primary-dark);
   }
   
-  .equipment-description {
-      color: var(--text-secondary);
+  .service-description {
+      color: var(--accent-secondary);
       line-height: 1.6;
-      margin-bottom: var(--spacing-lg);
+      margin-bottom: var(--space-lg);
   }
   
-  .equipment-specifications {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: var(--spacing-md);
-      margin-bottom: var(--spacing-lg);
+  .service-features {
+      list-style: none;
+      margin-bottom: var(--space-lg);
   }
   
-  .spec-item {
-      background: rgba(92, 107, 80, 0.05);
-      padding: var(--spacing-md);
-      border-radius: var(--radius-sm);
-      text-align: center;
-      transition: all var(--transition-smooth);
+  .service-features li {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-sm);
+      font-size: 0.9rem;
+      color: var(--accent-secondary);
   }
   
-  .spec-item:hover {
-      background: rgba(92, 107, 80, 0.1);
-      transform: scale(1.02);
+  .service-features li::before {
+      content: '✓';
+      color: var(--accent-success);
+      font-weight: bold;
+      font-size: 1rem;
   }
   
-  .spec-value {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--accent-primary);
-      font-family: 'Inter', monospace;
-  }
-  
-  .spec-label {
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-  }
-  
-  .equipment-action {
-      color: var(--enterprise-info);
+  .service-link {
+      color: var(--accent-blue);
       text-decoration: none;
       font-weight: 600;
       display: flex;
       align-items: center;
-      gap: var(--spacing-sm);
+      gap: var(--space-sm);
       transition: all var(--transition-smooth);
   }
   
-  .equipment-action:hover {
+  .service-link:hover {
       color: var(--accent-primary);
       transform: translateX(5px);
   }
   
-  /* Professional CTA Section */
-  .enterprise-cta-section {
-      padding: 8rem var(--spacing-xl);
-      background: var(--enterprise-gradient);
+  /* Registration Modal */
+  .modal {
+      display: none;
+      position: fixed;
+      z-index: 10000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(5px);
+  }
+  
+  .modal-content {
+      background: white;
+      margin: 5% auto;
+      padding: 0;
+      border-radius: var(--radius-xl);
+      width: 90%;
+      max-width: 500px;
+      box-shadow: var(--shadow-xl);
+      position: relative;
+      overflow: hidden;
+      animation: modalSlideIn 0.3s ease-out;
+  }
+  
+  @keyframes modalSlideIn {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+  }
+  
+  .modal-header {
+      background: var(--gradient-primary);
+      color: white;
+      padding: var(--space-xl);
+      text-align: center;
+      position: relative;
+  }
+  
+  .modal-header h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: var(--space-sm);
+  }
+  
+  .modal-header p {
+      opacity: 0.9;
+      font-size: 0.95rem;
+  }
+  
+  .close-modal {
+      position: absolute;
+      top: var(--space-md);
+      right: var(--space-md);
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      transition: all var(--transition-smooth);
+  }
+  
+  .close-modal:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: rotate(90deg);
+  }
+  
+  .modal-body {
+      padding: var(--space-2xl);
+  }
+  
+  .form-group {
+      margin-bottom: var(--space-lg);
+  }
+  
+  .form-label {
+      display: block;
+      margin-bottom: var(--space-sm);
+      font-weight: 600;
+      color: var(--primary-dark);
+  }
+  
+  .form-input,
+  .form-select,
+  .form-textarea {
+      width: 100%;
+      padding: var(--space-md);
+      border: 2px solid #e2e8f0;
+      border-radius: var(--radius-md);
+      font-size: 1rem;
+      transition: all var(--transition-smooth);
+      font-family: inherit;
+  }
+  
+  .form-input:focus,
+  .form-select:focus,
+  .form-textarea:focus {
+      outline: none;
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px rgba(92, 107, 80, 0.1);
+  }
+  
+  .form-textarea {
+      resize: vertical;
+      min-height: 100px;
+  }
+  
+  .access-levels {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-md);
+  }
+  
+  .access-level {
+      border: 2px solid #e2e8f0;
+      border-radius: var(--radius-md);
+      padding: var(--space-lg);
+      text-align: center;
+      cursor: pointer;
+      transition: all var(--transition-smooth);
+      position: relative;
+  }
+  
+  .access-level:hover {
+      border-color: var(--accent-primary);
+      background: rgba(92, 107, 80, 0.05);
+  }
+  
+  .access-level.selected {
+      border-color: var(--accent-primary);
+      background: rgba(92, 107, 80, 0.1);
+  }
+  
+  .access-level input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+  }
+  
+  .access-icon {
+      font-size: 2rem;
+      color: var(--accent-primary);
+      margin-bottom: var(--space-sm);
+  }
+  
+  .access-title {
+      font-weight: 600;
+      margin-bottom: var(--space-xs);
+      color: var(--primary-dark);
+  }
+  
+  .access-description {
+      font-size: 0.85rem;
+      color: var(--accent-secondary);
+      line-height: 1.4;
+  }
+  
+  .form-actions {
+      display: flex;
+      gap: var(--space-md);
+      justify-content: flex-end;
+      margin-top: var(--space-xl);
+      padding-top: var(--space-lg);
+      border-top: 1px solid #e2e8f0;
+  }
+  
+  .btn-cancel {
+      background: #f7fafc;
+      color: var(--accent-secondary);
+      border: 1px solid #e2e8f0;
+      padding: var(--space-md) var(--space-xl);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      font-weight: 500;
+      transition: all var(--transition-smooth);
+  }
+  
+  .btn-cancel:hover {
+      background: #edf2f7;
+  }
+  
+  .btn-submit {
+      background: var(--gradient-accent);
+      color: var(--primary-dark);
+      border: none;
+      padding: var(--space-md) var(--space-xl);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      font-weight: 600;
+      transition: all var(--transition-smooth);
+      box-shadow: var(--shadow-sm);
+  }
+  
+  .btn-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+  }
+  
+  .btn-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+  }
+  
+  /* Contact Section */
+  .contact-section {
+      padding: 8rem var(--space-xl);
+      background: var(--gradient-primary);
       text-align: center;
       position: relative;
       overflow: hidden;
   }
   
-  .enterprise-cta-section::before {
+  .contact-section::before {
       content: '';
       position: absolute;
       top: 0;
@@ -837,39 +988,39 @@
       z-index: -1;
   }
   
-  .cta-content {
+  .contact-content {
       position: relative;
       z-index: 1;
       max-width: 800px;
       margin: 0 auto;
   }
   
-  .cta-content h2 {
+  .contact-content h2 {
       font-size: 3.5rem;
       font-weight: 800;
-      margin-bottom: var(--spacing-xl);
-      color: var(--text-on-dark);
+      margin-bottom: var(--space-xl);
+      color: var(--primary-light);
       letter-spacing: -0.02em;
   }
   
-  .cta-content p {
+  .contact-content p {
       font-size: 1.4rem;
-      margin-bottom: var(--spacing-2xl);
+      margin-bottom: var(--space-2xl);
       color: rgba(244, 244, 242, 0.95);
       line-height: 1.7;
   }
   
-  .cta-actions {
+  .contact-actions {
       display: flex;
-      gap: var(--spacing-lg);
+      gap: var(--space-lg);
       justify-content: center;
       flex-wrap: wrap;
   }
   
-  /* Professional Footer */
-  .enterprise-footer {
-      background: var(--bg-sidebar);
-      padding: var(--spacing-3xl) var(--spacing-xl) var(--spacing-xl);
+  /* Footer */
+  .main-footer {
+      background: var(--primary-dark);
+      padding: var(--space-3xl) var(--space-xl) var(--space-xl);
       border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
   
@@ -878,15 +1029,15 @@
       margin: 0 auto;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: var(--spacing-2xl);
-      margin-bottom: var(--spacing-xl);
+      gap: var(--space-2xl);
+      margin-bottom: var(--space-xl);
   }
   
   .footer-section h3 {
       font-size: 1.25rem;
       font-weight: 700;
-      margin-bottom: var(--spacing-lg);
-      color: var(--accent-tertiary);
+      margin-bottom: var(--space-lg);
+      color: var(--accent-secondary);
   }
   
   .footer-section p,
@@ -898,7 +1049,7 @@
   }
   
   .footer-section a:hover {
-      color: var(--accent-tertiary);
+      color: var(--accent-secondary);
   }
   
   .footer-links {
@@ -906,24 +1057,24 @@
   }
   
   .footer-links li {
-      margin-bottom: var(--spacing-sm);
+      margin-bottom: var(--space-sm);
   }
   
   .footer-bottom {
       text-align: center;
-      padding-top: var(--spacing-xl);
+      padding-top: var(--space-xl);
       border-top: 1px solid rgba(255, 255, 255, 0.1);
       color: rgba(244, 244, 242, 0.7);
   }
   
   /* Loading System */
-  .enterprise-loading {
+  .loading-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: var(--secondary-gradient);
+      background: var(--gradient-primary);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -942,7 +1093,7 @@
       border-top: 4px solid var(--accent-primary);
       border-radius: 50%;
       animation: spin 1s linear infinite;
-      margin: 0 auto var(--spacing-xl);
+      margin: 0 auto var(--space-xl);
   }
   
   @keyframes spin {
@@ -951,12 +1102,12 @@
   }
   
   .loading-text {
-      color: var(--text-on-dark);
+      color: var(--primary-light);
       font-size: 1.2rem;
       font-weight: 600;
   }
   
-  .enterprise-loading.hidden {
+  .loading-overlay.hidden {
       opacity: 0;
       pointer-events: none;
   }
@@ -966,48 +1117,60 @@
       .hero-container {
           grid-template-columns: 1fr;
           text-align: center;
-          gap: var(--spacing-2xl);
+          gap: var(--space-2xl);
       }
       
-      .professional-nav {
+      .main-nav {
           display: none;
       }
       
-      .equipment-grid {
+      .services-grid {
           grid-template-columns: 1fr;
+      }
+      
+      .hero-title {
+          font-size: 3rem;
+      }
+      
+      .section-title {
+          font-size: 2.5rem;
       }
   }
   
   @media (max-width: 768px) {
-      .hero-headline {
+      .hero-title {
           font-size: 2.5rem;
       }
       
-      .section-headline {
-          font-size: 2.5rem;
+      .section-title {
+          font-size: 2rem;
       }
       
       .hero-actions,
-      .cta-actions {
+      .contact-actions {
           flex-direction: column;
           align-items: center;
       }
       
-      .enterprise-metrics {
+      .hero-stats {
           grid-template-columns: 1fr;
-          gap: var(--spacing-md);
+          gap: var(--space-md);
       }
       
-      .dashboard-metrics {
-          grid-template-columns: 1fr;
-      }
-      
-      .equipment-grid {
+      .platform-hubs {
           grid-template-columns: 1fr;
       }
       
-      .enterprise-dashboard {
-          margin: 0 var(--spacing-md);
+      .platform-preview {
+          margin: 0 var(--space-md);
+      }
+      
+      .access-levels {
+          grid-template-columns: 1fr;
+      }
+      
+      .form-actions {
+          flex-direction: column;
       }
   }
   
@@ -1045,394 +1208,523 @@
       transform: translateX(0);
   }
   
-  /* Chart column heights for animation */
-  .chart-column:nth-child(1) { height: 60%; }
-  .chart-column:nth-child(2) { height: 80%; }
-  .chart-column:nth-child(3) { height: 45%; }
-  .chart-column:nth-child(4) { height: 90%; }
-  .chart-column:nth-child(5) { height: 70%; }
-  .chart-column:nth-child(6) { height: 85%; }
-  .chart-column:nth-child(7) { height: 55%; }
-  .chart-column:nth-child(8) { height: 95%; }
+  /* Notification System */
+  .notification {
+      position: fixed;
+      top: 120px;
+      right: 24px;
+      background: var(--dark-glass);
+      color: var(--primary-light);
+      padding: var(--space-lg) var(--space-xl);
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(92, 107, 80, 0.3);
+      backdrop-filter: blur(25px);
+      box-shadow: var(--shadow-xl);
+      z-index: 10000;
+      transform: translateX(450px);
+      transition: transform var(--transition-enterprise);
+      max-width: 420px;
+      font-size: 0.95rem;
+      font-weight: 500;
+  }
+  
+  .notification.show {
+      transform: translateX(0);
+  }
+  
+  .notification-content {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+  }
+  
+  .notification-icon {
+      font-size: 1.2rem;
+      color: var(--accent-primary);
+  }
+  
+  .notification-close {
+      background: none;
+      border: none;
+      color: rgba(244, 244, 242, 0.7);
+      cursor: pointer;
+      padding: var(--space-xs);
+      border-radius: var(--radius-sm);
+      transition: all var(--transition-fast);
+      margin-left: auto;
+  }
+  
+  .notification-close:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--primary-light);
+  }
+  
+  .notification.success .notification-icon { color: var(--accent-success); }
+  .notification.error .notification-icon { color: var(--accent-error); }
+  .notification.warning .notification-icon { color: var(--accent-warning); }
   </style>
 </head>
 <body>
-  <!-- Enterprise Loading System -->
-  <div class="enterprise-loading" id="enterpriseLoading">
+  <!-- Loading System -->
+  <div class="loading-overlay" id="loadingOverlay">
       <div class="loading-content">
           <div class="loading-spinner"></div>
-          <div class="loading-text">Initializing SESMine Enterprise Platform...</div>
+          <div class="loading-text">Initializing SESMine Platform...</div>
       </div>
   </div>
 
-  <!-- Professional Background System -->
-  <div class="enterprise-background">
-      <div class="bg-mining-hero"></div>
-      <div class="professional-overlay"></div>
+  <!-- Background System -->
+  <div class="hero-background">
+      <div class="content-overlay"></div>
   </div>
 
-  <!-- Professional Header -->
-  <header class="enterprise-header" id="enterpriseHeader">
+  <!-- Header -->
+  <header class="main-header" id="mainHeader">
       <div class="header-container">
-          <a href="#" class="enterprise-logo">
-              <div class="logo-mark">🏔️</div>
+          <a href="#" class="logo-section">
+              <div class="logo-icon">🏔️</div>
               <div class="logo-text">
                   <div class="company-name">SESMine</div>
-                  <div class="company-tagline">Enterprise Mining Intelligence</div>
+                  <div class="company-tagline">Smart Engineering Solutions</div>
               </div>
           </a>
           
-          <nav class="professional-nav">
-              <a href="#home" class="nav-item active">Home</a>
-              <a href="#equipment" class="nav-item">Equipment</a>
-              <a href="#solutions" class="nav-item">Solutions</a>
-              <a href="#about" class="nav-item">About</a>
-              <a href="#contact" class="nav-item">Contact</a>
+          <nav class="main-nav">
+              <a href="#home" class="nav-link active">Home</a>
+              <a href="#services" class="nav-link">Services</a>
+              <a href="about.html" class="nav-link">About</a>
+              <a href="features.html" class="nav-link">Features</a>
+              <a href="contact.html" class="nav-link">Contact</a>
           </nav>
           
-          <a href="home.html" class="enterprise-cta">
-              <i class="fas fa-rocket"></i>
-              Launch Platform
-          </a>
+          <div class="auth-buttons">
+              <a href="login.html" class="btn-login">
+                  <i class="fas fa-sign-in-alt"></i>
+                  Login
+              </a>
+              <button class="btn-signup" onclick="openRegistrationModal()">
+                  <i class="fas fa-user-plus"></i>
+                  Get Started
+              </button>
+          </div>
       </div>
   </header>
 
-  <!-- Professional Hero Section -->
-  <section class="enterprise-hero" id="home">
+  <!-- Hero Section -->
+  <section class="hero-section" id="home">
       <div class="hero-container">
-          <div class="hero-content">
-              <div class="enterprise-badge" onclick="showEnterpriseInfo()">
+          <div class="hero-content" data-aos="fade-right" data-aos-duration="1000">
+              <div class="hero-badge" onclick="showCompanyInfo()">
                   <i class="fas fa-award"></i>
-                  Fortune 500 Trusted Mining Platform
+                  Professional Mining Intelligence Platform
               </div>
               
-              <h1 class="hero-headline">
-                  Transform Mining Operations with AI-Driven Engineering Solutions
+              <h1 class="hero-title">
+                  Smart Engineering Solutions for Modern Mining Operations
               </h1>
               
               <p class="hero-description">
-                  Our comprehensive platform integrates AACE standards, advanced cost estimation, 
-                  real-time equipment monitoring, and AI-powered analytics to revolutionize mining 
-                  operations worldwide. Trusted by industry leaders for mission-critical projects.
+                  Comprehensive mining intelligence platform with specialized hubs for engineering, 
+                  economics, procurement, analytics, and consulting. Streamline your mining operations 
+                  with our integrated suite of professional tools and expert insights.
               </p>
               
               <div class="hero-actions">
-                  <a href="home.html" class="btn-enterprise-primary">
+                  <button class="btn-primary" onclick="openRegistrationModal()">
                       <i class="fas fa-rocket"></i>
-                      Launch Enterprise Platform
-                  </a>
-                  <a href="#equipment" class="btn-enterprise-secondary">
+                      Start Free Trial
+                  </button>
+                  <a href="#services" class="btn-secondary">
                       <i class="fas fa-play"></i>
-                      Explore Solutions
+                      Explore Platform
                   </a>
               </div>
               
-              <div class="enterprise-metrics">
-                  <div class="metric-item" onclick="showMetricDetails('projects')">
-                      <div class="metric-value" data-target="500">0</div>
-                      <div class="metric-label">Enterprise Projects</div>
+              <div class="hero-stats">
+                  <div class="stat-item" onclick="showStatDetails('projects')">
+                      <div class="stat-number" data-target="500">0</div>
+                      <div class="stat-label">Active Projects</div>
                   </div>
-                  <div class="metric-item" onclick="showMetricDetails('countries')">
-                      <div class="metric-value" data-target="50">0</div>
-                      <div class="metric-label">Global Markets</div>
+                  <div class="stat-item" onclick="showStatDetails('users')">
+                      <div class="stat-number" data-target="1200">0</div>
+                      <div class="stat-label">Global Users</div>
                   </div>
-                  <div class="metric-item" onclick="showMetricDetails('satisfaction')">
-                      <div class="metric-value" data-target="98">0</div>
-                      <div class="metric-label">Client Success Rate</div>
+                  <div class="stat-item" onclick="showStatDetails('success')">
+                      <div class="stat-number" data-target="98">0</div>
+                      <div class="stat-label">Success Rate</div>
                   </div>
               </div>
           </div>
           
-          <div class="hero-visual">
-              <div class="enterprise-dashboard" onclick="launchDashboard()">
-                  <div class="dashboard-header">
-                      <h3 class="dashboard-title">
+          <div class="hero-visual" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+              <div class="platform-preview" onclick="showPlatformDemo()">
+                  <div class="preview-header">
+                      <h3 class="preview-title">
                           <i class="fas fa-chart-line"></i>
-                          Enterprise Mining Command Center
+                          SESMine Platform Hub
                       </h3>
-                      <div class="dashboard-status">
-                          <div class="status-indicator"></div>
-                          Live Operations Data
+                      <div class="preview-status">
+                          <div class="status-dot"></div>
+                          Live System
                       </div>
                   </div>
                   
-                  <div class="dashboard-metrics">
-                      <div class="dashboard-metric" onclick="showDashboardDetails('capex')">
-                          <div class="metric-figure">$247M</div>
-                          <div class="metric-description">CAPEX Estimate</div>
-                      </div>
-                      <div class="dashboard-metric" onclick="showDashboardDetails('opex')">
-                          <div class="metric-figure">18.5</div>
-                          <div class="metric-description">OPEX $/ton</div>
-                      </div>
-                      <div class="dashboard-metric" onclick="showDashboardDetails('accuracy')">
-                          <div class="metric-figure">95%</div>
-                          <div class="metric-description">Prediction Accuracy</div>
-                      </div>
-                      <div class="dashboard-metric" onclick="showDashboardDetails('monitoring')">
-                          <div class="metric-figure">24/7</div>
-                          <div class="metric-description">System Monitoring</div>
-                      </div>
-                  </div>
-                  
-                  <div class="professional-chart" onclick="openAnalytics()">
-                      <div class="chart-visualization">
-                          <div class="chart-column" data-value="$2.1M"></div>
-                          <div class="chart-column" data-value="$3.4M"></div>
-                          <div class="chart-column" data-value="$1.8M"></div>
-                          <div class="chart-column" data-value="$4.2M"></div>
-                          <div class="chart-column" data-value="$2.9M"></div>
-                          <div class="chart-column" data-value="$3.8M"></div>
-                          <div class="chart-column" data-value="$2.3M"></div>
-                          <div class="chart-column" data-value="$4.5M"></div>
-                      </div>
+                  <div class="platform-hubs">
+                      <a href="engineering-hub.html" class="hub-item">
+                          <div class="hub-icon"><i class="fas fa-cogs"></i></div>
+                          <div class="hub-name">Engineering Hub</div>
+                          <div class="hub-description">Equipment analysis & cost estimation</div>
+                      </a>
+                      <a href="analytics-platform.html" class="hub-item">
+                          <div class="hub-icon"><i class="fas fa-chart-bar"></i></div>
+                          <div class="hub-name">Analytics Platform</div>
+                          <div class="hub-description">Data insights & performance metrics</div>
+                      </a>
+                      <a href="economics-hub.html" class="hub-item">
+                          <div class="hub-icon"><i class="fas fa-dollar-sign"></i></div>
+                          <div class="hub-name">Economics Hub</div>
+                          <div class="hub-description">Financial modeling & ROI analysis</div>
+                      </a>
+                      <a href="procurement-hub.html" class="hub-item">
+                          <div class="hub-icon"><i class="fas fa-shopping-cart"></i></div>
+                          <div class="hub-name">Procurement Hub</div>
+                          <div class="hub-description">Supplier management & sourcing</div>
+                      </a>
+                      <a href="consulting-hub.html" class="hub-item">
+                          <div class="hub-icon"><i class="fas fa-users"></i></div>
+                          <div class="hub-name">Consulting Hub</div>
+                          <div class="hub-description">Expert advisory & project support</div>
+                      </a>
+                      <a href="innovation-technology-hub.html" class="hub-item">
+                          <div class="hub-icon"><i class="fas fa-lightbulb"></i></div>
+                          <div class="hub-name">Innovation Hub</div>
+                          <div class="hub-description">Technology trends & R&D insights</div>
+                      </a>
                   </div>
               </div>
           </div>
       </div>
   </section>
 
-  <!-- Professional Equipment Showcase -->
-  <section class="equipment-showcase" id="equipment">
+  <!-- Services Section -->
+  <section class="services-section" id="services">
       <div class="section-container">
-          <div class="section-header fade-in">
+          <div class="section-header" data-aos="fade-up" data-aos-duration="1000">
               <div class="section-badge">
                   <i class="fas fa-industry"></i>
-                  Enterprise Equipment Database
+                  Our Services
               </div>
-              <h2 class="section-headline">Professional Mining Equipment Solutions</h2>
+              <h2 class="section-title">Comprehensive Mining Solutions</h2>
               <p class="section-description">
-                  Comprehensive database of enterprise-grade mining equipment with real-time pricing, 
-                  detailed specifications, and performance analytics from industry-leading manufacturers.
+                  From initial project planning to operational optimization, our integrated platform 
+                  provides all the tools and expertise you need for successful mining operations.
               </p>
           </div>
           
-          <div class="equipment-grid">
-              <div class="equipment-card fade-in" onclick="exploreEquipment('excavator')">
-                  <div class="equipment-image" style="background-image: url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80')"></div>
-                  <div class="equipment-content">
-                      <h3 class="equipment-title">Ultra-Class Mining Excavators</h3>
-                      <p class="equipment-description">
-                          Enterprise-grade hydraulic excavators engineered for large-scale mining operations 
-                          with advanced productivity features and fuel efficiency optimization systems.
-                      </p>
-                      <div class="equipment-specifications">
-                          <div class="spec-item">
-                              <div class="spec-value">400T</div>
-                              <div class="spec-label">Operating Weight</div>
-                          </div>
-                          <div class="spec-item">
-                              <div class="spec-value">2,500HP</div>
-                              <div class="spec-label">Engine Power</div>
-                          </div>
-                          <div class="spec-item">
-                              <div class="spec-value">25m³</div>
-                              <div class="spec-label">Bucket Capacity</div>
-                          </div>
-                          <div class="spec-item">
-                              <div class="spec-value">$2.5M</div>
-                              <div class="spec-label">Enterprise Cost</div>
-                          </div>
-                      </div>
-                      <a href="home.html" class="equipment-action">
-                          Access Equipment Database <i class="fas fa-arrow-right"></i>
-                      </a>
+          <div class="services-grid">
+              <div class="service-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+                  <div class="service-icon">
+                      <i class="fas fa-calculator"></i>
                   </div>
-              </div>
-              
-              <div class="equipment-card fade-in" onclick="exploreEquipment('haul-truck')">
-                  <div class="equipment-image" style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80')"></div>
-                  <div class="equipment-content">
-                      <h3 class="equipment-title">Ultra-Class Haul Trucks</h3>
-                      <p class="equipment-description">
-                          Mission-critical ultra-class mining trucks designed for maximum payload capacity 
-                          and operational efficiency in the most demanding mining environments worldwide.
-                      </p>
-                      <div class="equipment-specifications">
-                          <div class="spec-item">
-                              <div class="spec-value">400T</div>
-                              <div class="spec-label">Payload Capacity</div>
-                          </div>
-                          <div class="spec-item">
-                              <div class="spec-value">4,000HP</div>
-                              <div class="spec-label">Engine Power</div>
-                          </div>
-                          <div class="spec-item">
-                              <div class="spec-value">65km/h</div>
-                              <div class="spec-label">Maximum Speed</div>
-                          </div>
-                          <div class="spec-item">
-                              <div class="spec-value">$5.2M</div>
-                              <div class="spec-label">Enterprise Cost</div>
-                          </div>
-                      </div>
-                      <a href="home.html" class="equipment-action">
-                          View Technical Specifications <i class="fas fa-arrow-right"></i>
-                      </a>
-                  </div>
-              </div>
-              
-              <div class="equipment-card fade-in" onclick="exploreEquipment('drill-rig')">
-                  <div class="equipment-image" style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80')"></div>
-                  <div class="equipment-content">
-                      <h3 class="equipment-title">Advanced Rotary Blast Hole Drills</h3>
-                      <p class="equipment-description">
-                          High-performance rotary drill rigs for precision blast hole drilling with 
-                          advanced automation systems and intelligent control technologies.
-                      </p>
-                      <div class="equipment-specifications">
-                          <div class="spec-item">
-                              <div class="spec-value">381mm</div>
-                              <div class="spec-label">Hole Diameter</div>
-                          </div>
-                          <div class="spec-item">
-                              <div class="spec-value">1,475HP</div>
-                              <div class="spec-label">Engine Power</div>
-                          </div>
-                          <div class="spec-item">
-                              <div class="spec-value">60m</div>
-                              <div class="spec-label">Maximum Depth</div>
-                          </div>
-                          <div class="spec-item">
-                              <div class="spec-value">$3.8M</div>
-                              <div class="spec-label">Enterprise Cost</div>
-                          </div>
-                      </div>
-                      <a href="home.html" class="equipment-action">
-                          Calculate Enterprise Costs <i class="fas fa-arrow-right"></i>
-                      </a>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </section>
-
-  <!-- Enterprise CTA Section -->
-  <section class="enterprise-cta-section">
-      <div class="section-container">
-          <div class="cta-content fade-in">
-              <h2>Ready to Transform Your Mining Enterprise?</h2>
-              <p>
-                  Join Fortune 500 mining companies worldwide who trust SESMine to optimize 
-                  their operations, reduce costs, and achieve sustainable growth through 
-                  intelligent engineering solutions and enterprise-grade technology.
-              </p>
-              
-              <div class="cta-actions">
-                  <a href="home.html" class="btn-enterprise-primary">
-                      <i class="fas fa-rocket"></i>
-                      Start Enterprise Trial
+                  <h3 class="service-title">Cost Estimation & Analysis</h3>
+                  <p class="service-description">
+                      AACE International compliant cost estimation tools with comprehensive equipment 
+                      databases and real-time market pricing integration.
+                  </p>
+                  <ul class="service-features">
+                      <li>CAPEX & OPEX modeling</li>
+                      <li>Equipment cost databases</li>
+                      <li>Market price integration</li>
+                      <li>Risk assessment tools</li>
+                  </ul>
+                  <a href="engineering-hub.html" class="service-link">
+                      Access Engineering Hub <i class="fas fa-arrow-right"></i>
                   </a>
-                  <a href="#contact" class="btn-enterprise-secondary">
-                      <i class="fas fa-phone"></i>
-                      Schedule Executive Demo
+              </div>
+              
+              <div class="service-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                  <div class="service-icon">
+                      <i class="fas fa-chart-line"></i>
+                  </div>
+                  <h3 class="service-title">Advanced Analytics & Reporting</h3>
+                  <p class="service-description">
+                      Powerful analytics platform with customizable dashboards, predictive modeling, 
+                      and comprehensive reporting capabilities.
+                  </p>
+                  <ul class="service-features">
+                      <li>Real-time dashboards</li>
+                      <li>Predictive analytics</li>
+                      <li>Custom report generation</li>
+                      <li>Performance benchmarking</li>
+                  </ul>
+                  <a href="analytics-platform.html" class="service-link">
+                      View Analytics Platform <i class="fas fa-arrow-right"></i>
+                  </a>
+              </div>
+              
+              <div class="service-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
+                  <div class="service-icon">
+                      <i class="fas fa-handshake"></i>
+                  </div>
+                  <h3 class="service-title">Expert Consulting Services</h3>
+                  <p class="service-description">
+                      Access to industry experts and specialized consulting services for project 
+                      optimization, feasibility studies, and strategic planning.
+                  </p>
+                  <ul class="service-features">
+                      <li>Project feasibility studies</li>
+                      <li>Operational optimization</li>
+                      <li>Strategic planning support</li>
+                      <li>Technical due diligence</li>
+                  </ul>
+                  <a href="consulting-hub.html" class="service-link">
+                      Explore Consulting Hub <i class="fas fa-arrow-right"></i>
+                  </a>
+              </div>
+              
+              <div class="service-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                  <div class="service-icon">
+                      <i class="fas fa-graduation-cap"></i>
+                  </div>
+                  <h3 class="service-title">Training & Education</h3>
+                  <p class="service-description">
+                      Comprehensive training programs, certifications, and educational resources 
+                      to enhance your team's capabilities and industry knowledge.
+                  </p>
+                  <ul class="service-features">
+                      <li>Professional certifications</li>
+                      <li>Online training modules</li>
+                      <li>Industry best practices</li>
+                      <li>Continuous learning paths</li>
+                  </ul>
+                  <a href="training-education-hub.html" class="service-link">
+                      Access Training Hub <i class="fas fa-arrow-right"></i>
                   </a>
               </div>
           </div>
       </div>
   </section>
 
-  <!-- Professional Footer -->
-  <footer class="enterprise-footer">
+  <!-- Contact Section -->
+  <section class="contact-section">
+      <div class="contact-content" data-aos="fade-up" data-aos-duration="1000">
+          <h2>Ready to Transform Your Mining Operations?</h2>
+          <p>
+              Join thousands of mining professionals who trust SESMine for their critical 
+              project decisions. Start your journey with our comprehensive platform today.
+          </p>
+          
+          <div class="contact-actions">
+              <button class="btn-primary" onclick="openRegistrationModal()">
+                  <i class="fas fa-rocket"></i>
+                  Start Free Trial
+              </button>
+              <a href="contact.html" class="btn-secondary">
+                  <i class="fas fa-phone"></i>
+                  Contact Sales Team
+              </a>
+          </div>
+      </div>
+  </section>
+
+  <!-- Registration Modal -->
+  <div id="registrationModal" class="modal">
+      <div class="modal-content">
+          <div class="modal-header">
+              <span class="close-modal" onclick="closeRegistrationModal()">&times;</span>
+              <h2>Join SESMine Platform</h2>
+              <p>Create your account and select your access level</p>
+          </div>
+          <div class="modal-body">
+              <form id="registrationForm" onsubmit="handleRegistration(event)">
+                  <div class="form-group">
+                      <label class="form-label">Full Name</label>
+                      <input type="text" class="form-input" name="fullName" required>
+                  </div>
+                  
+                  <div class="form-group">
+                      <label class="form-label">Email Address</label>
+                      <input type="email" class="form-input" name="email" required>
+                  </div>
+                  
+                  <div class="form-group">
+                      <label class="form-label">Company/Organization</label>
+                      <input type="text" class="form-input" name="company" required>
+                  </div>
+                  
+                  <div class="form-group">
+                      <label class="form-label">Job Title</label>
+                      <input type="text" class="form-input" name="jobTitle" required>
+                  </div>
+                  
+                  <div class="form-group">
+                      <label class="form-label">Phone Number</label>
+                      <input type="tel" class="form-input" name="phone">
+                  </div>
+                  
+                  <div class="form-group">
+                      <label class="form-label">Select Your Access Level</label>
+                      <div class="access-levels">
+                          <label class="access-level">
+                              <input type="radio" name="accessLevel" value="basic" required>
+                              <div class="access-icon"><i class="fas fa-user"></i></div>
+                              <div class="access-title">Basic User</div>
+                              <div class="access-description">
+                                  Access to basic tools and limited features
+                              </div>
+                          </label>
+                          
+                          <label class="access-level">
+                              <input type="radio" name="accessLevel" value="professional" required>
+                              <div class="access-icon"><i class="fas fa-user-tie"></i></div>
+                              <div class="access-title">Professional</div>
+                              <div class="access-description">
+                                  Full platform access with advanced features
+                              </div>
+                          </label>
+                          
+                          <label class="access-level">
+                              <input type="radio" name="accessLevel" value="enterprise" required>
+                              <div class="access-icon"><i class="fas fa-building"></i></div>
+                              <div class="access-title">Enterprise</div>
+                              <div class="access-description">
+                                  Complete access with admin capabilities
+                              </div>
+                          </label>
+                      </div>
+                  </div>
+                  
+                  <div class="form-group">
+                      <label class="form-label">Project Description (Optional)</label>
+                      <textarea class="form-textarea" name="projectDescription" placeholder="Tell us about your mining project or requirements..."></textarea>
+                  </div>
+                  
+                  <div class="form-actions">
+                      <button type="button" class="btn-cancel" onclick="closeRegistrationModal()">
+                          Cancel
+                      </button>
+                      <button type="submit" class="btn-submit" id="submitBtn">
+                          <i class="fas fa-paper-plane"></i>
+                          Submit Registration
+                      </button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="main-footer">
       <div class="footer-container">
           <div class="footer-section">
-              <h3>SESMine Enterprise</h3>
+              <h3>SESMine Platform</h3>
               <p>
-                  Transforming mining operations with intelligent engineering solutions. 
-                  Enterprise-grade tools trusted by Fortune 500 companies worldwide for 
-                  mission-critical mining operations and strategic decision-making.
+                  Smart Engineering Solutions for Mining operations worldwide. 
+                  Comprehensive tools and expert insights for successful mining projects.
               </p>
-              <div style="margin-top: var(--spacing-lg);">
-                  <a href="#" style="margin-right: var(--spacing-md); font-size: 1.2rem;"><i class="fab fa-linkedin"></i></a>
-                  <a href="#" style="margin-right: var(--spacing-md); font-size: 1.2rem;"><i class="fab fa-twitter"></i></a>
-                  <a href="#" style="margin-right: var(--spacing-md); font-size: 1.2rem;"><i class="fab fa-github"></i></a>
+              <div style="margin-top: var(--space-lg);">
+                  <a href="#" style="margin-right: var(--space-md); font-size: 1.2rem;"><i class="fab fa-linkedin"></i></a>
+                  <a href="#" style="margin-right: var(--space-md); font-size: 1.2rem;"><i class="fab fa-twitter"></i></a>
+                  <a href="#" style="margin-right: var(--space-md); font-size: 1.2rem;"><i class="fab fa-github"></i></a>
                   <a href="#" style="font-size: 1.2rem;"><i class="fab fa-youtube"></i></a>
               </div>
           </div>
           
           <div class="footer-section">
-              <h3>Enterprise Platforms</h3>
+              <h3>Platform Hubs</h3>
               <ul class="footer-links">
-                  <li><a href="home.html">Engineering Hub</a></li>
-                  <li><a href="home.html">Analytics Platform</a></li>
-                  <li><a href="home.html">Economics Hub</a></li>
-                  <li><a href="home.html">Innovation Hub</a></li>
+                  <li><a href="engineering-hub.html">Engineering Hub</a></li>
+                  <li><a href="analytics-platform.html">Analytics Platform</a></li>
+                  <li><a href="economics-hub.html">Economics Hub</a></li>
+                  <li><a href="procurement-hub.html">Procurement Hub</a></li>
+                  <li><a href="consulting-hub.html">Consulting Hub</a></li>
+                  <li><a href="innovation-technology-hub.html">Innovation Hub</a></li>
               </ul>
           </div>
           
           <div class="footer-section">
-              <h3>Enterprise Solutions</h3>
+              <h3>Resources</h3>
               <ul class="footer-links">
-                  <li><a href="home.html">Enterprise Procurement</a></li>
-                  <li><a href="home.html">Strategic Consulting</a></li>
-                  <li><a href="home.html">Executive Training</a></li>
-                  <li><a href="home.html">All Enterprise Features</a></li>
+                  <li><a href="about.html">About Us</a></li>
+                  <li><a href="features.html">Platform Features</a></li>
+                  <li><a href="Pricing Plans - SESMine.html">Pricing Plans</a></li>
+                  <li><a href="training-education-hub.html">Training & Education</a></li>
+                  <li><a href="contact.html">Contact Support</a></li>
               </ul>
           </div>
           
           <div class="footer-section">
               <h3>Company</h3>
               <ul class="footer-links">
-                  <li><a href="#about">About SESMine</a></li>
-                  <li><a href="#contact">Enterprise Contact</a></li>
+                  <li><a href="about.html">About SESMine</a></li>
+                  <li><a href="contact.html">Contact Us</a></li>
                   <li><a href="#careers">Careers</a></li>
-                  <li><a href="#privacy">Privacy & Security</a></li>
+                  <li><a href="#privacy">Privacy Policy</a></li>
+                  <li><a href="#terms">Terms of Service</a></li>
               </ul>
           </div>
       </div>
       
       <div class="footer-bottom">
-          <p>&copy; 2024 SESMine Enterprise. All rights reserved. | Intelligent Engineering Solutions for Next-Generation Mining Operations</p>
+          <p>&copy; 2024 SESMine - Smart Engineering Solutions for Mining. All rights reserved.</p>
       </div>
   </footer>
 
   <script>
-  // Professional Enterprise Landing Page JavaScript
+  // Professional SESMine Platform JavaScript
+  
+  // Initialize EmailJS
+  (function() {
+      emailjs.init("YOUR_EMAILJS_USER_ID"); // Replace with your EmailJS User ID
+  })();
+  
+  // Global variables
+  let isLoading = false;
+  let registrationData = {};
+  
+  // Initialize platform
   document.addEventListener('DOMContentLoaded', function() {
-      initializeEnterprisePlatform();
+      initializePlatform();
   });
-
-  function initializeEnterprisePlatform() {
-      console.log('🏢 SESMine Enterprise Platform Initializing...');
+  
+  function initializePlatform() {
+      console.log('🏔️ SESMine Platform Initializing...');
       
-      // Initialize all enterprise components
-      initializeEnterpriseLoading();
-      initializeProfessionalScrollEffects();
-      initializeEnterpriseAnimations();
-      initializeProfessionalCounters();
-      initializeEnterpriseInteractions();
-      initializePerformanceOptimizations();
-      initializeEnterpriseAnalytics();
+      // Initialize all components
+      initializeLoading();
+      initializeScrollEffects();
+      initializeAnimations();
+      initializeCounters();
+      initializeInteractions();
+      initializeAOS();
       
-      // Track enterprise metrics
-      trackEnterpriseMetrics();
+      console.log('✅ SESMine Platform Ready');
   }
-
-  // Enterprise Loading System
-  function initializeEnterpriseLoading() {
-      const loadingOverlay = document.getElementById('enterpriseLoading');
+  
+  // Loading System
+  function initializeLoading() {
+      const loadingOverlay = document.getElementById('loadingOverlay');
       const loadingText = document.querySelector('.loading-text');
       
-      const enterpriseMessages = [
-          'Initializing SESMine Enterprise Platform...',
-          'Loading Enterprise Mining Database...',
-          'Connecting AI Intelligence Systems...',
-          'Preparing Executive Dashboard...',
+      const messages = [
+          'Initializing SESMine Platform...',
+          'Loading Mining Intelligence Systems...',
+          'Connecting Professional Hubs...',
+          'Preparing Analytics Engine...',
           'Establishing Secure Connections...',
-          'Enterprise Platform Ready'
+          'Platform Ready for Mining Excellence'
       ];
       
       let messageIndex = 0;
       const messageInterval = setInterval(() => {
-          if (messageIndex < enterpriseMessages.length - 1) {
+          if (messageIndex < messages.length - 1) {
               messageIndex++;
-              loadingText.textContent = enterpriseMessages[messageIndex];
+              loadingText.textContent = messages[messageIndex];
           } else {
               clearInterval(messageInterval);
           }
       }, 600);
       
-      // Professional loading duration
       setTimeout(() => {
           loadingOverlay.classList.add('hidden');
           clearInterval(messageInterval);
@@ -1443,14 +1735,14 @@
           }, 400);
       }, 3500);
   }
-
-  // Professional Scroll Effects
-  function initializeProfessionalScrollEffects() {
-      const header = document.getElementById('enterpriseHeader');
+  
+  // Scroll Effects
+  function initializeScrollEffects() {
+      const header = document.getElementById('mainHeader');
       let lastScrollY = window.scrollY;
       let ticking = false;
       
-      function updateEnterpriseHeader() {
+      function updateHeader() {
           const scrollY = window.scrollY;
           
           if (scrollY > 120) {
@@ -1465,12 +1757,12 @@
       
       window.addEventListener('scroll', () => {
           if (!ticking) {
-              requestAnimationFrame(updateEnterpriseHeader);
+              requestAnimationFrame(updateHeader);
               ticking = true;
           }
       });
       
-      // Professional Intersection Observer
+      // Intersection Observer for animations
       const observerOptions = {
           threshold: [0.1, 0.3, 0.5],
           rootMargin: '0px 0px -80px 0px'
@@ -1480,64 +1772,41 @@
           entries.forEach(entry => {
               if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
                   entry.target.classList.add('visible');
-                  
-                  // Trigger specific enterprise animations
-                  if (entry.target.classList.contains('equipment-card')) {
-                      animateEquipmentCard(entry.target);
-                  } else if (entry.target.classList.contains('dashboard-metric')) {
-                      animateDashboardMetric(entry.target);
-                  }
               }
           });
       }, observerOptions);
       
-      // Observe all animated elements
       document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
           observer.observe(el);
       });
   }
-
-  // Enterprise Animations
-  function initializeEnterpriseAnimations() {
-      // Equipment card professional hover effects
-      const equipmentCards = document.querySelectorAll('.equipment-card');
-      equipmentCards.forEach(card => {
+  
+  // Animations
+  function initializeAnimations() {
+      // Service cards hover effects
+      const serviceCards = document.querySelectorAll('.service-card');
+      serviceCards.forEach(card => {
           card.addEventListener('mouseenter', function() {
               this.style.transform = 'translateY(-12px) scale(1.02)';
-              
-              // Animate specifications
-              const specs = this.querySelectorAll('.spec-item');
-              specs.forEach((spec, index) => {
-                  setTimeout(() => {
-                      spec.style.transform = 'scale(1.05)';
-                      spec.style.background = 'rgba(92, 107, 80, 0.15)';
-                  }, index * 80);
-              });
           });
           
           card.addEventListener('mouseleave', function() {
               this.style.transform = 'translateY(0) scale(1)';
-              
-              const specs = this.querySelectorAll('.spec-item');
-              specs.forEach(spec => {
-                  spec.style.transform = 'scale(1)';
-                  spec.style.background = 'rgba(92, 107, 80, 0.05)';
-              });
           });
       });
       
-      // Dashboard metric professional interactions
-      const dashboardMetrics = document.querySelectorAll('.dashboard-metric');
-      dashboardMetrics.forEach(metric => {
-          metric.addEventListener('click', function() {
-              // Professional ripple effect
+      // Hub items interactions
+      const hubItems = document.querySelectorAll('.hub-item');
+      hubItems.forEach(item => {
+          item.addEventListener('click', function(e) {
+              // Add ripple effect
               const ripple = document.createElement('div');
               ripple.style.cssText = `
                   position: absolute;
                   border-radius: 50%;
                   background: rgba(92, 107, 80, 0.4);
                   transform: scale(0);
-                  animation: enterpriseRipple 0.8s ease-out;
+                  animation: ripple 0.8s ease-out;
                   pointer-events: none;
               `;
               
@@ -1553,29 +1822,29 @@
               setTimeout(() => {
                   ripple.remove();
               }, 800);
-              
-              // Animate metric value
-              const figure = this.querySelector('.metric-figure');
-              figure.style.transform = 'scale(1.15)';
-              figure.style.color = 'var(--accent-primary)';
-              
-              setTimeout(() => {
-                  figure.style.transform = 'scale(1)';
-                  figure.style.color = 'var(--enterprise-info)';
-              }, 400);
+          });
+      });
+      
+      // Access level selection
+      const accessLevels = document.querySelectorAll('.access-level');
+      accessLevels.forEach(level => {
+          level.addEventListener('click', function() {
+              accessLevels.forEach(l => l.classList.remove('selected'));
+              this.classList.add('selected');
+              this.querySelector('input[type="radio"]').checked = true;
           });
       });
   }
-
-  // Professional Counter Animations
-  function initializeProfessionalCounters() {
-      const counters = document.querySelectorAll('.metric-value');
+  
+  // Counter Animations
+  function initializeCounters() {
+      const counters = document.querySelectorAll('.stat-number');
       
-      const animateEnterpriseCounter = (counter) => {
+      const animateCounter = (counter) => {
           const target = parseInt(counter.dataset.target);
           const duration = 3000;
           const step = target / (duration / 16);
-           let current = 0;
+          let current = 0;
           
           const timer = setInterval(() => {
               current += step;
@@ -1584,7 +1853,7 @@
                   clearInterval(timer);
               }
               
-              const suffix = target === 98 ? '%' : target === 50 ? '+' : '+';
+              const suffix = target === 98 ? '%' : '+';
               counter.textContent = Math.floor(current) + suffix;
           }, 16);
       };
@@ -1594,7 +1863,7 @@
               if (entry.isIntersecting) {
                   const counter = entry.target;
                   setTimeout(() => {
-                      animateEnterpriseCounter(counter);
+                      animateCounter(counter);
                   }, 800);
                   observer.unobserve(counter);
               }
@@ -1603,48 +1872,41 @@
       
       counters.forEach(counter => observer.observe(counter));
   }
-
-  // Enterprise Interactions
-  function initializeEnterpriseInteractions() {
-      // Chart column interactions
-      const chartColumns = document.querySelectorAll('.chart-column');
-      chartColumns.forEach(column => {
-          column.addEventListener('mouseenter', function() {
-              this.style.background = 'var(--accent-gradient)';
-              this.style.transform = 'scaleY(1.08)';
-          });
-          
-          column.addEventListener('mouseleave', function() {
-              this.style.background = 'var(--primary-gradient)';
-              this.style.transform = 'scaleY(1)';
-          });
-      });
-      
-      // Metric items interaction
-      const metricItems = document.querySelectorAll('.metric-item');
-      metricItems.forEach(item => {
-          item.addEventListener('click', function() {
-              // Highlight effect
-              this.style.background = 'rgba(92, 107, 80, 0.2)';
-              this.style.borderColor = 'var(--accent-primary)';
-              
-              setTimeout(() => {
-                  this.style.background = 'var(--glass-bg)';
-                  this.style.borderColor = 'var(--glass-border)';
-              }, 1000);
+  
+  // Interactive Functions
+  function initializeInteractions() {
+      // Smooth scrolling for navigation
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', function (e) {
+              e.preventDefault();
+              const target = document.querySelector(this.getAttribute('href'));
+              if (target) {
+                  target.scrollIntoView({
+                      behavior: 'smooth',
+                      block: 'start'
+                  });
+              }
           });
       });
   }
-
-  // Post-Load Animations
+  
+  // Initialize AOS
+  function initializeAOS() {
+      AOS.init({
+          duration: 1000,
+          once: true,
+          offset: 100
+      });
+  }
+  
+  // Post-load animations
   function initializePostLoadAnimations() {
-      // Animate hero elements in professional sequence
       const heroElements = [
-          '.enterprise-badge',
-          '.hero-headline',
+          '.hero-badge',
+          '.hero-title',
           '.hero-description',
           '.hero-actions',
-          '.enterprise-metrics'
+          '.hero-stats'
       ];
       
       heroElements.forEach((selector, index) => {
@@ -1657,200 +1919,186 @@
           }
       });
       
-      // Animate enterprise dashboard
       setTimeout(() => {
-          const dashboard = document.querySelector('.enterprise-dashboard');
-          if (dashboard) {
-              dashboard.style.opacity = '1';
-              dashboard.style.transform = 'translateX(0) scale(1)';
+          const preview = document.querySelector('.platform-preview');
+          if (preview) {
+              preview.style.opacity = '1';
+              preview.style.transform = 'translateX(0) scale(1)';
           }
       }, 1200);
   }
-
-  // Equipment Card Animation
-  function animateEquipmentCard(card) {
-      const specs = card.querySelectorAll('.spec-item');
-      specs.forEach((spec, index) => {
-          setTimeout(() => {
-              spec.style.opacity = '1';
-              spec.style.transform = 'translateY(0) scale(1)';
-          }, index * 120);
-      });
+  
+  // Registration Modal Functions
+  function openRegistrationModal() {
+      const modal = document.getElementById('registrationModal');
+      modal.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+      
+      // Reset form
+      document.getElementById('registrationForm').reset();
+      document.querySelectorAll('.access-level').forEach(l => l.classList.remove('selected'));
+      
+      trackInteraction('registration_modal_opened');
   }
-
-  // Dashboard Metric Animation
-  function animateDashboardMetric(metric) {
-      const figure = metric.querySelector('.metric-figure');
-      if (figure) {
-          figure.style.transform = 'scale(1.1)';
-          setTimeout(() => {
-              figure.style.transform = 'scale(1)';
-          }, 400);
+  
+  function closeRegistrationModal() {
+      const modal = document.getElementById('registrationModal');
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+      
+      trackInteraction('registration_modal_closed');
+  }
+  
+  // Handle Registration
+  async function handleRegistration(event) {
+      event.preventDefault();
+      
+      if (isLoading) return;
+      
+      const form = event.target;
+      const formData = new FormData(form);
+      const submitBtn = document.getElementById('submitBtn');
+      
+      // Validate form
+      if (!validateRegistrationForm(formData)) {
+          return;
       }
-  }
-
-  // Enterprise Interactive Functions
-  function showEnterpriseInfo() {
-      showEnterpriseNotification('🏆 SESMine: Trusted by Fortune 500 mining companies for mission-critical operations worldwide!', 'success');
-      trackEnterpriseInteraction('enterprise_badge_click');
-  }
-
-  function showMetricDetails(type) {
-      const enterpriseMessages = {
-          projects: '500+ enterprise mining projects successfully delivered across 6 continents with Fortune 500 clients',
-          countries: '50+ global markets served with localized support and regulatory compliance',
-          satisfaction: '98% client success rate with dedicated enterprise support and SLA guarantees'
-      };
       
-      showEnterpriseNotification(`📊 ${enterpriseMessages[type]}`, 'info');
-      trackEnterpriseInteraction('enterprise_metric_click', { type });
-  }
-
-  function showDashboardDetails(type) {
-      const dashboardDetails = {
-          capex: 'Capital Expenditure estimation using AACE Class 2 standards with enterprise-grade accuracy',
-          opex: 'Operating costs per ton based on real-time market data and enterprise benchmarks',
-          accuracy: 'AI-powered prediction accuracy validated against Fortune 500 mining operations',
-          monitoring: 'Continuous enterprise-grade monitoring with 99.99% uptime SLA guarantee'
-      };
+      // Show loading state
+      isLoading = true;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
       
-      showEnterpriseNotification(`💼 ${dashboardDetails[type]}`, 'info');
-      trackEnterpriseInteraction('dashboard_detail_click', { type });
-  }
-
-  function launchDashboard() {
-      showEnterpriseNotification('🚀 Launching Enterprise Mining Command Center...', 'info');
-      setTimeout(() => {
-          window.location.href = 'home.html';
-      }, 1800);
-      trackEnterpriseInteraction('enterprise_dashboard_launch');
-  }
-
-  function openAnalytics() {
-      showEnterpriseNotification('📈 Opening Enterprise Analytics Suite...', 'info');
-      setTimeout(() => {
-          window.location.href = 'home.html';
-      }, 1200);
-      trackEnterpriseInteraction('enterprise_analytics_open');
-  }
-
-  function exploreEquipment(type) {
-      const equipmentTypes = {
-          excavator: 'Ultra-Class Mining Excavators',
-          'haul-truck': 'Ultra-Class Haul Trucks',
-          'drill-rig': 'Advanced Rotary Blast Hole Drills'
-      };
-      
-      showEnterpriseNotification(`🔍 Accessing ${equipmentTypes[type]} Enterprise Database...`, 'info');
-      setTimeout(() => {
-          window.location.href = 'home.html';
-      }, 1500);
-      trackEnterpriseInteraction('enterprise_equipment_explore', { type });
-  }
-
-  // Performance Optimizations
-  function initializePerformanceOptimizations() {
-      // Enterprise-grade lazy loading
-      const images = document.querySelectorAll('img[data-src]');
-      const imageObserver = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                  const img = entry.target;
-                  img.src = img.dataset.src;
-                  img.classList.remove('lazy');
-                  imageObserver.unobserve(img);
-              }
-          });
-      });
-      
-      images.forEach(img => imageObserver.observe(img));
-      
-      // Preload enterprise-critical resources
-      const enterprisePages = [
-          'home.html'
-      ];
-      
-      enterprisePages.forEach(page => {
-          const link = document.createElement('link');
-          link.rel = 'prefetch';
-          link.href = page;
-          document.head.appendChild(link);
-      });
-      
-      // Enterprise performance monitoring
-      if ('PerformanceObserver' in window) {
-          const observer = new PerformanceObserver((list) => {
-              list.getEntries().forEach((entry) => {
-                  console.log(`⚡ Performance: ${entry.name} - ${entry.duration.toFixed(2)}ms`);
-              });
-          });
+      try {
+          // Prepare registration data
+          registrationData = {
+              fullName: formData.get('fullName'),
+              email: formData.get('email'),
+              company: formData.get('company'),
+              jobTitle: formData.get('jobTitle'),
+              phone: formData.get('phone'),
+              accessLevel: formData.get('accessLevel'),
+              projectDescription: formData.get('projectDescription'),
+              timestamp: new Date().toISOString(),
+              status: 'pending_approval'
+          };
           
-          observer.observe({ entryTypes: ['navigation', 'resource'] });
-      }
-  }
-
-  // Enterprise Analytics
-  function initializeEnterpriseAnalytics() {
-      // Track enterprise scroll depth
-      let maxScroll = 0;
-      window.addEventListener('scroll', () => {
-          const scrollPercent = Math.round(
-              (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100
-          );
-          maxScroll = Math.max(maxScroll, scrollPercent);
-      });
-      
-      // Track enterprise session time
-      const sessionStart = Date.now();
-      
-      window.addEventListener('beforeunload', () => {
-          const sessionDuration = Date.now() - sessionStart;
-          console.log(`📊 Enterprise Session: ${(sessionDuration / 1000).toFixed(1)}s, ${maxScroll}% engagement`);
-      });
-      
-      // Track enterprise feature interactions
-      document.querySelectorAll('.equipment-card, .dashboard-metric, .metric-item').forEach(element => {
-          element.addEventListener('click', () => {
-              const elementType = element.className.split(' ')[0];
-              console.log(`🎯 Enterprise Interaction: ${elementType}`);
-          });
-      });
-  }
-
-  function trackEnterpriseInteraction(action, data = {}) {
-      console.log(`🏢 Enterprise Action: ${action}`, data);
-      
-      // Enterprise analytics integration
-      if (typeof gtag !== 'undefined') {
-          gtag('event', action, {
-              event_category: 'enterprise_platform',
-              event_label: JSON.stringify(data),
-              value: 1,
-              custom_parameter_1: 'enterprise_user'
-          });
-      }
-  }
-
-  function trackEnterpriseMetrics() {
-      window.addEventListener('load', () => {
-          const loadTime = performance.now();
-          console.log(`⚡ Enterprise Platform loaded in ${loadTime.toFixed(2)}ms`);
+          // Send registration email via EmailJS
+          await sendRegistrationEmail(registrationData);
           
-          // Track enterprise Core Web Vitals
-          if ('web-vital' in window) {
-              getCLS((metric) => console.log('📊 CLS:', metric));
-              getFID((metric) => console.log('📊 FID:', metric));
-              getFCP((metric) => console.log('📊 FCP:', metric));
-              getLCP((metric) => console.log('📊 LCP:', metric));
-              getTTFB((metric) => console.log('📊 TTFB:', metric));
+          // Store registration data locally (in real app, send to backend)
+          storeRegistrationData(registrationData);
+          
+          // Show success notification
+          showNotification('Registration submitted successfully! Please check your email for confirmation.', 'success');
+          
+          // Close modal
+          closeRegistrationModal();
+          
+          // Redirect to login page after delay
+          setTimeout(() => {
+              window.location.href = 'login.html';
+          }, 2000);
+          
+      } catch (error) {
+          console.error('Registration error:', error);
+          showNotification('Registration failed. Please try again or contact support.', 'error');
+      } finally {
+          isLoading = false;
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Registration';
+      }
+      
+      trackInteraction('registration_submitted', { accessLevel: registrationData.accessLevel });
+  }
+  
+  // Validate Registration Form
+  function validateRegistrationForm(formData) {
+      const requiredFields = ['fullName', 'email', 'company', 'jobTitle', 'accessLevel'];
+      
+      for (const field of requiredFields) {
+          if (!formData.get(field)) {
+              showNotification(`Please fill in the ${field.replace(/([A-Z])/g, ' $1').toLowerCase()} field.`, 'error');
+              return false;
           }
-      });
+      }
+      
+      // Validate email format
+      const email = formData.get('email');
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+          showNotification('Please enter a valid email address.', 'error');
+          return false;
+      }
+      
+      return true;
   }
-
-  // Enterprise Notification System
-  function showEnterpriseNotification(message, type = 'info') {
+  
+  // Send Registration Email
+  async function sendRegistrationEmail(data) {
+      const templateParams = {
+          to_name: 'SESMine Admin',
+          from_name: data.fullName,
+          from_email: data.email,
+          company: data.company,
+          job_title: data.jobTitle,
+          phone: data.phone || 'Not provided',
+          access_level: data.accessLevel,
+          project_description: data.projectDescription || 'Not provided',
+          timestamp: new Date(data.timestamp).toLocaleString()
+      };
+      
+      // Send to admin
+      await emailjs.send('YOUR_SERVICE_ID', 'admin_notification_template', templateParams);
+      
+      // Send confirmation to user
+      const userTemplateParams = {
+          to_name: data.fullName,
+          to_email: data.email,
+          access_level: data.accessLevel,
+          company: data.company
+      };
+      
+      await emailjs.send('YOUR_SERVICE_ID', 'user_confirmation_template', userTemplateParams);
+  }
+  
+  // Store Registration Data
+  function storeRegistrationData(data) {
+      // In a real application, this would be sent to your backend
+      // For demo purposes, we'll store in localStorage
+      const existingRegistrations = JSON.parse(localStorage.getItem('sesmine_registrations') || '[]');
+      existingRegistrations.push(data);
+      localStorage.setItem('sesmine_registrations', JSON.stringify(existingRegistrations));
+      
+      console.log('Registration data stored:', data);
+  }
+  
+  // Interactive Functions
+  function showCompanyInfo() {
+      showNotification('🏔️ SESMine: Leading provider of smart engineering solutions for mining operations worldwide!', 'info');
+      trackInteraction('company_info_clicked');
+  }
+  
+  function showStatDetails(type) {
+      const messages = {
+          projects: '500+ active mining projects across 6 continents with comprehensive support',
+          users: '1,200+ mining professionals trust SESMine for their critical project decisions',
+          success: '98% project success rate with our comprehensive platform and expert guidance'
+      };
+      
+      showNotification(`📊 ${messages[type]}`, 'info');
+      trackInteraction('stat_detail_clicked', { type });
+  }
+  
+  function showPlatformDemo() {
+      showNotification('🚀 Platform demo coming soon! Register now to get early access.', 'info');
+      trackInteraction('platform_demo_clicked');
+  }
+  
+  // Notification System
+  function showNotification(message, type = 'info') {
       const notification = document.createElement('div');
-      notification.className = `enterprise-notification enterprise-notification-${type}`;
+      notification.className = `notification ${type}`;
       
       const iconMap = {
           info: 'fas fa-info-circle',
@@ -1861,7 +2109,7 @@
       
       notification.innerHTML = `
           <div class="notification-content">
-              <i class="${iconMap[type]}"></i>
+              <i class="notification-icon ${iconMap[type]}"></i>
               <span class="notification-message">${message}</span>
               <button class="notification-close" onclick="this.parentElement.parentElement.remove()">
                   <i class="fas fa-times"></i>
@@ -1869,138 +2117,83 @@
           </div>
       `;
       
-      notification.style.cssText = `
-          position: fixed;
-          top: 120px;
-          right: 24px;
-          background: var(--dark-glass-bg);
-          color: var(--text-on-dark);
-          padding: var(--spacing-lg) var(--spacing-xl);
-          border-radius: var(--radius-md);
-          border: 1px solid var(--dark-glass-border);
-          backdrop-filter: blur(25px);
-          box-shadow: var(--shadow-xl);
-          z-index: 10000;
-          transform: translateX(450px);
-          transition: transform var(--transition-enterprise);
-          max-width: 420px;
-          font-size: 0.95rem;
-          font-weight: 500;
-      `;
-      
       document.body.appendChild(notification);
       
       setTimeout(() => {
-          notification.style.transform = 'translateX(0)';
+          notification.classList.add('show');
       }, 100);
       
       setTimeout(() => {
-          notification.style.transform = 'translateX(450px)';
+          notification.classList.remove('show');
           setTimeout(() => {
               notification.remove();
           }, 400);
       }, 5000);
   }
-
-  // Enterprise Keyboard Shortcuts
+  
+  // Analytics and Tracking
+  function trackInteraction(action, data = {}) {
+      console.log(`📊 User Action: ${action}`, data);
+      
+      // In a real application, send to analytics service
+      if (typeof gtag !== 'undefined') {
+          gtag('event', action, {
+              event_category: 'sesmine_platform',
+              event_label: JSON.stringify(data),
+              value: 1
+          });
+      }
+  }
+  
+  // Keyboard Shortcuts
   document.addEventListener('keydown', (e) => {
-      // Ctrl/Cmd + Shift + E: Enterprise Dashboard
-      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'E') {
+      // Ctrl/Cmd + Shift + R: Quick Registration
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'R') {
           e.preventDefault();
-          window.location.href = 'home.html';
+          openRegistrationModal();
       }
       
-      // Ctrl/Cmd + Shift + D: Demo mode
-      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'D') {
-          e.preventDefault();
-          showEnterpriseNotification('🎮 Enterprise Demo Mode Activated!', 'success');
-          document.body.classList.add('enterprise-demo-mode');
+      // Escape: Close Modal
+      if (e.key === 'Escape') {
+          const modal = document.getElementById('registrationModal');
+          if (modal.style.display === 'block') {
+              closeRegistrationModal();
+          }
       }
       
-      // Ctrl/Cmd + K: Quick access
+      // Ctrl/Cmd + K: Quick Navigation
       if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
           e.preventDefault();
-          showEnterpriseNotification('🔍 Quick access functionality coming soon!', 'info');
+          showNotification('🔍 Quick navigation: Use the main menu or scroll to explore sections!', 'info');
       }
   });
-
-  // Smooth scrolling for enterprise navigation
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-          e.preventDefault();
-          const target = document.querySelector(this.getAttribute('href'));
-          if (target) {
-              target.scrollIntoView({
-                  behavior: 'smooth',
-                  block: 'start'
-              });
-              trackEnterpriseInteraction('enterprise_nav_click', { target: this.getAttribute('href') });
-          }
-      });
+  
+  // Click outside modal to close
+  window.addEventListener('click', (e) => {
+      const modal = document.getElementById('registrationModal');
+      if (e.target === modal) {
+          closeRegistrationModal();
+      }
   });
-
-  // Add enterprise CSS animations
-  const enterpriseStyle = document.createElement('style');
-  enterpriseStyle.textContent = `
-      @keyframes enterpriseRipple {
+  
+  // Add CSS animations
+  const style = document.createElement('style');
+  style.textContent = `
+      @keyframes ripple {
           to {
               transform: scale(4);
               opacity: 0;
           }
       }
       
-      .notification-content {
-          display: flex;
-          align-items: center;
-          gap: var(--spacing-md);
-      }
-      
-      .notification-content i:first-child {
-          font-size: 1.2rem;
-          color: var(--accent-primary);
-      }
-      
-      .notification-close {
-          background: none;
-          border: none;
-          color: rgba(244, 244, 242, 0.7);
-          cursor: pointer;
-          padding: var(--spacing-xs);
-          border-radius: var(--radius-sm);
-          transition: all var(--transition-fast);
-          margin-left: auto;
-      }
-      
-      .notification-close:hover {
-          background: rgba(255, 255, 255, 0.1);
-          color: var(--text-on-dark);
-      }
-      
-      .enterprise-demo-mode {
-          filter: hue-rotate(30deg) brightness(1.1);
-      }
-      
-      .enterprise-demo-mode .hero-headline {
-          animation: enterpriseGlow 3s ease-in-out infinite;
-      }
-      
-      @keyframes enterpriseGlow {
-          0%, 100% { 
-              text-shadow: 0 0 20px rgba(92, 107, 80, 0.3);
-          }
-          50% { 
-              text-shadow: 0 0 40px rgba(92, 107, 80, 0.6);
-          }
-      }
-      
-      /* Initial state for animations */
+      /* Initial state for post-load animations */
       .hero-content > * {
           opacity: 0;
           transform: translateY(30px);
           transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
       }
       
-      .enterprise-dashboard {
+      .platform-preview {
           opacity: 0;
           transform: translateX(50px) scale(0.95);
           transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
@@ -2018,94 +2211,93 @@
       }
       
       @media (prefers-contrast: high) {
-          .hero-headline,
-          .section-headline {
-              -webkit-text-fill-color: var(--text-primary);
+          .hero-title,
+          .section-title {
+              -webkit-text-fill-color: var(--primary-dark);
               background: none;
           }
           
-          .metric-value {
+          .stat-number {
               -webkit-text-fill-color: var(--accent-primary);
               background: none;
           }
       }
       
-      /* Professional hover states */
-      .enterprise-cta:hover,
-      .btn-enterprise-primary:hover {
-          box-shadow: 0 8px 25px rgba(92, 107, 80, 0.4);
-      }
-      
-      .btn-enterprise-secondary:hover {
-          box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
-      }
-      
-      /* Loading animation improvements */
-      .loading-spinner {
-          box-shadow: 0 0 20px rgba(92, 107, 80, 0.3);
-      }
-      
       /* Professional focus states */
-      .nav-item:focus,
-      .enterprise-cta:focus,
-      .btn-enterprise-primary:focus,
-      .btn-enterprise-secondary:focus {
+      .nav-link:focus,
+      .btn-login:focus,
+      .btn-signup:focus,
+      .btn-primary:focus,
+      .btn-secondary:focus {
           outline: 2px solid var(--accent-primary);
           outline-offset: 2px;
       }
       
       /* Enhanced mobile experience */
       @media (max-width: 768px) {
-          .hero-headline {
-              background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-primary) 100%);
+          .hero-title {
+              background: linear-gradient(135deg, var(--primary-light) 0%, var(--accent-primary) 100%);
               -webkit-background-clip: text;
               -webkit-text-fill-color: transparent;
               background-clip: text;
           }
           
-          .enterprise-dashboard {
+          .platform-preview {
               box-shadow: var(--shadow-lg);
           }
           
-          .equipment-card:hover {
+          .service-card:hover {
               transform: translateY(-8px);
           }
       }
       
-      /* Professional print styles */
+      /* Print styles */
       @media print {
-          .enterprise-header,
-          .enterprise-loading,
+          .main-header,
+          .loading-overlay,
           .hero-actions,
-          .cta-actions {
+          .contact-actions,
+          .modal {
               display: none;
           }
           
-          .hero-headline,
-          .section-headline {
-              color: var(--text-primary) !important;
-              -webkit-text-fill-color: var(--text-primary) !important;
+          .hero-title,
+          .section-title {
+              color: var(--primary-dark) !important;
+              -webkit-text-fill-color: var(--primary-dark) !important;
           }
           
-          .enterprise-dashboard,
-          .equipment-card {
+          .platform-preview,
+          .service-card {
               box-shadow: none;
-              border: 1px solid var(--border-light);
+              border: 1px solid #e2e8f0;
           }
       }
   `;
-  document.head.appendChild(enterpriseStyle);
-
-  console.log('🏢 SESMine Enterprise Platform Ready');
-  console.log('⚡ Enterprise performance optimizations active');
-  console.log('🎨 Professional animations loaded');
-  console.log('📊 Enterprise analytics tracking enabled');
-  console.log('🔧 Professional equipment database ready');
-  console.log('🚀 Ready for Fortune 500 mining transformation!');
-  console.log('💼 Enterprise-grade security and compliance active');
-  console.log('🌐 Global enterprise support available 24/7');
-  console.log('🎯 Professional user experience optimized');
-  console.log('📱 Mobile-first responsive design implemented');
+  document.head.appendChild(style);
+  
+  // Performance monitoring
+  window.addEventListener('load', () => {
+      const loadTime = performance.now();
+      console.log(`⚡ SESMine Platform loaded in ${loadTime.toFixed(2)}ms`);
+      
+      // Track Core Web Vitals if available
+      if ('web-vitals' in window) {
+          getCLS((metric) => console.log('📊 CLS:', metric));
+          getFID((metric) => console.log('📊 FID:', metric));
+          getFCP((metric) => console.log('📊 FCP:', metric));
+          getLCP((metric) => console.log('📊 LCP:', metric));
+          getTTFB((metric) => console.log('📊 TTFB:', metric));
+      }
+  });
+  
+  console.log('🏔️ SESMine Platform JavaScript Loaded');
+  console.log('⚡ Performance optimizations active');
+  console.log('🎨 Professional animations ready');
+  console.log('📧 EmailJS integration configured');
+  console.log('🔐 Registration system ready');
+  console.log('📊 Analytics tracking enabled');
+  console.log('🚀 Ready for mining excellence!');
   </script>
 </body>
 </html>

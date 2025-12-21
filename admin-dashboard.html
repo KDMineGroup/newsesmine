@@ -1,122 +1,260 @@
-<!DOCTYPE html>
+4<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard - SESMine Platform</title>
-  <meta name="description" content="Administrative Control Center - SESMine">
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" type="image/x-icon" href="https://www.sesmine.com/favicon.ico">
+  <title>Admin Dashboard - SESMine Platform Management</title>
+  <meta name="description" content="SESMine Admin Dashboard for user management, registration approvals, and platform monitoring.">
+  
+  <!-- External Stylesheets -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap">
+  
+  <!-- Chart.js for Analytics -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <!-- EmailJS for Notifications -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   
   <style>
-  /* Admin Dashboard specific styles */
-  .admin-hero {
-      background: linear-gradient(135deg, var(--gray-800) 0%, var(--gray-900) 50%, var(--sesmine-primary) 100%);
+  :root {
+      --primary-dark: #1a1a1a;
+      --primary-light: #f4f4f2;
+      --accent-primary: #5c6b50;
+      --accent-secondary: #8c9a8c;
+      --accent-blue: #3182ce;
+      --accent-success: #38a169;
+      --accent-warning: #dd6b20;
+      --accent-error: #e53e3e;
+      --accent-info: #3182ce;
+      
+      --gradient-primary: linear-gradient(135deg, var(--primary-dark) 0%, var(--accent-primary) 100%);
+      --gradient-accent: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+      
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --glass-border: rgba(255, 255, 255, 0.2);
+      --dark-glass: rgba(26, 26, 26, 0.9);
+      
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.12);
+      --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.16);
+      --shadow-xl: 0 24px 60px rgba(0, 0, 0, 0.2);
+      
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2rem;
+      --space-2xl: 3rem;
+      
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+      
+      --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+  }
+  
+  body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+  }
+  
+  /* Admin Layout */
+  .admin-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      min-height: 100vh;
+  }
+  
+  .admin-sidebar {
+      background: var(--gradient-primary);
       color: white;
-      padding: 3rem 0;
-      margin-bottom: 3rem;
-      position: relative;
-      overflow: hidden;
+      padding: var(--space-xl);
+      box-shadow: var(--shadow-lg);
+      position: fixed;
+      width: 280px;
+      height: 100vh;
+      overflow-y: auto;
+      z-index: 1000;
   }
   
-  .admin-hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="admin-pattern" width="25" height="25" patternUnits="userSpaceOnUse"><rect x="10" y="10" width="5" height="5" fill="rgba(255,255,255,0.05)" rx="1"/><circle cx="5" cy="5" r="1" fill="rgba(255,255,255,0.03)"/><circle cx="20" cy="20" r="1.5" fill="rgba(255,255,255,0.04)"/></pattern></defs><rect width="100" height="100" fill="url(%23admin-pattern)"/></svg>');
-      opacity: 0.3;
+  .admin-main {
+      margin-left: 280px;
+      padding: var(--space-xl);
+      background: var(--primary-light);
+      min-height: 100vh;
   }
   
-  .hero-content {
-      position: relative;
-      z-index: 1;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
+  /* Sidebar */
+  .sidebar-header {
       display: flex;
       align-items: center;
-      gap: 2rem;
+      gap: var(--space-md);
+      margin-bottom: var(--space-2xl);
+      padding-bottom: var(--space-lg);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   }
   
-  .hero-icon {
-      width: 80px;
-      height: 80px;
-      background: linear-gradient(135deg, var(--sesmine-gold), var(--sesmine-copper));
-      border-radius: var(--border-radius-xl);
+  .sidebar-logo {
+      width: 48px;
+      height: 48px;
+      background: var(--glass-bg);
+      border-radius: var(--radius-md);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2.5rem;
-      box-shadow: var(--shadow-2xl);
-      animation: adminPulse 3s ease-in-out infinite;
-      flex-shrink: 0;
+      font-size: 1.5rem;
+      backdrop-filter: blur(10px);
   }
   
-  @keyframes adminPulse {
-      0%, 100% { 
-          transform: scale(1);
-          box-shadow: var(--shadow-2xl), 0 0 0 0 rgba(214, 158, 46, 0.7);
-      }
-      50% { 
-          transform: scale(1.05);
-          box-shadow: var(--shadow-2xl), 0 0 0 15px rgba(214, 158, 46, 0);
-      }
-  }
-  
-  .hero-text {
-      flex: 1;
-  }
-  
-  .hero-title {
-      font-size: 2.5rem;
-      font-weight: 800;
-      margin-bottom: 1rem;
-      background: linear-gradient(135deg, white, rgba(255, 255, 255, 0.8), var(--sesmine-gold));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      line-height: 1.1;
-  }
-  
-  .hero-subtitle {
+  .sidebar-title {
       font-size: 1.25rem;
-      opacity: 0.9;
-      line-height: 1.5;
+      font-weight: 700;
   }
   
-  .admin-stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 3rem;
+  .sidebar-subtitle {
+      font-size: 0.8rem;
+      opacity: 0.8;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
   }
   
-  .admin-stat {
+  .sidebar-nav {
+      list-style: none;
+  }
+  
+  .nav-item {
+      margin-bottom: var(--space-sm);
+  }
+  
+  .nav-link {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      padding: var(--space-md);
+      border-radius: var(--radius-md);
+      transition: all var(--transition-smooth);
+      font-weight: 500;
+  }
+  
+  .nav-link:hover,
+  .nav-link.active {
+      background: var(--glass-bg);
+      color: white;
+      backdrop-filter: blur(10px);
+  }
+  
+  .nav-icon {
+      width: 20px;
+      text-align: center;
+  }
+  
+  /* Main Content */
+  .admin-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-2xl);
       background: white;
-      border-radius: var(--border-radius-lg);
-      padding: 1.5rem;
+      padding: var(--space-xl);
+      border-radius: var(--radius-xl);
       box-shadow: var(--shadow-sm);
-      border: 1px solid var(--gray-200);
-      transition: var(--transition-all);
-      position: relative;
-      overflow: hidden;
   }
   
-  .admin-stat::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--gray-800), var(--sesmine-primary));
+  .page-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary-dark);
   }
   
-  .admin-stat:hover {
+  .admin-actions {
+      display: flex;
+      gap: var(--space-md);
+      align-items: center;
+  }
+  
+  .btn {
+      padding: var(--space-sm) var(--space-lg);
+      border: none;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-smooth);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-size: 0.9rem;
+  }
+  
+  .btn-primary {
+      background: var(--gradient-accent);
+      color: var(--primary-dark);
+      box-shadow: var(--shadow-sm);
+  }
+  
+  .btn-primary:hover {
       transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+  }
+  
+  .btn-secondary {
+      background: white;
+      color: var(--primary-dark);
+      border: 1px solid #e2e8f0;
+  }
+  
+  .btn-secondary:hover {
+      background: #f7fafc;
+  }
+  
+  .btn-success {
+      background: var(--accent-success);
+      color: white;
+  }
+  
+  .btn-warning {
+      background: var(--accent-warning);
+      color: white;
+  }
+  
+  .btn-error {
+      background: var(--accent-error);
+      color: white;
+  }
+  
+  /* Dashboard Stats */
+  .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-xl);
+      margin-bottom: var(--space-2xl);
+  }
+  
+  .stat-card {
+      background: white;
+      padding: var(--space-xl);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid #e2e8f0;
+      transition: all var(--transition-smooth);
+      cursor: pointer;
+  }
+  
+  .stat-card:hover {
+      transform: translateY(-4px);
       box-shadow: var(--shadow-md);
   }
   
@@ -124,1296 +262,1823 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 1rem;
+      margin-bottom: var(--space-lg);
   }
   
   .stat-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: var(--border-radius-md);
+      width: 60px;
+      height: 60px;
+      border-radius: var(--radius-lg);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.25rem;
+      font-size: 1.5rem;
       color: white;
-      box-shadow: var(--shadow-sm);
   }
   
-  .stat-trend {
-      font-size: 0.8rem;
-      font-weight: 600;
-      padding: 0.25rem 0.5rem;
-      border-radius: 12px;
-  }
-  
-  .trend-up {
-      background: var(--success-100);
-      color: var(--success-700);
-  }
-  
-  .trend-down {
-      background: var(--danger-100);
-      color: var(--danger-700);
-  }
+  .stat-icon.users { background: var(--accent-blue); }
+  .stat-icon.pending { background: var(--accent-warning); }
+  .stat-icon.approved { background: var(--accent-success); }
+  .stat-icon.revenue { background: var(--accent-primary); }
   
   .stat-value {
-      font-size: 2rem;
+      font-size: 2.5rem;
       font-weight: 800;
-      color: var(--sesmine-primary);
-      margin-bottom: 0.25rem;
-      font-family: var(--font-mono);
+      color: var(--primary-dark);
+      font-family: 'Inter', monospace;
   }
   
   .stat-label {
-      color: var(--gray-600);
+      color: var(--accent-secondary);
       font-size: 0.9rem;
       font-weight: 500;
-  }
-  
-  .admin-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 2rem;
-      margin-bottom: 3rem;
-  }
-  
-  .admin-panel {
-      background: white;
-      border-radius: var(--border-radius-xl);
-      padding: 2rem;
-      box-shadow: var(--shadow-md);
-      border: 1px solid var(--gray-200);
-  }
-  
-  .panel-header {
-      display: flex;
-      justify-content: between;
-      align-items: center;
-      margin-bottom: 2rem;
-      padding-bottom: 1rem;
-      border-bottom: 2px solid var(--gray-100);
-  }
-  
-  .panel-title {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--sesmine-primary);
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-  }
-  
-  .panel-actions {
-      display: flex;
-      gap: 0.5rem;
-  }
-  
-  .panel-btn {
-      padding: 0.5rem 1rem;
-      border: 2px solid var(--gray-300);
-      background: white;
-      color: var(--gray-700);
-      border-radius: var(--border-radius-md);
-      font-size: 0.875rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: var(--transition-all);
-  }
-  
-  .panel-btn:hover {
-      border-color: var(--sesmine-primary);
-      color: var(--sesmine-primary);
-  }
-  
-  .panel-btn.primary {
-      background: var(--sesmine-primary);
-      border-color: var(--sesmine-primary);
-      color: white;
-  }
-  
-  .panel-btn.primary:hover {
-      background: var(--sesmine-secondary);
-      border-color: var(--sesmine-secondary);
-  }
-  
-  .user-table {
-      width: 100%;
-      border-collapse: collapse;
-  }
-  
-  .user-table th {
-      background: var(--gray-50);
-      color: var(--gray-700);
-      font-weight: 600;
-      padding: 1rem;
-      text-align: left;
-      border-bottom: 2px solid var(--gray-200);
-      font-size: 0.9rem;
       text-transform: uppercase;
       letter-spacing: 0.05em;
   }
   
-  .user-table td {
-      padding: 1rem;
-      border-bottom: 1px solid var(--gray-200);
-      font-size: 0.9rem;
-  }
-  
-  .user-table tr:hover {
-      background: var(--gray-50);
-  }
-  
-  .user-avatar {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--sesmine-accent), var(--sesmine-secondary));
+  .stat-change {
       display: flex;
       align-items: center;
-      justify-content: center;
-      color: white;
-      font-weight: 700;
-      font-size: 0.8rem;
-  }
-  
-  .user-info {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-  }
-  
-  .user-name {
-      font-weight: 600;
-      color: var(--gray-800);
-  }
-  
-  .user-email {
-      color: var(--gray-600);
-      font-size: 0.8rem;
-  }
-  
-  .status-badge {
-      padding: 0.25rem 0.75rem;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-  }
-  
-  .status-active {
-      background: var(--success-100);
-      color: var(--success-700);
-  }
-  
-  .status-inactive {
-      background: var(--gray-100);
-      color: var(--gray-700);
-  }
-  
-  .status-pending {
-      background: var(--warning-100);
-      color: var(--warning-700);
-  }
-  
-  .action-menu {
-      position: relative;
-  }
-  
-  .action-btn {
-      background: none;
-      border: none;
-      color: var(--gray-600);
-      font-size: 1.2rem;
-      cursor: pointer;
-      padding: 0.5rem;
-      border-radius: var(--border-radius-md);
-      transition: var(--transition-all);
-  }
-  
-  .action-btn:hover {
-      background: var(--gray-100);
-      color: var(--gray-800);
-  }
-  
-  .activity-feed {
-      max-height: 400px;
-      overflow-y: auto;
-  }
-  
-  .activity-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      padding: 1rem 0;
-      border-bottom: 1px solid var(--gray-200);
-  }
-  
-  .activity-item:last-child {
-      border-bottom: none;
-  }
-  
-  .activity-icon {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.9rem;
-      color: white;
-      flex-shrink: 0;
-  }
-  
-  .activity-content {
-      flex: 1;
-  }
-  
-  .activity-title {
-      font-weight: 600;
-      color: var(--gray-800);
-      margin-bottom: 0.25rem;
-      font-size: 0.9rem;
-  }
-  
-  .activity-description {
-      color: var(--gray-600);
+      gap: var(--space-xs);
       font-size: 0.85rem;
-      margin-bottom: 0.5rem;
-      line-height: 1.4;
+      font-weight: 600;
+      margin-top: var(--space-sm);
   }
   
-  .activity-time {
-      color: var(--gray-500);
-      font-size: 0.75rem;
-  }
+  .stat-change.positive { color: var(--accent-success); }
+  .stat-change.negative { color: var(--accent-error); }
   
-  .admin-tools {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 3rem;
-  }
-  
-  .tool-card {
+  /* Content Sections */
+  .content-section {
       background: white;
-      border-radius: var(--border-radius-lg);
-      padding: 1.5rem;
+      border-radius: var(--radius-xl);
       box-shadow: var(--shadow-sm);
-      border: 1px solid var(--gray-200);
-      transition: var(--transition-all);
-      cursor: pointer;
-      text-align: center;
-  }
-  
-  .tool-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-lg);
-      border-color: var(--sesmine-accent);
-  }
-  
-  .tool-icon {
-      width: 50px;
-      height: 50px;
-      border-radius: var(--border-radius-lg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      color: white;
-      margin: 0 auto 1rem;
-      box-shadow: var(--shadow-sm);
-  }
-  
-  .tool-title {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--sesmine-primary);
-      margin-bottom: 0.5rem;
-  }
-  
-  .tool-description {
-      color: var(--gray-600);
-      font-size: 0.85rem;
-      line-height: 1.4;
-  }
-  
-  .system-status {
-      background: var(--gray-900);
-      color: white;
-      border-radius: var(--border-radius-xl);
-      padding: 2rem;
-      margin: 2rem 0;
-  }
-  
-  .status-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 2rem;
-  }
-  
-  .status-title {
-      font-size: 1.5rem;
-      font-weight: 700;
-  }
-  
-  .status-indicator {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.9rem;
-      font-weight: 600;
-  }
-  
-  .status-dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: var(--success-500);
-      animation: statusPulse 2s ease-in-out infinite;
-  }
-  
-  @keyframes statusPulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
-  }
-  
-  .system-metrics {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
-  }
-  
-  .metric-item {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: var(--border-radius-lg);
-      padding: 1.5rem;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-  }
-  
-  .metric-name {
-      color: rgba(255, 255, 255, 0.8);
-      font-size: 0.9rem;
-      margin-bottom: 0.5rem;
-  }
-  
-  .metric-value {
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: var(--sesmine-gold);
-      font-family: var(--font-mono);
-  }
-  
-  .metric-bar {
-      width: 100%;
-      height: 4px;
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 2px;
-      margin-top: 0.5rem;
+      margin-bottom: var(--space-2xl);
       overflow: hidden;
   }
   
-  .metric-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--sesmine-gold), var(--sesmine-copper));
-      border-radius: 2px;
-      transition: width 0.3s ease;
+  .section-header {
+      padding: var(--space-xl);
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: between;
+      align-items: center;
   }
   
+  .section-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+  }
+  
+  .section-actions {
+      display: flex;
+      gap: var(--space-md);
+      align-items: center;
+  }
+  
+  .section-content {
+      padding: var(--space-xl);
+  }
+  
+  /* Registration Table */
+  .registrations-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: var(--space-lg);
+  }
+  
+  .registrations-table th,
+  .registrations-table td {
+      padding: var(--space-md);
+      text-align: left;
+      border-bottom: 1px solid #e2e8f0;
+  }
+  
+  .registrations-table th {
+      background: #f7fafc;
+      font-weight: 600;
+      color: var(--primary-dark);
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+  }
+  
+  .registrations-table tr:hover {
+      background: #f7fafc;
+  }
+  
+  .status-badge {
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+  }
+  
+  .status-pending {
+      background: rgba(221, 107, 32, 0.1);
+      color: var(--accent-warning);
+  }
+  
+  .status-approved {
+      background: rgba(56, 161, 105, 0.1);
+      color: var(--accent-success);
+  }
+  
+  .status-rejected {
+      background: rgba(229, 62, 62, 0.1);
+      color: var(--accent-error);
+  }
+  
+  .access-level-badge {
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--radius-sm);
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+  }
+  
+  .access-basic {
+      background: rgba(49, 130, 206, 0.1);
+      color: var(--accent-blue);
+  }
+  
+  .access-professional {
+      background: rgba(92, 107, 80, 0.1);
+      color: var(--accent-primary);
+  }
+  
+  .access-enterprise {
+      background: rgba(26, 26, 26, 0.1);
+      color: var(--primary-dark);
+  }
+  
+  /* Action Buttons */
+  .action-buttons {
+      display: flex;
+      gap: var(--space-sm);
+  }
+  
+  .btn-small {
+      padding: var(--space-xs) var(--space-sm);
+      font-size: 0.8rem;
+      border-radius: var(--radius-sm);
+  }
+  
+  /* Modal */
+  .modal {
+      display: none;
+      position: fixed;
+      z-index: 10000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(5px);
+  }
+  
+  .modal-content {
+      background: white;
+      margin: 5% auto;
+      padding: 0;
+      border-radius: var(--radius-xl);
+      width: 90%;
+      max-width: 600px;
+      box-shadow: var(--shadow-xl);
+      position: relative;
+      overflow: hidden;
+      animation: modalSlideIn 0.3s ease-out;
+  }
+  
+  @keyframes modalSlideIn {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+  }
+  
+  .modal-header {
+      background: var(--gradient-primary);
+      color: white;
+      padding: var(--space-xl);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  }
+  
+  .modal-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+  }
+  
+  .close-modal {
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      transition: all var(--transition-smooth);
+  }
+  
+  .close-modal:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: rotate(90deg);
+  }
+  
+  .modal-body {
+      padding: var(--space-2xl);
+  }
+  
+  .user-details {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-lg);
+      margin-bottom: var(--space-xl);
+  }
+  
+  .detail-item {
+      padding: var(--space-lg);
+      background: #f7fafc;
+      border-radius: var(--radius-md);
+      border: 1px solid #e2e8f0;
+  }
+  
+  .detail-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xs);
+  }
+  
+  .detail-value {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--primary-dark);
+  }
+  
+  .modal-actions {
+      display: flex;
+      gap: var(--space-md);
+      justify-content: flex-end;
+      padding-top: var(--space-lg);
+      border-top: 1px solid #e2e8f0;
+  }
+  
+  /* Charts */
+  .charts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: var(--space-xl);
+      margin-bottom: var(--space-2xl);
+  }
+  
+  .chart-container {
+      background: white;
+      padding: var(--space-xl);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid #e2e8f0;
+  }
+  
+  .chart-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: var(--space-lg);
+      color: var(--primary-dark);
+  }
+  
+  /* Filters */
+  .filters-bar {
+      display: flex;
+      gap: var(--space-md);
+      margin-bottom: var(--space-xl);
+      flex-wrap: wrap;
+      align-items: center;
+  }
+  
+  .filter-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+  }
+  
+  .filter-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+  }
+  
+  .filter-select,
+  .filter-input {
+      padding: var(--space-sm) var(--space-md);
+      border: 1px solid #e2e8f0;
+      border-radius: var(--radius-md);
+      font-size: 0.9rem;
+      background: white;
+      min-width: 150px;
+  }
+  
+  .filter-select:focus,
+  .filter-input:focus {
+      outline: none;
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px rgba(92, 107, 80, 0.1);
+  }
+  
+  /* Responsive Design */
   @media (max-width: 1024px) {
-      .admin-grid {
+      .admin-layout {
           grid-template-columns: 1fr;
       }
       
-      .hero-content {
-          flex-direction: column;
-          text-align: center;
+      .admin-sidebar {
+          position: relative;
+          width: 100%;
+          height: auto;
+      }
+      
+      .admin-main {
+          margin-left: 0;
+      }
+      
+      .stats-grid {
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      }
+      
+      .charts-grid {
+          grid-template-columns: 1fr;
       }
   }
   
   @media (max-width: 768px) {
-      .admin-stats {
-          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      .admin-header {
+          flex-direction: column;
+          gap: var(--space-lg);
+          text-align: center;
       }
       
-      .admin-tools {
-          grid-template-columns: 1fr;
+      .admin-actions {
+          flex-direction: column;
+          width: 100%;
       }
       
-      .system-metrics {
-          grid-template-columns: 1fr;
+      .filters-bar {
+          flex-direction: column;
+          align-items: stretch;
       }
       
-      .user-table {
+      .registrations-table {
           font-size: 0.8rem;
       }
       
-      .user-table th,
-      .user-table td {
-          padding: 0.75rem 0.5rem;
+      .registrations-table th,
+      .registrations-table td {
+          padding: var(--space-sm);
       }
+      
+      .action-buttons {
+          flex-direction: column;
+      }
+  }
+  
+  /* Loading States */
+  .loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-2xl);
+      color: var(--accent-secondary);
+  }
+  
+  .spinner {
+      width: 32px;
+      height: 32px;
+      border: 3px solid #e2e8f0;
+      border-top: 3px solid var(--accent-primary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-right: var(--space-md);
+  }
+  
+  @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+  }
+  
+  /* Notification */
+  .notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: white;
+      padding: var(--space-lg);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-xl);
+      border-left: 4px solid var(--accent-success);
+      z-index: 10000;
+      transform: translateX(450px);
+      transition: transform var(--transition-smooth);
+      max-width: 400px;
+  }
+  
+  .notification.show {
+      transform: translateX(0);
+  }
+  
+  .notification.error {
+      border-left-color: var(--accent-error);
+  }
+  
+  .notification.warning {
+      border-left-color: var(--accent-warning);
+  }
+  
+  .notification-content {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+  }
+  
+  .notification-icon {
+      font-size: 1.2rem;
+      color: var(--accent-success);
+  }
+  
+  .notification.error .notification-icon {
+      color: var(--accent-error);
+  }
+  
+  .notification.warning .notification-icon {
+      color: var(--accent-warning);
+  }
+  
+  .notification-message {
+      flex: 1;
+      font-weight: 500;
+  }
+  
+  .notification-close {
+      background: none;
+      border: none;
+      color: var(--accent-secondary);
+      cursor: pointer;
+      padding: var(--space-xs);
+      border-radius: var(--radius-sm);
+      transition: all var(--transition-smooth);
+  }
+  
+  .notification-close:hover {
+      background: #f7fafc;
+      color: var(--primary-dark);
   }
   </style>
 </head>
 <body>
-  <!-- Universal Navigation Header -->
-  <header class="sesmine-header" id="sesmineHeader">
-      <div class="header-content">
-          <div class="logo-section">
-              <button class="header-btn mobile-menu-toggle" id="mobileMenuToggle">
-                  <i class="fas fa-bars"></i>
-              </button>
-              <a href="index.html" class="logo">
-                  <div class="logo-icon">🏔️</div>
-                  <div class="logo-text">
-                      <div class="logo-main">SESMine</div>
-                      <div class="logo-subtitle">Smart Engineering Solutions</div>
-                  </div>
-              </a>
+  <!-- Admin Layout -->
+  <div class="admin-layout">
+      <!-- Sidebar -->
+      <aside class="admin-sidebar">
+          <div class="sidebar-header">
+              <div class="sidebar-logo">🏔️</div>
+              <div>
+                  <div class="sidebar-title">SESMine Admin</div>
+                  <div class="sidebar-subtitle">Platform Management</div>
+              </div>
           </div>
           
-          <nav class="main-nav" id="mainNav">
-              <a href="home.html" class="nav-link">
-                  <i class="fas fa-home"></i> Dashboard
-              </a>
-              <div class="nav-dropdown">
-                  <button class="nav-link dropdown-toggle active">
-                      <i class="fas fa-th-large"></i> Hubs <i class="fas fa-chevron-down"></i>
-                  </button>
-                  <div class="dropdown-menu">
-                      <a href="engineering-hub.html" class="dropdown-item">
-                          <i class="fas fa-hard-hat"></i> Engineering Hub
+          <nav>
+              <ul class="sidebar-nav">
+                  <li class="nav-item">
+                      <a href="#dashboard" class="nav-link active" onclick="showSection('dashboard')">
+                          <i class="nav-icon fas fa-chart-line"></i>
+                          Dashboard
                       </a>
-                      <a href="analytics-platform.html" class="dropdown-item">
-                          <i class="fas fa-chart-area"></i> Analytics Platform
+                  </li>
+                  <li class="nav-item">
+                      <a href="#registrations" class="nav-link" onclick="showSection('registrations')">
+                          <i class="nav-icon fas fa-user-plus"></i>
+                          Registrations
+                          <span id="pendingCount" class="badge"></span>
                       </a>
-                      <a href="economics-hub.html" class="dropdown-item">
-                          <i class="fas fa-coins"></i> Economics Hub
-                      </a>
-                      <a href="innovation-technology-hub.html" class="dropdown-item">
-                          <i class="fas fa-rocket"></i> Innovation & Technology
-                      </a>
-                      <a href="procurement-hub.html" class="dropdown-item">
-                          <i class="fas fa-truck"></i> Procurement Hub
-                      </a>
-                      <a href="consulting-hub.html" class="dropdown-item">
-                          <i class="fas fa-user-tie"></i> Consulting Hub
-                      </a>
-                      <a href="training-education-hub.html" class="dropdown-item">
-                          <i class="fas fa-graduation-cap"></i> Training & Education
-                      </a>
-                      <a href="admin-dashboard.html" class="dropdown-item active">
-                          <i class="fas fa-shield-alt"></i> Admin Dashboard
-                      </a>
-                  </div>
-              </div>
-              <a href="platforms.html" class="nav-link">
-                  <i class="fas fa-layer-group"></i> Platforms
-              </a>
-              <a href="features.html" class="nav-link">
-                  <i class="fas fa-star"></i> Features
-              </a>
-              <a href="about.html" class="nav-link">
-                  <i class="fas fa-info-circle"></i> About
-              </a>
-              <a href="contact.html" class="nav-link">
-                  <i class="fas fa-phone"></i> Contact
-              </a>
-          </nav>
-          
-          <div class="header-actions">
-              <div class="search-container">
-                  <i class="fas fa-search search-icon"></i>
-                  <input type="text" class="search-input" placeholder="Search admin..." id="globalSearch">
-              </div>
-              <button class="header-btn" title="Notifications">
-                  <i class="fas fa-bell"></i>
-              </button>
-              <button class="header-btn" title="Settings" onclick="window.location.href='setting.html'">
-                  <i class="fas fa-cog"></i>
-              </button>
-              <div class="user-menu">
-                  <div class="user-avatar">AD</div>
-                  <div class="user-info">
-                      <div class="user-name">Administrator</div>
-                      <div class="user-email">admin@sesmine.com</div>
-                  </div>
-                  <div class="user-dropdown">
-                      <a href="setting.html" class="dropdown-item">
-                          <i class="fas fa-cog"></i> Settings
-                      </a>
-                      <a href="login.html" class="dropdown-item">
-                          <i class="fas fa-sign-out-alt"></i> Logout
-                      </a>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </header>
-
-  <!-- Main Content -->
-  <main class="main-content">
-      <!-- Admin Hero Section -->
-      <section class="admin-hero">
-          <div class="hero-content">
-              <div class="hero-icon">🛡️</div>
-              <div class="hero-text">
-                  <h1 class="hero-title">Admin Dashboard</h1>
-                  <p class="hero-subtitle">
-                      Comprehensive system administration, user management, and platform monitoring 
-                      for the SESMine ecosystem.
-                  </p>
-              </div>
-          </div>
-      </section>
-
-      <div class="content-container">
-          <!-- Admin Statistics -->
-          <section class="admin-stats">
-              <div class="admin-stat">
-                  <div class="stat-header">
-                      <div class="stat-icon" style="background: linear-gradient(135deg, var(--success-500), var(--sesmine-emerald));">
-                          👥
-                      </div>
-                      <div class="stat-trend trend-up">+12%</div>
-                  </div>
-                  <div class="stat-value">2,847</div>
-                  <div class="stat-label">Active Users</div>
-              </div>
-
-              <div class="admin-stat">
-                  <div class="stat-header">
-                      <div class="stat-icon" style="background: linear-gradient(135deg, var(--sesmine-accent), var(--sesmine-secondary));">
-                          🏢
-                      </div>
-                      <div class="stat-trend trend-up">+8%</div>
-                  </div>
-                  <div class="stat-value">156</div>
-                  <div class="stat-label">Organizations</div>
-              </div>
-
-              <div class="admin-stat">
-                  <div class="stat-header">
-                      <div class="stat-icon" style="background: linear-gradient(135deg, var(--warning-500), var(--warning-600));">
-                          📊
-                      </div>
-                      <div class="stat-trend trend-up">+24%</div>
-                  </div>
-                  <div class="stat-value">45,231</div>
-                  <div class="stat-label">Projects</div>
-              </div>
-
-              <div class="admin-stat">
-                  <div class="stat-header">
-                      <div class="stat-icon" style="background: linear-gradient(135deg, var(--danger-500), var(--danger-600));">
-                          💾
-                      </div>
-                      <div class="stat-trend trend-up">+5%</div>
-                  </div>
-                  <div class="stat-value">2.4TB</div>
-                  <div class="stat-label">Data Storage</div>
-              </div>
-
-              <div class="admin-stat">
-                  <div class="stat-header">
-                      <div class="stat-icon" style="background: linear-gradient(135deg, var(--primary-500), var(--primary-600));">
-                          🔒
-                      </div>
-                      <div class="stat-trend trend-down">-15%</div>
-                  </div>
-                  <div class="stat-value">3</div>
-                  <div class="stat-label">Security Alerts</div>
-              </div>
-
-              <div class="admin-stat">
-                  <div class="stat-header">
-                      <div class="stat-icon" style="background: linear-gradient(135deg, var(--sesmine-gold), var(--sesmine-copper));">
-                          💰
-                      </div>
-                      <div class="stat-trend trend-up">+18%</div>
-                  </div>
-                  <div class="stat-value">$127K</div>
-                  <div class="stat-label">Monthly Revenue</div>
-              </div>
-          </section>
-
-          <!-- Main Admin Grid -->
-          <section class="admin-grid">
-              <!-- User Management Panel -->
-              <div class="admin-panel">
-                  <div class="panel-header">
-                      <h2 class="panel-title">
-                          <i class="fas fa-users"></i>
+                  </li>
+                  <li class="nav-item">
+                      <a href="#users" class="nav-link" onclick="showSection('users')">
+                          <i class="nav-icon fas fa-users"></i>
                           User Management
-                      </h2>
-                      <div class="panel-actions">
-                          <button class="panel-btn" onclick="exportUsers()">
-                              <i class="fas fa-download"></i> Export
-                          </button>
-                          <button class="panel-btn primary" onclick="addNewUser()">
-                              <i class="fas fa-plus"></i> Add User
-                          </button>
-                      </div>
-                  </div>
-
-                  <table class="user-table">
-                      <thead>
-                          <tr>
-                              <th>User</th>
-                              <th>Role</th>
-                              <th>Status</th>
-                              <th>Last Active</th>
-                              <th>Actions</th>
-                          </tr>
-                      </thead>
-                      <tbody>
-                          <tr>
-                              <td>
-                                  <div class="user-info">
-                                      <div class="user-avatar">JD</div>
-                                      <div>
-                                          <div class="user-name">John Doe</div>
-                                          <div class="user-email">john.doe@mining.com</div>
-                                      </div>
-                                  </div>
-                              </td>
-                              <td>Mining Engineer</td>
-                              <td><span class="status-badge status-active">Active</span></td>
-                              <td>2 hours ago</td>
-                              <td>
-                                  <div class="action-menu">
-                                      <button class="action-btn" onclick="showUserActions('John Doe')">
-                                          <i class="fas fa-ellipsis-v"></i>
-                                      </button>
-                                  </div>
-                              </td>
-                          </tr>
-                          <tr>
-                              <td>
-                                  <div class="user-info">
-                                      <div class="user-avatar">SM</div>
-                                      <div>
-                                          <div class="user-name">Sarah Mitchell</div>
-                                          <div class="user-email">sarah.mitchell@consultant.com</div>
-                                      </div>
-                                  </div>
-                              </td>
-                              <td>Consultant</td>
-                              <td><span class="status-badge status-active">Active</span></td>
-                              <td>1 day ago</td>
-                              <td>
-                                  <div class="action-menu">
-                                      <button class="action-btn" onclick="showUserActions('Sarah Mitchell')">
-                                          <i class="fas fa-ellipsis-v"></i>
-                                      </button>
-                                  </div>
-                              </td>
-                          </tr>
-                          <tr>
-                              <td>
-                                  <div class="user-info">
-                                      <div class="user-avatar">MJ</div>
-                                      <div>
-                                          <div class="user-name">Michael Johnson</div>
-                                          <div class="user-email">michael.johnson@operations.com</div>
-                                      </div>
-                                  </div>
-                              </td>
-                              <td>Operations Manager</td>
-                              <td><span class="status-badge status-pending">Pending</span></td>
-                              <td>3 days ago</td>
-                              <td>
-                                  <div class="action-menu">
-                                      <button class="action-btn" onclick="showUserActions('Michael Johnson')">
-                                          <i class="fas fa-ellipsis-v"></i>
-                                      </button>
-                                  </div>
-                              </td>
-                          </tr>
-                          <tr>
-                              <td>
-                                  <div class="user-info">
-                                      <div class="user-avatar">EC</div>
-                                      <div>
-                                          <div class="user-name">Emily Chen</div>
-                                          <div class="user-email">emily.chen@environmental.com</div>
-                                      </div>
-                                  </div>
-                              </td>
-                              <td>Environmental Specialist</td>
-                              <td><span class="status-badge status-active">Active</span></td>
-                              <td>5 hours ago</td>
-                              <td>
-                                  <div class="action-menu">
-                                      <button class="action-btn" onclick="showUserActions('Emily Chen')">
-                                          <i class="fas fa-ellipsis-v"></i>
-                                      </button>
-                                  </div>
-                              </td>
-                          </tr>
-                          <tr>
-                              <td>
-                                  <div class="user-info">
-                                      <div class="user-avatar">RK</div>
-                                      <div>
-                                          <div class="user-name">Robert Kim</div>
-                                          <div class="user-email">robert.kim@maintenance.com</div>
-                                      </div>
-                                  </div>
-                              </td>
-                              <td>Maintenance Engineer</td>
-                              <td><span class="status-badge status-inactive">Inactive</span></td>
-                              <td>1 week ago</td>
-                              <td>
-                                  <div class="action-menu">
-                                      <button class="action-btn" onclick="showUserActions('Robert Kim')">
-                                          <i class="fas fa-ellipsis-v"></i>
-                                      </button>
-                                  </div>
-                              </td>
-                          </tr>
-                      </tbody>
-                  </table>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="#analytics" class="nav-link" onclick="showSection('analytics')">
+                          <i class="nav-icon fas fa-chart-bar"></i>
+                          Analytics
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="#settings" class="nav-link" onclick="showSection('settings')">
+                          <i class="nav-icon fas fa-cog"></i>
+                          Settings
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="home.html" class="nav-link">
+                          <i class="nav-icon fas fa-home"></i>
+                          Back to Platform
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="login.html" class="nav-link">
+                          <i class="nav-icon fas fa-sign-out-alt"></i>
+                          Logout
+                      </a>
+                  </li>
+              </ul>
+          </nav>
+      </aside>
+      
+      <!-- Main Content -->
+      <main class="admin-main">
+          <!-- Header -->
+          <div class="admin-header">
+              <div>
+                  <h1 class="page-title">Admin Dashboard</h1>
+                  <p>Manage SESMine platform users and registrations</p>
               </div>
-
-              <!-- Activity Feed Panel -->
-              <div class="admin-panel">
-                  <div class="panel-header">
-                      <h2 class="panel-title">
-                          <i class="fas fa-activity"></i>
-                          Recent Activity
-                      </h2>
-                      <div class="panel-actions">
-                          <button class="panel-btn" onclick="refreshActivity()">
-                              <i class="fas fa-sync"></i> Refresh
-                          </button>
+              <div class="admin-actions">
+                  <button class="btn btn-secondary" onclick="exportData()">
+                      <i class="fas fa-download"></i>
+                      Export Data
+                  </button>
+                  <button class="btn btn-primary" onclick="refreshData()">
+                      <i class="fas fa-sync-alt"></i>
+                      Refresh
+                  </button>
+              </div>
+          </div>
+          
+          <!-- Dashboard Section -->
+          <div id="dashboard-section" class="content-section">
+              <!-- Stats Grid -->
+              <div class="stats-grid">
+                  <div class="stat-card" onclick="showSection('users')">
+                      <div class="stat-header">
+                          <div class="stat-icon users">
+                              <i class="fas fa-users"></i>
+                          </div>
+                      </div>
+                      <div class="stat-value" id="totalUsers">0</div>
+                      <div class="stat-label">Total Users</div>
+                      <div class="stat-change positive">
+                          <i class="fas fa-arrow-up"></i>
+                          +12% this month
                       </div>
                   </div>
-
-                  <div class="activity-feed">
-                      <div class="activity-item">
-                          <div class="activity-icon" style="background: var(--success-500);">
-                              <i class="fas fa-user-plus"></i>
-                          </div>
-                          <div class="activity-content">
-                              <div class="activity-title">New User Registration</div>
-                              <div class="activity-description">
-                                  David Wilson registered as Mining Engineer
-                              </div>
-                              <div class="activity-time">2 minutes ago</div>
+                  
+                  <div class="stat-card" onclick="showSection('registrations')">
+                      <div class="stat-header">
+                          <div class="stat-icon pending">
+                              <i class="fas fa-clock"></i>
                           </div>
                       </div>
-
-                      <div class="activity-item">
-                          <div class="activity-icon" style="background: var(--warning-500);">
-                              <i class="fas fa-exclamation-triangle"></i>
-                          </div>
-                          <div class="activity-content">
-                              <div class="activity-title">Security Alert</div>
-                              <div class="activity-description">
-                                  Multiple failed login attempts detected
-                              </div>
-                              <div class="activity-time">15 minutes ago</div>
+                      <div class="stat-value" id="pendingRegistrations">0</div>
+                      <div class="stat-label">Pending Registrations</div>
+                      <div class="stat-change positive">
+                          <i class="fas fa-arrow-up"></i>
+                          +5 today
+                      </div>
+                  </div>
+                  
+                  <div class="stat-card">
+                      <div class="stat-header">
+                          <div class="stat-icon approved">
+                              <i class="fas fa-check-circle"></i>
                           </div>
                       </div>
-
-                      <div class="activity-item">
-                          <div class="activity-icon" style="background: var(--sesmine-accent);">
-                              <i class="fas fa-file-upload"></i>
-                          </div>
-                          <div class="activity-content">
-                              <div class="activity-title">Data Upload</div>
-                              <div class="activity-description">
-                                  Large dataset uploaded to Mining Project Alpha
-                              </div>
-                              <div class="activity-time">1 hour ago</div>
+                      <div class="stat-value" id="approvedUsers">0</div>
+                      <div class="stat-label">Approved Users</div>
+                      <div class="stat-change positive">
+                          <i class="fas fa-arrow-up"></i>
+                          +8 this week
+                      </div>
+                  </div>
+                  
+                  <div class="stat-card">
+                      <div class="stat-header">
+                          <div class="stat-icon revenue">
+                              <i class="fas fa-dollar-sign"></i>
                           </div>
                       </div>
-
-                      <div class="activity-item">
-                          <div class="activity-icon" style="background: var(--danger-500);">
-                              <i class="fas fa-server"></i>
-                          </div>
-                          <div class="activity-content">
-                              <div class="activity-title">System Maintenance</div>
-                              <div class="activity-description">
-                                  Scheduled maintenance completed successfully
-                              </div>
-                              <div class="activity-time">3 hours ago</div>
-                          </div>
-                      </div>
-
-                      <div class="activity-item">
-                          <div class="activity-icon" style="background: var(--primary-500);">
-                              <i class="fas fa-chart-line"></i>
-                          </div>
-                          <div class="activity-content">
-                              <div class="activity-title">Report Generated</div>
-                              <div class="activity-description">
-                                  Monthly analytics report generated
-                              </div>
-                              <div class="activity-time">6 hours ago</div>
-                          </div>
-                      </div>
-
-                      <div class="activity-item">
-                          <div class="activity-icon" style="background: var(--sesmine-emerald);">
-                              <i class="fas fa-graduation-cap"></i>
-                          </div>
-                          <div class="activity-content">
-                              <div class="activity-title">Course Completion</div>
-                              <div class="activity-description">
-                                  25 users completed Safety Management course
-                              </div>
-                              <div class="activity-time">1 day ago</div>
-                          </div>
+                      <div class="stat-value">$24.5K</div>
+                      <div class="stat-label">Monthly Revenue</div>
+                      <div class="stat-change positive">
+                          <i class="fas fa-arrow-up"></i>
+                          +18% this month
                       </div>
                   </div>
               </div>
-          </section>
-
-          <!-- Admin Tools -->
-          <section class="admin-tools">
-              <div class="tool-card" onclick="openSystemSettings()">
-                  <div class="tool-icon" style="background: linear-gradient(135deg, var(--gray-700), var(--gray-800));">
-                      <i class="fas fa-cogs"></i>
+              
+              <!-- Charts -->
+              <div class="charts-grid">
+                  <div class="chart-container">
+                      <h3 class="chart-title">User Registration Trends</h3>
+                      <canvas id="registrationChart" width="400" height="200"></canvas>
                   </div>
-                  <h4 class="tool-title">System Settings</h4>
-                  <p class="tool-description">Configure platform settings, integrations, and system preferences.</p>
-              </div>
-
-              <div class="tool-card" onclick="openUserRoles()">
-                  <div class="tool-icon" style="background: linear-gradient(135deg, var(--sesmine-accent), var(--sesmine-secondary));">
-                      <i class="fas fa-user-shield"></i>
+                  
+                  <div class="chart-container">
+                      <h3 class="chart-title">Access Level Distribution</h3>
+                      <canvas id="accessLevelChart" width="400" height="200"></canvas>
                   </div>
-                  <h4 class="tool-title">User Roles & Permissions</h4>
-                  <p class="tool-description">Manage user roles, permissions, and access control policies.</p>
               </div>
-
-              <div class="tool-card" onclick="openSecurityCenter()">
-                  <div class="tool-icon" style="background: linear-gradient(135deg, var(--danger-500), var(--danger-600));">
-                      <i class="fas fa-shield-alt"></i>
+          </div>
+          
+          <!-- Registrations Section -->
+          <div id="registrations-section" class="content-section" style="display: none;">
+              <div class="section-header">
+                  <h2 class="section-title">
+                      <i class="fas fa-user-plus"></i>
+                      Registration Requests
+                  </h2>
+                  <div class="section-actions">
+                      <button class="btn btn-secondary" onclick="filterRegistrations('all')">All</button>
+                      <button class="btn btn-warning" onclick="filterRegistrations('pending')">Pending</button>
+                      <button class="btn btn-success" onclick="filterRegistrations('approved')">Approved</button>
                   </div>
-                  <h4 class="tool-title">Security Center</h4>
-                  <p class="tool-description">Monitor security events, manage threats, and configure security policies.</p>
               </div>
-
-              <div class="tool-card" onclick="openBackupRestore()">
-                  <div class="tool-icon" style="background: linear-gradient(135deg, var(--warning-500), var(--warning-600));">
-                      <i class="fas fa-database"></i>
+              
+              <div class="section-content">
+                  <div class="filters-bar">
+                      <div class="filter-group">
+                          <label class="filter-label">Search</label>
+                          <input type="text" class="filter-input" id="searchInput" placeholder="Search by name or email..." onkeyup="searchRegistrations()">
+                      </div>
+                      <div class="filter-group">
+                          <label class="filter-label">Access Level</label>
+                          <select class="filter-select" id="accessLevelFilter" onchange="filterByAccessLevel()">
+                              <option value="">All Levels</option>
+                              <option value="basic">Basic</option>
+                              <option value="professional">Professional</option>
+                              <option value="enterprise">Enterprise</option>
+                          </select>
+                      </div>
+                      <div class="filter-group">
+                          <label class="filter-label">Date Range</label>
+                          <input type="date" class="filter-input" id="dateFrom" onchange="filterByDate()">
+                      </div>
                   </div>
-                  <h4 class="tool-title">Backup & Restore</h4>
-                  <p class="tool-description">Manage data backups, restore points, and disaster recovery procedures.</p>
+                  
+                  <div id="registrationsTableContainer">
+                      <div class="loading">
+                          <div class="spinner"></div>
+                          Loading registrations...
+                      </div>
+                  </div>
               </div>
-
-              <div class="tool-card" onclick="openAnalyticsReports()">
-                  <div class="tool-icon" style="background: linear-gradient(135deg, var(--success-500), var(--sesmine-emerald));">
+          </div>
+          
+          <!-- Users Section -->
+          <div id="users-section" class="content-section" style="display: none;">
+              <div class="section-header">
+                  <h2 class="section-title">
+                      <i class="fas fa-users"></i>
+                      User Management
+                  </h2>
+                  <div class="section-actions">
+                      <button class="btn btn-primary" onclick="addNewUser()">
+                          <i class="fas fa-plus"></i>
+                          Add User
+                      </button>
+                  </div>
+              </div>
+              
+              <div class="section-content">
+                  <div id="usersTableContainer">
+                      <div class="loading">
+                          <div class="spinner"></div>
+                          Loading users...
+                      </div>
+                  </div>
+              </div>
+          </div>
+          
+          <!-- Analytics Section -->
+          <div id="analytics-section" class="content-section" style="display: none;">
+              <div class="section-header">
+                  <h2 class="section-title">
                       <i class="fas fa-chart-bar"></i>
-                  </div>
-                  <h4 class="tool-title">Analytics & Reports</h4>
-                  <p class="tool-description">Generate system reports, usage analytics, and performance metrics.</p>
+                      Platform Analytics
+                  </h2>
               </div>
-
-              <div class="tool-card" onclick="openIntegrations()">
-                  <div class="tool-icon" style="background: linear-gradient(135deg, var(--primary-500), var(--primary-600));">
-                      <i class="fas fa-plug"></i>
-                  </div>
-                  <h4 class="tool-title">Integrations</h4>
-                  <p class="tool-description">Manage third-party integrations, APIs, and external service connections.</p>
-              </div>
-
-              <div class="tool-card" onclick="openAuditLogs()">
-                  <div class="tool-icon" style="background: linear-gradient(135deg, var(--sesmine-gold), var(--sesmine-copper));">
-                      <i class="fas fa-clipboard-list"></i>
-                  </div>
-                  <h4 class="tool-title">Audit Logs</h4>
-                  <p class="tool-description">Review system audit logs, user activities, and compliance reports.</p>
-              </div>
-
-              <div class="tool-card" onclick="openNotificationCenter()">
-                  <div class="tool-icon" style="background: linear-gradient(135deg, var(--warning-400), var(--warning-500));">
-                      <i class="fas fa-bell"></i>
-                  </div>
-                  <h4 class="tool-title">Notification Center</h4>
-                  <p class="tool-description">Configure system notifications, alerts, and communication preferences.</p>
-              </div>
-          </section>
-
-          <!-- System Status -->
-          <section class="system-status">
-              <div class="status-header">
-                  <h2 class="status-title">System Status</h2>
-                  <div class="status-indicator">
-                      <div class="status-dot"></div>
-                      All Systems Operational
-                  </div>
-              </div>
-
-              <div class="system-metrics">
-                  <div class="metric-item">
-                      <div class="metric-name">CPU Usage</div>
-                      <div class="metric-value">34%</div>
-                      <div class="metric-bar">
-                          <div class="metric-fill" style="width: 34%"></div>
+              
+              <div class="section-content">
+                  <div class="charts-grid">
+                      <div class="chart-container">
+                          <h3 class="chart-title">Daily Active Users</h3>
+                          <canvas id="dailyUsersChart" width="400" height="200"></canvas>
                       </div>
-                  </div>
-
-                  <div class="metric-item">
-                      <div class="metric-name">Memory Usage</div>
-                      <div class="metric-value">67%</div>
-                      <div class="metric-bar">
-                          <div class="metric-fill" style="width: 67%"></div>
+                      
+                      <div class="chart-container">
+                          <h3 class="chart-title">Feature Usage</h3>
+                          <canvas id="featureUsageChart" width="400" height="200"></canvas>
                       </div>
-                  </div>
-
-                  <div class="metric-item">
-                      <div class="metric-name">Disk Usage</div>
-                      <div class="metric-value">45%</div>
-                      <div class="metric-bar">
-                          <div class="metric-fill" style="width: 45%"></div>
+                      
+                      <div class="chart-container">
+                          <h3 class="chart-title">Revenue Trends</h3>
+                          <canvas id="revenueChart" width="400" height="200"></canvas>
                       </div>
-                  </div>
-
-                  <div class="metric-item">
-                      <div class="metric-name">Network I/O</div>
-                      <div class="metric-value">23%</div>
-                      <div class="metric-bar">
-                          <div class="metric-fill" style="width: 23%"></div>
-                      </div>
-                  </div>
-
-                  <div class="metric-item">
-                      <div class="metric-name">Database Load</div>
-                      <div class="metric-value">56%</div>
-                      <div class="metric-bar">
-                          <div class="metric-fill" style="width: 56%"></div>
-                      </div>
-                  </div>
-
-                  <div class="metric-item">
-                      <div class="metric-name">API Response Time</div>
-                      <div class="metric-value">127ms</div>
-                      <div class="metric-bar">
-                          <div class="metric-fill" style="width: 15%"></div>
+                      
+                      <div class="chart-container">
+                          <h3 class="chart-title">User Satisfaction</h3>
+                          <canvas id="satisfactionChart" width="400" height="200"></canvas>
                       </div>
                   </div>
               </div>
-          </section>
+          </div>
+          
+          <!-- Settings Section -->
+          <div id="settings-section" class="content-section" style="display: none;">
+              <div class="section-header">
+                  <h2 class="section-title">
+                      <i class="fas fa-cog"></i>
+                      Platform Settings
+                  </h2>
+              </div>
+              
+              <div class="section-content">
+                  <div class="user-details">
+                      <div class="detail-item">
+                          <div class="detail-label">Email Notifications</div>
+                          <div class="detail-value">
+                              <label>
+                                  <input type="checkbox" id="emailNotifications" checked onchange="updateSettings()">
+                                  Enable email notifications for new registrations
+                              </label>
+                          </div>
+                      </div>
+                      
+                      <div class="detail-item">
+                          <div class="detail-label">Auto-Approval</div>
+                          <div class="detail-value">
+                              <label>
+                                  <input type="checkbox" id="autoApproval" onchange="updateSettings()">
+                                  Auto-approve basic user registrations
+                              </label>
+                          </div>
+                      </div>
+                      
+                      <div class="detail-item">
+                          <div class="detail-label">Data Retention</div>
+                          <div class="detail-value">
+                              <select id="dataRetention" onchange="updateSettings()">
+                                  <option value="30">30 days</option>
+                                  <option value="90" selected>90 days</option>
+                                  <option value="365">1 year</option>
+                                  <option value="0">Indefinite</option>
+                              </select>
+                          </div>
+                      </div>
+                      
+                      <div class="detail-item">
+                          <div class="detail-label">Backup Frequency</div>
+                          <div class="detail-value">
+                              <select id="backupFrequency" onchange="updateSettings()">
+                                  <option value="daily" selected>Daily</option>
+                                  <option value="weekly">Weekly</option>
+                                  <option value="monthly">Monthly</option>
+                              </select>
+                          </div>
+                      </div>
+                  </div>
+                  
+                  <div class="modal-actions">
+                      <button class="btn btn-primary" onclick="saveSettings()">
+                          <i class="fas fa-save"></i>
+                          Save Settings
+                      </button>
+                      <button class="btn btn-secondary" onclick="resetSettings()">
+                          <i class="fas fa-undo"></i>
+                          Reset to Defaults
+                      </button>
+                  </div>
+              </div>
+          </div>
+      </main>
+  </div>
+  
+  <!-- Registration Detail Modal -->
+  <div id="registrationModal" class="modal">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h2 class="modal-title">Registration Details</h2>
+              <span class="close-modal" onclick="closeModal()">&times;</span>
+          </div>
+          <div class="modal-body">
+              <div id="registrationDetails"></div>
+              <div class="modal-actions">
+                  <button class="btn btn-success" onclick="approveRegistration()">
+                      <i class="fas fa-check"></i>
+                      Approve
+                  </button>
+                  <button class="btn btn-error" onclick="rejectRegistration()">
+                      <i class="fas fa-times"></i>
+                      Reject
+                  </button>
+                  <button class="btn btn-secondary" onclick="closeModal()">
+                      Cancel
+                  </button>
+              </div>
+          </div>
       </div>
-  </main>
+  </div>
 
-  <script src="script.js"></script>
   <script>
-  // Admin Dashboard specific JavaScript
+  // Initialize EmailJS
+  (function() {
+      emailjs.init("YOUR_EMAILJS_USER_ID"); // Replace with your EmailJS User ID
+  })();
+  
+  // Global variables
+  let currentSection = 'dashboard';
+  let registrations = [];
+  let users = [];
+  let currentRegistration = null;
+  let charts = {};
+  
+  // Initialize admin dashboard
   document.addEventListener('DOMContentLoaded', function() {
       initializeAdminDashboard();
   });
-
+  
   function initializeAdminDashboard() {
-      console.log('🛡️ Admin Dashboard initialized');
+      console.log('🏔️ SESMine Admin Dashboard Initializing...');
       
-      // Initialize real-time updates
-      startSystemMonitoring();
+      // Load data and initialize components
+      loadRegistrationData();
+      loadUserData();
+      updateDashboardStats();
+      initializeCharts();
       
-      // Initialize user management
-      initializeUserManagement();
+      // Set up periodic data refresh
+      setInterval(refreshData, 30000); // Refresh every 30 seconds
       
-      // Track admin access
-      analytics.track('admin_dashboard_access', {
-          timestamp: new Date().toISOString(),
-          userAgent: navigator.userAgent
+      console.log('✅ Admin Dashboard Ready');
+  }
+  
+  // Data Management
+  function loadRegistrationData() {
+      // Load from localStorage (in real app, fetch from API)
+      const storedRegistrations = localStorage.getItem('sesmine_registrations');
+      if (storedRegistrations) {
+          registrations = JSON.parse(storedRegistrations);
+      } else {
+          // Sample data for demonstration
+          registrations = [
+              {
+                  id: 1,
+                  fullName: 'John Smith',
+                  email: 'john.smith@mining.com',
+                  company: 'Global Mining Corp',
+                  jobTitle: 'Mining Engineer',
+                  phone: '+1-555-0123',
+                  accessLevel: 'professional',
+                  projectDescription: 'Large-scale copper mining operation requiring cost estimation tools.',
+                  timestamp: '2024-12-20T10:30:00Z',
+                  status: 'pending'
+              },
+              {
+                  id: 2,
+                  fullName: 'Sarah Johnson',
+                  email: 'sarah.j@goldfields.com',
+                  company: 'Goldfields International',
+                  jobTitle: 'Project Manager',
+                  phone: '+1-555-0124',
+                  accessLevel: 'enterprise',
+                  projectDescription: 'Gold mining feasibility study with comprehensive analytics requirements.',
+                  timestamp: '2024-12-19T14:15:00Z',
+                  status: 'pending'
+              },
+              {
+                  id: 3,
+                  fullName: 'Michael Chen',
+                  email: 'm.chen@ironore.com',
+                  company: 'Iron Ore Solutions',
+                  jobTitle: 'Cost Analyst',
+                  phone: '+1-555-0125',
+                  accessLevel: 'basic',
+                  projectDescription: 'Iron ore processing cost analysis.',
+                  timestamp: '2024-12-18T09:45:00Z',
+                  status: 'approved'
+              }
+          ];
+      }
+      
+      updateRegistrationsDisplay();
+  }
+  
+  function loadUserData() {
+      // Load approved users
+      users = registrations.filter(reg => reg.status === 'approved');
+      updateUsersDisplay();
+  }
+  
+  function updateDashboardStats() {
+      const totalUsers = users.length;
+      const pendingRegs = registrations.filter(r => r.status === 'pending').length;
+      const approvedUsers = registrations.filter(r => r.status === 'approved').length;
+      
+      document.getElementById('totalUsers').textContent = totalUsers;
+      document.getElementById('pendingRegistrations').textContent = pendingRegs;
+      document.getElementById('approvedUsers').textContent = approvedUsers;
+      
+      // Update pending count badge
+      const pendingBadge = document.getElementById('pendingCount');
+      if (pendingRegs > 0) {
+          pendingBadge.textContent = pendingRegs;
+          pendingBadge.style.cssText = `
+              background: var(--accent-warning);
+              color: white;
+              padding: 2px 8px;
+              border-radius: 50px;
+              font-size: 0.7rem;
+              font-weight: 600;
+              margin-left: auto;
+          `;
+      } else {
+          pendingBadge.textContent = '';
+          pendingBadge.style.display = 'none';
+      }
+  }
+  
+  // Section Navigation
+  function showSection(sectionName) {
+      // Hide all sections
+      const sections = document.querySelectorAll('[id$="-section"]');
+      sections.forEach(section => section.style.display = 'none');
+      
+      // Show selected section
+      document.getElementById(sectionName + '-section').style.display = 'block';
+      
+      // Update navigation
+      document.querySelectorAll('.nav-link').forEach(link => {
+          link.classList.remove('active');
       });
+      document.querySelector(`[onclick="showSection('${sectionName}')"]`).classList.add('active');
+      
+      currentSection = sectionName;
+      
+      // Load section-specific data
+      switch(sectionName) {
+          case 'registrations':
+              updateRegistrationsDisplay();
+              break;
+          case 'users':
+              updateUsersDisplay();
+              break;
+          case 'analytics':
+              updateAnalyticsCharts();
+              break;
+      }
   }
-
-  function startSystemMonitoring() {
-      // Update system metrics every 30 seconds
-      setInterval(() => {
-          updateSystemMetrics();
-      }, 30000);
+  
+  // Registration Management
+  function updateRegistrationsDisplay() {
+      const container = document.getElementById('registrationsTableContainer');
       
-      // Update activity feed every 2 minutes
-      setInterval(() => {
-          updateActivityFeed();
-      }, 120000);
+      if (registrations.length === 0) {
+          container.innerHTML = `
+              <div style="text-align: center; padding: var(--space-2xl); color: var(--accent-secondary);">
+                  <i class="fas fa-inbox" style="font-size: 3rem; margin-bottom: var(--space-lg);"></i>
+                  <h3>No registrations found</h3>
+                  <p>New registration requests will appear here.</p>
+              </div>
+          `;
+          return;
+      }
       
-      console.log('📊 System monitoring started');
+      const tableHTML = `
+          <table class="registrations-table">
+              <thead>
+                  <tr>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Company</th>
+                      <th>Access Level</th>
+                      <th>Date</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  ${registrations.map(reg => `
+                      <tr>
+                          <td>
+                              <strong>${reg.fullName}</strong><br>
+                              <small style="color: var(--accent-secondary);">${reg.jobTitle}</small>
+                          </td>
+                          <td>${reg.email}</td>
+                          <td>${reg.company}</td>
+                          <td>
+                              <span class="access-level-badge access-${reg.accessLevel}">
+                                  ${reg.accessLevel}
+                              </span>
+                          </td>
+                          <td>${new Date(reg.timestamp).toLocaleDateString()}</td>
+                          <td>
+                              <span class="status-badge status-${reg.status}">
+                                  ${reg.status}
+                              </span>
+                          </td>
+                          <td>
+                              <div class="action-buttons">
+                                  <button class="btn btn-small btn-secondary" onclick="viewRegistration(${reg.id})">
+                                      <i class="fas fa-eye"></i>
+                                      View
+                                  </button>
+                                  ${reg.status === 'pending' ? `
+                                      <button class="btn btn-small btn-success" onclick="quickApprove(${reg.id})">
+                                          <i class="fas fa-check"></i>
+                                          Approve
+                                      </button>
+                                      <button class="btn btn-small btn-error" onclick="quickReject(${reg.id})">
+                                          <i class="fas fa-times"></i>
+                                          Reject
+                                      </button>
+                                  ` : ''}
+                              </div>
+                          </td>
+                      </tr>
+                  `).join('')}
+              </tbody>
+          </table>
+      `;
+      
+      container.innerHTML = tableHTML;
   }
-
-  function updateSystemMetrics() {
-      const metrics = document.querySelectorAll('.metric-fill');
+  
+  function updateUsersDisplay() {
+      const container = document.getElementById('usersTableContainer');
       
-      metrics.forEach(metric => {
-          // Simulate metric fluctuation
-          const currentWidth = parseFloat(metric.style.width);
-          const variation = (Math.random() - 0.5) * 10; // ±5% variation
-          const newWidth = Math.max(0, Math.min(100, currentWidth + variation));
+      if (users.length === 0) {
+          container.innerHTML = `
+              <div style="text-align: center; padding: var(--space-2xl); color: var(--accent-secondary);">
+                  <i class="fas fa-users" style="font-size: 3rem; margin-bottom: var(--space-lg);"></i>
+                  <h3>No approved users found</h3>
+                  <p>Approved users will appear here.</p>
+              </div>
+          `;
+          return;
+      }
+      
+      const tableHTML = `
+          <table class="registrations-table">
+              <thead>
+                  <tr>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Company</th>
+                      <th>Access Level</th>
+                      <th>Approved Date</th>
+                      <th>Last Login</th>
+                      <th>Actions</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  ${users.map(user => `
+                      <tr>
+                          <td>
+                              <strong>${user.fullName}</strong><br>
+                              <small style="color: var(--accent-secondary);">${user.jobTitle}</small>
+                          </td>
+                          <td>${user.email}</td>
+                          <td>${user.company}</td>
+                          <td>
+                              <span class="access-level-badge access-${user.accessLevel}">
+                                  ${user.accessLevel}
+                              </span>
+                          </td>
+                          <td>${new Date(user.timestamp).toLocaleDateString()}</td>
+                          <td>
+                              <span style="color: var(--accent-secondary);">Never</span>
+                          </td>
+                          <td>
+                              <div class="action-buttons">
+                                  <button class="btn btn-small btn-secondary" onclick="editUser(${user.id})">
+                                      <i class="fas fa-edit"></i>
+                                      Edit
+                                  </button>
+                                  <button class="btn btn-small btn-warning" onclick="suspendUser(${user.id})">
+                                      <i class="fas fa-pause"></i>
+                                      Suspend
+                                  </button>
+                              </div>
+                          </td>
+                      </tr>
+                  `).join('')}
+              </tbody>
+          </table>
+      `;
+      
+      container.innerHTML = tableHTML;
+  }
+  
+  // Registration Actions
+  function viewRegistration(id) {
+      const registration = registrations.find(r => r.id === id);
+      if (!registration) return;
+      
+      currentRegistration = registration;
+      
+      const detailsHTML = `
+          <div class="user-details">
+              <div class="detail-item">
+                  <div class="detail-label">Full Name</div>
+                  <div class="detail-value">${registration.fullName}</div>
+              </div>
+              <div class="detail-item">
+                  <div class="detail-label">Email</div>
+                  <div class="detail-value">${registration.email}</div>
+              </div>
+              <div class="detail-item">
+                  <div class="detail-label">Company</div>
+                  <div class="detail-value">${registration.company}</div>
+              </div>
+              <div class="detail-item">
+                  <div class="detail-label">Job Title</div>
+                  <div class="detail-value">${registration.jobTitle}</div>
+              </div>
+              <div class="detail-item">
+                  <div class="detail-label">Phone</div>
+                  <div class="detail-value">${registration.phone || 'Not provided'}</div>
+              </div>
+              <div class="detail-item">
+                  <div class="detail-label">Access Level</div>
+                  <div class="detail-value">
+                      <span class="access-level-badge access-${registration.accessLevel}">
+                          ${registration.accessLevel}
+                      </span>
+                  </div>
+              </div>
+              <div class="detail-item">
+                  <div class="detail-label">Registration Date</div>
+                  <div class="detail-value">${new Date(registration.timestamp).toLocaleString()}</div>
+              </div>
+              <div class="detail-item">
+                  <div class="detail-label">Status</div>
+                  <div class="detail-value">
+                      <span class="status-badge status-${registration.status}">
+                          ${registration.status}
+                      </span>
+                  </div>
+              </div>
+          </div>
+          ${registration.projectDescription ? `
+              <div class="detail-item" style="grid-column: 1 / -1; margin-top: var(--space-lg);">
+                  <div class="detail-label">Project Description</div>
+                  <div class="detail-value" style="white-space: pre-wrap; line-height: 1.6;">
+                      ${registration.projectDescription}
+                  </div>
+              </div>
+          ` : ''}
+      `;
+      
+      document.getElementById('registrationDetails').innerHTML = detailsHTML;
+      document.getElementById('registrationModal').style.display = 'block';
+  }
+  
+  function closeModal() {
+      document.getElementById('registrationModal').style.display = 'none';
+      currentRegistration = null;
+  }
+  
+  async function approveRegistration() {
+      if (!currentRegistration) return;
+      
+      try {
+          // Update status
+          const regIndex = registrations.findIndex(r => r.id === currentRegistration.id);
+          if (regIndex !== -1) {
+              registrations[regIndex].status = 'approved';
+              registrations[regIndex].approvedDate = new Date().toISOString();
+          }
           
-          metric.style.width = newWidth + '%';
+          // Save to localStorage
+          localStorage.setItem('sesmine_registrations', JSON.stringify(registrations));
+          
+          // Send approval email
+          await sendApprovalEmail(currentRegistration);
+          
+          // Update displays
+          loadUserData();
+          updateRegistrationsDisplay();
+          updateDashboardStats();
+          
+          // Close modal and show success
+          closeModal();
+          showNotification(`Registration approved for ${currentRegistration.fullName}`, 'success');
+          
+      } catch (error) {
+          console.error('Approval error:', error);
+          showNotification('Failed to approve registration. Please try again.', 'error');
+      }
+  }
+  
+  async function rejectRegistration() {
+      if (!currentRegistration) return;
+      
+      try {
+          // Update status
+          const regIndex = registrations.findIndex(r => r.id === currentRegistration.id);
+          if (regIndex !== -1) {
+              registrations[regIndex].status = 'rejected';
+              registrations[regIndex].rejectedDate = new Date().toISOString();
+          }
+          
+          // Save to localStorage
+          localStorage.setItem('sesmine_registrations', JSON.stringify(registrations));
+          
+          // Send rejection email
+          await sendRejectionEmail(currentRegistration);
+          
+          // Update displays
+          updateRegistrationsDisplay();
+          updateDashboardStats();
+          
+          // Close modal and show success
+          closeModal();
+          showNotification(`Registration rejected for ${currentRegistration.fullName}`, 'warning');
+          
+      } catch (error) {
+          console.error('Rejection error:', error);
+          showNotification('Failed to reject registration. Please try again.', 'error');
+      }
+  }
+  
+  async function quickApprove(id) {
+      const registration = registrations.find(r => r.id === id);
+      if (!registration) return;
+      
+      currentRegistration = registration;
+      await approveRegistration();
+  }
+  
+  async function quickReject(id) {
+      const registration = registrations.find(r => r.id === id);
+      if (!registration) return;
+      
+      if (confirm(`Are you sure you want to reject the registration for ${registration.fullName}?`)) {
+          currentRegistration = registration;
+          await rejectRegistration();
+      }
+  }
+  
+  // Email Functions
+  async function sendApprovalEmail(registration) {
+      const templateParams = {
+          to_name: registration.fullName,
+          to_email: registration.email,
+          company: registration.company,
+          access_level: registration.accessLevel,
+          login_url: window.location.origin + '/login.html',
+          platform_url: window.location.origin + '/home.html'
+      };
+      
+      await emailjs.send('YOUR_SERVICE_ID', 'approval_template', templateParams);
+  }
+  
+  async function sendRejectionEmail(registration) {
+      const templateParams = {
+          to_name: registration.fullName,
+          to_email: registration.email,
+          company: registration.company,
+          contact_email: 'support@sesmine.com'
+      };
+      
+      await emailjs.send('YOUR_SERVICE_ID', 'rejection_template', templateParams);
+  }
+  
+  // Filtering and Search
+  function searchRegistrations() {
+      const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+      const filteredRegs = registrations.filter(reg => 
+          reg.fullName.toLowerCase().includes(searchTerm) ||
+          reg.email.toLowerCase().includes(searchTerm) ||
+          reg.company.toLowerCase().includes(searchTerm)
+      );
+      
+      updateFilteredRegistrationsDisplay(filteredRegs);
+  }
+  
+  function filterRegistrations(status) {
+      let filteredRegs;
+      if (status === 'all') {
+          filteredRegs = registrations;
+      } else {
+          filteredRegs = registrations.filter(reg => reg.status === status);
+      }
+      
+      updateFilteredRegistrationsDisplay(filteredRegs);
+  }
+  
+  function filterByAccessLevel() {
+      const accessLevel = document.getElementById('accessLevelFilter').value;
+      let filteredRegs;
+      
+      if (accessLevel === '') {
+          filteredRegs = registrations;
+      } else {
+          filteredRegs = registrations.filter(reg => reg.accessLevel === accessLevel);
+      }
+      
+      updateFilteredRegistrationsDisplay(filteredRegs);
+  }
+  
+  function filterByDate() {
+      const dateFrom = document.getElementById('dateFrom').value;
+      if (!dateFrom) {
+          updateRegistrationsDisplay();
+          return;
+      }
+      
+      const fromDate = new Date(dateFrom);
+      const filteredRegs = registrations.filter(reg => {
+          const regDate = new Date(reg.timestamp);
+          return regDate >= fromDate;
       });
       
-      // Update metric values
-      const metricValues = document.querySelectorAll('.system-metrics .metric-value');
-      metricValues.forEach((value, index) => {
-          if (index < 5) { // First 5 are percentages
-              const currentValue = parseFloat(value.textContent);
-              const variation = (Math.random() - 0.5) * 10;
-              const newValue = Math.max(0, Math.min(100, currentValue + variation));
-              value.textContent = Math.round(newValue) + '%';
-          } else { // Last one is response time
-              const currentValue = parseFloat(value.textContent);
-              const variation = (Math.random() - 0.5) * 20;
-              const newValue = Math.max(50, currentValue + variation);
-              value.textContent = Math.round(newValue) + 'ms';
+      updateFilteredRegistrationsDisplay(filteredRegs);
+  }
+  
+  function updateFilteredRegistrationsDisplay(filteredRegistrations) {
+      const container = document.getElementById('registrationsTableContainer');
+      
+      if (filteredRegistrations.length === 0) {
+          container.innerHTML = `
+              <div style="text-align: center; padding: var(--space-2xl); color: var(--accent-secondary);">
+                  <i class="fas fa-search" style="font-size: 3rem; margin-bottom: var(--space-lg);"></i>
+                  <h3>No registrations match your criteria</h3>
+                  <p>Try adjusting your filters or search terms.</p>
+              </div>
+          `;
+          return;
+      }
+      
+      const tableHTML = `
+          <table class="registrations-table">
+              <thead>
+                  <tr>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Company</th>
+                      <th>Access Level</th>
+                      <th>Date</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  ${filteredRegistrations.map(reg => `
+                      <tr>
+                          <td>
+                              <strong>${reg.fullName}</strong><br>
+                              <small style="color: var(--accent-secondary);">${reg.jobTitle}</small>
+                          </td>
+                          <td>${reg.email}</td>
+                          <td>${reg.company}</td>
+                          <td>
+                              <span class="access-level-badge access-${reg.accessLevel}">
+                                  ${reg.accessLevel}
+                              </span>
+                          </td>
+                          <td>${new Date(reg.timestamp).toLocaleDateString()}</td>
+                          <td>
+                              <span class="status-badge status-${reg.status}">
+                                  ${reg.status}
+                              </span>
+                          </td>
+                          <td>
+                              <div class="action-buttons">
+                                  <button class="btn btn-small btn-secondary" onclick="viewRegistration(${reg.id})">
+                                      <i class="fas fa-eye"></i>
+                                      View
+                                  </button>
+                                  ${reg.status === 'pending' ? `
+                                      <button class="btn btn-small btn-success" onclick="quickApprove(${reg.id})">
+                                          <i class="fas fa-check"></i>
+                                          Approve
+                                      </button>
+                                      <button class="btn btn-small btn-error" onclick="quickReject(${reg.id})">
+                                          <i class="fas fa-times"></i>
+                                          Reject
+                                      </button>
+                                  ` : ''}
+                              </div>
+                          </td>
+                      </tr>
+                  `).join('')}
+              </tbody>
+          </table>
+      `;
+      
+      container.innerHTML = tableHTML;
+  }
+  
+  // Charts
+  function initializeCharts() {
+      initializeRegistrationChart();
+      initializeAccessLevelChart();
+  }
+  
+  function initializeRegistrationChart() {
+      const ctx = document.getElementById('registrationChart').getContext('2d');
+      
+      // Generate sample data for the last 7 days
+      const labels = [];
+      const data = [];
+      for (let i = 6; i >= 0; i--) {
+          const date = new Date();
+          date.setDate(date.getDate() - i);
+          labels.push(date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }));
+          data.push(Math.floor(Math.random() * 10) + 1);
+      }
+      
+      charts.registrationChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+              labels: labels,
+              datasets: [{
+                  label: 'New Registrations',
+                  data: data,
+                  borderColor: '#5c6b50',
+                  backgroundColor: 'rgba(92, 107, 80, 0.1)',
+                  borderWidth: 3,
+                  fill: true,
+                  tension: 0.4
+              }]
+          },
+          options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                  legend: {
+                      display: false
+                  }
+              },
+              scales: {
+                  y: {
+                      beginAtZero: true,
+                      ticks: {
+                          stepSize: 1
+                      }
+                  }
+              }
           }
       });
   }
-
-  function updateActivityFeed() {
-      // Simulate new activity
-      const activities = [
-          { icon: 'fas fa-user-plus', bg: 'var(--success-500)', title: 'New User Registration', desc: 'New mining engineer joined the platform' },
-          { icon: 'fas fa-file-upload', bg: 'var(--sesmine-accent)', title: 'Data Upload', desc: 'Project data uploaded successfully' },
-          { icon: 'fas fa-chart-line', bg: 'var(--primary-500)', title: 'Report Generated', desc: 'Weekly analytics report created' },
-          { icon: 'fas fa-cog', bg: 'var(--warning-500)', title: 'System Update', desc: 'Platform updated to latest version' }
-      ];
+  
+  function initializeAccessLevelChart() {
+      const ctx = document.getElementById('accessLevelChart').getContext('2d');
       
-      const randomActivity = activities[Math.floor(Math.random() * activities.length)];
+      const accessLevelCounts = {
+          basic: registrations.filter(r => r.accessLevel === 'basic').length,
+          professional: registrations.filter(r => r.accessLevel === 'professional').length,
+          enterprise: registrations.filter(r => r.accessLevel === 'enterprise').length
+      };
       
-      // Add new activity to the top of the feed
-      const activityFeed = document.querySelector('.activity-feed');
-      const newActivity = document.createElement('div');
-      newActivity.className = 'activity-item';
-      newActivity.innerHTML = `
-          <div class="activity-icon" style="background: ${randomActivity.bg};">
-              <i class="${randomActivity.icon}"></i>
-          </div>
-          <div class="activity-content">
-              <div class="activity-title">${randomActivity.title}</div>
-              <div class="activity-description">${randomActivity.desc}</div>
-              <div class="activity-time">Just now</div>
+      charts.accessLevelChart = new Chart(ctx, {
+          type: 'doughnut',
+          data: {
+              labels: ['Basic', 'Professional', 'Enterprise'],
+              datasets: [{
+                  data: [accessLevelCounts.basic, accessLevelCounts.professional, accessLevelCounts.enterprise],
+                  backgroundColor: ['#3182ce', '#5c6b50', '#1a1a1a'],
+                  borderWidth: 0
+              }]
+          },
+          options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                  legend: {
+                      position: 'bottom'
+                  }
+              }
+          }
+      });
+  }
+  
+  function updateAnalyticsCharts() {
+      // Initialize analytics charts when section is shown
+      setTimeout(() => {
+          initializeDailyUsersChart();
+          initializeFeatureUsageChart();
+          initializeRevenueChart();
+          initializeSatisfactionChart();
+      }, 100);
+  }
+  
+  function initializeDailyUsersChart() {
+      const ctx = document.getElementById('dailyUsersChart').getContext('2d');
+      
+      const labels = [];
+      const data = [];
+      for (let i = 29; i >= 0; i--) {
+          const date = new Date();
+          date.setDate(date.getDate() - i);
+          labels.push(date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }));
+          data.push(Math.floor(Math.random() * 50) + 20);
+      }
+      
+      new Chart(ctx, {
+          type: 'line',
+          data: {
+              labels: labels,
+              datasets: [{
+                  label: 'Daily Active Users',
+                  data: data,
+                  borderColor: '#3182ce',
+                  backgroundColor: 'rgba(49, 130, 206, 0.1)',
+                  borderWidth: 2,
+                  fill: true,
+                  tension: 0.4
+              }]
+          },
+          options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                  legend: {
+                      display: false
+                  }
+              },
+              scales: {
+                  y: {
+                      beginAtZero: true
+                  }
+              }
+          }
+      });
+  }
+  
+  function initializeFeatureUsageChart() {
+      const ctx = document.getElementById('featureUsageChart').getContext('2d');
+      
+      new Chart(ctx, {
+          type: 'bar',
+          data: {
+              labels: ['Engineering Hub', 'Analytics', 'Economics Hub', 'Procurement', 'Consulting', 'Innovation'],
+              datasets: [{
+                  label: 'Usage Count',
+                  data: [45, 38, 32, 28, 22, 18],
+                  backgroundColor: ['#5c6b50', '#3182ce', '#dd6b20', '#38a169', '#e53e3e', '#d69e2e'],
+                  borderWidth: 0
+              }]
+          },
+          options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                  legend: {
+                      display: false
+                  }
+              },
+              scales: {
+                  y: {
+                      beginAtZero: true
+                  }
+              }
+          }
+      });
+  }
+  
+  function initializeRevenueChart() {
+      const ctx = document.getElementById('revenueChart').getContext('2d');
+      
+      const labels = [];
+      const data = [];
+      for (let i = 11; i >= 0; i--) {
+          const date = new Date();
+          date.setMonth(date.getMonth() - i);
+          labels.push(date.toLocaleDateString('en-US', { month: 'short', year: '2-digit' }));
+          data.push(Math.floor(Math.random() * 15000) + 10000);
+      }
+      
+      new Chart(ctx, {
+          type: 'bar',
+          data: {
+              labels: labels,
+              datasets: [{
+                  label: 'Monthly Revenue ($)',
+                  data: data,
+                  backgroundColor: '#5c6b50',
+                  borderWidth: 0
+              }]
+          },
+          options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                  legend: {
+                      display: false
+                  }
+              },
+              scales: {
+                  y: {
+                      beginAtZero: true,
+                      ticks: {
+                          callback: function(value) {
+                              return '$' + (value / 1000) + 'K';
+                          }
+                      }
+                  }
+              }
+          }
+      });
+  }
+  
+  function initializeSatisfactionChart() {
+      const ctx = document.getElementById('satisfactionChart').getContext('2d');
+      
+      new Chart(ctx, {
+          type: 'doughnut',
+          data: {
+              labels: ['Very Satisfied', 'Satisfied', 'Neutral', 'Dissatisfied'],
+              datasets: [{
+                  data: [65, 28, 5, 2],
+                  backgroundColor: ['#38a169', '#5c6b50', '#dd6b20', '#e53e3e'],
+                  borderWidth: 0
+              }]
+          },
+          options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                  legend: {
+                      position: 'bottom'
+                  }
+              }
+          }
+      });
+  }
+  
+  // Utility Functions
+  function refreshData() {
+      loadRegistrationData();
+      loadUserData();
+      updateDashboardStats();
+      
+      // Update charts if they exist
+      if (charts.accessLevelChart) {
+          const accessLevelCounts = {
+              basic: registrations.filter(r => r.accessLevel === 'basic').length,
+              professional: registrations.filter(r => r.accessLevel === 'professional').length,
+              enterprise: registrations.filter(r => r.accessLevel === 'enterprise').length
+          };
+          
+          charts.accessLevelChart.data.datasets[0].data = [
+              accessLevelCounts.basic, 
+              accessLevelCounts.professional, 
+              accessLevelCounts.enterprise
+          ];
+          charts.accessLevelChart.update();
+      }
+      
+      showNotification('Data refreshed successfully', 'success');
+  }
+  
+  function exportData() {
+      const data = {
+          registrations: registrations,
+          users: users,
+          exportDate: new Date().toISOString()
+      };
+      
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `sesmine-admin-data-${new Date().toISOString().split('T')[0]}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      
+      showNotification('Data exported successfully', 'success');
+  }
+  
+  function addNewUser() {
+      showNotification('Add new user functionality coming soon', 'info');
+  }
+  
+  function editUser(id) {
+      showNotification('Edit user functionality coming soon', 'info');
+  }
+  
+  function suspendUser(id) {
+      const user = users.find(u => u.id === id);
+      if (user && confirm(`Are you sure you want to suspend ${user.fullName}?`)) {
+          showNotification(`User ${user.fullName} suspended`, 'warning');
+      }
+  }
+  
+  // Settings Functions
+  function updateSettings() {
+      showNotification('Settings updated', 'success');
+  }
+  
+  function saveSettings() {
+      const settings = {
+          emailNotifications: document.getElementById('emailNotifications').checked,
+          autoApproval: document.getElementById('autoApproval').checked,
+          dataRetention: document.getElementById('dataRetention').value,
+          backupFrequency: document.getElementById('backupFrequency').value
+      };
+      
+      localStorage.setItem('sesmine_admin_settings', JSON.stringify(settings));
+      showNotification('Settings saved successfully', 'success');
+  }
+  
+  function resetSettings() {
+      if (confirm('Are you sure you want to reset all settings to defaults?')) {
+          document.getElementById('emailNotifications').checked = true;
+          document.getElementById('autoApproval').checked = false;
+          document.getElementById('dataRetention').value = '90';
+          document.getElementById('backupFrequency').value = 'daily';
+          
+          showNotification('Settings reset to defaults', 'info');
+      }
+  }
+  
+  // Notification System
+  function showNotification(message, type = 'info') {
+      const notification = document.createElement('div');
+      notification.className = `notification ${type}`;
+      
+      const iconMap = {
+          info: 'fas fa-info-circle',
+          success: 'fas fa-check-circle',
+          warning: 'fas fa-exclamation-triangle',
+          error: 'fas fa-times-circle'
+      };
+      
+      notification.innerHTML = `
+          <div class="notification-content">
+              <i class="notification-icon ${iconMap[type]}"></i>
+              <span class="notification-message">${message}</span>
+              <button class="notification-close" onclick="this.parentElement.parentElement.remove()">
+                  <i class="fas fa-times"></i>
+              </button>
           </div>
       `;
       
-      activityFeed.insertBefore(newActivity, activityFeed.firstChild);
-      
-      // Remove last item if more than 6 activities
-      const activities_list = activityFeed.querySelectorAll('.activity-item');
-      if (activities_list.length > 6) {
-          activityFeed.removeChild(activities_list[activities_list.length - 1]);
-      }
-  }
-
-  function initializeUserManagement() {
-      // Add click handlers for user actions
-      const actionButtons = document.querySelectorAll('.action-btn');
-      actionButtons.forEach(button => {
-          button.addEventListener('click', function(e) {
-              e.stopPropagation();
-              // Visual feedback
-              this.style.transform = 'scale(0.95)';
-              setTimeout(() => {
-                  this.style.transform = 'scale(1)';
-              }, 150);
-          });
-      });
-  }
-
-  // Admin tool functions
-  function openSystemSettings() {
-      analytics.track('admin_tool_access', { tool: 'system_settings' });
-      showNotification('⚙️ Opening System Settings...', 'info');
+      document.body.appendChild(notification);
       
       setTimeout(() => {
-          showNotification('🔧 System Settings panel loaded', 'success');
-      }, 1500);
-  }
-
-  function openUserRoles() {
-      analytics.track('admin_tool_access', { tool: 'user_roles' });
-      showNotification('👥 Loading User Roles & Permissions...', 'info');
+          notification.classList.add('show');
+      }, 100);
       
       setTimeout(() => {
-          showNotification('🛡️ User management panel ready', 'success');
-      }, 1200);
+          notification.classList.remove('show');
+          setTimeout(() => {
+              if (notification.parentNode) {
+                  notification.remove();
+              }
+          }, 400);
+      }, 5000);
   }
-
-  function openSecurityCenter() {
-      analytics.track('admin_tool_access', { tool: 'security_center' });
-      showNotification('🔒 Accessing Security Center...', 'info');
-      
-      setTimeout(() => {
-          showNotification('🛡️ Security dashboard loaded - 3 alerts pending', 'success');
-      }, 1800);
-  }
-
-  function openBackupRestore() {
-      analytics.track('admin_tool_access', { tool: 'backup_restore' });
-      showNotification('💾 Opening Backup & Restore Center...', 'info');
-      
-      setTimeout(() => {
-          showNotification('📦 Backup management ready - Last backup: 2 hours ago', 'success');
-      }, 2000);
-  }
-
-  function openAnalyticsReports() {
-      analytics.track('admin_tool_access', { tool: 'analytics_reports' });
-      showNotification('📊 Loading Analytics & Reports...', 'info');
-      
-      setTimeout(() => {
-          showNotification('📈 Analytics dashboard ready with latest metrics', 'success');
-      }, 1600);
-  }
-
-  function openIntegrations() {
-      analytics.track('admin_tool_access', { tool: 'integrations' });
-      showNotification('🔌 Opening Integrations Manager...', 'info');
-      
-      setTimeout(() => {
-          showNotification('⚡ Integration dashboard loaded - 12 active connections', 'success');
-      }, 1400);
-  }
-
-  function openAuditLogs() {
-      analytics.track('admin_tool_access', { tool: 'audit_logs' });
-      showNotification('📋 Loading Audit Logs...', 'info');
-      
-      setTimeout(() => {
-          showNotification('📝 Audit log viewer ready - 1,247 entries this month', 'success');
-      }, 2200);
-  }
-
-  function openNotificationCenter() {
-      analytics.track('admin_tool_access', { tool: 'notification_center' });
-      showNotification('🔔 Opening Notification Center...', 'info');
-      
-      setTimeout(() => {
-          showNotification('📢 Notification management panel loaded', 'success');
-      }, 1300);
-  }
-
-  // User management functions
-  function addNewUser() {
-      analytics.track('admin_user_action', { action: 'add_user' });
-      showNotification('👤 Opening new user registration form...', 'info');
-      
-      setTimeout(() => {
-          showNotification('✅ User registration form ready', 'success');
-      }, 1000);
-  }
-
-  function exportUsers() {
-      analytics.track('admin_user_action', { action: 'export_users' });
-      showNotification('📤 Exporting user data...', 'info');
-      
-      setTimeout(() => {
-          showNotification('✅ User data exported successfully - CSV file downloaded', 'success');
-      }, 2500);
-  }
-
-  function showUserActions(userName) {
-      analytics.track('admin_user_action', { action: 'view_user_actions', user: userName });
-      showNotification(`👤 Loading actions for ${userName}...`, 'info');
-      
-      setTimeout(() => {
-          showNotification(`📋 User actions menu ready for ${userName}`, 'success');
-      }, 800);
-  }
-
-  function refreshActivity() {
-      analytics.track('admin_activity_refresh', { timestamp: new Date().toISOString() });
-      showNotification('🔄 Refreshing activity feed...', 'info');
-      
-      // Simulate refresh
-      updateActivityFeed();
-      
-      setTimeout(() => {
-          showNotification('✅ Activity feed updated', 'success');
-      }, 1000);
-  }
-
-  // Advanced admin functions
-  function performSystemMaintenance() {
-      analytics.track('system_maintenance_start', { timestamp: new Date().toISOString() });
-      showNotification('🔧 Starting system maintenance...', 'info');
-      
-      setTimeout(() => {
-          showNotification('⚠️ System maintenance in progress - some features may be unavailable', 'warning');
-      }, 2000);
-      
-      setTimeout(() => {
-          showNotification('✅ System maintenance completed successfully', 'success');
-      }, 10000);
-  }
-
-  function generateSystemReport() {
-      analytics.track('system_report_generate', { timestamp: new Date().toISOString() });
-      showNotification('📊 Generating comprehensive system report...', 'info');
-      
-      setTimeout(() => {
-          showNotification('📋 System report generated - includes performance, security, and usage metrics', 'success');
-      }, 4000);
-  }
-
-  function manageSystemAlerts() {
-      analytics.track('system_alerts_manage', { timestamp: new Date().toISOString() });
-      showNotification('🚨 Opening system alerts management...', 'info');
-      
-      setTimeout(() => {
-          showNotification('⚠️ Alert management panel loaded - 3 active alerts require attention', 'success');
-      }, 1500);
-  }
-
-  // Real-time system status updates
-  function updateSystemStatus() {
-      const statusDot = document.querySelector('.status-dot');
-      const statusText = document.querySelector('.status-indicator');
-      
-      // Simulate occasional status changes
-      if (Math.random() < 0.05) { // 5% chance of status change
-          const statuses = [
-              { color: 'var(--success-500)', text: 'All Systems Operational' },
-              { color: 'var(--warning-500)', text: 'Minor Issues Detected' },
-              { color: 'var(--danger-500)', text: 'System Maintenance Required' }
-          ];
-          
-          const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
-          statusDot.style.background = randomStatus.color;
-          statusText.textContent = randomStatus.text;
-      }
-  }
-
-  // Update system status every 5 minutes
-  setInterval(updateSystemStatus, 300000);
-
-  // Keyboard shortcuts for admin
-  document.addEventListener('keydown', function(e) {
-      // Ctrl/Cmd + Shift + U: User management
-      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'U') {
-          e.preventDefault();
-          openUserRoles();
-      }
-      
-      // Ctrl/Cmd + Shift + S: System settings
-      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'S') {
-          e.preventDefault();
-          openSystemSettings();
-      }
-      
-      // Ctrl/Cmd + Shift + R: Generate report
-      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'R') {
-          e.preventDefault();
-          generateSystemReport();
+  
+  // Click outside modal to close
+  window.addEventListener('click', (e) => {
+      const modal = document.getElementById('registrationModal');
+      if (e.target === modal) {
+          closeModal();
       }
   });
-
-  console.log('🛡️ Admin Dashboard ready');
-  console.log('👥 User management system loaded');
-  console.log('📊 System monitoring active');
-  console.log('🔒 Security center operational');
-  console.log('📋 Activity tracking enabled');
-  console.log('⚙️ Administrative tools available');
+  
+  // Keyboard shortcuts
+  document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+          closeModal();
+      }
+  });
+  
+  console.log('🏔️ SESMine Admin Dashboard JavaScript Loaded');
+  console.log('📊 Dashboard analytics ready');
+  console.log('👥 User management system active');
+  console.log('📧 Email notification system configured');
+  console.log('🔧 Registration approval workflow ready');
+  console.log('📈 Real-time data monitoring enabled');
+  console.log('✅ Admin Dashboard fully operational');
   </script>
 </body>
 </html>

@@ -533,7 +533,7 @@
   <script>
     // Initialize EmailJS
     (function() {
-      emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
+      emailjs.init("vIsuy4VXOAFCLwx2c"); // Replace with your EmailJS public key
     })();
     
     // User Database (In production, this would be a backend database)
@@ -644,7 +644,7 @@
         platform: 'SES_MINE Platform'
       };
       
-      emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+      emailjs.send('service_v1tzk6t', 'template_5rwnvg8', templateParams)
         .then(function(response) {
           console.log('Login notification sent', response.status, response.text);
         }, function(error) {

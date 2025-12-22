@@ -3,15 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Sign up for SES_MINE - Start your free trial and transform your mining operations.">
-  <meta name="keywords" content="signup, register, free trial, mining platform, SES_MINE account">
-  <title>Sign Up | SES_MINE - Smart Engineering Solutions</title>
+  <title>Sign Up - SES_MINE Platform</title>
   
   <link rel="icon" type="image/png" href="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/153945651/6sGQHt6CUh5lVvcD.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   
   <style>
     :root {
@@ -25,17 +26,12 @@
       --error: #e53e3e;
       --gradient-primary: linear-gradient(135deg, #0b1a2e 0%, #1a365d 100%);
       --gradient-accent: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
-      --space-xs: 0.25rem;
-      --space-sm: 0.5rem;
-      --space-md: 1rem;
-      --space-lg: 1.5rem;
-      --space-xl: 2rem;
-      --space-2xl: 3rem;
+      --gradient-gold: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+      --gradient-success: linear-gradient(135deg, #38a169 0%, #2f855a 100%);
       --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
       --shadow-md: 0 4px 6px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08);
       --shadow-lg: 0 10px 15px rgba(0,0,0,0.1), 0 4px 6px rgba(0,0,0,0.05);
       --shadow-xl: 0 20px 25px rgba(0,0,0,0.1), 0 10px 10px rgba(0,0,0,0.04);
-      --radius-sm: 0.25rem;
       --radius-md: 0.5rem;
       --radius-lg: 0.75rem;
       --radius-xl: 1rem;
@@ -48,431 +44,347 @@
       box-sizing: border-box;
     }
     
-    html {
-      scroll-behavior: smooth;
-    }
-    
     body {
       font-family: 'Inter', sans-serif;
-      line-height: 1.6;
-      color: var(--primary-dark);
-      background: linear-gradient(135deg, #f7f9fc 0%, #e8eef5 100%);
+      background: linear-gradient(135deg, #0b1a2e 0%, #1a365d 50%, #2563eb 100%);
       min-height: 100vh;
-      padding: var(--space-xl);
-    }
-    
-    .signup-container {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      background: white;
-      border-radius: var(--radius-xl);
-      overflow: hidden;
-      box-shadow: var(--shadow-xl);
-    }
-    
-    /* Left Side - Branding */
-    .signup-branding {
-      background: var(--gradient-primary);
-      padding: var(--space-3xl) var(--space-2xl);
-      color: white;
       display: flex;
-      flex-direction: column;
+      align-items: center;
       justify-content: center;
+      padding: 2rem;
       position: relative;
       overflow: hidden;
     }
     
-    .branding-background {
-      position: absolute;
-      inset: 0;
-      opacity: 0.1;
-      background: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1000&q=80') center/cover;
-    }
-    
-    .branding-content {
-      position: relative;
-      z-index: 1;
-    }
-    
-    .logo-large {
-      width: 200px;
-      height: auto;
-      margin-bottom: var(--space-2xl);
-      filter: brightness(0) invert(1);
-    }
-    
-    .branding-title {
-      font-size: 2.5rem;
-      font-weight: 900;
-      margin-bottom: var(--space-lg);
-      line-height: 1.2;
-    }
-    
-    .branding-description {
-      font-size: 1.1rem;
-      opacity: 0.95;
-      margin-bottom: var(--space-2xl);
-      line-height: 1.8;
-    }
-    
-    .benefits-list {
-      list-style: none;
-    }
-    
-    .benefits-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: var(--space-md);
-      margin-bottom: var(--space-lg);
-      font-size: 1rem;
-    }
-    
-    .benefits-list li i {
-      width: 30px;
-      height: 30px;
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-    
-    .trial-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: var(--space-sm);
-      background: rgba(56, 161, 105, 0.2);
-      border: 2px solid var(--success);
-      color: #9ae6b4;
-      padding: var(--space-md) var(--space-lg);
-      border-radius: var(--radius-lg);
-      font-weight: 700;
-      font-size: 1.1rem;
-      margin-top: var(--space-2xl);
-    }
-    
-    /* Right Side - Signup Form */
-    .signup-form-section {
-      padding: var(--space-3xl) var(--space-2xl);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      max-height: 90vh;
-      overflow-y: auto;
-    }
-    
-    .form-header {
-      margin-bottom: var(--space-2xl);
-    }
-    
-    .form-title {
-      font-size: 2rem;
-      font-weight: 800;
-      margin-bottom: var(--space-sm);
-      color: var(--primary-dark);
-    }
-    
-    .form-subtitle {
-      color: var(--accent-secondary);
-      font-size: 1rem;
-    }
-    
-    .form-subtitle a {
-      color: var(--accent-primary);
-      text-decoration: none;
-      font-weight: 600;
-    }
-    
-    .form-subtitle a:hover {
-      text-decoration: underline;
-    }
-    
-    /* Progress Steps */
-    .progress-steps {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: var(--space-2xl);
-      position: relative;
-    }
-    
-    .progress-steps::before {
+    body::before {
       content: '';
       position: absolute;
-      top: 15px;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&q=80') center/cover;
+      opacity: 0.1;
+    }
+    
+    body::after {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.3) 0%, transparent 70%);
+      border-radius: 50%;
+      bottom: -300px;
+      left: -300px;
+      animation: glow 8s ease-in-out infinite;
+    }
+    
+    @keyframes glow {
+      0%, 100% { transform: scale(1); opacity: 0.3; }
+      50% { transform: scale(1.2); opacity: 0.5; }
+    }
+    
+    .auth-container {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 550px;
+    }
+    
+    .auth-card {
+      background: white;
+      border-radius: var(--radius-xl);
+      padding: 3rem;
+      box-shadow: var(--shadow-xl);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .auth-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
       left: 0;
       right: 0;
-      height: 2px;
-      background: rgba(37, 99, 235, 0.2);
-      z-index: 0;
+      height: 5px;
+      background: var(--gradient-success);
     }
     
-    .progress-line {
-      position: absolute;
-      top: 15px;
-      left: 0;
-      height: 2px;
-      background: var(--gradient-accent);
-      transition: width var(--transition-smooth);
-      z-index: 1;
+    .auth-header {
+      text-align: center;
+      margin-bottom: 2rem;
     }
     
-    .step {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: var(--space-sm);
-      position: relative;
-      z-index: 2;
-    }
-    
-    .step-circle {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: white;
-      border: 2px solid rgba(37, 99, 235, 0.2);
+    .auth-logo {
+      width: 80px;
+      height: 80px;
+      background: var(--gradient-success);
+      border-radius: var(--radius-lg);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 700;
-      font-size: 0.9rem;
+      font-size: 2.5rem;
+      margin: 0 auto 1.5rem;
+      box-shadow: var(--shadow-lg);
+      animation: logoFloat 3s ease-in-out infinite;
+    }
+    
+    @keyframes logoFloat {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(5deg); }
+    }
+    
+    .auth-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 0.5rem;
+    }
+    
+    .auth-subtitle {
       color: var(--accent-secondary);
-      transition: all var(--transition-smooth);
+      font-size: 0.95rem;
     }
     
-    .step.active .step-circle {
-      background: var(--gradient-accent);
-      border-color: var(--accent-primary);
-      color: white;
-    }
-    
-    .step.completed .step-circle {
-      background: var(--success);
-      border-color: var(--success);
-      color: white;
-    }
-    
-    .step-label {
-      font-size: 0.8rem;
-      color: var(--accent-secondary);
-      font-weight: 600;
-    }
-    
-    .step.active .step-label {
-      color: var(--accent-primary);
-    }
-    
-    /* Form Steps */
-    .form-step {
-      display: none;
-    }
-    
-    .form-step.active {
-      display: block;
-      animation: fadeIn 0.3s ease;
-    }
-    
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
-    .form-grid {
+    .form-row {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-lg);
-      margin-bottom: var(--space-lg);
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
     }
     
     .form-group {
-      margin-bottom: var(--space-lg);
-    }
-    
-    .form-group.full-width {
-      grid-column: 1 / -1;
+      margin-bottom: 1.5rem;
     }
     
     .form-label {
       display: block;
       font-weight: 600;
-      margin-bottom: var(--space-sm);
       color: var(--primary-dark);
-      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
     }
     
-    .required {
-      color: var(--error);
-    }
-    
-    .input-wrapper {
+    .form-input-wrapper {
       position: relative;
     }
     
-    .form-input,
-    .form-select {
+    .form-input, .form-select {
       width: 100%;
-      padding: var(--space-md) var(--space-md) var(--space-md) 3rem;
+      padding: 0.875rem 1rem 0.875rem 3rem;
       border: 2px solid rgba(37, 99, 235, 0.2);
       border-radius: var(--radius-md);
       font-size: 1rem;
-      transition: all var(--transition-smooth);
+      transition: var(--transition-smooth);
       font-family: 'Inter', sans-serif;
     }
     
-    .form-input:focus,
-    .form-select:focus {
+    .form-input:focus, .form-select:focus {
       outline: none;
       border-color: var(--accent-primary);
       box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
     }
     
-    .input-icon {
+    .form-input.error, .form-select.error {
+      border-color: var(--error);
+    }
+    
+    .form-icon {
       position: absolute;
-      left: var(--space-md);
+      left: 1rem;
       top: 50%;
       transform: translateY(-50%);
       color: var(--accent-secondary);
-      font-size: 1.1rem;
+      font-size: 1rem;
     }
     
-    .password-toggle {
-      position: absolute;
-      right: var(--space-md);
-      top: 50%;
-      transform: translateY(-50%);
-      background: none;
-      border: none;
-      color: var(--accent-secondary);
-      cursor: pointer;
-      font-size: 1.1rem;
-      transition: color var(--transition-smooth);
+    .error-message {
+      color: var(--error);
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+      display: none;
     }
     
-    .password-toggle:hover {
-      color: var(--accent-primary);
+    .error-message.show {
+      display: block;
     }
     
     .password-strength {
-      margin-top: var(--space-sm);
+      margin-top: 0.5rem;
+      display: none;
+    }
+    
+    .password-strength.show {
+      display: block;
+    }
+    
+    .strength-bar {
       height: 4px;
       background: rgba(37, 99, 235, 0.1);
       border-radius: 2px;
       overflow: hidden;
+      margin-bottom: 0.5rem;
     }
     
-    .password-strength-bar {
+    .strength-fill {
       height: 100%;
-      width: 0;
-      transition: all var(--transition-smooth);
+      transition: var(--transition-smooth);
     }
     
-    .password-strength-bar.weak {
-      width: 33%;
-      background: var(--error);
+    .strength-weak { width: 33%; background: var(--error); }
+    .strength-medium { width: 66%; background: var(--warning); }
+    .strength-strong { width: 100%; background: var(--success); }
+    
+    .strength-text {
+      font-size: 0.85rem;
+      font-weight: 600;
     }
     
-    .password-strength-bar.medium {
-      width: 66%;
-      background: var(--warning);
+    .text-weak { color: var(--error); }
+    .text-medium { color: var(--warning); }
+    .text-strong { color: var(--success); }
+    
+    .plan-selection {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.5rem;
     }
     
-    .password-strength-bar.strong {
-      width: 100%;
-      background: var(--success);
+    .plan-card {
+      border: 2px solid rgba(37, 99, 235, 0.2);
+      border-radius: var(--radius-md);
+      padding: 1rem;
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      position: relative;
     }
     
-    .checkbox-group {
+    .plan-card:hover {
+      border-color: var(--accent-primary);
+      background: rgba(37, 99, 235, 0.02);
+    }
+    
+    .plan-card.selected {
+      border-color: var(--accent-primary);
+      background: rgba(37, 99, 235, 0.05);
+    }
+    
+    .plan-card.selected::after {
+      content: '✓';
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      width: 24px;
+      height: 24px;
+      background: var(--accent-primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+    
+    .plan-icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .plan-name {
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 0.25rem;
+      font-size: 0.95rem;
+    }
+    
+    .plan-price {
+      color: var(--accent-primary);
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+    
+    .checkbox-wrapper {
       display: flex;
       align-items: flex-start;
-      gap: var(--space-sm);
-      margin-bottom: var(--space-lg);
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
     }
     
-    .checkbox-group input[type="checkbox"] {
-      width: 18px;
-      height: 18px;
+    .checkbox-wrapper input {
+      margin-top: 0.25rem;
       cursor: pointer;
-      margin-top: 2px;
-      flex-shrink: 0;
     }
     
-    .checkbox-group label {
-      font-size: 0.95rem;
+    .checkbox-wrapper label {
+      font-size: 0.9rem;
       color: var(--accent-secondary);
       cursor: pointer;
       line-height: 1.5;
     }
     
-    .checkbox-group label a {
+    .checkbox-wrapper label a {
       color: var(--accent-primary);
       text-decoration: none;
       font-weight: 600;
     }
     
-    .checkbox-group label a:hover {
+    .checkbox-wrapper label a:hover {
       text-decoration: underline;
     }
     
-    .form-buttons {
-      display: flex;
-      gap: var(--space-md);
-      margin-top: var(--space-xl);
-    }
-    
-    .btn {
-      flex: 1;
-      padding: var(--space-lg);
+    .btn-submit {
+      width: 100%;
+      padding: 1rem;
+      background: var(--gradient-success);
+      color: white;
+      border: none;
       border-radius: var(--radius-md);
       font-size: 1rem;
       font-weight: 700;
       cursor: pointer;
-      transition: all var(--transition-smooth);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: var(--space-sm);
-      border: none;
-    }
-    
-    .btn-primary {
-      background: var(--gradient-accent);
-      color: white;
+      transition: var(--transition-smooth);
       box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
     }
     
-    .btn-primary:hover {
+    .btn-submit::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+    
+    .btn-submit:hover::before {
+      width: 400px;
+      height: 400px;
+    }
+    
+    .btn-submit:hover {
       transform: translateY(-2px);
       box-shadow: var(--shadow-lg);
     }
     
-    .btn-secondary {
-      background: white;
-      color: var(--accent-primary);
-      border: 2px solid var(--accent-primary);
+    .btn-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
     }
     
-    .btn-secondary:hover {
-      background: rgba(37, 99, 235, 0.05);
+    .btn-submit span {
+      position: relative;
+      z-index: 1;
     }
     
     .divider {
       display: flex;
       align-items: center;
-      gap: var(--space-md);
-      margin: var(--space-xl) 0;
-      color: var(--accent-secondary);
-      font-size: 0.9rem;
+      gap: 1rem;
+      margin: 1.5rem 0;
     }
     
     .divider::before,
@@ -483,26 +395,31 @@
       background: rgba(37, 99, 235, 0.2);
     }
     
-    .social-signup {
+    .divider span {
+      color: var(--accent-secondary);
+      font-size: 0.9rem;
+    }
+    
+    .social-login {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-md);
-      margin-bottom: var(--space-xl);
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.5rem;
     }
     
     .social-btn {
-      padding: var(--space-md);
+      padding: 0.875rem;
       border: 2px solid rgba(37, 99, 235, 0.2);
-      border-radius: var(--radius-md);
       background: white;
-      color: var(--primary-dark);
-      font-weight: 600;
+      border-radius: var(--radius-md);
       cursor: pointer;
-      transition: all var(--transition-smooth);
+      transition: var(--transition-smooth);
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: var(--space-sm);
+      gap: 0.5rem;
+      font-weight: 600;
+      color: var(--primary-dark);
     }
     
     .social-btn:hover {
@@ -511,529 +428,546 @@
       transform: translateY(-2px);
     }
     
-    .social-btn i {
-      font-size: 1.2rem;
-    }
-    
-    .back-home {
+    .auth-footer {
       text-align: center;
-      margin-top: var(--space-xl);
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(37, 99, 235, 0.1);
     }
     
-    .back-home a {
+    .auth-footer p {
       color: var(--accent-secondary);
-      text-decoration: none;
       font-size: 0.95rem;
-      display: inline-flex;
-      align-items: center;
-      gap: var(--space-sm);
-      transition: color var(--transition-smooth);
     }
     
-    .back-home a:hover {
+    .auth-footer a {
       color: var(--accent-primary);
+      text-decoration: none;
+      font-weight: 700;
+      transition: var(--transition-smooth);
     }
     
-    /* Success Message */
-    .success-screen {
-      display: none;
-      text-align: center;
-      padding: var(--space-3xl);
-    }
-    
-    .success-screen.active {
-      display: block;
-      animation: fadeIn 0.5s ease;
-    }
-    
-    .success-icon {
-      width: 100px;
-      height: 100px;
-      background: var(--gradient-accent);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto var(--space-2xl);
-      font-size: 3rem;
-      color: white;
-    }
-    
-    .success-title {
-      font-size: 2rem;
-      font-weight: 800;
-      margin-bottom: var(--space-md);
-      color: var(--primary-dark);
-    }
-    
-    .success-description {
-      font-size: 1.1rem;
+    .auth-footer a:hover {
       color: var(--accent-secondary);
-      margin-bottom: var(--space-2xl);
-      line-height: 1.8;
     }
     
-    /* Responsive */
-    @media (max-width: 968px) {
-      .signup-container {
-        grid-template-columns: 1fr;
-      }
-      
-      .signup-branding {
-        display: none;
-      }
-      
-      .form-grid {
-        grid-template-columns: 1fr;
-      }
+    .alert {
+      padding: 1rem;
+      border-radius: var(--radius-md);
+      margin-bottom: 1.5rem;
+      display: none;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+      animation: slideIn 0.3s ease;
     }
     
-    @media (max-width: 640px) {
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .alert.show {
+      display: flex;
+    }
+    
+    .alert-success {
+      background: rgba(56, 161, 105, 0.1);
+      color: var(--success);
+      border: 1px solid var(--success);
+    }
+    
+    .alert-error {
+      background: rgba(229, 62, 62, 0.1);
+      color: var(--error);
+      border: 1px solid var(--error);
+    }
+    
+    .alert-info {
+      background: rgba(49, 130, 206, 0.1);
+      color: var(--accent-primary);
+      border: 1px solid var(--accent-primary);
+    }
+    
+    .loading-spinner {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    @media (max-width: 768px) {
       body {
-        padding: var(--space-md);
+        padding: 1rem;
       }
       
-      .signup-form-section {
-        padding: var(--space-xl);
+      .auth-card {
+        padding: 2rem;
       }
       
-      .social-signup {
+      .auth-title {
+        font-size: 1.75rem;
+      }
+      
+      .form-row {
         grid-template-columns: 1fr;
       }
       
-      .form-buttons {
-        flex-direction: column-reverse;
+      .plan-selection {
+        grid-template-columns: 1fr;
       }
       
-      .progress-steps {
-        flex-wrap: wrap;
-      }
-      
-      .step-label {
-        display: none;
+      .social-login {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 <body>
-  <div class="signup-container">
-    <!-- Left Side - Branding -->
-    <div class="signup-branding">
-      <div class="branding-background"></div>
-      <div class="branding-content">
-        <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/153945651/6sGQHt6CUh5lVvcD.png" 
-             alt="SES_MINE Logo" 
-             class="logo-large">
-        
-        <h1 class="branding-title">
-          Start Your Free Trial Today
-        </h1>
-        
-        <p class="branding-description">
-          Join 500+ mining companies worldwide using SES_MINE to optimize 
-          operations, reduce costs, and drive sustainable growth.
-        </p>
-        
-        <ul class="benefits-list">
-          <li>
-            <i class="fas fa-check"></i>
-            <span><strong>14-day free trial</strong> with full platform access</span>
-          </li>
-          <li>
-            <i class="fas fa-check"></i>
-            <span><strong>No credit card required</strong> to get started</span>
-          </li>
-          <li>
-            <i class="fas fa-check"></i>
-            <span><strong>Expert onboarding</strong> and training included</span>
-          </li>
-          <li>
-            <i class="fas fa-check"></i>
-            <span><strong>24/7 support</strong> from day one</span>
-          </li>
-          <li>
-            <i class="fas fa-check"></i>
-            <span><strong>Cancel anytime</strong> - no long-term commitment</span>
-          </li>
-        </ul>
-        
-        <div class="trial-badge">
-          <i class="fas fa-gift"></i>
-          <span>14 Days Free Trial</span>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Right Side - Signup Form -->
-    <div class="signup-form-section">
-      <div class="form-header">
-        <h2 class="form-title">Create Account</h2>
-        <p class="form-subtitle">
-          Already have an account? <a href="login.html">Sign in</a>
-        </p>
+  <div class="auth-container">
+    <div class="auth-card">
+      <div class="auth-header">
+        <div class="auth-logo">🚀</div>
+        <h1 class="auth-title">Create Your Account</h1>
+        <p class="auth-subtitle">Start your 14-day free trial - no credit card required</p>
       </div>
       
-      <!-- Progress Steps -->
-      <div class="progress-steps">
-        <div class="progress-line" id="progressLine"></div>
-        <div class="step active" data-step="1">
-          <div class="step-circle">1</div>
-          <span class="step-label">Account</span>
-        </div>
-        <div class="step" data-step="2">
-          <div class="step-circle">2</div>
-          <span class="step-label">Company</span>
-        </div>
-        <div class="step" data-step="3">
-          <div class="step-circle">3</div>
-          <span class="step-label">Complete</span>
-        </div>
-      </div>
+      <div id="alertContainer"></div>
       
       <form id="signupForm">
-        <!-- Step 1: Account Information -->
-        <div class="form-step active" data-step="1">
-          <div class="form-grid">
-            <div class="form-group">
-              <label class="form-label">
-                First Name <span class="required">*</span>
-              </label>
-              <div class="input-wrapper">
-                <i class="fas fa-user input-icon"></i>
-                <input type="text" class="form-input" placeholder="John" required>
-              </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">First Name</label>
+            <div class="form-input-wrapper">
+              <i class="fas fa-user form-icon"></i>
+              <input 
+                type="text" 
+                class="form-input" 
+                id="firstName" 
+                placeholder="John"
+                required
+              >
             </div>
-            
-            <div class="form-group">
-              <label class="form-label">
-                Last Name <span class="required">*</span>
-              </label>
-              <div class="input-wrapper">
-                <i class="fas fa-user input-icon"></i>
-                <input type="text" class="form-input" placeholder="Smith" required>
-              </div>
-            </div>
-            
-            <div class="form-group full-width">
-              <label class="form-label">
-                Email Address <span class="required">*</span>
-              </label>
-              <div class="input-wrapper">
-                <i class="fas fa-envelope input-icon"></i>
-                <input type="email" class="form-input" placeholder="john@company.com" required>
-              </div>
-            </div>
-            
-            <div class="form-group full-width">
-              <label class="form-label">
-                Password <span class="required">*</span>
-              </label>
-              <div class="input-wrapper">
-                <i class="fas fa-lock input-icon"></i>
-                <input type="password" id="password" class="form-input" placeholder="Create a strong password" required>
-                <button type="button" class="password-toggle" id="passwordToggle">
-                  <i class="fas fa-eye"></i>
-                </button>
-              </div>
-              <div class="password-strength">
-                <div class="password-strength-bar" id="passwordStrengthBar"></div>
-              </div>
-            </div>
-            
-            <div class="form-group full-width">
-              <label class="form-label">
-                Phone Number
-              </label>
-              <div class="input-wrapper">
-                <i class="fas fa-phone input-icon"></i>
-                <input type="tel" class="form-input" placeholder="+1 (555) 123-4567">
-              </div>
-            </div>
+            <div class="error-message" id="firstNameError">First name is required</div>
           </div>
           
-          <div class="divider">OR SIGN UP WITH</div>
-          
-          <div class="social-signup">
-            <button type="button" class="social-btn">
-              <i class="fab fa-google"></i>
-              Google
-            </button>
-            <button type="button" class="social-btn">
-              <i class="fab fa-microsoft"></i>
-              Microsoft
-            </button>
-          </div>
-          
-          <div class="form-buttons">
-            <button type="button" class="btn btn-primary" onclick="nextStep()">
-              Next Step
-              <i class="fas fa-arrow-right"></i>
-            </button>
+          <div class="form-group">
+            <label class="form-label">Last Name</label>
+            <div class="form-input-wrapper">
+              <i class="fas fa-user form-icon"></i>
+              <input 
+                type="text" 
+                class="form-input" 
+                id="lastName" 
+                placeholder="Doe"
+                required
+              >
+            </div>
+            <div class="error-message" id="lastNameError">Last name is required</div>
           </div>
         </div>
         
-        <!-- Step 2: Company Information -->
-        <div class="form-step" data-step="2">
-          <div class="form-grid">
-            <div class="form-group full-width">
-              <label class="form-label">
-                Company Name <span class="required">*</span>
-              </label>
-              <div class="input-wrapper">
-                <i class="fas fa-building input-icon"></i>
-                <input type="text" class="form-input" placeholder="Mining Corp Ltd." required>
-              </div>
-            </div>
-            
-            <div class="form-group">
-              <label class="form-label">
-                Job Title <span class="required">*</span>
-              </label>
-              <div class="input-wrapper">
-                <i class="fas fa-briefcase input-icon"></i>
-                <input type="text" class="form-input" placeholder="Project Manager" required>
-              </div>
-            </div>
-            
-            <div class="form-group">
-              <label class="form-label">
-                Company Size <span class="required">*</span>
-              </label>
-              <div class="input-wrapper">
-                <i class="fas fa-users input-icon"></i>
-                <select class="form-select" required>
-                  <option value="">Select size</option>
-                  <option value="1-10">1-10 employees</option>
-                  <option value="11-50">11-50 employees</option>
-                  <option value="51-200">51-200 employees</option>
-                  <option value="201-500">201-500 employees</option>
-                  <option value="501-1000">501-1,000 employees</option>
-                  <option value="1000+">1,000+ employees</option>
-                </select>
-              </div>
-            </div>
-            
-            <div class="form-group">
-              <label class="form-label">
-                Industry <span class="required">*</span>
-              </label>
-              <div class="input-wrapper">
-                <i class="fas fa-industry input-icon"></i>
-                <select class="form-select" required>
-                  <option value="">Select industry</option>
-                  <option value="gold">Gold Mining</option>
-                  <option value="copper">Copper Mining</option>
-                  <option value="iron">Iron Ore</option>
-                  <option value="coal">Coal Mining</option>
-                  <option value="lithium">Lithium Mining</option>
-                  <option value="other">Other Minerals</option>
-                </select>
-              </div>
-            </div>
-            
-            <div class="form-group">
-              <label class="form-label">
-                Country <span class="required">*</span>
-              </label>
-              <div class="input-wrapper">
-                <i class="fas fa-globe input-icon"></i>
-                <select class="form-select" required>
-                  <option value="">Select country</option>
-                  <option value="us">United States</option>
-                  <option value="ca">Canada</option>
-                  <option value="au">Australia</option>
-                  <option value="cl">Chile</option>
-                  <option value="pe">Peru</option>
-                  <option value="za">South Africa</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-            </div>
-            
-            <div class="form-group full-width">
-              <label class="form-label">
-                How did you hear about us?
-              </label>
-              <div class="input-wrapper">
-                <i class="fas fa-question-circle input-icon"></i>
-                <select class="form-select">
-                  <option value="">Select option</option>
-                  <option value="search">Search Engine</option>
-                  <option value="social">Social Media</option>
-                  <option value="referral">Referral</option>
-                  <option value="conference">Conference/Event</option>
-                  <option value="advertisement">Advertisement</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-            </div>
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <div class="form-input-wrapper">
+            <i class="fas fa-envelope form-icon"></i>
+            <input 
+              type="email" 
+              class="form-input" 
+              id="signupEmail" 
+              placeholder="your.email@company.com"
+              required
+            >
           </div>
-          
-          <div class="form-buttons">
-            <button type="button" class="btn btn-secondary" onclick="prevStep()">
-              <i class="fas fa-arrow-left"></i>
-              Back
-            </button>
-            <button type="button" class="btn btn-primary" onclick="nextStep()">
-              Next Step
-              <i class="fas fa-arrow-right"></i>
-            </button>
-          </div>
+          <div class="error-message" id="emailError">Please enter a valid email address</div>
         </div>
         
-        <!-- Step 3: Terms & Complete -->
-        <div class="form-step" data-step="3">
-          <div class="checkbox-group">
-            <input type="checkbox" id="terms" required>
-            <label for="terms">
-              I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
-            </label>
+        <div class="form-group">
+          <label class="form-label">Company Name</label>
+          <div class="form-input-wrapper">
+            <i class="fas fa-building form-icon"></i>
+            <input 
+              type="text" 
+              class="form-input" 
+              id="company" 
+              placeholder="Your Company Ltd."
+              required
+            >
           </div>
-          
-          <div class="checkbox-group">
-            <input type="checkbox" id="newsletter">
-            <label for="newsletter">
-              Send me product updates, industry insights, and special offers
-            </label>
-          </div>
-          
-          <div class="checkbox-group">
-            <input type="checkbox" id="marketing">
-            <label for="marketing">
-              I agree to receive marketing communications from SES_MINE
-            </label>
-          </div>
-          
-          <div class="form-buttons">
-            <button type="button" class="btn btn-secondary" onclick="prevStep()">
-              <i class="fas fa-arrow-left"></i>
-              Back
-            </button>
-            <button type="submit" class="btn btn-primary">
-              <i class="fas fa-rocket"></i>
-              Start Free Trial
-            </button>
-          </div>
+          <div class="error-message" id="companyError">Company name is required</div>
         </div>
+        
+        <div class="form-group">
+          <label class="form-label">Job Title</label>
+          <div class="form-input-wrapper">
+            <i class="fas fa-briefcase form-icon"></i>
+            <select class="form-select" id="jobTitle" required>
+              <option value="">Select your role</option>
+              <option value="engineer">Mining Engineer</option>
+              <option value="manager">Project Manager</option>
+              <option value="executive">Executive/Director</option>
+              <option value="analyst">Analyst</option>
+              <option value="consultant">Consultant</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="error-message" id="jobTitleError">Please select your job title</div>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <div class="form-input-wrapper">
+            <i class="fas fa-lock form-icon"></i>
+            <input 
+              type="password" 
+              class="form-input" 
+              id="signupPassword" 
+              placeholder="Create a strong password"
+              required
+            >
+          </div>
+          <div class="password-strength" id="passwordStrength">
+            <div class="strength-bar">
+              <div class="strength-fill" id="strengthFill"></div>
+            </div>
+            <div class="strength-text" id="strengthText"></div>
+          </div>
+          <div class="error-message" id="passwordError">Password must be at least 8 characters</div>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Choose Your Plan</label>
+          <div class="plan-selection">
+            <div class="plan-card" data-plan="trial" onclick="selectPlan('trial')">
+              <div class="plan-icon">🎯</div>
+              <div class="plan-name">Trial</div>
+              <div class="plan-price">Free 14 days</div>
+            </div>
+            <div class="plan-card selected" data-plan="standard" onclick="selectPlan('standard')">
+              <div class="plan-icon">⭐</div>
+              <div class="plan-name">Standard</div>
+              <div class="plan-price">$99/month</div>
+            </div>
+            <div class="plan-card" data-plan="premium" onclick="selectPlan('premium')">
+              <div class="plan-icon">💎</div>
+              <div class="plan-name">Premium</div>
+              <div class="plan-price">$299/month</div>
+            </div>
+          </div>
+          <input type="hidden" id="selectedPlan" value="standard">
+        </div>
+        
+        <div class="checkbox-wrapper">
+          <input type="checkbox" id="agreeTerms" required>
+          <label for="agreeTerms">
+            I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+          </label>
+        </div>
+        
+        <div class="checkbox-wrapper">
+          <input type="checkbox" id="newsletter" checked>
+          <label for="newsletter">
+            Send me updates about new features and special offers
+          </label>
+        </div>
+        
+        <button type="submit" class="btn-submit" id="signupBtn">
+          <span>Create Account</span>
+        </button>
       </form>
       
-      <!-- Success Screen -->
-      <div class="success-screen" id="successScreen">
-        <div class="success-icon">
-          <i class="fas fa-check"></i>
-        </div>
-        <h2 class="success-title">Account Created Successfully!</h2>
-        <p class="success-description">
-          Welcome to SES_MINE! We've sent a verification email to your inbox. 
-          Please verify your email to get started with your 14-day free trial.
-        </p>
-        <button class="btn btn-primary" onclick="window.location.href='index.html'">
-          <i class="fas fa-home"></i>
-          Go to Dashboard
+      <div class="divider">
+        <span>Or sign up with</span>
+      </div>
+      
+      <div class="social-login">
+        <button class="social-btn" onclick="socialSignup('google')">
+          <i class="fab fa-google"></i>
+          Google
+        </button>
+        <button class="social-btn" onclick="socialSignup('microsoft')">
+          <i class="fab fa-microsoft"></i>
+          Microsoft
         </button>
       </div>
       
-      <div class="back-home">
-        <a href="index.html">
-          <i class="fas fa-arrow-left"></i>
-          Back to Home
-        </a>
+      <div class="auth-footer">
+        <p>Already have an account? <a href="login.html">Sign in</a></p>
       </div>
     </div>
   </div>
   
   <script>
-    let currentStep = 1;
-    const totalSteps = 3;
+    // Initialize EmailJS
+    (function() {
+      emailjs.init("vIsuy4VXOAFCLwx2c"); // Replace with your EmailJS public key
+    })();
     
-    // Password toggle
-    const passwordToggle = document.getElementById('passwordToggle');
-    const passwordInput = document.getElementById('password');
+    let selectedPlanValue = 'standard';
     
-    if (passwordToggle) {
-      passwordToggle.addEventListener('click', () => {
-        const type = passwordInput.type === 'password' ? 'text' : 'password';
-        passwordInput.type = type;
-        
-        const icon = passwordToggle.querySelector('i');
-        icon.classList.toggle('fa-eye');
-        icon.classList.toggle('fa-eye-slash');
-      });
-    }
-    
-    // Password strength
-    if (passwordInput) {
-      passwordInput.addEventListener('input', (e) => {
-        const password = e.target.value;
-        const strengthBar = document.getElementById('passwordStrengthBar');
-        
-        let strength = 0;
-        if (password.length >= 8) strength++;
-        if (/[a-z]/.test(password) && /[A-Z]/.test(password)) strength++;
-        if (/\d/.test(password)) strength++;
-        if (/[^a-zA-Z0-9]/.test(password)) strength++;
-        
-        strengthBar.className = 'password-strength-bar';
-        if (strength === 0) {
-          strengthBar.classList.remove('weak', 'medium', 'strong');
-        } else if (strength <= 2) {
-          strengthBar.classList.add('weak');
-        } else if (strength === 3) {
-          strengthBar.classList.add('medium');
-        } else {
-          strengthBar.classList.add('strong');
-        }
-      });
-    }
-    
-    // Step navigation
-    function nextStep() {
-      if (currentStep < totalSteps) {
-        currentStep++;
-        updateSteps();
-      }
-    }
-    
-    function prevStep() {
-      if (currentStep > 1) {
-        currentStep--;
-        updateSteps();
-      }
-    }
-    
-    function updateSteps() {
-      // Update form steps
-      document.querySelectorAll('.form-step').forEach((step, index) => {
-        step.classList.toggle('active', index + 1 === currentStep);
-      });
+    // Password strength checker
+    document.getElementById('signupPassword').addEventListener('input', function() {
+      const password = this.value;
+      const strengthContainer = document.getElementById('passwordStrength');
+      const strengthFill = document.getElementById('strengthFill');
+      const strengthText = document.getElementById('strengthText');
       
-      // Update progress steps
-      document.querySelectorAll('.step').forEach((step, index) => {
-        const stepNum = index + 1;
-        step.classList.toggle('active', stepNum === currentStep);
-        step.classList.toggle('completed', stepNum < currentStep);
-      });
+      if (password.length === 0) {
+        strengthContainer.classList.remove('show');
+        return;
+      }
       
-      // Update progress line
-      const progressLine = document.getElementById('progressLine');
-      const progress = ((currentStep - 1) / (totalSteps - 1)) * 100;
-      progressLine.style.width = progress + '%';
+      strengthContainer.classList.add('show');
+      
+      let strength = 0;
+      if (password.length >= 8) strength++;
+      if (/[a-z]/.test(password) && /[A-Z]/.test(password)) strength++;
+      if (/\d/.test(password)) strength++;
+      if (/[^a-zA-Z\d]/.test(password)) strength++;
+      
+      strengthFill.className = 'strength-fill';
+      strengthText.className = 'strength-text';
+      
+      if (strength <= 1) {
+        strengthFill.classList.add('strength-weak');
+        strengthText.classList.add('text-weak');
+        strengthText.textContent = 'Weak password';
+      } else if (strength <= 2) {
+        strengthFill.classList.add('strength-medium');
+        strengthText.classList.add('text-medium');
+        strengthText.textContent = 'Medium strength';
+      } else {
+        strengthFill.classList.add('strength-strong');
+        strengthText.classList.add('text-strong');
+        strengthText.textContent = 'Strong password';
+      }
+    });
+    
+    // Plan selection
+    function selectPlan(plan) {
+      document.querySelectorAll('.plan-card').forEach(card => {
+        card.classList.remove('selected');
+      });
+      document.querySelector(`[data-plan="${plan}"]`).classList.add('selected');
+      document.getElementById('selectedPlan').value = plan;
+      selectedPlanValue = plan;
     }
     
     // Form submission
-    const signupForm = document.getElementById('signupForm');
-    signupForm.addEventListener('submit', (e) => {
+    document.getElementById('signupForm').addEventListener('submit', async function(e) {
       e.preventDefault();
       
-      // Hide form, show success
-      signupForm.style.display = 'none';
-      document.querySelector('.progress-steps').style.display = 'none';
-      document.getElementById('successScreen').classList.add('active');
+      const firstName = document.getElementById('firstName').value;
+      const lastName = document.getElementById('lastName').value;
+      const email = document.getElementById('signupEmail').value;
+      const company = document.getElementById('company').value;
+      const jobTitle = document.getElementById('jobTitle').value;
+      const password = document.getElementById('signupPassword').value;
+      const agreeTerms = document.getElementById('agreeTerms').checked;
+      const newsletter = document.getElementById('newsletter').checked;
       
-      console.log('Signup completed successfully');
+      // Validate inputs
+      if (!validateForm(firstName, lastName, email, company, jobTitle, password, agreeTerms)) {
+        return;
+      }
+      
+      // Show loading state
+      const signupBtn = document.getElementById('signupBtn');
+      signupBtn.disabled = true;
+      signupBtn.innerHTML = '<span class="loading-spinner"></span> <span>Creating account...</span>';
+      
+      // Simulate registration delay
+      setTimeout(() => {
+        registerUser(firstName, lastName, email, company, jobTitle, password, selectedPlanValue, newsletter);
+      }, 2000);
     });
     
-    console.log('📝 Signup Page Loaded Successfully');
+    function validateForm(firstName, lastName, email, company, jobTitle, password, agreeTerms) {
+      let isValid = true;
+      
+      if (!firstName) {
+        showError('firstNameError');
+        isValid = false;
+      }
+      
+      if (!lastName) {
+        showError('lastNameError');
+        isValid = false;
+      }
+      
+      if (!validateEmail(email)) {
+        showError('emailError');
+        isValid = false;
+      }
+      
+      if (!company) {
+        showError('companyError');
+        isValid = false;
+      }
+      
+      if (!jobTitle) {
+        showError('jobTitleError');
+        isValid = false;
+      }
+      
+      if (password.length < 8) {
+        showError('passwordError');
+        isValid = false;
+      }
+      
+      if (!agreeTerms) {
+        showAlert('error', 'Please agree to the Terms of Service and Privacy Policy');
+        isValid = false;
+      }
+      
+      return isValid;
+    }
+    
+    function registerUser(firstName, lastName, email, company, jobTitle, password, plan, newsletter) {
+      // Determine access level based on plan
+      const accessLevels = {
+        trial: {
+          level: 'trial',
+          platforms: ['engineering-hub'],
+          duration: '14 days'
+        },
+        standard: {
+          level: 'standard',
+          platforms: ['engineering-hub', 'analytics-platform'],
+          duration: 'unlimited'
+        },
+        premium: {
+          level: 'premium',
+          platforms: ['engineering-hub', 'analytics-platform', 'economics-hub', 'innovation-technology-hub', 'procurement-hub', 'training-education-hub'],
+          duration: 'unlimited'
+        }
+      };
+      
+      const userAccess = accessLevels[plan];
+      
+      // Create user data
+      const userData = {
+        firstName,
+        lastName,
+        email,
+        company,
+        jobTitle,
+        plan,
+        accessLevel: userAccess.level,
+        platforms: userAccess.platforms,
+        registrationDate: new Date().toISOString(),
+        newsletter
+      };
+      
+      // Store user data (in production, this would be sent to backend)
+      localStorage.setItem('sesmine_registration', JSON.stringify(userData));
+      
+      // Send welcome email via EmailJS
+      sendWelcomeEmail(userData);
+      
+      // Show success message
+      showAlert('success', `Welcome aboard, ${firstName}! Check your email for verification link.`);
+      
+      setTimeout(() => {
+        window.location.href = 'login.html?registered=true';
+      }, 3000);
+    }
+    
+    function sendWelcomeEmail(userData) {
+      const platformsList = userData.platforms.map(p => 
+        p.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
+      ).join(', ');
+      
+      const templateParams = {
+        to_email: userData.email,
+        to_name: `${userData.firstName} ${userData.lastName}`,
+        company: userData.company,
+        plan: userData.plan.charAt(0).toUpperCase() + userData.plan.slice(1),
+        platforms: platformsList,
+        verification_link: `https://sesmine.com/verify?email=${encodeURIComponent(userData.email)}`,
+        login_link: 'https://sesmine.com/login.html'
+      };
+      
+      emailjs.send('service_v1tzk6t', 'template_5rwnvg8', templateParams)
+        .then(function(response) {
+          console.log('Welcome email sent', response.status, response.text);
+        }, function(error) {
+          console.log('Failed to send welcome email', error);
+        });
+    }
+    
+    function validateEmail(email) {
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return re.test(email);
+    }
+    
+    function showError(errorId) {
+      const errorElement = document.getElementById(errorId);
+      errorElement.classList.add('show');
+      const inputId = errorId.replace('Error', '');
+      const input = document.getElementById(inputId);
+      if (input) {
+        input.classList.add('error');
+      }
+      
+      setTimeout(() => {
+        errorElement.classList.remove('show');
+        if (input) {
+          input.classList.remove('error');
+        }
+      }, 3000);
+    }
+    
+    function showAlert(type, message) {
+      const alertContainer = document.getElementById('alertContainer');
+      const alertClass = type === 'success' ? 'alert-success' : type === 'error' ? 'alert-error' : 'alert-info';
+      const icon = type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle';
+      
+      alertContainer.innerHTML = `
+        <div class="alert ${alertClass} show">
+          <i class="fas ${icon}"></i>
+          <span>${message}</span>
+        </div>
+      `;
+      
+      setTimeout(() => {
+        alertContainer.innerHTML = '';
+      }, 5000);
+    }
+    
+    function resetSignupButton() {
+      const signupBtn = document.getElementById('signupBtn');
+      signupBtn.disabled = false;
+      signupBtn.innerHTML = '<span>Create Account</span>';
+    }
+    
+    function socialSignup(provider) {
+      showAlert('info', `${provider.charAt(0).toUpperCase() + provider.slice(1)} signup will be available soon!`);
+    }
+    
+    // Clear errors on input
+    document.querySelectorAll('.form-input, .form-select').forEach(input => {
+      input.addEventListener('input', function() {
+        this.classList.remove('error');
+        const errorId = this.id + 'Error';
+        const errorElement = document.getElementById(errorId);
+        if (errorElement) {
+          errorElement.classList.remove('show');
+        }
+      });
+    });
+    
+    console.log('🚀 Registration System Initialized');
+    console.log('📧 EmailJS Integration Active');
+    console.log('🎯 Multi-tier Access Control Ready');
+    console.log('💎 Plans: Trial, Standard, Premium');
   </script>
 </body>
 </html>

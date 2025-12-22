@@ -732,4 +732,658 @@ const SESMine = (function() {
      */
     loading: {
       init() {
-        const loadingOverlay = utils.$('#
+        const loadingOverlay = utils.$('#loadingOverlay');
+        const loadingText = loadingOverlay ? loadingOverlay.querySelector('.loading-text') : null;
+        
+        if (!loadingOverlay) return;
+        
+        const messages = [
+          'Initializing SESMine Platform...',
+          'Loading Mining Intelligence Systems...',
+          'Connecting Professional Hubs...',
+          'Preparing Analytics Engine...',
+          'Establishing Secure Connections...',
+          'Platform Ready for Mining Excellence'
+        ];
+        
+        let messageIndex = 0;
+        const messageInterval = setInterval(() => {
+          if (messageIndex < messages.length - 1) {
+            messageIndex++;
+            if (loadingText) {
+              loadingText.textContent = messages[messageIndex];
+            }
+          } else {
+            clearInterval(messageInterval);
+          }
+        }, 600);
+        
+        setTimeout(() => {
+          loadingOverlay.classList.add('hidden');
+          clearInterval(messageInterval);
+          
+          // Initialize post-load animations
+          setTimeout(() => {
+            this.initializePostLoadAnimations();
+          }, 400);
+        }, config.loadingDuration);
+      },
+      
+      show() {
+        const loadingOverlay = utils.$('#loadingOverlay');
+        if (!loadingOverlay) return;
+        
+        loadingOverlay.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      },
+      
+      hide() {
+        const loadingOverlay = utils.$('#loadingOverlay');
+        if (!loadingOverlay) return;
+        
+        loadingOverlay.classList.add('hidden');
+        document.body.style.overflow = '';
+      },
+      
+      initializePostLoadAnimations() {
+        const heroElements = [
+          '.hero-badge',
+          '.hero-title',
+          '.hero-description',
+          '.hero-actions',
+          '.hero-stats'
+        ];
+        
+        heroElements.forEach((selector, index) => {
+          const element = utils.$(selector);
+          if (element) {
+            setTimeout(() => {
+              element.style.opacity = '1';
+              element.style.transform = 'translateY(0)';
+            }, index * 300);
+          }
+        });
+        
+        setTimeout(() => {
+          const preview = utils.$('.platform-preview');
+          if (preview) {
+            preview.style.opacity = '1';
+            preview.style.transform = 'translateX(0) scale(1)';
+          }
+        }, 1200);
+      }
+    }
+  };
+  
+  // Animation system
+  const animations = {
+    init() {
+      this.initScrollEffects();
+      this.initServiceCards();
+      this.initCounters();
+      this.initAOS();
+    },
+    
+    initScrollEffects() {
+      // Intersection Observer for animations
+      const observerOptions = {
+        threshold: [0.1, 0.3, 0.5],
+        rootMargin: '0px 0px -80px 0px'
+      };
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, observerOptions);
+      
+      utils.$$('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+        observer.observe(el);
+      });
+      
+      // Smooth scrolling for navigation
+      utils.$$('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          if (href !== '#') {
+            e.preventDefault();
+            const target = utils.$(href);
+            if (target) {
+              utils.scrollTo(target, 80);
+            }
+          }
+        });
+      });
+    },
+    
+    initServiceCards() {
+      // Service cards hover effects
+      const serviceCards = utils.$$('.service-card');
+      serviceCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+          this.style.transform = 'translateY(-12px) scale(1.02)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+          this.style.transform = 'translateY(0) scale(1)';
+        });
+        
+        // Add ripple effect on click
+        card.addEventListener('click', function(e) {
+          const ripple = utils.createElement('div');
+          ripple.style.cssText = `
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(92, 107, 80, 0.4);
+            transform: scale(0);
+            animation: ripple 0.8s ease-out;
+            pointer-events: none;
+          `;
+          
+          const rect = this.getBoundingClientRect();
+          const size = Math.max(rect.width, rect.height);
+          ripple.style.width = ripple.style.height = size + 'px';
+          ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+          ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
+          
+          this.style.position = 'relative';
+          this.appendChild(ripple);
+          
+          setTimeout(() => {
+            ripple.remove();
+          }, 800);
+        });
+      });
+    },
+    
+    initCounters() {
+      const counters = utils.$$('.stat-number');
+      
+      const animateCounter = (counter) => {
+        const target = parseInt(counter.dataset.target);
+        const duration = 3000;
+        const step = target / (duration / 16);
+        let current = 0;
+        
+        const timer = setInterval(() => {
+          current += step;
+          if (current >= target) {
+            current = target;
+            clearInterval(timer);
+          }
+          
+          const suffix = counter.dataset.suffix || '';
+          counter.textContent = Math.floor(current) + suffix;
+        }, 16);
+      };
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const counter = entry.target;
+            setTimeout(() => {
+              animateCounter(counter);
+            }, 400);
+            observer.unobserve(counter);
+          }
+        });
+      });
+      
+      counters.forEach(counter => observer.observe(counter));
+    },
+    
+    initAOS() {
+      // Initialize AOS if available
+      if (typeof AOS !== 'undefined') {
+        AOS.init({
+          duration: config.animationDuration,
+          once: true,
+          offset: 100,
+          disable: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        });
+      }
+    }
+  };
+  
+  // Analytics system
+  const analytics = {
+    init() {
+      this.setupEventTracking();
+      this.trackPageView();
+    },
+    
+    setupEventTracking() {
+      // Track clicks on important elements
+      const trackableElements = utils.$$('[data-track]');
+      trackableElements.forEach(element => {
+        element.addEventListener('click', () => {
+          const category = element.dataset.trackCategory || 'engagement';
+          const action = element.dataset.track;
+          const label = element.dataset.trackLabel || '';
+          
+          this.trackEvent(action, { category, label });
+        });
+      });
+    },
+    
+    trackPageView() {
+      const page = {
+        title: document.title,
+        path: window.location.pathname,
+        referrer: document.referrer
+      };
+      
+      // Log page view
+      utils.log('info', 'Page view', page);
+      
+      // Send to analytics service if available
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'page_view', {
+          page_title: page.title,
+          page_path: page.path,
+          page_referrer: page.referrer
+        });
+      }
+    },
+    
+    trackEvent(action, data = {}) {
+      // Log event
+      utils.log('info', `Event: ${action}`, data);
+      
+      // Send to analytics service if available
+      if (typeof gtag !== 'undefined') {
+        gtag('event', action, {
+          event_category: data.category || 'engagement',
+          event_label: data.label || '',
+          value: data.value || 1
+        });
+      }
+    }
+  };
+  
+  // User system
+  const user = {
+    init() {
+      this.loadUserData();
+      this.updateUI();
+    },
+    
+    loadUserData() {
+      state.currentUser = utils.retrieveData('sesmine_user');
+    },
+    
+    updateUI() {
+      const userElements = utils.$$('[data-user]');
+      const authButtons = utils.$('.auth-buttons');
+      const userMenu = utils.$('.user-menu');
+      
+      if (state.currentUser) {
+        // Update user-specific elements
+        userElements.forEach(element => {
+          const userProperty = element.dataset.user;
+          if (userProperty && state.currentUser[userProperty]) {
+            element.textContent = state.currentUser[userProperty];
+          }
+        });
+        
+        // Show user menu, hide auth buttons
+        if (authButtons) authButtons.style.display = 'none';
+        if (userMenu) userMenu.style.display = 'flex';
+      } else {
+        // Hide user menu, show auth buttons
+        if (authButtons) authButtons.style.display = 'flex';
+        if (userMenu) userMenu.style.display = 'none';
+      }
+    },
+    
+    logout() {
+      localStorage.removeItem('sesmine_user');
+      state.currentUser = null;
+      this.updateUI();
+      
+      // Redirect to home page
+      window.location.href = 'index.html';
+    }
+  };
+  
+  // Features system
+  const features = {
+    init() {
+      this.initTabs();
+      this.initAccordions();
+      this.initCarousels();
+    },
+    
+    initTabs() {
+      const tabContainers = utils.$$('.tabs-container');
+      
+      tabContainers.forEach(container => {
+        const tabs = container.querySelectorAll('.tab');
+        const tabContents = container.querySelectorAll('.tab-content');
+        
+        tabs.forEach(tab => {
+          tab.addEventListener('click', () => {
+            const target = tab.dataset.tab;
+            
+            // Update active tab
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            
+            // Show target content
+            tabContents.forEach(content => {
+              content.classList.remove('active');
+              if (content.id === target) {
+                content.classList.add('active');
+              }
+            });
+            
+            // Track tab change
+            analytics.trackEvent('tab_changed', { tab: target });
+          });
+        });
+      });
+    },
+    
+    initAccordions() {
+      const accordions = utils.$$('.accordion');
+      
+      accordions.forEach(accordion => {
+        const headers = accordion.querySelectorAll('.accordion-header');
+        
+        headers.forEach(header => {
+          header.addEventListener('click', () => {
+            const item = header.parentElement;
+            const isActive = item.classList.contains('active');
+            
+            // Close all items
+            if (!header.dataset.allowMultiple) {
+              accordion.querySelectorAll('.accordion-item').forEach(i => {
+                i.classList.remove('active');
+              });
+            }
+            
+            // Toggle current item
+            if (isActive) {
+              item.classList.remove('active');
+            } else {
+              item.classList.add('active');
+            }
+            
+            // Track accordion interaction
+            analytics.trackEvent('accordion_toggled', {
+              id: item.id,
+              state: !isActive ? 'opened' : 'closed'
+            });
+          });
+        });
+      });
+    },
+    
+    initCarousels() {
+      const carousels = utils.$$('.carousel');
+      
+      carousels.forEach(carousel => {
+        const container = carousel.querySelector('.carousel-container');
+        const items = carousel.querySelectorAll('.carousel-item');
+        const nextBtn = carousel.querySelector('.carousel-next');
+        const prevBtn = carousel.querySelector('.carousel-prev');
+        const dots = carousel.querySelector('.carousel-dots');
+        
+        if (!container || items.length === 0) return;
+        
+        let currentIndex = 0;
+        const itemCount = items.length;
+        
+        // Create dots if container exists
+        if (dots) {
+          items.forEach((_, i) => {
+            const dot = utils.createElement('button', {
+              class: i === 0 ? 'carousel-dot active' : 'carousel-dot',
+              'aria-label': `Go to slide ${i + 1}`,
+              onclick: () => goToSlide(i)
+            });
+            dots.appendChild(dot);
+          });
+        }
+        
+        // Navigation buttons
+        if (nextBtn) {
+          nextBtn.addEventListener('click', () => {
+            goToSlide((currentIndex + 1) % itemCount);
+          });
+        }
+        
+        if (prevBtn) {
+          prevBtn.addEventListener('click', () => {
+            goToSlide((currentIndex - 1 + itemCount) % itemCount);
+          });
+        }
+        
+        // Swipe support
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        carousel.addEventListener('touchstart', e => {
+          touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+        
+        carousel.addEventListener('touchend', e => {
+          touchEndX = e.changedTouches[0].screenX;
+          handleSwipe();
+        }, { passive: true });
+        
+        function handleSwipe() {
+          const threshold = 50;
+          if (touchStartX - touchEndX > threshold) {
+            // Swipe left
+            goToSlide((currentIndex + 1) % itemCount);
+          } else if (touchEndX - touchStartX > threshold) {
+            // Swipe right
+            goToSlide((currentIndex - 1 + itemCount) % itemCount);
+          }
+        }
+        
+        function goToSlide(index) {
+          // Update current index
+          currentIndex = index;
+          
+          // Update container position
+          container.style.transform = `translateX(-${currentIndex * 100}%)`;
+          
+          // Update dots
+          if (dots) {
+            const dotButtons = dots.querySelectorAll('.carousel-dot');
+            dotButtons.forEach((dot, i) => {
+              if (i === currentIndex) {
+                dot.classList.add('active');
+              } else {
+                dot.classList.remove('active');
+              }
+            });
+          }
+          
+          // Track carousel interaction
+          analytics.trackEvent('carousel_changed', {
+            id: carousel.id,
+            slide: currentIndex
+          });
+        }
+        
+        // Auto-play if enabled
+        if (carousel.dataset.autoplay) {
+          const interval = parseInt(carousel.dataset.interval) || 5000;
+          
+          setInterval(() => {
+            if (document.visibilityState === 'visible') {
+              goToSlide((currentIndex + 1) % itemCount);
+            }
+          }, interval);
+        }
+      });
+    }
+  };
+  
+  // Keyboard shortcuts
+  const keyboard = {
+    init() {
+      document.addEventListener('keydown', this.handleKeydown.bind(this));
+    },
+    
+    handleKeydown(e) {
+      // Ctrl/Cmd + Shift + R: Quick Registration
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'R') {
+        e.preventDefault();
+        ui.modals.open('registrationModal');
+      }
+      
+      // Escape: Close Modal (handled in modals component)
+      
+      // Ctrl/Cmd + K: Quick Navigation
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        this.showQuickNav();
+      }
+    },
+    
+    showQuickNav() {
+      ui.notifications.show('🔍 Quick navigation: Use the main menu or scroll to explore sections!', 'info');
+      
+      // In a real implementation, show a search/navigation modal
+    }
+  };
+  
+  // Performance monitoring
+  const performance = {
+    init() {
+      this.trackLoadTime();
+      this.trackCoreWebVitals();
+    },
+    
+    trackLoadTime() {
+      window.addEventListener('load', () => {
+        const loadTime = window.performance.now();
+        utils.log('info', `Platform loaded in ${loadTime.toFixed(2)}ms`);
+        
+        // Track load time
+        analytics.trackEvent('page_load_time', {
+          value: Math.round(loadTime),
+          category: 'performance'
+        });
+      });
+    },
+    
+    trackCoreWebVitals() {
+      // Track Core Web Vitals if available
+      if ('web-vitals' in window) {
+        const webVitals = window['web-vitals'];
+        
+        webVitals.getCLS(metric => {
+          utils.log('info', 'CLS:', metric);
+          analytics.trackEvent('core_web_vital', {
+            category: 'performance',
+            label: 'CLS',
+            value: Math.round(metric.value * 1000)
+          });
+        });
+        
+        webVitals.getFID(metric => {
+          utils.log('info', 'FID:', metric);
+          analytics.trackEvent('core_web_vital', {
+            category: 'performance',
+            label: 'FID',
+            value: Math.round(metric.value)
+          });
+        });
+        
+        webVitals.getLCP(metric => {
+          utils.log('info', 'LCP:', metric);
+          analytics.trackEvent('core_web_vital', {
+            category: 'performance',
+            label: 'LCP',
+            value: Math.round(metric.value)
+          });
+        });
+      }
+    }
+  };
+  
+  // Public API
+  return {
+    /**
+     * Initialize the SESMine platform
+     */
+    init() {
+      utils.log('info', 'Platform Initializing...');
+      
+      // Initialize components
+      ui.loading.init();
+      ui.init();
+      animations.init();
+      analytics.init();
+      user.init();
+      features.init();
+      keyboard.init();
+      performance.init();
+      
+      utils.log('info', 'Platform Ready');
+    },
+    
+    /**
+     * Show notification
+     * @param {string} message - Notification message
+     * @param {string} type - Notification type (info, success, warning, error)
+     * @param {number} duration - Duration in ms (0 for persistent)
+     * @returns {string} - Notification ID
+     */
+    notify(message, type = 'info', duration = 5000) {
+      return ui.notifications.show(message, type, duration);
+    },
+    
+    /**
+     * Open modal
+     * @param {string} modalId - ID of the modal to open
+     */
+    openModal(modalId) {
+      ui.modals.open(modalId);
+    },
+    
+    /**
+     * Close modal
+     * @param {string} modalId - ID of the modal to close
+     */
+    closeModal(modalId) {
+      ui.modals.close(modalId);
+    },
+    
+    /**
+     * Get current user
+     * @returns {Object|null} - Current user data or null if not logged in
+     */
+    getCurrentUser() {
+      return state.currentUser;
+    },
+    
+    /**
+     * Logout current user
+     */
+    logout() {
+      user.logout();
+    },
+    
+    /**
+     * Track custom event
+     * @param {string} action - Event action
+     * @param {Object} data - Event data
+     */
+    trackEvent(action, data = {}) {
+      analytics.trackEvent(action, data);
+    }
+  };
+})();
+
+// Initialize on DOM content loaded
+document.addEventListener('DOMContentLoaded', () => {
+  SESMine.init();
+});

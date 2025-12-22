@@ -3,1372 +3,889 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Settings - SESMine Platform</title>
   <meta name="description" content="User Settings and Preferences - SESMine">
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" type="image/x-icon" href="https://www.sesmine.com/favicon.ico">
+  <title>Settings - SES_MINE Platform</title>
+  
+  <link rel="icon" type="image/png" href="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/153945651/6sGQHt6CUh5lVvcD.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <style>
-  /* Settings page specific styles */
-  .settings-hero {
-      background: linear-gradient(135deg, var(--gray-700) 0%, var(--gray-800) 50%, var(--sesmine-primary) 100%);
+    :root {
+      --primary-dark: #0b1a2e;
+      --primary-light: #f7f9fc;
+      --accent-primary: #2563eb;
+      --accent-secondary: #1e3a8a;
+      --accent-gold: #d4af37;
+      --success: #38a169;
+      --warning: #dd6b20;
+      --error: #e53e3e;
+      --gradient-primary: linear-gradient(135deg, #0b1a2e 0%, #1a365d 100%);
+      --gradient-accent: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+      --gradient-gold: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2rem;
+      --space-2xl: 3rem;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-lg: 0 10px 15px rgba(0,0,0,0.1), 0 4px 6px rgba(0,0,0,0.05);
+      --shadow-xl: 0 20px 25px rgba(0,0,0,0.1), 0 10px 10px rgba(0,0,0,0.04);
+      --radius-sm: 0.25rem;
+      --radius-md: 0.5rem;
+      --radius-lg: 0.75rem;
+      --radius-xl: 1rem;
+      --transition-smooth: 0.3s ease;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: var(--primary-dark);
+      background: linear-gradient(135deg, #f7f9fc 0%, #e8eef5 100%);
+      min-height: 100vh;
+    }
+    
+    /* Hero Section */
+    .settings-hero {
+      background: var(--gradient-primary);
       color: white;
-      padding: 3rem 0;
-      margin-bottom: 3rem;
+      padding: var(--space-2xl) var(--space-xl);
       position: relative;
       overflow: hidden;
-  }
-  
-  .settings-hero::before {
+    }
+    
+    .settings-hero::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="settings-pattern" width="30" height="30" patternUnits="userSpaceOnUse"><circle cx="15" cy="15" r="2" fill="rgba(255,255,255,0.05)"/><rect x="10" y="10" width="10" height="2" fill="rgba(255,255,255,0.03)" rx="1"/><rect x="8" y="18" width="14" height="2" fill="rgba(255,255,255,0.04)" rx="1"/></pattern></defs><rect width="100" height="100" fill="url(%23settings-pattern)"/></svg>');
-      opacity: 0.3;
-  }
-  
-  .hero-content {
+      inset: 0;
+      opacity: 0.1;
+      background: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80') center/cover;
+    }
+    
+    .hero-content {
       position: relative;
       z-index: 1;
-      max-width: 1200px;
+      max-width: 1400px;
       margin: 0 auto;
-      padding: 0 2rem;
       display: flex;
       align-items: center;
-      gap: 2rem;
-  }
-  
-  .hero-icon {
+      gap: var(--space-xl);
+    }
+    
+    .hero-icon {
       width: 80px;
       height: 80px;
-      background: linear-gradient(135deg, var(--sesmine-gold), var(--sesmine-copper));
-      border-radius: var(--border-radius-xl);
+      background: var(--gradient-gold);
+      border-radius: var(--radius-xl);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 2.5rem;
-      box-shadow: var(--shadow-2xl);
+      box-shadow: var(--shadow-xl);
       animation: settingsRotate 6s linear infinite;
       flex-shrink: 0;
-  }
-  
-  @keyframes settingsRotate {
+    }
+    
+    @keyframes settingsRotate {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
-  }
-  
-  .hero-text {
+    }
+    
+    .hero-text {
       flex: 1;
-  }
-  
-  .hero-title {
+    }
+    
+    .hero-title {
       font-size: 2.5rem;
       font-weight: 800;
-      margin-bottom: 1rem;
-      background: linear-gradient(135deg, white, rgba(255, 255, 255, 0.8), var(--sesmine-gold));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      line-height: 1.1;
-  }
-  
-  .hero-subtitle {
-      font-size: 1.25rem;
+      margin-bottom: var(--space-sm);
+    }
+    
+    .hero-subtitle {
+      font-size: 1.2rem;
       opacity: 0.9;
-      line-height: 1.5;
-  }
-  
-  .settings-layout {
-      display: grid;
-      grid-template-columns: 300px 1fr;
-      gap: 3rem;
-      max-width: 1200px;
+    }
+    
+    /* Settings Layout */
+    .settings-layout {
+      max-width: 1400px;
       margin: 0 auto;
-  }
-  
-  .settings-sidebar {
+      padding: var(--space-2xl) var(--space-xl);
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: var(--space-2xl);
+    }
+    
+    /* Sidebar */
+    .settings-sidebar {
       background: white;
-      border-radius: var(--border-radius-xl);
-      padding: 2rem;
+      border-radius: var(--radius-xl);
+      padding: var(--space-xl);
       box-shadow: var(--shadow-md);
-      border: 1px solid var(--gray-200);
+      border: 1px solid rgba(37, 99, 235, 0.1);
       height: fit-content;
       position: sticky;
-      top: 2rem;
-  }
-  
-  .sidebar-title {
-      font-size: 1.25rem;
+      top: var(--space-xl);
+    }
+    
+    .sidebar-title {
+      font-size: 1.2rem;
       font-weight: 700;
-      color: var(--sesmine-primary);
-      margin-bottom: 2rem;
+      color: var(--primary-dark);
+      margin-bottom: var(--space-lg);
       display: flex;
       align-items: center;
-      gap: 0.75rem;
-  }
-  
-  .settings-nav {
+      gap: var(--space-sm);
+    }
+    
+    .settings-nav {
       list-style: none;
-  }
-  
-  .nav-item {
-      margin-bottom: 0.5rem;
-  }
-  
-  .nav-link {
+    }
+    
+    .nav-item {
+      margin-bottom: var(--space-sm);
+    }
+    
+    .nav-link {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
-      padding: 1rem;
-      color: var(--gray-700);
+      gap: var(--space-sm);
+      padding: var(--space-md);
+      color: var(--accent-secondary);
       text-decoration: none;
-      border-radius: var(--border-radius-md);
-      transition: var(--transition-all);
+      border-radius: var(--radius-md);
+      transition: var(--transition-smooth);
       font-weight: 500;
-  }
-  
-  .nav-link:hover {
-      background: var(--gray-50);
-      color: var(--sesmine-primary);
-  }
-  
-  .nav-link.active {
-      background: linear-gradient(135deg, var(--sesmine-gold), var(--sesmine-copper));
+    }
+    
+    .nav-link:hover {
+      background: rgba(37, 99, 235, 0.05);
+      color: var(--accent-primary);
+    }
+    
+    .nav-link.active {
+      background: var(--gradient-accent);
       color: white;
       box-shadow: var(--shadow-sm);
-  }
-  
-  .nav-icon {
-      width: 20px;
-      height: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-  }
-  
-  .settings-content {
+    }
+    
+    /* Settings Content */
+    .settings-content {
       background: white;
-      border-radius: var(--border-radius-xl);
-      padding: 3rem;
+      border-radius: var(--radius-xl);
+      padding: var(--space-2xl);
       box-shadow: var(--shadow-md);
-      border: 1px solid var(--gray-200);
-  }
-  
-  .section-header {
-      margin-bottom: 3rem;
-      padding-bottom: 1.5rem;
-      border-bottom: 2px solid var(--gray-100);
-  }
-  
-  .section-title {
+      border: 1px solid rgba(37, 99, 235, 0.1);
+    }
+    
+    .section-header {
+      margin-bottom: var(--space-2xl);
+      padding-bottom: var(--space-lg);
+      border-bottom: 2px solid rgba(37, 99, 235, 0.1);
+    }
+    
+    .section-title {
       font-size: 2rem;
       font-weight: 800;
-      color: var(--sesmine-primary);
-      margin-bottom: 0.5rem;
+      color: var(--primary-dark);
+      margin-bottom: var(--space-sm);
       display: flex;
       align-items: center;
-      gap: 1rem;
-  }
-  
-  .section-description {
-      color: var(--gray-600);
-      font-size: 1.1rem;
-      line-height: 1.6;
-  }
-  
-  .settings-form {
-      display: grid;
-      gap: 2.5rem;
-  }
-  
-  .form-section {
-      background: var(--gray-50);
-      border-radius: var(--border-radius-lg);
-      padding: 2rem;
-      border: 1px solid var(--gray-200);
-  }
-  
-  .form-section-title {
-      font-size: 1.25rem;
+      gap: var(--space-sm);
+    }
+    
+    .section-description {
+      color: var(--accent-secondary);
+      font-size: 1.05rem;
+    }
+    
+    /* Form Sections */
+    .form-section {
+      background: rgba(37, 99, 235, 0.02);
+      border-radius: var(--radius-lg);
+      padding: var(--space-xl);
+      margin-bottom: var(--space-xl);
+      border: 1px solid rgba(37, 99, 235, 0.1);
+    }
+    
+    .form-section-title {
+      font-size: 1.3rem;
       font-weight: 700;
-      color: var(--sesmine-primary);
-      margin-bottom: 1.5rem;
+      color: var(--primary-dark);
+      margin-bottom: var(--space-lg);
       display: flex;
       align-items: center;
-      gap: 0.75rem;
-  }
-  
-  .form-grid {
+      gap: var(--space-sm);
+    }
+    
+    .form-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-  }
-  
-  .form-group {
+      gap: var(--space-lg);
+    }
+    
+    .form-group {
       display: flex;
       flex-direction: column;
-  }
-  
-  .form-label {
+      gap: var(--space-sm);
+    }
+    
+    .form-label {
       font-weight: 600;
-      color: var(--gray-700);
-      margin-bottom: 0.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-  }
-  
-  .form-input {
-      padding: 1rem;
-      border: 2px solid var(--gray-300);
-      border-radius: var(--border-radius-md);
+      color: var(--primary-dark);
+      font-size: 0.95rem;
+    }
+    
+    .form-input,
+    .form-select,
+    .form-textarea {
+      padding: var(--space-md);
+      border: 2px solid rgba(37, 99, 235, 0.2);
+      border-radius: var(--radius-md);
       font-size: 1rem;
-      transition: var(--transition-all);
-      background: white;
-  }
-  
-  .form-input:focus {
+      transition: var(--transition-smooth);
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
       outline: none;
-      border-color: var(--sesmine-gold);
-      box-shadow: 0 0 0 4px rgba(214, 158, 46, 0.1);
-  }
-  
-  .form-select {
-      padding: 1rem;
-      border: 2px solid var(--gray-300);
-      border-radius: var(--border-radius-md);
-      font-size: 1rem;
-      background: white;
-      transition: var(--transition-all);
-  }
-  
-  .form-textarea {
-      resize: vertical;
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+    
+    .form-textarea {
       min-height: 120px;
-  }
-  
-  .toggle-switch {
+      resize: vertical;
+    }
+    
+    /* Toggle Switch */
+    .toggle-group {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-lg);
+      background: white;
+      border-radius: var(--radius-md);
+      margin-bottom: var(--space-md);
+    }
+    
+    .toggle-info {
+      flex: 1;
+    }
+    
+    .toggle-title {
+      font-weight: 600;
+      color: var(--primary-dark);
+      margin-bottom: var(--space-xs);
+    }
+    
+    .toggle-description {
+      font-size: 0.9rem;
+      color: var(--accent-secondary);
+    }
+    
+    .toggle-switch {
       position: relative;
-      display: inline-block;
-      width: 60px;
-      height: 34px;
-  }
-  
-  .toggle-input {
+      width: 56px;
+      height: 28px;
+    }
+    
+    .toggle-switch input {
       opacity: 0;
       width: 0;
       height: 0;
-  }
-  
-  .toggle-slider {
+    }
+    
+    .toggle-slider {
       position: absolute;
       cursor: pointer;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      background-color: var(--gray-300);
-      transition: var(--transition-all);
-      border-radius: 34px;
-  }
-  
-  .toggle-slider:before {
+      background: rgba(37, 99, 235, 0.2);
+      border-radius: 28px;
+      transition: var(--transition-smooth);
+    }
+    
+    .toggle-slider:before {
       position: absolute;
       content: "";
-      height: 26px;
-      width: 26px;
+      height: 20px;
+      width: 20px;
       left: 4px;
       bottom: 4px;
-      background-color: white;
-      transition: var(--transition-all);
+      background: white;
       border-radius: 50%;
-      box-shadow: var(--shadow-sm);
-  }
-  
-  .toggle-input:checked + .toggle-slider {
-      background-color: var(--sesmine-gold);
-  }
-  
-  .toggle-input:checked + .toggle-slider:before {
-      transform: translateX(26px);
-  }
-  
-  .toggle-group {
+      transition: var(--transition-smooth);
+    }
+    
+    input:checked + .toggle-slider {
+      background: var(--gradient-accent);
+    }
+    
+    input:checked + .toggle-slider:before {
+      transform: translateX(28px);
+    }
+    
+    /* Profile Picture */
+    .profile-picture-section {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      padding: 1rem 0;
-      border-bottom: 1px solid var(--gray-200);
-  }
-  
-  .toggle-group:last-child {
-      border-bottom: none;
-  }
-  
-  .toggle-info {
-      flex: 1;
-      margin-right: 1rem;
-  }
-  
-  .toggle-title {
-      font-weight: 600;
-      color: var(--gray-800);
-      margin-bottom: 0.25rem;
-  }
-  
-  .toggle-description {
-      color: var(--gray-600);
-      font-size: 0.9rem;
-      line-height: 1.4;
-  }
-  
-  .avatar-section {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-      margin-bottom: 2rem;
-  }
-  
-  .current-avatar {
-      width: 100px;
-      height: 100px;
+      gap: var(--space-xl);
+      padding: var(--space-xl);
+      background: white;
+      border-radius: var(--radius-lg);
+      margin-bottom: var(--space-xl);
+    }
+    
+    .profile-avatar {
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--sesmine-accent), var(--sesmine-secondary));
+      background: var(--gradient-accent);
       display: flex;
       align-items: center;
       justify-content: center;
+      font-size: 3rem;
       color: white;
-      font-size: 2.5rem;
-      font-weight: 800;
+      font-weight: 700;
       box-shadow: var(--shadow-lg);
-  }
-  
-  .avatar-actions {
+    }
+    
+    .profile-actions {
+      flex: 1;
+    }
+    
+    .profile-actions h3 {
+      font-size: 1.2rem;
+      margin-bottom: var(--space-sm);
+      color: var(--primary-dark);
+    }
+    
+    .profile-actions p {
+      color: var(--accent-secondary);
+      margin-bottom: var(--space-lg);
+    }
+    
+    .profile-buttons {
       display: flex;
-      flex-direction: column;
-      gap: 1rem;
-  }
-  
-  .btn-secondary {
-      padding: 0.75rem 1.5rem;
-      border: 2px solid var(--gray-300);
-      background: white;
-      color: var(--gray-700);
-      border-radius: var(--border-radius-md);
-      font-size: 0.9rem;
+      gap: var(--space-md);
+    }
+    
+    .btn {
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: var(--radius-md);
       font-weight: 600;
       cursor: pointer;
-      transition: var(--transition-all);
-      text-align: center;
-      text-decoration: none;
+      transition: var(--transition-smooth);
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-  }
-  
-  .btn-secondary:hover {
-      border-color: var(--sesmine-primary);
-      color: var(--sesmine-primary);
-  }
-  
-  .security-section {
-      background: linear-gradient(135deg, var(--danger-50), var(--warning-50));
-      border: 2px solid var(--danger-200);
-  }
-  
-  .security-alert {
-      background: var(--danger-100);
-      border: 1px solid var(--danger-300);
-      border-radius: var(--border-radius-md);
-      padding: 1rem;
-      margin-bottom: 2rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-  }
-  
-  .alert-icon {
-      width: 40px;
-      height: 40px;
-      background: var(--danger-500);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 1.25rem;
-      flex-shrink: 0;
-  }
-  
-  .alert-content {
-      flex: 1;
-  }
-  
-  .alert-title {
-      font-weight: 700;
-      color: var(--danger-700);
-      margin-bottom: 0.25rem;
-  }
-  
-  .alert-message {
-      color: var(--danger-600);
-      font-size: 0.9rem;
-      line-height: 1.4;
-  }
-  
-  .password-strength {
-      margin-top: 0.5rem;
-  }
-  
-  .strength-bar {
-      width: 100%;
-      height: 6px;
-      background: var(--gray-200);
-      border-radius: 3px;
-      overflow: hidden;
-      margin-bottom: 0.5rem;
-  }
-  
-  .strength-fill {
-      height: 100%;
-      transition: var(--transition-all);
-      border-radius: 3px;
-  }
-  
-  .strength-weak { background: var(--danger-500); width: 25%; }
-  .strength-fair { background: var(--warning-500); width: 50%; }
-  .strength-good { background: var(--success-400); width: 75%; }
-  .strength-strong { background: var(--success-500); width: 100%; }
-  
-  .strength-text {
-      font-size: 0.85rem;
-      font-weight: 600;
-  }
-  
-  .text-weak { color: var(--danger-600); }
-  .text-fair { color: var(--warning-600); }
-  .text-good { color: var(--success-600); }
-  .text-strong { color: var(--success-700); }
-  
-  .action-buttons {
-      display: flex;
-      gap: 1rem;
-      margin-top: 3rem;
-      padding-top: 2rem;
-      border-top: 2px solid var(--gray-100);
-  }
-  
-  .btn-primary {
-      flex: 1;
-      padding: 1rem 2rem;
-      background: linear-gradient(135deg, var(--sesmine-gold), var(--sesmine-copper));
-      color: white;
+      gap: var(--space-sm);
       border: none;
-      border-radius: var(--border-radius-md);
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: var(--transition-all);
-      box-shadow: var(--shadow-md);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-  }
-  
-  .btn-primary:hover {
-      background: linear-gradient(135deg, var(--sesmine-copper), var(--warning-700));
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-lg);
-  }
-  
-  .btn-danger {
-      padding: 1rem 2rem;
-      background: var(--danger-500);
+      font-size: 0.95rem;
+    }
+    
+    .btn-primary {
+      background: var(--gradient-accent);
       color: white;
-      border: none;
-      border-radius: var(--border-radius-md);
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: var(--transition-all);
-      box-shadow: var(--shadow-md);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-  }
-  
-  .btn-danger:hover {
-      background: var(--danger-600);
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: var(--shadow-lg);
-  }
-  
-  @media (max-width: 1024px) {
+      box-shadow: var(--shadow-md);
+    }
+    
+    .btn-secondary {
+      background: white;
+      color: var(--accent-primary);
+      border: 2px solid var(--accent-primary);
+    }
+    
+    .btn-secondary:hover {
+      background: rgba(37, 99, 235, 0.05);
+    }
+    
+    .btn-danger {
+      background: white;
+      color: var(--error);
+      border: 2px solid var(--error);
+    }
+    
+    .btn-danger:hover {
+      background: rgba(229, 62, 62, 0.05);
+    }
+    
+    /* Action Buttons */
+    .form-actions {
+      display: flex;
+      gap: var(--space-md);
+      padding-top: var(--space-xl);
+      border-top: 2px solid rgba(37, 99, 235, 0.1);
+    }
+    
+    .btn-large {
+      padding: var(--space-md) var(--space-2xl);
+      font-size: 1.05rem;
+    }
+    
+    /* Success Message */
+    .success-message {
+      background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+      border: 2px solid var(--success);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+      margin-bottom: var(--space-xl);
+      display: none;
+      align-items: center;
+      gap: var(--space-sm);
+      color: var(--success);
+      font-weight: 600;
+    }
+    
+    .success-message.active {
+      display: flex;
+      animation: slideIn 0.5s ease;
+    }
+    
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Responsive */
+    @media (max-width: 1024px) {
       .settings-layout {
-          grid-template-columns: 1fr;
-          gap: 2rem;
+        grid-template-columns: 1fr;
       }
       
       .settings-sidebar {
-          position: static;
+        position: static;
       }
       
       .settings-nav {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-          gap: 0.5rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: var(--space-sm);
       }
-  }
-  
-  @media (max-width: 768px) {
-      .hero-content {
-          flex-direction: column;
-          text-align: center;
+    }
+    
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2rem;
       }
       
       .form-grid {
-          grid-template-columns: 1fr;
+        grid-template-columns: 1fr;
       }
       
-      .avatar-section {
-          flex-direction: column;
-          text-align: center;
+      .profile-picture-section {
+        flex-direction: column;
+        text-align: center;
       }
-      
-      .action-buttons {
-          flex-direction: column;
-      }
-  }
+    }
   </style>
 </head>
 <body>
-  <!-- Universal Navigation Header -->
-  <header class="sesmine-header" id="sesmineHeader">
-      <div class="header-content">
-          <div class="logo-section">
-              <button class="header-btn mobile-menu-toggle" id="mobileMenuToggle">
-                  <i class="fas fa-bars"></i>
-              </button>
-              <a href="index.html" class="logo">
-                  <div class="logo-icon">🏔️</div>
-                  <div class="logo-text">
-                      <div class="logo-main">SESMine</div>
-                      <div class="logo-subtitle">Smart Engineering Solutions</div>
-                  </div>
-              </a>
-          </div>
-          
-          <nav class="main-nav" id="mainNav">
-              <a href="home.html" class="nav-link">
-                  <i class="fas fa-home"></i> Dashboard
-              </a>
-              <div class="nav-dropdown">
-                  <button class="nav-link dropdown-toggle">
-                      <i class="fas fa-th-large"></i> Hubs <i class="fas fa-chevron-down"></i>
-                  </button>
-                  <div class="dropdown-menu">
-                      <a href="engineering-hub.html" class="dropdown-item">
-                          <i class="fas fa-hard-hat"></i> Engineering Hub
-                      </a>
-                      <a href="analytics-platform.html" class="dropdown-item">
-                          <i class="fas fa-chart-area"></i> Analytics Platform
-                      </a>
-                      <a href="economics-hub.html" class="dropdown-item">
-                          <i class="fas fa-coins"></i> Economics Hub
-                      </a>
-                      <a href="innovation-technology-hub.html" class="dropdown-item">
-                          <i class="fas fa-rocket"></i> Innovation & Technology
-                      </a>
-                      <a href="procurement-hub.html" class="dropdown-item">
-                          <i class="fas fa-truck"></i> Procurement Hub
-                      </a>
-                      <a href="consulting-hub.html" class="dropdown-item">
-                          <i class="fas fa-user-tie"></i> Consulting Hub
-                      </a>
-                      <a href="training-education-hub.html" class="dropdown-item">
-                          <i class="fas fa-graduation-cap"></i> Training & Education
-                      </a>
-                      <a href="admin-dashboard.html" class="dropdown-item">
-                          <i class="fas fa-shield-alt"></i> Admin Dashboard
-                      </a>
-                  </div>
-              </div>
-              <a href="platforms.html" class="nav-link">
-                  <i class="fas fa-layer-group"></i> Platforms
-              </a>
-              <a href="features.html" class="nav-link">
-                  <i class="fas fa-star"></i> Features
-              </a>
-              <a href="about.html" class="nav-link">
-                  <i class="fas fa-info-circle"></i> About
-              </a>
-              <a href="contact.html" class="nav-link">
-                  <i class="fas fa-phone"></i> Contact
-              </a>
-          </nav>
-          
-          <div class="header-actions">
-              <div class="search-container">
-                  <i class="fas fa-search search-icon"></i>
-                  <input type="text" class="search-input" placeholder="Search settings..." id="globalSearch">
-              </div>
-              <button class="header-btn" title="Notifications">
-                  <i class="fas fa-bell"></i>
-              </button>
-              <button class="header-btn" title="Settings" onclick="window.location.href='setting.html'">
-                  <i class="fas fa-cog"></i>
-              </button>
-              <div class="user-menu">
-                  <div class="user-avatar">MS</div>
-                  <div class="user-info">
-                      <div class="user-name">Mining Specialist</div>
-                      <div class="user-email">specialist@sesmine.com</div>
-                  </div>
-                  <div class="user-dropdown">
-                      <a href="setting.html" class="dropdown-item">
-                          <i class="fas fa-cog"></i> Settings
-                      </a>
-                      <a href="login.html" class="dropdown-item">
-                          <i class="fas fa-sign-out-alt"></i> Logout
-                      </a>
-                  </div>
-              </div>
-          </div>
+  <!-- Hero Section -->
+  <section class="settings-hero">
+    <div class="hero-content">
+      <div class="hero-icon">
+        <i class="fas fa-cog"></i>
       </div>
-  </header>
-
-  <!-- Main Content -->
-  <main class="main-content">
-      <!-- Settings Hero Section -->
-      <section class="settings-hero">
-          <div class="hero-content">
-              <div class="hero-icon">⚙️</div>
-              <div class="hero-text">
-                  <h1 class="hero-title">Settings & Preferences</h1>
-                  <p class="hero-subtitle">
-                      Customize your SESMine experience with personalized settings, 
-                      security preferences, and account management options.
-                  </p>
-              </div>
-          </div>
-      </section>
-
-      <div class="content-container">
-          <div class="settings-layout">
-              <!-- Settings Sidebar -->
-              <aside class="settings-sidebar">
-                  <h3 class="sidebar-title">
-                      <i class="fas fa-list"></i>
-                      Settings Menu
-                  </h3>
-                  <nav>
-                      <ul class="settings-nav">
-                          <li class="nav-item">
-                              <a href="#profile" class="nav-link active" onclick="showSection('profile')">
-                                  <div class="nav-icon"><i class="fas fa-user"></i></div>
-                                  Profile Settings
-                              </a>
-                          </li>
-                          <li class="nav-item">
-                              <a href="#security" class="nav-link" onclick="showSection('security')">
-                                  <div class="nav-icon"><i class="fas fa-shield-alt"></i></div>
-                                  Security & Privacy
-                              </a>
-                          </li>
-                          <li class="nav-item">
-                              <a href="#notifications" class="nav-link" onclick="showSection('notifications')">
-                                  <div class="nav-icon"><i class="fas fa-bell"></i></div>
-                                  Notifications
-                              </a>
-                          </li>
-                          <li class="nav-item">
-                              <a href="#preferences" class="nav-link" onclick="showSection('preferences')">
-                                  <div class="nav-icon"><i class="fas fa-sliders-h"></i></div>
-                                  Preferences
-                              </a>
-                          </li>
-                          <li class="nav-item">
-                              <a href="#integrations" class="nav-link" onclick="showSection('integrations')">
-                                  <div class="nav-icon"><i class="fas fa-plug"></i></div>
-                                  Integrations
-                              </a>
-                          </li>
-                          <li class="nav-item">
-                              <a href="#billing" class="nav-link" onclick="showSection('billing')">
-                                  <div class="nav-icon"><i class="fas fa-credit-card"></i></div>
-                                  Billing & Plans
-                              </a>
-                          </li>
-                      </ul>
-                  </nav>
-              </aside>
-
-              <!-- Settings Content -->
-              <main class="settings-content">
-                  <!-- Profile Settings Section -->
-                  <section id="profile-section" class="settings-section">
-                      <div class="section-header">
-                          <h2 class="section-title">
-                              <i class="fas fa-user"></i>
-                              Profile Settings
-                          </h2>
-                          <p class="section-description">
-                              Manage your personal information, avatar, and professional details.
-                          </p>
-                      </div>
-
-                      <form class="settings-form" id="profileForm">
-                          <div class="form-section">
-                              <h3 class="form-section-title">
-                                  <i class="fas fa-portrait"></i>
-                                  Profile Picture
-                              </h3>
-                              <div class="avatar-section">
-                                  <div class="current-avatar">MS</div>
-                                  <div class="avatar-actions">
-                                      <button type="button" class="btn-secondary" onclick="uploadAvatar()">
-                                          <i class="fas fa-upload"></i>
-                                          Upload New Photo
-                                      </button>
-                                      <button type="button" class="btn-secondary" onclick="removeAvatar()">
-                                          <i class="fas fa-trash"></i>
-                                          Remove Photo
-                                      </button>
-                                  </div>
-                              </div>
-                          </div>
-
-                          <div class="form-section">
-                              <h3 class="form-section-title">
-                                  <i class="fas fa-info-circle"></i>
-                                  Personal Information
-                              </h3>
-                              <div class="form-grid">
-                                  <div class="form-group">
-                                      <label class="form-label">
-                                          <i class="fas fa-user"></i>
-                                          First Name
-                                      </label>
-                                      <input type="text" class="form-input" value="Mining" required>
-                                  </div>
-                                  <div class="form-group">
-                                      <label class="form-label">
-                                          <i class="fas fa-user"></i>
-                                          Last Name
-                                      </label>
-                                      <input type="text" class="form-input" value="Specialist" required>
-                                  </div>
-                                  <div class="form-group">
-                                      <label class="form-label">
-                                          <i class="fas fa-envelope"></i>
-                                          Email Address
-                                      </label>
-                                      <input type="email" class="form-input" value="specialist@sesmine.com" required>
-                                  </div>
-                                  <div class="form-group">
-                                      <label class="form-label">
-                                          <i class="fas fa-phone"></i>
-                                          Phone Number
-                                      </label>
-                                      <input type="tel" class="form-input" value="+1 (555) 123-4567">
-                                  </div>
-                                  <div class="form-group">
-                                      <label class="form-label">
-                                          <i class="fas fa-briefcase"></i>
-                                          Job Title
-                                      </label>
-                                      <input type="text" class="form-input" value="Senior Mining Engineer">
-                                  </div>
-                                  <div class="form-group">
-                                      <label class="form-label">
-                                          <i class="fas fa-building"></i>
-                                          Company
-                                      </label>
-                                      <input type="text" class="form-input" value="Alpine Mining Corp">
-                                  </div>
-                              </div>
-                          </div>
-
-                          <div class="form-section">
-                              <h3 class="form-section-title">
-                                  <i class="fas fa-map-marker-alt"></i>
-                                  Location & Contact
-                              </h3>
-                              <div class="form-grid">
-                                  <div class="form-group">
-                                      <label class="form-label">
-                                          <i class="fas fa-globe"></i>
-                                          Country
-                                      </label>
-                                      <select class="form-select">
-                                          <option value="US">United States</option>
-                                          <option value="CA">Canada</option>
-                                          <option value="AU">Australia</option>
-                                          <option value="UK">United Kingdom</option>
-                                          <option value="ZA">South Africa</option>
-                                      </select>
-                                  </div>
-                                  <div class="form-group">
-                                      <label class="form-label">
-                                          <i class="fas fa-city"></i>
-                                          City
-                                      </label>
-                                      <input type="text" class="form-input" value="Denver">
-                                  </div>
-                                  <div class="form-group">
-                                      <label class="form-label">
-                                          <i class="fas fa-clock"></i>
-                                          Time Zone
-                                      </label>
-                                      <select class="form-select">
-                                          <option value="America/Denver">Mountain Time (MT)</option>
-                                          <option value="America/New_York">Eastern Time (ET)</option>
-                                          <option value="America/Los_Angeles">Pacific Time (PT)</option>
-                                          <option value="America/Chicago">Central Time (CT)</option>
-                                      </select>
-                                  </div>
-                                  <div class="form-group">
-                                      <label class="form-label">
-                                          <i class="fas fa-language"></i>
-                                          Language
-                                      </label>
-                                      <select class="form-select">
-                                          <option value="en">English</option>
-                                          <option value="es">Spanish</option>
-                                          <option value="fr">French</option>
-                                          <option value="de">German</option>
-                                          <option value="pt">Portuguese</option>
-                                      </select>
-                                  </div>
-                              </div>
-                          </div>
-
-                          <div class="form-section">
-                              <h3 class="form-section-title">
-                                  <i class="fas fa-user-tie"></i>
-                                  Professional Details
-                              </h3>
-                              <div class="form-grid">
-                                  <div class="form-group" style="grid-column: 1 / -1;">
-                                      <label class="form-label">
-                                          <i class="fas fa-file-alt"></i>
-                                          Bio
-                                      </label>
-                                      <textarea class="form-input form-textarea" placeholder="Tell us about your professional background and expertise...">Experienced mining engineer with 15+ years in open-pit and underground operations. Specialized in cost estimation, project management, and sustainable mining practices.</textarea>
-                                  </div>
-                              </div>
-                          </div>
-                      </form>
-                  </section>
-
-                  <!-- Security Settings Section -->
-                  <section id="security-section" class="settings-section" style="display: none;">
-                      <div class="section-header">
-                          <h2 class="section-title">
-                              <i class="fas fa-shield-alt"></i>
-                              Security & Privacy
-                          </h2>
-                          <p class="section-description">
-                              Protect your account with strong security settings and privacy controls.
-                          </p>
-                      </div>
-
-                      <form class="settings-form" id="securityForm">
-                          <div class="form-section security-section">
-                              <div class="security-alert">
-                                  <div class="alert-icon">
-                                      <i class="fas fa-exclamation-triangle"></i>
-                                  </div>
-                                  <div class="alert-content">
-                                      <div class="alert-title">Security Recommendation</div>
-                                      <div class="alert-message">
-                                          Enable two-factor authentication to add an extra layer of security to your account.
-                                      </div>
-                                  </div>
-                              </div>
-
-                              <h3 class="form-section-title">
-                                  <i class="fas fa-key"></i>
-                                  Password & Authentication
-                              </h3>
-                              
-                              <div class="form-grid">
-                                  <div class="form-group">
-                                      <label class="form-label">
-                                          <i class="fas fa-lock"></i>
-                                          Current Password
-                                      </label>
-                                      <input type="password" class="form-input" placeholder="Enter current password">
-                                  </div>
-                                  <div class="form-group">
-                                      <label class="form-label">
-                                          <i class="fas fa-lock"></i>
-                                          New Password
-                                      </label>
-                                      <input type="password" class="form-input" placeholder="Enter new password" id="newPassword" oninput="checkPasswordStrength()">
-                                      <div class="password-strength">
-                                          <div class="strength-bar">
-                                              <div class="strength-fill" id="strengthBar"></div>
-                                          </div>
-                                          <div class="strength-text" id="strengthText">Enter a password</div>
-                                      </div>
-                                  </div>
-                                  <div class="form-group">
-                                      <label class="form-label">
-                                          <i class="fas fa-lock"></i>
-                                          Confirm New Password
-                                      </label>
-                                      <input type="password" class="form-input" placeholder="Confirm new password">
-                                  </div>
-                              </div>
-                          </div>
-
-                          <div class="form-section">
-                              <h3 class="form-section-title">
-                                  <i class="fas fa-mobile-alt"></i>
-                                  Two-Factor Authentication
-                              </h3>
-                              
-                              <div class="toggle-group">
-                                  <div class="toggle-info">
-                                      <div class="toggle-title">SMS Authentication</div>
-                                      <div class="toggle-description">Receive verification codes via SMS to your phone</div>
-                                  </div>
-                                  <label class="toggle-switch">
-                                      <input type="checkbox" class="toggle-input">
-                                      <span class="toggle-slider"></span>
-                                  </label>
-                              </div>
-                              
-                              <div class="toggle-group">
-                                  <div class="toggle-info">
-                                      <div class="toggle-title">Authenticator App</div>
-                                      <div class="toggle-description">Use Google Authenticator or similar apps for verification</div>
-                                  </div>
-                                  <label class="toggle-switch">
-                                      <input type="checkbox" class="toggle-input" checked>
-                                      <span class="toggle-slider"></span>
-                                  </label>
-                              </div>
-                              
-                              <div class="toggle-group">
-                                  <div class="toggle-info">
-                                      <div class="toggle-title">Email Verification</div>
-                                      <div class="toggle-description">Require email verification for sensitive actions</div>
-                                  </div>
-                                  <label class="toggle-switch">
-                                      <input type="checkbox" class="toggle-input" checked>
-                                      <span class="toggle-slider"></span>
-                                  </label>
-                              </div>
-                          </div>
-
-                          <div class="form-section">
-                              <h3 class="form-section-title">
-                                  <i class="fas fa-user-secret"></i>
-                                  Privacy Settings
-                              </h3>
-                              
-                              <div class="toggle-group">
-                                  <div class="toggle-info">
-                                      <div class="toggle-title">Profile Visibility</div>
-                                      <div class="toggle-description">Allow other users to view your profile information</div>
-                                  </div>
-                                  <label class="toggle-switch">
-                                      <input type="checkbox" class="toggle-input" checked>
-                                      <span class="toggle-slider"></span>
-                                  </label>
-                              </div>
-                              
-                              <div class="toggle-group">
-                                  <div class="toggle-info">
-                                      <div class="toggle-title">Activity Tracking</div>
-                                      <div class="toggle-description">Allow tracking of your platform usage for analytics</div>
-                                  </div>
-                                  <label class="toggle-switch">
-                                      <input type="checkbox" class="toggle-input" checked>
-                                      <span class="toggle-slider"></span>
-                                  </label>
-                              </div>
-                              
-                              <div class="toggle-group">
-                                  <div class="toggle-info">
-                                      <div class="toggle-title">Data Sharing</div>
-                                      <div class="toggle-description">Share anonymized data to improve platform features</div>
-                                  </div>
-                                  <label class="toggle-switch">
-                                      <input type="checkbox" class="toggle-input">
-                                      <span class="toggle-slider"></span>
-                                  </label>
-                              </div>
-                          </div>
-                      </form>
-                  </section>
-
-                  <!-- Notifications Section -->
-                  <section id="notifications-section" class="settings-section" style="display: none;">
-                      <div class="section-header">
-                          <h2 class="section-title">
-                              <i class="fas fa-bell"></i>
-                              Notification Preferences
-                          </h2>
-                          <p class="section-description">
-                              Control how and when you receive notifications from the platform.
-                          </p>
-                      </div>
-
-                      <form class="settings-form" id="notificationsForm">
-                          <div class="form-section">
-                              <h3 class="form-section-title">
-                                  <i class="fas fa-envelope"></i>
-                                  Email Notifications
-                              </h3>
-                              
-                              <div class="toggle-group">
-                                  <div class="toggle-info">
-                                      <div class="toggle-title">Project Updates</div>
-                                      <div class="toggle-description">Receive emails about project status changes and milestones</div>
-                                  </div>
-                                  <label class="toggle-switch">
-                                      <input type="checkbox" class="toggle-input" checked>
-                                      <span class="toggle-slider"></span>
-                                  </label>
-                              </div>
-                              
-                              <div class="toggle-group">
-                                  <div class="toggle-info">
-                                      <div class="toggle-title">System Alerts</div>
-                                      <div class="toggle-description">Important system notifications and maintenance updates</div>
-                                  </div>
-                                  <label class="toggle-switch">
-                                      <input type="checkbox" class="toggle-input" checked>
-                                      <span class="toggle-slider"></span>
-                                  </label>
-                              </div>
-                              
-                              <div class="toggle-group">
-                                  <div class="toggle-info">
-                                      <div class="toggle-title">Weekly Reports</div>
-                                      <div class="toggle-description">Summary of your weekly activity and achievements</div>
-                                  </div>
-                                  <label class="toggle-switch">
-                                      <input type="checkbox" class="toggle-input">
-                                      <span class="toggle-slider"></span>
-                                  </label>
-                              </div>
-                              
-                              <div class="toggle-group">
-                                  <div class="toggle-info">
-                                      <div class="toggle-title">Marketing Communications</div>
-                                      <div class="toggle-description">Product updates, new features, and promotional content</div>
-                                  </div>
-                                  <label class="toggle-switch">
-                                      <input type="checkbox" class="toggle-input">
-                                      <span class="toggle-slider"></span>
-                                  </label>
-                              </div>
-                          </div>
-
-                          <div class="form-section">
-                              <h3 class="form-section-title">
-                                  <i class="fas fa-mobile-alt"></i>
-                                  Push Notifications
-                              </h3>
-                              
-                              <div class="toggle-group">
-                                  <div class="toggle-info">
-                                      <div class="toggle-title">Real-time Alerts</div>
-                                      <div class="toggle-description">Immediate notifications for critical system events</div>
-                                  </div>
-                                  <label class="toggle-switch">
-                                      <input type="checkbox" class="toggle-input" checked>
-                                      <span class="toggle-slider"></span>
-                                  </label>
-                              </div>
-                              
-                              <div class="toggle-group">
-                                  <div class="toggle-info">
-                                      <div class="toggle-title">Collaboration Updates</div>
-                                      <div class="toggle-description">Notifications when team members share or comment</div>
-                                  </div>
-                                  <label class="toggle-switch">
-                                      <input type="checkbox" class="toggle-input" checked>
-                                      <span class="toggle-slider"></span>
-                                  </label>
-                              </div>
-                              
-                              <div class="toggle-group">
-                                  <div class="toggle-info">
-                                      <div class="toggle-title">Course Reminders</div>
-                                      <div class="toggle-description">Reminders about upcoming courses and deadlines</div>
-                                  </div>
-                                  <label class="toggle-switch">
-                                      <input type="checkbox" class="toggle-input">
-                                      <span class="toggle-slider"></span>
-                                  </label>
-                              </div>
-                          </div>
-                      </form>
-                  </section>
-
-                  <!-- Action Buttons -->
-                  <div class="action-buttons">
-                      <button type="button" class="btn-primary" onclick="saveSettings()">
-                          <i class="fas fa-save"></i>
-                          Save Changes
-                      </button>
-                      <button type="button" class="btn-secondary" onclick="resetSettings()">
-                          <i class="fas fa-undo"></i>
-                          Reset to Default
-                      </button>
-                      <button type="button" class="btn-danger" onclick="deleteAccount()">
-                          <i class="fas fa-trash"></i>
-                          Delete Account
-                      </button>
-                  </div>
-              </main>
-          </div>
+      <div class="hero-text">
+        <h1 class="hero-title">Settings & Preferences</h1>
+        <p class="hero-subtitle">
+          Customize your SES_MINE experience and manage your account settings
+        </p>
       </div>
-  </main>
-
-  <script src="script.js"></script>
-  <script>
-  // Settings page specific JavaScript
-  document.addEventListener('DOMContentLoaded', function() {
-      initializeSettings();
-  });
-
-  function initializeSettings() {
-      console.log('⚙️ Settings page initialized');
-      
-      // Initialize password strength checker
-      initializePasswordStrength();
-      
-      // Track settings page view
-      analytics.track('settings_page_view', {
-          timestamp: new Date().toISOString(),
-          userAgent: navigator.userAgent
-      });
-  }
-
-  function showSection(sectionName) {
-      // Hide all sections
-      const sections = document.querySelectorAll('.settings-section');
-      sections.forEach(section => {
-          section.style.display = 'none';
-      });
-      
-      // Show selected section
-      const targetSection = document.getElementById(sectionName + '-section');
-      if (targetSection) {
-          targetSection.style.display = 'block';
-      }
-      
-      // Update navigation
-      const navLinks = document.querySelectorAll('.nav-link');
-      navLinks.forEach(link => {
-          link.classList.remove('active');
-      });
-      
-      const activeLink = document.querySelector(`[href="#${sectionName}"]`);
-      if (activeLink) {
-          activeLink.classList.add('active');
-      }
-      
-      // Track section view
-      analytics.track('settings_section_view', {
-          section: sectionName,
-          timestamp: new Date().toISOString()
-      });
-  }
-
-  function initializePasswordStrength() {
-      const passwordInput = document.getElementById('newPassword');
-      if (passwordInput) {
-          passwordInput.addEventListener('input', checkPasswordStrength);
-      }
-  }
-
-  function checkPasswordStrength() {
-      const password = document.getElementById('newPassword').value;
-      const strengthBar = document.getElementById('strengthBar');
-      const strengthText = document.getElementById('strengthText');
-      
-      if (!password) {
-          strengthBar.className = 'strength-fill';
-          strengthText.textContent = 'Enter a password';
-          strengthText.className = 'strength-text';
-          return;
-      }
-      
-      let score = 0;
-      let feedback = [];
-      
-      // Length check
-      if (password.length >= 8) score++;
-      else feedback.push('at least 8 characters');
-      
-      // Uppercase check
-      if (/[A-Z]/.test(password)) score++;
-      else feedback.push('uppercase letter');
-      
-      // Lowercase check
-      if (/[a-z]/.test(password)) score++;
-      else feedback.push('lowercase letter');
-      
-      // Number check
-      if (/\d/.test(password)) score++;
-      else feedback.push('number');
-      
-      // Special character check
-      if (/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)) score++;
-      else feedback.push('special character');
-      
-      // Update UI based on score
-      if (score <= 2) {
-          strengthBar.className = 'strength-fill strength-weak';
-          strengthText.textContent = 'Weak - Add ' + feedback.slice(0, 2).join(', ');
-          strengthText.className = 'strength-text text-weak';
-      } else if (score === 3) {
-          strengthBar.className = 'strength-fill strength-fair';
-          strengthText.textContent = 'Fair - Add ' + feedback.slice(0, 1).join(', ');
-          strengthText.className = 'strength-text text-fair';
-      } else if (score === 4) {
-          strengthBar.className = 'strength-fill strength-good';
-          strengthText.textContent = 'Good - Almost there!';
-          strengthText.className = 'strength-text text-good';
-      } else {
-          strengthBar.className = 'strength-fill strength-strong';
-          strengthText.textContent = 'Strong - Great password!';
-          strengthText.className = 'strength-text text-strong';
-      }
-  }
-
-  function saveSettings() {
-      analytics.track('settings_save', { timestamp: new Date().toISOString() });
-      showNotification('💾 Saving your settings...', 'info');
-      
-      // Simulate save process
-      setTimeout(() => {
-          showNotification('✅ Settings saved successfully!', 'success');
-      }, 2000);
-  }
-
-  function resetSettings() {
-      analytics.track('settings_reset', { timestamp: new Date().toISOString() });
-      
-      if (confirm('Are you sure you want to reset all settings to default? This action cannot be undone.')) {
-          showNotification('🔄 Resetting settings to default...', 'info');
-          
-          setTimeout(() => {
-              showNotification('✅ Settings reset to default values', 'success');
-              // Reset form values here
-          }, 1500);
-      }
-  }
-
-  function deleteAccount() {
-      analytics.track('account_delete_attempt', { timestamp: new Date().toISOString() });
-      
-      const confirmation = prompt('This action is irreversible. Type "DELETE" to confirm account deletion:');
-      
-      if (confirmation === 'DELETE') {
-          showNotification('⚠️ Processing account deletion...', 'warning');
-          
-          setTimeout(() => {
-              showNotification('❌ Account deletion initiated. You will receive a confirmation email.', 'error');
-          }, 3000);
-      } else if (confirmation !== null) {
-          showNotification('❌ Account deletion cancelled - confirmation text did not match', 'error');
-      }
-  }
-
-  function uploadAvatar() {
-      analytics.track('avatar_upload_attempt', { timestamp: new Date().toISOString() });
-      
-      // Create file input
-      const fileInput = document.createElement('input');
-      fileInput.type = 'file';
-      fileInput.accept = 'image/*';
-      
-      fileInput.onchange = function(e) {
-          const file = e.target.files[0];
-          if (file) {
-              showNotification('📸 Uploading new profile picture...', 'info');
-              
-              setTimeout(() => {
-                  showNotification('✅ Profile picture updated successfully!', 'success');
-              }, 2000);
-          }
-      };
-      
-      fileInput.click();
-  }
-
-  function removeAvatar() {
-      analytics.track('avatar_remove', { timestamp: new Date().toISOString() });
-      
-      if (confirm('Are you sure you want to remove your profile picture?')) {
-          showNotification('🗑️ Removing profile picture...', 'info');
-          
-          setTimeout(() => {
-              showNotification('✅ Profile picture removed', 'success');
-          }, 1000);
-      }
-  }
-
-  // Form validation
-  function validateForm(formId) {
-      const form = document.getElementById(formId);
-      const inputs = form.querySelectorAll('input[required], select[required], textarea[required]');
-      let isValid = true;
-      
-      inputs.forEach(input => {
-          if (!input.value.trim()) {
-              input.style.borderColor = 'var(--danger-500)';
-              isValid = false;
-          } else {
-              input.style.borderColor = 'var(--gray-300)';
-          }
-      });
-      
-      return isValid;
-  }
-
-  // Auto-save functionality
-  let autoSaveTimer;
+    </div>
+  </section>
   
-  function enableAutoSave() {
-      const inputs = document.querySelectorAll('.form-input, .form-select, .toggle-input');
+  <!-- Settings Layout -->
+  <div class="settings-layout">
+    <!-- Sidebar -->
+    <aside class="settings-sidebar">
+      <h3 class="sidebar-title">
+        <i class="fas fa-sliders-h"></i>
+        Settings
+      </h3>
+      <ul class="settings-nav">
+        <li class="nav-item">
+          <a href="#profile" class="nav-link active">
+            <i class="fas fa-user"></i>
+            Profile
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#account" class="nav-link">
+            <i class="fas fa-shield-alt"></i>
+            Account
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#notifications" class="nav-link">
+            <i class="fas fa-bell"></i>
+            Notifications
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#preferences" class="nav-link">
+            <i class="fas fa-palette"></i>
+            Preferences
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#security" class="nav-link">
+            <i class="fas fa-lock"></i>
+            Security
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#billing" class="nav-link">
+            <i class="fas fa-credit-card"></i>
+            Billing
+          </a>
+        </li>
+      </ul>
+    </aside>
+    
+    <!-- Settings Content -->
+    <main class="settings-content">
+      <div class="success-message" id="successMessage">
+        <i class="fas fa-check-circle"></i>
+        <span>Settings saved successfully!</span>
+      </div>
       
-      inputs.forEach(input => {
-          input.addEventListener('change', function() {
-              clearTimeout(autoSaveTimer);
-              autoSaveTimer = setTimeout(() => {
-                  showNotification('💾 Auto-saving changes...', 'info');
-                  
-                  setTimeout(() => {
-                      showNotification('✅ Changes auto-saved', 'success');
-                  }, 1000);
-              }, 3000);
-          });
+      <div class="section-header">
+        <h2 class="section-title">
+          <i class="fas fa-user-circle"></i>
+          Profile Settings
+        </h2>
+        <p class="section-description">
+          Manage your personal information and profile details
+        </p>
+      </div>
+      
+      <!-- Profile Picture -->
+      <div class="profile-picture-section">
+        <div class="profile-avatar">JD</div>
+        <div class="profile-actions">
+          <h3>Profile Picture</h3>
+          <p>Update your profile picture to personalize your account</p>
+          <div class="profile-buttons">
+            <button class="btn btn-primary">
+              <i class="fas fa-upload"></i>
+              Upload New
+            </button>
+            <button class="btn btn-secondary">
+              <i class="fas fa-trash"></i>
+              Remove
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Personal Information -->
+      <div class="form-section">
+        <h3 class="form-section-title">
+          <i class="fas fa-id-card"></i>
+          Personal Information
+        </h3>
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label">First Name</label>
+            <input type="text" class="form-input" value="John" placeholder="Enter first name">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Last Name</label>
+            <input type="text" class="form-input" value="Doe" placeholder="Enter last name">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <input type="email" class="form-input" value="john.doe@company.com" placeholder="Enter email">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone Number</label>
+            <input type="tel" class="form-input" value="+1 (555) 123-4567" placeholder="Enter phone">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Job Title</label>
+            <input type="text" class="form-input" value="Project Manager" placeholder="Enter job title">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Department</label>
+            <select class="form-select">
+              <option>Engineering</option>
+              <option>Operations</option>
+              <option>Finance</option>
+              <option>Management</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Company Information -->
+      <div class="form-section">
+        <h3 class="form-section-title">
+          <i class="fas fa-building"></i>
+          Company Information
+        </h3>
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label">Company Name</label>
+            <input type="text" class="form-input" value="Mining Corp Ltd." placeholder="Enter company name">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Industry</label>
+            <select class="form-select">
+              <option>Gold Mining</option>
+              <option>Copper Mining</option>
+              <option>Iron Ore</option>
+              <option>Coal Mining</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Company Size</label>
+            <select class="form-select">
+              <option>1-10 employees</option>
+              <option>11-50 employees</option>
+              <option>51-200 employees</option>
+              <option>201-500 employees</option>
+              <option>500+ employees</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Country</label>
+            <select class="form-select">
+              <option>United States</option>
+              <option>Canada</option>
+              <option>Australia</option>
+              <option>Chile</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Notification Preferences -->
+      <div class="form-section">
+        <h3 class="form-section-title">
+          <i class="fas fa-bell"></i>
+          Notification Preferences
+        </h3>
+        
+        <div class="toggle-group">
+          <div class="toggle-info">
+            <div class="toggle-title">Email Notifications</div>
+            <div class="toggle-description">Receive email updates about your projects and activities</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" checked>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        
+        <div class="toggle-group">
+          <div class="toggle-info">
+            <div class="toggle-title">Push Notifications</div>
+            <div class="toggle-description">Get real-time notifications on your device</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" checked>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        
+        <div class="toggle-group">
+          <div class="toggle-info">
+            <div class="toggle-title">Weekly Reports</div>
+            <div class="toggle-description">Receive weekly summary of your activities</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        
+        <div class="toggle-group">
+          <div class="toggle-info">
+            <div class="toggle-title">Marketing Communications</div>
+            <div class="toggle-description">Receive updates about new features and offers</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+      
+      <!-- Display Preferences -->
+      <div class="form-section">
+        <h3 class="form-section-title">
+          <i class="fas fa-palette"></i>
+          Display Preferences
+        </h3>
+        
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label">Language</label>
+            <select class="form-select">
+              <option>English</option>
+              <option>Spanish</option>
+              <option>French</option>
+              <option>Portuguese</option>
+              <option>Mandarin</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Timezone</label>
+            <select class="form-select">
+              <option>UTC-8 (Pacific Time)</option>
+              <option>UTC-7 (Mountain Time)</option>
+              <option>UTC-6 (Central Time)</option>
+              <option>UTC-5 (Eastern Time)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Date Format</label>
+            <select class="form-select">
+              <option>MM/DD/YYYY</option>
+              <option>DD/MM/YYYY</option>
+              <option>YYYY-MM-DD</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Currency</label>
+            <select class="form-select">
+              <option>USD ($)</option>
+              <option>EUR (€)</option>
+              <option>GBP (£)</option>
+              <option>AUD (A$)</option>
+              <option>CAD (C$)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Security Settings -->
+      <div class="form-section">
+        <h3 class="form-section-title">
+          <i class="fas fa-lock"></i>
+          Security Settings
+        </h3>
+        
+        <div class="form-group" style="margin-bottom: var(--space-lg);">
+          <label class="form-label">Current Password</label>
+          <input type="password" class="form-input" placeholder="Enter current password">
+        </div>
+        
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label">New Password</label>
+            <input type="password" class="form-input" placeholder="Enter new password">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Confirm New Password</label>
+            <input type="password" class="form-input" placeholder="Confirm new password">
+          </div>
+        </div>
+        
+        <div class="toggle-group" style="margin-top: var(--space-lg);">
+          <div class="toggle-info">
+            <div class="toggle-title">Two-Factor Authentication</div>
+            <div class="toggle-description">Add an extra layer of security to your account</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+      
+      <!-- Danger Zone -->
+      <div class="form-section" style="border: 2px solid var(--error); background: rgba(229, 62, 62, 0.02);">
+        <h3 class="form-section-title" style="color: var(--error);">
+          <i class="fas fa-exclamation-triangle"></i>
+          Danger Zone
+        </h3>
+        <p style="color: var(--accent-secondary); margin-bottom: var(--space-lg);">
+          These actions are permanent and cannot be undone. Please proceed with caution.
+        </p>
+        <div style="display: flex; gap: var(--space-md); flex-wrap: wrap;">
+          <button class="btn btn-danger">
+            <i class="fas fa-user-slash"></i>
+            Deactivate Account
+          </button>
+          <button class="btn btn-danger">
+            <i class="fas fa-trash-alt"></i>
+            Delete Account
+          </button>
+        </div>
+      </div>
+      
+      <!-- Action Buttons -->
+      <div class="form-actions">
+        <button class="btn btn-primary btn-large" onclick="saveSettings()">
+          <i class="fas fa-save"></i>
+          Save Changes
+        </button>
+        <button class="btn btn-secondary btn-large">
+          <i class="fas fa-times"></i>
+          Cancel
+        </button>
+        <a href="home.html" class="btn btn-secondary btn-large" style="text-decoration: none; margin-left: auto;">
+          <i class="fas fa-arrow-left"></i>
+          Back to Dashboard
+        </a>
+      </div>
+    </main>
+  </div>
+  
+  <script>
+    // Navigation active state
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
       });
-  }
-
-  // Initialize auto-save
-  setTimeout(enableAutoSave, 1000);
-
-  console.log('⚙️ Settings page ready');
-  console.log('👤 Profile management loaded');
-  console.log('🔒 Security settings active');
-  console.log('🔔 Notification preferences available');
-  console.log('💾 Auto-save functionality enabled');
+    });
+    
+    // Save settings
+    function saveSettings() {
+      const successMessage = document.getElementById('successMessage');
+      successMessage.classList.add('active');
+      
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      
+      // Hide message after 3 seconds
+      setTimeout(() => {
+        successMessage.classList.remove('active');
+      }, 3000);
+    }
+    
+    console.log('⚙️ Settings Page Loaded Successfully');
   </script>
 </body>
 </html>

@@ -3,1427 +3,1305 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About SESMine - Smart Engineering Solutions</title>
-  <meta name="description" content="Learn about SESMine's mission, vision, and commitment to revolutionizing the mining industry through innovative technology solutions">
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" type="image/x-icon" href="https://www.sesmine.com/favicon.ico">
+  <meta name="description" content="About SES_MINE - Leading provider of smart engineering solutions for the global mining industry.">
+  <meta name="keywords" content="mining solutions, engineering services, mining technology, about us, company profile">
+  <title>About Us | SES_MINE - Smart Engineering Solutions</title>
+  
+  <link rel="icon" type="image/png" href="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/153945651/6sGQHt6CUh5lVvcD.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
   
   <style>
-  /* About page specific styles */
-  .about-hero {
-      background: linear-gradient(135deg, var(--sesmine-primary) 0%, var(--sesmine-secondary) 50%, var(--primary-700) 100%);
-      color: white;
-      padding: 5rem 0;
-      margin-bottom: 4rem;
-      position: relative;
-      overflow: hidden;
-  }
-  
-  .about-hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="about-pattern" width="40" height="40" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><rect x="15" y="15" width="10" height="2" fill="rgba(255,255,255,0.05)" rx="1"/><rect x="12" y="23" width="16" height="2" fill="rgba(255,255,255,0.08)" rx="1"/><circle cx="8" cy="8" r="1" fill="rgba(255,255,255,0.06)"/><circle cx="32" cy="32" r="1.5" fill="rgba(255,255,255,0.07)"/></pattern></defs><rect width="100" height="100" fill="url(%23about-pattern)"/></svg>');
-      opacity: 0.3;
-  }
-  
-  .hero-content {
-      position: relative;
-      z-index: 1;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
-      text-align: center;
-  }
-  
-  .hero-icon {
-      width: 120px;
-      height: 120px;
-      background: linear-gradient(135deg, var(--sesmine-gold), var(--sesmine-copper));
-      border-radius: var(--border-radius-2xl);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 4rem;
-      margin: 0 auto 2.5rem;
-      box-shadow: var(--shadow-2xl);
-      animation: aboutFloat 6s ease-in-out infinite;
-  }
-  
-  @keyframes aboutFloat {
-      0%, 100% { transform: translateY(0px) scale(1); }
-      50% { transform: translateY(-15px) scale(1.05); }
-  }
-  
-  .hero-title {
-      font-size: 4rem;
-      font-weight: 800;
-      margin-bottom: 2rem;
-      background: linear-gradient(135deg, white, rgba(255, 255, 255, 0.8), var(--sesmine-gold));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      line-height: 1.1;
-  }
-  
-  .hero-subtitle {
-      font-size: 1.75rem;
-      opacity: 0.9;
-      margin-bottom: 3rem;
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.4;
-  }
-  
-  .hero-stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
-      max-width: 800px;
-      margin: 0 auto;
-  }
-  
-  .hero-stat {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: var(--border-radius-xl);
-      padding: 2rem;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      transition: var(--transition-all);
-  }
-  
-  .hero-stat:hover {
-      background: rgba(255, 255, 255, 0.15);
-      transform: translateY(-4px);
-  }
-  
-  .stat-value {
-      font-size: 3rem;
-      font-weight: 800;
-      margin-bottom: 0.5rem;
-      font-family: var(--font-mono);
-      color: var(--sesmine-gold);
-  }
-  
-  .stat-label {
-      font-size: 1rem;
-      opacity: 0.9;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      font-weight: 600;
-  }
-  
-  .mission-section {
-      background: linear-gradient(135deg, var(--primary-50), var(--warning-50));
-      border-radius: var(--border-radius-2xl);
-      padding: 5rem 3rem;
-      margin: 4rem 0;
-      border: 1px solid var(--primary-200);
-      position: relative;
-      overflow: hidden;
-  }
-  
-  .mission-section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="mission-pattern" width="50" height="50" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="3" fill="rgba(49,130,206,0.05)"/><rect x="20" y="20" width="10" height="2" fill="rgba(245,158,11,0.03)" rx="1"/></pattern></defs><rect width="100" height="100" fill="url(%23mission-pattern)"/></svg>');
-      opacity: 0.3;
-  }
-  
-  .mission-content {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      max-width: 1000px;
-      margin: 0 auto;
-  }
-  
-  .mission-title {
-      font-size: 3rem;
-      font-weight: 800;
-      color: var(--sesmine-primary);
-      margin-bottom: 2rem;
-  }
-  
-  .mission-text {
-      font-size: 1.5rem;
-      color: var(--gray-700);
+    :root {
+      --primary-dark: #0b1a2e;
+      --primary-light: #f7f9fc;
+      --accent-primary: #2563eb;
+      --accent-secondary: #1e3a8a;
+      --accent-gold: #d4af37;
+      --success: #38a169;
+      --warning: #dd6b20;
+      --error: #e53e3e;
+      --info: #3182ce;
+      --gradient-primary: linear-gradient(135deg, #0b1a2e 0%, #1a365d 100%);
+      --gradient-accent: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+      --gradient-gold: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2rem;
+      --space-2xl: 3rem;
+      --space-3xl: 5rem;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-lg: 0 10px 15px rgba(0,0,0,0.1), 0 4px 6px rgba(0,0,0,0.05);
+      --shadow-xl: 0 20px 25px rgba(0,0,0,0.1), 0 10px 10px rgba(0,0,0,0.04);
+      --radius-sm: 0.25rem;
+      --radius-md: 0.5rem;
+      --radius-lg: 0.75rem;
+      --radius-xl: 1rem;
+      --transition-smooth: 0.3s ease;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
       line-height: 1.6;
-      margin-bottom: 3rem;
-  }
-  
-  .values-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
-  }
-  
-  .value-card {
-      background: white;
-      border-radius: var(--border-radius-xl);
-      padding: 2.5rem;
+      color: var(--primary-dark);
+      background: var(--primary-light);
+      overflow-x: hidden;
+    }
+    
+    /* Header */
+    .main-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1030;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(37, 99, 235, 0.1);
+      transition: all var(--transition-smooth);
+    }
+    
+    .main-header.scrolled {
+      background: rgba(255, 255, 255, 0.98);
       box-shadow: var(--shadow-md);
-      border: 1px solid var(--gray-200);
-      text-align: center;
-      transition: var(--transition-all);
-      position: relative;
-      overflow: hidden;
-  }
-  
-  .value-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--sesmine-gold), var(--sesmine-copper));
-  }
-  
-  .value-card:hover {
-      transform: translateY(-8px);
-      box-shadow: var(--shadow-2xl);
-  }
-  
-  .value-icon {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.5rem;
-      color: white;
-      margin: 0 auto 2rem;
-      box-shadow: var(--shadow-lg);
-      transition: var(--transition-transform);
-  }
-  
-  .value-card:hover .value-icon {
-      transform: scale(1.1) rotate(10deg);
-  }
-  
-  .value-title {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--sesmine-primary);
-      margin-bottom: 1rem;
-  }
-  
-  .value-description {
-      color: var(--gray-600);
-      line-height: 1.6;
-      font-size: 1rem;
-  }
-  
-  .team-section {
-      margin: 5rem 0;
-  }
-  
-  .section-header {
-      text-align: center;
-      margin-bottom: 4rem;
-  }
-  
-  .section-title {
-      font-size: 3rem;
-      font-weight: 800;
-      color: var(--sesmine-primary);
-      margin-bottom: 1.5rem;
-  }
-  
-  .section-subtitle {
-      font-size: 1.25rem;
-      color: var(--gray-600);
-      max-width: 800px;
+    }
+    
+    .header-container {
+      max-width: 1440px;
       margin: 0 auto;
-      line-height: 1.6;
-  }
-  
-  .team-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 3rem;
-      margin-bottom: 4rem;
-  }
-  
-  .team-member {
-      background: white;
-      border-radius: var(--border-radius-xl);
-      padding: 3rem;
-      box-shadow: var(--shadow-md);
-      border: 1px solid var(--gray-200);
-      text-align: center;
-      transition: var(--transition-all);
-      position: relative;
-      overflow: hidden;
-  }
-  
-  .team-member::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 6px;
-      background: linear-gradient(90deg, var(--sesmine-accent), var(--sesmine-secondary), var(--sesmine-gold));
-  }
-  
-  .team-member:hover {
-      transform: translateY(-10px);
-      box-shadow: var(--shadow-2xl);
-  }
-  
-  .member-avatar {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--sesmine-accent), var(--sesmine-secondary));
+      padding: var(--space-md) var(--space-xl);
       display: flex;
       align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 3rem;
-      font-weight: 800;
-      margin: 0 auto 2rem;
-      box-shadow: var(--shadow-lg);
-      transition: var(--transition-transform);
-  }
-  
-  .team-member:hover .member-avatar {
-      transform: scale(1.1);
-  }
-  
-  .member-name {
-      font-size: 1.75rem;
-      font-weight: 700;
-      color: var(--sesmine-primary);
-      margin-bottom: 0.75rem;
-  }
-  
-  .member-title {
-      font-size: 1.1rem;
-      color: var(--sesmine-copper);
-      font-weight: 600;
-      margin-bottom: 1.5rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-  }
-  
-  .member-bio {
-      color: var(--gray-600);
-      line-height: 1.6;
-      margin-bottom: 2rem;
-      font-size: 1rem;
-  }
-  
-  .member-expertise {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      justify-content: center;
-      margin-bottom: 2rem;
-  }
-  
-  .expertise-tag {
-      background: var(--primary-100);
-      color: var(--primary-700);
-      padding: 0.25rem 0.75rem;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      border: 1px solid var(--primary-200);
-  }
-  
-  .member-social {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-  }
-  
-  .social-link {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--gray-100);
-      color: var(--gray-600);
+      justify-content: space-between;
+      gap: var(--space-xl);
+    }
+    
+    .logo-section {
       display: flex;
       align-items: center;
-      justify-content: center;
       text-decoration: none;
-      transition: var(--transition-all);
-      font-size: 1.1rem;
-  }
-  
-  .social-link:hover {
-      background: var(--sesmine-accent);
-      color: white;
-      transform: translateY(-2px);
-  }
-  
-  .timeline-section {
-      background: var(--gray-900);
-      color: white;
-      border-radius: var(--border-radius-2xl);
-      padding: 5rem 3rem;
-      margin: 5rem 0;
+      transition: transform var(--transition-smooth);
+    }
+    
+    .logo-section:hover {
+      transform: scale(1.02);
+    }
+    
+    .logo-image {
+      height: 60px;
+      width: auto;
+    }
+    
+    .main-nav {
+      display: flex;
+      gap: var(--space-lg);
+      align-items: center;
+    }
+    
+    .nav-link {
+      color: var(--primary-dark);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--radius-sm);
+      transition: all var(--transition-smooth);
       position: relative;
-      overflow: hidden;
-  }
-  
-  .timeline-section::before {
+    }
+    
+    .nav-link.active {
+      color: var(--accent-primary);
+    }
+    
+    .nav-link::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="timeline-pattern" width="60" height="60" patternUnits="userSpaceOnUse"><circle cx="30" cy="30" r="2" fill="rgba(214,158,46,0.1)"/><rect x="25" y="25" width="10" height="2" fill="rgba(214,158,46,0.05)" rx="1"/><line x1="10" y1="30" x2="50" y2="30" stroke="rgba(214,158,46,0.03)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23timeline-pattern)"/></svg>');
-      opacity: 0.3;
-  }
-  
-  .timeline-content {
+      bottom: -2px;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: var(--gradient-accent);
+      transition: all var(--transition-smooth);
+      transform: translateX(-50%);
+    }
+    
+    .nav-link:hover::before,
+    .nav-link.active::before {
+      width: 80%;
+    }
+    
+    .nav-link:hover {
+      color: var(--accent-primary);
+      background: rgba(37, 99, 235, 0.05);
+    }
+    
+    .auth-buttons {
+      display: flex;
+      gap: var(--space-md);
+    }
+    
+    .btn {
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all var(--transition-smooth);
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    
+    .btn-login {
+      color: var(--primary-dark);
+      background: rgba(37, 99, 235, 0.1);
+      border: 1px solid rgba(37, 99, 235, 0.2);
+    }
+    
+    .btn-login:hover {
+      background: rgba(37, 99, 235, 0.15);
+      transform: translateY(-2px);
+    }
+    
+    .btn-primary {
+      background: var(--gradient-accent);
+      color: #ffffff;
+      box-shadow: var(--shadow-md);
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    /* Hero Section */
+    .hero-section {
+      position: relative;
+      min-height: 50vh;
+      display: flex;
+      align-items: center;
+      padding: calc(var(--space-3xl) + 80px) var(--space-xl) var(--space-3xl);
+      background: var(--gradient-primary);
+      overflow: hidden;
+    }
+    
+    .hero-background {
+      position: absolute;
+      inset: 0;
+      opacity: 0.15;
+      background: url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=2000&q=80') center/cover;
+    }
+    
+    .hero-content {
+      max-width: 1440px;
+      margin: 0 auto;
       position: relative;
       z-index: 1;
-      max-width: 1000px;
-      margin: 0 auto;
-  }
-  
-  .timeline-header {
+      color: white;
       text-align: center;
-      margin-bottom: 4rem;
-  }
-  
-  .timeline-title {
-      font-size: 3rem;
+    }
+    
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      background: rgba(212, 175, 55, 0.2);
+      border: 1px solid var(--accent-gold);
+      color: #fde68a;
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: var(--space-xl);
+    }
+    
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 900;
+      margin-bottom: var(--space-lg);
+      letter-spacing: -0.02em;
+    }
+    
+    .hero-description {
+      font-size: 1.3rem;
+      opacity: 0.95;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    /* Story Section */
+    .story-section {
+      padding: var(--space-3xl) var(--space-xl);
+      background: white;
+    }
+    
+    .section-container {
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+    
+    .story-content {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: var(--space-3xl);
+    }
+    
+    .section-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      background: var(--gradient-gold);
+      color: white;
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: var(--space-lg);
+    }
+    
+    .section-title {
+      font-size: 2.5rem;
       font-weight: 800;
-      margin-bottom: 1.5rem;
-      background: linear-gradient(135deg, white, var(--sesmine-gold));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-  }
-  
-  .timeline {
-      position: relative;
-      padding-left: 3rem;
-  }
-  
-  .timeline::before {
-      content: '';
-      position: absolute;
-      left: 1rem;
-      top: 0;
-      bottom: 0;
-      width: 3px;
-      background: linear-gradient(180deg, var(--sesmine-gold), var(--sesmine-copper));
-      border-radius: 2px;
-  }
-  
-  .timeline-item {
-      position: relative;
-      margin-bottom: 4rem;
-      padding-left: 3rem;
-  }
-  
-  .timeline-marker {
-      position: absolute;
-      left: -2rem;
-      top: 0;
-      width: 24px;
-      height: 24px;
-      background: var(--sesmine-gold);
-      border-radius: 50%;
-      border: 4px solid var(--gray-900);
-      box-shadow: 0 0 0 4px var(--sesmine-gold);
-  }
-  
-  .timeline-year {
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: var(--sesmine-gold);
-      margin-bottom: 0.75rem;
-      font-family: var(--font-mono);
-  }
-  
-  .timeline-event {
-      font-size: 1.25rem;
+      margin-bottom: var(--space-lg);
+      color: var(--primary-dark);
+    }
+    
+    .story-text {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--accent-secondary);
+      margin-bottom: var(--space-lg);
+    }
+    
+    /* Mission & Vision */
+    .mission-section {
+      padding: var(--space-3xl) var(--space-xl);
+      background: linear-gradient(135deg, #f7f9fc 0%, #e8eef5 100%);
+    }
+    
+    .mission-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: var(--space-2xl);
+    }
+    
+    .mission-card {
+      background: white;
+      border: 2px solid var(--accent-gold);
+      border-radius: var(--radius-xl);
+      padding: var(--space-2xl);
+      box-shadow: var(--shadow-lg);
+      transition: all var(--transition-smooth);
+    }
+    
+    .mission-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-xl);
+    }
+    
+    .mission-icon {
+      width: 70px;
+      height: 70px;
+      background: var(--gradient-gold);
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: white;
+      margin-bottom: var(--space-lg);
+    }
+    
+    .mission-title {
+      font-size: 1.8rem;
       font-weight: 700;
-      margin-bottom: 1rem;
-  }
-  
-  .timeline-description {
-      color: rgba(255, 255, 255, 0.8);
-      line-height: 1.6;
-      font-size: 1rem;
-  }
-  
-  .awards-section {
-      background: linear-gradient(135deg, var(--warning-50), var(--success-50));
-      border-radius: var(--border-radius-2xl);
-      padding: 4rem 3rem;
-      margin: 4rem 0;
-      border: 1px solid var(--warning-200);
-  }
-  
-  .awards-grid {
+      margin-bottom: var(--space-lg);
+      color: var(--primary-dark);
+    }
+    
+    .mission-text {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--accent-secondary);
+    }
+    
+    /* Values Section */
+    .values-section {
+      padding: var(--space-3xl) var(--space-xl);
+      background: white;
+    }
+    
+    .values-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
-  }
-  
-  .award-card {
-      background: white;
-      border-radius: var(--border-radius-lg);
-      padding: 2rem;
-      box-shadow: var(--shadow-sm);
-      border: 2px solid var(--warning-200);
+      gap: var(--space-xl);
+    }
+    
+    .value-card {
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      border: 2px solid var(--accent-gold);
+      border-radius: var(--radius-xl);
+      padding: var(--space-2xl);
       text-align: center;
-      transition: var(--transition-all);
-  }
-  
-  .award-card:hover {
-      border-color: var(--warning-500);
-      transform: translateY(-4px);
+      transition: all var(--transition-smooth);
+    }
+    
+    .value-card:hover {
+      transform: translateY(-5px);
       box-shadow: var(--shadow-lg);
-  }
-  
-  .award-icon {
-      width: 80px;
-      height: 80px;
-      background: linear-gradient(135deg, var(--warning-500), var(--sesmine-gold));
+    }
+    
+    .value-icon {
+      width: 60px;
+      height: 60px;
+      background: var(--gradient-gold);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
+      font-size: 1.5rem;
       color: white;
-      font-size: 2rem;
-      margin: 0 auto 1.5rem;
-      box-shadow: var(--shadow-md);
-  }
-  
-  .award-title {
-      font-size: 1.25rem;
+      margin: 0 auto var(--space-lg);
+    }
+    
+    .value-title {
+      font-size: 1.3rem;
       font-weight: 700;
-      color: var(--sesmine-primary);
-      margin-bottom: 0.75rem;
-  }
-  
-  .award-organization {
-      color: var(--warning-600);
-      font-size: 0.9rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 1rem;
-  }
-  
-  .award-description {
-      color: var(--gray-600);
-      font-size: 0.9rem;
-      line-height: 1.5;
-  }
-  
-  .cta-section {
-      background: linear-gradient(135deg, var(--sesmine-primary), var(--sesmine-secondary));
-      color: white;
-      border-radius: var(--border-radius-2xl);
-      padding: 4rem 3rem;
-      margin: 4rem 0;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-  }
-  
-  .cta-section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="cta-pattern" width="30" height="30" patternUnits="userSpaceOnUse"><circle cx="15" cy="15" r="1.5" fill="rgba(255,255,255,0.1)"/><rect x="10" y="10" width="10" height="2" fill="rgba(255,255,255,0.05)" rx="1"/></pattern></defs><rect width="100" height="100" fill="url(%23cta-pattern)"/></svg>');
-      opacity: 0.3;
-  }
-  
-  .cta-content {
-      position: relative;
-      z-index: 1;
-      max-width: 800px;
-      margin: 0 auto;
-  }
-  
-  .cta-title {
-      font-size: 2.5rem;
-      font-weight: 800;
-      margin-bottom: 1.5rem;
-  }
-  
-  .cta-text {
-      font-size: 1.25rem;
-      opacity: 0.9;
-      margin-bottom: 3rem;
+      margin-bottom: var(--space-sm);
+      color: var(--primary-dark);
+    }
+    
+    .value-description {
+      color: var(--accent-secondary);
       line-height: 1.6;
-  }
-  
-  .cta-buttons {
-      display: flex;
-      gap: 1.5rem;
-      justify-content: center;
-      flex-wrap: wrap;
-  }
-  
-  .cta-btn {
-      padding: 1.25rem 2.5rem;
-      border-radius: var(--border-radius-lg);
-      font-size: 1.1rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: var(--transition-all);
+    }
+    
+    /* Team Section */
+    .team-section {
+      padding: var(--space-3xl) var(--space-xl);
+      background: linear-gradient(135deg, #f7f9fc 0%, #e8eef5 100%);
+    }
+    
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-xl);
+    }
+    
+    .team-card {
+      background: white;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      transition: all var(--transition-smooth);
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .team-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--accent-gold);
+    }
+    
+    .team-image {
+      width: 100%;
+      height: 300px;
+      background: var(--gradient-gold);
       display: flex;
       align-items: center;
-      gap: 0.75rem;
-      box-shadow: var(--shadow-md);
-  }
-  
-  .cta-btn.primary {
-      background: var(--sesmine-gold);
-      color: var(--gray-900);
-      border: 2px solid var(--sesmine-gold);
-  }
-  
-  .cta-btn.primary:hover {
-      background: var(--sesmine-copper);
-      border-color: var(--sesmine-copper);
+      justify-content: center;
+      font-size: 4rem;
+      color: white;
+      font-weight: 700;
+    }
+    
+    .team-info {
+      padding: var(--space-xl);
+      text-align: center;
+    }
+    
+    .team-name {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: var(--space-xs);
+      color: var(--primary-dark);
+    }
+    
+    .team-role {
+      color: var(--accent-gold);
+      font-weight: 600;
+      margin-bottom: var(--space-md);
+    }
+    
+    .team-bio {
+      color: var(--accent-secondary);
+      line-height: 1.6;
+      margin-bottom: var(--space-lg);
+    }
+    
+    .team-social {
+      display: flex;
+      gap: var(--space-md);
+      justify-content: center;
+    }
+    
+    .social-link {
+      width: 40px;
+      height: 40px;
+      background: rgba(212, 175, 55, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-gold);
+      transition: all var(--transition-smooth);
+      text-decoration: none;
+    }
+    
+    .social-link:hover {
+      background: var(--accent-gold);
+      color: white;
       transform: translateY(-2px);
+    }
+    
+    /* Achievements Section */
+    .achievements-section {
+      padding: var(--space-3xl) var(--space-xl);
+      background: white;
+    }
+    
+    .achievements-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--space-xl);
+    }
+    
+    .achievement-card {
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      border: 2px solid var(--accent-gold);
+      border-radius: var(--radius-xl);
+      padding: var(--space-2xl);
+      text-align: center;
+      transition: all var(--transition-smooth);
+    }
+    
+    .achievement-card:hover {
+      transform: translateY(-5px);
       box-shadow: var(--shadow-lg);
-  }
-  
-  .cta-btn.secondary {
-      background: transparent;
+    }
+    
+    .achievement-icon {
+      width: 60px;
+      height: 60px;
+      background: var(--gradient-gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: white;
+      margin: 0 auto var(--space-lg);
+    }
+    
+    .achievement-value {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--accent-gold);
+      margin-bottom: var(--space-sm);
+    }
+    
+    .achievement-label {
+      font-size: 1rem;
+      color: var(--accent-secondary);
+      font-weight: 600;
+    }
+    
+    /* Timeline Section */
+    .timeline-section {
+      padding: var(--space-3xl) var(--space-xl);
+      background: linear-gradient(135deg, #f7f9fc 0%, #e8eef5 100%);
+    }
+    
+    .timeline {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+    }
+    
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: var(--gradient-gold);
+      transform: translateX(-50%);
+    }
+    
+    .timeline-item {
+      position: relative;
+      margin-bottom: var(--space-3xl);
+      display: flex;
+      align-items: center;
+    }
+    
+    .timeline-item:nth-child(odd) {
+      flex-direction: row;
+    }
+    
+    .timeline-item:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+    
+    .timeline-content {
+      width: 45%;
+      background: white;
+      border: 2px solid var(--accent-gold);
+      border-radius: var(--radius-xl);
+      padding: var(--space-xl);
+      box-shadow: var(--shadow-md);
+      transition: all var(--transition-smooth);
+    }
+    
+    .timeline-content:hover {
+      transform: scale(1.02);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .timeline-year {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--accent-gold);
+      margin-bottom: var(--space-sm);
+    }
+    
+    .timeline-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: var(--space-sm);
+      color: var(--primary-dark);
+    }
+    
+    .timeline-description {
+      color: var(--accent-secondary);
+      line-height: 1.6;
+    }
+    
+    .timeline-dot {
+      position: absolute;
+      left: 50%;
+      width: 20px;
+      height: 20px;
+      background: var(--accent-gold);
+      border: 4px solid white;
+      border-radius: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.2);
+    }
+    
+    /* CTA Section */
+    .cta-section {
+      padding: var(--space-3xl) var(--space-xl);
+      background: var(--gradient-primary);
+      color: white;
+      text-align: center;
+    }
+    
+    .cta-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .cta-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: var(--space-lg);
+    }
+    
+    .cta-description {
+      font-size: 1.2rem;
+      margin-bottom: var(--space-2xl);
+      opacity: 0.95;
+    }
+    
+    .cta-buttons {
+      display: flex;
+      gap: var(--space-lg);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .btn-large {
+      padding: var(--space-lg) var(--space-2xl);
+      font-size: 1.1rem;
+    }
+    
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.1);
       color: white;
       border: 2px solid white;
-  }
-  
-  .cta-btn.secondary:hover {
+    }
+    
+    .btn-secondary:hover {
       background: white;
-      color: var(--sesmine-primary);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-lg);
-  }
-  
-  @media (max-width: 1024px) {
-      .team-grid {
-          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-          gap: 2rem;
+      color: var(--primary-dark);
+    }
+    
+    /* Footer */
+    .main-footer {
+      background: #0a1322;
+      padding: var(--space-3xl) var(--space-xl) var(--space-xl);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .footer-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--space-2xl);
+      margin-bottom: var(--space-xl);
+    }
+    
+    .footer-section h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: var(--space-lg);
+      color: white;
+    }
+    
+    .footer-section p,
+    .footer-section a {
+      color: rgba(247, 249, 252, 0.8);
+      text-decoration: none;
+      line-height: 1.6;
+      transition: color var(--transition-smooth);
+    }
+    
+    .footer-section a:hover {
+      color: var(--accent-gold);
+    }
+    
+    .footer-links {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: var(--space-sm);
+    }
+    
+    .footer-logo {
+      height: 50px;
+      width: auto;
+      margin-bottom: var(--space-lg);
+      filter: brightness(0) invert(1);
+      opacity: 0.9;
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: var(--space-xl);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(247, 249, 252, 0.7);
+    }
+    
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .main-nav {
+        display: none;
       }
       
-      .timeline {
-          padding-left: 2rem;
+      .hero-title {
+        font-size: 2.5rem;
+      }
+      
+      .timeline::before {
+        left: 20px;
       }
       
       .timeline-item {
-          padding-left: 2rem;
+        flex-direction: row !important;
       }
-  }
-  
-  @media (max-width: 768px) {
+      
+      .timeline-content {
+        width: calc(100% - 60px);
+        margin-left: 60px;
+      }
+      
+      .timeline-dot {
+        left: 20px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .logo-image {
+        height: 50px;
+      }
+      
       .hero-title {
-          font-size: 2.5rem;
+        font-size: 2rem;
       }
       
-      .hero-subtitle {
-          font-size: 1.25rem;
+      .hero-description {
+        font-size: 1.1rem;
       }
       
-      .hero-stats {
-          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      .mission-grid,
+      .team-grid,
+      .values-grid {
+        grid-template-columns: 1fr;
       }
-      
-      .mission-title {
-          font-size: 2rem;
-      }
-      
-      .mission-text {
-          font-size: 1.25rem;
-      }
-      
-      .section-title {
-          font-size: 2rem;
-      }
-      
-      .timeline-title {
-          font-size: 2rem;
-      }
-      
-      .cta-buttons {
-          flex-direction: column;
-          align-items: center;
-      }
-      
-      .cta-btn {
-          width: 100%;
-          max-width: 300px;
-          justify-content: center;
-      }
-  }
+    }
   </style>
 </head>
 <body>
-  <!-- Universal Navigation Header -->
-  <header class="sesmine-header" id="sesmineHeader">
-      <div class="header-content">
-          <div class="logo-section">
-              <button class="header-btn mobile-menu-toggle" id="mobileMenuToggle">
-                  <i class="fas fa-bars"></i>
-              </button>
-              <a href="index.html" class="logo">
-                  <div class="logo-icon">🏔️</div>
-                  <div class="logo-text">
-                      <div class="logo-main">SESMine</div>
-                      <div class="logo-subtitle">Smart Engineering Solutions</div>
-                  </div>
-              </a>
-          </div>
-          
-          <nav class="main-nav" id="mainNav">
-              <a href="home.html" class="nav-link">
-                  <i class="fas fa-home"></i> Dashboard
-              </a>
-              <div class="nav-dropdown">
-                  <button class="nav-link dropdown-toggle">
-                      <i class="fas fa-th-large"></i> Hubs <i class="fas fa-chevron-down"></i>
-                  </button>
-                  <div class="dropdown-menu">
-                      <a href="engineering-hub.html" class="dropdown-item">
-                          <i class="fas fa-hard-hat"></i> Engineering Hub
-                      </a>
-                      <a href="analytics-platform.html" class="dropdown-item">
-                          <i class="fas fa-chart-area"></i> Analytics Platform
-                      </a>
-                      <a href="economics-hub.html" class="dropdown-item">
-                          <i class="fas fa-coins"></i> Economics Hub
-                      </a>
-                      <a href="innovation-technology-hub.html" class="dropdown-item">
-                          <i class="fas fa-rocket"></i> Innovation & Technology
-                      </a>
-                      <a href="procurement-hub.html" class="dropdown-item">
-                          <i class="fas fa-truck"></i> Procurement Hub
-                      </a>
-                      <a href="consulting-hub.html" class="dropdown-item">
-                          <i class="fas fa-user-tie"></i> Consulting Hub
-                      </a>
-                      <a href="training-education-hub.html" class="dropdown-item">
-                          <i class="fas fa-graduation-cap"></i> Training & Education
-                      </a>
-                      <a href="admin-dashboard.html" class="dropdown-item">
-                          <i class="fas fa-shield-alt"></i> Admin Dashboard
-                      </a>
-                  </div>
-              </div>
-              <a href="platforms.html" class="nav-link">
-                  <i class="fas fa-layer-group"></i> Platforms
-              </a>
-              <a href="features.html" class="nav-link">
-                  <i class="fas fa-star"></i> Features
-              </a>
-              <a href="about.html" class="nav-link active">
-                  <i class="fas fa-info-circle"></i> About
-              </a>
-              <a href="contact.html" class="nav-link">
-                  <i class="fas fa-phone"></i> Contact
-              </a>
-          </nav>
-          
-          <div class="header-actions">
-              <div class="search-container">
-                  <i class="fas fa-search search-icon"></i>
-                  <input type="text" class="search-input" placeholder="Search..." id="globalSearch">
-              </div>
-              <button class="header-btn" title="Notifications">
-                  <i class="fas fa-bell"></i>
-              </button>
-              <button class="header-btn" title="Settings" onclick="window.location.href='setting.html'">
-                  <i class="fas fa-cog"></i>
-              </button>
-              <div class="user-menu">
-                  <div class="user-avatar">MS</div>
-                  <div class="user-info">
-                      <div class="user-name">Mining Specialist</div>
-                      <div class="user-email">specialist@sesmine.com</div>
-                  </div>
-                  <div class="user-dropdown">
-                      <a href="setting.html" class="dropdown-item">
-                          <i class="fas fa-cog"></i> Settings
-                      </a>
-                      <a href="login.html" class="dropdown-item">
-                          <i class="fas fa-sign-out-alt"></i> Logout
-                      </a>
-                  </div>
-              </div>
-          </div>
+  <!-- Header -->
+  <header class="main-header" id="mainHeader">
+    <div class="header-container">
+      <a href="index.html" class="logo-section">
+        <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/153945651/6sGQHt6CUh5lVvcD.png" 
+             alt="SES_MINE Logo" 
+             class="logo-image">
+      </a>
+      
+      <nav class="main-nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="engineering-hub.html" class="nav-link">Engineering Hub</a>
+        <a href="analytics-platform.html" class="nav-link">Analytics</a>
+        <a href="economics-hub.html" class="nav-link">Economics</a>
+        <a href="procurement-hub.html" class="nav-link">Procurement</a>
+        <a href="consulting-hub.html" class="nav-link">Consulting</a>
+      </nav>
+      
+      <div class="auth-buttons">
+        <a href="login.html" class="btn btn-login">
+          <i class="fas fa-sign-in-alt"></i>
+          Login
+        </a>
+        <a href="signup.html" class="btn btn-primary">
+          <i class="fas fa-rocket"></i>
+          Get Started
+        </a>
       </div>
+    </div>
   </header>
-
-  <!-- Main Content -->
-  <main class="main-content">
-      <!-- About Hero Section -->
-      <section class="about-hero">
-          <div class="hero-content">
-              <div class="hero-icon">🏔️</div>
-              <h1 class="hero-title">About SESMine</h1>
-              <p class="hero-subtitle">
-                  Pioneering the future of mining through innovative technology, expert knowledge, 
-                  and sustainable solutions that transform how the industry operates worldwide.
-              </p>
-              
-              <div class="hero-stats">
-                  <div class="hero-stat">
-                      <div class="stat-value">15+</div>
-                      <div class="stat-label">Years Experience</div>
-                  </div>
-                  <div class="hero-stat">
-                      <div class="stat-value">500+</div>
-                      <div class="stat-label">Projects Completed</div>
-                  </div>
-                  <div class="hero-stat">
-                      <div class="stat-value">50+</div>
-                      <div class="stat-label">Countries Served</div>
-                  </div>
-                  <div class="hero-stat">
-                      <div class="stat-value">98%</div>
-                      <div class="stat-label">Client Satisfaction</div>
-                  </div>
-              </div>
-          </div>
-      </section>
-
-      <div class="content-container">
-          <!-- Mission & Vision Section -->
-          <section class="mission-section">
-              <div class="mission-content">
-                  <h2 class="mission-title">Our Mission</h2>
-                  <p class="mission-text">
-                      To revolutionize the mining industry by providing cutting-edge technology solutions, 
-                      expert consulting services, and comprehensive training programs that enable sustainable, 
-                      efficient, and profitable mining operations worldwide.
-                  </p>
-                  
-                  <div class="values-grid">
-                      <div class="value-card">
-                          <div class="value-icon" style="background: linear-gradient(135deg, var(--sesmine-accent), var(--sesmine-secondary));">
-                              🎯
-                          </div>
-                          <h3 class="value-title">Innovation</h3>
-                          <p class="value-description">
-                              Continuously pushing the boundaries of mining technology through AI, IoT, 
-                              and advanced analytics to solve complex industry challenges.
-                          </p>
-                      </div>
-                      
-                      <div class="value-card">
-                          <div class="value-icon" style="background: linear-gradient(135deg, var(--success-500), var(--sesmine-emerald));">
-                              🌱
-                          </div>
-                          <h3 class="value-title">Sustainability</h3>
-                          <p class="value-description">
-                              Committed to environmentally responsible mining practices that protect 
-                              ecosystems while maximizing resource efficiency and minimizing waste.
-                          </p>
-                      </div>
-                      
-                      <div class="value-card">
-                          <div class="value-icon" style="background: linear-gradient(135deg, var(--warning-500), var(--sesmine-gold));">
-                              🤝
-                          </div>
-                          <h3 class="value-title">Excellence</h3>
-                          <p class="value-description">
-                              Delivering world-class solutions with uncompromising quality, 
-                              precision, and attention to detail in every project we undertake.
-                          </p>
-                      </div>
-                      
-                      <div class="value-card">
-                          <div class="value-icon" style="background: linear-gradient(135deg, var(--danger-500), var(--danger-600));">
-                              🛡️
-                          </div>
-                          <h3 class="value-title">Safety</h3>
-                          <p class="value-description">
-                              Prioritizing the safety and well-being of all stakeholders through 
-                              comprehensive risk management and safety-first operational protocols.
-                          </p>
-                      </div>
-                  </div>
-              </div>
-          </section>
-
-          <!-- Leadership Team Section -->
-          <section class="team-section">
-              <div class="section-header">
-                  <h2 class="section-title">Leadership Team</h2>
-                  <p class="section-subtitle">
-                      Meet the visionary leaders driving innovation and excellence in mining technology solutions
-                  </p>
-              </div>
-
-              <div class="team-grid">
-                  <div class="team-member">
-                      <div class="member-avatar">DR</div>
-                      <h3 class="member-name">Dr. Robert Chen</h3>
-                      <p class="member-title">Chief Executive Officer</p>
-                      <p class="member-bio">
-                          With over 20 years in mining engineering and technology, Dr. Chen leads SESMine's 
-                          strategic vision. Former VP of Engineering at Global Mining Corp, he holds a PhD 
-                          in Mining Engineering from Colorado School of Mines.
-                      </p>
-                      <div class="member-expertise">
-                          <span class="expertise-tag">Strategic Leadership</span>
-                          <span class="expertise-tag">Mining Engineering</span>
-                          <span class="expertise-tag">Technology Innovation</span>
-                      </div>
-                      <div class="member-social">
-                          <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
-                          <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                          <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
-                      </div>
-                  </div>
-
-                  <div class="team-member">
-                      <div class="member-avatar">SM</div>
-                      <h3 class="member-name">Sarah Mitchell</h3>
-                      <p class="member-title">Chief Technology Officer</p>
-                      <p class="member-bio">
-                          Sarah spearheads SESMine's technology development with expertise in AI, machine learning, 
-                          and mining automation. Previously CTO at TechMine Solutions, she's a recognized leader 
-                          in mining digitalization.
-                      </p>
-                      <div class="member-expertise">
-                          <span class="expertise-tag">Artificial Intelligence</span>
-                          <span class="expertise-tag">Mining Automation</span>
-                          <span class="expertise-tag">Digital Transformation</span>
-                      </div>
-                      <div class="member-social">
-                          <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
-                          <a href="#" class="social-link"><i class="fab fa-github"></i></a>
-                          <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
-                      </div>
-                  </div>
-
-                  <div class="team-member">
-                      <div class="member-avatar">MJ</div>
-                      <h3 class="member-name">Michael Johnson</h3>
-                      <p class="member-title">Chief Operations Officer</p>
-                      <p class="member-bio">
-                          Michael oversees global operations and client delivery with 18+ years in mining operations 
-                          management. Former Operations Director at Alpine Mining, he ensures operational excellence 
-                          across all SESMine services.
-                      </p>
-                      <div class="member-expertise">
-                          <span class="expertise-tag">Operations Management</span>
-                          <span class="expertise-tag">Project Delivery</span>
-                          <span class="expertise-tag">Process Optimization</span>
-                      </div>
-                      <div class="member-social">
-                          <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
-                          <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                          <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
-                      </div>
-                  </div>
-
-                  <div class="team-member">
-                      <div class="member-avatar">EC</div>
-                      <h3 class="member-name">Dr. Emily Carter</h3>
-                      <p class="member-title">Chief Sustainability Officer</p>
-                      <p class="member-bio">
-                          Dr. Carter leads SESMine's sustainability initiatives with expertise in environmental 
-                          engineering and sustainable mining practices. She holds a PhD in Environmental Science 
-                          and champions responsible mining solutions.
-                      </p>
-                      <div class="member-expertise">
-                          <span class="expertise-tag">Environmental Engineering</span>
-                          <span class="expertise-tag">Sustainable Mining</span>
-                          <span class="expertise-tag">ESG Compliance</span>
-                      </div>
-                      <div class="member-social">
-                          <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
-                          <a href="#" class="social-link"><i class="fab fa-researchgate"></i></a>
-                          <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
-                      </div>
-                  </div>
-
-                  <div class="team-member">
-                      <div class="member-avatar">DW</div>
-                      <h3 class="member-name">David Wilson</h3>
-                      <p class="member-title">Chief Financial Officer</p>
-                      <p class="member-bio">
-                          David manages SESMine's financial strategy and growth initiatives. With an MBA from 
-                          Wharton and 15+ years in mining finance, he previously served as CFO at Resource 
-                          Capital Partners.
-                      </p>
-                      <div class="member-expertise">
-                          <span class="expertise-tag">Financial Strategy</span>
-                          <span class="expertise-tag">Investment Analysis</span>
-                          <span class="expertise-tag">Risk Management</span>
-                      </div>
-                      <div class="member-social">
-                          <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
-                          <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                          <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
-                      </div>
-                  </div>
-
-                  <div class="team-member">
-                      <div class="member-avatar">LT</div>
-                      <h3 class="member-name">Lisa Thompson</h3>
-                      <p class="member-title">VP of Customer Success</p>
-                      <p class="member-bio">
-                          Lisa ensures exceptional client experiences and drives customer success initiatives. 
-                          With 12+ years in mining consulting and client relations, she's passionate about 
-                          delivering value to every SESMine client.
-                      </p>
-                      <div class="member-expertise">
-                          <span class="expertise-tag">Customer Success</span>
-                          <span class="expertise-tag">Mining Consulting</span>
-                          <span class="expertise-tag">Client Relations</span>
-                      </div>
-                      <div class="member-social">
-                          <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
-                          <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                          <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
-                      </div>
-                  </div>
-              </div>
-          </section>
-
-          <!-- Company Timeline -->
-          <section class="timeline-section">
-              <div class="timeline-content">
-                  <div class="timeline-header">
-                      <h2 class="timeline-title">Our Journey</h2>
-                      <p style="font-size: 1.25rem; opacity: 0.9; margin-bottom: 2rem;">
-                          From a small consulting firm to a global leader in mining technology solutions
-                      </p>
-                  </div>
-
-                  <div class="timeline">
-                      <div class="timeline-item">
-                          <div class="timeline-marker"></div>
-                          <div class="timeline-year">2008</div>
-                          <h3 class="timeline-event">Company Founded</h3>
-                          <p class="timeline-description">
-                              SESMine was established by a team of mining engineers and technology experts 
-                              with a vision to revolutionize the mining industry through innovative solutions.
-                          </p>
-                      </div>
-
-                      <div class="timeline-item">
-                          <div class="timeline-marker"></div>
-                          <div class="timeline-year">2012</div>
-                          <h3 class="timeline-event">First Major Contract</h3>
-                          <p class="timeline-description">
-                              Secured our first major contract with Global Mining Corp for comprehensive 
-                              cost estimation and project management services, establishing our reputation 
-                              in the industry.
-                          </p>
-                      </div>
-
-                      <div class="timeline-item">
-                          <div class="timeline-marker"></div>
-                          <div class="timeline-year">2015</div>
-                          <h3 class="timeline-event">International Expansion</h3>
-                          <p class="timeline-description">
-                              Expanded operations to Australia and South Africa, opening regional offices 
-                              and establishing partnerships with local mining companies and educational institutions.
-                          </p>
-                      </div>
-
-                      <div class="timeline-item">
-                          <div class="timeline-marker"></div>
-                          <div class="timeline-year">2018</div>
-                          <h3 class="timeline-event">Technology Platform Launch</h3>
-                          <p class="timeline-description">
-                              Launched our comprehensive digital platform integrating AI, IoT, and advanced 
-                              analytics to provide real-time mining insights and optimization solutions.
-                          </p>
-                      </div>
-
-                      <div class="timeline-item">
-                          <div class="timeline-marker"></div>
-                          <div class="timeline-year">2020</div>
-                          <h3 class="timeline-event">Sustainability Initiative</h3>
-                          <p class="timeline-description">
-                              Launched our comprehensive sustainability program, focusing on environmental 
-                              responsibility, carbon footprint reduction, and sustainable mining practices.
-                          </p>
-                      </div>
-
-                      <div class="timeline-item">
-                          <div class="timeline-marker"></div>
-                          <div class="timeline-year">2022</div>
-                          <h3 class="timeline-event">AI Innovation Center</h3>
-                          <p class="timeline-description">
-                              Established our AI Innovation Center in Denver, focusing on machine learning, 
-                              predictive analytics, and autonomous mining technologies.
-                          </p>
-                      </div>
-
-                      <div class="timeline-item">
-                          <div class="timeline-marker"></div>
-                          <div class="timeline-year">2024</div>
-                          <h3 class="timeline-event">Global Recognition</h3>
-                          <p class="timeline-description">
-                              Recognized as "Mining Technology Company of the Year" and achieved certification 
-                              as a carbon-neutral organization, reinforcing our commitment to sustainable innovation.
-                          </p>
-                      </div>
-                  </div>
-              </div>
-          </section>
-
-          <!-- Awards & Recognition -->
-          <section class="awards-section">
-              <div class="section-header">
-                  <h2 class="section-title">Awards & Recognition</h2>
-                  <p class="section-subtitle">
-                      Industry recognition for our commitment to innovation, sustainability, and excellence
-                  </p>
-              </div>
-
-              <div class="awards-grid">
-                  <div class="award-card">
-                      <div class="award-icon">🏆</div>
-                      <h4 class="award-title">Mining Technology Company of the Year</h4>
-                      <p class="award-organization">International Mining Awards 2024</p>
-                      <p class="award-description">
-                          Recognized for outstanding innovation in mining technology and digital transformation solutions.
-                      </p>
-                  </div>
-
-                  <div class="award-card">
-                      <div class="award-icon">🌱</div>
-                      <h4 class="award-title">Sustainability Excellence Award</h4>
-                      <p class="award-organization">Global Mining Sustainability Council 2023</p>
-                      <p class="award-description">
-                          Honored for leadership in sustainable mining practices and environmental stewardship.
-                      </p>
-                  </div>
-
-                  <div class="award-card">
-                      <div class="award-icon">🚀</div>
-                      <h4 class="award-title">Innovation in AI Applications</h4>
-                      <p class="award-organization">Mining Technology Institute 2023</p>
-                      <p class="award-description">
-                          Awarded for breakthrough applications of artificial intelligence in mining operations.
-                      </p>
-                  </div>
-
-                  <div class="award-card">
-                      <div class="award-icon">👥</div>
-                      <h4 class="award-title">Best Workplace in Mining</h4>
-                      <p class="award-organization">Mining Industry Association 2022</p>
-                      <p class="award-description">
-                          Recognized for creating an exceptional workplace culture and employee satisfaction.
-                      </p>
-                  </div>
-
-                  <div class="award-card">
-                      <div class="award-icon">🎯</div>
-                      <h4 class="award-title">Customer Excellence Award</h4>
-                      <p class="award-organization">Mining Services Excellence Council 2022</p>
-                      <p class="award-description">
-                          Honored for outstanding customer service and client satisfaction in mining consulting.
-                      </p>
-                  </div>
-
-                  <div class="award-card">
-                      <div class="award-icon">🔬</div>
-                      <h4 class="award-title">Research & Development Excellence</h4>
-                      <p class="award-organization">Mining Research Foundation 2021</p>
-                      <p class="award-description">
-                          Awarded for significant contributions to mining research and technological advancement.
-                      </p>
-                  </div>
-              </div>
-          </section>
-
-          <!-- Call to Action -->
-          <section class="cta-section">
-              <div class="cta-content">
-                  <h2 class="cta-title">Ready to Transform Your Mining Operations?</h2>
-                  <p class="cta-text">
-                      Join hundreds of mining companies worldwide who trust SESMine to optimize their operations, 
-                      reduce costs, and achieve sustainable growth through innovative technology solutions.
-                  </p>
-                  <div class="cta-buttons">
-                      <a href="contact.html" class="cta-btn primary">
-                          <i class="fas fa-rocket"></i>
-                          Get Started Today
-                      </a>
-                      <a href="features.html" class="cta-btn secondary">
-                          <i class="fas fa-info-circle"></i>
-                          Learn More
-                      </a>
-                  </div>
-              </div>
-          </section>
+  
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-background"></div>
+    <div class="hero-content">
+      <div class="hero-badge" data-aos="fade-up">
+        <i class="fas fa-award"></i>
+        Trusted by 500+ Mining Companies Worldwide
       </div>
-  </main>
-
-  <script src="script.js"></script>
+      <h1 class="hero-title" data-aos="fade-up" data-aos-delay="100">
+        About SES_MINE
+      </h1>
+      <p class="hero-description" data-aos="fade-up" data-aos-delay="200">
+        Leading the digital transformation of the global mining industry through 
+        innovative engineering solutions, advanced analytics, and cutting-edge technology.
+      </p>
+    </div>
+  </section>
+  
+  <!-- Story Section -->
+  <section class="story-section">
+    <div class="section-container">
+      <div class="section-header" data-aos="fade-up">
+        <div class="section-badge">
+          <i class="fas fa-book"></i>
+          Our Story
+        </div>
+        <h2 class="section-title">Building the Future of Mining</h2>
+      </div>
+      
+      <div class="story-content" data-aos="fade-up" data-aos-delay="100">
+        <p class="story-text">
+          Founded in 2015 by a team of mining engineers and technology innovators, 
+          SES_MINE was born from a vision to revolutionize the mining industry through 
+          digital transformation. We recognized that traditional mining operations were 
+          facing unprecedented challenges: increasing costs, declining ore grades, 
+          environmental pressures, and safety concerns.
+        </p>
+        
+        <p class="story-text">
+          Our founders, with over 100 years of combined experience in mining engineering, 
+          project management, and software development, set out to create a comprehensive 
+          platform that would address these challenges head-on. Starting with a small team 
+          of 12 passionate individuals, we developed our first cost estimation tool that 
+          quickly gained traction in the industry.
+        </p>
+        
+        <p class="story-text">
+          Today, SES_MINE has grown into a global leader in mining technology solutions, 
+          serving over 500 companies across 75 countries. Our platform has been used to 
+          plan and optimize projects worth over $50 billion, helping our clients save 
+          billions in costs while improving safety and sustainability.
+        </p>
+        
+        <p class="story-text">
+          We continue to innovate, investing heavily in AI, automation, and emerging 
+          technologies to ensure our clients stay ahead in an increasingly competitive 
+          and complex industry. Our commitment remains unchanged: to empower mining 
+          companies with the tools and insights they need to build a more efficient, 
+          safe, and sustainable future.
+        </p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Mission & Vision -->
+  <section class="mission-section">
+    <div class="section-container">
+      <div class="mission-grid">
+        <div class="mission-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="mission-icon">
+            <i class="fas fa-bullseye"></i>
+          </div>
+          <h3 class="mission-title">Our Mission</h3>
+          <p class="mission-text">
+            To empower mining companies worldwide with intelligent, data-driven solutions 
+            that optimize operations, reduce costs, enhance safety, and promote sustainable 
+            practices. We strive to be the trusted technology partner that transforms 
+            traditional mining into smart, efficient, and responsible operations.
+          </p>
+        </div>
+        
+        <div class="mission-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="mission-icon">
+            <i class="fas fa-eye"></i>
+          </div>
+          <h3 class="mission-title">Our Vision</h3>
+          <p class="mission-text">
+            To become the world's leading platform for mining intelligence and innovation, 
+            setting the standard for digital transformation in the industry. We envision 
+            a future where every mining operation leverages advanced technology to achieve 
+            optimal performance while minimizing environmental impact and maximizing value 
+            for all stakeholders.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Values Section -->
+  <section class="values-section">
+    <div class="section-container">
+      <div class="section-header" data-aos="fade-up">
+        <div class="section-badge">
+          <i class="fas fa-heart"></i>
+          Core Values
+        </div>
+        <h2 class="section-title">What Drives Us</h2>
+      </div>
+      
+      <div class="values-grid">
+        <div class="value-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="value-icon">
+            <i class="fas fa-lightbulb"></i>
+          </div>
+          <h3 class="value-title">Innovation</h3>
+          <p class="value-description">
+            Continuously pushing boundaries with cutting-edge technology and creative solutions.
+          </p>
+        </div>
+        
+        <div class="value-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="value-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3 class="value-title">Integrity</h3>
+          <p class="value-description">
+            Operating with honesty, transparency, and ethical standards in everything we do.
+          </p>
+        </div>
+        
+        <div class="value-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="value-icon">
+            <i class="fas fa-trophy"></i>
+          </div>
+          <h3 class="value-title">Excellence</h3>
+          <p class="value-description">
+            Delivering superior quality and exceeding expectations in every project.
+          </p>
+        </div>
+        
+        <div class="value-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="value-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <h3 class="value-title">Collaboration</h3>
+          <p class="value-description">
+            Building strong partnerships and working together to achieve shared success.
+          </p>
+        </div>
+        
+        <div class="value-card" data-aos="fade-up" data-aos-delay="500">
+          <div class="value-icon">
+            <i class="fas fa-leaf"></i>
+          </div>
+          <h3 class="value-title">Sustainability</h3>
+          <p class="value-description">
+            Committed to environmental responsibility and long-term sustainable practices.
+          </p>
+        </div>
+        
+        <div class="value-card" data-aos="fade-up" data-aos-delay="600">
+          <div class="value-icon">
+            <i class="fas fa-user-shield"></i>
+          </div>
+          <h3 class="value-title">Safety First</h3>
+          <p class="value-description">
+            Prioritizing the safety and well-being of people in every solution we create.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Team Section -->
+  <section class="team-section">
+    <div class="section-container">
+      <div class="section-header" data-aos="fade-up">
+        <div class="section-badge">
+          <i class="fas fa-users"></i>
+          Leadership Team
+        </div>
+        <h2 class="section-title">Meet Our Leaders</h2>
+      </div>
+      
+      <div class="team-grid">
+        <div class="team-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="team-image">DM</div>
+          <div class="team-info">
+            <h3 class="team-name">Dr. David Martinez</h3>
+            <p class="team-role">CEO & Co-Founder</p>
+            <p class="team-bio">
+              25+ years in mining engineering with expertise in open-pit operations 
+              and project management. Former VP at Rio Tinto.
+            </p>
+            <div class="team-social">
+              <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+              <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="team-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="team-image">SC</div>
+          <div class="team-info">
+            <h3 class="team-name">Sarah Chen, P.Eng</h3>
+            <p class="team-role">CTO & Co-Founder</p>
+            <p class="team-bio">
+              Software architect and AI specialist with 20 years building enterprise 
+              solutions. Previously led tech at BHP Digital.
+            </p>
+            <div class="team-social">
+              <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+              <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="team-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="team-image">MJ</div>
+          <div class="team-info">
+            <h3 class="team-name">Michael Johnson</h3>
+            <p class="team-role">VP of Engineering</p>
+            <p class="team-bio">
+              Expert in process optimization and metallurgy with 18 years at major 
+              mining companies. PhD in Mineral Processing.
+            </p>
+            <div class="team-social">
+              <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+              <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="team-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="team-image">EP</div>
+          <div class="team-info">
+            <h3 class="team-name">Emily Patterson, CFA</h3>
+            <p class="team-role">CFO</p>
+            <p class="team-bio">
+              Financial strategist with 15 years in mining finance and investment 
+              banking. Former Director at Goldman Sachs Mining Group.
+            </p>
+            <div class="team-social">
+              <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+              <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Achievements Section -->
+  <section class="achievements-section">
+    <div class="section-container">
+      <div class="section-header" data-aos="fade-up">
+        <div class="section-badge">
+          <i class="fas fa-trophy"></i>
+          Our Achievements
+        </div>
+        <h2 class="section-title">Milestones & Recognition</h2>
+      </div>
+      
+      <div class="achievements-grid">
+        <div class="achievement-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="achievement-icon">
+            <i class="fas fa-building"></i>
+          </div>
+          <div class="achievement-value">500+</div>
+          <div class="achievement-label">Global Clients</div>
+        </div>
+        
+        <div class="achievement-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="achievement-icon">
+            <i class="fas fa-globe"></i>
+          </div>
+          <div class="achievement-value">75</div>
+          <div class="achievement-label">Countries Served</div>
+        </div>
+        
+        <div class="achievement-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="achievement-icon">
+            <i class="fas fa-project-diagram"></i>
+          </div>
+          <div class="achievement-value">2,500+</div>
+          <div class="achievement-label">Projects Completed</div>
+        </div>
+        
+        <div class="achievement-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="achievement-icon">
+            <i class="fas fa-dollar-sign"></i>
+          </div>
+          <div class="achievement-value">$50B+</div>
+          <div class="achievement-label">Projects Value</div>
+        </div>
+        
+        <div class="achievement-card" data-aos="fade-up" data-aos-delay="500">
+          <div class="achievement-icon">
+            <i class="fas fa-award"></i>
+          </div>
+          <div class="achievement-value">15+</div>
+          <div class="achievement-label">Industry Awards</div>
+        </div>
+        
+        <div class="achievement-card" data-aos="fade-up" data-aos-delay="600">
+          <div class="achievement-icon">
+            <i class="fas fa-star"></i>
+          </div>
+          <div class="achievement-value">4.9/5</div>
+          <div class="achievement-label">Client Satisfaction</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Timeline Section -->
+  <section class="timeline-section">
+    <div class="section-container">
+      <div class="section-header" data-aos="fade-up">
+        <div class="section-badge">
+          <i class="fas fa-history"></i>
+          Company Timeline
+        </div>
+        <h2 class="section-title">Our Journey</h2>
+      </div>
+      
+      <div class="timeline">
+        <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
+          <div class="timeline-content">
+            <div class="timeline-year">2015</div>
+            <h3 class="timeline-title">Company Founded</h3>
+            <p class="timeline-description">
+              SES_MINE established by mining engineers and tech innovators with a 
+              vision to digitize the mining industry.
+            </p>
+          </div>
+          <div class="timeline-dot"></div>
+        </div>
+        
+        <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
+          <div class="timeline-content">
+            <div class="timeline-year">2017</div>
+            <h3 class="timeline-title">First Major Client</h3>
+            <p class="timeline-description">
+              Secured partnership with Fortune 500 mining company, validating our 
+              cost estimation platform.
+            </p>
+          </div>
+          <div class="timeline-dot"></div>
+        </div>
+        
+        <div class="timeline-item" data-aos="fade-up" data-aos-delay="300">
+          <div class="timeline-content">
+            <div class="timeline-year">2019</div>
+            <h3 class="timeline-title">Global Expansion</h3>
+            <p class="timeline-description">
+              Opened offices in Australia, Canada, and Chile. Reached 100+ clients 
+              across 30 countries.
+            </p>
+          </div>
+          <div class="timeline-dot"></div>
+        </div>
+        
+        <div class="timeline-item" data-aos="fade-up" data-aos-delay="400">
+          <div class="timeline-content">
+            <div class="timeline-year">2021</div>
+            <h3 class="timeline-title">AI Platform Launch</h3>
+            <p class="timeline-description">
+              Introduced AI-powered analytics and predictive maintenance capabilities, 
+              revolutionizing operations.
+            </p>
+          </div>
+          <div class="timeline-dot"></div>
+        </div>
+        
+        <div class="timeline-item" data-aos="fade-up" data-aos-delay="500">
+          <div class="timeline-content">
+            <div class="timeline-year">2023</div>
+            <h3 class="timeline-title">Industry Recognition</h3>
+            <p class="timeline-description">
+              Awarded "Mining Technology Innovation of the Year" and reached 500+ 
+              clients milestone.
+            </p>
+          </div>
+          <div class="timeline-dot"></div>
+        </div>
+        
+        <div class="timeline-item" data-aos="fade-up" data-aos-delay="600">
+          <div class="timeline-content">
+            <div class="timeline-year">2024</div>
+            <h3 class="timeline-title">Future Forward</h3>
+            <p class="timeline-description">
+              Launched Innovation Lab focusing on quantum computing, blockchain, and 
+              next-gen automation solutions.
+            </p>
+          </div>
+          <div class="timeline-dot"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="cta-content" data-aos="fade-up">
+      <h2 class="cta-title">Join Us on This Journey</h2>
+      <p class="cta-description">
+        Be part of the mining industry's digital transformation. Partner with SES_MINE 
+        to unlock new levels of efficiency, safety, and sustainability.
+      </p>
+      <div class="cta-buttons">
+        <a href="signup.html" class="btn btn-primary btn-large">
+          <i class="fas fa-rocket"></i>
+          Get Started Today
+        </a>
+        <a href="contact.html" class="btn btn-secondary btn-large">
+          <i class="fas fa-envelope"></i>
+          Contact Us
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/153945651/6sGQHt6CUh5lVvcD.png" 
+             alt="SES_MINE Logo" 
+             class="footer-logo">
+        <p>Smart Engineering Solutions for Mining operations worldwide.</p>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Platform Hubs</h3>
+        <ul class="footer-links">
+          <li><a href="engineering-hub.html">Engineering Hub</a></li>
+          <li><a href="analytics-platform.html">Analytics Platform</a></li>
+          <li><a href="economics-hub.html">Economics Hub</a></li>
+          <li><a href="procurement-hub.html">Procurement Hub</a></li>
+          <li><a href="consulting-hub.html">Consulting Hub</a></li>
+          <li><a href="innovation-technology-hub.html">Innovation Hub</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Resources</h3>
+        <ul class="footer-links">
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="features.html">Features</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="Pricing Plans - SESMine.html">Pricing</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Support</h3>
+        <ul class="footer-links">
+          <li><a href="#">Documentation</a></li>
+          <li><a href="#">API Reference</a></li>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Community</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>© 2024 SES_MINE - Smart Engineering Solutions. All rights reserved.</p>
+    </div>
+  </footer>
+  
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-  // About page specific JavaScript
-  document.addEventListener('DOMContentLoaded', function() {
-      initializeAboutPage();
-  });
-
-  function initializeAboutPage() {
-      console.log('🏔️ About page initialized');
-      
-      // Initialize animations
-      initializeScrollAnimations();
-      
-      // Initialize team member interactions
-      initializeTeamInteractions();
-      
-      // Track page view
-      analytics.track('about_page_view', {
-          timestamp: new Date().toISOString(),
-          userAgent: navigator.userAgent
-      });
-  }
-
-  function initializeScrollAnimations() {
-      // Animate elements on scroll
-      const observerOptions = {
-          threshold: 0.1,
-          rootMargin: '0px 0px -50px 0px'
-      };
-
-      const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                  entry.target.style.opacity = '1';
-                  entry.target.style.transform = 'translateY(0)';
-              }
-          });
-      }, observerOptions);
-
-      // Observe timeline items
-      const timelineItems = document.querySelectorAll('.timeline-item');
-      timelineItems.forEach((item, index) => {
-          item.style.opacity = '0';
-          item.style.transform = 'translateY(30px)';
-          item.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
-          observer.observe(item);
-      });
-
-      // Observe value cards
-      const valueCards = document.querySelectorAll('.value-card');
-      valueCards.forEach((card, index) => {
-          card.style.opacity = '0';
-          card.style.transform = 'translateY(30px)';
-          card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
-          observer.observe(card);
-      });
-
-      // Observe team members
-      const teamMembers = document.querySelectorAll('.team-member');
-      teamMembers.forEach((member, index) => {
-          member.style.opacity = '0';
-          member.style.transform = 'translateY(30px)';
-          member.style.transition = `opacity 0.6s ease ${index * 0.15}s, transform 0.6s ease ${index * 0.15}s`;
-          observer.observe(member);
-      });
-
-      // Observe award cards
-      const awardCards = document.querySelectorAll('.award-card');
-      awardCards.forEach((card, index) => {
-          card.style.opacity = '0';
-          card.style.transform = 'translateY(30px)';
-          card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
-          observer.observe(card);
-      });
-  }
-
-  function initializeTeamInteractions() {
-      const teamMembers = document.querySelectorAll('.team-member');
-      
-      teamMembers.forEach(member => {
-          member.addEventListener('click', function() {
-              const memberName = this.querySelector('.member-name').textContent;
-              analytics.track('team_member_click', { member: memberName });
-              
-              // Add visual feedback
-              this.style.transform = 'translateY(-10px) scale(1.02)';
-              setTimeout(() => {
-                  this.style.transform = 'translateY(-10px) scale(1)';
-              }, 200);
-          });
-      });
-
-      // Social link interactions
-      const socialLinks = document.querySelectorAll('.social-link');
-      socialLinks.forEach(link => {
-          link.addEventListener('click', function(e) {
-              e.preventDefault();
-              const memberName = this.closest('.team-member').querySelector('.member-name').textContent;
-              const platform = this.querySelector('i').className;
-              
-              analytics.track('social_link_click', {
-                  member: memberName,
-                  platform: platform
-              });
-              
-              showNotification(`🔗 Opening ${memberName}'s profile...`, 'info');
-          });
-      });
-  }
-
-  // Award card interactions
-  document.addEventListener('DOMContentLoaded', function() {
-      const awardCards = document.querySelectorAll('.award-card');
-      
-      awardCards.forEach(card => {
-          card.addEventListener('click', function() {
-              const awardTitle = this.querySelector('.award-title').textContent;
-              analytics.track('award_click', { award: awardTitle });
-              
-              showNotification(`🏆 ${awardTitle} - Learn more about this achievement`, 'info');
-          });
-      });
-  });
-
-  // Timeline interactions
-  document.addEventListener('DOMContentLoaded', function() {
-      const timelineItems = document.querySelectorAll('.timeline-item');
-      
-      timelineItems.forEach(item => {
-          item.addEventListener('click', function() {
-              const year = this.querySelector('.timeline-year').textContent;
-              const event = this.querySelector('.timeline-event').textContent;
-              
-              analytics.track('timeline_click', {
-                  year: year,
-                  event: event
-              });
-              
-              // Add visual feedback
-              this.style.transform = 'translateX(10px)';
-              setTimeout(() => {
-                  this.style.transform = 'translateX(0)';
-              }, 300);
-          });
-      });
-  });
-
-  // Value card interactions
-  document.addEventListener('DOMContentLoaded', function() {
-      const valueCards = document.querySelectorAll('.value-card');
-      
-      valueCards.forEach(card => {
-          card.addEventListener('mouseenter', function() {
-              const icon = this.querySelector('.value-icon');
-              icon.style.transform = 'scale(1.1) rotate(10deg)';
-          });
-          
-          card.addEventListener('mouseleave', function() {
-              const icon = this.querySelector('.value-icon');
-              icon.style.transform = 'scale(1) rotate(0deg)';
-          });
-          
-          card.addEventListener('click', function() {
-              const valueTitle = this.querySelector('.value-title').textContent;
-              analytics.track('value_click', { value: valueTitle });
-              
-              showNotification(`💡 ${valueTitle} - Core to our mission and values`, 'info');
-          });
-      });
-  });
-
-  // CTA button interactions
-  function trackCTAClick(action) {
-      analytics.track('about_cta_click', {
-          action: action,
-          timestamp: new Date().toISOString()
-      });
-  }
-
-  // Hero stats animation
-  function animateHeroStats() {
-      const stats = document.querySelectorAll('.stat-value');
-      
-      stats.forEach(stat => {
-          const finalValue = stat.textContent;
-          const isNumber = !isNaN(parseFloat(finalValue));
-          
-          if (isNumber) {
-              const numericValue = parseFloat(finalValue);
-              let currentValue = 0;
-              const increment = numericValue / 50;
-              const suffix = finalValue.replace(/[0-9.]/g, '');
-              
-              const timer = setInterval(() => {
-                  currentValue += increment;
-                  if (currentValue >= numericValue) {
-                      currentValue = numericValue;
-                      clearInterval(timer);
-                  }
-                  stat.textContent = Math.floor(currentValue) + suffix;
-              }, 30);
-          }
-      });
-  }
-
-  // Start hero stats animation when page loads
-  setTimeout(animateHeroStats, 1000);
-
-  // Parallax effect for hero section
-  window.addEventListener('scroll', function() {
-      const scrolled = window.pageYOffset;
-      const heroIcon = document.querySelector('.hero-icon');
-      
-      if (heroIcon && scrolled < window.innerHeight) {
-          heroIcon.style.transform = `translateY(${scrolled * 0.5}px) scale(${1 + scrolled * 0.0005})`;
+    // Initialize AOS
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 100
+    });
+    
+    // Header scroll effect
+    const header = document.getElementById('mainHeader');
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 100) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
       }
-  });
-
-  // Keyboard shortcuts
-  document.addEventListener('keydown', function(e) {
-      // Ctrl/Cmd + Shift + T: Scroll to team section
-      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'T') {
-          e.preventDefault();
-          document.querySelector('.team-section').scrollIntoView({ behavior: 'smooth' });
-      }
-      
-      // Ctrl/Cmd + Shift + M: Scroll to mission section
-      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'M') {
-          e.preventDefault();
-          document.querySelector('.mission-section').scrollIntoView({ behavior: 'smooth' });
-      }
-      
-      // Ctrl/Cmd + Shift + H: Scroll to timeline
-      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'H') {
-          e.preventDefault();
-          document.querySelector('.timeline-section').scrollIntoView({ behavior: 'smooth' });
-      }
-  });
-
-  console.log('🏔️ About page ready');
-  console.log('👥 Team section loaded');
-  console.log('🎯 Mission & values displayed');
-  console.log('📅 Company timeline active');
-  console.log('🏆 Awards & recognition showcased');
-  console.log('🚀 Call-to-action ready');
+    });
+    
+    console.log('ℹ️ About Us Page Loaded Successfully');
   </script>
 </body>
 </html>

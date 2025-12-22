@@ -3,1642 +3,1363 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Consulting Hub - SESMine Platform</title>
-  <meta name="description" content="Expert Consulting Services for Mining - SESMine">
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" type="image/x-icon" href="https://www.sesmine.com/favicon.ico">
+  <meta name="description" content="Consulting Hub - Expert mining consultants, technical advisory, feasibility studies, and professional services for mining projects.">
+  <meta name="keywords" content="mining consulting, technical advisory, feasibility studies, expert consultants, mining services">
+  <title>Consulting Hub | SES_MINE - Smart Engineering Solutions</title>
+  
+  <link rel="icon" type="image/png" href="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/153945651/6sGQHt6CUh5lVvcD.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
   
   <style>
-  /* Consulting Hub specific styles */
-  .consulting-hero {
-      background: linear-gradient(135deg, var(--danger-500) 0%, var(--danger-600) 50%, var(--sesmine-copper) 100%);
-      color: white;
-      padding: 4rem 0;
-      margin-bottom: 3rem;
-      position: relative;
-      overflow: hidden;
-  }
-  
-  .consulting-hero::before {
-      content: '';
-      position: absolute;
+    :root {
+      --primary-dark: #0b1a2e;
+      --primary-light: #f7f9fc;
+      --accent-primary: #2563eb;
+      --accent-secondary: #1e3a8a;
+      --accent-gold: #d4af37;
+      --success: #38a169;
+      --warning: #dd6b20;
+      --error: #e53e3e;
+      --info: #3182ce;
+      --purple: #9333ea;
+      --gradient-primary: linear-gradient(135deg, #0b1a2e 0%, #1a365d 100%);
+      --gradient-accent: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+      --gradient-purple: linear-gradient(135deg, #9333ea 0%, #7e22ce 100%);
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2rem;
+      --space-2xl: 3rem;
+      --space-3xl: 5rem;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-lg: 0 10px 15px rgba(0,0,0,0.1), 0 4px 6px rgba(0,0,0,0.05);
+      --shadow-xl: 0 20px 25px rgba(0,0,0,0.1), 0 10px 10px rgba(0,0,0,0.04);
+      --radius-sm: 0.25rem;
+      --radius-md: 0.5rem;
+      --radius-lg: 0.75rem;
+      --radius-xl: 1rem;
+      --transition-smooth: 0.3s ease;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: var(--primary-dark);
+      background: var(--primary-light);
+      overflow-x: hidden;
+    }
+    
+    /* Header */
+    .main-header {
+      position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="consulting-pattern" width="25" height="25" patternUnits="userSpaceOnUse"><circle cx="12.5" cy="12.5" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="5" cy="5" r="0.8" fill="rgba(255,255,255,0.05)"/><circle cx="20" cy="20" r="1" fill="rgba(255,255,255,0.08)"/></pattern></defs><rect width="100" height="100" fill="url(%23consulting-pattern)"/></svg>');
-      opacity: 0.3;
-  }
-  
-  .hero-content {
-      position: relative;
-      z-index: 1;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
-      text-align: center;
-  }
-  
-  .hero-icon {
-      width: 100px;
-      height: 100px;
-      background: linear-gradient(135deg, var(--sesmine-gold), var(--sesmine-copper));
-      border-radius: var(--border-radius-2xl);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3rem;
-      margin: 0 auto 2rem;
-      box-shadow: var(--shadow-2xl);
-      animation: consultingPulse 3s ease-in-out infinite;
-  }
-  
-  @keyframes consultingPulse {
-      0%, 100% { 
-          transform: scale(1);
-          box-shadow: var(--shadow-2xl), 0 0 0 0 rgba(239, 68, 68, 0.7);
-      }
-      50% { 
-          transform: scale(1.05);
-          box-shadow: var(--shadow-2xl), 0 0 0 20px rgba(239, 68, 68, 0);
-      }
-  }
-  
-  .hero-title {
-      font-size: 3.5rem;
-      font-weight: 800;
-      margin-bottom: 1.5rem;
-      background: linear-gradient(135deg, white, rgba(255, 255, 255, 0.8), var(--sesmine-gold));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      line-height: 1.1;
-  }
-  
-  .hero-subtitle {
-      font-size: 1.5rem;
-      opacity: 0.9;
-      margin-bottom: 2.5rem;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.5;
-  }
-  
-  .consulting-stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
-      max-width: 800px;
-      margin: 0 auto;
-  }
-  
-  .consulting-stat {
-      text-align: center;
-      padding: 1.5rem;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: var(--border-radius-xl);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-  }
-  
-  .consulting-stat-value {
-      font-size: 2.5rem;
-      font-weight: 800;
-      margin-bottom: 0.5rem;
-      font-family: var(--font-mono);
-      color: var(--sesmine-gold);
-  }
-  
-  .consulting-stat-label {
-      font-size: 0.95rem;
-      opacity: 0.8;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-  }
-  
-  .experts-showcase {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 2rem;
-      margin-bottom: 4rem;
-  }
-  
-  .expert-card {
-      background: white;
-      border-radius: var(--border-radius-xl);
-      padding: 2.5rem;
+      z-index: 1030;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(37, 99, 235, 0.1);
+      transition: all var(--transition-smooth);
+    }
+    
+    .main-header.scrolled {
+      background: rgba(255, 255, 255, 0.98);
       box-shadow: var(--shadow-md);
-      border: 1px solid var(--gray-200);
-      transition: var(--transition-all);
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-  }
-  
-  .expert-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 6px;
-      background: linear-gradient(90deg, var(--danger-500), var(--sesmine-copper), var(--danger-600));
-  }
-  
-  .expert-card:hover {
-      transform: translateY(-8px);
-      box-shadow: var(--shadow-2xl);
-      border-color: var(--danger-500);
-  }
-  
-  .expert-header {
+    }
+    
+    .header-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: var(--space-md) var(--space-xl);
       display: flex;
       align-items: center;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-  }
-  
-  .expert-avatar {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--danger-500), var(--sesmine-copper));
+      justify-content: space-between;
+      gap: var(--space-xl);
+    }
+    
+    .logo-section {
       display: flex;
       align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 2rem;
-      font-weight: 700;
-      box-shadow: var(--shadow-lg);
-      flex-shrink: 0;
-  }
-  
-  .expert-info {
-      flex: 1;
-  }
-  
-  .expert-name {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--sesmine-primary);
-      margin-bottom: 0.5rem;
-  }
-  
-  .expert-title {
-      color: var(--danger-600);
-      font-size: 1rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-  }
-  
-  .expert-experience {
-      color: var(--gray-600);
-      font-size: 0.9rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-  }
-  
-  .expert-specialties {
-      margin-bottom: 2rem;
-  }
-  
-  .specialties-title {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--sesmine-primary);
-      margin-bottom: 1rem;
-  }
-  
-  .specialties-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-  }
-  
-  .specialty-tag {
-      background: var(--danger-50);
-      color: var(--danger-700);
-      padding: 0.25rem 0.75rem;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      border: 1px solid var(--danger-200);
-  }
-  
-  .expert-rating {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 2rem;
-  }
-  
-  .rating-stars {
-      color: var(--warning-500);
-      font-size: 1.1rem;
-  }
-  
-  .rating-score {
-      font-weight: 700;
-      color: var(--gray-700);
-  }
-  
-  .rating-reviews {
-      color: var(--gray-500);
-      font-size: 0.9rem;
-  }
-  
-  .expert-actions {
-      display: flex;
-      gap: 1rem;
-  }
-  
-  .action-btn {
-      flex: 1;
-      padding: 0.875rem;
-      border: 2px solid var(--gray-300);
-      background: white;
-      color: var(--gray-700);
-      border-radius: var(--border-radius-md);
-      font-size: 0.9rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: var(--transition-all);
-      text-align: center;
       text-decoration: none;
+      transition: transform var(--transition-smooth);
+    }
+    
+    .logo-section:hover {
+      transform: scale(1.02);
+    }
+    
+    .logo-image {
+      height: 60px;
+      width: auto;
+    }
+    
+    .main-nav {
       display: flex;
+      gap: var(--space-lg);
       align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-  }
-  
-  .action-btn:hover {
-      border-color: var(--danger-500);
-      color: var(--danger-600);
-  }
-  
-  .action-btn.primary {
-      background: var(--danger-500);
-      border-color: var(--danger-500);
-      color: white;
-  }
-  
-  .action-btn.primary:hover {
-      background: var(--danger-600);
-      border-color: var(--danger-600);
-  }
-  
-  .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-bottom: 4rem;
-  }
-  
-  .service-card {
-      background: white;
-      border-radius: var(--border-radius-xl);
-      padding: 2.5rem;
-      box-shadow: var(--shadow-md);
-      border: 1px solid var(--gray-200);
-      transition: var(--transition-all);
-      cursor: pointer;
+    }
+    
+    .nav-link {
+      color: var(--primary-dark);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--radius-sm);
+      transition: all var(--transition-smooth);
       position: relative;
-      overflow: hidden;
-  }
-  
-  .service-card::before {
+    }
+    
+    .nav-link.active {
+      color: var(--accent-primary);
+    }
+    
+    .nav-link::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--danger-500), var(--sesmine-copper));
-  }
-  
-  .service-card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-2xl);
-  }
-  
-  .service-icon {
-      width: 70px;
-      height: 70px;
-      border-radius: var(--border-radius-lg);
+      bottom: -2px;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: var(--gradient-accent);
+      transition: all var(--transition-smooth);
+      transform: translateX(-50%);
+    }
+    
+    .nav-link:hover::before,
+    .nav-link.active::before {
+      width: 80%;
+    }
+    
+    .nav-link:hover {
+      color: var(--accent-primary);
+      background: rgba(37, 99, 235, 0.05);
+    }
+    
+    .auth-buttons {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      color: white;
-      margin-bottom: 1.5rem;
-      box-shadow: var(--shadow-lg);
-      transition: var(--transition-transform);
-  }
-  
-  .service-card:hover .service-icon {
-      transform: scale(1.1) rotate(5deg);
-  }
-  
-  .service-title {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--sesmine-primary);
-      margin-bottom: 1rem;
-  }
-  
-  .service-description {
-      color: var(--gray-600);
-      font-size: 1rem;
-      line-height: 1.6;
-      margin-bottom: 2rem;
-  }
-  
-  .service-features {
-      list-style: none;
-      margin-bottom: 2rem;
-  }
-  
-  .service-features li {
-      padding: 0.5rem 0;
-      color: var(--gray-700);
+      gap: var(--space-md);
+    }
+    
+    .btn {
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      font-weight: 600;
       font-size: 0.95rem;
-      display: flex;
+      transition: all var(--transition-smooth);
+      display: inline-flex;
       align-items: center;
-      gap: 0.75rem;
-  }
-  
-  .feature-icon {
-      width: 16px;
-      height: 16px;
-      color: var(--sesmine-emerald);
-      flex-shrink: 0;
-  }
-  
-  .service-pricing {
-      background: var(--gray-50);
-      border-radius: var(--border-radius-md);
-      padding: 1rem;
-      margin-bottom: 1.5rem;
-      text-align: center;
-  }
-  
-  .pricing-label {
-      color: var(--gray-600);
-      font-size: 0.9rem;
-      margin-bottom: 0.25rem;
-  }
-  
-  .pricing-value {
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: var(--danger-600);
-      font-family: var(--font-mono);
-  }
-  
-  .consultation-booking {
-      background: linear-gradient(135deg, var(--primary-50), var(--danger-50));
-      border-radius: var(--border-radius-2xl);
-      padding: 4rem 3rem;
-      margin: 4rem 0;
-      border: 1px solid var(--primary-200);
-  }
-  
-  .booking-header {
-      text-align: center;
-      margin-bottom: 3rem;
-  }
-  
-  .booking-title {
-      font-size: 2.5rem;
-      font-weight: 800;
-      color: var(--sesmine-primary);
-      margin-bottom: 1rem;
-  }
-  
-  .booking-subtitle {
-      font-size: 1.25rem;
-      color: var(--gray-600);
-      max-width: 700px;
-      margin: 0 auto;
-      line-height: 1.6;
-  }
-  
-  .booking-form {
-      background: white;
-      border-radius: var(--border-radius-xl);
-      padding: 3rem;
-      box-shadow: var(--shadow-lg);
-      border: 1px solid var(--gray-200);
-  }
-  
-  .form-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-bottom: 2rem;
-  }
-  
-  .form-group {
-      display: flex;
-      flex-direction: column;
-  }
-  
-  .form-label {
-      font-weight: 600;
-      color: var(--gray-700);
-      margin-bottom: 0.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-  }
-  
-  .form-input {
-      padding: 1rem;
-      border: 2px solid var(--gray-300);
-      border-radius: var(--border-radius-md);
-      font-size: 1rem;
-      transition: var(--transition-all);
-  }
-  
-  .form-input:focus {
-      outline: none;
-      border-color: var(--danger-500);
-      box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1);
-  }
-  
-  .form-select {
-      padding: 1rem;
-      border: 2px solid var(--gray-300);
-      border-radius: var(--border-radius-md);
-      font-size: 1rem;
-      background: white;
-      transition: var(--transition-all);
-  }
-  
-  .form-textarea {
-      resize: vertical;
-      min-height: 120px;
-  }
-  
-  .booking-btn {
-      grid-column: 1 / -1;
-      padding: 1.25rem;
-      background: linear-gradient(135deg, var(--danger-500), var(--sesmine-copper));
-      color: white;
+      gap: var(--space-sm);
       border: none;
-      border-radius: var(--border-radius-lg);
-      font-size: 1.1rem;
-      font-weight: 600;
       cursor: pointer;
-      transition: var(--transition-all);
+      white-space: nowrap;
+    }
+    
+    .btn-login {
+      color: var(--primary-dark);
+      background: rgba(37, 99, 235, 0.1);
+      border: 1px solid rgba(37, 99, 235, 0.2);
+    }
+    
+    .btn-login:hover {
+      background: rgba(37, 99, 235, 0.15);
+      transform: translateY(-2px);
+    }
+    
+    .btn-primary {
+      background: var(--gradient-accent);
+      color: #ffffff;
       box-shadow: var(--shadow-md);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-  }
-  
-  .booking-btn:hover {
-      background: linear-gradient(135deg, var(--sesmine-copper), var(--danger-700));
+    }
+    
+    .btn-primary:hover {
       transform: translateY(-2px);
       box-shadow: var(--shadow-lg);
-  }
-  
-  .testimonials {
-      background: var(--gray-900);
-      color: white;
-      border-radius: var(--border-radius-2xl);
-      padding: 4rem 3rem;
-      margin: 4rem 0;
+    }
+    
+    /* Hero Section */
+    .hero-section {
       position: relative;
-      overflow: hidden;
-  }
-  
-  .testimonials::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="testimonial-pattern" width="40" height="40" patternUnits="userSpaceOnUse"><text x="20" y="25" text-anchor="middle" fill="rgba(239,68,68,0.1)" font-size="20">"</text></pattern></defs><rect width="100" height="100" fill="url(%23testimonial-pattern)"/></svg>');
-      opacity: 0.3;
-  }
-  
-  .testimonials-content {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-  }
-  
-  .testimonials-title {
-      font-size: 2.5rem;
-      font-weight: 800;
-      margin-bottom: 1.5rem;
-      background: linear-gradient(135deg, white, var(--danger-400));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-  }
-  
-  .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
-  }
-  
-  .testimonial-card {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: var(--border-radius-lg);
-      padding: 2rem;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      transition: var(--transition-all);
-  }
-  
-  .testimonial-card:hover {
-      background: rgba(255, 255, 255, 0.15);
-      transform: translateY(-4px);
-  }
-  
-  .testimonial-quote {
-      font-size: 1.1rem;
-      font-style: italic;
-      line-height: 1.6;
-      margin-bottom: 1.5rem;
-      opacity: 0.9;
-  }
-  
-  .testimonial-author {
+      min-height: 60vh;
       display: flex;
       align-items: center;
-      gap: 1rem;
-  }
-  
-  .author-avatar {
-      width: 50px;
-      height: 50px;
-      background: var(--danger-500);
+      padding: calc(var(--space-3xl) + 80px) var(--space-xl) var(--space-3xl);
+      background: var(--gradient-primary);
+      overflow: hidden;
+    }
+    
+    .hero-background {
+      position: absolute;
+      inset: 0;
+      opacity: 0.15;
+      background: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=2000&q=80') center/cover;
+    }
+    
+    .hero-content {
+      max-width: 1440px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+      color: white;
+      text-align: center;
+    }
+    
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      background: rgba(147, 51, 234, 0.2);
+      border: 1px solid var(--purple);
+      color: #e9d5ff;
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: var(--space-xl);
+    }
+    
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 900;
+      margin-bottom: var(--space-lg);
+      letter-spacing: -0.02em;
+    }
+    
+    .hero-description {
+      font-size: 1.3rem;
+      opacity: 0.95;
+      max-width: 800px;
+      margin: 0 auto var(--space-2xl);
+    }
+    
+    .hero-actions {
+      display: flex;
+      gap: var(--space-lg);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .btn-large {
+      padding: var(--space-lg) var(--space-2xl);
+      font-size: 1.1rem;
+    }
+    
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    
+    /* Stats Section */
+    .stats-section {
+      padding: var(--space-3xl) var(--space-xl);
+      background: white;
+    }
+    
+    .stats-container {
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--space-xl);
+    }
+    
+    .stat-card {
+      background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+      border: 2px solid var(--purple);
+      border-radius: var(--radius-xl);
+      padding: var(--space-2xl);
+      text-align: center;
+      transition: all var(--transition-smooth);
+    }
+    
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .stat-icon {
+      width: 60px;
+      height: 60px;
+      background: var(--gradient-purple);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
+      margin: 0 auto var(--space-lg);
+      font-size: 1.5rem;
+      color: white;
+    }
+    
+    .stat-value {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--purple);
+      margin-bottom: var(--space-sm);
+    }
+    
+    .stat-label {
+      font-size: 1rem;
+      color: var(--accent-secondary);
+      font-weight: 600;
+    }
+    
+    /* Services Section */
+    .services-section {
+      padding: var(--space-3xl) var(--space-xl);
+      background: linear-gradient(135deg, #f7f9fc 0%, #e8eef5 100%);
+    }
+    
+    .section-container {
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: var(--space-3xl);
+    }
+    
+    .section-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      background: var(--gradient-purple);
+      color: white;
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: var(--space-lg);
+    }
+    
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: var(--space-lg);
+      color: var(--primary-dark);
+    }
+    
+    .section-description {
+      font-size: 1.1rem;
+      color: var(--accent-secondary);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: var(--space-xl);
+    }
+    
+    .service-card {
+      background: white;
+      border: 1px solid rgba(147, 51, 234, 0.1);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      transition: all var(--transition-smooth);
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(147, 51, 234, 0.3);
+    }
+    
+    .service-header {
+      background: var(--gradient-purple);
+      padding: var(--space-2xl);
+      color: white;
+      text-align: center;
+    }
+    
+    .service-icon {
+      width: 80px;
+      height: 80px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto var(--space-lg);
+      font-size: 2rem;
+    }
+    
+    .service-header h3 {
+      font-size: 1.5rem;
+      margin-bottom: var(--space-sm);
+    }
+    
+    .service-price {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+    
+    .service-body {
+      padding: var(--space-2xl);
+    }
+    
+    .service-description {
+      color: var(--accent-secondary);
+      margin-bottom: var(--space-xl);
+      line-height: 1.6;
+    }
+    
+    .service-features {
+      list-style: none;
+      margin-bottom: var(--space-xl);
+    }
+    
+    .service-features li {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+      color: var(--accent-secondary);
+    }
+    
+    .service-features li::before {
+      content: '✓';
+      color: var(--purple);
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+    
+    .service-action {
+      width: 100%;
+    }
+    
+    /* Consultants Section */
+    .consultants-section {
+      padding: var(--space-3xl) var(--space-xl);
+      background: white;
+    }
+    
+    .consultants-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--space-xl);
+    }
+    
+    .consultant-card {
+      background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+      border: 2px solid rgba(147, 51, 234, 0.2);
+      border-radius: var(--radius-xl);
+      padding: var(--space-2xl);
+      text-align: center;
+      transition: all var(--transition-smooth);
+    }
+    
+    .consultant-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--purple);
+    }
+    
+    .consultant-avatar {
+      width: 120px;
+      height: 120px;
+      background: var(--gradient-purple);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto var(--space-lg);
+      font-size: 3rem;
       color: white;
       font-weight: 700;
-      font-size: 1.25rem;
-  }
-  
-  .author-info {
-      flex: 1;
-  }
-  
-  .author-name {
+    }
+    
+    .consultant-name {
+      font-size: 1.4rem;
       font-weight: 700;
-      margin-bottom: 0.25rem;
-  }
-  
-  .author-position {
-      font-size: 0.9rem;
-      opacity: 0.8;
-  }
-  
-  @media (max-width: 1024px) {
-      .experts-showcase {
-          grid-template-columns: 1fr;
+      margin-bottom: var(--space-xs);
+      color: var(--primary-dark);
+    }
+    
+    .consultant-title {
+      color: var(--purple);
+      font-weight: 600;
+      margin-bottom: var(--space-md);
+    }
+    
+    .consultant-expertise {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      justify-content: center;
+      margin-bottom: var(--space-lg);
+    }
+    
+    .expertise-tag {
+      background: rgba(147, 51, 234, 0.1);
+      color: var(--purple);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    
+    .consultant-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-md);
+      margin-bottom: var(--space-lg);
+      padding-top: var(--space-lg);
+      border-top: 1px solid rgba(147, 51, 234, 0.2);
+    }
+    
+    .consultant-stat {
+      text-align: center;
+    }
+    
+    .consultant-stat-value {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--purple);
+      display: block;
+    }
+    
+    .consultant-stat-label {
+      font-size: 0.8rem;
+      color: var(--accent-secondary);
+    }
+    
+    .consultant-action {
+      width: 100%;
+    }
+    
+    /* Booking Section */
+    .booking-section {
+      padding: var(--space-3xl) var(--space-xl);
+      background: linear-gradient(135deg, #f7f9fc 0%, #e8eef5 100%);
+    }
+    
+    .booking-container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      border: 2px solid var(--purple);
+      border-radius: var(--radius-xl);
+      padding: var(--space-2xl);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .booking-header {
+      text-align: center;
+      margin-bottom: var(--space-2xl);
+    }
+    
+    .booking-header h2 {
+      font-size: 2rem;
+      color: var(--primary-dark);
+      margin-bottom: var(--space-sm);
+    }
+    
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-lg);
+      margin-bottom: var(--space-xl);
+    }
+    
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    
+    .form-label {
+      font-weight: 600;
+      color: var(--primary-dark);
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    
+    .form-input,
+    .form-select,
+    .form-textarea {
+      padding: var(--space-md);
+      border: 2px solid rgba(147, 51, 234, 0.2);
+      border-radius: var(--radius-md);
+      font-size: 1rem;
+      transition: all var(--transition-smooth);
+      font-family: 'Inter', sans-serif;
+      background: white;
+    }
+    
+    .form-textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: var(--purple);
+      box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.1);
+    }
+    
+    .submit-btn {
+      width: 100%;
+      padding: var(--space-lg);
+      background: var(--gradient-purple);
+      color: white;
+      border: none;
+      border-radius: var(--radius-md);
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all var(--transition-smooth);
+      box-shadow: var(--shadow-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+    }
+    
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    /* Success Message */
+    .success-message {
+      background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+      border: 2px solid var(--success);
+      border-radius: var(--radius-lg);
+      padding: var(--space-xl);
+      margin-top: var(--space-xl);
+      text-align: center;
+      display: none;
+    }
+    
+    .success-message.active {
+      display: block;
+      animation: slideIn 0.5s ease;
+    }
+    
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .success-message h3 {
+      color: var(--success);
+      margin-bottom: var(--space-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+    }
+    
+    /* Footer */
+    .main-footer {
+      background: #0a1322;
+      padding: var(--space-3xl) var(--space-xl) var(--space-xl);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .footer-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--space-2xl);
+      margin-bottom: var(--space-xl);
+    }
+    
+    .footer-section h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: var(--space-lg);
+      color: white;
+    }
+    
+    .footer-section p,
+    .footer-section a {
+      color: rgba(247, 249, 252, 0.8);
+      text-decoration: none;
+      line-height: 1.6;
+      transition: color var(--transition-smooth);
+    }
+    
+    .footer-section a:hover {
+      color: var(--accent-gold);
+    }
+    
+    .footer-links {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: var(--space-sm);
+    }
+    
+    .footer-logo {
+      height: 50px;
+      width: auto;
+      margin-bottom: var(--space-lg);
+      filter: brightness(0) invert(1);
+      opacity: 0.9;
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: var(--space-xl);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(247, 249, 252, 0.7);
+    }
+    
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .main-nav {
+        display: none;
       }
       
-      .services-grid {
-          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      }
-  }
-  
-  @media (max-width: 768px) {
       .hero-title {
-          font-size: 2.5rem;
+        font-size: 2.5rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .logo-image {
+        height: 50px;
       }
       
-      .hero-subtitle {
-          font-size: 1.25rem;
+      .hero-title {
+        font-size: 2rem;
       }
       
-      .consulting-stats {
-          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      .hero-description {
+        font-size: 1.1rem;
+      }
+      
+      .services-grid,
+      .consultants-grid {
+        grid-template-columns: 1fr;
       }
       
       .form-grid {
-          grid-template-columns: 1fr;
+        grid-template-columns: 1fr;
       }
-      
-      .expert-header {
-          flex-direction: column;
-          text-align: center;
-      }
-      
-      .expert-actions {
-          flex-direction: column;
-      }
-  }
+    }
   </style>
 </head>
 <body>
-  <!-- Universal Navigation Header -->
-  <header class="sesmine-header" id="sesmineHeader">
-      <div class="header-content">
-          <div class="logo-section">
-              <button class="header-btn mobile-menu-toggle" id="mobileMenuToggle">
-                  <i class="fas fa-bars"></i>
-              </button>
-              <a href="index.html" class="logo">
-                  <div class="logo-icon">🏔️</div>
-                  <div class="logo-text">
-                      <div class="logo-main">SESMine</div>
-                      <div class="logo-subtitle">Smart Engineering Solutions</div>
-                  </div>
-              </a>
-          </div>
-          
-          <nav class="main-nav" id="mainNav">
-              <a href="home.html" class="nav-link">
-                  <i class="fas fa-home"></i> Dashboard
-              </a>
-              <div class="nav-dropdown">
-                  <button class="nav-link dropdown-toggle active">
-                      <i class="fas fa-th-large"></i> Hubs <i class="fas fa-chevron-down"></i>
-                  </button>
-                  <div class="dropdown-menu">
-                      <a href="engineering-hub.html" class="dropdown-item">
-                          <i class="fas fa-hard-hat"></i> Engineering Hub
-                      </a>
-                      <a href="analytics-platform.html" class="dropdown-item">
-                          <i class="fas fa-chart-area"></i> Analytics Platform
-                      </a>
-                      <a href="economics-hub.html" class="dropdown-item">
-                          <i class="fas fa-coins"></i> Economics Hub
-                      </a>
-                      <a href="innovation-technology-hub.html" class="dropdown-item">
-                          <i class="fas fa-rocket"></i> Innovation & Technology
-                      </a>
-                      <a href="procurement-hub.html" class="dropdown-item">
-                          <i class="fas fa-truck"></i> Procurement Hub
-                      </a>
-                      <a href="consulting-hub.html" class="dropdown-item active">
-                          <i class="fas fa-user-tie"></i> Consulting Hub
-                      </a>
-                      <a href="training-education-hub.html" class="dropdown-item">
-                          <i class="fas fa-graduation-cap"></i> Training & Education
-                      </a>
-                      <a href="admin-dashboard.html" class="dropdown-item">
-                          <i class="fas fa-shield-alt"></i> Admin Dashboard
-                      </a>
-                  </div>
-              </div>
-              <a href="platforms.html" class="nav-link">
-                  <i class="fas fa-layer-group"></i> Platforms
-              </a>
-              <a href="features.html" class="nav-link">
-                  <i class="fas fa-star"></i> Features
-              </a>
-              <a href="about.html" class="nav-link">
-                  <i class="fas fa-info-circle"></i> About
-              </a>
-              <a href="contact.html" class="nav-link">
-                  <i class="fas fa-phone"></i> Contact
-              </a>
-          </nav>
-          
-          <div class="header-actions">
-              <div class="search-container">
-                  <i class="fas fa-search search-icon"></i>
-                  <input type="text" class="search-input" placeholder="Search experts..." id="globalSearch">
-              </div>
-              <button class="header-btn" title="Notifications">
-                  <i class="fas fa-bell"></i>
-              </button>
-              <button class="header-btn" title="Settings" onclick="window.location.href='setting.html'">
-                  <i class="fas fa-cog"></i>
-              </button>
-              <div class="user-menu">
-                  <div class="user-avatar">MS</div>
-                  <div class="user-info">
-                      <div class="user-name">Mining Specialist</div>
-                      <div class="user-email">specialist@sesmine.com</div>
-                  </div>
-                  <div class="user-dropdown">
-                      <a href="setting.html" class="dropdown-item">
-                          <i class="fas fa-cog"></i> Settings
-                      </a>
-                      <a href="login.html" class="dropdown-item">
-                          <i class="fas fa-sign-out-alt"></i> Logout
-                      </a>
-                  </div>
-              </div>
-          </div>
+  <!-- Header -->
+  <header class="main-header" id="mainHeader">
+    <div class="header-container">
+      <a href="index.html" class="logo-section">
+        <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/153945651/6sGQHt6CUh5lVvcD.png" 
+             alt="SES_MINE Logo" 
+             class="logo-image">
+      </a>
+      
+      <nav class="main-nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="engineering-hub.html" class="nav-link">Engineering Hub</a>
+        <a href="analytics-platform.html" class="nav-link">Analytics</a>
+        <a href="economics-hub.html" class="nav-link">Economics</a>
+        <a href="procurement-hub.html" class="nav-link">Procurement</a>
+        <a href="consulting-hub.html" class="nav-link active">Consulting</a>
+      </nav>
+      
+      <div class="auth-buttons">
+        <a href="login.html" class="btn btn-login">
+          <i class="fas fa-sign-in-alt"></i>
+          Login
+        </a>
+        <a href="signup.html" class="btn btn-primary">
+          <i class="fas fa-rocket"></i>
+          Get Started
+        </a>
       </div>
+    </div>
   </header>
-
-  <!-- Main Content -->
-  <main class="main-content">
-      <!-- Consulting Hero Section -->
-      <section class="consulting-hero">
-          <div class="hero-content">
-              <div class="hero-icon">👔</div>
-              <h1 class="hero-title">Consulting Hub</h1>
-              <p class="hero-subtitle">
-                  Expert consulting services, strategic advisory, and professional guidance 
-                  from industry-leading mining specialists and technical experts.
-              </p>
-              
-              <div class="consulting-stats">
-                  <div class="consulting-stat">
-                      <div class="consulting-stat-value">50+</div>
-                      <div class="consulting-stat-label">Expert Consultants</div>
-                  </div>
-                  <div class="consulting-stat">
-                      <div class="consulting-stat-value">500+</div>
-                      <div class="consulting-stat-label">Projects Completed</div>
-                  </div>
-                  <div class="consulting-stat">
-                      <div class="consulting-stat-value">98%</div>
-                      <div class="consulting-stat-label">Client Satisfaction</div>
-                  </div>
-                  <div class="consulting-stat">
-                      <div class="consulting-stat-value">25+</div>
-                      <div class="consulting-stat-label">Years Experience</div>
-                  </div>
-              </div>
-          </div>
-      </section>
-
-      <div class="content-container">
-          <!-- Expert Consultants -->
-          <section class="experts-showcase">
-              <div class="expert-card" onclick="viewExpertProfile('Dr. Sarah Mitchell')">
-                  <div class="expert-header">
-                      <div class="expert-avatar">SM</div>
-                      <div class="expert-info">
-                          <div class="expert-name">Dr. Sarah Mitchell</div>
-                          <div class="expert-title">Senior Mining Engineer</div>
-                          <div class="expert-experience">
-                              <i class="fas fa-clock"></i>
-                              25+ years experience
-                          </div>
-                      </div>
-                  </div>
-                  
-                  <div class="expert-specialties">
-                      <h4 class="specialties-title">Specialties</h4>
-                      <div class="specialties-list">
-                          <span class="specialty-tag">Open Pit Design</span>
-                          <span class="specialty-tag">Mine Planning</span>
-                          <span class="specialty-tag">Feasibility Studies</span>
-                          <span class="specialty-tag">Cost Optimization</span>
-                      </div>
-                  </div>
-                  
-                  <div class="expert-rating">
-                      <div class="rating-stars">★★★★★</div>
-                      <div class="rating-score">4.9/5</div>
-                      <div class="rating-reviews">(47 reviews)</div>
-                  </div>
-                  
-                  <div class="expert-actions">
-                      <button class="action-btn primary" onclick="bookConsultation('Dr. Sarah Mitchell')">
-                          <i class="fas fa-calendar"></i>
-                          Book Session
-                      </button>
-                      <button class="action-btn" onclick="viewProfile('Dr. Sarah Mitchell')">
-                          <i class="fas fa-user"></i>
-                          View Profile
-                      </button>
-                  </div>
-              </div>
-
-              <div class="expert-card" onclick="viewExpertProfile('James Rodriguez')">
-                  <div class="expert-header">
-                      <div class="expert-avatar">JR</div>
-                      <div class="expert-info">
-                          <div class="expert-name">James Rodriguez</div>
-                          <div class="expert-title">Process Engineering Specialist</div>
-                          <div class="expert-experience">
-                              <i class="fas fa-clock"></i>
-                              18+ years experience
-                          </div>
-                      </div>
-                  </div>
-                  
-                  <div class="expert-specialties">
-                      <h4 class="specialties-title">Specialties</h4>
-                      <div class="specialties-list">
-                          <span class="specialty-tag">Mineral Processing</span>
-                          <span class="specialty-tag">Plant Design</span>
-                          <span class="specialty-tag">Metallurgy</span>
-                          <span class="specialty-tag">Process Optimization</span>
-                      </div>
-                  </div>
-                  
-                  <div class="expert-rating">
-                      <div class="rating-stars">★★★★★</div>
-                      <div class="rating-score">4.8/5</div>
-                      <div class="rating-reviews">(52 reviews)</div>
-                  </div>
-                  
-                  <div class="expert-actions">
-                      <button class="action-btn primary" onclick="bookConsultation('James Rodriguez')">
-                          <i class="fas fa-calendar"></i>
-                          Book Session
-                      </button>
-                      <button class="action-btn" onclick="viewProfile('James Rodriguez')">
-                          <i class="fas fa-user"></i>
-                          View Profile
-                      </button>
-                  </div>
-              </div>
-
-              <div class="expert-card" onclick="viewExpertProfile('Dr. Emily Chen')">
-                  <div class="expert-header">
-                      <div class="expert-avatar">EC</div>
-                      <div class="expert-info">
-                          <div class="expert-name">Dr. Emily Chen</div>
-                          <div class="expert-title">Environmental & Sustainability Expert</div>
-                          <div class="expert-experience">
-                              <i class="fas fa-clock"></i>
-                              20+ years experience
-                          </div>
-                      </div>
-                  </div>
-                  
-                  <div class="expert-specialties">
-                      <h4 class="specialties-title">Specialties</h4>
-                      <div class="specialties-list">
-                          <span class="specialty-tag">Environmental Impact</span>
-                          <span class="specialty-tag">Sustainability</span>
-                          <span class="specialty-tag">ESG Compliance</span>
-                          <span class="specialty-tag">Remediation</span>
-                      </div>
-                  </div>
-                  
-                  <div class="expert-rating">
-                      <div class="rating-stars">★★★★★</div>
-                      <div class="rating-score">4.9/5</div>
-                      <div class="rating-reviews">(38 reviews)</div>
-                  </div>
-                  
-                  <div class="expert-actions">
-                      <button class="action-btn primary" onclick="bookConsultation('Dr. Emily Chen')">
-                          <i class="fas fa-calendar"></i>
-                          Book Session
-                      </button>
-                      <button class="action-btn" onclick="viewProfile('Dr. Emily Chen')">
-                          <i class="fas fa-user"></i>
-                          View Profile
-                      </button>
-                  </div>
-              </div>
-          </section>
-
-          <!-- Consulting Services -->
-          <section class="services-grid">
-              <div class="service-card" onclick="exploreService('Strategic Planning')">
-                  <div class="service-icon" style="background: linear-gradient(135deg, var(--danger-500), var(--sesmine-copper));">
-                      🎯
-                  </div>
-                  <h3 class="service-title">Strategic Planning</h3>
-                  <p class="service-description">
-                      Comprehensive strategic planning and business development consulting for mining operations and investments.
-                  </p>
-                  <ul class="service-features">
-                      <li><i class="fas fa-check feature-icon"></i>Business Strategy Development</li>
-                      <li><i class="fas fa-check feature-icon"></i>Market Analysis</li>
-                      <li><i class="fas fa-check feature-icon"></i>Investment Planning</li>
-                      <li><i class="fas fa-check feature-icon"></i>Risk Assessment</li>
-                  </ul>
-                  <div class="service-pricing">
-                      <div class="pricing-label">Starting from</div>
-                      <div class="pricing-value">$2,500/day</div>
-                  </div>
-                  <div class="tool-actions">
-                      <button class="btn btn-primary">
-                          <i class="fas fa-rocket"></i>
-                          Get Started
-                      </button>
-                  </div>
-              </div>
-
-              <div class="service-card" onclick="exploreService('Technical Audits')">
-                  <div class="service-icon" style="background: linear-gradient(135deg, var(--sesmine-emerald), var(--success-600));">
-                      🔍
-                  </div>
-                  <h3 class="service-title">Technical Audits</h3>
-                  <p class="service-description">
-                      In-depth technical audits and assessments of mining operations, equipment, and processes.
-                  </p>
-                  <ul class="service-features">
-                      <li><i class="fas fa-check feature-icon"></i>Operations Assessment</li>
-                      <li><i class="fas fa-check feature-icon"></i>Equipment Evaluation</li>
-                      <li><i class="fas fa-check feature-icon"></i>Process Analysis</li>
-                      <li><i class="fas fa-check feature-icon"></i>Improvement Recommendations</li>
-                  </ul>
-                  <div class="service-pricing">
-                      <div class="pricing-label">Starting from</div>
-                      <div class="pricing-value">$3,000/day</div>
-                  </div>
-                  <div class="tool-actions">
-                      <button class="btn btn-primary">
-                          <i class="fas fa-search"></i>
-                          Schedule Audit
-                      </button>
-                  </div>
-              </div>
-
-              <div class="service-card" onclick="exploreService('Project Management')">
-                  <div class="service-icon" style="background: linear-gradient(135deg, var(--sesmine-accent), var(--sesmine-secondary));">
-                      📋
-                  </div>
-                  <h3 class="service-title">Project Management</h3>
-                  <p class="service-description">
-                      Expert project management services for mining projects from conception to completion.
-                  </p>
-                  <ul class="service-features">
-                      <li><i class="fas fa-check feature-icon"></i>Project Planning</li>
-                      <li><i class="fas fa-check feature-icon"></i>Resource Management</li>
-                      <li><i class="fas fa-check feature-icon"></i>Timeline Optimization</li>
-                      <li><i class="fas fa-check feature-icon"></i>Quality Assurance</li>
-                  </ul>
-                  <div class="service-pricing">
-                      <div class="pricing-label">Starting from</div>
-                      <div class="pricing-value">$2,000/day</div>
-                  </div>
-                  <div class="tool-actions">
-                      <button class="btn btn-primary">
-                          <i class="fas fa-tasks"></i>
-                          Start Project
-                      </button>
-                  </div>
-              </div>
-
-              <div class="service-card" onclick="exploreService('Regulatory Compliance')">
-                  <div class="service-icon" style="background: linear-gradient(135deg, var(--primary-500), var(--primary-600));">
-                      ⚖️
-                  </div>
-                  <h3 class="service-title">Regulatory Compliance</h3>
-                  <p class="service-description">
-                      Navigate complex regulatory requirements with expert guidance on compliance and permitting.
-                  </p>
-                  <ul class="service-features">
-                      <li><i class="fas fa-check feature-icon"></i>Permit Applications</li>
-                      <li><i class="fas fa-check feature-icon"></i>Compliance Audits</li>
-                      <li><i class="fas fa-check feature-icon"></i>Regulatory Updates</li>
-                      <li><i class="fas fa-check feature-icon"></i>Legal Support</li>
-                  </ul>
-                  <div class="service-pricing">
-                      <div class="pricing-label">Starting from</div>
-                      <div class="pricing-value">$2,800/day</div>
-                  </div>
-                  <div class="tool-actions">
-                      <button class="btn btn-primary">
-                          <i class="fas fa-gavel"></i>
-                          Get Compliance Help
-                      </button>
-                  </div>
-              </div>
-
-              <div class="service-card" onclick="exploreService('Technology Integration')">
-                  <div class="service-icon" style="background: linear-gradient(135deg, var(--warning-500), var(--warning-600));">
-                      💻
-                  </div>
-                  <h3 class="service-title">Technology Integration</h3>
-                  <p class="service-description">
-                      Implement cutting-edge technology solutions to modernize and optimize mining operations.
-                  </p>
-                  <ul class="service-features">
-                      <li><i class="fas fa-check feature-icon"></i>Technology Assessment</li>
-                      <li><i class="fas fa-check feature-icon"></i>System Integration</li>
-                      <li><i class="fas fa-check feature-icon"></i>Digital Transformation</li>
-                      <li><i class="fas fa-check feature-icon"></i>Training & Support</li>
-                  </ul>
-                  <div class="service-pricing">
-                      <div class="pricing-label">Starting from</div>
-                      <div class="pricing-value">$3,500/day</div>
-                  </div>
-                  <div class="tool-actions">
-                      <button class="btn btn-primary">
-                          <i class="fas fa-cogs"></i>
-                          Modernize Operations
-                      </button>
-                  </div>
-              </div>
-
-              <div class="service-card" onclick="exploreService('Training & Development')">
-                  <div class="service-icon" style="background: linear-gradient(135deg, var(--sesmine-gold), var(--sesmine-copper));">
-                      🎓
-                  </div>
-                  <h3 class="service-title">Training & Development</h3>
-                  <p class="service-description">
-                      Customized training programs and professional development for mining teams and organizations.
-                  </p>
-                  <ul class="service-features">
-                      <li><i class="fas fa-check feature-icon"></i>Custom Training Programs</li>
-                      <li><i class="fas fa-check feature-icon"></i>Skills Assessment</li>
-                      <li><i class="fas fa-check feature-icon"></i>Certification Support</li>
-                      <li><i class="fas fa-check feature-icon"></i>Ongoing Development</li>
-                  </ul>
-                  <div class="service-pricing">
-                      <div class="pricing-label">Starting from</div>
-                      <div class="pricing-value">$1,800/day</div>
-                  </div>
-                  <div class="tool-actions">
-                      <button class="btn btn-primary">
-                          <i class="fas fa-graduation-cap"></i>
-                          Start Training
-                      </button>
-                  </div>
-              </div>
-          </section>
-
-          <!-- Consultation Booking -->
-          <section class="consultation-booking">
-              <div class="booking-header">
-                  <h2 class="booking-title">Book a Consultation</h2>
-                  <p class="booking-subtitle">
-                      Schedule a consultation with our expert consultants to discuss your specific needs and challenges
-                  </p>
-              </div>
-
-              <div class="booking-form">
-                  <form class="form-grid" id="consultationForm">
-                      <div class="form-group">
-                          <label class="form-label">
-                              <i class="fas fa-user"></i>
-                              Full Name
-                          </label>
-                          <input type="text" class="form-input" placeholder="Your full name" required>
-                      </div>
-
-                      <div class="form-group">
-                          <label class="form-label">
-                              <i class="fas fa-envelope"></i>
-                              Email Address
-                          </label>
-                          <input type="email" class="form-input" placeholder="your.email@company.com" required>
-                      </div>
-
-                      <div class="form-group">
-                          <label class="form-label">
-                              <i class="fas fa-building"></i>
-                              Company
-                          </label>
-                          <input type="text" class="form-input" placeholder="Your company name" required>
-                      </div>
-
-                      <div class="form-group">
-                          <label class="form-label">
-                              <i class="fas fa-phone"></i>
-                              Phone Number
-                          </label>
-                          <input type="tel" class="form-input" placeholder="+1 (555) 123-4567" required>
-                      </div>
-
-                      <div class="form-group">
-                          <label class="form-label">
-                              <i class="fas fa-list"></i>
-                              Service Type
-                          </label>
-                          <select class="form-select" required>
-                              <option value="">Select service type</option>
-                              <option value="strategic-planning">Strategic Planning</option>
-                              <option value="technical-audits">Technical Audits</option>
-                              <option value="project-management">Project Management</option>
-                              <option value="regulatory-compliance">Regulatory Compliance</option>
-                              <option value="technology-integration">Technology Integration</option>
-                              <option value="training-development">Training & Development</option>
-                          </select>
-                      </div>
-
-                      <div class="form-group">
-                          <label class="form-label">
-                              <i class="fas fa-calendar"></i>
-                              Preferred Date
-                          </label>
-                          <input type="date" class="form-input" required>
-                      </div>
-
-                      <div class="form-group">
-                          <label class="form-label">
-                              <i class="fas fa-clock"></i>
-                              Preferred Time
-                          </label>
-                          <select class="form-select" required>
-                              <option value="">Select time</option>
-                              <option value="09:00">9:00 AM</option>
-                              <option value="10:00">10:00 AM</option>
-                              <option value="11:00">11:00 AM</option>
-                              <option value="14:00">2:00 PM</option>
-                              <option value="15:00">3:00 PM</option>
-                              <option value="16:00">4:00 PM</option>
-                          </select>
-                      </div>
-
-                      <div class="form-group">
-                          <label class="form-label">
-                              <i class="fas fa-dollar-sign"></i>
-                              Project Budget Range
-                          </label>
-                          <select class="form-select">
-                              <option value="">Select budget range</option>
-                              <option value="under-10k">Under $10,000</option>
-                              <option value="10k-50k">$10,000 - $50,000</option>
-                              <option value="50k-100k">$50,000 - $100,000</option>
-                              <option value="100k-500k">$100,000 - $500,000</option>
-                              <option value="over-500k">Over $500,000</option>
-                          </select>
-                      </div>
-
-                      <div class="form-group" style="grid-column: 1 / -1;">
-                          <label class="form-label">
-                              <i class="fas fa-file-alt"></i>
-                              Project Description
-                          </label>
-                          <textarea class="form-input form-textarea" placeholder="Please describe your project, challenges, and specific requirements..." required></textarea>
-                      </div>
-
-                      <button type="button" class="booking-btn" onclick="submitConsultationRequest()">
-                          <i class="fas fa-calendar-check"></i>
-                          Book Consultation
-                      </button>
-                  </form>
-              </div>
-          </section>
-
-          <!-- Client Testimonials -->
-          <section class="testimonials">
-              <div class="testimonials-content">
-                  <h2 class="testimonials-title">What Our Clients Say</h2>
-                  <p style="font-size: 1.25rem; opacity: 0.9; margin-bottom: 2rem;">
-                      Hear from mining professionals who have transformed their operations with our expert guidance
-                  </p>
-
-                  <div class="testimonials-grid">
-                      <div class="testimonial-card">
-                          <div class="testimonial-quote">
-                              "The strategic planning consultation helped us identify $2.3M in cost savings opportunities. 
-                              The expertise and insights provided were invaluable for our mining operation."
-                          </div>
-                          <div class="testimonial-author">
-                              <div class="author-avatar">MJ</div>
-                              <div class="author-info">
-                                  <div class="author-name">Michael Johnson</div>
-                                  <div class="author-position">Operations Director, Alpine Mining Corp</div>
-                              </div>
-                          </div>
-                      </div>
-
-                      <div class="testimonial-card">
-                          <div class="testimonial-quote">
-                              "Dr. Chen's environmental compliance guidance was crucial for our permit approval. 
-                              Her expertise saved us months of delays and potential regulatory issues."
-                          </div>
-                          <div class="testimonial-author">
-                              <div class="author-avatar">LT</div>
-                              <div class="author-info">
-                                  <div class="author-name">Lisa Thompson</div>
-                                  <div class="author-position">Environmental Manager, GoldTech Resources</div>
-                              </div>
-                          </div>
-                      </div>
-
-                      <div class="testimonial-card">
-                          <div class="testimonial-quote">
-                              "The technical audit revealed critical inefficiencies in our processing plant. 
-                              Implementing the recommendations increased our recovery rate by 8%."
-                          </div>
-                          <div class="testimonial-author">
-                              <div class="author-avatar">RK</div>
-                              <div class="author-info">
-                                  <div class="author-name">Robert Kim</div>
-                                  <div class="author-position">Plant Manager, Copper Valley Mining</div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </section>
+  
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-background"></div>
+    <div class="hero-content">
+      <div class="hero-badge" data-aos="fade-up">
+        <i class="fas fa-user-tie"></i>
+        Expert Mining Consultants
       </div>
-  </main>
-
-  <script src="script.js"></script>
+      <h1 class="hero-title" data-aos="fade-up" data-aos-delay="100">
+        Consulting Hub
+      </h1>
+      <p class="hero-description" data-aos="fade-up" data-aos-delay="200">
+        Access world-class mining consultants and technical experts. From feasibility studies 
+        to operational optimization, get professional guidance for your mining projects.
+      </p>
+      <div class="hero-actions" data-aos="fade-up" data-aos-delay="300">
+        <a href="#services" class="btn btn-primary btn-large">
+          <i class="fas fa-briefcase"></i>
+          Browse Services
+        </a>
+        <a href="#booking" class="btn btn-secondary btn-large">
+          <i class="fas fa-calendar-check"></i>
+          Book Consultation
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Stats Section -->
+  <section class="stats-section">
+    <div class="stats-container">
+      <div class="stats-grid">
+        <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="stat-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <div class="stat-value">250+</div>
+          <div class="stat-label">Expert Consultants</div>
+        </div>
+        
+        <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="stat-icon">
+            <i class="fas fa-project-diagram"></i>
+          </div>
+          <div class="stat-value">1,800+</div>
+          <div class="stat-label">Projects Completed</div>
+        </div>
+        
+        <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="stat-icon">
+            <i class="fas fa-globe-americas"></i>
+          </div>
+          <div class="stat-value">65+</div>
+          <div class="stat-label">Countries Served</div>
+        </div>
+        
+        <div class="stat-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="stat-icon">
+            <i class="fas fa-star"></i>
+          </div>
+          <div class="stat-value">4.9/5</div>
+          <div class="stat-label">Client Satisfaction</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Services Section -->
+  <section id="services" class="services-section">
+    <div class="section-container">
+      <div class="section-header" data-aos="fade-up">
+        <div class="section-badge">
+          <i class="fas fa-briefcase"></i>
+          Professional Services
+        </div>
+        <h2 class="section-title">Consulting Services</h2>
+        <p class="section-description">
+          Comprehensive advisory services for every stage of your mining project
+        </p>
+      </div>
+      
+      <div class="services-grid">
+        <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="service-header">
+            <div class="service-icon">
+              <i class="fas fa-file-alt"></i>
+            </div>
+            <h3>Feasibility Studies</h3>
+            <p class="service-price">Starting from $50,000</p>
+          </div>
+          <div class="service-body">
+            <p class="service-description">
+              Comprehensive pre-feasibility and feasibility studies including resource estimation, 
+              mine planning, financial modeling, and risk assessment.
+            </p>
+            <ul class="service-features">
+              <li>Resource & Reserve Estimation</li>
+              <li>Mine Design & Planning</li>
+              <li>Financial Modeling (NPV, IRR)</li>
+              <li>Risk & Sensitivity Analysis</li>
+              <li>Environmental Impact Assessment</li>
+              <li>Regulatory Compliance Review</li>
+            </ul>
+            <button class="btn btn-primary service-action">
+              <i class="fas fa-arrow-right"></i>
+              Request Proposal
+            </button>
+          </div>
+        </div>
+        
+        <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="service-header">
+            <div class="service-icon">
+              <i class="fas fa-cogs"></i>
+            </div>
+            <h3>Technical Advisory</h3>
+            <p class="service-price">$250/hour</p>
+          </div>
+          <div class="service-body">
+            <p class="service-description">
+              Expert technical guidance on mining operations, equipment selection, 
+              process optimization, and production efficiency.
+            </p>
+            <ul class="service-features">
+              <li>Operational Audits</li>
+              <li>Equipment Selection & Sizing</li>
+              <li>Process Optimization</li>
+              <li>Production Planning</li>
+              <li>Quality Control Systems</li>
+              <li>Technology Implementation</li>
+            </ul>
+            <button class="btn btn-primary service-action">
+              <i class="fas fa-arrow-right"></i>
+              Book Session
+            </button>
+          </div>
+        </div>
+        
+        <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="service-header">
+            <div class="service-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h3>Due Diligence</h3>
+            <p class="service-price">Starting from $30,000</p>
+          </div>
+          <div class="service-body">
+            <p class="service-description">
+              Independent technical and financial due diligence for mining investments, 
+              acquisitions, and project financing.
+            </p>
+            <ul class="service-features">
+              <li>Technical Due Diligence</li>
+              <li>Financial Analysis</li>
+              <li>Legal & Regulatory Review</li>
+              <li>Environmental Compliance</li>
+              <li>Valuation Assessment</li>
+              <li>Risk Identification</li>
+            </ul>
+            <button class="btn btn-primary service-action">
+              <i class="fas fa-arrow-right"></i>
+              Get Started
+            </button>
+          </div>
+        </div>
+        
+        <div class="service-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="service-header">
+            <div class="service-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3>Safety & Compliance</h3>
+            <p class="service-price">Starting from $15,000</p>
+          </div>
+          <div class="service-body">
+            <p class="service-description">
+              Safety management systems, compliance audits, and regulatory consulting 
+              to ensure safe and compliant operations.
+            </p>
+            <ul class="service-features">
+              <li>Safety Management Systems</li>
+              <li>Compliance Audits</li>
+              <li>Risk Assessment</li>
+              <li>Training Programs</li>
+              <li>Emergency Response Planning</li>
+              <li>Regulatory Liaison</li>
+            </ul>
+            <button class="btn btn-primary service-action">
+              <i class="fas fa-arrow-right"></i>
+              Learn More
+            </button>
+          </div>
+        </div>
+        
+        <div class="service-card" data-aos="fade-up" data-aos-delay="500">
+          <div class="service-header">
+            <div class="service-icon">
+              <i class="fas fa-leaf"></i>
+            </div>
+            <h3>ESG Consulting</h3>
+            <p class="service-price">Starting from $25,000</p>
+          </div>
+          <div class="service-body">
+            <p class="service-description">
+              Environmental, Social, and Governance consulting to meet sustainability 
+              goals and stakeholder expectations.
+            </p>
+            <ul class="service-features">
+              <li>ESG Strategy Development</li>
+              <li>Carbon Footprint Analysis</li>
+              <li>Community Engagement</li>
+              <li>Sustainability Reporting</li>
+              <li>Water Management</li>
+              <li>Biodiversity Conservation</li>
+            </ul>
+            <button class="btn btn-primary service-action">
+              <i class="fas fa-arrow-right"></i>
+              Explore Services
+            </button>
+          </div>
+        </div>
+        
+        <div class="service-card" data-aos="fade-up" data-aos-delay="600">
+          <div class="service-header">
+            <div class="service-icon">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h3>Training & Development</h3>
+            <p class="service-price">Custom Pricing</p>
+          </div>
+          <div class="service-body">
+            <p class="service-description">
+              Professional training programs for mining personnel, from operators 
+              to management, covering technical and soft skills.
+            </p>
+            <ul class="service-features">
+              <li>Technical Training</li>
+              <li>Leadership Development</li>
+              <li>Safety Training</li>
+              <li>Software Training</li>
+              <li>Certification Programs</li>
+              <li>On-site Workshops</li>
+            </ul>
+            <button class="btn btn-primary service-action">
+              <i class="fas fa-arrow-right"></i>
+              View Programs
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Consultants Section -->
+  <section class="consultants-section">
+    <div class="section-container">
+      <div class="section-header" data-aos="fade-up">
+        <div class="section-badge">
+          <i class="fas fa-user-tie"></i>
+          Expert Team
+        </div>
+        <h2 class="section-title">Meet Our Consultants</h2>
+        <p class="section-description">
+          Industry-leading experts with decades of combined experience
+        </p>
+      </div>
+      
+      <div class="consultants-grid">
+        <div class="consultant-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="consultant-avatar">JM</div>
+          <h3 class="consultant-name">Dr. James Morrison</h3>
+          <p class="consultant-title">Senior Mining Engineer</p>
+          <div class="consultant-expertise">
+            <span class="expertise-tag">Open Pit</span>
+            <span class="expertise-tag">Mine Planning</span>
+            <span class="expertise-tag">Optimization</span>
+          </div>
+          <div class="consultant-stats">
+            <div class="consultant-stat">
+              <span class="consultant-stat-value">25+</span>
+              <span class="consultant-stat-label">Years</span>
+            </div>
+            <div class="consultant-stat">
+              <span class="consultant-stat-value">150+</span>
+              <span class="consultant-stat-label">Projects</span>
+            </div>
+            <div class="consultant-stat">
+              <span class="consultant-stat-value">4.9</span>
+              <span class="consultant-stat-label">Rating</span>
+            </div>
+          </div>
+          <button class="btn btn-primary consultant-action">
+            <i class="fas fa-calendar"></i>
+            Book Consultation
+          </button>
+        </div>
+        
+        <div class="consultant-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="consultant-avatar">SK</div>
+          <h3 class="consultant-name">Sarah Kim, P.Eng</h3>
+          <p class="consultant-title">Process Engineering Lead</p>
+          <div class="consultant-expertise">
+            <span class="expertise-tag">Processing</span>
+            <span class="expertise-tag">Metallurgy</span>
+            <span class="expertise-tag">Automation</span>
+          </div>
+          <div class="consultant-stats">
+            <div class="consultant-stat">
+              <span class="consultant-stat-value">18+</span>
+              <span class="consultant-stat-label">Years</span>
+            </div>
+            <div class="consultant-stat">
+              <span class="consultant-stat-value">120+</span>
+              <span class="consultant-stat-label">Projects</span>
+            </div>
+            <div class="consultant-stat">
+              <span class="consultant-stat-value">5.0</span>
+              <span class="consultant-stat-label">Rating</span>
+            </div>
+          </div>
+          <button class="btn btn-primary consultant-action">
+            <i class="fas fa-calendar"></i>
+            Book Consultation
+          </button>
+        </div>
+        
+        <div class="consultant-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="consultant-avatar">RP</div>
+          <h3 class="consultant-name">Robert Patel, CFA</h3>
+          <p class="consultant-title">Mining Finance Specialist</p>
+          <div class="consultant-expertise">
+            <span class="expertise-tag">Valuation</span>
+            <span class="expertise-tag">Economics</span>
+            <span class="expertise-tag">Investment</span>
+          </div>
+          <div class="consultant-stats">
+            <div class="consultant-stat">
+              <span class="consultant-stat-value">20+</span>
+              <span class="consultant-stat-label">Years</span>
+            </div>
+            <div class="consultant-stat">
+              <span class="consultant-stat-value">200+</span>
+              <span class="consultant-stat-label">Projects</span>
+            </div>
+            <div class="consultant-stat">
+              <span class="consultant-stat-value">4.8</span>
+              <span class="consultant-stat-label">Rating</span>
+            </div>
+          </div>
+          <button class="btn btn-primary consultant-action">
+            <i class="fas fa-calendar"></i>
+            Book Consultation
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Booking Section -->
+  <section id="booking" class="booking-section">
+    <div class="section-container">
+      <div class="section-header" data-aos="fade-up">
+        <div class="section-badge">
+          <i class="fas fa-calendar-check"></i>
+          Schedule Consultation
+        </div>
+        <h2 class="section-title">Book Your Consultation</h2>
+        <p class="section-description">
+          Connect with our experts to discuss your project requirements
+        </p>
+      </div>
+      
+      <div class="booking-container" data-aos="fade-up" data-aos-delay="100">
+        <div class="booking-header">
+          <h2><i class="fas fa-handshake"></i> Consultation Request</h2>
+          <p>Fill in your details and we'll get back to you within 24 hours</p>
+        </div>
+        
+        <form id="bookingForm">
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fas fa-user"></i>
+                Full Name
+              </label>
+              <input type="text" class="form-input" placeholder="John Smith" required>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fas fa-envelope"></i>
+                Email Address
+              </label>
+              <input type="email" class="form-input" placeholder="john@company.com" required>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fas fa-phone"></i>
+                Phone Number
+              </label>
+              <input type="tel" class="form-input" placeholder="+1 (555) 123-4567" required>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fas fa-building"></i>
+                Company Name
+              </label>
+              <input type="text" class="form-input" placeholder="Mining Corp Ltd." required>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fas fa-briefcase"></i>
+                Service Type
+              </label>
+              <select class="form-select" required>
+                <option value="">Select Service</option>
+                <option value="feasibility">Feasibility Studies</option>
+                <option value="technical">Technical Advisory</option>
+                <option value="diligence">Due Diligence</option>
+                <option value="safety">Safety & Compliance</option>
+                <option value="esg">ESG Consulting</option>
+                <option value="training">Training & Development</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fas fa-calendar"></i>
+                Preferred Date
+              </label>
+              <input type="date" class="form-input" required>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">
+              <i class="fas fa-align-left"></i>
+              Project Details
+            </label>
+            <textarea class="form-textarea" placeholder="Tell us about your project, challenges, and what you're looking to achieve..." required></textarea>
+          </div>
+          
+          <button type="submit" class="submit-btn">
+            <i class="fas fa-paper-plane"></i>
+            Submit Consultation Request
+          </button>
+          
+          <div class="success-message" id="successMessage">
+            <h3><i class="fas fa-check-circle"></i> Request Submitted Successfully!</h3>
+            <p>Thank you for your interest. Our team will review your request and contact you within 24 hours to schedule your consultation.</p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/153945651/6sGQHt6CUh5lVvcD.png" 
+             alt="SES_MINE Logo" 
+             class="footer-logo">
+        <p>Smart Engineering Solutions for Mining operations worldwide.</p>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Platform Hubs</h3>
+        <ul class="footer-links">
+          <li><a href="engineering-hub.html">Engineering Hub</a></li>
+          <li><a href="analytics-platform.html">Analytics Platform</a></li>
+          <li><a href="economics-hub.html">Economics Hub</a></li>
+          <li><a href="procurement-hub.html">Procurement Hub</a></li>
+          <li><a href="consulting-hub.html">Consulting Hub</a></li>
+          <li><a href="innovation-technology-hub.html">Innovation Hub</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Resources</h3>
+        <ul class="footer-links">
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="features.html">Features</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="Pricing Plans - SESMine.html">Pricing</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Support</h3>
+        <ul class="footer-links">
+          <li><a href="#">Documentation</a></li>
+          <li><a href="#">API Reference</a></li>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Community</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>© 2024 SES_MINE - Smart Engineering Solutions. All rights reserved.</p>
+    </div>
+  </footer>
+  
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-  // Consulting Hub specific JavaScript
-  document.addEventListener('DOMContentLoaded', function() {
-      initializeConsultingHub();
-  });
-
-  function initializeConsultingHub() {
-      console.log('👔 Consulting Hub initialized');
-      
-      // Initialize expert profiles
-      initializeExpertProfiles();
-      
-      // Initialize consultation booking
-      initializeConsultationBooking();
-      
-      // Track page view
-      analytics.track('consulting_hub_view', {
-          timestamp: new Date().toISOString(),
-          userAgent: navigator.userAgent
-      });
-  }
-
-  function initializeExpertProfiles() {
-      const expertCards = document.querySelectorAll('.expert-card');
-      
-      expertCards.forEach(card => {
-          card.addEventListener('mouseenter', function() {
-              this.style.transform = 'translateY(-8px) scale(1.02)';
-              
-              const avatar = this.querySelector('.expert-avatar');
-              if (avatar) {
-                  avatar.style.transform = 'scale(1.1)';
-              }
-          });
-          
-          card.addEventListener('mouseleave', function() {
-              this.style.transform = 'translateY(0) scale(1)';
-              
-              const avatar = this.querySelector('.expert-avatar');
-              if (avatar) {
-                  avatar.style.transform = 'scale(1)';
-              }
-          });
-      });
-  }
-
-  function initializeConsultationBooking() {
-      const form = document.getElementById('consultationForm');
-      
-      // Add real-time validation
-      const inputs = form.querySelectorAll('input, select, textarea');
-      inputs.forEach(input => {
-          input.addEventListener('blur', function() {
-              validateField(this);
-          });
-      });
-  }
-
-  function validateField(field) {
-      const value = field.value.trim();
-      
-      if (field.hasAttribute('required') && !value) {
-          field.style.borderColor = 'var(--danger-500)';
-          return false;
-      } else if (field.type === 'email' && value && !isValidEmail(value)) {
-          field.style.borderColor = 'var(--danger-500)';
-          return false;
+    // Initialize AOS
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 100
+    });
+    
+    // Header scroll effect
+    const header = document.getElementById('mainHeader');
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 100) {
+        header.classList.add('scrolled');
       } else {
-          field.style.borderColor = 'var(--success-500)';
-          return true;
+        header.classList.remove('scrolled');
       }
-  }
-
-  function isValidEmail(email) {
-      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  }
-
-  function submitConsultationRequest() {
-      const form = document.getElementById('consultationForm');
-      const formData = new FormData(form);
+    });
+    
+    // Booking Form Submission
+    document.getElementById('bookingForm').addEventListener('submit', function(e) {
+      e.preventDefault();
       
-      // Validate all required fields
-      const requiredFields = form.querySelectorAll('[required]');
-      let isValid = true;
+      // Show success message
+      document.getElementById('successMessage').classList.add('active');
       
-      requiredFields.forEach(field => {
-          if (!validateField(field)) {
-              isValid = false;
-          }
+      // Scroll to success message
+      document.getElementById('successMessage').scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'nearest' 
       });
       
-      if (!isValid) {
-          showNotification('❌ Please fill in all required fields correctly', 'error');
-          return;
-      }
-      
-      // Simulate consultation booking
-      showNotification('📅 Submitting consultation request...', 'info');
-      
-      // Track consultation request
-      analytics.track('consultation_requested', {
-          service: formData.get('service-type') || 'general',
-          company: formData.get('company'),
-          timestamp: new Date().toISOString()
-      });
-      
+      // Reset form after 3 seconds
       setTimeout(() => {
-          showNotification('✅ Consultation request submitted successfully! We\'ll contact you within 24 hours.', 'success');
-          form.reset();
-          
-          // Reset field styles
-          const fields = form.querySelectorAll('input, select, textarea');
-          fields.forEach(field => {
-              field.style.borderColor = 'var(--gray-300)';
-          });
-      }, 2000);
-  }
-
-  // Expert interaction functions
-  function viewExpertProfile(expertName) {
-      analytics.track('expert_profile_view', { expert: expertName });
-      showNotification(`👤 Loading ${expertName}'s profile...`, 'info');
-      
-      setTimeout(() => {
-          showNotification(`📊 ${expertName}'s profile loaded`, 'success');
-      }, 1200);
-  }
-
-  function bookConsultation(expertName) {
-      analytics.track('expert_consultation_book', { expert: expertName });
-      showNotification(`📅 Booking consultation with ${expertName}...`, 'info');
-      
-      // Scroll to booking form
-      document.querySelector('.consultation-booking').scrollIntoView({ behavior: 'smooth' });
-      
-      setTimeout(() => {
-          showNotification(`✅ Consultation form prepared for ${expertName}`, 'success');
-      }, 1500);
-  }
-
-  function viewProfile(expertName) {
-      analytics.track('expert_full_profile', { expert: expertName });
-      showNotification(`📋 Opening detailed profile for ${expertName}...`, 'info');
-      
-      setTimeout(() => {
-          showNotification(`📄 Full profile loaded with portfolio and testimonials`, 'success');
-      }, 1800);
-  }
-
-  // Service exploration functions
-  function exploreService(serviceName) {
-      analytics.track('service_explore', { service: serviceName });
-      showNotification(`🔍 Exploring ${serviceName} service details...`, 'info');
-      
-      setTimeout(() => {
-          showNotification(`📋 ${serviceName} service information loaded`, 'success');
-      }, 1000);
-  }
-
-  // Advanced consulting features
-  function scheduleFollowUp(expertName) {
-      analytics.track('follow_up_scheduled', { expert: expertName });
-      showNotification(`📞 Scheduling follow-up with ${expertName}...`, 'info');
-      
-      setTimeout(() => {
-          showNotification(`✅ Follow-up meeting scheduled for next week`, 'success');
-      }, 1500);
-  }
-
-  function requestProposal(serviceName) {
-      analytics.track('proposal_requested', { service: serviceName });
-      showNotification(`📄 Requesting detailed proposal for ${serviceName}...`, 'info');
-      
-      setTimeout(() => {
-          showNotification(`✅ Proposal request submitted - you'll receive it within 48 hours`, 'success');
-      }, 2000);
-  }
-
-
-  function downloadCaseStudy(serviceName) {
-      analytics.track('case_study_download', { service: serviceName });
-      showNotification(`📊 Preparing ${serviceName} case study download...`, 'info');
-      
-      setTimeout(() => {
-          showNotification(`✅ Case study downloaded - check your downloads folder`, 'success');
-      }, 2500);
-  }
-
-  // Testimonial interactions
-  document.addEventListener('DOMContentLoaded', function() {
-      const testimonialCards = document.querySelectorAll('.testimonial-card');
-      
-      testimonialCards.forEach(card => {
-          card.addEventListener('click', function() {
-              const authorName = this.querySelector('.author-name').textContent;
-              analytics.track('testimonial_click', { author: authorName });
-              showNotification(`📝 Loading full testimonial from ${authorName}...`, 'info');
-              
-              // Add visual feedback
-              this.style.background = 'rgba(255, 255, 255, 0.2)';
-              setTimeout(() => {
-                  this.style.background = 'rgba(255, 255, 255, 0.1)';
-              }, 300);
-          });
-      });
-  });
-
-  // Service card interactions
-  document.addEventListener('DOMContentLoaded', function() {
-      const serviceCards = document.querySelectorAll('.service-card');
-      
-      serviceCards.forEach(card => {
-          card.addEventListener('mouseenter', function() {
-              const icon = this.querySelector('.service-icon');
-              if (icon) {
-                  icon.style.transform = 'scale(1.1) rotate(5deg)';
-              }
-          });
-          
-          card.addEventListener('mouseleave', function() {
-              const icon = this.querySelector('.service-icon');
-              if (icon) {
-                  icon.style.transform = 'scale(1) rotate(0deg)';
-              }
-          });
-      });
-  });
-
-  // Expert availability checker
-  function checkExpertAvailability(expertName) {
-      analytics.track('expert_availability_check', { expert: expertName });
-      showNotification(`⏰ Checking ${expertName}'s availability...`, 'info');
-      
-      setTimeout(() => {
-          const availableSlots = Math.floor(Math.random() * 5) + 1;
-          showNotification(`📅 ${expertName} has ${availableSlots} available slots this week`, 'success');
-      }, 1500);
-  }
-
-  // Consultation history
-  function viewConsultationHistory() {
-      analytics.track('consultation_history_view', { timestamp: new Date().toISOString() });
-      showNotification('📋 Loading your consultation history...', 'info');
-      
-      setTimeout(() => {
-          showNotification('📊 Consultation history loaded - 7 past sessions found', 'success');
-      }, 1800);
-  }
-
-  // Expert matching system
-  function findMatchingExperts(requirements) {
-      analytics.track('expert_matching', { requirements: requirements });
-      showNotification('🔍 Finding experts that match your requirements...', 'info');
-      
-      setTimeout(() => {
-          const matchCount = Math.floor(Math.random() * 8) + 3;
-          showNotification(`✅ Found ${matchCount} experts matching your criteria`, 'success');
-      }, 2200);
-  }
-
-  // Consultation feedback system
-  function submitConsultationFeedback(expertName, rating, feedback) {
-      analytics.track('consultation_feedback', {
-          expert: expertName,
-          rating: rating,
-          timestamp: new Date().toISOString()
-      });
-      
-      showNotification(`⭐ Submitting feedback for ${expertName}...`, 'info');
-      
-      setTimeout(() => {
-          showNotification('✅ Thank you for your feedback! It helps us improve our services.', 'success');
-      }, 1500);
-  }
-
-  // Emergency consultation request
-  function requestUrgentConsultation() {
-      analytics.track('urgent_consultation_request', { timestamp: new Date().toISOString() });
-      showNotification('🚨 Processing urgent consultation request...', 'info');
-      
-      setTimeout(() => {
-          showNotification('📞 Urgent consultation arranged - expert will contact you within 2 hours', 'success');
-      }, 2000);
-  }
-
-  // Consultation recording and materials
-  function downloadConsultationMaterials(sessionId) {
-      analytics.track('consultation_materials_download', { sessionId: sessionId });
-      showNotification('📁 Preparing consultation materials...', 'info');
-      
-      setTimeout(() => {
-          showNotification('✅ Materials package downloaded - includes recording, notes, and action items', 'success');
-      }, 2800);
-  }
-
-  // Industry-specific expert finder
-  function findIndustryExperts(industry) {
-      analytics.track('industry_expert_search', { industry: industry });
-      showNotification(`🏭 Finding ${industry} specialists...`, 'info');
-      
-      setTimeout(() => {
-          const expertCount = Math.floor(Math.random() * 12) + 5;
-          showNotification(`👥 Found ${expertCount} ${industry} experts available`, 'success');
-      }, 1600);
-  }
-
-  // Consultation package builder
-  function buildConsultationPackage() {
-      analytics.track('consultation_package_builder', { timestamp: new Date().toISOString() });
-      showNotification('📦 Opening consultation package builder...', 'info');
-      
-      setTimeout(() => {
-          showNotification('🛠️ Package builder loaded - customize your consultation experience', 'success');
-      }, 1400);
-  }
-
-  // Real-time expert status updates
-  function startExpertStatusUpdates() {
-      setInterval(() => {
-          updateExpertStatus();
-      }, 45000); // Update every 45 seconds
-      
-      console.log('🔄 Expert status updates started');
-  }
-
-  function updateExpertStatus() {
-      const expertCards = document.querySelectorAll('.expert-card');
-      
-      expertCards.forEach(card => {
-          const avatar = card.querySelector('.expert-avatar');
-          if (avatar && Math.random() < 0.3) { // 30% chance of status change
-              // Add subtle pulse to indicate activity
-              avatar.style.animation = 'pulse 0.5s ease-in-out';
-              
-              setTimeout(() => {
-                  avatar.style.animation = '';
-              }, 500);
-          }
-      });
-  }
-
-  // Keyboard shortcuts for consulting
-  document.addEventListener('keydown', function(e) {
-      // Ctrl/Cmd + Shift + B: Book consultation
-      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'B') {
-          e.preventDefault();
-          document.querySelector('.consultation-booking').scrollIntoView({ behavior: 'smooth' });
-      }
-      
-      // Ctrl/Cmd + Shift + E: Find experts
-      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'E') {
-          e.preventDefault();
-          document.querySelector('.experts-showcase').scrollIntoView({ behavior: 'smooth' });
-      }
-      
-      // Ctrl/Cmd + Shift + S: View services
-      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'S') {
-          e.preventDefault();
-          document.querySelector('.services-grid').scrollIntoView({ behavior: 'smooth' });
-      }
-  });
-
-  // Start real-time updates
-  setTimeout(startExpertStatusUpdates, 3000);
-
-  // Consultation reminders
-  function setConsultationReminder(expertName, dateTime) {
-      analytics.track('consultation_reminder_set', {
-          expert: expertName,
-          dateTime: dateTime
-      });
-      
-      showNotification(`⏰ Reminder set for consultation with ${expertName}`, 'success');
-  }
-
-  // Expert recommendation engine
-  function getExpertRecommendations(projectType, budget, timeline) {
-      analytics.track('expert_recommendations_request', {
-          projectType: projectType,
-          budget: budget,
-          timeline: timeline
-      });
-      
-      showNotification('🤖 AI is analyzing your requirements to recommend the best experts...', 'info');
-      
-      setTimeout(() => {
-          showNotification('✅ Expert recommendations ready - 3 perfect matches found!', 'success');
+        this.reset();
       }, 3000);
-  }
-
-  // Multi-expert consultation setup
-  function setupTeamConsultation(expertList) {
-      analytics.track('team_consultation_setup', {
-          expertCount: expertList.length,
-          experts: expertList
-      });
-      
-      showNotification(`👥 Setting up team consultation with ${expertList.length} experts...`, 'info');
-      
-      setTimeout(() => {
-          showNotification('✅ Team consultation scheduled - all experts confirmed', 'success');
-      }, 2500);
-  }
-
-  console.log('👔 Consulting Hub ready');
-  console.log('👥 Expert profiles loaded');
-  console.log('📅 Consultation booking system active');
-  console.log('⭐ Client testimonials displayed');
-  console.log('🛠️ Service catalog available');
-  console.log('🤖 Expert recommendation engine ready');
+    });
+    
+    console.log('👔 Consulting Hub Loaded Successfully');
   </script>
 </body>
 </html>

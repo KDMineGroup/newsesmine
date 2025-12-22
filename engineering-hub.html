@@ -3,1246 +3,1202 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Engineering Hub - SESMine Platform</title>
-  <meta name="description" content="Advanced Engineering Solutions with AACE Cost Estimation - SESMine">
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" type="image/x-icon" href="https://www.sesmine.com/favicon.ico">
+  <meta name="description" content="Engineering Hub - AACE compliant cost estimation tools, equipment databases, and project calculators for mining operations.">
+  <meta name="keywords" content="mining engineering, cost estimation, AACE standards, equipment database, project calculator">
+  <title>Engineering Hub | SES_MINE - Smart Engineering Solutions</title>
+  
+  <link rel="icon" type="image/png" href="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/153945651/6sGQHt6CUh5lVvcD.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
   
   <style>
-  /* Engineering Hub specific styles */
-  .engineering-hero {
-      background: linear-gradient(135deg, var(--sesmine-accent) 0%, var(--sesmine-secondary) 50%, var(--sesmine-primary) 100%);
-      color: white;
-      padding: 4rem 0;
-      margin-bottom: 3rem;
-      position: relative;
-      overflow: hidden;
-  }
-  
-  .engineering-hero::before {
-      content: '';
-      position: absolute;
+    :root {
+      --primary-dark: #0b1a2e;
+      --primary-light: #f7f9fc;
+      --accent-primary: #2563eb;
+      --accent-secondary: #1e3a8a;
+      --accent-gold: #d4af37;
+      --success: #38a169;
+      --warning: #dd6b20;
+      --error: #e53e3e;
+      --info: #3182ce;
+      --gradient-primary: linear-gradient(135deg, #0b1a2e 0%, #1a365d 100%);
+      --gradient-accent: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2rem;
+      --space-2xl: 3rem;
+      --space-3xl: 5rem;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-lg: 0 10px 15px rgba(0,0,0,0.1), 0 4px 6px rgba(0,0,0,0.05);
+      --shadow-xl: 0 20px 25px rgba(0,0,0,0.1), 0 10px 10px rgba(0,0,0,0.04);
+      --radius-sm: 0.25rem;
+      --radius-md: 0.5rem;
+      --radius-lg: 0.75rem;
+      --radius-xl: 1rem;
+      --transition-smooth: 0.3s ease;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: var(--primary-dark);
+      background: var(--primary-light);
+      overflow-x: hidden;
+    }
+    
+    /* Header */
+    .main-header {
+      position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-      opacity: 0.3;
-  }
-  
-  .hero-content {
+      z-index: 1030;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(37, 99, 235, 0.1);
+      transition: all var(--transition-smooth);
+    }
+    
+    .main-header.scrolled {
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: var(--shadow-md);
+    }
+    
+    .header-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: var(--space-md) var(--space-xl);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-xl);
+    }
+    
+    .logo-section {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      transition: transform var(--transition-smooth);
+    }
+    
+    .logo-section:hover {
+      transform: scale(1.02);
+    }
+    
+    .logo-image {
+      height: 60px;
+      width: auto;
+    }
+    
+    .main-nav {
+      display: flex;
+      gap: var(--space-lg);
+      align-items: center;
+    }
+    
+    .nav-link {
+      color: var(--primary-dark);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--radius-sm);
+      transition: all var(--transition-smooth);
+      position: relative;
+    }
+    
+    .nav-link.active {
+      color: var(--accent-primary);
+    }
+    
+    .nav-link::before {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: var(--gradient-accent);
+      transition: all var(--transition-smooth);
+      transform: translateX(-50%);
+    }
+    
+    .nav-link:hover::before,
+    .nav-link.active::before {
+      width: 80%;
+    }
+    
+    .nav-link:hover {
+      color: var(--accent-primary);
+      background: rgba(37, 99, 235, 0.05);
+    }
+    
+    .auth-buttons {
+      display: flex;
+      gap: var(--space-md);
+    }
+    
+    .btn {
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all var(--transition-smooth);
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    
+    .btn-login {
+      color: var(--primary-dark);
+      background: rgba(37, 99, 235, 0.1);
+      border: 1px solid rgba(37, 99, 235, 0.2);
+    }
+    
+    .btn-login:hover {
+      background: rgba(37, 99, 235, 0.15);
+      transform: translateY(-2px);
+    }
+    
+    .btn-primary {
+      background: var(--gradient-accent);
+      color: #ffffff;
+      box-shadow: var(--shadow-md);
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    /* Hero Section */
+    .hero-section {
+      position: relative;
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      padding: calc(var(--space-3xl) + 80px) var(--space-xl) var(--space-3xl);
+      background: var(--gradient-primary);
+      overflow: hidden;
+    }
+    
+    .hero-background {
+      position: absolute;
+      inset: 0;
+      opacity: 0.15;
+      background: url('https://images.unsplash.com/photo-1581094271901-8022df4466f9?w=2000&q=80') center/cover;
+    }
+    
+    .hero-content {
+      max-width: 1440px;
+      margin: 0 auto;
       position: relative;
       z-index: 1;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
+      color: white;
       text-align: center;
-  }
-  
-  .hero-icon {
-      width: 100px;
-      height: 100px;
-      background: linear-gradient(135deg, var(--sesmine-gold), var(--sesmine-copper));
-      border-radius: var(--border-radius-2xl);
-      display: flex;
+    }
+    
+    .hero-badge {
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      font-size: 3rem;
-      margin: 0 auto 2rem;
-      box-shadow: var(--shadow-2xl);
-      animation: float 3s ease-in-out infinite;
-  }
-  
-  @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-  }
-  
-  .hero-title {
+      gap: var(--space-sm);
+      background: rgba(212, 175, 55, 0.2);
+      border: 1px solid var(--accent-gold);
+      color: var(--accent-gold);
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: var(--space-xl);
+    }
+    
+    .hero-title {
       font-size: 3.5rem;
-      font-weight: 800;
-      margin-bottom: 1.5rem;
-      background: linear-gradient(135deg, white, rgba(255, 255, 255, 0.8), var(--sesmine-gold));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      line-height: 1.1;
-  }
-  
-  .hero-subtitle {
-      font-size: 1.5rem;
-      opacity: 0.9;
-      margin-bottom: 2.5rem;
+      font-weight: 900;
+      margin-bottom: var(--space-lg);
+      letter-spacing: -0.02em;
+    }
+    
+    .hero-description {
+      font-size: 1.3rem;
+      opacity: 0.95;
       max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.5;
-  }
-  
-  .hero-stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
-      max-width: 800px;
-      margin: 0 auto;
-  }
-  
-  .hero-stat {
-      text-align: center;
-      padding: 1.5rem;
+      margin: 0 auto var(--space-2xl);
+    }
+    
+    .hero-actions {
+      display: flex;
+      gap: var(--space-lg);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .btn-large {
+      padding: var(--space-lg) var(--space-2xl);
+      font-size: 1.1rem;
+    }
+    
+    .btn-secondary {
       background: rgba(255, 255, 255, 0.1);
-      border-radius: var(--border-radius-xl);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-  }
-  
-  .hero-stat-value {
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    
+    /* Tools Section */
+    .tools-section {
+      padding: var(--space-3xl) var(--space-xl);
+      background: white;
+    }
+    
+    .section-container {
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: var(--space-3xl);
+    }
+    
+    .section-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      background: var(--gradient-accent);
+      color: white;
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: var(--space-lg);
+    }
+    
+    .section-title {
       font-size: 2.5rem;
       font-weight: 800;
-      margin-bottom: 0.5rem;
-      font-family: var(--font-mono);
-  }
-  
-  .hero-stat-label {
-      font-size: 0.95rem;
-      opacity: 0.8;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-  }
-  
-  .tools-grid {
+      margin-bottom: var(--space-lg);
+      color: var(--primary-dark);
+    }
+    
+    .section-description {
+      font-size: 1.1rem;
+      color: var(--accent-secondary);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .tools-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 2rem;
-      margin-bottom: 4rem;
-  }
-  
-  .tool-card {
+      gap: var(--space-2xl);
+    }
+    
+    .tool-card {
       background: white;
-      border-radius: var(--border-radius-xl);
-      padding: 2.5rem;
-      box-shadow: var(--shadow-md);
-      border: 1px solid var(--gray-200);
-      transition: var(--transition-all);
+      border: 1px solid rgba(37, 99, 235, 0.1);
+      border-radius: var(--radius-xl);
+      padding: var(--space-2xl);
+      transition: all var(--transition-smooth);
+      box-shadow: var(--shadow-sm);
       position: relative;
       overflow: hidden;
-      cursor: pointer;
-  }
-  
-  .tool-card::before {
+    }
+    
+    .tool-card::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
-      height: 6px;
-      background: linear-gradient(90deg, var(--sesmine-accent), var(--sesmine-secondary), var(--sesmine-gold));
-  }
-  
-  .tool-card:hover {
-      transform: translateY(-8px);
-      box-shadow: var(--shadow-2xl);
-      border-color: var(--sesmine-accent);
-  }
-  
-  .tool-icon {
+      height: 4px;
+      background: var(--gradient-accent);
+      transform: scaleX(0);
+      transition: transform var(--transition-smooth);
+    }
+    
+    .tool-card:hover::before {
+      transform: scaleX(1);
+    }
+    
+    .tool-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-xl);
+      border-color: rgba(37, 99, 235, 0.3);
+    }
+    
+    .tool-icon {
       width: 70px;
       height: 70px;
-      border-radius: var(--border-radius-lg);
+      background: var(--gradient-accent);
+      border-radius: var(--radius-lg);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2rem;
+      font-size: 1.8rem;
       color: white;
-      margin-bottom: 1.5rem;
-      box-shadow: var(--shadow-lg);
-      transition: var(--transition-transform);
-  }
-  
-  .tool-card:hover .tool-icon {
-      transform: scale(1.1) rotate(5deg);
-  }
-  
-  .tool-title {
-      font-size: 1.5rem;
+      margin-bottom: var(--space-lg);
+    }
+    
+    .tool-title {
+      font-size: 1.4rem;
       font-weight: 700;
-      color: var(--sesmine-primary);
-      margin-bottom: 1rem;
-  }
-  
-  .tool-description {
-      color: var(--gray-600);
-      font-size: 1rem;
+      margin-bottom: var(--space-md);
+      color: var(--primary-dark);
+    }
+    
+    .tool-description {
+      color: var(--accent-secondary);
+      margin-bottom: var(--space-lg);
       line-height: 1.6;
-      margin-bottom: 2rem;
-  }
-  
-  .tool-features {
+    }
+    
+    .tool-features {
       list-style: none;
-      margin-bottom: 2rem;
-  }
-  
-  .tool-features li {
-      padding: 0.5rem 0;
-      color: var(--gray-700);
+      margin-bottom: var(--space-lg);
+    }
+    
+    .tool-features li {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-sm);
       font-size: 0.95rem;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-  }
-  
-  .feature-icon {
-      width: 16px;
-      height: 16px;
-      color: var(--sesmine-emerald);
-      flex-shrink: 0;
-  }
-  
-  .tool-actions {
-      display: flex;
-      gap: 1rem;
-  }
-  
-  .aace-section {
-      background: linear-gradient(135deg, var(--primary-50), var(--success-50));
-      border-radius: var(--border-radius-2xl);
-      padding: 4rem 3rem;
-      margin: 4rem 0;
-      border: 1px solid var(--primary-200);
-  }
-  
-  .aace-header {
-      text-align: center;
-      margin-bottom: 3rem;
-  }
-  
-  .aace-title {
-      font-size: 2.5rem;
-      font-weight: 800;
-      color: var(--sesmine-primary);
-      margin-bottom: 1rem;
-  }
-  
-  .aace-subtitle {
-      font-size: 1.25rem;
-      color: var(--gray-600);
-      max-width: 700px;
-      margin: 0 auto;
-      line-height: 1.6;
-  }
-  
-  .aace-classes {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      margin-bottom: 3rem;
-  }
-  
-  .aace-class {
-      background: white;
-      border-radius: var(--border-radius-lg);
-      padding: 2rem;
-      box-shadow: var(--shadow-sm);
-      border: 2px solid var(--gray-200);
-      transition: var(--transition-all);
-      text-align: center;
-  }
-  
-  .aace-class:hover {
-      border-color: var(--sesmine-accent);
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-lg);
-  }
-  
-  .aace-class-number {
-      width: 60px;
-      height: 60px;
-      background: linear-gradient(135deg, var(--sesmine-accent), var(--sesmine-secondary));
-      color: white;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      font-weight: 800;
-      margin: 0 auto 1rem;
-  }
-  
-  .aace-class-title {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--sesmine-primary);
-      margin-bottom: 0.5rem;
-  }
-  
-  .aace-class-accuracy {
-      color: var(--sesmine-gold);
+      color: var(--accent-secondary);
+    }
+    
+    .tool-features li::before {
+      content: '✓';
+      color: var(--success);
+      font-weight: bold;
+    }
+    
+    .tool-link {
+      color: var(--accent-primary);
+      text-decoration: none;
       font-weight: 600;
-      margin-bottom: 1rem;
-  }
-  
-  .aace-class-description {
-      color: var(--gray-600);
-      font-size: 0.9rem;
-      line-height: 1.5;
-  }
-  
-  .cost-calculator {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      transition: all var(--transition-smooth);
+    }
+    
+    .tool-link:hover {
+      transform: translateX(5px);
+    }
+    
+    /* Calculator Section */
+    .calculator-section {
+      padding: var(--space-3xl) var(--space-xl);
+      background: linear-gradient(135deg, #f7f9fc 0%, #e8eef5 100%);
+    }
+    
+    .calculator-container {
+      max-width: 1200px;
+      margin: 0 auto;
       background: white;
-      border-radius: var(--border-radius-xl);
-      padding: 3rem;
+      border-radius: var(--radius-xl);
+      padding: var(--space-2xl);
       box-shadow: var(--shadow-lg);
-      border: 1px solid var(--gray-200);
-      margin: 3rem 0;
-  }
-  
-  .calculator-header {
+    }
+    
+    .calculator-header {
       text-align: center;
-      margin-bottom: 3rem;
-  }
-  
-  .calculator-title {
+      margin-bottom: var(--space-2xl);
+    }
+    
+    .calculator-header h2 {
       font-size: 2rem;
-      font-weight: 700;
-      color: var(--sesmine-primary);
-      margin-bottom: 1rem;
-  }
-  
-  .calculator-form {
+      font-weight: 800;
+      margin-bottom: var(--space-md);
+      color: var(--primary-dark);
+    }
+    
+    .calculator-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-bottom: 2rem;
-  }
-  
-  .calc-group {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-xl);
+      margin-bottom: var(--space-2xl);
+    }
+    
+    .form-group {
       display: flex;
       flex-direction: column;
-  }
-  
-  .calc-label {
+      gap: var(--space-sm);
+    }
+    
+    .form-label {
       font-weight: 600;
-      color: var(--gray-700);
-      margin-bottom: 0.5rem;
-  }
-  
-  .calc-input {
-      padding: 1rem;
-      border: 2px solid var(--gray-300);
-      border-radius: var(--border-radius-md);
+      color: var(--primary-dark);
+      font-size: 0.95rem;
+    }
+    
+    .form-input,
+    .form-select {
+      padding: var(--space-md);
+      border: 2px solid rgba(37, 99, 235, 0.2);
+      border-radius: var(--radius-md);
       font-size: 1rem;
-      transition: var(--transition-all);
-  }
-  
-  .calc-input:focus {
+      transition: all var(--transition-smooth);
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .form-input:focus,
+    .form-select:focus {
       outline: none;
-      border-color: var(--sesmine-accent);
-      box-shadow: 0 0 0 4px rgba(49, 130, 206, 0.1);
-  }
-  
-  .calc-select {
-      padding: 1rem;
-      border: 2px solid var(--gray-300);
-      border-radius: var(--border-radius-md);
-      font-size: 1rem;
-      background: white;
-      transition: var(--transition-all);
-  }
-  
-  .calc-button {
-      grid-column: 1 / -1;
-      padding: 1.25rem;
-      background: linear-gradient(135deg, var(--sesmine-accent), var(--sesmine-secondary));
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+    
+    .calculate-btn {
+      width: 100%;
+      padding: var(--space-lg);
+      background: var(--gradient-accent);
       color: white;
       border: none;
-      border-radius: var(--border-radius-lg);
+      border-radius: var(--radius-md);
       font-size: 1.1rem;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
-      transition: var(--transition-all);
+      transition: all var(--transition-smooth);
       box-shadow: var(--shadow-md);
-  }
-  
-  .calc-button:hover {
-      background: linear-gradient(135deg, var(--sesmine-secondary), var(--sesmine-primary));
+    }
+    
+    .calculate-btn:hover {
       transform: translateY(-2px);
       box-shadow: var(--shadow-lg);
-  }
-  
-  .calc-results {
-      background: var(--primary-50);
-      border-radius: var(--border-radius-lg);
-      padding: 2rem;
-      margin-top: 2rem;
-      border-left: 6px solid var(--sesmine-accent);
+    }
+    
+    .results-panel {
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      border: 2px solid var(--accent-primary);
+      border-radius: var(--radius-lg);
+      padding: var(--space-2xl);
+      margin-top: var(--space-2xl);
       display: none;
-  }
-  
-  .results-title {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--sesmine-primary);
-      margin-bottom: 1.5rem;
-  }
-  
-  .results-grid {
+    }
+    
+    .results-panel.active {
+      display: block;
+    }
+    
+    .results-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
-  }
-  
-  .result-item {
+      gap: var(--space-xl);
+    }
+    
+    .result-item {
       text-align: center;
-      padding: 1rem;
-      background: white;
-      border-radius: var(--border-radius-md);
-      box-shadow: var(--shadow-sm);
-  }
-  
-  .result-value {
-      font-size: 1.75rem;
-      font-weight: 800;
-      color: var(--sesmine-accent);
-      margin-bottom: 0.5rem;
-      font-family: var(--font-mono);
-  }
-  
-  .result-label {
-      color: var(--gray-600);
+    }
+    
+    .result-label {
       font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-  }
-  
-  .equipment-database {
-      background: white;
-      border-radius: var(--border-radius-xl);
-      padding: 3rem;
-      box-shadow: var(--shadow-lg);
-      border: 1px solid var(--gray-200);
-      margin: 3rem 0;
-  }
-  
-  .database-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 2rem;
-  }
-  
-  .database-title {
+      color: var(--accent-secondary);
+      margin-bottom: var(--space-sm);
+    }
+    
+    .result-value {
       font-size: 2rem;
-      font-weight: 700;
-      color: var(--sesmine-primary);
-  }
-  
-  .database-search {
-      display: flex;
-      gap: 1rem;
-      align-items: center;
-  }
-  
-  .search-input {
-      padding: 0.75rem 1rem;
-      border: 2px solid var(--gray-300);
-      border-radius: var(--border-radius-md);
-      font-size: 0.95rem;
-      min-width: 250px;
-  }
-  
-  .filter-select {
-      padding: 0.75rem;
-      border: 2px solid var(--gray-300);
-      border-radius: var(--border-radius-md);
-      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--accent-primary);
+    }
+    
+    /* Equipment Database */
+    .equipment-section {
+      padding: var(--space-3xl) var(--space-xl);
       background: white;
-  }
-  
-  .equipment-grid {
+    }
+    
+    .equipment-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-  }
-  
-  .equipment-card {
-      background: var(--gray-50);
-      border-radius: var(--border-radius-lg);
-      padding: 1.5rem;
-      border: 1px solid var(--gray-200);
-      transition: var(--transition-all);
-  }
-  
-  .equipment-card:hover {
+      gap: var(--space-xl);
+    }
+    
+    .equipment-card {
       background: white;
-      box-shadow: var(--shadow-md);
-      transform: translateY(-2px);
-  }
-  
-  .equipment-name {
-      font-size: 1.1rem;
+      border: 1px solid rgba(37, 99, 235, 0.1);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      transition: all var(--transition-smooth);
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .equipment-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .equipment-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    
+    .equipment-content {
+      padding: var(--space-lg);
+    }
+    
+    .equipment-category {
+      display: inline-block;
+      background: var(--gradient-accent);
+      color: white;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: var(--space-md);
+    }
+    
+    .equipment-title {
+      font-size: 1.3rem;
       font-weight: 700;
-      color: var(--sesmine-primary);
-      margin-bottom: 0.5rem;
-  }
-  
-  .equipment-category {
-      color: var(--sesmine-gold);
-      font-size: 0.85rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 1rem;
-  }
-  
-  .equipment-specs {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.5rem;
+      margin-bottom: var(--space-sm);
+      color: var(--primary-dark);
+    }
+    
+    .equipment-specs {
+      list-style: none;
+      margin-bottom: var(--space-lg);
+    }
+    
+    .equipment-specs li {
+      display: flex;
+      justify-content: space-between;
+      padding: var(--space-sm) 0;
+      border-bottom: 1px solid rgba(37, 99, 235, 0.1);
       font-size: 0.9rem;
-      color: var(--gray-600);
-  }
-  
-  .spec-label {
+    }
+    
+    .equipment-specs li:last-child {
+      border-bottom: none;
+    }
+    
+    .spec-label {
+      color: var(--accent-secondary);
+    }
+    
+    .spec-value {
       font-weight: 600;
-  }
-  
-  @media (max-width: 768px) {
+      color: var(--primary-dark);
+    }
+    
+    /* Footer */
+    .main-footer {
+      background: #0a1322;
+      padding: var(--space-3xl) var(--space-xl) var(--space-xl);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .footer-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--space-2xl);
+      margin-bottom: var(--space-xl);
+    }
+    
+    .footer-section h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: var(--space-lg);
+      color: white;
+    }
+    
+    .footer-section p,
+    .footer-section a {
+      color: rgba(247, 249, 252, 0.8);
+      text-decoration: none;
+      line-height: 1.6;
+      transition: color var(--transition-smooth);
+    }
+    
+    .footer-section a:hover {
+      color: var(--accent-gold);
+    }
+    
+    .footer-links {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: var(--space-sm);
+    }
+    
+    .footer-logo {
+      height: 50px;
+      width: auto;
+      margin-bottom: var(--space-lg);
+      filter: brightness(0) invert(1);
+      opacity: 0.9;
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: var(--space-xl);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(247, 249, 252, 0.7);
+    }
+    
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .main-nav {
+        display: none;
+      }
+      
       .hero-title {
-          font-size: 2.5rem;
+        font-size: 2.5rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .logo-image {
+        height: 50px;
       }
       
-      .hero-subtitle {
-          font-size: 1.25rem;
+      .hero-title {
+        font-size: 2rem;
       }
       
-      .tools-grid {
-          grid-template-columns: 1fr;
+      .hero-description {
+        font-size: 1.1rem;
       }
       
-      .calculator-form {
-          grid-template-columns: 1fr;
+      .tools-grid,
+      .equipment-grid {
+        grid-template-columns: 1fr;
       }
       
-      .database-header {
-          flex-direction: column;
-          gap: 1rem;
-          align-items: stretch;
+      .calculator-grid {
+        grid-template-columns: 1fr;
       }
-      
-      .database-search {
-          flex-direction: column;
-      }
-  }
+    }
   </style>
 </head>
 <body>
-  <!-- Universal Navigation Header -->
-  <header class="sesmine-header" id="sesmineHeader">
-      <div class="header-content">
-          <div class="logo-section">
-              <button class="header-btn mobile-menu-toggle" id="mobileMenuToggle">
-                  <i class="fas fa-bars"></i>
-              </button>
-              <a href="index.html" class="logo">
-                  <div class="logo-icon">🏔️</div>
-                  <div class="logo-text">
-                      <div class="logo-main">SESMine</div>
-                      <div class="logo-subtitle">Smart Engineering Solutions</div>
-                  </div>
-              </a>
-          </div>
-          
-          <nav class="main-nav" id="mainNav">
-              <a href="home.html" class="nav-link">
-                  <i class="fas fa-home"></i> Dashboard
-              </a>
-              <div class="nav-dropdown">
-                  <button class="nav-link dropdown-toggle active">
-                      <i class="fas fa-th-large"></i> Hubs <i class="fas fa-chevron-down"></i>
-                  </button>
-                  <div class="dropdown-menu">
-                      <a href="engineering-hub.html" class="dropdown-item active">
-                          <i class="fas fa-hard-hat"></i> Engineering Hub
-                      </a>
-                      <a href="analytics-platform.html" class="dropdown-item">
-                          <i class="fas fa-chart-area"></i> Analytics Platform
-                      </a>
-                      <a href="economics-hub.html" class="dropdown-item">
-                          <i class="fas fa-coins"></i> Economics Hub
-                      </a>
-                      <a href="innovation-technology-hub.html" class="dropdown-item">
-                          <i class="fas fa-rocket"></i> Innovation & Technology
-                      </a>
-                      <a href="procurement-hub.html" class="dropdown-item">
-                          <i class="fas fa-truck"></i> Procurement Hub
-                      </a>
-                      <a href="consulting-hub.html" class="dropdown-item">
-                          <i class="fas fa-user-tie"></i> Consulting Hub
-                      </a>
-                      <a href="training-education-hub.html" class="dropdown-item">
-                          <i class="fas fa-graduation-cap"></i> Training & Education
-                      </a>
-                      <a href="admin-dashboard.html" class="dropdown-item">
-                          <i class="fas fa-shield-alt"></i> Admin Dashboard
-                      </a>
-                  </div>
-              </div>
-              <a href="platforms.html" class="nav-link">
-                  <i class="fas fa-layer-group"></i> Platforms
-              </a>
-              <a href="features.html" class="nav-link">
-                  <i class="fas fa-star"></i> Features
-              </a>
-              <a href="about.html" class="nav-link">
-                  <i class="fas fa-info-circle"></i> About
-              </a>
-              <a href="contact.html" class="nav-link">
-                  <i class="fas fa-phone"></i> Contact
-              </a>
-          </nav>
-          
-          <div class="header-actions">
-              <div class="search-container">
-                  <i class="fas fa-search search-icon"></i>
-                  <input type="text" class="search-input" placeholder="Search engineering tools..." id="globalSearch">
-              </div>
-              <button class="header-btn" title="Notifications">
-                  <i class="fas fa-bell"></i>
-              </button>
-              <button class="header-btn" title="Settings" onclick="window.location.href='setting.html'">
-                  <i class="fas fa-cog"></i>
-              </button>
-              <div class="user-menu">
-                  <div class="user-avatar">MS</div>
-                  <div class="user-info">
-                      <div class="user-name">Mining Specialist</div>
-                      <div class="user-email">specialist@sesmine.com</div>
-                  </div>
-                  <div class="user-dropdown">
-                      <a href="setting.html" class="dropdown-item">
-                          <i class="fas fa-cog"></i> Settings
-                      </a>
-                      <a href="login.html" class="dropdown-item">
-                          <i class="fas fa-sign-out-alt"></i> Logout
-                      </a>
-                  </div>
-              </div>
-          </div>
+  <!-- Header -->
+  <header class="main-header" id="mainHeader">
+    <div class="header-container">
+      <a href="index.html" class="logo-section">
+        <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/153945651/6sGQHt6CUh5lVvcD.png" 
+             alt="SES_MINE Logo" 
+             class="logo-image">
+      </a>
+      
+      <nav class="main-nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="engineering-hub.html" class="nav-link active">Engineering Hub</a>
+        <a href="analytics-platform.html" class="nav-link">Analytics</a>
+        <a href="economics-hub.html" class="nav-link">Economics</a>
+        <a href="procurement-hub.html" class="nav-link">Procurement</a>
+        <a href="consulting-hub.html" class="nav-link">Consulting</a>
+      </nav>
+      
+      <div class="auth-buttons">
+        <a href="login.html" class="btn btn-login">
+          <i class="fas fa-sign-in-alt"></i>
+          Login
+        </a>
+        <a href="signup.html" class="btn btn-primary">
+          <i class="fas fa-rocket"></i>
+          Get Started
+        </a>
       </div>
+    </div>
   </header>
-
-  <!-- Main Content -->
-  <main class="main-content">
-      <!-- Engineering Hero Section -->
-      <section class="engineering-hero">
-          <div class="hero-content">
-              <div class="hero-icon">⛑️</div>
-              <h1 class="hero-title">Engineering Hub</h1>
-              <p class="hero-subtitle">
-                  Advanced engineering solutions with AACE-compliant cost estimation, 
-                  project management tools, and comprehensive equipment databases for mining operations.
-              </p>
-              
-              <div class="hero-stats">
-                  <div class="hero-stat">
-                      <div class="hero-stat-value">5</div>
-                      <div class="hero-stat-label">AACE Classes</div>
-                  </div>
-                  <div class="hero-stat">
-                      <div class="hero-stat-value">15K+</div>
-                      <div class="hero-stat-label">Equipment Items</div>
-                  </div>
-                  <div class="hero-stat">
-                      <div class="hero-stat-value">99.2%</div>
-                      <div class="hero-stat-label">Accuracy</div>
-                  </div>
-                  <div class="hero-stat">
-                      <div class="hero-stat-value">24/7</div>
-                      <div class="hero-stat-label">Support</div>
-                  </div>
-              </div>
-          </div>
-      </section>
-
-      <div class="content-container">
-          <!-- Engineering Tools Grid -->
-          <section class="tools-grid">
-              <!-- AACE Cost Estimation -->
-              <div class="tool-card" onclick="openCostEstimation()">
-                  <div class="tool-icon" style="background: linear-gradient(135deg, var(--sesmine-accent), var(--sesmine-secondary));">
-                      📊
-                  </div>
-                  <h3 class="tool-title">AACE Cost Estimation</h3>
-                  <p class="tool-description">
-                      Professional cost estimation following AACE International standards with Class 1-5 estimates for mining projects.
-                  </p>
-                  <ul class="tool-features">
-                      <li><i class="fas fa-check feature-icon"></i>AACE Class 1-5 Standards</li>
-                      <li><i class="fas fa-check feature-icon"></i>Automated Calculations</li>
-                      <li><i class="fas fa-check feature-icon"></i>Risk Assessment</li>
-                      <li><i class="fas fa-check feature-icon"></i>Detailed Reports</li>
-                  </ul>
-                  <div class="tool-actions">
-                      <button class="btn btn-primary">
-                          <i class="fas fa-calculator"></i>
-                          Start Estimation
-                      </button>
-                  </div>
-              </div>
-
-              <!-- Project Management -->
-              <div class="tool-card" onclick="openProjectManagement()">
-                  <div class="tool-icon" style="background: linear-gradient(135deg, var(--sesmine-emerald), var(--success-600));">
-                      📋
-                  </div>
-                  <h3 class="tool-title">Project Management</h3>
-                  <p class="tool-description">
-                      Comprehensive project management tools with Gantt charts, resource allocation, and milestone tracking.
-                  </p>
-                  <ul class="tool-features">
-                      <li><i class="fas fa-check feature-icon"></i>Gantt Charts</li>
-                      <li><i class="fas fa-check feature-icon"></i>Resource Management</li>
-                      <li><i class="fas fa-check feature-icon"></i>Milestone Tracking</li>
-                      <li><i class="fas fa-check feature-icon"></i>Team Collaboration</li>
-                  </ul>
-                  <div class="tool-actions">
-                      <button class="btn btn-primary">
-                          <i class="fas fa-tasks"></i>
-                          Manage Projects
-                      </button>
-                  </div>
-              </div>
-
-              <!-- Equipment Database -->
-              <div class="tool-card" onclick="openEquipmentDatabase()">
-                  <div class="tool-icon" style="background: linear-gradient(135deg, var(--sesmine-gold), var(--sesmine-copper));">
-                      🏗️
-                  </div>
-                  <h3 class="tool-title">Equipment Database</h3>
-                  <p class="tool-description">
-                      Extensive database of mining equipment with specifications, costs, and performance data.
-                  </p>
-                  <ul class="tool-features">
-                      <li><i class="fas fa-check feature-icon"></i>15,000+ Equipment Items</li>
-                      <li><i class="fas fa-check feature-icon"></i>Real-time Pricing</li>
-                      <li><i class="fas fa-check feature-icon"></i>Technical Specifications</li>
-                      <li><i class="fas fa-check feature-icon"></i>Vendor Information</li>
-                  </ul>
-                  <div class="tool-actions">
-                      <button class="btn btn-primary">
-                          <i class="fas fa-database"></i>
-                          Browse Equipment
-                      </button>
-                  </div>
-              </div>
-
-              <!-- Technical Analysis -->
-              <div class="tool-card" onclick="openTechnicalAnalysis()">
-                  <div class="tool-icon" style="background: linear-gradient(135deg, var(--primary-500), var(--primary-600));">
-                      🔬
-                  </div>
-                  <h3 class="tool-title">Technical Analysis</h3>
-                  <p class="tool-description">
-                      Advanced technical analysis tools for geological data, ore reserves, and mining feasibility studies.
-                  </p>
-                  <ul class="tool-features">
-                      <li><i class="fas fa-check feature-icon"></i>Geological Modeling</li>
-                      <li><i class="fas fa-check feature-icon"></i>Reserve Estimation</li>
-                      <li><i class="fas fa-check feature-icon"></i>Feasibility Studies</li>
-                      <li><i class="fas fa-check feature-icon"></i>3D Visualization</li>
-                  </ul>
-                  <div class="tool-actions">
-                      <button class="btn btn-primary">
-                          <i class="fas fa-microscope"></i>
-                          Start Analysis
-                      </button>
-                  </div>
-              </div>
-
-              <!-- Process Optimization -->
-              <div class="tool-card" onclick="openProcessOptimization()">
-                  <div class="tool-icon" style="background: linear-gradient(135deg, var(--warning-500), var(--warning-600));">
-                      ⚙️
-                  </div>
-                  <h3 class="tool-title">Process Optimization</h3>
-                  <p class="tool-description">
-                      Optimize mining processes with simulation tools, efficiency analysis, and performance monitoring.
-                  </p>
-                  <ul class="tool-features">
-                      <li><i class="fas fa-check feature-icon"></i>Process Simulation</li>
-                      <li><i class="fas fa-check feature-icon"></i>Efficiency Analysis</li>
-                      <li><i class="fas fa-check feature-icon"></i>Performance Monitoring</li>
-                      <li><i class="fas fa-check feature-icon"></i>Optimization Algorithms</li>
-                  </ul>
-                  <div class="tool-actions">
-                      <button class="btn btn-primary">
-                          <i class="fas fa-cogs"></i>
-                          Optimize Process
-                      </button>
-                  </div>
-              </div>
-
-              <!-- Safety Management -->
-              <div class="tool-card" onclick="openSafetyManagement()">
-                  <div class="tool-icon" style="background: linear-gradient(135deg, var(--danger-500), var(--danger-600));">
-                      🛡️
-                  </div>
-                  <h3 class="tool-title">Safety Management</h3>
-                  <p class="tool-description">
-                      Comprehensive safety management system with risk assessment, incident tracking, and compliance monitoring.
-                  </p>
-                  <ul class="tool-features">
-                      <li><i class="fas fa-check feature-icon"></i>Risk Assessment</li>
-                      <li><i class="fas fa-check feature-icon"></i>Incident Tracking</li>
-                      <li><i class="fas fa-check feature-icon"></i>Compliance Monitoring</li>
-                      <li><i class="fas fa-check feature-icon"></i>Safety Training</li>
-                  </ul>
-                  <div class="tool-actions">
-                      <button class="btn btn-primary">
-                          <i class="fas fa-shield-alt"></i>
-                          Manage Safety
-                      </button>
-                  </div>
-              </div>
-          </section>
-
-          <!-- AACE Standards Section -->
-          <section class="aace-section">
-              <div class="aace-header">
-                  <h2 class="aace-title">AACE International Standards</h2>
-                  <p class="aace-subtitle">
-                      Our cost estimation tools follow AACE International standards, providing industry-standard 
-                      accuracy and reliability for all classes of estimates.
-                  </p>
-              </div>
-
-              <div class="aace-classes">
-                  <div class="aace-class">
-                      <div class="aace-class-number">1</div>
-                      <h4 class="aace-class-title">Class 1 - Definitive</h4>
-                      <div class="aace-class-accuracy">±5% to ±15%</div>
-                      <p class="aace-class-description">
-                          Highest level of accuracy for detailed engineering and construction-ready projects.
-                      </p>
-                  </div>
-
-                  <div class="aace-class">
-                      <div class="aace-class-number">2</div>
-                      <h4 class="aace-class-title">Class 2 - Semi-Detailed</h4>
-                      <div class="aace-class-accuracy">±10% to ±25%</div>
-                      <p class="aace-class-description">
-                          Detailed estimates for budget authorization and project control baseline.
-                      </p>
-                  </div>
-
-                  <div class="aace-class">
-                      <div class="aace-class-number">3</div>
-                      <h4 class="aace-class-title">Class 3 - Budget</h4>
-                      <div class="aace-class-accuracy">±15% to ±30%</div>
-                      <p class="aace-class-description">
-                          Budget estimates for project funding and go/no-go decisions.
-                      </p>
-                  </div>
-
-                  <div class="aace-class">
-                      <div class="aace-class-number">4</div>
-                      <h4 class="aace-class-title">Class 4 - Study</h4>
-                      <div class="aace-class-accuracy">±25% to ±40%</div>
-                      <p class="aace-class-description">
-                          Study estimates for feasibility studies and alternative evaluations.
-                      </p>
-                  </div>
-
-                  <div class="aace-class">
-                      <div class="aace-class-number">5</div>
-                      <h4 class="aace-class-title">Class 5 - Conceptual</h4>
-                      <div class="aace-class-accuracy">±30% to ±50%</div>
-                      <p class="aace-class-description">
-                          Conceptual estimates for screening and preliminary feasibility studies.
-                      </p>
-                  </div>
-              </div>
-          </section>
-
-          <!-- Cost Calculator -->
-          <section class="cost-calculator">
-              <div class="calculator-header">
-                  <h2 class="calculator-title">Quick Cost Calculator</h2>
-                  <p>Get instant preliminary cost estimates for your mining project</p>
-              </div>
-
-              <form class="calculator-form" id="costCalculatorForm">
-                  <div class="calc-group">
-                      <label class="calc-label">Project Type</label>
-                      <select class="calc-select" id="projectType" name="projectType">
-                          <option value="">Select project type</option>
-                          <option value="open-pit">Open Pit Mine</option>
-                          <option value="underground">Underground Mine</option>
-                          <option value="processing-plant">Processing Plant</option>
-                          <option value="infrastructure">Infrastructure</option>
-                      </select>
-                  </div>
-
-                  <div class="calc-group">
-                      <label class="calc-label">Production Capacity (tons/year)</label>
-                      <input type="number" class="calc-input" id="capacity" name="capacity" placeholder="e.g., 1000000">
-                  </div>
-
-                  <div class="calc-group">
-                      <label class="calc-label">Ore Type</label>
-                      <select class="calc-select" id="oreType" name="oreType">
-                          <option value="">Select ore type</option>
-                          <option value="gold">Gold</option>
-                          <option value="copper">Copper</option>
-                          <option value="iron">Iron Ore</option>
-                          <option value="coal">Coal</option>
-                          <option value="other">Other</option>
-                      </select>
-                  </div>
-
-                  <div class="calc-group">
-                      <label class="calc-label">Location Factor</label>
-                      <select class="calc-select" id="location" name="location">
-                          <option value="">Select location</option>
-                          <option value="1.0">North America</option>
-                          <option value="0.8">South America</option>
-                          <option value="1.2">Europe</option>
-                          <option value="0.7">Africa</option>
-                          <option value="0.9">Asia</option>
-                          <option value="1.1">Australia</option>
-                      </select>
-                  </div>
-
-                  <div class="calc-group">
-                      <label class="calc-label">AACE Class</label>
-                      <select class="calc-select" id="aaceClass" name="aaceClass">
-                          <option value="">Select AACE class</option>
-                          <option value="5">Class 5 - Conceptual</option>
-                          <option value="4">Class 4 - Study</option>
-                          <option value="3">Class 3 - Budget</option>
-                          <option value="2">Class 2 - Semi-Detailed</option>
-                          <option value="1">Class 1 - Definitive</option>
-                      </select>
-                  </div>
-
-                  <div class="calc-group">
-                      <label class="calc-label">Project Duration (years)</label>
-                      <input type="number" class="calc-input" id="duration" name="duration" placeholder="e.g., 15" step="0.5">
-                  </div>
-
-                  <button type="button" class="calc-button" onclick="calculateCost()">
-                      <i class="fas fa-calculator"></i>
-                      Calculate Estimate
-                  </button>
-              </form>
-
-              <div class="calc-results" id="calcResults">
-                  <h3 class="results-title">Cost Estimation Results</h3>
-                  <div class="results-grid">
-                      <div class="result-item">
-                          <div class="result-value" id="capitalCost">$0</div>
-                          <div class="result-label">Capital Cost</div>
-                      </div>
-                      <div class="result-item">
-                          <div class="result-value" id="operatingCost">$0</div>
-                          <div class="result-label">Operating Cost/Year</div>
-                      </div>
-                      <div class="result-item">
-                          <div class="result-value" id="totalCost">$0</div>
-                          <div class="result-label">Total Project Cost</div>
-                      </div>
-                      <div class="result-item">
-                          <div class="result-value" id="accuracy">±0%</div>
-                          <div class="result-label">Accuracy Range</div>
-                      </div>
-                  </div>
-              </div>
-          </section>
-
-          <!-- Equipment Database Preview -->
-          <section class="equipment-database">
-              <div class="database-header">
-                  <h2 class="database-title">Equipment Database</h2>
-                  <div class="database-search">
-                      <input type="text" class="search-input" placeholder="Search equipment..." id="equipmentSearch">
-                      <select class="filter-select" id="categoryFilter">
-                          <option value="">All Categories</option>
-                          <option value="excavators">Excavators</option>
-                          <option value="trucks">Haul Trucks</option>
-                          <option value="crushers">Crushers</option>
-                          <option value="mills">Mills</option>
-                          <option value="conveyors">Conveyors</option>
-                      </select>
-                  </div>
-              </div>
-
-              <div class="equipment-grid" id="equipmentGrid">
-                  <!-- Equipment items will be populated by JavaScript -->
-              </div>
-          </section>
+  
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-background"></div>
+    <div class="hero-content">
+      <div class="hero-badge" data-aos="fade-up">
+        <i class="fas fa-hard-hat"></i>
+        AACE International Compliant
       </div>
-  </main>
-
-  <script src="script.js"></script>
+      <h1 class="hero-title" data-aos="fade-up" data-aos-delay="100">
+        Engineering Hub
+      </h1>
+      <p class="hero-description" data-aos="fade-up" data-aos-delay="200">
+        Professional cost estimation tools, comprehensive equipment databases, and AACE-compliant 
+        methodologies for accurate mining project planning and execution.
+      </p>
+      <div class="hero-actions" data-aos="fade-up" data-aos-delay="300">
+        <a href="#calculator" class="btn btn-primary btn-large">
+          <i class="fas fa-calculator"></i>
+          Try Cost Calculator
+        </a>
+        <a href="#tools" class="btn btn-secondary btn-large">
+          <i class="fas fa-tools"></i>
+          Explore Tools
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Tools Section -->
+  <section id="tools" class="tools-section">
+    <div class="section-container">
+      <div class="section-header" data-aos="fade-up">
+        <div class="section-badge">
+          <i class="fas fa-wrench"></i>
+          Engineering Tools
+        </div>
+        <h2 class="section-title">Comprehensive Engineering Solutions</h2>
+        <p class="section-description">
+          Industry-leading tools and methodologies for accurate cost estimation and project planning
+        </p>
+      </div>
+      
+      <div class="tools-grid">
+        <div class="tool-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="tool-icon">
+            <i class="fas fa-calculator"></i>
+          </div>
+          <h3 class="tool-title">Cost Estimation Tools</h3>
+          <p class="tool-description">
+            AACE-compliant cost estimation with real-time market data integration and comprehensive analysis capabilities.
+          </p>
+          <ul class="tool-features">
+            <li>Class 1-5 estimates (AACE standards)</li>
+            <li>CAPEX & OPEX modeling</li>
+            <li>Contingency analysis</li>
+            <li>Risk assessment integration</li>
+            <li>Multi-currency support</li>
+          </ul>
+          <a href="#calculator" class="tool-link">
+            Access Tool <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+        
+        <div class="tool-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="tool-icon">
+            <i class="fas fa-database"></i>
+          </div>
+          <h3 class="tool-title">Equipment Database</h3>
+          <p class="tool-description">
+            Comprehensive database of mining equipment with specifications, costs, and performance metrics.
+          </p>
+          <ul class="tool-features">
+            <li>18,000+ equipment entries</li>
+            <li>Real-time pricing data</li>
+            <li>Technical specifications</li>
+            <li>Performance benchmarks</li>
+            <li>Vendor information</li>
+          </ul>
+          <a href="#equipment" class="tool-link">
+            Browse Database <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+        
+        <div class="tool-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="tool-icon">
+            <i class="fas fa-project-diagram"></i>
+          </div>
+          <h3 class="tool-title">Project Planning</h3>
+          <p class="tool-description">
+            Advanced project planning tools with WBS creation, scheduling, and resource allocation.
+          </p>
+          <ul class="tool-features">
+            <li>WBS structure builder</li>
+            <li>Gantt chart visualization</li>
+            <li>Resource allocation</li>
+            <li>Critical path analysis</li>
+            <li>Progress tracking</li>
+          </ul>
+          <a href="#" class="tool-link">
+            Start Planning <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+        
+        <div class="tool-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="tool-icon">
+            <i class="fas fa-file-alt"></i>
+          </div>
+          <h3 class="tool-title">Technical Documentation</h3>
+          <p class="tool-description">
+            Access comprehensive technical documentation, standards, and best practices for mining operations.
+          </p>
+          <ul class="tool-features">
+            <li>AACE standards library</li>
+            <li>Technical guidelines</li>
+            <li>Case studies</li>
+            <li>Best practices</li>
+            <li>Industry benchmarks</li>
+          </ul>
+          <a href="#" class="tool-link">
+            View Documentation <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+        
+        <div class="tool-card" data-aos="fade-up" data-aos-delay="500">
+          <div class="tool-icon">
+            <i class="fas fa-chart-bar"></i>
+          </div>
+          <h3 class="tool-title">Performance Analysis</h3>
+          <p class="tool-description">
+            Analyze and optimize equipment and operational performance with advanced analytics.
+          </p>
+          <ul class="tool-features">
+            <li>Efficiency metrics</li>
+            <li>Utilization analysis</li>
+            <li>Cost per ton calculations</li>
+            <li>Benchmark comparisons</li>
+            <li>Optimization recommendations</li>
+          </ul>
+          <a href="#" class="tool-link">
+            Analyze Performance <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+        
+        <div class="tool-card" data-aos="fade-up" data-aos-delay="600">
+          <div class="tool-icon">
+            <i class="fas fa-cogs"></i>
+          </div>
+          <h3 class="tool-title">Equipment Sizing</h3>
+          <p class="tool-description">
+            Calculate optimal equipment sizes based on production requirements and operational parameters.
+          </p>
+          <ul class="tool-features">
+            <li>Production-based sizing</li>
+            <li>Fleet optimization</li>
+            <li>Match factor analysis</li>
+            <li>Cycle time calculations</li>
+            <li>Capacity planning</li>
+          </ul>
+          <a href="#" class="tool-link">
+            Size Equipment <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Calculator Section -->
+  <section id="calculator" class="calculator-section">
+    <div class="calculator-container" data-aos="fade-up">
+      <div class="calculator-header">
+        <h2><i class="fas fa-calculator"></i> Quick Cost Estimator</h2>
+        <p>Get instant preliminary cost estimates for your mining project</p>
+      </div>
+      
+      <div class="calculator-grid">
+        <div class="form-group">
+          <label class="form-label">Project Type</label>
+          <select class="form-select" id="projectType">
+            <option value="open-pit">Open Pit Mining</option>
+            <option value="underground">Underground Mining</option>
+            <option value="processing">Processing Plant</option>
+            <option value="infrastructure">Infrastructure</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Annual Capacity (Mton/year)</label>
+          <input type="number" class="form-input" id="capacity" placeholder="e.g., 18" value="18">
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Mine Life (years)</label>
+          <input type="number" class="form-input" id="mineLife" placeholder="e.g., 20" value="20">
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Commodity Type</label>
+          <select class="form-select" id="commodity">
+            <option value="copper">Copper</option>
+            <option value="gold">Gold</option>
+            <option value="iron">Iron Ore</option>
+            <option value="coal">Coal</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Location Factor</label>
+          <select class="form-select" id="location">
+            <option value="1.0">Standard (1.0)</option>
+            <option value="1.2">Remote (1.2)</option>
+            <option value="1.5">Very Remote (1.5)</option>
+            <option value="0.9">Urban (0.9)</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Estimate Class</label>
+          <select class="form-select" id="estimateClass">
+            <option value="5">Class 5 (±50%)</option>
+            <option value="4">Class 4 (±30%)</option>
+            <option value="3">Class 3 (±20%)</option>
+            <option value="2">Class 2 (±15%)</option>
+            <option value="1">Class 1 (±10%)</option>
+          </select>
+        </div>
+      </div>
+      
+      <button class="calculate-btn" onclick="calculateCost()">
+        <i class="fas fa-calculator"></i> Calculate Estimate
+      </button>
+      
+      <div class="results-panel" id="resultsPanel">
+        <h3 style="text-align: center; margin-bottom: var(--space-xl); color: var(--primary-dark);">
+          <i class="fas fa-chart-line"></i> Preliminary Cost Estimate
+        </h3>
+        <div class="results-grid">
+          <div class="result-item">
+            <div class="result-label">Total CAPEX</div>
+            <div class="result-value" id="capexResult">$0M</div>
+          </div>
+          <div class="result-item">
+            <div class="result-label">Annual OPEX</div>
+            <div class="result-value" id="opexResult">$0M</div>
+          </div>
+          <div class="result-item">
+            <div class="result-label">Cost per Ton</div>
+            <div class="result-value" id="costPerTonResult">$0</div>
+          </div>
+          <div class="result-item">
+            <div class="result-label">Accuracy Range</div>
+            <div class="result-value" id="accuracyResult">±0%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Equipment Database Section -->
+  <section id="equipment" class="equipment-section">
+    <div class="section-container">
+      <div class="section-header" data-aos="fade-up">
+        <div class="section-badge">
+          <i class="fas fa-truck-monster"></i>
+          Equipment Database
+        </div>
+        <h2 class="section-title">Mining Equipment Catalog</h2>
+        <p class="section-description">
+          Comprehensive database with specifications and pricing for mining equipment
+        </p>
+      </div>
+      
+      <div class="equipment-grid">
+        <div class="equipment-card" data-aos="fade-up" data-aos-delay="100">
+          <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=600&q=80" 
+               alt="Hydraulic Excavator" 
+               class="equipment-image">
+          <div class="equipment-content">
+            <span class="equipment-category">Excavation</span>
+            <h3 class="equipment-title">Hydraulic Excavator</h3>
+            <ul class="equipment-specs">
+              <li>
+                <span class="spec-label">Bucket Capacity</span>
+                <span class="spec-value">6.0 m³</span>
+              </li>
+              <li>
+                <span class="spec-label">Operating Weight</span>
+                <span class="spec-value">52 tons</span>
+              </li>
+              <li>
+                <span class="spec-label">Engine Power</span>
+                <span class="spec-value">380 HP</span>
+              </li>
+              <li>
+                <span class="spec-label">Est. Cost (2025)</span>
+                <span class="spec-value">$850,000</span>
+              </li>
+            </ul>
+            <a href="#" class="tool-link">View Details <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        
+        <div class="equipment-card" data-aos="fade-up" data-aos-delay="200">
+          <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&q=80" 
+               alt="Haul Truck" 
+               class="equipment-image">
+          <div class="equipment-content">
+            <span class="equipment-category">Haulage</span>
+            <h3 class="equipment-title">Mining Haul Truck</h3>
+            <ul class="equipment-specs">
+              <li>
+                <span class="spec-label">Payload Capacity</span>
+                <span class="spec-value">220 tons</span>
+              </li>
+              <li>
+                <span class="spec-label">Engine Power</span>
+                <span class="spec-value">2,500 HP</span>
+              </li>
+              <li>
+                <span class="spec-label">Fuel Capacity</span>
+                <span class="spec-value">4,540 L</span>
+              </li>
+              <li>
+                <span class="spec-label">Est. Cost (2025)</span>
+                <span class="spec-value">$5,200,000</span>
+              </li>
+            </ul>
+            <a href="#" class="tool-link">View Details <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        
+        <div class="equipment-card" data-aos="fade-up" data-aos-delay="300">
+          <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&q=80" 
+               alt="Drill Rig" 
+               class="equipment-image">
+          <div class="equipment-content">
+            <span class="equipment-category">Drilling</span>
+            <h3 class="equipment-title">Rotary Blast Hole Drill</h3>
+            <ul class="equipment-specs">
+              <li>
+                <span class="spec-label">Hole Diameter</span>
+                <span class="spec-value">311 mm</span>
+              </li>
+              <li>
+                <span class="spec-label">Drilling Depth</span>
+                <span class="spec-value">45 m</span>
+              </li>
+              <li>
+                <span class="spec-label">Engine Power</span>
+                <span class="spec-value">750 HP</span>
+              </li>
+              <li>
+                <span class="spec-label">Est. Cost (2025)</span>
+                <span class="spec-value">$3,800,000</span>
+              </li>
+            </ul>
+            <a href="#" class="tool-link">View Details <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/153945651/6sGQHt6CUh5lVvcD.png" 
+             alt="SES_MINE Logo" 
+             class="footer-logo">
+        <p>Smart Engineering Solutions for Mining operations worldwide.</p>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Platform Hubs</h3>
+        <ul class="footer-links">
+          <li><a href="engineering-hub.html">Engineering Hub</a></li>
+          <li><a href="analytics-platform.html">Analytics Platform</a></li>
+          <li><a href="economics-hub.html">Economics Hub</a></li>
+          <li><a href="procurement-hub.html">Procurement Hub</a></li>
+          <li><a href="consulting-hub.html">Consulting Hub</a></li>
+          <li><a href="innovation-technology-hub.html">Innovation Hub</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Resources</h3>
+        <ul class="footer-links">
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="features.html">Features</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="Pricing Plans - SESMine.html">Pricing</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Support</h3>
+        <ul class="footer-links">
+          <li><a href="#">Documentation</a></li>
+          <li><a href="#">API Reference</a></li>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Community</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>© 2024 SES_MINE - Smart Engineering Solutions. All rights reserved.</p>
+    </div>
+  </footer>
+  
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-  // Engineering Hub specific JavaScript
-  document.addEventListener('DOMContentLoaded', function() {
-      initializeEngineeringHub();
-  });
-
-  function initializeEngineeringHub() {
-      console.log('⛑️ Engineering Hub initialized');
-      
-      // Initialize equipment database
-      loadEquipmentDatabase();
-      
-      // Initialize search functionality
-      initializeEquipmentSearch();
-      
-      // Track page view
-      analytics.track('engineering_hub_view', {
-          timestamp: new Date().toISOString(),
-          userAgent: navigator.userAgent
-      });
-  }
-
-  function loadEquipmentDatabase() {
-      // Sample equipment data
-      const equipmentData = [
-          {
-              name: "CAT 6020B Hydraulic Excavator",
-              category: "excavators",
-              capacity: "20 m³",
-              power: "1,119 kW",
-              weight: "200,000 kg",
-              price: "$2,500,000"
-          },
-          {
-              name: "Komatsu 930E Haul Truck",
-              category: "trucks",
-              capacity: "290 tonnes",
-              power: "2,700 HP",
-              weight: "203,000 kg",
-              price: "$5,200,000"
-          },
-          {
-              name: "Metso C200 Jaw Crusher",
-              category: "crushers",
-              capacity: "1,100 tph",
-              power: "250 kW",
-              weight: "85,000 kg",
-              price: "$850,000"
-          },
-          {
-              name: "FLSmidth SAG Mill",
-              category: "mills",
-              capacity: "12.2m x 6.1m",
-              power: "22,000 kW",
-              weight: "1,200,000 kg",
-              price: "$15,000,000"
-          },
-          {
-              name: "Continental Belt Conveyor",
-              category: "conveyors",
-              capacity: "5,000 tph",
-              power: "500 kW",
-              weight: "50,000 kg",
-              price: "$1,200,000"
-          },
-          {
-              name: "Liebherr R 9800 Excavator",
-              category: "excavators",
-              capacity: "42 m³",
-              power: "3,000 kW",
-              weight: "810,000 kg",
-              price: "$6,000,000"
-          }
-      ];
-
-      displayEquipment(equipmentData);
-  }
-
-  function displayEquipment(equipment) {
-      const grid = document.getElementById('equipmentGrid');
-      grid.innerHTML = '';
-
-      equipment.forEach(item => {
-          const card = document.createElement('div');
-          card.className = 'equipment-card';
-          card.innerHTML = `
-              <div class="equipment-name">${item.name}</div>
-              <div class="equipment-category">${item.category}</div>
-              <div class="equipment-specs">
-                  <span class="spec-label">Capacity:</span>
-                  <span>${item.capacity}</span>
-                  <span class="spec-label">Power:</span>
-                  <span>${item.power}</span>
-                  <span class="spec-label">Weight:</span>
-                  <span>${item.weight}</span>
-                  <span class="spec-label">Price:</span>
-                  <span style="color: var(--sesmine-accent); font-weight: 700;">${item.price}</span>
-              </div>
-          `;
-          grid.appendChild(card);
-      });
-  }
-
-  function initializeEquipmentSearch() {
-      const searchInput = document.getElementById('equipmentSearch');
-      const categoryFilter = document.getElementById('categoryFilter');
-
-      searchInput.addEventListener('input', filterEquipment);
-      categoryFilter.addEventListener('change', filterEquipment);
-  }
-
-  function filterEquipment() {
-      // Implementation for filtering equipment
-      console.log('🔍 Filtering equipment...');
-      analytics.track('equipment_search', {
-          searchTerm: document.getElementById('equipmentSearch').value,
-          category: document.getElementById('categoryFilter').value
-      });
-  }
-
-  function calculateCost() {
-      const form = document.getElementById('costCalculatorForm');
-      const formData = new FormData(form);
-      
-      // Get form values
-      const projectType = formData.get('projectType');
-      const capacity = parseFloat(formData.get('capacity')) || 0;
-      const oreType = formData.get('oreType');
-      const locationFactor = parseFloat(formData.get('location')) || 1.0;
-      const aaceClass = parseInt(formData.get('aaceClass')) || 5;
-      const duration = parseFloat(formData.get('duration')) || 15;
-
-      // Validate inputs
-      if (!projectType || !capacity || !oreType || !aaceClass) {
-          showNotification('❌ Please fill in all required fields', 'error');
-          return;
-      }
-
-      // Calculate base costs (simplified calculation)
-      let baseCostPerTon = 0;
-      let operatingCostPerTon = 0;
-
-      switch (projectType) {
-          case 'open-pit':
-              baseCostPerTon = 15000;
-              operatingCostPerTon = 25;
-              break;
-          case 'underground':
-              baseCostPerTon = 25000;
-              operatingCostPerTon = 45;
-              break;
-          case 'processing-plant':
-              baseCostPerTon = 8000;
-              operatingCostPerTon = 15;
-              break;
-          case 'infrastructure':
-              baseCostPerTon = 5000;
-              operatingCostPerTon = 5;
-              break;
-      }
-
-      // Apply ore type multiplier
-      const oreMultipliers = {
-          'gold': 1.5,
-          'copper': 1.2,
-          'iron': 0.8,
-          'coal': 0.6,
-          'other': 1.0
-      };
-
-      const oreMultiplier = oreMultipliers[oreType] || 1.0;
-      
-      // Calculate costs
-      const capitalCost = capacity * baseCostPerTon * locationFactor * oreMultiplier;
-      const operatingCostPerYear = capacity * operatingCostPerTon * locationFactor * oreMultiplier;
-      const totalProjectCost = capitalCost + (operatingCostPerYear * duration);
-
-      // AACE accuracy ranges
-      const accuracyRanges = {
-          1: '±5% to ±15%',
-          2: '±10% to ±25%',
-          3: '±15% to ±30%',
-          4: '±25% to ±40%',
-          5: '±30% to ±50%'
-      };
-
-      // Display results
-      document.getElementById('capitalCost').textContent = formatCurrency(capitalCost);
-      document.getElementById('operatingCost').textContent = formatCurrency(operatingCostPerYear);
-      document.getElementById('totalCost').textContent = formatCurrency(totalProjectCost);
-      document.getElementById('accuracy').textContent = accuracyRanges[aaceClass];
-
-      // Show results
-      document.getElementById('calcResults').style.display = 'block';
-
-      // Track calculation
-      analytics.track('cost_calculation', {
-          projectType: projectType,
-          capacity: capacity,
-          oreType: oreType,
-          aaceClass: aaceClass,
-          capitalCost: capitalCost,
-          timestamp: new Date().toISOString()
-      });
-
-      showNotification('✅ Cost estimation completed successfully!', 'success');
-  }
-
-  function formatCurrency(amount) {
-      if (amount >= 1000000000) {
-          return '$' + (amount / 1000000000).toFixed(1) + 'B';
-      } else if (amount >= 1000000) {
-          return '$' + (amount / 1000000).toFixed(1) + 'M';
-      } else if (amount >= 1000) {
-          return '$' + (amount / 1000).toFixed(0) + 'K';
+    // Initialize AOS
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 100
+    });
+    
+    // Header scroll effect
+    const header = document.getElementById('mainHeader');
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 100) {
+        header.classList.add('scrolled');
       } else {
-          return '$' + amount.toLocaleString();
+        header.classList.remove('scrolled');
       }
-  }
-
-  // Tool opening functions
-  function openCostEstimation() {
-      analytics.track('tool_access', { tool: 'cost_estimation' });
-      showNotification('🔧 Opening AACE Cost Estimation Tool...', 'info');
-      // Scroll to calculator
-      document.querySelector('.cost-calculator').scrollIntoView({ behavior: 'smooth' });
-  }
-
-  function openProjectManagement() {
-      analytics.track('tool_access', { tool: 'project_management' });
-      showNotification('📋 Project Management tool would open here', 'info');
-  }
-
-  function openEquipmentDatabase() {
-      analytics.track('tool_access', { tool: 'equipment_database' });
-      showNotification('🏗️ Opening Equipment Database...', 'info');
-      // Scroll to database
-      document.querySelector('.equipment-database').scrollIntoView({ behavior: 'smooth' });
-  }
-
-  function openTechnicalAnalysis() {
-      analytics.track('tool_access', { tool: 'technical_analysis' });
-      showNotification('🔬 Technical Analysis tool would open here', 'info');
-  }
-
-  function openProcessOptimization() {
-      analytics.track('tool_access', { tool: 'process_optimization' });
-      showNotification('⚙️ Process Optimization tool would open here', 'info');
-  }
-
-  function openSafetyManagement() {
-      analytics.track('tool_access', { tool: 'safety_management' });
-      showNotification('🛡️ Safety Management tool would open here', 'info');
-  }
-
-  console.log('⛑️ Engineering Hub ready');
-  console.log('📊 AACE cost estimation available');
-  console.log('🏗️ Equipment database loaded');
-  console.log('🔧 All engineering tools initialized');
+    });
+    
+    // Cost Calculator
+    function calculateCost() {
+      const capacity = parseFloat(document.getElementById('capacity').value) || 18;
+      const mineLife = parseFloat(document.getElementById('mineLife').value) || 20;
+      const locationFactor = parseFloat(document.getElementById('location').value) || 1.0;
+      const estimateClass = parseInt(document.getElementById('estimateClass').value) || 3;
+      
+      // Base calculations (simplified model)
+      const baseCapex = capacity * 85 * locationFactor; // $85M per Mton/year
+      const baseOpex = capacity * 12 * locationFactor; // $12M per Mton/year
+      const costPerTon = (baseOpex * 1000000) / (capacity * 1000000);
+      
+      // Accuracy ranges based on AACE class
+      const accuracyRanges = {
+        5: 50,
+        4: 30,
+        3: 20,
+        2: 15,
+        1: 10
+      };
+      
+      // Display results
+      document.getElementById('capexResult').textContent = `$${baseCapex.toFixed(0)}M`;
+      document.getElementById('opexResult').textContent = `$${baseOpex.toFixed(1)}M`;
+      document.getElementById('costPerTonResult').textContent = `$${costPerTon.toFixed(2)}`;
+      document.getElementById('accuracyResult').textContent = `±${accuracyRanges[estimateClass]}%`;
+      
+      // Show results panel
+      document.getElementById('resultsPanel').classList.add('active');
+      
+      // Scroll to results
+      document.getElementById('resultsPanel').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+    
+    console.log('🏗️ Engineering Hub Loaded Successfully');
   </script>
 </body>
 </html>

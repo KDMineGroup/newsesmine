@@ -3,1736 +3,1418 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Procurement Hub - SESMine Platform</title>
-  <meta name="description" content="Procurement and Supply Chain Management for Mining - SESMine">
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" type="image/x-icon" href="https://www.sesmine.com/favicon.ico">
+  <meta name="description" content="Procurement Hub - Vendor management, RFQ systems, contract management, and supply chain optimization for mining operations.">
+  <meta name="keywords" content="procurement, vendor management, RFQ, supply chain, contract management, mining suppliers">
+  <title>Procurement Hub | SES_MINE - Smart Engineering Solutions</title>
+  
+  <link rel="icon" type="image/png" href="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/153945651/6sGQHt6CUh5lVvcD.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
   
   <style>
-  /* Procurement Hub specific styles */
-  .procurement-hero {
-      background: linear-gradient(135deg, var(--warning-500) 0%, var(--warning-600) 50%, var(--sesmine-copper) 100%);
-      color: white;
-      padding: 4rem 0;
-      margin-bottom: 3rem;
-      position: relative;
-      overflow: hidden;
-  }
-  
-  .procurement-hero::before {
-      content: '';
-      position: absolute;
+    :root {
+      --primary-dark: #0b1a2e;
+      --primary-light: #f7f9fc;
+      --accent-primary: #2563eb;
+      --accent-secondary: #1e3a8a;
+      --accent-gold: #d4af37;
+      --success: #38a169;
+      --warning: #dd6b20;
+      --error: #e53e3e;
+      --info: #3182ce;
+      --teal: #14b8a6;
+      --gradient-primary: linear-gradient(135deg, #0b1a2e 0%, #1a365d 100%);
+      --gradient-accent: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+      --gradient-teal: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2rem;
+      --space-2xl: 3rem;
+      --space-3xl: 5rem;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-lg: 0 10px 15px rgba(0,0,0,0.1), 0 4px 6px rgba(0,0,0,0.05);
+      --shadow-xl: 0 20px 25px rgba(0,0,0,0.1), 0 10px 10px rgba(0,0,0,0.04);
+      --radius-sm: 0.25rem;
+      --radius-md: 0.5rem;
+      --radius-lg: 0.75rem;
+      --radius-xl: 1rem;
+      --transition-smooth: 0.3s ease;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: var(--primary-dark);
+      background: var(--primary-light);
+      overflow-x: hidden;
+    }
+    
+    /* Header */
+    .main-header {
+      position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="supply-pattern" width="20" height="20" patternUnits="userSpaceOnUse"><rect x="8" y="8" width="4" height="4" fill="rgba(255,255,255,0.1)"/><rect x="2" y="2" width="2" height="2" fill="rgba(255,255,255,0.05)"/><rect x="14" y="14" width="3" height="3" fill="rgba(255,255,255,0.08)"/></pattern></defs><rect width="100" height="100" fill="url(%23supply-pattern)"/></svg>');
-      opacity: 0.3;
-  }
-  
-  .hero-content {
-      position: relative;
-      z-index: 1;
-      max-width: 1200px;
+      z-index: 1030;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(37, 99, 235, 0.1);
+      transition: all var(--transition-smooth);
+    }
+    
+    .main-header.scrolled {
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: var(--shadow-md);
+    }
+    
+    .header-container {
+      max-width: 1440px;
       margin: 0 auto;
-      padding: 0 2rem;
-      text-align: center;
-  }
-  
-  .hero-icon {
-      width: 100px;
-      height: 100px;
-      background: linear-gradient(135deg, var(--sesmine-accent), var(--sesmine-secondary));
-      border-radius: var(--border-radius-2xl);
+      padding: var(--space-md) var(--space-xl);
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-size: 3rem;
-      margin: 0 auto 2rem;
-      box-shadow: var(--shadow-2xl);
-      animation: truckMove 4s ease-in-out infinite;
-  }
-  
-  @keyframes truckMove {
-      0%, 100% { transform: translateX(0); }
-      50% { transform: translateX(10px); }
-  }
-  
-  .hero-title {
+      justify-content: space-between;
+      gap: var(--space-xl);
+    }
+    
+    .logo-section {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      transition: transform var(--transition-smooth);
+    }
+    
+    .logo-section:hover {
+      transform: scale(1.02);
+    }
+    
+    .logo-image {
+      height: 60px;
+      width: auto;
+    }
+    
+    .main-nav {
+      display: flex;
+      gap: var(--space-lg);
+      align-items: center;
+    }
+    
+    .nav-link {
+      color: var(--primary-dark);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--radius-sm);
+      transition: all var(--transition-smooth);
+      position: relative;
+    }
+    
+    .nav-link.active {
+      color: var(--accent-primary);
+    }
+    
+    .nav-link::before {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: var(--gradient-accent);
+      transition: all var(--transition-smooth);
+      transform: translateX(-50%);
+    }
+    
+    .nav-link:hover::before,
+    .nav-link.active::before {
+      width: 80%;
+    }
+    
+    .nav-link:hover {
+      color: var(--accent-primary);
+      background: rgba(37, 99, 235, 0.05);
+    }
+    
+    .auth-buttons {
+      display: flex;
+      gap: var(--space-md);
+    }
+    
+    .btn {
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all var(--transition-smooth);
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    
+    .btn-login {
+      color: var(--primary-dark);
+      background: rgba(37, 99, 235, 0.1);
+      border: 1px solid rgba(37, 99, 235, 0.2);
+    }
+    
+    .btn-login:hover {
+      background: rgba(37, 99, 235, 0.15);
+      transform: translateY(-2px);
+    }
+    
+    .btn-primary {
+      background: var(--gradient-accent);
+      color: #ffffff;
+      box-shadow: var(--shadow-md);
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    /* Hero Section */
+    .hero-section {
+      position: relative;
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      padding: calc(var(--space-3xl) + 80px) var(--space-xl) var(--space-3xl);
+      background: var(--gradient-primary);
+      overflow: hidden;
+    }
+    
+    .hero-background {
+      position: absolute;
+      inset: 0;
+      opacity: 0.15;
+      background: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=2000&q=80') center/cover;
+    }
+    
+    .hero-content {
+      max-width: 1440px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+      color: white;
+      text-align: center;
+    }
+    
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      background: rgba(20, 184, 166, 0.2);
+      border: 1px solid var(--teal);
+      color: #5eead4;
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: var(--space-xl);
+    }
+    
+    .hero-title {
       font-size: 3.5rem;
-      font-weight: 800;
-      margin-bottom: 1.5rem;
-      background: linear-gradient(135deg, white, rgba(255, 255, 255, 0.8), var(--sesmine-gold));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      line-height: 1.1;
-  }
-  
-  .hero-subtitle {
-      font-size: 1.5rem;
-      opacity: 0.9;
-      margin-bottom: 2.5rem;
+      font-weight: 900;
+      margin-bottom: var(--space-lg);
+      letter-spacing: -0.02em;
+    }
+    
+    .hero-description {
+      font-size: 1.3rem;
+      opacity: 0.95;
       max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.5;
-  }
-  
-  .procurement-metrics {
+      margin: 0 auto var(--space-2xl);
+    }
+    
+    .hero-actions {
+      display: flex;
+      gap: var(--space-lg);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .btn-large {
+      padding: var(--space-lg) var(--space-2xl);
+      font-size: 1.1rem;
+    }
+    
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    
+    /* Stats Section */
+    .stats-section {
+      padding: var(--space-3xl) var(--space-xl);
+      background: white;
+    }
+    
+    .stats-container {
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+    
+    .stats-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      margin-bottom: 4rem;
-  }
-  
-  .metric-card {
-      background: white;
-      border-radius: var(--border-radius-xl);
-      padding: 2.5rem;
-      box-shadow: var(--shadow-md);
-      border: 1px solid var(--gray-200);
-      transition: var(--transition-all);
-      position: relative;
-      overflow: hidden;
-  }
-  
-  .metric-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 6px;
-      background: linear-gradient(90deg, var(--warning-500), var(--sesmine-copper), var(--warning-600));
-  }
-  
-  .metric-card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-2xl);
-  }
-  
-  .metric-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 1.5rem;
-  }
-  
-  .metric-icon {
+      gap: var(--space-xl);
+    }
+    
+    .stat-card {
+      background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%);
+      border: 2px solid var(--teal);
+      border-radius: var(--radius-xl);
+      padding: var(--space-2xl);
+      text-align: center;
+      transition: all var(--transition-smooth);
+    }
+    
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .stat-icon {
       width: 60px;
       height: 60px;
-      border-radius: var(--border-radius-lg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.75rem;
-      color: white;
-      box-shadow: var(--shadow-md);
-  }
-  
-  .metric-trend {
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
-      font-size: 0.875rem;
-      font-weight: 600;
-      padding: 0.25rem 0.75rem;
-      border-radius: 20px;
-  }
-  
-  .trend-positive {
-      background: var(--success-100);
-      color: var(--success-700);
-  }
-  
-  .trend-negative {
-      background: var(--danger-100);
-      color: var(--danger-700);
-  }
-  
-  .metric-value {
-      font-size: 2.25rem;
-      font-weight: 800;
-      color: var(--sesmine-primary);
-      margin-bottom: 0.5rem;
-      font-family: var(--font-mono);
-  }
-  
-  .metric-label {
-      color: var(--gray-600);
-      font-size: 1rem;
-      margin-bottom: 1rem;
-  }
-  
-  .metric-details {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      font-size: 0.9rem;
-  }
-  
-  .detail-item {
-      display: flex;
-      justify-content: space-between;
-      padding: 0.5rem 0;
-      border-bottom: 1px solid var(--gray-200);
-  }
-  
-  .detail-label {
-      color: var(--gray-600);
-  }
-  
-  .detail-value {
-      font-weight: 600;
-      color: var(--gray-800);
-  }
-  
-  .procurement-tools {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 2rem;
-      margin-bottom: 4rem;
-  }
-  
-  .tool-card {
-      background: white;
-      border-radius: var(--border-radius-xl);
-      padding: 2.5rem;
-      box-shadow: var(--shadow-md);
-      border: 1px solid var(--gray-200);
-      transition: var(--transition-all);
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-  }
-  
-  .tool-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--warning-500), var(--sesmine-copper));
-  }
-  
-  .tool-card:hover {
-      transform: translateY(-8px);
-      box-shadow: var(--shadow-2xl);
-  }
-  
-  .tool-icon {
-      width: 70px;
-      height: 70px;
-      border-radius: var(--border-radius-lg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      color: white;
-      margin-bottom: 1.5rem;
-      box-shadow: var(--shadow-lg);
-      transition: var(--transition-transform);
-  }
-  
-  .tool-card:hover .tool-icon {
-      transform: scale(1.1) rotate(5deg);
-  }
-  
-  .tool-title {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--sesmine-primary);
-      margin-bottom: 1rem;
-  }
-  
-  .tool-description {
-      color: var(--gray-600);
-      font-size: 1rem;
-      line-height: 1.6;
-      margin-bottom: 2rem;
-  }
-  
-  .tool-features {
-      list-style: none;
-      margin-bottom: 2rem;
-  }
-  
-  .tool-features li {
-      padding: 0.5rem 0;
-      color: var(--gray-700);
-      font-size: 0.95rem;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-  }
-  
-  .feature-icon {
-      width: 16px;
-      height: 16px;
-      color: var(--sesmine-emerald);
-      flex-shrink: 0;
-  }
-  
-  .supplier-directory {
-      background: linear-gradient(135deg, var(--primary-50), var(--warning-50));
-      border-radius: var(--border-radius-2xl);
-      padding: 4rem 3rem;
-      margin: 4rem 0;
-      border: 1px solid var(--primary-200);
-  }
-  
-  .directory-header {
-      text-align: center;
-      margin-bottom: 3rem;
-  }
-  
-  .directory-title {
-      font-size: 2.5rem;
-      font-weight: 800;
-      color: var(--sesmine-primary);
-      margin-bottom: 1rem;
-  }
-  
-  .directory-subtitle {
-      font-size: 1.25rem;
-      color: var(--gray-600);
-      max-width: 700px;
-      margin: 0 auto;
-      line-height: 1.6;
-  }
-  
-  .supplier-search {
-      background: white;
-      border-radius: var(--border-radius-xl);
-      padding: 2rem;
-      box-shadow: var(--shadow-lg);
-      border: 1px solid var(--gray-200);
-      margin-bottom: 3rem;
-  }
-  
-  .search-form {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr auto;
-      gap: 1rem;
-      align-items: end;
-  }
-  
-  .search-input {
-      padding: 1rem;
-      border: 2px solid var(--gray-300);
-      border-radius: var(--border-radius-md);
-      font-size: 1rem;
-      transition: var(--transition-all);
-  }
-  
-  .search-input:focus {
-      outline: none;
-      border-color: var(--warning-500);
-      box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.1);
-  }
-  
-  .search-select {
-      padding: 1rem;
-      border: 2px solid var(--gray-300);
-      border-radius: var(--border-radius-md);
-      font-size: 1rem;
-      background: white;
-      transition: var(--transition-all);
-  }
-  
-  .search-btn {
-      padding: 1rem 2rem;
-      background: linear-gradient(135deg, var(--warning-500), var(--sesmine-copper));
-      color: white;
-      border: none;
-      border-radius: var(--border-radius-md);
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: var(--transition-all);
-      box-shadow: var(--shadow-md);
-  }
-  
-  .search-btn:hover {
-      background: linear-gradient(135deg, var(--sesmine-copper), var(--warning-700));
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-lg);
-  }
-  
-  .suppliers-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-  }
-  
-  .supplier-card {
-      background: white;
-      border-radius: var(--border-radius-lg);
-      padding: 2rem;
-      box-shadow: var(--shadow-sm);
-      border: 1px solid var(--gray-200);
-      transition: var(--transition-all);
-  }
-  
-  .supplier-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-lg);
-      border-color: var(--warning-500);
-  }
-  
-  .supplier-header {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-  }
-  
-  .supplier-logo {
-      width: 50px;
-      height: 50px;
-      background: linear-gradient(135deg, var(--warning-500), var(--sesmine-copper));
-      border-radius: var(--border-radius-md);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-weight: 700;
-      font-size: 1.25rem;
-  }
-  
-  .supplier-info {
-      flex: 1;
-  }
-  
-  .supplier-name {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--sesmine-primary);
-      margin-bottom: 0.25rem;
-  }
-  
-  .supplier-category {
-      color: var(--warning-600);
-      font-size: 0.9rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-  }
-  
-  .supplier-rating {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
-  }
-  
-  .rating-stars {
-      color: var(--warning-500);
-  }
-  
-  .rating-score {
-      font-weight: 600;
-      color: var(--gray-700);
-  }
-  
-  .supplier-details {
-      margin-bottom: 1.5rem;
-  }
-  
-  .detail-row {
-      display: flex;
-      justify-content: space-between;
-      padding: 0.5rem 0;
-      font-size: 0.9rem;
-      border-bottom: 1px solid var(--gray-200);
-  }
-  
-  .detail-row:last-child {
-      border-bottom: none;
-  }
-  
-  .supplier-actions {
-      display: flex;
-      gap: 0.5rem;
-  }
-  
-  .action-btn {
-      flex: 1;
-      padding: 0.75rem;
-      border: 2px solid var(--gray-300);
-      background: white;
-      color: var(--gray-700);
-      border-radius: var(--border-radius-md);
-      font-size: 0.875rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: var(--transition-all);
-      text-align: center;
-      text-decoration: none;
-  }
-  
-  .action-btn:hover {
-      border-color: var(--warning-500);
-      color: var(--warning-600);
-  }
-  
-  .action-btn.primary {
-      background: var(--warning-500);
-      border-color: var(--warning-500);
-      color: white;
-  }
-  
-  .action-btn.primary:hover {
-      background: var(--warning-600);
-      border-color: var(--warning-600);
-  }
-  
-  .rfq-system {
-      background: white;
-      border-radius: var(--border-radius-xl);
-      padding: 3rem;
-      box-shadow: var(--shadow-lg);
-      border: 1px solid var(--gray-200);
-      margin: 4rem 0;
-  }
-  
-  .rfq-header {
-      text-align: center;
-      margin-bottom: 3rem;
-  }
-  
-  .rfq-title {
-      font-size: 2.5rem;
-      font-weight: 800;
-      color: var(--sesmine-primary);
-      margin-bottom: 1rem;
-  }
-  
-  .rfq-form {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-bottom: 2rem;
-  }
-  
-  .form-group {
-      display: flex;
-      flex-direction: column;
-  }
-  
-  .form-label {
-      font-weight: 600;
-      color: var(--gray-700);
-      margin-bottom: 0.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-  }
-  
-  .form-input {
-      padding: 1rem;
-      border: 2px solid var(--gray-300);
-      border-radius: var(--border-radius-md);
-      font-size: 1rem;
-      transition: var(--transition-all);
-  }
-  
-  .form-input:focus {
-      outline: none;
-      border-color: var(--warning-500);
-      box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.1);
-  }
-  
-  .form-textarea {
-      resize: vertical;
-      min-height: 120px;
-  }
-  
-  .form-select {
-      padding: 1rem;
-      border: 2px solid var(--gray-300);
-      border-radius: var(--border-radius-md);
-      font-size: 1rem;
-      background: white;
-      transition: var(--transition-all);
-  }
-  
-  .submit-btn {
-      grid-column: 1 / -1;
-      padding: 1.25rem;
-      background: linear-gradient(135deg, var(--warning-500), var(--sesmine-copper));
-      color: white;
-      border: none;
-      border-radius: var(--border-radius-lg);
-      font-size: 1.1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: var(--transition-all);
-      box-shadow: var(--shadow-md);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-  }
-  
-  .submit-btn:hover {
-      background: linear-gradient(135deg, var(--sesmine-copper), var(--warning-700));
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-lg);
-  }
-  
-  .supply-chain-viz {
-      background: var(--gray-900);
-      color: white;
-      border-radius: var(--border-radius-2xl);
-      padding: 4rem 3rem;
-      margin: 4rem 0;
-      position: relative;
-      overflow: hidden;
-  }
-  
-  .supply-chain-viz::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="chain-pattern" width="30" height="30" patternUnits="userSpaceOnUse"><circle cx="15" cy="15" r="2" fill="rgba(245,158,11,0.1)"/><line x1="5" y1="15" x2="25" y2="15" stroke="rgba(245,158,11,0.05)" stroke-width="1"/><line x1="15" y1="5" x2="15" y2="25" stroke="rgba(245,158,11,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23chain-pattern)"/></svg>');
-      opacity: 0.4;
-  }
-  
-  .viz-content {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-  }
-  
-  .viz-title {
-      font-size: 2.5rem;
-      font-weight: 800;
-      margin-bottom: 1.5rem;
-      background: linear-gradient(135deg, white, var(--warning-500));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-  }
-  
-  .chain-flow {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
-  }
-  
-  .chain-node {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: var(--border-radius-lg);
-      padding: 2rem;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      transition: var(--transition-all);
-      position: relative;
-  }
-  
-  .chain-node:hover {
-      background: rgba(255, 255, 255, 0.15);
-      transform: translateY(-4px);
-  }
-  
-  .chain-node::after {
-      content: '→';
-      position: absolute;
-      right: -1rem;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 1.5rem;
-      color: var(--warning-500);
-  }
-  
-  .chain-node:last-child::after {
-      display: none;
-  }
-  
-  .node-icon {
-      width: 50px;
-      height: 50px;
-      background: var(--warning-500);
+      background: var(--gradient-teal);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
+      margin: 0 auto var(--space-lg);
+      font-size: 1.5rem;
       color: white;
-      font-size: 1.25rem;
-      margin: 0 auto 1rem;
-  }
-  
-  .node-title {
+    }
+    
+    .stat-value {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--teal);
+      margin-bottom: var(--space-sm);
+    }
+    
+    .stat-label {
+      font-size: 1rem;
+      color: var(--accent-secondary);
+      font-weight: 600;
+    }
+    
+    /* Vendor Directory Section */
+    .vendors-section {
+      padding: var(--space-3xl) var(--space-xl);
+      background: linear-gradient(135deg, #f7f9fc 0%, #e8eef5 100%);
+    }
+    
+    .section-container {
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: var(--space-3xl);
+    }
+    
+    .section-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      background: var(--gradient-teal);
+      color: white;
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: var(--space-lg);
+    }
+    
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: var(--space-lg);
+      color: var(--primary-dark);
+    }
+    
+    .section-description {
+      font-size: 1.1rem;
+      color: var(--accent-secondary);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .search-bar {
+      max-width: 600px;
+      margin: 0 auto var(--space-2xl);
+      position: relative;
+    }
+    
+    .search-input {
+      width: 100%;
+      padding: var(--space-lg) var(--space-xl) var(--space-lg) 3.5rem;
+      border: 2px solid rgba(37, 99, 235, 0.2);
+      border-radius: var(--radius-xl);
+      font-size: 1rem;
+      transition: all var(--transition-smooth);
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .search-input:focus {
+      outline: none;
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+    
+    .search-icon {
+      position: absolute;
+      left: var(--space-lg);
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--accent-secondary);
+      font-size: 1.2rem;
+    }
+    
+    .vendors-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: var(--space-xl);
+    }
+    
+    .vendor-card {
+      background: white;
+      border: 1px solid rgba(37, 99, 235, 0.1);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      transition: all var(--transition-smooth);
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .vendor-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(37, 99, 235, 0.3);
+    }
+    
+    .vendor-header {
+      background: var(--gradient-teal);
+      padding: var(--space-xl);
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: var(--space-lg);
+    }
+    
+    .vendor-logo {
+      width: 60px;
+      height: 60px;
+      background: white;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: var(--teal);
+      font-weight: 800;
+    }
+    
+    .vendor-info h3 {
+      font-size: 1.3rem;
+      margin-bottom: var(--space-xs);
+    }
+    
+    .vendor-rating {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    
+    .stars {
+      color: #fbbf24;
+    }
+    
+    .vendor-body {
+      padding: var(--space-xl);
+    }
+    
+    .vendor-category {
+      display: inline-block;
+      background: rgba(20, 184, 166, 0.1);
+      color: var(--teal);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: var(--space-md);
+    }
+    
+    .vendor-description {
+      color: var(--accent-secondary);
+      margin-bottom: var(--space-lg);
+      line-height: 1.6;
+    }
+    
+    .vendor-specs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
+      margin-bottom: var(--space-lg);
+    }
+    
+    .spec-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-size: 0.9rem;
+      color: var(--accent-secondary);
+    }
+    
+    .spec-item i {
+      color: var(--teal);
+    }
+    
+    .vendor-actions {
+      display: flex;
+      gap: var(--space-sm);
+    }
+    
+    .btn-small {
+      flex: 1;
+      padding: var(--space-sm) var(--space-md);
+      font-size: 0.9rem;
+      text-align: center;
+    }
+    
+    .btn-outline {
+      background: transparent;
+      color: var(--accent-primary);
+      border: 2px solid var(--accent-primary);
+    }
+    
+    .btn-outline:hover {
+      background: var(--accent-primary);
+      color: white;
+    }
+    
+    /* RFQ Builder Section */
+    .rfq-section {
+      padding: var(--space-3xl) var(--space-xl);
+      background: white;
+    }
+    
+    .rfq-container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      border: 2px solid var(--accent-primary);
+      border-radius: var(--radius-xl);
+      padding: var(--space-2xl);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .rfq-header {
+      text-align: center;
+      margin-bottom: var(--space-2xl);
+    }
+    
+    .rfq-header h2 {
+      font-size: 2rem;
+      color: var(--primary-dark);
+      margin-bottom: var(--space-sm);
+    }
+    
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-lg);
+      margin-bottom: var(--space-xl);
+    }
+    
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    
+    .form-label {
+      font-weight: 600;
+      color: var(--primary-dark);
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    
+    .form-input,
+    .form-select,
+    .form-textarea {
+      padding: var(--space-md);
+      border: 2px solid rgba(37, 99, 235, 0.2);
+      border-radius: var(--radius-md);
+      font-size: 1rem;
+      transition: all var(--transition-smooth);
+      font-family: 'Inter', sans-serif;
+      background: white;
+    }
+    
+    .form-textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+    
+    .submit-btn {
+      width: 100%;
+      padding: var(--space-lg);
+      background: var(--gradient-teal);
+      color: white;
+      border: none;
+      border-radius: var(--radius-md);
       font-size: 1.1rem;
       font-weight: 700;
-      margin-bottom: 0.75rem;
-  }
-  
-  .node-description {
-      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all var(--transition-smooth);
+      box-shadow: var(--shadow-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+    }
+    
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    /* Features Section */
+    .features-section {
+      padding: var(--space-3xl) var(--space-xl);
+      background: linear-gradient(135deg, #f7f9fc 0%, #e8eef5 100%);
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: var(--space-xl);
+    }
+    
+    .feature-card {
+      background: white;
+      border: 1px solid rgba(37, 99, 235, 0.1);
+      border-radius: var(--radius-xl);
+      padding: var(--space-2xl);
+      transition: all var(--transition-smooth);
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(37, 99, 235, 0.3);
+    }
+    
+    .feature-icon {
+      width: 60px;
+      height: 60px;
+      background: var(--gradient-teal);
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: white;
+      margin-bottom: var(--space-lg);
+    }
+    
+    .feature-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: var(--space-md);
+      color: var(--primary-dark);
+    }
+    
+    .feature-description {
+      color: var(--accent-secondary);
+      line-height: 1.6;
+      margin-bottom: var(--space-lg);
+    }
+    
+    .feature-list {
+      list-style: none;
+    }
+    
+    .feature-list li {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-sm);
+      font-size: 0.95rem;
+      color: var(--accent-secondary);
+    }
+    
+    .feature-list li::before {
+      content: '✓';
+      color: var(--success);
+      font-weight: bold;
+    }
+    
+    /* Footer */
+    .main-footer {
+      background: #0a1322;
+      padding: var(--space-3xl) var(--space-xl) var(--space-xl);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .footer-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--space-2xl);
+      margin-bottom: var(--space-xl);
+    }
+    
+    .footer-section h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: var(--space-lg);
+      color: white;
+    }
+    
+    .footer-section p,
+    .footer-section a {
+      color: rgba(247, 249, 252, 0.8);
+      text-decoration: none;
+      line-height: 1.6;
+      transition: color var(--transition-smooth);
+    }
+    
+    .footer-section a:hover {
+      color: var(--accent-gold);
+    }
+    
+    .footer-links {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: var(--space-sm);
+    }
+    
+    .footer-logo {
+      height: 50px;
+      width: auto;
+      margin-bottom: var(--space-lg);
+      filter: brightness(0) invert(1);
       opacity: 0.9;
-      line-height: 1.5;
-  }
-  
-  @media (max-width: 1024px) {
-      .procurement-tools {
-          grid-template-columns: 1fr;
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: var(--space-xl);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(247, 249, 252, 0.7);
+    }
+    
+    /* Success Message */
+    .success-message {
+      background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+      border: 2px solid var(--success);
+      border-radius: var(--radius-lg);
+      padding: var(--space-xl);
+      margin-top: var(--space-xl);
+      text-align: center;
+      display: none;
+    }
+    
+    .success-message.active {
+      display: block;
+      animation: slideIn 0.5s ease;
+    }
+    
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .success-message h3 {
+      color: var(--success);
+      margin-bottom: var(--space-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+    }
+    
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .main-nav {
+        display: none;
       }
       
-      .search-form {
-          grid-template-columns: 1fr;
-      }
-      
-      .chain-flow {
-          grid-template-columns: 1fr;
-      }
-      
-      .chain-node::after {
-          content: '↓';
-          right: 50%;
-          top: auto;
-          bottom: -1rem;
-          transform: translateX(50%);
-      }
-      
-      .chain-node:last-child::after {
-          display: none;
-      }
-  }
-  
-  @media (max-width: 768px) {
       .hero-title {
-          font-size: 2.5rem;
+        font-size: 2.5rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .logo-image {
+        height: 50px;
       }
       
-      .hero-subtitle {
-          font-size: 1.25rem;
+      .hero-title {
+        font-size: 2rem;
       }
       
-      .procurement-metrics {
-          grid-template-columns: 1fr;
+      .hero-description {
+        font-size: 1.1rem;
       }
       
-      .rfq-form {
-          grid-template-columns: 1fr;
+      .vendors-grid {
+        grid-template-columns: 1fr;
       }
-  }
+      
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .vendor-specs {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
-  <!-- Universal Navigation Header -->
-  <header class="sesmine-header" id="sesmineHeader">
-      <div class="header-content">
-          <div class="logo-section">
-              <button class="header-btn mobile-menu-toggle" id="mobileMenuToggle">
-                  <i class="fas fa-bars"></i>
-              </button>
-              <a href="index.html" class="logo">
-                  <div class="logo-icon">🏔️</div>
-                  <div class="logo-text">
-                      <div class="logo-main">SESMine</div>
-                      <div class="logo-subtitle">Smart Engineering Solutions</div>
-                  </div>
-              </a>
-          </div>
-          
-          <nav class="main-nav" id="mainNav">
-              <a href="home.html" class="nav-link">
-                  <i class="fas fa-home"></i> Dashboard
-              </a>
-              <div class="nav-dropdown">
-                  <button class="nav-link dropdown-toggle active">
-                      <i class="fas fa-th-large"></i> Hubs <i class="fas fa-chevron-down"></i>
-                  </button>
-                  <div class="dropdown-menu">
-                      <a href="engineering-hub.html" class="dropdown-item">
-                          <i class="fas fa-hard-hat"></i> Engineering Hub
-                      </a>
-                      <a href="analytics-platform.html" class="dropdown-item">
-                          <i class="fas fa-chart-area"></i> Analytics Platform
-                      </a>
-                      <a href="economics-hub.html" class="dropdown-item">
-                          <i class="fas fa-coins"></i> Economics Hub
-                      </a>
-                      <a href="innovation-technology-hub.html" class="dropdown-item">
-                          <i class="fas fa-rocket"></i> Innovation & Technology
-                      </a>
-                      <a href="procurement-hub.html" class="dropdown-item active">
-                          <i class="fas fa-truck"></i> Procurement Hub
-                      </a>
-                      <a href="consulting-hub.html" class="dropdown-item">
-                          <i class="fas fa-user-tie"></i> Consulting Hub
-                      </a>
-                      <a href="training-education-hub.html" class="dropdown-item">
-                          <i class="fas fa-graduation-cap"></i> Training & Education
-                      </a>
-                      <a href="admin-dashboard.html" class="dropdown-item">
-                          <i class="fas fa-shield-alt"></i> Admin Dashboard
-                      </a>
-                  </div>
-              </div>
-              <a href="platforms.html" class="nav-link">
-                  <i class="fas fa-layer-group"></i> Platforms
-              </a>
-              <a href="features.html" class="nav-link">
-                  <i class="fas fa-star"></i> Features
-              </a>
-              <a href="about.html" class="nav-link">
-                  <i class="fas fa-info-circle"></i> About
-              </a>
-              <a href="contact.html" class="nav-link">
-                  <i class="fas fa-phone"></i> Contact
-              </a>
-          </nav>
-          
-          <div class="header-actions">
-              <div class="search-container">
-                  <i class="fas fa-search search-icon"></i>
-                  <input type="text" class="search-input" placeholder="Search suppliers..." id="globalSearch">
-              </div>
-              <button class="header-btn" title="Notifications">
-                  <i class="fas fa-bell"></i>
-              </button>
-              <button class="header-btn" title="Settings" onclick="window.location.href='setting.html'">
-                  <i class="fas fa-cog"></i>
-              </button>
-              <div class="user-menu">
-                  <div class="user-avatar">MS</div>
-                  <div class="user-info">
-                      <div class="user-name">Mining Specialist</div>
-                      <div class="user-email">specialist@sesmine.com</div>
-                  </div>
-                  <div class="user-dropdown">
-                      <a href="setting.html" class="dropdown-item">
-                          <i class="fas fa-cog"></i> Settings
-                      </a>
-                      <a href="login.html" class="dropdown-item">
-                          <i class="fas fa-sign-out-alt"></i> Logout
-                      </a>
-                  </div>
-              </div>
-          </div>
+  <!-- Header -->
+  <header class="main-header" id="mainHeader">
+    <div class="header-container">
+      <a href="index.html" class="logo-section">
+        <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/153945651/6sGQHt6CUh5lVvcD.png" 
+             alt="SES_MINE Logo" 
+             class="logo-image">
+      </a>
+      
+      <nav class="main-nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="engineering-hub.html" class="nav-link">Engineering Hub</a>
+        <a href="analytics-platform.html" class="nav-link">Analytics</a>
+        <a href="economics-hub.html" class="nav-link">Economics</a>
+        <a href="procurement-hub.html" class="nav-link active">Procurement</a>
+        <a href="consulting-hub.html" class="nav-link">Consulting</a>
+      </nav>
+      
+      <div class="auth-buttons">
+        <a href="login.html" class="btn btn-login">
+          <i class="fas fa-sign-in-alt"></i>
+          Login
+        </a>
+        <a href="signup.html" class="btn btn-primary">
+          <i class="fas fa-rocket"></i>
+          Get Started
+        </a>
       </div>
+    </div>
   </header>
-
-  <!-- Main Content -->
-  <main class="main-content">
-      <!-- Procurement Hero Section -->
-      <section class="procurement-hero">
-          <div class="hero-content">
-              <div class="hero-icon">🚛</div>
-              <h1 class="hero-title">Procurement Hub</h1>
-              <p class="hero-subtitle">
-                  Strategic procurement management, supplier networks, and supply chain optimization 
-                  for efficient and cost-effective mining operations.
-              </p>
-          </div>
-      </section>
-
-      <div class="content-container">
-          <!-- Procurement Metrics -->
-          <section class="procurement-metrics">
-              <div class="metric-card">
-                  <div class="metric-header">
-                      <div class="metric-icon" style="background: linear-gradient(135deg, var(--warning-500), var(--sesmine-copper));">
-                          💰
-                      </div>
-                      <div class="metric-trend trend-positive">
-                          <i class="fas fa-arrow-down"></i>
-                          -12.3%
-                      </div>
-                  </div>
-                  <div class="metric-value">$24.7M</div>
-                  <div class="metric-label">Annual Procurement Spend</div>
-                  <div class="metric-details">
-                      <div class="detail-item">
-                          <span class="detail-label">Q4 2024</span>
-                          <span class="detail-value">$6.8M</span>
-                      </div>
-                      <div class="detail-item">
-                          <span class="detail-label">Q3 2024</span>
-                          <span class="detail-value">$6.2M</span>
-                      </div>
-                      <div class="detail-item">
-                          <span class="detail-label">Equipment</span>
-                          <span class="detail-value">65%</span>
-                      </div>
-                      <div class="detail-item">
-                          <span class="detail-label">Services</span>
-                          <span class="detail-value">35%</span>
-                      </div>
-                  </div>
-              </div>
-
-              <div class="metric-card">
-                  <div class="metric-header">
-                      <div class="metric-icon" style="background: linear-gradient(135deg, var(--sesmine-emerald), var(--success-600));">
-                          🏭
-                      </div>
-                      <div class="metric-trend trend-positive">
-                          <i class="fas fa-arrow-up"></i>
-                          +8.7%
-                      </div>
-                  </div>
-                  <div class="metric-value">247</div>
-                  <div class="metric-label">Active Suppliers</div>
-                  <div class="metric-details">
-                      <div class="detail-item">
-                          <span class="detail-label">Tier 1</span>
-                          <span class="detail-value">45</span>
-                      </div>
-                      <div class="detail-item">
-                          <span class="detail-label">Tier 2</span>
-                          <span class="detail-value">128</span>
-                      </div>
-                      <div class="detail-item">
-                          <span class="detail-label">Local</span>
-                          <span class="detail-value">156</span>
-                      </div>
-                      <div class="detail-item">
-                          <span class="detail-label">Global</span>
-                          <span class="detail-value">91</span>
-                      </div>
-                  </div>
-              </div>
-
-              <div class="metric-card">
-                  <div class="metric-header">
-                      <div class="metric-icon" style="background: linear-gradient(135deg, var(--sesmine-accent), var(--sesmine-secondary));">
-                          📋
-                      </div>
-                      <div class="metric-trend trend-positive">
-                          <i class="fas fa-arrow-up"></i>
-                          +15.2%
-                      </div>
-                  </div>
-                  <div class="metric-value">89.3%</div>
-                  <div class="metric-label">Contract Compliance</div>
-                  <div class="metric-details">
-                      <div class="detail-item">
-                          <span class="detail-label">On-time</span>
-                          <span class="detail-value">92.1%</span>
-                      </div>
-                      <div class="detail-item">
-                          <span class="detail-label">Quality</span>
-                          <span class="detail-value">96.8%</span>
-                      </div>
-                      <div class="detail-item">
-                          <span class="detail-label">Budget</span>
-                          <span class="detail-value">87.4%</span>
-                      </div>
-                      <div class="detail-item">
-                          <span class="detail-label">Safety</span>
-                          <span class="detail-value">98.9%</span>
-                      </div>
-                  </div>
-              </div>
-
-              <div class="metric-card">
-                  <div class="metric-header">
-                      <div class="metric-icon" style="background: linear-gradient(135deg, var(--primary-500), var(--primary-600));">
-                          ⚡
-                      </div>
-                      <div class="metric-trend trend-positive">
-                          <i class="fas fa-arrow-up"></i>
-                          +22.1%
-                      </div>
-                  </div>
-                  <div class="metric-value">4.2</div>
-                  <div class="metric-label">Avg. Processing Days</div>
-                  <div class="metric-details">
-                      <div class="detail-item">
-                          <span class="detail-label">RFQ</span>
-                          <span class="detail-value">1.8 days</span>
-                      </div>
-                      <div class="detail-item">
-                          <span class="detail-label">Approval</span>
-                          <span class="detail-value">2.4 days</span>
-                      </div>
-                      <div class="detail-item">
-                          <span class="detail-label">PO Issue</span>
-                          <span class="detail-value">0.6 days</span>
-                      </div>
-                      <div class="detail-item">
-                          <span class="detail-label">Delivery</span>
-                          <span class="detail-value">12.3 days</span>
-                      </div>
-                  </div>
-              </div>
-          </section>
-
-          <!-- Procurement Tools -->
-          <section class="procurement-tools">
-              <div class="tool-card" onclick="openSupplierManagement()">
-                  <div class="tool-icon" style="background: linear-gradient(135deg, var(--warning-500), var(--sesmine-copper));">
-                      🏭
-                  </div>
-                  <h3 class="tool-title">Supplier Management</h3>
-                  <p class="tool-description">
-                      Comprehensive supplier lifecycle management with onboarding, performance tracking, and relationship optimization.
-                  </p>
-                  <ul class="tool-features">
-                      <li><i class="fas fa-check feature-icon"></i>Supplier Onboarding</li>
-                      <li><i class="fas fa-check feature-icon"></i>Performance Tracking</li>
-                      <li><i class="fas fa-check feature-icon"></i>Risk Assessment</li>
-                      <li><i class="fas fa-check feature-icon"></i>Compliance Monitoring</li>
-                  </ul>
-                  <div class="tool-actions">
-                      <button class="btn btn-primary">
-                          <i class="fas fa-users"></i>
-                          Manage Suppliers
-                      </button>
-                  </div>
-              </div>
-
-              <div class="tool-card" onclick="openContractManagement()">
-                  <div class="tool-icon" style="background: linear-gradient(135deg, var(--sesmine-emerald), var(--success-600));">
-                      📋
-                  </div>
-                  <h3 class="tool-title">Contract Management</h3>
-                  <p class="tool-description">
-                      End-to-end contract lifecycle management with automated workflows, compliance tracking, and renewal alerts.
-                  </p>
-                  <ul class="tool-features">
-                      <li><i class="fas fa-check feature-icon"></i>Contract Creation</li>
-                      <li><i class="fas fa-check feature-icon"></i>Approval Workflows</li>
-                      <li><i class="fas fa-check feature-icon"></i>Compliance Tracking</li>
-                      <li><i class="fas fa-check feature-icon"></i>Renewal Management</li>
-                  </ul>
-                  <div class="tool-actions">
-                      <button class="btn btn-primary">
-                          <i class="fas fa-file-contract"></i>
-                          Manage Contracts
-                      </button>
-                  </div>
-              </div>
-
-              <div class="tool-card" onclick="openPurchaseOrders()">
-                  <div class="tool-icon" style="background: linear-gradient(135deg, var(--sesmine-accent), var(--sesmine-secondary));">
-                      📄
-                  </div>
-                  <h3 class="tool-title">Purchase Orders</h3>
-                  <p class="tool-description">
-                      Streamlined purchase order processing with automated approvals, tracking, and integration with financial systems.
-                  </p>
-                  <ul class="tool-features">
-                      <li><i class="fas fa-check feature-icon"></i>Automated PO Creation</li>
-                      <li><i class="fas fa-check feature-icon"></i>Approval Workflows</li>
-                      <li><i class="fas fa-check feature-icon"></i>Order Tracking</li>
-                      <li><i class="fas fa-check feature-icon"></i>Invoice Matching</li>
-                  </ul>
-                  <div class="tool-actions">
-                      <button class="btn btn-primary">
-                          <i class="fas fa-shopping-cart"></i>
-                          Create PO
-                      </button>
-                  </div>
-              </div>
-
-              <div class="tool-card" onclick="openInventoryManagement()">
-                  <div class="tool-icon" style="background: linear-gradient(135deg, var(--primary-500), var(--primary-600));">
-                      📦
-                  </div>
-                  <h3 class="tool-title">Inventory Management</h3>
-                  <p class="tool-description">
-                      Real-time inventory tracking with automated reordering, stock optimization, and warehouse management integration.
-                  </p>
-                  <ul class="tool-features">
-                      <li><i class="fas fa-check feature-icon"></i>Real-time Tracking</li>
-                      <li><i class="fas fa-check feature-icon"></i>Automated Reordering</li>
-                      <li><i class="fas fa-check feature-icon"></i>Stock Optimization</li>
-                      <li><i class="fas fa-check feature-icon"></i>Warehouse Integration</li>
-                  </ul>
-                  <div class="tool-actions">
-                      <button class="btn btn-primary">
-                          <i class="fas fa-boxes"></i>
-                          View Inventory
-                      </button>
-                  </div>
-              </div>
-
-              <div class="tool-card" onclick="openCostAnalysis()">
-                  <div class="tool-icon" style="background: linear-gradient(135deg, var(--sesmine-gold), var(--sesmine-copper));">
-                      📊
-                  </div>
-                  <h3 class="tool-title">Cost Analysis</h3>
-                  <p class="tool-description">
-                      Advanced cost analysis and spend optimization with market intelligence, benchmarking, and savings identification.
-                  </p>
-                  <ul class="tool-features">
-                      <li><i class="fas fa-check feature-icon"></i>Spend Analysis</li>
-                      <li><i class="fas fa-check feature-icon"></i>Market Intelligence</li>
-                      <li><i class="fas fa-check feature-icon"></i>Cost Benchmarking</li>
-                      <li><i class="fas fa-check feature-icon"></i>Savings Tracking</li>
-                  </ul>
-                  <div class="tool-actions">
-                      <button class="btn btn-primary">
-                          <i class="fas fa-chart-line"></i>
-                          Analyze Costs
-                      </button>
-                  </div>
-              </div>
-
-              <div class="tool-card" onclick="openRiskManagement()">
-                  <div class="tool-icon" style="background: linear-gradient(135deg, var(--danger-500), var(--danger-600));">
-                      ⚠️
-                  </div>
-                  <h3 class="tool-title">Risk Management</h3>
-                  <p class="tool-description">
-                      Comprehensive supply chain risk assessment and mitigation with supplier monitoring and contingency planning.
-                  </p>
-                  <ul class="tool-features">
-                      <li><i class="fas fa-check feature-icon"></i>Risk Assessment</li>
-                      <li><i class="fas fa-check feature-icon"></i>Supplier Monitoring</li>
-                      <li><i class="fas fa-check feature-icon"></i>Contingency Planning</li>
-                      <li><i class="fas fa-check feature-icon"></i>Impact Analysis</li>
-                  </ul>
-                  <div class="tool-actions">
-                      <button class="btn btn-primary">
-                          <i class="fas fa-shield-alt"></i>
-                          Assess Risks
-                      </button>
-                  </div>
-              </div>
-          </section>
-
-          <!-- Supplier Directory -->
-          <section class="supplier-directory">
-              <div class="directory-header">
-                  <h2 class="directory-title">Supplier Directory</h2>
-                  <p class="directory-subtitle">
-                      Comprehensive database of verified suppliers with ratings, capabilities, and performance metrics
-                  </p>
-              </div>
-
-              <div class="supplier-search">
-                  <form class="search-form" id="supplierSearchForm">
-                      <input type="text" class="search-input" placeholder="Search suppliers, products, services..." id="supplierSearchInput">
-                      <select class="search-select" id="categoryFilter">
-                          <option value="">All Categories</option>
-                          <option value="equipment">Mining Equipment</option>
-                          <option value="services">Professional Services</option>
-                          <option value="materials">Raw Materials</option>
-                          <option value="maintenance">Maintenance & Repair</option>
-                          <option value="logistics">Logistics & Transport</option>
-                      </select>
-                      <select class="search-select" id="locationFilter">
-                          <option value="">All Locations</option>
-                          <option value="local">Local (< 100km)</option>
-                          <option value="regional">Regional (< 500km)</option>
-                          <option value="national">National</option>
-                          <option value="international">International</option>
-                      </select>
-                      <button type="button" class="search-btn" onclick="searchSuppliers()">
-                          <i class="fas fa-search"></i>
-                          Search
-                      </button>
-                  </form>
-              </div>
-
-              <div class="suppliers-grid" id="suppliersGrid">
-                  <!-- Suppliers will be populated by JavaScript -->
-              </div>
-          </section>
-
-          <!-- RFQ System -->
-          <section class="rfq-system">
-              <div class="rfq-header">
-                  <h2 class="rfq-title">Request for Quotation (RFQ)</h2>
-                  <p>Create and manage RFQs for your procurement needs</p>
-              </div>
-
-              <form class="rfq-form" id="rfqForm">
-                  <div class="form-group">
-                      <label class="form-label">
-                          <i class="fas fa-tag"></i>
-                          RFQ Title
-                      </label>
-                      <input type="text" class="form-input" placeholder="e.g., Heavy Duty Mining Equipment" required>
-                  </div>
-
-                  <div class="form-group">
-                      <label class="form-label">
-                          <i class="fas fa-list"></i>
-                          Category
-                      </label>
-                      <select class="form-select" required>
-                          <option value="">Select category</option>
-                          <option value="equipment">Mining Equipment</option>
-                          <option value="services">Professional Services</option>
-                          <option value="materials">Raw Materials</option>
-                          <option value="maintenance">Maintenance & Repair</option>
-                          <option value="logistics">Logistics & Transport</option>
-                      </select>
-                  </div>
-
-                  <div class="form-group">
-                      <label class="form-label">
-                          <i class="fas fa-calendar"></i>
-                          Response Deadline
-                      </label>
-                      <input type="date" class="form-input" required>
-                  </div>
-
-                  <div class="form-group">
-                      <label class="form-label">
-                          <i class="fas fa-dollar-sign"></i>
-                          Estimated Budget
-                      </label>
-                      <input type="number" class="form-input" placeholder="e.g., 500000" step="1000">
-                  </div>
-
-                  <div class="form-group">
-                      <label class="form-label">
-                          <i class="fas fa-map-marker-alt"></i>
-                          Delivery Location
-                      </label>
-                      <input type="text" class="form-input" placeholder="e.g., Mine Site Alpha, Location" required>
-                  </div>
-
-                  <div class="form-group">
-                      <label class="form-label">
-                          <i class="fas fa-users"></i>
-                          Target Suppliers
-                      </label>
-                      <select class="form-select">
-                          <option value="all">All Qualified Suppliers</option>
-                          <option value="preferred">Preferred Suppliers Only</option>
-                          <option value="selected">Selected Suppliers</option>
-                      </select>
-                  </div>
-
-                  <div class="form-group" style="grid-column: 1 / -1;">
-                      <label class="form-label">
-                          <i class="fas fa-file-alt"></i>
-                          Detailed Requirements
-                      </label>
-                      <textarea class="form-input form-textarea" placeholder="Provide detailed specifications, requirements, terms and conditions..." required></textarea>
-                  </div>
-
-                  <button type="button" class="submit-btn" onclick="submitRFQ()">
-                      <i class="fas fa-paper-plane"></i>
-                      Send RFQ
-                  </button>
-              </form>
-          </section>
-
-          <!-- Supply Chain Visualization -->
-          <section class="supply-chain-viz">
-              <div class="viz-content">
-                  <h2 class="viz-title">Supply Chain Flow</h2>
-                  <p style="font-size: 1.25rem; opacity: 0.9; margin-bottom: 2rem;">
-                      Visualize and optimize your end-to-end supply chain operations
-                  </p>
-
-                  <div class="chain-flow">
-                      <div class="chain-node">
-                          <div class="node-icon">🏭</div>
-                          <h4 class="node-title">Suppliers</h4>
-                          <p class="node-description">
-                              Raw materials, equipment, and service providers
-                          </p>
-                      </div>
-
-                      <div class="chain-node">
-                          <div class="node-icon">📦</div>
-                          <h4 class="node-title">Procurement</h4>
-                          <p class="node-description">
-                              Purchase orders, contracts, and vendor management
-                          </p>
-                      </div>
-
-                      <div class="chain-node">
-                          <div class="node-icon">🚛</div>
-                          <h4 class="node-title">Logistics</h4>
-                          <p class="node-description">
-                              Transportation, warehousing, and inventory management
-                          </p>
-                      </div>
-
-                      <div class="chain-node">
-                          <div class="node-icon">⛏️</div>
-                          <h4 class="node-title">Operations</h4>
-                          <p class="node-description">
-                              Mining operations, processing, and production
-                          </p>
-                      </div>
-
-                      <div class="chain-node">
-                          <div class="node-icon">🏪</div>
-                          <h4 class="node-title">Distribution</h4>
-                          <p class="node-description">
-                              Product delivery to customers and markets
-                          </p>
-                      </div>
-                  </div>
-
-                  <div style="margin-top: 3rem;">
-                      <button class="btn btn-primary" style="background: var(--warning-500); border-color: var(--warning-500);" onclick="openSupplyChainAnalytics()">
-                          <i class="fas fa-analytics"></i>
-                          Analyze Supply Chain
-                      </button>
-                  </div>
-              </div>
-          </section>
+  
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-background"></div>
+    <div class="hero-content">
+      <div class="hero-badge" data-aos="fade-up">
+        <i class="fas fa-handshake"></i>
+        Streamlined Supply Chain Management
       </div>
-  </main>
-
-  <script src="script.js"></script>
+      <h1 class="hero-title" data-aos="fade-up" data-aos-delay="100">
+        Procurement Hub
+      </h1>
+      <p class="hero-description" data-aos="fade-up" data-aos-delay="200">
+        Comprehensive vendor management, RFQ automation, and supply chain optimization. 
+        Connect with 2,500+ verified mining suppliers worldwide.
+      </p>
+      <div class="hero-actions" data-aos="fade-up" data-aos-delay="300">
+        <a href="#vendors" class="btn btn-primary btn-large">
+          <i class="fas fa-search"></i>
+          Browse Vendors
+        </a>
+        <a href="#rfq" class="btn btn-secondary btn-large">
+          <i class="fas fa-file-alt"></i>
+          Create RFQ
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Stats Section -->
+  <section class="stats-section">
+    <div class="stats-container">
+      <div class="stats-grid">
+        <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="stat-icon">
+            <i class="fas fa-building"></i>
+          </div>
+          <div class="stat-value">2,500+</div>
+          <div class="stat-label">Verified Suppliers</div>
+        </div>
+        
+        <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="stat-icon">
+            <i class="fas fa-globe"></i>
+          </div>
+          <div class="stat-value">85+</div>
+          <div class="stat-label">Countries Covered</div>
+        </div>
+        
+        <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="stat-icon">
+            <i class="fas fa-file-contract"></i>
+          </div>
+          <div class="stat-value">12K+</div>
+          <div class="stat-label">Active Contracts</div>
+        </div>
+        
+        <div class="stat-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="stat-icon">
+            <i class="fas fa-dollar-sign"></i>
+          </div>
+          <div class="stat-value">$2.8B</div>
+          <div class="stat-label">Annual Procurement</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Vendor Directory Section -->
+  <section id="vendors" class="vendors-section">
+    <div class="section-container">
+      <div class="section-header" data-aos="fade-up">
+        <div class="section-badge">
+          <i class="fas fa-address-book"></i>
+          Supplier Directory
+        </div>
+        <h2 class="section-title">Verified Mining Suppliers</h2>
+        <p class="section-description">
+          Browse our comprehensive directory of pre-qualified suppliers and equipment manufacturers
+        </p>
+      </div>
+      
+      <div class="search-bar" data-aos="fade-up" data-aos-delay="100">
+        <i class="fas fa-search search-icon"></i>
+        <input type="text" class="search-input" placeholder="Search vendors by name, category, or location...">
+      </div>
+      
+      <div class="vendors-grid">
+        <div class="vendor-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="vendor-header">
+            <div class="vendor-logo">CT</div>
+            <div class="vendor-info">
+              <h3>Caterpillar Inc.</h3>
+              <div class="vendor-rating">
+                <span class="stars">★★★★★</span>
+                <span>(4.9)</span>
+              </div>
+            </div>
+          </div>
+          <div class="vendor-body">
+            <span class="vendor-category">Heavy Equipment</span>
+            <p class="vendor-description">
+              Global leader in mining equipment manufacturing. Specializing in haul trucks, 
+              excavators, and dozers for large-scale mining operations.
+            </p>
+            <div class="vendor-specs">
+              <div class="spec-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>USA, Global</span>
+              </div>
+              <div class="spec-item">
+                <i class="fas fa-certificate"></i>
+                <span>ISO 9001</span>
+              </div>
+              <div class="spec-item">
+                <i class="fas fa-clock"></i>
+                <span>24/7 Support</span>
+              </div>
+              <div class="spec-item">
+                <i class="fas fa-truck"></i>
+                <span>Global Delivery</span>
+              </div>
+            </div>
+            <div class="vendor-actions">
+              <a href="#" class="btn btn-primary btn-small">
+                <i class="fas fa-envelope"></i> Contact
+              </a>
+              <a href="#" class="btn btn-outline btn-small">
+                <i class="fas fa-info-circle"></i> Details
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="vendor-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="vendor-header">
+            <div class="vendor-logo">KM</div>
+            <div class="vendor-info">
+              <h3>Komatsu Mining</h3>
+              <div class="vendor-rating">
+                <span class="stars">★★★★★</span>
+                <span>(4.8)</span>
+              </div>
+            </div>
+          </div>
+          <div class="vendor-body">
+            <span class="vendor-category">Mining Equipment</span>
+            <p class="vendor-description">
+              Innovative mining solutions provider with advanced automation technology. 
+              Offering complete fleet management and optimization systems.
+            </p>
+            <div class="vendor-specs">
+              <div class="spec-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Japan, Global</span>
+              </div>
+              <div class="spec-item">
+                <i class="fas fa-certificate"></i>
+                <span>ISO 14001</span>
+              </div>
+              <div class="spec-item">
+                <i class="fas fa-clock"></i>
+                <span>24/7 Support</span>
+              </div>
+              <div class="spec-item">
+                <i class="fas fa-cog"></i>
+                <span>Automation</span>
+              </div>
+            </div>
+            <div class="vendor-actions">
+              <a href="#" class="btn btn-primary btn-small">
+                <i class="fas fa-envelope"></i> Contact
+              </a>
+              <a href="#" class="btn btn-outline btn-small">
+                <i class="fas fa-info-circle"></i> Details
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="vendor-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="vendor-header">
+            <div class="vendor-logo">ME</div>
+            <div class="vendor-info">
+              <h3>Metso Outotec</h3>
+              <div class="vendor-rating">
+                <span class="stars">★★★★☆</span>
+                <span>(4.7)</span>
+              </div>
+            </div>
+          </div>
+          <div class="vendor-body">
+            <span class="vendor-category">Processing Equipment</span>
+            <p class="vendor-description">
+              Leading supplier of crushing, grinding, and mineral processing equipment. 
+              Sustainable technology for modern mining operations.
+            </p>
+            <div class="vendor-specs">
+              <div class="spec-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Finland, Global</span>
+              </div>
+              <div class="spec-item">
+                <i class="fas fa-certificate"></i>
+                <span>ISO 45001</span>
+              </div>
+              <div class="spec-item">
+                <i class="fas fa-leaf"></i>
+                <span>Eco-Friendly</span>
+              </div>
+              <div class="spec-item">
+                <i class="fas fa-tools"></i>
+                <span>Full Service</span>
+              </div>
+            </div>
+            <div class="vendor-actions">
+              <a href="#" class="btn btn-primary btn-small">
+                <i class="fas fa-envelope"></i> Contact
+              </a>
+              <a href="#" class="btn btn-outline btn-small">
+                <i class="fas fa-info-circle"></i> Details
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- RFQ Builder Section -->
+  <section id="rfq" class="rfq-section">
+    <div class="section-container">
+      <div class="section-header" data-aos="fade-up">
+        <div class="section-badge">
+          <i class="fas fa-file-alt"></i>
+          RFQ Builder
+        </div>
+        <h2 class="section-title">Create Request for Quotation</h2>
+        <p class="section-description">
+          Generate professional RFQs and send to multiple suppliers instantly
+        </p>
+      </div>
+      
+      <div class="rfq-container" data-aos="fade-up" data-aos-delay="100">
+        <div class="rfq-header">
+          <h2><i class="fas fa-edit"></i> New RFQ Form</h2>
+          <p>Fill in the details to generate your request for quotation</p>
+        </div>
+        
+        <form id="rfqForm">
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fas fa-building"></i>
+                Project Name
+              </label>
+              <input type="text" class="form-input" placeholder="e.g., Kimia Copper Project" required>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fas fa-calendar"></i>
+                Deadline
+              </label>
+              <input type="date" class="form-input" required>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fas fa-list"></i>
+                Equipment Category
+              </label>
+              <select class="form-select" required>
+                <option value="">Select Category</option>
+                <option value="excavation">Excavation Equipment</option>
+                <option value="haulage">Haulage Equipment</option>
+                <option value="drilling">Drilling Equipment</option>
+                <option value="processing">Processing Equipment</option>
+                <option value="auxiliary">Auxiliary Equipment</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fas fa-hashtag"></i>
+                Quantity
+              </label>
+              <input type="number" class="form-input" placeholder="e.g., 5" required>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">
+              <i class="fas fa-align-left"></i>
+              Detailed Specifications
+            </label>
+            <textarea class="form-textarea" placeholder="Provide detailed specifications, requirements, and any special conditions..." required></textarea>
+          </div>
+          
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fas fa-dollar-sign"></i>
+                Budget Range ($M)
+              </label>
+              <input type="text" class="form-input" placeholder="e.g., 5-8">
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fas fa-map-marker-alt"></i>
+                Delivery Location
+              </label>
+              <input type="text" class="form-input" placeholder="e.g., Perth, Australia" required>
+            </div>
+          </div>
+          
+          <button type="submit" class="submit-btn">
+            <i class="fas fa-paper-plane"></i>
+            Send RFQ to Selected Vendors
+          </button>
+          
+          <div class="success-message" id="successMessage">
+            <h3><i class="fas fa-check-circle"></i> RFQ Sent Successfully!</h3>
+            <p>Your request has been sent to 12 qualified vendors. You'll receive responses within 48 hours.</p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Features Section -->
+  <section class="features-section">
+    <div class="section-container">
+      <div class="section-header" data-aos="fade-up">
+        <div class="section-badge">
+          <i class="fas fa-star"></i>
+          Procurement Features
+        </div>
+        <h2 class="section-title">Complete Supply Chain Management</h2>
+        <p class="section-description">
+          End-to-end procurement solutions for mining operations
+        </p>
+      </div>
+      
+      <div class="features-grid">
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="feature-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <h3 class="feature-title">Vendor Management</h3>
+          <p class="feature-description">
+            Comprehensive vendor database with performance tracking, ratings, and compliance monitoring.
+          </p>
+          <ul class="feature-list">
+            <li>Vendor qualification system</li>
+            <li>Performance scorecards</li>
+            <li>Compliance tracking</li>
+            <li>Risk assessment</li>
+            <li>Relationship management</li>
+          </ul>
+        </div>
+        
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="feature-icon">
+            <i class="fas fa-file-invoice"></i>
+          </div>
+          <h3 class="feature-title">RFQ/RFP Automation</h3>
+          <p class="feature-description">
+            Streamlined request for quotation process with automated distribution and response tracking.
+          </p>
+          <ul class="feature-list">
+            <li>Template library</li>
+            <li>Multi-vendor distribution</li>
+            <li>Response comparison</li>
+            <li>Automated reminders</li>
+            <li>Bid evaluation tools</li>
+          </ul>
+        </div>
+        
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="feature-icon">
+            <i class="fas fa-file-contract"></i>
+          </div>
+          <h3 class="feature-title">Contract Management</h3>
+          <p class="feature-description">
+            Digital contract lifecycle management with e-signatures and automated renewals.
+          </p>
+          <ul class="feature-list">
+            <li>Contract repository</li>
+            <li>E-signature integration</li>
+            <li>Renewal alerts</li>
+            <li>Compliance monitoring</li>
+            <li>Amendment tracking</li>
+          </ul>
+        </div>
+        
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="feature-icon">
+            <i class="fas fa-shipping-fast"></i>
+          </div>
+          <h3 class="feature-title">Supply Chain Tracking</h3>
+          <p class="feature-description">
+            Real-time visibility of orders, shipments, and deliveries across your supply chain.
+          </p>
+          <ul class="feature-list">
+            <li>Order tracking</li>
+            <li>Shipment monitoring</li>
+            <li>Delivery confirmation</li>
+            <li>Inventory integration</li>
+            <li>Logistics optimization</li>
+          </ul>
+        </div>
+        
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
+          <div class="feature-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3 class="feature-title">Spend Analytics</h3>
+          <p class="feature-description">
+            Comprehensive spend analysis and reporting for cost optimization and budget control.
+          </p>
+          <ul class="feature-list">
+            <li>Spend categorization</li>
+            <li>Trend analysis</li>
+            <li>Budget tracking</li>
+            <li>Savings opportunities</li>
+            <li>Custom reports</li>
+          </ul>
+        </div>
+        
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="600">
+          <div class="feature-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3 class="feature-title">Compliance & Risk</h3>
+          <p class="feature-description">
+            Ensure regulatory compliance and mitigate supply chain risks with automated monitoring.
+          </p>
+          <ul class="feature-list">
+            <li>Regulatory compliance</li>
+            <li>Risk assessment</li>
+            <li>Audit trails</li>
+            <li>Certification tracking</li>
+            <li>Incident management</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/153945651/6sGQHt6CUh5lVvcD.png" 
+             alt="SES_MINE Logo" 
+             class="footer-logo">
+        <p>Smart Engineering Solutions for Mining operations worldwide.</p>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Platform Hubs</h3>
+        <ul class="footer-links">
+          <li><a href="engineering-hub.html">Engineering Hub</a></li>
+          <li><a href="analytics-platform.html">Analytics Platform</a></li>
+          <li><a href="economics-hub.html">Economics Hub</a></li>
+          <li><a href="procurement-hub.html">Procurement Hub</a></li>
+          <li><a href="consulting-hub.html">Consulting Hub</a></li>
+          <li><a href="innovation-technology-hub.html">Innovation Hub</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Resources</h3>
+        <ul class="footer-links">
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="features.html">Features</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="Pricing Plans - SESMine.html">Pricing</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Support</h3>
+        <ul class="footer-links">
+          <li><a href="#">Documentation</a></li>
+          <li><a href="#">API Reference</a></li>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Community</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>© 2024 SES_MINE - Smart Engineering Solutions. All rights reserved.</p>
+    </div>
+  </footer>
+  
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-  // Procurement Hub specific JavaScript
-  document.addEventListener('DOMContentLoaded', function() {
-      initializeProcurementHub();
-  });
-
-  function initializeProcurementHub() {
-      console.log('🚛 Procurement Hub initialized');
-      
-      // Load supplier directory
-      loadSupplierDirectory();
-      
-      // Initialize search functionality
-      initializeSupplierSearch();
-      
-      // Track page view
-      analytics.track('procurement_hub_view', {
-          timestamp: new Date().toISOString(),
-          userAgent: navigator.userAgent
-      });
-  }
-
-  function loadSupplierDirectory() {
-      const suppliers = [
-          {
-              name: 'MegaMine Equipment Co.',
-              category: 'equipment',
-              logo: 'ME',
-              rating: 4.8,
-              location: 'Local',
-              experience: '15+ years',
-              certifications: 'ISO 9001, ISO 14001',
-              lastOrder: '2 weeks ago'
-          },
-          {
-              name: 'Global Mining Services',
-              category: 'services',
-              logo: 'GM',
-              rating: 4.6,
-              location: 'International',
-              experience: '25+ years',
-              certifications: 'ISO 45001, OHSAS',
-              lastOrder: '1 month ago'
-          },
-          {
-              name: 'Industrial Materials Ltd.',
-              category: 'materials',
-              logo: 'IM',
-              rating: 4.9,
-              location: 'Regional',
-              experience: '12+ years',
-              certifications: 'ISO 9001, ASTM',
-              lastOrder: '1 week ago'
-          },
-          {
-              name: 'Precision Maintenance Corp.',
-              category: 'maintenance',
-              logo: 'PM',
-              rating: 4.7,
-              location: 'Local',
-              experience: '8+ years',
-              certifications: 'ISO 9001, API',
-              lastOrder: '3 days ago'
-          },
-          {
-              name: 'Swift Logistics Solutions',
-              category: 'logistics',
-              logo: 'SL',
-              rating: 4.5,
-              location: 'National',
-              experience: '20+ years',
-              certifications: 'ISO 28000, C-TPAT',
-              lastOrder: '5 days ago'
-          },
-          {
-              name: 'Advanced Mining Tech',
-              category: 'equipment',
-              logo: 'AM',
-              rating: 4.9,
-              location: 'International',
-              experience: '30+ years',
-              certifications: 'ISO 9001, CE, UL',
-              lastOrder: '2 months ago'
-          }
-      ];
-
-      displaySuppliers(suppliers);
-  }
-
-  function displaySuppliers(suppliers) {
-      const grid = document.getElementById('suppliersGrid');
-      grid.innerHTML = '';
-
-      suppliers.forEach(supplier => {
-          const card = document.createElement('div');
-          card.className = 'supplier-card';
-          card.innerHTML = `
-              <div class="supplier-header">
-                  <div class="supplier-logo">${supplier.logo}</div>
-                  <div class="supplier-info">
-                      <div class="supplier-name">${supplier.name}</div>
-                      <div class="supplier-category">${supplier.category}</div>
-                  </div>
-              </div>
-              
-              <div class="supplier-rating">
-                  <div class="rating-stars">
-                      ${'★'.repeat(Math.floor(supplier.rating))}${'☆'.repeat(5 - Math.floor(supplier.rating))}
-                  </div>
-                  <div class="rating-score">${supplier.rating}/5</div>
-              </div>
-              
-              <div class="supplier-details">
-                  <div class="detail-row">
-                      <span class="detail-label">Location:</span>
-                      <span class="detail-value">${supplier.location}</span>
-                  </div>
-                  <div class="detail-row">
-                      <span class="detail-label">Experience:</span>
-                      <span class="detail-value">${supplier.experience}</span>
-                  </div>
-                  <div class="detail-row">
-                      <span class="detail-label">Certifications:</span>
-                      <span class="detail-value">${supplier.certifications}</span>
-                  </div>
-                  <div class="detail-row">
-                      <span class="detail-label">Last Order:</span>
-                      <span class="detail-value">${supplier.lastOrder}</span>
-                  </div>
-              </div>
-              
-              <div class="supplier-actions">
-                  <button class="action-btn primary" onclick="contactSupplier('${supplier.name}')">
-                      Contact
-                  </button>
-                  <button class="action-btn" onclick="viewSupplierProfile('${supplier.name}')">
-                      View Profile
-                  </button>
-                  <button class="action-btn" onclick="requestQuote('${supplier.name}')">
-                      Request Quote
-                  </button>
-              </div>
-          `;
-          
-          grid.appendChild(card);
-      });
-  }
-
-  function initializeSupplierSearch() {
-      const searchInput = document.getElementById('supplierSearchInput');
-      const categoryFilter = document.getElementById('categoryFilter');
-      const locationFilter = document.getElementById('locationFilter');
-
-      // Add event listeners for real-time search
-      searchInput.addEventListener('input', debounce(searchSuppliers, 300));
-      categoryFilter.addEventListener('change', searchSuppliers);
-      locationFilter.addEventListener('change', searchSuppliers);
-  }
-
-  function searchSuppliers() {
-      const searchTerm = document.getElementById('supplierSearchInput').value.toLowerCase();
-      const category = document.getElementById('categoryFilter').value;
-      const location = document.getElementById('locationFilter').value;
-
-      console.log('🔍 Searching suppliers:', { searchTerm, category, location });
-      
-      // Track search
-      analytics.track('supplier_search', {
-          searchTerm: searchTerm,
-          category: category,
-          location: location,
-          timestamp: new Date().toISOString()
-      });
-
-      // Simulate search results
-      showNotification('🔍 Searching supplier database...', 'info');
-      
-      setTimeout(() => {
-          const resultCount = Math.floor(Math.random() * 20) + 5;
-          showNotification(`✅ Found ${resultCount} matching suppliers`, 'success');
-      }, 1000);
-  }
-
-  function submitRFQ() {
-      const form = document.getElementById('rfqForm');
-      const formData = new FormData(form);
-      
-      // Basic validation
-      const requiredFields = form.querySelectorAll('[required]');
-      let isValid = true;
-      
-      requiredFields.forEach(field => {
-          if (!field.value.trim()) {
-              isValid = false;
-              field.style.borderColor = 'var(--danger-500)';
-          } else {
-              field.style.borderColor = 'var(--gray-300)';
-          }
-      });
-      
-      if (!isValid) {
-          showNotification('❌ Please fill in all required fields', 'error');
-          return;
+    // Initialize AOS
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 100
+    });
+    
+    // Header scroll effect
+    const header = document.getElementById('mainHeader');
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 100) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
       }
+    });
+    
+    // RFQ Form Submission
+    document.getElementById('rfqForm').addEventListener('submit', function(e) {
+      e.preventDefault();
       
-      // Simulate RFQ submission
-      showNotification('📤 Submitting RFQ to suppliers...', 'info');
+      // Show success message
+      document.getElementById('successMessage').classList.add('active');
       
-      // Track RFQ submission
-      analytics.track('rfq_submitted', {
-          title: formData.get('title') || 'Untitled RFQ',
-          category: formData.get('category'),
-          timestamp: new Date().toISOString()
+      // Scroll to success message
+      document.getElementById('successMessage').scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'nearest' 
       });
       
+      // Reset form after 3 seconds
       setTimeout(() => {
-          showNotification('✅ RFQ sent to 12 qualified suppliers', 'success');
-          form.reset();
-      }, 2000);
-  }
-
-  // Procurement tool functions
-  function openSupplierManagement() {
-      analytics.track('procurement_tool_access', { tool: 'supplier_management' });
-      showNotification('🏭 Opening Supplier Management System...', 'info');
-      
-      // Scroll to supplier directory
-      document.querySelector('.supplier-directory').scrollIntoView({ behavior: 'smooth' });
-      
-      setTimeout(() => {
-          showNotification('👥 Supplier database loaded - 247 active suppliers', 'success');
-      }, 1500);
-  }
-
-  function openContractManagement() {
-      analytics.track('procurement_tool_access', { tool: 'contract_management' });
-      showNotification('📋 Loading Contract Management System...', 'info');
-      
-      setTimeout(() => {
-          showNotification('📄 Contract dashboard ready - 89 active contracts', 'success');
-      }, 1800);
-  }
-
-  function openPurchaseOrders() {
-      analytics.track('procurement_tool_access', { tool: 'purchase_orders' });
-      showNotification('📄 Accessing Purchase Order System...', 'info');
-      
-      setTimeout(() => {
-          showNotification('🛒 PO system loaded - 24 pending orders', 'success');
-      }, 1200);
-  }
-
-  function openInventoryManagement() {
-      analytics.track('procurement_tool_access', { tool: 'inventory_management' });
-      showNotification('📦 Connecting to Inventory Management...', 'info');
-      
-      setTimeout(() => {
-          showNotification('📊 Inventory system synchronized - 1,247 items tracked', 'success');
-      }, 2000);
-  }
-
-  function openCostAnalysis() {
-      analytics.track('procurement_tool_access', { tool: 'cost_analysis' });
-      showNotification('📊 Loading Cost Analysis Tools...', 'info');
-      
-      setTimeout(() => {
-          showNotification('💰 Cost analytics ready - $24.7M annual spend analyzed', 'success');
-      }, 2200);
-  }
-
-  function openRiskManagement() {
-      analytics.track('procurement_tool_access', { tool: 'risk_management' });
-      showNotification('⚠️ Initializing Risk Management Framework...', 'info');
-      
-      setTimeout(() => {
-          showNotification('🛡️ Risk assessment complete - 3 medium risks identified', 'success');
-      }, 2500);
-  }
-
-  function openSupplyChainAnalytics() {
-      analytics.track('supply_chain_analytics_access', { timestamp: new Date().toISOString() });
-      showNotification('📈 Loading Supply Chain Analytics...', 'info');
-      
-      setTimeout(() => {
-          showNotification('🔗 Supply chain visibility dashboard ready', 'success');
-      }, 1800);
-  }
-
-  // Supplier interaction functions
-  function contactSupplier(supplierName) {
-      analytics.track('supplier_contact', { supplier: supplierName });
-      showNotification(`📞 Connecting to ${supplierName}...`, 'info');
-      
-      setTimeout(() => {
-          showNotification(`✅ Contact request sent to ${supplierName}`, 'success');
-      }, 1000);
-  }
-
-  function viewSupplierProfile(supplierName) {
-      analytics.track('supplier_profile_view', { supplier: supplierName });
-      showNotification(`👤 Loading ${supplierName} profile...`, 'info');
-      
-      setTimeout(() => {
-          showNotification(`📊 ${supplierName} profile loaded`, 'success');
-      }, 1200);
-  }
-
-  function requestQuote(supplierName) {
-      analytics.track('quote_request', { supplier: supplierName });
-      showNotification(`💰 Requesting quote from ${supplierName}...`, 'info');
-      
-      // Scroll to RFQ section
-      document.querySelector('.rfq-system').scrollIntoView({ behavior: 'smooth' });
-      
-      setTimeout(() => {
-          showNotification(`📋 Quote request form prepared for ${supplierName}`, 'success');
-      }, 1500);
-  }
-
-  // Supply chain node interactions
-  document.addEventListener('DOMContentLoaded', function() {
-      const chainNodes = document.querySelectorAll('.chain-node');
-      
-      chainNodes.forEach(node => {
-          node.addEventListener('click', function() {
-              const title = this.querySelector('.node-title').textContent;
-              analytics.track('supply_chain_node_click', { node: title });
-              showNotification(`🔗 Exploring ${title} in supply chain...`, 'info');
-              
-              // Add visual feedback
-              this.style.background = 'rgba(255, 255, 255, 0.2)';
-              setTimeout(() => {
-                  this.style.background = 'rgba(255, 255, 255, 0.1)';
-              }, 300);
-          });
-      });
-  });
-
-  // Utility function for debouncing
-  function debounce(func, wait) {
-      let timeout;
-      return function executedFunction(...args) {
-          const later = () => {
-              clearTimeout(timeout);
-              func(...args);
-          };
-          clearTimeout(timeout);
-          timeout = setTimeout(later, wait);
-      };
-  }
-
-  // Simulate real-time procurement updates
-  function startProcurementUpdates() {
-      setInterval(() => {
-          updateProcurementMetrics();
-      }, 60000); // Update every minute
-      
-      console.log('🔄 Procurement updates started');
-  }
-
-  function updateProcurementMetrics() {
-      const metricValues = document.querySelectorAll('.metric-value');
-      
-      metricValues.forEach((metric, index) => {
-          // Add subtle animation
-          metric.style.transform = 'scale(1.05)';
-          metric.style.color = 'var(--warning-600)';
-          
-          setTimeout(() => {
-              metric.style.transform = 'scale(1)';
-              metric.style.color = 'var(--sesmine-primary)';
-          }, 300);
-      });
-  }
-
-  // Start real-time updates
-  setTimeout(startProcurementUpdates, 5000);
-
-  // Advanced procurement features
-  function generateProcurementReport() {
-      analytics.track('procurement_report_generated', { timestamp: new Date().toISOString() });
-      showNotification('📊 Generating comprehensive procurement report...', 'info');
-      
-      setTimeout(() => {
-          showNotification('📋 Procurement report ready for download', 'success');
+        this.reset();
       }, 3000);
-  }
-
-  function optimizeSupplyChain() {
-      analytics.track('supply_chain_optimization', { timestamp: new Date().toISOString() });
-      showNotification('⚙️ Running supply chain optimization algorithms...', 'info');
+    });
+    
+    // Search functionality
+    const searchInput = document.querySelector('.search-input');
+    searchInput.addEventListener('input', function(e) {
+      const searchTerm = e.target.value.toLowerCase();
+      const vendorCards = document.querySelectorAll('.vendor-card');
       
-      setTimeout(() => {
-          showNotification('✅ Supply chain optimization complete - 12% cost reduction identified', 'success');
-      }, 4000);
-  }
-
-  function scheduleProcurementAudit() {
-      analytics.track('procurement_audit_scheduled', { timestamp: new Date().toISOString() });
-      showNotification('🔍 Scheduling procurement audit...', 'info');
-      
-      setTimeout(() => {
-          showNotification('📅 Procurement audit scheduled for next quarter', 'success');
-      }, 2000);
-  }
-
-  // Export procurement data
-  function exportProcurementData(format) {
-      analytics.track('procurement_data_export', { 
-          format: format,
-          timestamp: new Date().toISOString() 
+      vendorCards.forEach(card => {
+        const vendorName = card.querySelector('h3').textContent.toLowerCase();
+        const vendorCategory = card.querySelector('.vendor-category').textContent.toLowerCase();
+        const vendorDescription = card.querySelector('.vendor-description').textContent.toLowerCase();
+        
+        if (vendorName.includes(searchTerm) || 
+            vendorCategory.includes(searchTerm) || 
+            vendorDescription.includes(searchTerm)) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
       });
-      
-      showNotification(`📤 Exporting procurement data as ${format.toUpperCase()}...`, 'info');
-      
-      setTimeout(() => {
-          showNotification(`✅ Procurement data exported successfully`, 'success');
-      }, 2500);
-  }
-
-  // Add keyboard shortcuts for procurement
-  document.addEventListener('keydown', function(e) {
-      // Ctrl/Cmd + Shift + S: Search suppliers
-      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'S') {
-          e.preventDefault();
-          document.getElementById('supplierSearchInput').focus();
-      }
-      
-      // Ctrl/Cmd + Shift + R: Create RFQ
-      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'R') {
-          e.preventDefault();
-          document.querySelector('.rfq-system').scrollIntoView({ behavior: 'smooth' });
-      }
-      
-      // Ctrl/Cmd + Shift + P: Generate report
-      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'P') {
-          e.preventDefault();
-          generateProcurementReport();
-      }
-  });
-
-  console.log('🚛 Procurement Hub ready');
-  console.log('🏭 Supplier management system loaded');
-  console.log('📋 Contract management active');
-  console.log('📦 Inventory tracking enabled');
-  console.log('💰 Cost analysis tools ready');
-  console.log('⚠️ Risk management framework active');
+    });
+    
+    console.log('🛒 Procurement Hub Loaded Successfully');
   </script>
 </body>
 </html>

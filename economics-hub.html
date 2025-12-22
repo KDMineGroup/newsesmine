@@ -3,1291 +3,1365 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Economics Hub - SESMine Platform</title>
-  <meta name="description" content="Financial Modeling and Economic Analysis for Mining - SESMine">
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" type="image/x-icon" href="https://www.sesmine.com/favicon.ico">
+  <meta name="description" content="Economics Hub - Financial modeling, NPV/IRR calculators, cash flow analysis, and investment optimization for mining projects.">
+  <meta name="keywords" content="mining economics, NPV calculator, IRR analysis, cash flow modeling, investment optimization">
+  <title>Economics Hub | SES_MINE - Smart Engineering Solutions</title>
+  
+  <link rel="icon" type="image/png" href="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/153945651/6sGQHt6CUh5lVvcD.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
   
   <style>
-  /* Economics Hub specific styles */
-  .economics-hero {
-      background: linear-gradient(135deg, var(--sesmine-gold) 0%, var(--sesmine-copper) 50%, var(--warning-600) 100%);
-      color: white;
-      padding: 4rem 0;
-      margin-bottom: 3rem;
-      position: relative;
-      overflow: hidden;
-  }
-  
-  .economics-hero::before {
-      content: '';
-      position: absolute;
+    :root {
+      --primary-dark: #0b1a2e;
+      --primary-light: #f7f9fc;
+      --accent-primary: #2563eb;
+      --accent-secondary: #1e3a8a;
+      --accent-gold: #d4af37;
+      --success: #38a169;
+      --warning: #dd6b20;
+      --error: #e53e3e;
+      --info: #3182ce;
+      --emerald: #10b981;
+      --gradient-primary: linear-gradient(135deg, #0b1a2e 0%, #1a365d 100%);
+      --gradient-accent: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+      --gradient-gold: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2rem;
+      --space-2xl: 3rem;
+      --space-3xl: 5rem;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-lg: 0 10px 15px rgba(0,0,0,0.1), 0 4px 6px rgba(0,0,0,0.05);
+      --shadow-xl: 0 20px 25px rgba(0,0,0,0.1), 0 10px 10px rgba(0,0,0,0.04);
+      --radius-sm: 0.25rem;
+      --radius-md: 0.5rem;
+      --radius-lg: 0.75rem;
+      --radius-xl: 1rem;
+      --transition-smooth: 0.3s ease;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: var(--primary-dark);
+      background: var(--primary-light);
+      overflow-x: hidden;
+    }
+    
+    /* Header */
+    .main-header {
+      position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="money-pattern" width="25" height="25" patternUnits="userSpaceOnUse"><text x="12.5" y="18" text-anchor="middle" fill="rgba(255,255,255,0.1)" font-size="16">$</text></pattern></defs><rect width="100" height="100" fill="url(%23money-pattern)"/></svg>');
-      opacity: 0.3;
-  }
-  
-  .hero-content {
+      z-index: 1030;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(37, 99, 235, 0.1);
+      transition: all var(--transition-smooth);
+    }
+    
+    .main-header.scrolled {
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: var(--shadow-md);
+    }
+    
+    .header-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: var(--space-md) var(--space-xl);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-xl);
+    }
+    
+    .logo-section {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      transition: transform var(--transition-smooth);
+    }
+    
+    .logo-section:hover {
+      transform: scale(1.02);
+    }
+    
+    .logo-image {
+      height: 60px;
+      width: auto;
+    }
+    
+    .main-nav {
+      display: flex;
+      gap: var(--space-lg);
+      align-items: center;
+    }
+    
+    .nav-link {
+      color: var(--primary-dark);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--radius-sm);
+      transition: all var(--transition-smooth);
+      position: relative;
+    }
+    
+    .nav-link.active {
+      color: var(--accent-primary);
+    }
+    
+    .nav-link::before {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: var(--gradient-accent);
+      transition: all var(--transition-smooth);
+      transform: translateX(-50%);
+    }
+    
+    .nav-link:hover::before,
+    .nav-link.active::before {
+      width: 80%;
+    }
+    
+    .nav-link:hover {
+      color: var(--accent-primary);
+      background: rgba(37, 99, 235, 0.05);
+    }
+    
+    .auth-buttons {
+      display: flex;
+      gap: var(--space-md);
+    }
+    
+    .btn {
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all var(--transition-smooth);
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    
+    .btn-login {
+      color: var(--primary-dark);
+      background: rgba(37, 99, 235, 0.1);
+      border: 1px solid rgba(37, 99, 235, 0.2);
+    }
+    
+    .btn-login:hover {
+      background: rgba(37, 99, 235, 0.15);
+      transform: translateY(-2px);
+    }
+    
+    .btn-primary {
+      background: var(--gradient-accent);
+      color: #ffffff;
+      box-shadow: var(--shadow-md);
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    /* Hero Section */
+    .hero-section {
+      position: relative;
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      padding: calc(var(--space-3xl) + 80px) var(--space-xl) var(--space-3xl);
+      background: var(--gradient-primary);
+      overflow: hidden;
+    }
+    
+    .hero-background {
+      position: absolute;
+      inset: 0;
+      opacity: 0.15;
+      background: url('https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=2000&q=80') center/cover;
+    }
+    
+    .hero-content {
+      max-width: 1440px;
+      margin: 0 auto;
       position: relative;
       z-index: 1;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
+      color: white;
       text-align: center;
-  }
-  
-  .hero-icon {
-      width: 100px;
-      height: 100px;
-      background: linear-gradient(135deg, var(--sesmine-accent), var(--sesmine-secondary));
-      border-radius: var(--border-radius-2xl);
-      display: flex;
+    }
+    
+    .hero-badge {
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      font-size: 3rem;
-      margin: 0 auto 2rem;
-      box-shadow: var(--shadow-2xl);
-      animation: coinFlip 4s ease-in-out infinite;
-  }
-  
-  @keyframes coinFlip {
-      0%, 100% { transform: rotateY(0deg); }
-      50% { transform: rotateY(180deg); }
-  }
-  
-  .hero-title {
+      gap: var(--space-sm);
+      background: rgba(212, 175, 55, 0.2);
+      border: 1px solid var(--accent-gold);
+      color: var(--accent-gold);
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: var(--space-xl);
+    }
+    
+    .hero-title {
       font-size: 3.5rem;
-      font-weight: 800;
-      margin-bottom: 1.5rem;
-      background: linear-gradient(135deg, white, rgba(255, 255, 255, 0.8), var(--sesmine-accent));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      line-height: 1.1;
-  }
-  
-  .hero-subtitle {
-      font-size: 1.5rem;
-      opacity: 0.9;
-      margin-bottom: 2.5rem;
+      font-weight: 900;
+      margin-bottom: var(--space-lg);
+      letter-spacing: -0.02em;
+    }
+    
+    .hero-description {
+      font-size: 1.3rem;
+      opacity: 0.95;
       max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.5;
-  }
-  
-  .financial-overview {
+      margin: 0 auto var(--space-2xl);
+    }
+    
+    .hero-actions {
+      display: flex;
+      gap: var(--space-lg);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .btn-large {
+      padding: var(--space-lg) var(--space-2xl);
+      font-size: 1.1rem;
+    }
+    
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    
+    /* Calculator Section */
+    .calculator-section {
+      padding: var(--space-3xl) var(--space-xl);
+      background: white;
+    }
+    
+    .section-container {
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: var(--space-3xl);
+    }
+    
+    .section-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      background: var(--gradient-gold);
+      color: white;
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: var(--space-lg);
+    }
+    
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: var(--space-lg);
+      color: var(--primary-dark);
+    }
+    
+    .section-description {
+      font-size: 1.1rem;
+      color: var(--accent-secondary);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .calculator-container {
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      border: 2px solid var(--accent-primary);
+      border-radius: var(--radius-xl);
+      padding: var(--space-2xl);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .calculator-tabs {
+      display: flex;
+      gap: var(--space-md);
+      margin-bottom: var(--space-2xl);
+      border-bottom: 2px solid rgba(37, 99, 235, 0.2);
+      flex-wrap: wrap;
+    }
+    
+    .tab-btn {
+      padding: var(--space-md) var(--space-xl);
+      background: transparent;
+      border: none;
+      color: var(--accent-secondary);
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all var(--transition-smooth);
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+    }
+    
+    .tab-btn.active {
+      color: var(--accent-primary);
+      border-bottom-color: var(--accent-primary);
+    }
+    
+    .tab-btn:hover {
+      color: var(--accent-primary);
+    }
+    
+    .tab-content {
+      display: none;
+    }
+    
+    .tab-content.active {
+      display: block;
+    }
+    
+    .form-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      margin-bottom: 4rem;
-  }
-  
-  .financial-card {
-      background: white;
-      border-radius: var(--border-radius-xl);
-      padding: 2.5rem;
-      box-shadow: var(--shadow-md);
-      border: 1px solid var(--gray-200);
-      transition: var(--transition-all);
-      position: relative;
-      overflow: hidden;
-  }
-  
-  .financial-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 6px;
-      background: linear-gradient(90deg, var(--sesmine-gold), var(--sesmine-copper), var(--warning-600));
-  }
-  
-  .financial-card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-2xl);
-  }
-  
-  .financial-header {
+      gap: var(--space-xl);
+      margin-bottom: var(--space-2xl);
+    }
+    
+    .form-group {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 1.5rem;
-  }
-  
-  .financial-icon {
-      width: 60px;
-      height: 60px;
-      border-radius: var(--border-radius-lg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.75rem;
-      color: white;
-      box-shadow: var(--shadow-md);
-  }
-  
-  .financial-trend {
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
-      font-size: 0.875rem;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    
+    .form-label {
       font-weight: 600;
-      padding: 0.25rem 0.75rem;
-      border-radius: 20px;
-  }
-  
-  .trend-positive {
-      background: var(--success-100);
-      color: var(--success-700);
-  }
-  
-  .trend-negative {
-      background: var(--danger-100);
-      color: var(--danger-700);
-  }
-  
-  .trend-neutral {
-      background: var(--gray-100);
-      color: var(--gray-700);
-  }
-  
-  .financial-value {
-      font-size: 2.25rem;
-      font-weight: 800;
-      color: var(--sesmine-primary);
-      margin-bottom: 0.5rem;
-      font-family: var(--font-mono);
-  }
-  
-  .financial-label {
-      color: var(--gray-600);
-      font-size: 1rem;
-      margin-bottom: 1rem;
-  }
-  
-  .financial-details {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      font-size: 0.9rem;
-  }
-  
-  .detail-item {
-      display: flex;
-      justify-content: space-between;
-      padding: 0.5rem 0;
-      border-bottom: 1px solid var(--gray-200);
-  }
-  
-  .detail-label {
-      color: var(--gray-600);
-  }
-  
-  .detail-value {
-      font-weight: 600;
-      color: var(--gray-800);
-  }
-  
-  .economics-tools {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 2rem;
-      margin-bottom: 4rem;
-  }
-  
-  .tool-card {
-      background: white;
-      border-radius: var(--border-radius-xl);
-      padding: 2.5rem;
-      box-shadow: var(--shadow-md);
-      border: 1px solid var(--gray-200);
-      transition: var(--transition-all);
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-  }
-  
-  .tool-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--sesmine-gold), var(--sesmine-copper));
-  }
-  
-  .tool-card:hover {
-      transform: translateY(-8px);
-      box-shadow: var(--shadow-2xl);
-  }
-  
-  .tool-icon {
-      width: 70px;
-      height: 70px;
-      border-radius: var(--border-radius-lg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      color: white;
-      margin-bottom: 1.5rem;
-      box-shadow: var(--shadow-lg);
-      transition: var(--transition-transform);
-  }
-  
-  .tool-card:hover .tool-icon {
-      transform: scale(1.1) rotate(5deg);
-  }
-  
-  .tool-title {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--sesmine-primary);
-      margin-bottom: 1rem;
-  }
-  
-  .tool-description {
-      color: var(--gray-600);
-      font-size: 1rem;
-      line-height: 1.6;
-      margin-bottom: 2rem;
-  }
-  
-  .tool-features {
-      list-style: none;
-      margin-bottom: 2rem;
-  }
-  
-  .tool-features li {
-      padding: 0.5rem 0;
-      color: var(--gray-700);
+      color: var(--primary-dark);
       font-size: 0.95rem;
       display: flex;
       align-items: center;
-      gap: 0.75rem;
-  }
-  
-  .feature-icon {
-      width: 16px;
-      height: 16px;
-      color: var(--sesmine-emerald);
-      flex-shrink: 0;
-  }
-  
-  .npv-calculator {
-      background: linear-gradient(135deg, var(--primary-50), var(--warning-50));
-      border-radius: var(--border-radius-2xl);
-      padding: 3rem;
-      margin: 4rem 0;
-      border: 1px solid var(--primary-200);
-  }
-  
-  .calculator-header {
-      text-align: center;
-      margin-bottom: 3rem;
-  }
-  
-  .calculator-title {
-      font-size: 2.5rem;
-      font-weight: 800;
-      color: var(--sesmine-primary);
-      margin-bottom: 1rem;
-  }
-  
-  .calculator-subtitle {
-      font-size: 1.25rem;
-      color: var(--gray-600);
-      max-width: 600px;
-      margin: 0 auto;
-  }
-  
-  .calculator-form {
-      background: white;
-      border-radius: var(--border-radius-xl);
-      padding: 3rem;
-      box-shadow: var(--shadow-lg);
-      border: 1px solid var(--gray-200);
-  }
-  
-  .form-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-bottom: 2rem;
-  }
-  
-  .form-group {
-      display: flex;
-      flex-direction: column;
-  }
-  
-  .form-label {
-      font-weight: 600;
-      color: var(--gray-700);
-      margin-bottom: 0.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-  }
-  
-  .form-input {
-      padding: 1rem;
-      border: 2px solid var(--gray-300);
-      border-radius: var(--border-radius-md);
+      gap: var(--space-sm);
+    }
+    
+    .form-input,
+    .form-select {
+      padding: var(--space-md);
+      border: 2px solid rgba(37, 99, 235, 0.2);
+      border-radius: var(--radius-md);
       font-size: 1rem;
-      transition: var(--transition-all);
-      font-family: var(--font-mono);
-  }
-  
-  .form-input:focus {
+      transition: all var(--transition-smooth);
+      font-family: 'Inter', sans-serif;
+      background: white;
+    }
+    
+    .form-input:focus,
+    .form-select:focus {
       outline: none;
-      border-color: var(--sesmine-gold);
-      box-shadow: 0 0 0 4px rgba(214, 158, 46, 0.1);
-  }
-  
-  .form-select {
-      padding: 1rem;
-      border: 2px solid var(--gray-300);
-      border-radius: var(--border-radius-md);
-      font-size: 1rem;
-      background: white;
-      transition: var(--transition-all);
-  }
-  
-  .calculate-btn {
-      grid-column: 1 / -1;
-      padding: 1.25rem;
-      background: linear-gradient(135deg, var(--sesmine-gold), var(--sesmine-copper));
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+    
+    .calculate-btn {
+      width: 100%;
+      padding: var(--space-lg);
+      background: var(--gradient-accent);
       color: white;
       border: none;
-      border-radius: var(--border-radius-lg);
+      border-radius: var(--radius-md);
       font-size: 1.1rem;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
-      transition: var(--transition-all);
+      transition: all var(--transition-smooth);
       box-shadow: var(--shadow-md);
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.5rem;
-  }
-  
-  .calculate-btn:hover {
-      background: linear-gradient(135deg, var(--sesmine-copper), var(--warning-700));
+      gap: var(--space-sm);
+    }
+    
+    .calculate-btn:hover {
       transform: translateY(-2px);
       box-shadow: var(--shadow-lg);
-  }
-  
-  .results-section {
+    }
+    
+    .results-panel {
       background: white;
-      border-radius: var(--border-radius-xl);
-      padding: 3rem;
-      margin-top: 3rem;
-      box-shadow: var(--shadow-lg);
-      border: 1px solid var(--gray-200);
+      border: 2px solid var(--success);
+      border-radius: var(--radius-lg);
+      padding: var(--space-2xl);
+      margin-top: var(--space-2xl);
       display: none;
-  }
-  
-  .results-header {
+    }
+    
+    .results-panel.active {
+      display: block;
+      animation: slideIn 0.5s ease;
+    }
+    
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .results-header {
       text-align: center;
-      margin-bottom: 2rem;
-  }
-  
-  .results-title {
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--sesmine-primary);
-      margin-bottom: 1rem;
-  }
-  
-  .results-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      margin-bottom: 2rem;
-  }
-  
-  .result-card {
-      background: var(--gray-50);
-      border-radius: var(--border-radius-lg);
-      padding: 2rem;
-      text-align: center;
-      border: 2px solid var(--gray-200);
-      transition: var(--transition-all);
-  }
-  
-  .result-card:hover {
-      border-color: var(--sesmine-gold);
-      background: white;
-      box-shadow: var(--shadow-md);
-  }
-  
-  .result-value {
-      font-size: 2rem;
-      font-weight: 800;
-      margin-bottom: 0.5rem;
-      font-family: var(--font-mono);
-  }
-  
-  .result-label {
-      color: var(--gray-600);
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-  }
-  
-  .market-intelligence {
-      background: white;
-      border-radius: var(--border-radius-xl);
-      padding: 3rem;
-      box-shadow: var(--shadow-lg);
-      border: 1px solid var(--gray-200);
-      margin: 3rem 0;
-  }
-  
-  .market-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 2rem;
-  }
-  
-  .market-title {
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--sesmine-primary);
-  }
-  
-  .market-update {
-      font-size: 0.9rem;
-      color: var(--gray-500);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-  }
-  
-  .commodities-grid {
+      margin-bottom: var(--space-xl);
+    }
+    
+    .results-header h3 {
+      font-size: 1.5rem;
+      color: var(--primary-dark);
+      margin-bottom: var(--space-sm);
+    }
+    
+    .results-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
-  }
-  
-  .commodity-card {
-      background: var(--gray-50);
-      border-radius: var(--border-radius-lg);
-      padding: 1.5rem;
-      border: 1px solid var(--gray-200);
-      transition: var(--transition-all);
+      gap: var(--space-xl);
+      margin-bottom: var(--space-xl);
+    }
+    
+    .result-item {
       text-align: center;
-  }
-  
-  .commodity-card:hover {
-      background: white;
-      box-shadow: var(--shadow-md);
-      transform: translateY(-2px);
-  }
-  
-  .commodity-name {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--sesmine-primary);
-      margin-bottom: 0.5rem;
-  }
-  
-  .commodity-price {
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: var(--sesmine-gold);
-      margin-bottom: 0.5rem;
-      font-family: var(--font-mono);
-  }
-  
-  .commodity-change {
-      font-size: 0.875rem;
+      padding: var(--space-lg);
+      background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--success);
+    }
+    
+    .result-label {
+      font-size: 0.9rem;
+      color: var(--accent-secondary);
+      margin-bottom: var(--space-sm);
       font-weight: 600;
+    }
+    
+    .result-value {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--success);
+    }
+    
+    .result-value.negative {
+      color: var(--error);
+    }
+    
+    .result-interpretation {
+      background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+      border: 1px solid var(--warning);
+      border-radius: var(--radius-md);
+      padding: var(--space-lg);
+      margin-top: var(--space-lg);
+    }
+    
+    .result-interpretation h4 {
+      color: var(--warning);
+      margin-bottom: var(--space-sm);
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    
+    /* Features Section */
+    .features-section {
+      padding: var(--space-3xl) var(--space-xl);
+      background: linear-gradient(135deg, #f7f9fc 0%, #e8eef5 100%);
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: var(--space-xl);
+    }
+    
+    .feature-card {
+      background: white;
+      border: 1px solid rgba(37, 99, 235, 0.1);
+      border-radius: var(--radius-xl);
+      padding: var(--space-2xl);
+      transition: all var(--transition-smooth);
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(37, 99, 235, 0.3);
+    }
+    
+    .feature-icon {
+      width: 60px;
+      height: 60px;
+      background: var(--gradient-gold);
+      border-radius: var(--radius-lg);
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.25rem;
-  }
-  
-  .change-positive { color: var(--success-500); }
-  .change-negative { color: var(--danger-500); }
-  
-  @media (max-width: 1024px) {
-      .financial-overview {
-          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      font-size: 1.5rem;
+      color: white;
+      margin-bottom: var(--space-lg);
+    }
+    
+    .feature-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: var(--space-md);
+      color: var(--primary-dark);
+    }
+    
+    .feature-description {
+      color: var(--accent-secondary);
+      line-height: 1.6;
+      margin-bottom: var(--space-lg);
+    }
+    
+    .feature-list {
+      list-style: none;
+    }
+    
+    .feature-list li {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-sm);
+      font-size: 0.95rem;
+      color: var(--accent-secondary);
+    }
+    
+    .feature-list li::before {
+      content: '✓';
+      color: var(--success);
+      font-weight: bold;
+    }
+    
+    /* Footer */
+    .main-footer {
+      background: #0a1322;
+      padding: var(--space-3xl) var(--space-xl) var(--space-xl);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .footer-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--space-2xl);
+      margin-bottom: var(--space-xl);
+    }
+    
+    .footer-section h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: var(--space-lg);
+      color: white;
+    }
+    
+    .footer-section p,
+    .footer-section a {
+      color: rgba(247, 249, 252, 0.8);
+      text-decoration: none;
+      line-height: 1.6;
+      transition: color var(--transition-smooth);
+    }
+    
+    .footer-section a:hover {
+      color: var(--accent-gold);
+    }
+    
+    .footer-links {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: var(--space-sm);
+    }
+    
+    .footer-logo {
+      height: 50px;
+      width: auto;
+      margin-bottom: var(--space-lg);
+      filter: brightness(0) invert(1);
+      opacity: 0.9;
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: var(--space-xl);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(247, 249, 252, 0.7);
+    }
+    
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .main-nav {
+        display: none;
       }
       
-      .economics-tools {
-          grid-template-columns: 1fr;
-      }
-  }
-  
-  @media (max-width: 768px) {
       .hero-title {
-          font-size: 2.5rem;
+        font-size: 2.5rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .logo-image {
+        height: 50px;
       }
       
-      .hero-subtitle {
-          font-size: 1.25rem;
+      .hero-title {
+        font-size: 2rem;
+      }
+      
+      .hero-description {
+        font-size: 1.1rem;
       }
       
       .form-grid {
-          grid-template-columns: 1fr;
+        grid-template-columns: 1fr;
       }
       
-      .market-header {
-          flex-direction: column;
-          gap: 1rem;
-          align-items: stretch;
+      .calculator-tabs {
+        flex-direction: column;
       }
-  }
+      
+      .tab-btn {
+        border-bottom: none;
+        border-left: 3px solid transparent;
+        margin-bottom: 0;
+        margin-left: -2px;
+      }
+      
+      .tab-btn.active {
+        border-left-color: var(--accent-primary);
+      }
+    }
   </style>
 </head>
 <body>
-  <!-- Universal Navigation Header -->
-  <header class="sesmine-header" id="sesmineHeader">
-      <div class="header-content">
-          <div class="logo-section">
-              <button class="header-btn mobile-menu-toggle" id="mobileMenuToggle">
-                  <i class="fas fa-bars"></i>
-              </button>
-              <a href="index.html" class="logo">
-                  <div class="logo-icon">🏔️</div>
-                  <div class="logo-text">
-                      <div class="logo-main">SESMine</div>
-                      <div class="logo-subtitle">Smart Engineering Solutions</div>
-                  </div>
-              </a>
-          </div>
-          
-          <nav class="main-nav" id="mainNav">
-              <a href="home.html" class="nav-link">
-                  <i class="fas fa-home"></i> Dashboard
-              </a>
-              <div class="nav-dropdown">
-                  <button class="nav-link dropdown-toggle active">
-                      <i class="fas fa-th-large"></i> Hubs <i class="fas fa-chevron-down"></i>
-                  </button>
-                  <div class="dropdown-menu">
-                      <a href="engineering-hub.html" class="dropdown-item">
-                          <i class="fas fa-hard-hat"></i> Engineering Hub
-                      </a>
-                      <a href="analytics-platform.html" class="dropdown-item">
-                          <i class="fas fa-chart-area"></i> Analytics Platform
-                      </a>
-                      <a href="economics-hub.html" class="dropdown-item active">
-                          <i class="fas fa-coins"></i> Economics Hub
-                      </a>
-                      <a href="innovation-technology-hub.html" class="dropdown-item">
-                          <i class="fas fa-rocket"></i> Innovation & Technology
-                      </a>
-                      <a href="procurement-hub.html" class="dropdown-item">
-                          <i class="fas fa-truck"></i> Procurement Hub
-                      </a>
-                      <a href="consulting-hub.html" class="dropdown-item">
-                          <i class="fas fa-user-tie"></i> Consulting Hub
-                      </a>
-                      <a href="training-education-hub.html" class="dropdown-item">
-                          <i class="fas fa-graduation-cap"></i> Training & Education
-                      </a>
-                      <a href="admin-dashboard.html" class="dropdown-item">
-                          <i class="fas fa-shield-alt"></i> Admin Dashboard
-                      </a>
-                  </div>
-              </div>
-              <a href="platforms.html" class="nav-link">
-                  <i class="fas fa-layer-group"></i> Platforms
-              </a>
-              <a href="features.html" class="nav-link">
-                  <i class="fas fa-star"></i> Features
-              </a>
-              <a href="about.html" class="nav-link">
-                  <i class="fas fa-info-circle"></i> About
-              </a>
-              <a href="contact.html" class="nav-link">
-                  <i class="fas fa-phone"></i> Contact
-              </a>
-          </nav>
-          
-          <div class="header-actions">
-              <div class="search-container">
-                  <i class="fas fa-search search-icon"></i>
-                  <input type="text" class="search-input" placeholder="Search economics tools..." id="globalSearch">
-              </div>
-              <button class="header-btn" title="Notifications">
-                  <i class="fas fa-bell"></i>
-              </button>
-              <button class="header-btn" title="Settings" onclick="window.location.href='setting.html'">
-                  <i class="fas fa-cog"></i>
-              </button>
-              <div class="user-menu">
-                  <div class="user-avatar">MS</div>
-                  <div class="user-info">
-                      <div class="user-name">Mining Specialist</div>
-                      <div class="user-email">specialist@sesmine.com</div>
-                  </div>
-                  <div class="user-dropdown">
-                      <a href="setting.html" class="dropdown-item">
-                          <i class="fas fa-cog"></i> Settings
-                      </a>
-                      <a href="login.html" class="dropdown-item">
-                          <i class="fas fa-sign-out-alt"></i> Logout
-                      </a>
-                  </div>
-              </div>
-          </div>
+  <!-- Header -->
+  <header class="main-header" id="mainHeader">
+    <div class="header-container">
+      <a href="index.html" class="logo-section">
+        <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/153945651/6sGQHt6CUh5lVvcD.png" 
+             alt="SES_MINE Logo" 
+             class="logo-image">
+      </a>
+      
+      <nav class="main-nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="engineering-hub.html" class="nav-link">Engineering Hub</a>
+        <a href="analytics-platform.html" class="nav-link">Analytics</a>
+        <a href="economics-hub.html" class="nav-link active">Economics</a>
+        <a href="procurement-hub.html" class="nav-link">Procurement</a>
+        <a href="consulting-hub.html" class="nav-link">Consulting</a>
+      </nav>
+      
+      <div class="auth-buttons">
+        <a href="login.html" class="btn btn-login">
+          <i class="fas fa-sign-in-alt"></i>
+          Login
+        </a>
+        <a href="signup.html" class="btn btn-primary">
+          <i class="fas fa-rocket"></i>
+          Get Started
+        </a>
       </div>
+    </div>
   </header>
-
-  <!-- Main Content -->
-  <main class="main-content">
-      <!-- Economics Hero Section -->
-      <section class="economics-hero">
-          <div class="hero-content">
-              <div class="hero-icon">💰</div>
-              <h1 class="hero-title">Economics Hub</h1>
-              <p class="hero-subtitle">
-                  Comprehensive financial modeling, economic analysis, and market intelligence 
-                  for strategic mining investment decisions and operational optimization.
-              </p>
-          </div>
-      </section>
-
-      <div class="content-container">
-          <!-- Financial Overview -->
-          <section class="financial-overview">
-              <div class="financial-card">
-                  <div class="financial-header">
-                      <div class="financial-icon" style="background: linear-gradient(135deg, var(--sesmine-gold), var(--sesmine-copper));">
-                          💎
-                      </div>
-                      <div class="financial-trend trend-positive">
-                          <i class="fas fa-arrow-up"></i>
-                          +18.5%
-                      </div>
-                  </div>
-                  <div class="financial-value">$247.3M</div>
-                  <div class="financial-label">Project NPV</div>
-                  <div class="financial-details">
-                      <div class="detail-item">
-                          <span class="detail-label">IRR</span>
-                          <span class="detail-value">24.7%</span>
-                      </div>
-                      <div class="detail-item">
-                          <span class="detail-label">Payback</span>
-                          <span class="detail-value">4.2 years</span>
-                      </div>
-                      <div class="detail-item">
-                          <span class="detail-label">CAPEX</span>
-                          <span class="detail-value">$185M</span>
-                      </div>
-                      <div class="detail-item">
-                          <span class="detail-label">OPEX</span>
-                          <span class="detail-value">$42/t</span>
-                      </div>
-                  </div>
-              </div>
-
-              <div class="financial-card">
-                  <div class="financial-header">
-                      <div class="financial-icon" style="background: linear-gradient(135deg, var(--sesmine-emerald), var(--success-600));">
-                          📈
-                      </div>
-                      <div class="financial-trend trend-positive">
-                          <i class="fas fa-arrow-up"></i>
-                          +12.3%
-                      </div>
-                  </div>
-                  <div class="financial-value">$89.2M</div>
-                  <div class="financial-label">Annual Revenue</div>
-                  <div class="financial-details">
-                      <div class="detail-item">
-                          <span class="detail-label">Q4 2024</span>
-                          <span class="detail-value">$23.1M</span>
-                      </div>
-                      <div class="detail-item">
-                          <span class="detail-label">Q3 2024</span>
-                          <span class="detail-value">$21.8M</span>
-                      </div>
-                      <div class="detail-item">
-                          <span class="detail-label">Margin</span>
-                          <span class="detail-value">34.2%</span>
-                      </div>
-                      <div class="detail-item">
-                          <span class="detail-label">EBITDA</span>
-                          <span class="detail-value">$30.5M</span>
-                      </div>
-                  </div>
-              </div>
-
-              <div class="financial-card">
-                  <div class="financial-header">
-                      <div class="financial-icon" style="background: linear-gradient(135deg, var(--sesmine-accent), var(--sesmine-secondary));">
-                          💰
-                      </div>
-                      <div class="financial-trend trend-negative">
-                          <i class="fas fa-arrow-down"></i>
-                          -5.7%
-                      </div>
-                  </div>
-                  <div class="financial-value">$38.50</div>
-                  <div class="financial-label">Cost per Ton</div>
-                  <div class="financial-details">
-                      <div class="detail-item">
-                          <span class="detail-label">Mining</span>
-                          <span class="detail-value">$18.20</span>
-                      </div>
-                      <div class="detail-item">
-                          <span class="detail-label">Processing</span>
-                          <span class="detail-value">$12.40</span>
-                      </div>
-                      <div class="detail-item">
-                          <span class="detail-label">G&A</span>
-                          <span class="detail-value">$4.80</span>
-                      </div>
-                      <div class="detail-item">
-                          <span class="detail-label">Transport</span>
-                          <span class="detail-value">$3.10</span>
-                      </div>
-                  </div>
-              </div>
-
-              <div class="financial-card">
-                  <div class="financial-header">
-                      <div class="financial-icon" style="background: linear-gradient(135deg, var(--warning-500), var(--warning-600));">
-                          ⚖️
-                      </div>
-                      <div class="financial-trend trend-neutral">
-                          <i class="fas fa-minus"></i>
-                          0.0%
-                      </div>
-                  </div>
-                  <div class="financial-value">2.8</div>
-                  <div class="financial-label">Risk Score</div>
-                  <div class="financial-details">
-                      <div class="detail-item">
-                          <span class="detail-label">Market</span>
-                          <span class="detail-value">Low</span>
-                      </div>
-                      <div class="detail-item">
-                          <span class="detail-label">Technical</span>
-                          <span class="detail-value">Medium</span>
-                      </div>
-                      <div class="detail-item">
-                          <span class="detail-label">Political</span>
-                          <span class="detail-value">Low</span>
-                      </div>
-                      <div class="detail-item">
-                          <span class="detail-label">ESG</span>
-                          <span class="detail-value">Medium</span>
-                      </div>
-                  </div>
-              </div>
-          </section>
-
-          <!-- Economics Tools -->
-          <section class="economics-tools">
-              <div class="tool-card" onclick="openFinancialModeling()">
-                  <div class="tool-icon" style="background: linear-gradient(135deg, var(--sesmine-gold), var(--sesmine-copper));">
-                      📊
-                  </div>
-                  <h3 class="tool-title">Financial Modeling</h3>
-                  <p class="tool-description">
-                      Advanced financial modeling tools with DCF analysis, sensitivity analysis, and scenario planning for mining investments.
-                  </p>
-                  <ul class="tool-features">
-                      <li><i class="fas fa-check feature-icon"></i>DCF & NPV Analysis</li>
-                      <li><i class="fas fa-check feature-icon"></i>Sensitivity Analysis</li>
-                      <li><i class="fas fa-check feature-icon"></i>Monte Carlo Simulation</li>
-                      <li><i class="fas fa-check feature-icon"></i>Scenario Planning</li>
-                  </ul>
-                  <div class="tool-actions">
-                      <button class="btn btn-primary">
-                          <i class="fas fa-calculator"></i>
-                          Build Model
-                      </button>
-                  </div>
-              </div>
-
-              <div class="tool-card" onclick="openMarketIntelligence()">
-                  <div class="tool-icon" style="background: linear-gradient(135deg, var(--sesmine-emerald), var(--success-600));">
-                      🌍
-                  </div>
-                  <h3 class="tool-title">Market Intelligence</h3>
-                  <p class="tool-description">
-                      Real-time commodity prices, market trends, and economic forecasting with AI-powered insights and analysis.
-                  </p>
-                  <ul class="tool-features">
-                      <li><i class="fas fa-check feature-icon"></i>Real-time Commodity Prices</li>
-                      <li><i class="fas fa-check feature-icon"></i>Market Trend Analysis</li>
-                      <li><i class="fas fa-check feature-icon"></i>Economic Forecasting</li>
-                      <li><i class="fas fa-check feature-icon"></i>Supply & Demand Analytics</li>
-                  </ul>
-                  <div class="tool-actions">
-                      <button class="btn btn-primary">
-                          <i class="fas fa-globe"></i>
-                          View Markets
-                      </button>
-                  </div>
-              </div>
-
-              <div class="tool-card" onclick="openRiskAssessment()">
-                  <div class="tool-icon" style="background: linear-gradient(135deg, var(--sesmine-accent), var(--sesmine-secondary));">
-                      ⚖️
-                  </div>
-                  <h3 class="tool-title">Risk Assessment</h3>
-                  <p class="tool-description">
-                      Comprehensive risk analysis including market, technical, political, and ESG risks with mitigation strategies.
-                  </p>
-                  <ul class="tool-features">
-                      <li><i class="fas fa-check feature-icon"></i>Market Risk Analysis</li>
-                      <li><i class="fas fa-check feature-icon"></i>Technical Risk Assessment</li>
-                      <li><i class="fas fa-check feature-icon"></i>Political Risk Evaluation</li>
-                      <li><i class="fas fa-check feature-icon"></i>ESG Risk Management</li>
-                  </ul>
-                  <div class="tool-actions">
-                      <button class="btn btn-primary">
-                          <i class="fas fa-shield-alt"></i>
-                          Assess Risk
-                      </button>
-                  </div>
-              </div>
-
-              <div class="tool-card" onclick="openInvestmentAnalysis()">
-                  <div class="tool-icon" style="background: linear-gradient(135deg, var(--primary-500), var(--primary-600));">
-                      💎
-                  </div>
-                  <h3 class="tool-title">Investment Analysis</h3>
-                  <p class="tool-description">
-                      Strategic investment analysis with portfolio optimization, asset valuation, and capital allocation tools.
-                  </p>
-                  <ul class="tool-features">
-                      <li><i class="fas fa-check feature-icon"></i>Portfolio Optimization</li>
-                      <li><i class="fas fa-check feature-icon"></i>Asset Valuation</li>
-                      <li><i class="fas fa-check feature-icon"></i>Capital Allocation</li>
-                      <li><i class="fas fa-check feature-icon"></i>ROI Analysis</li>
-                  </ul>
-                  <div class="tool-actions">
-                      <button class="btn btn-primary">
-                          <i class="fas fa-chart-line"></i>
-                          Analyze Investment
-                      </button>
-                  </div>
-              </div>
-
-              <div class="tool-card" onclick="openCostOptimization()">
-                  <div class="tool-icon" style="background: linear-gradient(135deg, var(--warning-500), var(--warning-600));">
-                      ⚙️
-                  </div>
-                  <h3 class="tool-title">Cost Optimization</h3>
-                  <p class="tool-description">
-                      Advanced cost optimization tools with benchmarking, efficiency analysis, and operational cost reduction strategies.
-                  </p>
-                  <ul class="tool-features">
-                      <li><i class="fas fa-check feature-icon"></i>Cost Benchmarking</li>
-                      <li><i class="fas fa-check feature-icon"></i>Efficiency Analysis</li>
-                      <li><i class="fas fa-check feature-icon"></i>Cost Reduction Strategies</li>
-                      <li><i class="fas fa-check feature-icon"></i>Budget Optimization</li>
-                  </ul>
-                  <div class="tool-actions">
-                      <button class="btn btn-primary">
-                          <i class="fas fa-cogs"></i>
-                          Optimize Costs
-                      </button>
-                  </div>
-              </div>
-
-              <div class="tool-card" onclick="openReporting()">
-                  <div class="tool-icon" style="background: linear-gradient(135deg, var(--danger-500), var(--danger-600));">
-                      📋
-                  </div>
-                  <h3 class="tool-title">Financial Reporting</h3>
-                  <p class="tool-description">
-                      Automated financial reporting with customizable dashboards, executive summaries, and regulatory compliance.
-                  </p>
-                  <ul class="tool-features">
-                      <li><i class="fas fa-check feature-icon"></i>Automated Reports</li>
-                      <li><i class="fas fa-check feature-icon"></i>Executive Dashboards</li>
-                      <li><i class="fas fa-check feature-icon"></i>Regulatory Compliance</li>
-                      <li><i class="fas fa-check feature-icon"></i>Custom Analytics</li>
-                  </ul>
-                  <div class="tool-actions">
-                      <button class="btn btn-primary">
-                          <i class="fas fa-file-alt"></i>
-                          Generate Reports
-                      </button>
-                  </div>
-              </div>
-          </section>
-
-          <!-- NPV Calculator -->
-          <section class="npv-calculator">
-              <div class="calculator-header">
-                  <h2 class="calculator-title">NPV & IRR Calculator</h2>
-                  <p class="calculator-subtitle">
-                      Calculate Net Present Value and Internal Rate of Return for your mining project
-                  </p>
-              </div>
-
-              <div class="calculator-form">
-                  <form class="form-grid" id="npvCalculatorForm">
-                      <div class="form-group">
-                          <label class="form-label">
-                              <i class="fas fa-dollar-sign"></i>
-                              Initial Investment ($M)
-                          </label>
-                          <input type="number" class="form-input" id="initialInvestment" placeholder="185" step="0.1">
-                      </div>
-
-                      <div class="form-group">
-                          <label class="form-label">
-                              <i class="fas fa-calendar"></i>
-                              Project Life (years)
-                          </label>
-                          <input type="number" class="form-input" id="projectLife" placeholder="15" min="1" max="50">
-                      </div>
-
-                      <div class="form-group">
-                          <label class="form-label">
-                              <i class="fas fa-percentage"></i>
-                              Discount Rate (%)
-                          </label>
-                          <input type="number" class="form-input" id="discountRate" placeholder="10" step="0.1">
-                      </div>
-
-                      <div class="form-group">
-                          <label class="form-label">
-                              <i class="fas fa-chart-line"></i>
-                              Annual Cash Flow ($M)
-                          </label>
-                          <input type="number" class="form-input" id="annualCashFlow" placeholder="35" step="0.1">
-                      </div>
-
-                      <div class="form-group">
-                          <label class="form-label">
-                              <i class="fas fa-coins"></i>
-                              Commodity Type
-                          </label>
-                          <select class="form-select" id="commodityType">
-                              <option value="">Select commodity</option>
-                              <option value="gold">Gold</option>
-                              <option value="copper">Copper</option>
-                              <option value="iron">Iron Ore</option>
-                              <option value="coal">Coal</option>
-                              <option value="zinc">Zinc</option>
-                              <option value="nickel">Nickel</option>
-                          </select>
-                      </div>
-
-                      <div class="form-group">
-                          <label class="form-label">
-                              <i class="fas fa-globe"></i>
-                              Location Risk Factor
-                          </label>
-                          <select class="form-select" id="riskFactor">
-                              <option value="1.0">Low Risk (Developed Countries)</option>
-                              <option value="1.2">Medium Risk (Emerging Markets)</option>
-                              <option value="1.5">High Risk (Frontier Markets)</option>
-                          </select>
-                      </div>
-
-                      <button type="button" class="calculate-btn" onclick="calculateNPV()">
-                          <i class="fas fa-calculator"></i>
-                          Calculate NPV & IRR
-                      </button>
-                  </form>
-
-                  <div class="results-section" id="npvResults">
-                      <div class="results-header">
-                          <h3 class="results-title">Financial Analysis Results</h3>
-                      </div>
-                      <div class="results-grid">
-                          <div class="result-card">
-                              <div class="result-value" id="npvValue" style="color: var(--sesmine-gold);">$0.0M</div>
-                              <div class="result-label">Net Present Value</div>
-                          </div>
-                          <div class="result-card">
-                              <div class="result-value" id="irrValue" style="color: var(--sesmine-emerald);">0.0%</div>
-                              <div class="result-label">Internal Rate of Return</div>
-                          </div>
-                          <div class="result-card">
-                              <div class="result-value" id="paybackValue" style="color: var(--sesmine-accent);">0.0</div>
-                              <div class="result-label">Payback Period (Years)</div>
-                          </div>
-                          <div class="result-card">
-                              <div class="result-value" id="roiValue" style="color: var(--warning-600);">0.0%</div>
-                              <div class="result-label">Return on Investment</div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </section>
-
-          <!-- Market Intelligence -->
-          <section class="market-intelligence">
-              <div class="market-header">
-                  <h2 class="market-title">Live Market Intelligence</h2>
-                  <div class="market-update">
-                      <i class="fas fa-clock"></i>
-                      Last updated: 2 minutes ago
-                  </div>
-              </div>
-
-              <div class="commodities-grid" id="commoditiesGrid">
-                  <!-- Commodity cards will be populated by JavaScript -->
-              </div>
-          </section>
+  
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-background"></div>
+    <div class="hero-content">
+      <div class="hero-badge" data-aos="fade-up">
+        <i class="fas fa-chart-line"></i>
+        Financial Intelligence & Optimization
       </div>
-  </main>
-
-  <script src="script.js"></script>
-  <script>
-  // Economics Hub specific JavaScript
-  document.addEventListener('DOMContentLoaded', function() {
-      initializeEconomicsHub();
-  });
-
-  function initializeEconomicsHub() {
-      console.log('💰 Economics Hub initialized');
+      <h1 class="hero-title" data-aos="fade-up" data-aos-delay="100">
+        Economics Hub
+      </h1>
+      <p class="hero-description" data-aos="fade-up" data-aos-delay="200">
+        Comprehensive financial modeling tools for mining projects. Calculate NPV, IRR, payback periods, 
+        and optimize investment decisions with advanced economic analysis.
+      </p>
+      <div class="hero-actions" data-aos="fade-up" data-aos-delay="300">
+        <a href="#calculator" class="btn btn-primary btn-large">
+          <i class="fas fa-calculator"></i>
+          Financial Calculator
+        </a>
+        <a href="#features" class="btn btn-secondary btn-large">
+          <i class="fas fa-chart-pie"></i>
+          Explore Tools
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Calculator Section -->
+  <section id="calculator" class="calculator-section">
+    <div class="section-container">
+      <div class="section-header" data-aos="fade-up">
+        <div class="section-badge">
+          <i class="fas fa-calculator"></i>
+          Financial Calculators
+        </div>
+        <h2 class="section-title">Project Economics Analysis</h2>
+        <p class="section-description">
+          Calculate key financial metrics for your mining project investment decisions
+        </p>
+      </div>
       
-      // Initialize market data
-      loadMarketData();
-      
-      // Start real-time updates
-      startMarketUpdates();
-      
-      // Track page view
-      analytics.track('economics_hub_view', {
-          timestamp: new Date().toISOString(),
-          userAgent: navigator.userAgent
-      });
-  }
-
-  function loadMarketData() {
-      const commodities = [
-          { name: 'Gold', price: '$2,045.30', change: '+1.2%', positive: true, unit: '/oz' },
-          { name: 'Copper', price: '$8,245.50', change: '-0.8%', positive: false, unit: '/t' },
-          { name: 'Iron Ore', price: '$115.20', change: '+2.1%', positive: true, unit: '/t' },
-          { name: 'Coal', price: '$89.75', change: '+0.5%', positive: true, unit: '/t' },
-          { name: 'Zinc', price: '$2,567.80', change: '-1.3%', positive: false, unit: '/t' },
-          { name: 'Nickel', price: '$18,234.60', change: '+3.2%', positive: true, unit: '/t' },
-          { name: 'Silver', price: '$24.85', change: '+0.9%', positive: true, unit: '/oz' },
-          { name: 'Aluminum', price: '$2,145.30', change: '-0.4%', positive: false, unit: '/t' }
-      ];
-
-      displayCommodities(commodities);
-  }
-
-  function displayCommodities(commodities) {
-      const grid = document.getElementById('commoditiesGrid');
-      grid.innerHTML = '';
-
-      commodities.forEach(commodity => {
-          const card = document.createElement('div');
-          card.className = 'commodity-card';
-          card.innerHTML = `
-              <div class="commodity-name">${commodity.name}</div>
-              <div class="commodity-price">${commodity.price}<span style="font-size: 0.7em; opacity: 0.7;">${commodity.unit}</span></div>
-              <div class="commodity-change ${commodity.positive ? 'change-positive' : 'change-negative'}">
-                  <i class="fas fa-arrow-${commodity.positive ? 'up' : 'down'}"></i>
-                  ${commodity.change}
+      <div class="calculator-container" data-aos="fade-up" data-aos-delay="100">
+        <div class="calculator-tabs">
+          <button class="tab-btn active" onclick="switchTab('npv')">
+            <i class="fas fa-chart-line"></i> NPV / IRR Calculator
+          </button>
+          <button class="tab-btn" onclick="switchTab('cashflow')">
+            <i class="fas fa-money-bill-wave"></i> Cash Flow Analysis
+          </button>
+          <button class="tab-btn" onclick="switchTab('sensitivity')">
+            <i class="fas fa-sliders-h"></i> Sensitivity Analysis
+          </button>
+        </div>
+        
+        <!-- NPV/IRR Calculator -->
+        <div id="npv-tab" class="tab-content active">
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fas fa-dollar-sign"></i>
+                Initial Investment (CAPEX) ($M)
+              </label>
+              <input type="number" class="form-input" id="capex" placeholder="850" value="850">
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fas fa-calendar"></i>
+                Project Life (years)
+              </label>
+              <input type="number" class="form-input" id="projectLife" placeholder="20" value="20">
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fas fa-money-bill"></i>
+                Annual Revenue ($M)
+              </label>
+              <input type="number" class="form-input" id="revenue" placeholder="280" value="280">
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fas fa-coins"></i>
+                Annual Operating Cost ($M)
+              </label>
+              <input type="number" class="form-input" id="opex" placeholder="165" value="165">
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fas fa-percent"></i>
+                Discount Rate (%)
+              </label>
+              <input type="number" class="form-input" id="discountRate" placeholder="10" value="10" step="0.1">
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fas fa-percentage"></i>
+                Tax Rate (%)
+              </label>
+              <input type="number" class="form-input" id="taxRate" placeholder="30" value="30" step="0.1">
+            </div>
+          </div>
+          
+          <button class="calculate-btn" onclick="calculateNPV()">
+            <i class="fas fa-calculator"></i>
+            Calculate NPV & IRR
+          </button>
+          
+          <div class="results-panel" id="npvResults">
+            <div class="results-header">
+              <h3><i class="fas fa-chart-bar"></i> Financial Analysis Results</h3>
+              <p>Based on your input parameters</p>
+            </div>
+            
+            <div class="results-grid">
+              <div class="result-item">
+                <div class="result-label">Net Present Value (NPV)</div>
+                <div class="result-value" id="npvValue">$0M</div>
               </div>
-          `;
+              
+              <div class="result-item">
+                <div class="result-label">Internal Rate of Return (IRR)</div>
+                <div class="result-value" id="irrValue">0%</div>
+              </div>
+              
+              <div class="result-item">
+                <div class="result-label">Payback Period</div>
+                <div class="result-value" id="paybackValue">0 years</div>
+              </div>
+              
+              <div class="result-item">
+                <div class="result-label">Profitability Index</div>
+                <div class="result-value" id="piValue">0.00</div>
+              </div>
+            </div>
+            
+            <div class="result-interpretation">
+              <h4><i class="fas fa-lightbulb"></i> Investment Recommendation</h4>
+              <p id="recommendation">Calculate to see recommendation...</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Cash Flow Tab -->
+        <div id="cashflow-tab" class="tab-content">
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fas fa-industry"></i>
+                Production Volume (Mton/year)
+              </label>
+              <input type="number" class="form-input" id="production" placeholder="18" value="18">
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fas fa-tag"></i>
+                Commodity Price ($/ton)
+              </label>
+              <input type="number" class="form-input" id="price" placeholder="8500" value="8500">
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fas fa-cogs"></i>
+                Operating Cost ($/ton)
+              </label>
+              <input type="number" class="form-input" id="costPerTon" placeholder="4200" value="4200">
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fas fa-chart-line"></i>
+                Annual Growth Rate (%)
+              </label>
+              <input type="number" class="form-input" id="growthRate" placeholder="2" value="2" step="0.1">
+            </div>
+          </div>
           
-          // Add click handler
-          card.addEventListener('click', function() {
-              showCommodityDetails(commodity);
-          });
+          <button class="calculate-btn" onclick="calculateCashFlow()">
+            <i class="fas fa-calculator"></i>
+            Generate Cash Flow Projection
+          </button>
           
-          grid.appendChild(card);
-      });
-  }
-
-  function showCommodityDetails(commodity) {
-      showNotification(`📊 Loading detailed analysis for ${commodity.name}...`, 'info');
-      analytics.track('commodity_detail_view', { commodity: commodity.name });
-  }
-
-  function startMarketUpdates() {
-      // Update market data every 2 minutes
-      setInterval(() => {
-          updateMarketPrices();
-      }, 120000);
-      
-      console.log('📈 Market updates started');
-  }
-
-  function updateMarketPrices() {
-      // Simulate price updates
-      const commodityCards = document.querySelectorAll('.commodity-card');
-      
-      commodityCards.forEach(card => {
-          const priceElement = card.querySelector('.commodity-price');
-          const changeElement = card.querySelector('.commodity-change');
+          <div class="results-panel" id="cashflowResults">
+            <div class="results-header">
+              <h3><i class="fas fa-money-bill-wave"></i> Cash Flow Analysis</h3>
+              <p>Annual cash flow projections</p>
+            </div>
+            
+            <div class="results-grid">
+              <div class="result-item">
+                <div class="result-label">Annual Free Cash Flow</div>
+                <div class="result-value" id="fcfValue">$0M</div>
+              </div>
+              
+              <div class="result-item">
+                <div class="result-label">Cumulative Cash Flow (20yr)</div>
+                <div class="result-value" id="cumCashValue">$0M</div>
+              </div>
+              
+              <div class="result-item">
+                <div class="result-label">Operating Margin</div>
+                <div class="result-value" id="marginValue">0%</div>
+              </div>
+              
+              <div class="result-item">
+                <div class="result-label">EBITDA (Annual)</div>
+                <div class="result-value" id="ebitdaValue">$0M</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Sensitivity Analysis Tab -->
+        <div id="sensitivity-tab" class="tab-content">
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fas fa-chart-bar"></i>
+                Base Case NPV ($M)
+              </label>
+              <input type="number" class="form-input" id="baseNPV" placeholder="450" value="450">
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fas fa-arrows-alt-h"></i>
+                Price Variation (%)
+              </label>
+              <input type="number" class="form-input" id="priceVar" placeholder="20" value="20">
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fas fa-arrows-alt-h"></i>
+                Cost Variation (%)
+              </label>
+              <input type="number" class="form-input" id="costVar" placeholder="15" value="15">
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fas fa-arrows-alt-h"></i>
+                Volume Variation (%)
+              </label>
+              <input type="number" class="form-input" id="volumeVar" placeholder="10" value="10">
+            </div>
+          </div>
           
-          // Add subtle animation
-          priceElement.style.transform = 'scale(1.05)';
-          priceElement.style.color = 'var(--sesmine-gold)';
+          <button class="calculate-btn" onclick="calculateSensitivity()">
+            <i class="fas fa-calculator"></i>
+            Run Sensitivity Analysis
+          </button>
           
-          setTimeout(() => {
-              priceElement.style.transform = 'scale(1)';
-              priceElement.style.color = 'var(--sesmine-gold)';
-          }, 300);
-      });
-  }
-
-  function calculateNPV() {
-      const form = document.getElementById('npvCalculatorForm');
+          <div class="results-panel" id="sensitivityResults">
+            <div class="results-header">
+              <h3><i class="fas fa-sliders-h"></i> Sensitivity Analysis Results</h3>
+              <p>Impact of key variables on project NPV</p>
+            </div>
+            
+            <div class="results-grid">
+              <div class="result-item">
+                <div class="result-label">Best Case NPV</div>
+                <div class="result-value" id="bestCase">$0M</div>
+              </div>
+              
+              <div class="result-item">
+                <div class="result-label">Base Case NPV</div>
+                <div class="result-value" id="baseCase">$0M</div>
+              </div>
+              
+              <div class="result-item">
+                <div class="result-label">Worst Case NPV</div>
+                <div class="result-value" id="worstCase">$0M</div>
+              </div>
+              
+              <div class="result-item">
+                <div class="result-label">Risk Level</div>
+                <div class="result-value" id="riskLevel">-</div>
+              </div>
+            </div>
+            
+            <div class="result-interpretation">
+              <h4><i class="fas fa-exclamation-triangle"></i> Risk Assessment</h4>
+              <p id="riskAssessment">Calculate to see risk assessment...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Features Section -->
+  <section id="features" class="features-section">
+    <div class="section-container">
+      <div class="section-header" data-aos="fade-up">
+        <div class="section-badge">
+          <i class="fas fa-star"></i>
+          Economic Tools
+        </div>
+        <h2 class="section-title">Comprehensive Financial Analysis</h2>
+        <p class="section-description">
+          Professional tools for mining project economic evaluation and investment optimization
+        </p>
+      </div>
       
-      // Get form values
-      const initialInvestment = parseFloat(document.getElementById('initialInvestment').value) || 0;
-      const projectLife = parseInt(document.getElementById('projectLife').value) || 0;
-      const discountRate = parseFloat(document.getElementById('discountRate').value) / 100 || 0;
-      const annualCashFlow = parseFloat(document.getElementById('annualCashFlow').value) || 0;
-      const riskFactor = parseFloat(document.getElementById('riskFactor').value) || 1.0;
-
-      // Validate inputs
-      if (!initialInvestment || !projectLife || !discountRate || !annualCashFlow) {
-          showNotification('❌ Please fill in all required fields', 'error');
-          return;
-      }
-
-      // Adjust discount rate for risk
-      const adjustedDiscountRate = discountRate * riskFactor;
-
-      // Calculate NPV
-      let npv = -initialInvestment;
-      for (let year = 1; year <= projectLife; year++) {
-          npv += annualCashFlow / Math.pow(1 + adjustedDiscountRate, year);
-      }
-
-      // Calculate IRR (simplified approximation)
-      let irr = 0;
-      let testRate = 0.01;
-      let testNPV = 0;
+      <div class="features-grid">
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="feature-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3 class="feature-title">NPV & IRR Analysis</h3>
+          <p class="feature-description">
+            Calculate net present value and internal rate of return with advanced discounted cash flow models.
+          </p>
+          <ul class="feature-list">
+            <li>Multi-period DCF analysis</li>
+            <li>Variable discount rates</li>
+            <li>Tax optimization</li>
+            <li>Inflation adjustment</li>
+            <li>Risk-adjusted returns</li>
+          </ul>
+        </div>
+        
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="feature-icon">
+            <i class="fas fa-money-bill-wave"></i>
+          </div>
+          <h3 class="feature-title">Cash Flow Modeling</h3>
+          <p class="feature-description">
+            Project cash flows with detailed revenue, cost, and financing scenarios over project life.
+          </p>
+          <ul class="feature-list">
+            <li>Monthly/annual projections</li>
+            <li>Working capital analysis</li>
+            <li>Debt service modeling</li>
+            <li>Dividend planning</li>
+            <li>Scenario comparison</li>
+          </ul>
+        </div>
+        
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="feature-icon">
+            <i class="fas fa-sliders-h"></i>
+          </div>
+          <h3 class="feature-title">Sensitivity Analysis</h3>
+          <p class="feature-description">
+            Assess project sensitivity to key variables like commodity prices, costs, and production volumes.
+          </p>
+          <ul class="feature-list">
+            <li>Tornado diagrams</li>
+            <li>Spider charts</li>
+            <li>Monte Carlo simulation</li>
+            <li>Break-even analysis</li>
+            <li>Risk quantification</li>
+          </ul>
+        </div>
+        
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="feature-icon">
+            <i class="fas fa-balance-scale"></i>
+          </div>
+          <h3 class="feature-title">Investment Optimization</h3>
+          <p class="feature-description">
+            Optimize capital allocation and investment timing for maximum project value.
+          </p>
+          <ul class="feature-list">
+            <li>Portfolio optimization</li>
+            <li>Timing analysis</li>
+            <li>Capital rationing</li>
+            <li>Real options valuation</li>
+            <li>Value maximization</li>
+          </ul>
+        </div>
+        
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
+          <div class="feature-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3 class="feature-title">Risk Assessment</h3>
+          <p class="feature-description">
+            Identify and quantify financial risks with comprehensive risk analysis frameworks.
+          </p>
+          <ul class="feature-list">
+            <li>Risk identification</li>
+            <li>Probability analysis</li>
+            <li>Impact assessment</li>
+            <li>Mitigation strategies</li>
+            <li>Risk reporting</li>
+          </ul>
+        </div>
+        
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="600">
+          <div class="feature-icon">
+            <i class="fas fa-file-invoice-dollar"></i>
+          </div>
+          <h3 class="feature-title">Financial Reporting</h3>
+          <p class="feature-description">
+            Generate professional financial reports and investment memorandums for stakeholders.
+          </p>
+          <ul class="feature-list">
+            <li>Executive summaries</li>
+            <li>Detailed financials</li>
+            <li>Investment memos</li>
+            <li>Board presentations</li>
+            <li>Compliance reports</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/153945651/6sGQHt6CUh5lVvcD.png" 
+             alt="SES_MINE Logo" 
+             class="footer-logo">
+        <p>Smart Engineering Solutions for Mining operations worldwide.</p>
+      </div>
       
-      while (testRate < 1 && testNPV >= 0) {
-          testNPV = -initialInvestment;
-          for (let year = 1; year <= projectLife; year++) {
-              testNPV += annualCashFlow / Math.pow(1 + testRate, year);
-          }
-          if (testNPV >= 0) {
-              irr = testRate;
-          }
-          testRate += 0.001;
-      }
-
-      // Calculate payback period
-      const paybackPeriod = initialInvestment / annualCashFlow;
-
-      // Calculate ROI
-      const totalCashFlow = annualCashFlow * projectLife;
-      const roi = ((totalCashFlow - initialInvestment) / initialInvestment) * 100;
-
-      // Display results
-      document.getElementById('npvValue').textContent = `$${npv.toFixed(1)}M`;
-      document.getElementById('irrValue').textContent = `${(irr * 100).toFixed(1)}%`;
-      document.getElementById('paybackValue').textContent = `${paybackPeriod.toFixed(1)}`;
-      document.getElementById('roiValue').textContent = `${roi.toFixed(1)}%`;
-
-      // Color code NPV result
-      const npvElement = document.getElementById('npvValue');
-      if (npv > 0) {
-          npvElement.style.color = 'var(--success-500)';
+      <div class="footer-section">
+        <h3>Platform Hubs</h3>
+        <ul class="footer-links">
+          <li><a href="engineering-hub.html">Engineering Hub</a></li>
+          <li><a href="analytics-platform.html">Analytics Platform</a></li>
+          <li><a href="economics-hub.html">Economics Hub</a></li>
+          <li><a href="procurement-hub.html">Procurement Hub</a></li>
+          <li><a href="consulting-hub.html">Consulting Hub</a></li>
+          <li><a href="innovation-technology-hub.html">Innovation Hub</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Resources</h3>
+        <ul class="footer-links">
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="features.html">Features</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="Pricing Plans - SESMine.html">Pricing</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Support</h3>
+        <ul class="footer-links">
+          <li><a href="#">Documentation</a></li>
+          <li><a href="#">API Reference</a></li>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Community</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>© 2024 SES_MINE - Smart Engineering Solutions. All rights reserved.</p>
+    </div>
+  </footer>
+  
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    // Initialize AOS
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 100
+    });
+    
+    // Header scroll effect
+    const header = document.getElementById('mainHeader');
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 100) {
+        header.classList.add('scrolled');
       } else {
-          npvElement.style.color = 'var(--danger-500)';
+        header.classList.remove('scrolled');
       }
-
-      // Show results
-      document.getElementById('npvResults').style.display = 'block';
-
-      // Track calculation
-      analytics.track('npv_calculation', {
-          initialInvestment: initialInvestment,
-          projectLife: projectLife,
-          discountRate: discountRate,
-          npv: npv,
-          irr: irr,
-          timestamp: new Date().toISOString()
+    });
+    
+    // Tab Switching
+    function switchTab(tabName) {
+      // Hide all tabs
+      document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active');
       });
-
-      showNotification('✅ Financial analysis completed successfully!', 'success');
-
-      // Scroll to results
-      document.getElementById('npvResults').scrollIntoView({ behavior: 'smooth' });
-  }
-
-  // Economics tool functions
-  function openFinancialModeling() {
-      analytics.track('economics_tool_access', { tool: 'financial_modeling' });
-      showNotification('📊 Opening Financial Modeling Suite...', 'info');
       
-      setTimeout(() => {
-          showNotification('💼 Advanced financial models loaded', 'success');
-      }, 2000);
-  }
-
-  function openMarketIntelligence() {
-      analytics.track('economics_tool_access', { tool: 'market_intelligence' });
-      showNotification('🌍 Connecting to global market data...', 'info');
+      // Remove active from all buttons
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
       
-      // Scroll to market intelligence section
-      document.querySelector('.market-intelligence').scrollIntoView({ behavior: 'smooth' });
+      // Show selected tab
+      document.getElementById(tabName + '-tab').classList.add('active');
+      event.target.closest('.tab-btn').classList.add('active');
+    }
+    
+    // NPV/IRR Calculator
+    function calculateNPV() {
+      const capex = parseFloat(document.getElementById('capex').value) || 850;
+      const life = parseFloat(document.getElementById('projectLife').value) || 20;
+      const revenue = parseFloat(document.getElementById('revenue').value) || 280;
+      const opex = parseFloat(document.getElementById('opex').value) || 165;
+      const discountRate = parseFloat(document.getElementById('discountRate').value) / 100 || 0.10;
+      const taxRate = parseFloat(document.getElementById('taxRate').value) / 100 || 0.30;
       
-      setTimeout(() => {
-          showNotification('📈 Real-time market data synchronized', 'success');
-      }, 1500);
-  }
-
-  function openRiskAssessment() {
-      analytics.track('economics_tool_access', { tool: 'risk_assessment' });
-      showNotification('⚖️ Initializing risk assessment framework...', 'info');
+      // Calculate annual free cash flow
+      const ebit = revenue - opex;
+      const tax = ebit * taxRate;
+      const nopat = ebit - tax;
+      const fcf = nopat; // Simplified (no depreciation adjustment)
       
-      setTimeout(() => {
-          showNotification('🛡️ Risk analysis tools ready', 'success');
-      }, 1800);
-  }
-
-  function openInvestmentAnalysis() {
-      analytics.track('economics_tool_access', { tool: 'investment_analysis' });
-      showNotification('💎 Loading investment analysis tools...', 'info');
+      // Calculate NPV
+      let npv = -capex;
+      for (let year = 1; year <= life; year++) {
+        npv += fcf / Math.pow(1 + discountRate, year);
+      }
       
-      setTimeout(() => {
-          showNotification('📊 Portfolio optimization ready', 'success');
-      }, 2200);
-  }
-
-  function openCostOptimization() {
-      analytics.track('economics_tool_access', { tool: 'cost_optimization' });
-      showNotification('⚙️ Starting cost optimization analysis...', 'info');
+      // Calculate IRR (simplified approximation)
+      let irr = discountRate;
+      for (let i = 0; i < 20; i++) {
+        let npvAtIRR = -capex;
+        for (let year = 1; year <= life; year++) {
+          npvAtIRR += fcf / Math.pow(1 + irr, year);
+        }
+        if (Math.abs(npvAtIRR) < 1) break;
+        irr += npvAtIRR > 0 ? 0.01 : -0.01;
+      }
       
-      setTimeout(() => {
-          showNotification('💰 Cost benchmarking data loaded', 'success');
-      }, 2000);
-  }
-
-  function openReporting() {
-      analytics.track('economics_tool_access', { tool: 'financial_reporting' });
-      showNotification('📋 Generating financial reports...', 'info');
+      // Calculate Payback Period
+      let cumCashFlow = -capex;
+      let payback = 0;
+      for (let year = 1; year <= life; year++) {
+        cumCashFlow += fcf;
+        if (cumCashFlow >= 0) {
+          payback = year;
+          break;
+        }
+      }
       
-      setTimeout(() => {
-          showNotification('📊 Executive dashboards ready', 'success');
-      }, 1500);
-  }
-
-  console.log('💰 Economics Hub ready');
-  console.log('📊 Financial modeling tools loaded');
-  console.log('📈 Market intelligence active');
-  console.log('⚖️ Risk assessment framework ready');
-  console.log('💎 Investment analysis tools available');
+      // Calculate Profitability Index
+      let pvCashFlows = 0;
+      for (let year = 1; year <= life; year++) {
+        pvCashFlows += fcf / Math.pow(1 + discountRate, year);
+      }
+      const pi = pvCashFlows / capex;
+      
+      // Display results
+      document.getElementById('npvValue').textContent = `$${npv.toFixed(0)}M`;
+      document.getElementById('npvValue').className = npv > 0 ? 'result-value' : 'result-value negative';
+      document.getElementById('irrValue').textContent = `${(irr * 100).toFixed(1)}%`;
+      document.getElementById('paybackValue').textContent = `${payback} years`;
+      document.getElementById('piValue').textContent = pi.toFixed(2);
+      
+      // Recommendation
+      let recommendation = '';
+      if (npv > 0 && irr > discountRate) {
+        recommendation = '✅ <strong>RECOMMENDED:</strong> This project shows positive NPV and IRR exceeds the discount rate. The project is economically viable and should be considered for investment.';
+      } else if (npv > 0 && irr <= discountRate) {
+        recommendation = '⚠️ <strong>CAUTION:</strong> Positive NPV but IRR is below discount rate. Review assumptions and consider alternative scenarios.';
+      } else {
+        recommendation = '❌ <strong>NOT RECOMMENDED:</strong> Negative NPV indicates the project may not generate sufficient returns. Consider optimization or alternative approaches.';
+      }
+      document.getElementById('recommendation').innerHTML = recommendation;
+      
+      // Show results
+      document.getElementById('npvResults').classList.add('active');
+      document.getElementById('npvResults').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+    
+    // Cash Flow Calculator
+    function calculateCashFlow() {
+      const production = parseFloat(document.getElementById('production').value) || 18;
+      const price = parseFloat(document.getElementById('price').value) || 8500;
+      const costPerTon = parseFloat(document.getElementById('costPerTon').value) || 4200;
+      const growthRate = parseFloat(document.getElementById('growthRate').value) / 100 || 0.02;
+      
+      // Calculate metrics
+      const revenue = (production * price) / 1000; // Convert to millions
+      const costs = (production * costPerTon) / 1000;
+      const fcf = revenue - costs;
+      const margin = ((price - costPerTon) / price) * 100;
+      const ebitda = fcf;
+      
+      // Calculate cumulative cash flow over 20 years with growth
+      let cumCash = 0;
+      for (let year = 1; year <= 20; year++) {
+        cumCash += fcf * Math.pow(1 + growthRate, year - 1);
+      }
+      
+      // Display results
+      document.getElementById('fcfValue').textContent = `$${fcf.toFixed(1)}M`;
+      document.getElementById('cumCashValue').textContent = `$${cumCash.toFixed(0)}M`;
+      document.getElementById('marginValue').textContent = `${margin.toFixed(1)}%`;
+      document.getElementById('ebitdaValue').textContent = `$${ebitda.toFixed(1)}M`;
+      
+      // Show results
+      document.getElementById('cashflowResults').classList.add('active');
+      document.getElementById('cashflowResults').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+    
+    // Sensitivity Analysis
+    function calculateSensitivity() {
+      const baseNPV = parseFloat(document.getElementById('baseNPV').value) || 450;
+      const priceVar = parseFloat(document.getElementById('priceVar').value) / 100 || 0.20;
+      const costVar = parseFloat(document.getElementById('costVar').value) / 100 || 0.15;
+      const volumeVar = parseFloat(document.getElementById('volumeVar').value) / 100 || 0.10;
+      
+      // Calculate scenarios (simplified model)
+      const bestCase = baseNPV * (1 + priceVar + volumeVar - costVar);
+      const worstCase = baseNPV * (1 - priceVar - volumeVar + costVar);
+      
+      // Risk assessment
+      const range = bestCase - worstCase;
+      const riskRatio = range / baseNPV;
+      let riskLevel = '';
+      let riskAssessment = '';
+      
+      if (riskRatio < 1) {
+        riskLevel = 'LOW';
+        riskAssessment = '✅ <strong>Low Risk:</strong> The project shows relatively stable returns across different scenarios. NPV remains positive even in worst case.';
+      } else if (riskRatio < 2) {
+        riskLevel = 'MEDIUM';
+        riskAssessment = '⚠️ <strong>Medium Risk:</strong> Moderate sensitivity to key variables. Consider hedging strategies and contingency planning.';
+      } else {
+        riskLevel = 'HIGH';
+        riskAssessment = '❌ <strong>High Risk:</strong> Significant exposure to market variables. Comprehensive risk management and mitigation strategies are essential.';
+      }
+      
+      // Display results
+      document.getElementById('bestCase').textContent = `$${bestCase.toFixed(0)}M`;
+      document.getElementById('baseCase').textContent = `$${baseNPV.toFixed(0)}M`;
+      document.getElementById('worstCase').textContent = `$${worstCase.toFixed(0)}M`;
+      document.getElementById('worstCase').className = worstCase > 0 ? 'result-value' : 'result-value negative';
+      document.getElementById('riskLevel').textContent = riskLevel;
+      document.getElementById('riskAssessment').innerHTML = riskAssessment;
+      
+      // Show results
+      document.getElementById('sensitivityResults').classList.add('active');
+      document.getElementById('sensitivityResults').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+    
+    console.log('💰 Economics Hub Loaded Successfully');
   </script>
 </body>
 </html>

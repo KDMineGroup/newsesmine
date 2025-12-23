@@ -1,947 +1,1299 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard - SES_MINE Platform</title>
-  
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="SESMine Dashboard - Smart Engineering Solutions for Mining">
+<title>Dashboard - SES_MINE Platform</title>
 
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="icon" type="image/png" href="https://cdn.grapesjs.com/workspaces/cmjdh0oo603xm12grpuiruk7p/assets/f6b95b3d-49d1-4e77-b952-49ed80c4befa__image-9-14-1404-ap-at-8.42-pm.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+  :root {
+    --primary-dark: #0b1a2e;
+    --primary-light: #f7f9fc;
+    --accent-primary: #2563eb;
+    --accent-secondary: #1e3a8a;
+    --accent-gold: #d4af37;
+    --success: #38a169;
+    --warning: #dd6b20;
+    --error: #e53e3e;
+    --info: #3182ce;
+    --purple: #9333ea;
+    --teal: #14b8a6;
+    --gradient-primary: linear-gradient(135deg, #0b1a2e 0%, #1a365d 100%);
+    --gradient-accent: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+    --gradient-gold: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+    --gradient-success: linear-gradient(135deg, #38a169 0%, #2f855a 100%);
+    --gradient-warning: linear-gradient(135deg, #dd6b20 0%, #c05621 100%);
+    --gradient-purple: linear-gradient(135deg, #9333ea 0%, #7e22ce 100%);
+    --gradient-teal: linear-gradient(135deg, #14b8a6 0%, #0f766e 100%);
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    --space-2xl: 3rem;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08);
+    --shadow-lg: 0 10px 15px rgba(0,0,0,0.1), 0 4px 6px rgba(0,0,0,0.05);
+    --shadow-xl: 0 20px 25px rgba(0,0,0,0.1), 0 10px 10px rgba(0,0,0,0.04);
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+    --transition-smooth: 0.3s ease;
+  }
   
-  <style>
-    :root {
-      --primary-dark: #0b1a2e;
-      --primary-light: #f7f9fc;
-      --accent-primary: #2563eb;
-      --accent-secondary: #1e3a8a;
-      --accent-gold: #d4af37;
-      --success: #38a169;
-      --warning: #dd6b20;
-      --error: #e53e3e;
-      --info: #3182ce;
-      --purple: #9333ea;
-      --teal: #14b8a6;
-      --gradient-primary: linear-gradient(135deg, #0b1a2e 0%, #1a365d 100%);
-      --gradient-accent: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
-      --gradient-gold: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
-      --space-xs: 0.25rem;
-      --space-sm: 0.5rem;
-      --space-md: 1rem;
-      --space-lg: 1.5rem;
-      --space-xl: 2rem;
-      --space-2xl: 3rem;
-      --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-      --shadow-md: 0 4px 6px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08);
-      --shadow-lg: 0 10px 15px rgba(0,0,0,0.1), 0 4px 6px rgba(0,0,0,0.05);
-      --shadow-xl: 0 20px 25px rgba(0,0,0,0.1), 0 10px 10px rgba(0,0,0,0.04);
-      --radius-sm: 0.25rem;
-      --radius-md: 0.5rem;
-      --radius-lg: 0.75rem;
-      --radius-xl: 1rem;
-      --transition-smooth: 0.3s ease;
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    color: var(--primary-dark);
+    background: linear-gradient(135deg, #f7f9fc 0%, #e8eef5 100%);
+    min-height: 100vh;
+  }
+  
+  /* Top Navigation */
+  .top-nav {
+    background: white;
+    border-bottom: 1px solid rgba(37, 99, 235, 0.1);
+    padding: var(--space-md) var(--space-xl);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow-sm);
+    backdrop-filter: blur(10px);
+  }
+  
+  .nav-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo-section {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+    cursor: pointer;
+  }
+  
+  .logo-image {
+    height: 50px;
+    width: auto;
+    transition: var(--transition-smooth);
+  }
+  
+  .logo-section:hover .logo-image {
+    transform: scale(1.05);
+  }
+  
+  .logo-text {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary-dark);
+  }
+  
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+  }
+  
+  .search-box {
+    position: relative;
+  }
+  
+  .search-input {
+    padding: var(--space-sm) var(--space-md) var(--space-sm) 2.5rem;
+    border: 2px solid rgba(37, 99, 235, 0.2);
+    border-radius: var(--radius-lg);
+    width: 300px;
+    font-size: 0.95rem;
+    transition: var(--transition-smooth);
+  }
+  
+  .search-input:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  }
+  
+  .search-icon {
+    position: absolute;
+    left: var(--space-md);
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--accent-secondary);
+  }
+  
+  .nav-icon-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(37, 99, 235, 0.1);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    position: relative;
+  }
+  
+  .nav-icon-btn:hover {
+    background: var(--gradient-accent);
+    color: white;
+    transform: scale(1.1);
+  }
+  
+  .notification-badge {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 18px;
+    height: 18px;
+    background: var(--error);
+    border-radius: 50%;
+    color: white;
+    font-size: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    animation: pulse 2s infinite;
+  }
+  
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+  
+  .user-profile {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+  }
+  
+  .user-profile:hover {
+    background: rgba(37, 99, 235, 0.05);
+  }
+  
+  .user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--gradient-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+  }
+  
+  .user-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .user-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  
+  .user-role {
+    font-size: 0.8rem;
+    color: var(--accent-secondary);
+  }
+  
+  /* Dashboard Container */
+  .dashboard-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: var(--space-2xl) var(--space-xl);
+  }
+  
+  /* Welcome Section */
+  .welcome-section {
+    background: var(--gradient-primary);
+    color: white;
+    padding: var(--space-2xl);
+    border-radius: var(--radius-xl);
+    margin-bottom: var(--space-2xl);
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-xl);
+  }
+  
+  .welcome-background {
+    position: absolute;
+    inset: 0;
+    opacity: 0.1;
+    background: url('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1200&q=80') center/cover;
+  }
+  
+  .welcome-background::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent, rgba(212, 175, 55, 0.2));
+  }
+  
+  .welcome-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+  }
+  
+  .welcome-title {
+    font-size: 3rem;
+    font-weight: 900;
+    margin-bottom: var(--space-lg);
+    background: linear-gradient(135deg, white, rgba(255, 255, 255, 0.8), var(--accent-gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: fadeInDown 1s ease-out;
+  }
+  
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
     }
-    
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
-    
-    body {
-      font-family: 'Inter', sans-serif;
-      line-height: 1.6;
-      color: var(--primary-dark);
-      background: linear-gradient(135deg, #f7f9fc 0%, #e8eef5 100%);
-      min-height: 100vh;
+  }
+  
+  .welcome-subtitle {
+    font-size: 1.3rem;
+    opacity: 0.95;
+    margin-bottom: var(--space-2xl);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    animation: fadeInUp 1s ease-out 0.2s both;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
     }
-    
-    /* Top Navigation */
-    .top-nav {
-      background: white;
-      border-bottom: 1px solid rgba(37, 99, 235, 0.1);
-      padding: var(--space-md) var(--space-xl);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: var(--shadow-sm);
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
-    
-    .nav-container {
-      max-width: 1600px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+  }
+  
+  .welcome-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--space-xl);
+    margin-top: var(--space-2xl);
+  }
+  
+  .welcome-stat {
+    text-align: center;
+    padding: var(--space-lg);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: var(--transition-smooth);
+    cursor: pointer;
+    animation: fadeInUp 1s ease-out both;
+  }
+  
+  .welcome-stat:nth-child(1) { animation-delay: 0.3s; }
+  .welcome-stat:nth-child(2) { animation-delay: 0.4s; }
+  .welcome-stat:nth-child(3) { animation-delay: 0.5s; }
+  .welcome-stat:nth-child(4) { animation-delay: 0.6s; }
+  
+  .welcome-stat:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-5px);
+  }
+  
+  .welcome-stat-value {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: var(--space-sm);
+    color: var(--accent-gold);
+  }
+  
+  .welcome-stat-label {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  /* Quick Stats */
+  .quick-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-xl);
+    margin-bottom: var(--space-2xl);
+  }
+  
+  .stat-card {
+    background: white;
+    border-radius: var(--radius-xl);
+    padding: var(--space-xl);
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(37, 99, 235, 0.1);
+    transition: var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-accent);
+    transition: var(--transition-smooth);
+  }
+  
+  .stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .stat-card:hover::before {
+    height: 6px;
+  }
+  
+  .stat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-lg);
+  }
+  
+  .stat-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: white;
+    box-shadow: var(--shadow-sm);
+  }
+  
+  .stat-trend {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: 12px;
+  }
+  
+  .trend-up {
+    background: rgba(56, 161, 105, 0.1);
+    color: var(--success);
+  }
+  
+  .trend-down {
+    background: rgba(229, 62, 62, 0.1);
+    color: var(--error);
+  }
+  
+  .stat-value {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--primary-dark);
+    margin-bottom: var(--space-xs);
+  }
+  
+  .stat-label {
+    color: var(--accent-secondary);
+    font-size: 0.95rem;
+    font-weight: 500;
+  }
+  
+  /* Hubs Grid */
+  .section-title-main {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary-dark);
+    margin-bottom: var(--space-xl);
+    text-align: center;
+  }
+  
+  .hubs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--space-xl);
+    margin-bottom: var(--space-2xl);
+  }
+  
+  .hub-card {
+    background: white;
+    border-radius: var(--radius-xl);
+    padding: var(--space-2xl);
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(37, 99, 235, 0.1);
+    transition: var(--transition-smooth);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .hub-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, var(--accent-gold), var(--teal), var(--accent-primary));
+  }
+  
+  .hub-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent, rgba(37, 99, 235, 0.02));
+    opacity: 0;
+    transition: var(--transition-smooth);
+  }
+  
+  .hub-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl);
+  }
+  
+  .hub-card:hover::after {
+    opacity: 1;
+  }
+  
+  .hub-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: white;
+    margin-bottom: var(--space-lg);
+    box-shadow: var(--shadow-md);
+    transition: var(--transition-smooth);
+  }
+  
+  .hub-card:hover .hub-icon {
+    transform: scale(1.1) rotate(5deg);
+  }
+  
+  .hub-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: var(--space-sm);
+    color: var(--primary-dark);
+  }
+  
+  .hub-description {
+    color: var(--accent-secondary);
+    margin-bottom: var(--space-lg);
+    line-height: 1.6;
+  }
+  
+  .hub-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+  }
+  
+  .hub-stat-item {
+    text-align: center;
+    padding: var(--space-sm);
+    background: rgba(37, 99, 235, 0.05);
+    border-radius: var(--radius-md);
+    transition: var(--transition-smooth);
+  }
+  
+  .hub-stat-item:hover {
+    background: rgba(37, 99, 235, 0.1);
+    transform: scale(1.05);
+  }
+  
+  .hub-stat-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--accent-primary);
+  }
+  
+  .hub-stat-label {
+    font-size: 0.8rem;
+    color: var(--accent-secondary);
+  }
+  
+  .hub-action {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: var(--space-lg);
+    border-top: 1px solid rgba(37, 99, 235, 0.1);
+  }
+  
+  .hub-link {
+    color: var(--accent-primary);
+    font-weight: 600;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    transition: var(--transition-smooth);
+  }
+  
+  .hub-link:hover {
+    gap: var(--space-md);
+  }
+  
+  .hub-status {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: 0.85rem;
+    color: var(--success);
+  }
+  
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--success);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  
+  /* Recent Activity */
+  .activity-section {
+    background: white;
+    border-radius: var(--radius-xl);
+    padding: var(--space-2xl);
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(37, 99, 235, 0.1);
+    margin-bottom: var(--space-2xl);
+  }
+  
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-xl);
+    padding-bottom: var(--space-lg);
+    border-bottom: 2px solid rgba(37, 99, 235, 0.1);
+  }
+  
+  .section-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+  
+  .view-all-btn {
+    color: var(--accent-primary);
+    font-weight: 600;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    transition: var(--transition-smooth);
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-md);
+  }
+  
+  .view-all-btn:hover {
+    background: rgba(37, 99, 235, 0.05);
+    gap: var(--space-md);
+  }
+  
+  .activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+  
+  .activity-item {
+    display: flex;
+    gap: var(--space-lg);
+    padding: var(--space-lg);
+    background: rgba(37, 99, 235, 0.02);
+    border-radius: var(--radius-lg);
+    transition: var(--transition-smooth);
+    cursor: pointer;
+  }
+  
+  .activity-item:hover {
+    background: rgba(37, 99, 235, 0.05);
+    transform: translateX(5px);
+  }
+  
+  .activity-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: white;
+    flex-shrink: 0;
+    box-shadow: var(--shadow-sm);
+  }
+  
+  .activity-content {
+    flex: 1;
+  }
+  
+  .activity-title {
+    font-weight: 600;
+    margin-bottom: var(--space-xs);
+    color: var(--primary-dark);
+  }
+  
+  .activity-description {
+    color: var(--accent-secondary);
+    font-size: 0.9rem;
+    margin-bottom: var(--space-xs);
+  }
+  
+  .activity-time {
+    font-size: 0.8rem;
+    color: var(--accent-secondary);
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+  }
+  
+  /* Quick Actions */
+  .quick-actions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-lg);
+    margin-bottom: var(--space-2xl);
+  }
+  
+  .action-btn {
+    background: white;
+    border: 2px solid rgba(37, 99, 235, 0.2);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    text-decoration: none;
+    color: var(--primary-dark);
+  }
+  
+  .action-btn:hover {
+    background: var(--gradient-accent);
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: transparent;
+  }
+  
+  .action-icon {
+    font-size: 2rem;
+    margin-bottom: var(--space-sm);
+  }
+  
+  .action-label {
+    font-weight: 600;
+    text-align: center;
+  }
+  
+  /* Footer */
+  .dashboard-footer {
+    text-align: center;
+    padding: var(--space-2xl) var(--space-xl);
+    color: var(--accent-secondary);
+    border-top: 1px solid rgba(37, 99, 235, 0.1);
+  }
+  
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-xl);
+    margin-bottom: var(--space-lg);
+    flex-wrap: wrap;
+  }
+  
+  .footer-link {
+    color: var(--accent-primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition-smooth);
+  }
+  
+  .footer-link:hover {
+    color: var(--accent-gold);
+  }
+  
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .hubs-grid {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     }
-    
-    .logo-section {
-      display: flex;
-      align-items: center;
-      gap: var(--space-lg);
-    }
-    
-    .logo-image {
-      height: 50px;
-      width: auto;
-    }
-    
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: var(--space-lg);
-    }
-    
-    .search-box {
-      position: relative;
-    }
-    
-    .search-input {
-      padding: var(--space-sm) var(--space-md) var(--space-sm) 2.5rem;
-      border: 2px solid rgba(37, 99, 235, 0.2);
-      border-radius: var(--radius-lg);
-      width: 300px;
-      font-size: 0.95rem;
-    }
-    
-    .search-icon {
-      position: absolute;
-      left: var(--space-md);
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--accent-secondary);
-    }
-    
-    .nav-icon-btn {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: rgba(37, 99, 235, 0.1);
-      border: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: var(--transition-smooth);
-      position: relative;
-    }
-    
-    .nav-icon-btn:hover {
-      background: var(--gradient-accent);
-      color: white;
-    }
-    
-    .notification-badge {
-      position: absolute;
-      top: -2px;
-      right: -2px;
-      width: 18px;
-      height: 18px;
-      background: var(--error);
-      border-radius: 50%;
-      color: white;
-      font-size: 0.7rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-    }
-    
-    .user-profile {
-      display: flex;
-      align-items: center;
-      gap: var(--space-sm);
-      padding: var(--space-sm) var(--space-md);
-      border-radius: var(--radius-lg);
-      cursor: pointer;
-      transition: var(--transition-smooth);
-    }
-    
-    .user-profile:hover {
-      background: rgba(37, 99, 235, 0.05);
-    }
-    
-    .user-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--gradient-accent);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-weight: 700;
-    }
-    
-    .user-info {
-      display: flex;
-      flex-direction: column;
-    }
-    
-    .user-name {
-      font-weight: 600;
-      font-size: 0.95rem;
-    }
-    
-    .user-role {
-      font-size: 0.8rem;
-      color: var(--accent-secondary);
-    }
-    
-    /* Dashboard Container */
+  }
+  
+  @media (max-width: 768px) {
     .dashboard-container {
-      max-width: 1600px;
-      margin: 0 auto;
-      padding: var(--space-2xl) var(--space-xl);
-    }
-    
-    /* Welcome Section */
-    .welcome-section {
-      background: var(--gradient-primary);
-      color: white;
-      padding: var(--space-3xl);
-      border-radius: var(--radius-xl);
-      margin-bottom: var(--space-2xl);
-      position: relative;
-      overflow: hidden;
-      box-shadow: var(--shadow-xl);
-    }
-    
-    .welcome-background {
-      position: absolute;
-      inset: 0;
-      opacity: 0.1;
-      background: url('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1200&q=80') center/cover;
-    }
-    
-    .welcome-content {
-      position: relative;
-      z-index: 1;
-      text-align: center;
+      padding: var(--space-lg);
     }
     
     .welcome-title {
-      font-size: 3rem;
-      font-weight: 900;
-      margin-bottom: var(--space-lg);
-      background: linear-gradient(135deg, white, rgba(255, 255, 255, 0.8), var(--accent-gold));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      font-size: 2rem;
     }
     
     .welcome-subtitle {
-      font-size: 1.3rem;
-      opacity: 0.95;
-      margin-bottom: var(--space-2xl);
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
+      font-size: 1.1rem;
+    }
+    
+    .search-input {
+      width: 150px;
+    }
+    
+    .user-info {
+      display: none;
+    }
+    
+    .logo-text {
+      display: none;
+    }
+    
+    .quick-stats {
+      grid-template-columns: 1fr;
     }
     
     .welcome-stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: var(--space-xl);
-      margin-top: var(--space-2xl);
-    }
-    
-    .welcome-stat {
-      text-align: center;
-      padding: var(--space-lg);
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: var(--radius-lg);
-      backdrop-filter: blur(10px);
-    }
-    
-    .welcome-stat-value {
-      font-size: 2rem;
-      font-weight: 800;
-      margin-bottom: var(--space-sm);
-    }
-    
-    .welcome-stat-label {
-      font-size: 0.9rem;
-      opacity: 0.9;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    
-    /* Quick Stats */
-    .quick-stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: var(--space-xl);
-      margin-bottom: var(--space-2xl);
-    }
-    
-    .stat-card {
-      background: white;
-      border-radius: var(--radius-xl);
-      padding: var(--space-xl);
-      box-shadow: var(--shadow-md);
-      border: 1px solid rgba(37, 99, 235, 0.1);
-      transition: var(--transition-smooth);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .stat-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: var(--gradient-accent);
-    }
-    
-    .stat-card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-lg);
-    }
-    
-    .stat-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: var(--space-lg);
-    }
-    
-    .stat-icon {
-      width: 50px;
-      height: 50px;
-      border-radius: var(--radius-lg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      color: white;
-    }
-    
-    .stat-trend {
-      display: flex;
-      align-items: center;
-      gap: var(--space-xs);
-      font-size: 0.85rem;
-      font-weight: 600;
-      padding: var(--space-xs) var(--space-sm);
-      border-radius: 12px;
-    }
-    
-    .trend-up {
-      background: rgba(56, 161, 105, 0.1);
-      color: var(--success);
-    }
-    
-    .trend-down {
-      background: rgba(229, 62, 62, 0.1);
-      color: var(--error);
-    }
-    
-    .stat-value {
-      font-size: 2.5rem;
-      font-weight: 800;
-      color: var(--primary-dark);
-      margin-bottom: var(--space-xs);
-    }
-    
-    .stat-label {
-      color: var(--accent-secondary);
-      font-size: 0.95rem;
-      font-weight: 500;
-    }
-    
-    /* Hubs Grid */
-    .hubs-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: var(--space-xl);
-      margin-bottom: var(--space-2xl);
-    }
-    
-    .hub-card {
-      background: white;
-      border-radius: var(--radius-xl);
-      padding: var(--space-2xl);
-      box-shadow: var(--shadow-md);
-      border: 1px solid rgba(37, 99, 235, 0.1);
-      transition: var(--transition-smooth);
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .hub-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 6px;
-      background: linear-gradient(90deg, var(--accent-gold), var(--teal), var(--accent-primary));
-    }
-    
-    .hub-card:hover {
-      transform: translateY(-8px);
-      box-shadow: var(--shadow-xl);
-    }
-    
-    .hub-icon {
-      width: 70px;
-      height: 70px;
-      border-radius: var(--radius-lg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      color: white;
-      margin-bottom: var(--space-lg);
-    }
-    
-    .hub-title {
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: var(--space-sm);
-      color: var(--primary-dark);
-    }
-    
-    .hub-description {
-      color: var(--accent-secondary);
-      margin-bottom: var(--space-lg);
-      line-height: 1.6;
-    }
-    
-    .hub-stats {
-      display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: var(--space-md);
-      margin-bottom: var(--space-lg);
     }
-    
-    .hub-stat-item {
-      text-align: center;
-      padding: var(--space-sm);
-      background: rgba(37, 99, 235, 0.05);
-      border-radius: var(--radius-md);
-    }
-    
-    .hub-stat-value {
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: var(--accent-primary);
-    }
-    
-    .hub-stat-label {
-      font-size: 0.8rem;
-      color: var(--accent-secondary);
-    }
-    
-    .hub-action {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-top: var(--space-lg);
-      border-top: 1px solid rgba(37, 99, 235, 0.1);
-    }
-    
-    .hub-link {
-      color: var(--accent-primary);
-      font-weight: 600;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: var(--space-sm);
-      transition: var(--transition-smooth);
-    }
-    
-    .hub-link:hover {
-      gap: var(--space-md);
-    }
-    
-    /* Recent Activity */
-    .activity-section {
-      background: white;
-      border-radius: var(--radius-xl);
-      padding: var(--space-2xl);
-      box-shadow: var(--shadow-md);
-      border: 1px solid rgba(37, 99, 235, 0.1);
-    }
-    
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: var(--space-xl);
-      padding-bottom: var(--space-lg);
-      border-bottom: 2px solid rgba(37, 99, 235, 0.1);
-    }
-    
-    .section-title {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--primary-dark);
-      display: flex;
-      align-items: center;
-      gap: var(--space-sm);
-    }
-    
-    .view-all-btn {
-      color: var(--accent-primary);
-      font-weight: 600;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: var(--space-sm);
-      transition: var(--transition-smooth);
-    }
-    
-    .view-all-btn:hover {
-      gap: var(--space-md);
-    }
-    
-    .activity-list {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-lg);
-    }
-    
-    .activity-item {
-      display: flex;
-      gap: var(--space-lg);
-      padding: var(--space-lg);
-      background: rgba(37, 99, 235, 0.02);
-      border-radius: var(--radius-lg);
-      transition: var(--transition-smooth);
-    }
-    
-    .activity-item:hover {
-      background: rgba(37, 99, 235, 0.05);
-    }
-    
-    .activity-icon {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      color: white;
-      flex-shrink: 0;
-    }
-    
-    .activity-content {
-      flex: 1;
-    }
-    
-    .activity-title {
-      font-weight: 600;
-      margin-bottom: var(--space-xs);
-      color: var(--primary-dark);
-    }
-    
-    .activity-description {
-      color: var(--accent-secondary);
-      font-size: 0.9rem;
-      margin-bottom: var(--space-xs);
-    }
-    
-    .activity-time {
-      font-size: 0.8rem;
-      color: var(--accent-secondary);
-    }
-    
-    /* Responsive */
-    @media (max-width: 1024px) {
-      .hubs-grid {
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      }
-    }
-    
-    @media (max-width: 768px) {
-      .dashboard-container {
-        padding: var(--space-lg);
-      }
-      
-      .welcome-title {
-        font-size: 2rem;
-      }
-      
-      .search-input {
-        width: 200px;
-      }
-      
-      .user-info {
-        display: none;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
-  <!-- Top Navigation -->
-  <nav class="top-nav">
-    <div class="nav-container">
-      <div class="logo-section">
+<!-- Top Navigation -->
+<nav class="top-nav">
+  <div class="nav-container">
+    <div class="logo-section" onclick="window.location.reload()">
+      <img src="https://cdn.grapesjs.com/workspaces/cmjdh0oo603xm12grpuiruk7p/assets/f6b95b3d-49d1-4e77-b952-49ed80c4befa__image-9-14-1404-ap-at-8.42-pm.png" 
+           alt="SES_MINE Logo" 
+           class="logo-image">
+      <span class="logo-text">SES_MINE</span>
+    </div>
+    
+    <div class="nav-actions">
+      <div class="search-box">
+        <i class="fas fa-search search-icon"></i>
+        <input type="text" class="search-input" placeholder="Search projects, tools...">
+      </div>
+      
+      <button class="nav-icon-btn" onclick="alert('5 new notifications')">
+        <i class="fas fa-bell"></i>
+        <span class="notification-badge">5</span>
+      </button>
+      
+      <button class="nav-icon-btn" onclick="alert('Settings - Coming Soon')">
+        <i class="fas fa-cog"></i>
+      </button>
+      
+      <div class="user-profile" onclick="alert('Profile menu - Coming Soon')">
+        <div class="user-avatar">JD</div>
+        <div class="user-info">
+          <div class="user-name">John Doe</div>
+          <div class="user-role">Project Manager</div>
+        </div>
+        <i class="fas fa-chevron-down"></i>
+      </div>
+    </div>
+  </div>
+</nav>
 
-      </div>
+<!-- Dashboard Container -->
+<div class="dashboard-container">
+  <!-- Welcome Section -->
+  <section class="welcome-section">
+    <div class="welcome-background"></div>
+    <div class="welcome-content">
+      <h1 class="welcome-title">Welcome to SES_MINE Dashboard</h1>
+      <p class="welcome-subtitle">
+        Your comprehensive mining intelligence platform for optimized operations, 
+        cost estimation, and data-driven decision making.
+      </p>
       
-      <div class="nav-actions">
-        <div class="search-box">
-          <i class="fas fa-search search-icon"></i>
-          <input type="text" class="search-input" placeholder="Search...">
+      <div class="welcome-stats">
+        <div class="welcome-stat" onclick="scrollToSection('projects')">
+          <div class="welcome-stat-value">12</div>
+          <div class="welcome-stat-label">Active Projects</div>
         </div>
-        
-        <button class="nav-icon-btn">
-          <i class="fas fa-bell"></i>
-          <span class="notification-badge">5</span>
-        </button>
-        
-        <button class="nav-icon-btn">
-          <i class="fas fa-cog"></i>
-        </button>
-        
-        <div class="user-profile">
-          <div class="user-avatar">JD</div>
-          <div class="user-info">
-            <div class="user-name">John Doe</div>
-            <div class="user-role">Project Manager</div>
-          </div>
-          <i class="fas fa-chevron-down"></i>
+        <div class="welcome-stat" onclick="scrollToSection('hubs')">
+          <div class="welcome-stat-value">8</div>
+          <div class="welcome-stat-label">Platforms</div>
+        </div>
+        <div class="welcome-stat" onclick="scrollToSection('activity')">
+          <div class="welcome-stat-value">45</div>
+          <div class="welcome-stat-label">Team Members</div>
+        </div>
+        <div class="welcome-stat" onclick="alert('$2.5B Total Project Value')">
+          <div class="welcome-stat-value">$2.5B</div>
+          <div class="welcome-stat-label">Project Value</div>
         </div>
       </div>
     </div>
-  </nav>
+  </section>
   
-  <!-- Dashboard Container -->
-  <div class="dashboard-container">
-    <!-- Welcome Section -->
-    <section class="welcome-section">
-      <div class="welcome-background"></div>
-      <div class="welcome-content">
-        <h1 class="welcome-title">Welcome to SES_MINE Dashboard</h1>
-        <p class="welcome-subtitle">
-          Your comprehensive mining intelligence platform for optimized operations, 
-          cost estimation, and data-driven decision making.
-        </p>
-        
-        <div class="welcome-stats">
-          <div class="welcome-stat">
-            <div class="welcome-stat-value">12</div>
-            <div class="welcome-stat-label">Active Projects</div>
-          </div>
-          <div class="welcome-stat">
-            <div class="welcome-stat-value">$2.4M</div>
-            <div class="welcome-stat-label">Total Savings</div>
-          </div>
-          <div class="welcome-stat">
-            <div class="welcome-stat-value">98%</div>
-            <div class="welcome-stat-label">Accuracy Rate</div>
-          </div>
-          <div class="welcome-stat">
-            <div class="welcome-stat-value">24/7</div>
-            <div class="welcome-stat-label">Support</div>
-          </div>
+  <!-- Quick Stats -->
+  <section class="quick-stats" id="projects">
+    <div class="stat-card" onclick="alert('View all active projects')">
+      <div class="stat-header">
+        <div class="stat-icon" style="background: var(--gradient-accent);">
+          <i class="fas fa-project-diagram"></i>
+        </div>
+        <div class="stat-trend trend-up">
+          <i class="fas fa-arrow-up"></i>
+          <span>12%</span>
         </div>
       </div>
-    </section>
-    
-    <!-- Quick Stats -->
-    <div class="quick-stats">
-      <div class="stat-card">
-        <div class="stat-card::before"></div>
-        <div class="stat-header">
-          <div class="stat-icon" style="background: var(--gradient-accent);">
-            <i class="fas fa-project-diagram"></i>
-          </div>
-          <div class="stat-trend trend-up">
-            <i class="fas fa-arrow-up"></i>
-            <span>+12%</span>
-          </div>
-        </div>
-        <div class="stat-value">24</div>
-        <div class="stat-label">Total Projects</div>
-      </div>
-      
-      <div class="stat-card">
-        <div class="stat-header">
-          <div class="stat-icon" style="background: var(--gradient-gold);">
-            <i class="fas fa-dollar-sign"></i>
-          </div>
-          <div class="stat-trend trend-up">
-            <i class="fas fa-arrow-up"></i>
-            <span>+8%</span>
-          </div>
-        </div>
-        <div class="stat-value">$8.5M</div>
-        <div class="stat-label">Cost Estimates</div>
-      </div>
-      
-      <div class="stat-card">
-        <div class="stat-header">
-          <div class="stat-icon" style="background: linear-gradient(135deg, #38a169, #2f855a);">
-            <i class="fas fa-chart-line"></i>
-          </div>
-          <div class="stat-trend trend-up">
-            <i class="fas fa-arrow-up"></i>
-            <span>+15%</span>
-          </div>
-        </div>
-        <div class="stat-value">156</div>
-        <div class="stat-label">Reports Generated</div>
-      </div>
-      
-      <div class="stat-card">
-        <div class="stat-header">
-          <div class="stat-icon" style="background: linear-gradient(135deg, #9333ea, #7e22ce);">
-            <i class="fas fa-users"></i>
-          </div>
-          <div class="stat-trend trend-up">
-            <i class="fas fa-arrow-up"></i>
-            <span>+5%</span>
-          </div>
-        </div>
-        <div class="stat-value">48</div>
-        <div class="stat-label">Team Members</div>
-      </div>
+      <div class="stat-value">24</div>
+      <div class="stat-label">Total Projects</div>
     </div>
     
-    <!-- Hubs Grid -->
-    <div class="hubs-grid">
-      <div class="hub-card" onclick="window.location.href='engineering-hub.html'">
-        <div class="hub-icon" style="background: var(--gradient-accent);">
-          <i class="fas fa-calculator"></i>
-        </div>
-        <h3 class="hub-title">Engineering Hub</h3>
-        <p class="hub-description">
-          Advanced cost estimation, equipment sizing, and project planning tools.
-        </p>
-        <div class="hub-stats">
-          <div class="hub-stat-item">
-            <div class="hub-stat-value">18</div>
-            <div class="hub-stat-label">Active Estimates</div>
-          </div>
-          <div class="hub-stat-item">
-            <div class="hub-stat-value">$4.2M</div>
-            <div class="hub-stat-label">Total Value</div>
-          </div>
-        </div>
-        <div class="hub-action">
-          <a href="engineering-hub.html" class="hub-link">
-            Open Hub
-            <i class="fas fa-arrow-right"></i>
-          </a>
-        </div>
-      </div>
-      
-      <div class="hub-card" onclick="window.location.href='analytics-platform.html'">
-        <div class="hub-icon" style="background: linear-gradient(135deg, #9333ea, #7e22ce);">
-          <i class="fas fa-chart-line"></i>
-        </div>
-        <h3 class="hub-title">Analytics Platform</h3>
-        <p class="hub-description">
-          Real-time dashboards, predictive analytics, and AI-powered insights.
-        </p>
-        <div class="hub-stats">
-          <div class="hub-stat-item">
-            <div class="hub-stat-value">42</div>
-            <div class="hub-stat-label">Dashboards</div>
-          </div>
-          <div class="hub-stat-item">
-            <div class="hub-stat-value">156</div>
-            <div class="hub-stat-label">Reports</div>
-          </div>
-        </div>
-        <div class="hub-action">
-          <a href="analytics-platform.html" class="hub-link">
-            Open Hub
-            <i class="fas fa-arrow-right"></i>
-          </a>
-        </div>
-      </div>
-      
-      <div class="hub-card" onclick="window.location.href='economics-hub.html'">
-        <div class="hub-icon" style="background: var(--gradient-gold);">
+    <div class="stat-card" onclick="alert('View cost estimations')">
+      <div class="stat-header">
+        <div class="stat-icon" style="background: var(--gradient-gold);">
           <i class="fas fa-dollar-sign"></i>
         </div>
-        <h3 class="hub-title">Economics Hub</h3>
-        <p class="hub-description">
-          Financial modeling, NPV analysis, and economic evaluation tools.
-        </p>
-        <div class="hub-stats">
-          <div class="hub-stat-item">
-            <div class="hub-stat-value">12</div>
-            <div class="hub-stat-label">Models</div>
-          </div>
-          <div class="hub-stat-item">
-            <div class="hub-stat-value">$8.5M</div>
-            <div class="hub-stat-label">NPV</div>
-          </div>
-        </div>
-        <div class="hub-action">
-          <a href="economics-hub.html" class="hub-link">
-            Open Hub
-            <i class="fas fa-arrow-right"></i>
-          </a>
+        <div class="stat-trend trend-up">
+          <i class="fas fa-arrow-up"></i>
+          <span>8%</span>
         </div>
       </div>
-      
-      <div class="hub-card" onclick="window.location.href='procurement-hub.html'">
-        <div class="hub-icon" style="background: linear-gradient(135deg, #14b8a6, #0891b2);">
-          <i class="fas fa-handshake"></i>
+      <div class="stat-value">$5.2M</div>
+      <div class="stat-label">Cost Savings</div>
+    </div>
+    
+    <div class="stat-card" onclick="alert('View equipment database')">
+      <div class="stat-header">
+        <div class="stat-icon" style="background: var(--gradient-success);">
+          <i class="fas fa-truck"></i>
         </div>
-        <h3 class="hub-title">Procurement Hub</h3>
-        <p class="hub-description">
-          Vendor management, RFQ automation, and supply chain optimization.
-        </p>
-        <div class="hub-stats">
-          <div class="hub-stat-item">
-            <div class="hub-stat-value">85</div>
-            <div class="hub-stat-label">Vendors</div>
-          </div>
-          <div class="hub-stat-item">
-            <div class="hub-stat-value">24</div>
-            <div class="hub-stat-label">Active RFQs</div>
-          </div>
-        </div>
-        <div class="hub-action">
-          <a href="procurement-hub.html" class="hub-link">
-            Open Hub
-            <i class="fas fa-arrow-right"></i>
-          </a>
+        <div class="stat-trend trend-up">
+          <i class="fas fa-arrow-up"></i>
+          <span>15%</span>
         </div>
       </div>
-      
-      <div class="hub-card" onclick="window.location.href='consulting-hub.html'">
-        <div class="hub-icon" style="background: linear-gradient(135deg, #9333ea, #7e22ce);">
-          <i class="fas fa-user-tie"></i>
+      <div class="stat-value">156</div>
+      <div class="stat-label">Equipment Units</div>
+    </div>
+    
+    <div class="stat-card" onclick="alert('View analytics reports')">
+      <div class="stat-header">
+        <div class="stat-icon" style="background: var(--gradient-purple);">
+          <i class="fas fa-chart-line"></i>
         </div>
-        <h3 class="hub-title">Consulting Hub</h3>
-        <p class="hub-description">
-          Expert consultants for feasibility studies and technical advisory.
-        </p>
-        <div class="hub-stats">
-          <div class="hub-stat-item">
-            <div class="hub-stat-value">8</div>
-            <div class="hub-stat-label">Consultations</div>
-          </div>
-          <div class="hub-stat-item">
-            <div class="hub-stat-value">5</div>
-            <div class="hub-stat-label">Ongoing</div>
-          </div>
-        </div>
-        <div class="hub-action">
-          <a href="consulting-hub.html" class="hub-link">
-            Open Hub
-            <i class="fas fa-arrow-right"></i>
-          </a>
+        <div class="stat-trend trend-down">
+          <i class="fas fa-arrow-down"></i>
+          <span>3%</span>
         </div>
       </div>
-      
-      <div class="hub-card" onclick="window.location.href='innovation-technology-hub.html'">
-        <div class="hub-icon" style="background: linear-gradient(135deg, #06b6d4, #0891b2);">
-          <i class="fas fa-rocket"></i>
+      <div class="stat-value">98.5%</div>
+      <div class="stat-label">Efficiency Rate</div>
+    </div>
+  </section>
+  
+  <!-- Quick Actions -->
+  <h2 class="section-title-main">Quick Actions</h2>
+  <section class="quick-actions">
+    <a href="engineering-hub.html" class="action-btn">
+      <div class="action-icon">📊</div>
+      <div class="action-label">New Cost Estimate</div>
+    </a>
+    <a href="analytics-platform.html" class="action-btn">
+      <div class="action-icon">📈</div>
+      <div class="action-label">View Analytics</div>
+    </a>
+    <a href="procurement-hub.html" class="action-btn">
+      <div class="action-icon">🛒</div>
+      <div class="action-label">Procurement</div>
+    </a>
+    <a href="training-education-hub.html" class="action-btn">
+      <div class="action-icon">🎓</div>
+      <div class="action-label">Training Courses</div>
+    </a>
+    <a href="platforms.html" class="action-btn">
+      <div class="action-icon">🌐</div>
+      <div class="action-label">All Platforms</div>
+    </a>
+  </section>
+  
+  <!-- Platform Hubs -->
+  <h2 class="section-title-main" id="hubs">Platform Hubs</h2>
+  <section class="hubs-grid">
+    <div class="hub-card" onclick="window.location.href='engineering-hub.html'">
+      <div class="hub-icon" style="background: var(--gradient-accent);">
+        <i class="fas fa-hard-hat"></i>
+      </div>
+      <h3 class="hub-title">Engineering Hub</h3>
+      <p class="hub-description">
+        Professional engineering tools for cost estimation, mine planning, and technical analysis following AACE standards.
+      </p>
+      <div class="hub-stats">
+        <div class="hub-stat-item">
+          <div class="hub-stat-value">15+</div>
+          <div class="hub-stat-label">Tools</div>
         </div>
-        <h3 class="hub-title">Innovation Hub</h3>
-        <p class="hub-description">
-          AI, automation, IoT, and emerging technologies for mining.
-        </p>
-        <div class="hub-stats">
-          <div class="hub-stat-item">
-            <div class="hub-stat-value">15</div>
-            <div class="hub-stat-label">Technologies</div>
-          </div>
-          <div class="hub-stat-item">
-            <div class="hub-stat-value">6</div>
-            <div class="hub-stat-label">Pilots</div>
-          </div>
+        <div class="hub-stat-item">
+          <div class="hub-stat-value">500+</div>
+          <div class="hub-stat-label">Projects</div>
         </div>
-        <div class="hub-action">
-          <a href="innovation-technology-hub.html" class="hub-link">
-            Open Hub
-            <i class="fas fa-arrow-right"></i>
-          </a>
+      </div>
+      <div class="hub-action">
+        <a href="engineering-hub.html" class="hub-link">
+          <span>Launch Hub</span>
+          <i class="fas fa-arrow-right"></i>
+        </a>
+        <div class="hub-status">
+          <span class="status-dot"></span>
+          <span>Active</span>
         </div>
       </div>
     </div>
     
-    <!-- Recent Activity -->
-    <section class="activity-section">
-      <div class="section-header">
-        <h2 class="section-title">
-          <i class="fas fa-history"></i>
-          Recent Activity
-        </h2>
-        <a href="#" class="view-all-btn">
-          View All
+    <div class="hub-card" onclick="window.location.href='analytics-platform.html'">
+      <div class="hub-icon" style="background: var(--gradient-purple);">
+        <i class="fas fa-chart-area"></i>
+      </div>
+      <h3 class="hub-title">Analytics Platform</h3>
+      <p class="hub-description">
+        Advanced analytics and AI-powered insights for operational optimization and predictive maintenance.
+      </p>
+      <div class="hub-stats">
+        <div class="hub-stat-item">
+          <div class="hub-stat-value">12+</div>
+          <div class="hub-stat-label">Models</div>
+        </div>
+        <div class="hub-stat-item">
+          <div class="hub-stat-value">1M+</div>
+          <div class="hub-stat-label">Data Points</div>
+        </div>
+      </div>
+      <div class="hub-action">
+        <a href="analytics-platform.html" class="hub-link">
+          <span>Launch Hub</span>
           <i class="fas fa-arrow-right"></i>
         </a>
+        <div class="hub-status">
+          <span class="status-dot"></span>
+          <span>Active</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="hub-card" onclick="window.location.href='economics-hub.html'">
+      <div class="hub-icon" style="background: var(--gradient-gold);">
+        <i class="fas fa-coins"></i>
+      </div>
+      <h3 class="hub-title">Economics Hub</h3>
+      <p class="hub-description">
+        Comprehensive financial modeling and market intelligence for mining project evaluation.
+      </p>
+      <div class="hub-stats">
+        <div class="hub-stat-item">
+          <div class="hub-stat-value">10+</div>
+          <div class="hub-stat-label">Models</div>
+        </div>
+        <div class="hub-stat-item">
+          <div class="hub-stat-value">$50B+</div>
+          <div class="hub-stat-label">Analyzed</div>
+        </div>
+      </div>
+      <div class="hub-action">
+        <a href="economics-hub.html" class="hub-link">
+          <span>Launch Hub</span>
+          <i class="fas fa-arrow-right"></i>
+        </a>
+        <div class="hub-status">
+          <span class="status-dot"></span>
+          <span>Active</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="hub-card" onclick="window.location.href='innovation-technology-hub.html'">
+      <div class="hub-icon" style="background: var(--gradient-warning);">
+        <i class="fas fa-rocket"></i>
+      </div>
+      <h3 class="hub-title">Innovation Hub</h3>
+      <p class="hub-description">
+        Cutting-edge technology solutions including AI, IoT, and blockchain for next-gen mining.
+      </p>
+      <div class="hub-stats">
+        <div class="hub-stat-item">
+          <div class="hub-stat-value">8+</div>
+          <div class="hub-stat-label">Technologies</div>
+        </div>
+        <div class="hub-stat-item">
+          <div class="hub-stat-value">100+</div>
+          <div class="hub-stat-label">Implementations</div>
+        </div>
+      </div>
+      <div class="hub-action">
+        <a href="innovation-technology-hub.html" class="hub-link">
+          <span>Launch Hub</span>
+          <i class="fas fa-arrow-right"></i>
+        </a>
+        <div class="hub-status">
+          <span class="status-dot"></span>
+          <span>Active</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="hub-card" onclick="window.location.href='procurement-hub.html'">
+      <div class="hub-icon" style="background: var(--gradient-success);">
+        <i class="fas fa-shopping-cart"></i>
+      </div>
+      <h3 class="hub-title">Procurement Hub</h3>
+      <p class="hub-description">
+        End-to-end procurement and supply chain management with supplier networks and RFQ systems.
+      </p>
+      <div class="hub-stats">
+        <div class="hub-stat-item">
+          <div class="hub-stat-value">1000+</div>
+          <div class="hub-stat-label">Suppliers</div>
+        </div>
+        <div class="hub-stat-item">
+          <div class="hub-stat-value">$2B+</div>
+          <div class="hub-stat-label">Transactions</div>
+        </div>
+      </div>
+      <div class="hub-action">
+        <a href="procurement-hub.html" class="hub-link">
+          <span>Launch Hub</span>
+          <i class="fas fa-arrow-right"></i>
+        </a>
+        <div class="hub-status">
+          <span class="status-dot"></span>
+          <span>Active</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="hub-card" onclick="window.location.href='training-education-hub.html'">
+      <div class="hub-icon" style="background: var(--gradient-teal);">
+        <i class="fas fa-graduation-cap"></i>
+      </div>
+      <h3 class="hub-title">Training Hub</h3>
+      <p class="hub-description">
+        Comprehensive training programs and certification courses for mining professionals.
+      </p>
+      <div class="hub-stats">
+        <div class="hub-stat-item">
+          <div class="hub-stat-value">150+</div>
+          <div class="hub-stat-label">Courses</div>
+        </div>
+        <div class="hub-stat-item">
+          <div class="hub-stat-value">25K+</div>
+          <div class="hub-stat-label">Students</div>
+        </div>
+      </div>
+      <div class="hub-action">
+        <a href="training-education-hub.html" class="hub-link">
+          <span>Launch Hub</span>
+          <i class="fas fa-arrow-right"></i>
+        </a>
+        <div class="hub-status">
+          <span class="status-dot"></span>
+          <span>Active</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Recent Activity -->
+  <section class="activity-section" id="activity">
+    <div class="section-header">
+      <h2 class="section-title">
+        <i class="fas fa-history"></i>
+        Recent Activity
+      </h2>
+      <a href="#" class="view-all-btn">
+        <span>View All</span>
+        <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+    
+    <div class="activity-list">
+      <div class="activity-item">
+        <div class="activity-icon" style="background: var(--gradient-accent);">
+          <i class="fas fa-file-alt"></i>
+        </div>
+        <div class="activity-content">
+          <div class="activity-title">New Cost Estimation Completed</div>
+          <div class="activity-description">Alpine Gold Mine project estimation finalized with 98% accuracy</div>
+          <div class="activity-time">
+            <i class="fas fa-clock"></i>
+            <span>2 hours ago</span>
+          </div>
+        </div>
       </div>
       
-      <div class="activity-list">
-        <div class="activity-item">
-          <div class="activity-icon" style="background: var(--gradient-accent);">
-            <i class="fas fa-file-invoice-dollar"></i>
-          </div>
-          <div class="activity-content">
-            <div class="activity-title">New Cost Estimate Created</div>
-            <div class="activity-description">
-              Project Alpha - Phase 2 cost estimation completed
-            </div>
-            <div class="activity-time">2 hours ago</div>
-          </div>
+      <div class="activity-item">
+        <div class="activity-icon" style="background: var(--gradient-success);">
+          <i class="fas fa-check-circle"></i>
         </div>
-        
-        <div class="activity-item">
-          <div class="activity-icon" style="background: linear-gradient(135deg, #38a169, #2f855a);">
-            <i class="fas fa-chart-bar"></i>
-          </div>
-          <div class="activity-content">
-            <div class="activity-title">Analytics Report Generated</div>
-            <div class="activity-description">
-              Q4 2024 Performance Analysis ready for review
-            </div>
-            <div class="activity-time">5 hours ago</div>
-          </div>
-        </div>
-        
-        <div class="activity-item">
-          <div class="activity-icon" style="background: var(--gradient-gold);">
-            <i class="fas fa-handshake"></i>
-          </div>
-          <div class="activity-content">
-            <div class="activity-title">RFQ Responses Received</div>
-            <div class="activity-description">
-              8 vendors responded to Equipment RFQ #2024-156
-            </div>
-            <div class="activity-time">1 day ago</div>
-          </div>
-        </div>
-        
-        <div class="activity-item">
-          <div class="activity-icon" style="background: linear-gradient(135deg, #9333ea, #7e22ce);">
-            <i class="fas fa-calendar-check"></i>
-          </div>
-          <div class="activity-content">
-            <div class="activity-title">Consultation Scheduled</div>
-            <div class="activity-description">
-              Meeting with Dr. Martinez on Dec 28, 2024 at 2:00 PM
-            </div>
-            <div class="activity-time">2 days ago</div>
+        <div class="activity-content">
+          <div class="activity-title">Equipment Order Approved</div>
+          <div class="activity-description">Purchase order #12345 for 5 excavators approved by finance team</div>
+          <div class="activity-time">
+            <i class="fas fa-clock"></i>
+            <span>5 hours ago</span>
           </div>
         </div>
       </div>
-    </section>
-  </div>
+      
+      <div class="activity-item">
+        <div class="activity-icon" style="background: var(--gradient-purple);">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <div class="activity-content">
+          <div class="activity-title">Analytics Report Generated</div>
+          <div class="activity-description">Q4 2024 operational efficiency report is now available</div>
+          <div class="activity-time">
+            <i class="fas fa-clock"></i>
+            <span>1 day ago</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="activity-item">
+        <div class="activity-icon" style="background: var(--gradient-gold);">
+          <i class="fas fa-graduation-cap"></i>
+        </div>
+        <div class="activity-content">
+          <div class="activity-title">Training Course Completed</div>
+          <div class="activity-description">15 team members completed "Advanced Mine Planning" certification</div>
+          <div class="activity-time">
+            <i class="fas fa-clock"></i>
+            <span>2 days ago</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="activity-item">
+        <div class="activity-icon" style="background: var(--gradient-warning);">
+          <i class="fas fa-users"></i>
+        </div>
+        <div class="activity-content">
+          <div class="activity-title">New Team Members Added</div>
+          <div class="activity-description">3 new engineers joined the Alpine Gold Mine project team</div>
+          <div class="activity-time">
+            <i class="fas fa-clock"></i>
+            <span>3 days ago</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
   
-  <script>
-    console.log('🏠 Dashboard Home Loaded Successfully');
-    
-    // Add click handlers for navigation
-    document.querySelectorAll('.hub-card').forEach(card => {
-      card.style.cursor = 'pointer';
+  <!-- Footer -->
+  <footer class="dashboard-footer">
+    <div class="footer-links">
+      <a href="platforms.html" class="footer-link">All Platforms</a>
+      <a href="#" class="footer-link" onclick="alert('Documentation - Coming Soon'); return false;">Documentation</a>
+      <a href="#" class="footer-link" onclick="alert('Support - Coming Soon'); return false;">Support</a>
+      <a href="#" class="footer-link" onclick="alert('API - Coming Soon'); return false;">API</a>
+      <a href="#" class="footer-link" onclick="alert('Privacy Policy - Coming Soon'); return false;">Privacy</a>
+      <a href="#" class="footer-link" onclick="alert('Terms - Coming Soon'); return false;">Terms</a>
+    </div>
+    <p>&copy; 2024 SES_MINE. All rights reserved. | Smart Engineering Solutions for Mining</p>
+  </footer>
+</div>
+
+<script>
+  // Smooth scroll function
+  function scrollToSection(sectionId) {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+  
+  // Search functionality
+  document.querySelector('.search-input').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+      const searchTerm = this.value;
+      if (searchTerm) {
+        alert(`Searching for: ${searchTerm}\n\nSearch functionality coming soon!`);
+      }
+    }
+  });
+  
+  // Add animation on scroll
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+  
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
     });
-  </script>
+  }, observerOptions);
+  
+  // Observe all cards
+  document.querySelectorAll('.stat-card, .hub-card, .activity-item').forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(20px)';
+    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(card);
+  });
+  
+  // Console welcome message
+  console.log('%c🏔️ Welcome to SES_MINE Dashboard!', 'color: #d4af37; font-size: 20px; font-weight: bold;');
+  console.log('%c✅ All systems operational', 'color: #38a169; font-size: 14px;');
+  console.log('%c📊 8 Platform Hubs Active', 'color: #2563eb; font-size: 14px;');
+  console.log('%c🚀 Ready for mining intelligence!', 'color: #9333ea; font-size: 14px;');
+</script>
 </body>
 </html>

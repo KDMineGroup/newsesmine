@@ -1,1736 +1,927 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign Up - SES_MINE Professional Platform</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up - SES_MINE Platform</title>
+
+<link rel="icon" type="image/png" href="https://cdn.grapesjs.com/workspaces/cmjdh0oo603xm12grpuiruk7p/assets/f6b95b3d-49d1-4e77-b952-49ed80c4befa__image-9-14-1404-ap-at-8.42-pm.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+  :root {
+    --primary-dark: #0b1a2e;
+    --primary-light: #f7f9fc;
+    --accent-primary: #2563eb;
+    --accent-secondary: #1e3a8a;
+    --accent-gold: #d4af37;
+    --success: #38a169;
+    --warning: #dd6b20;
+    --error: #e53e3e;
+    --gradient-primary: linear-gradient(135deg, #0b1a2e 0%, #1a365d 100%);
+    --gradient-accent: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+    --gradient-gold: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    --space-2xl: 3rem;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08);
+    --shadow-lg: 0 10px 15px rgba(0,0,0,0.1), 0 4px 6px rgba(0,0,0,0.05);
+    --shadow-xl: 0 20px 25px rgba(0,0,0,0.1), 0 10px 10px rgba(0,0,0,0.04);
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+    --transition-smooth: 0.3s ease;
+  }
   
-  <link rel="icon" type="image/png" href="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/153945651/6sGQHt6CUh5lVvcD.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
   
-  <!-- EmailJS SDK -->
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    color: var(--primary-dark);
+    background: linear-gradient(135deg, #0b1a2e 0%, #1a365d 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-xl);
+    position: relative;
+    overflow: hidden;
+  }
   
-  <style>
-    :root {
-      --primary-dark: #0b1a2e;
-      --primary-light: #f7f9fc;
-      --accent-primary: #2563eb;
-      --accent-secondary: #1e3a8a;
-      --accent-gold: #d4af37;
-      --success: #38a169;
-      --warning: #dd6b20;
-      --error: #e53e3e;
-      --info: #3182ce;
-      --gradient-primary: linear-gradient(135deg, #0b1a2e 0%, #1a365d 100%);
-      --gradient-accent: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
-      --gradient-gold: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
-      --gradient-success: linear-gradient(135deg, #38a169 0%, #2f855a 100%);
-      --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-      --shadow-md: 0 4px 6px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08);
-      --shadow-lg: 0 10px 15px rgba(0,0,0,0.1), 0 4px 6px rgba(0,0,0,0.05);
-      --shadow-xl: 0 20px 25px rgba(0,0,0,0.1), 0 10px 10px rgba(0,0,0,0.04);
-      --radius-md: 0.5rem;
-      --radius-lg: 0.75rem;
-      --radius-xl: 1rem;
-      --transition-smooth: 0.3s ease;
+  body::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1200&q=80') center/cover;
+    opacity: 0.1;
+  }
+  
+  body::after {
+    content: '';
+    position: absolute;
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    top: -400px;
+    right: -400px;
+    animation: glow 10s ease-in-out infinite;
+  }
+  
+  @keyframes glow {
+    0%, 100% { transform: scale(1) translate(0, 0); }
+    50% { transform: scale(1.2) translate(-50px, 50px); }
+  }
+  
+  .auth-container {
+    width: 100%;
+    max-width: 1200px;
+    background: white;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    animation: slideUp 0.6s ease-out;
+  }
+  
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
     }
-    
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
-    
-    body {
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, #0b1a2e 0%, #1a365d 50%, #2563eb 100%);
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-      position: relative;
-      overflow-x: hidden;
+  }
+  
+  .auth-sidebar {
+    background: var(--gradient-primary);
+    color: white;
+    padding: var(--space-2xl);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .auth-sidebar::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80') center/cover;
+    opacity: 0.1;
+  }
+  
+  .sidebar-content {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .sidebar-logo {
+    width: 120px;
+    height: auto;
+    margin-bottom: var(--space-xl);
+    animation: fadeIn 1s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  .sidebar-title {
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin-bottom: var(--space-lg);
+    background: linear-gradient(135deg, white, var(--accent-gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: fadeInLeft 1s ease-out 0.2s both;
+  }
+  
+  @keyframes fadeInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
     }
-    
-    body::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&q=80') center/cover;
-      opacity: 0.1;
-      animation: bgZoom 30s ease-in-out infinite;
+    to {
+      opacity: 1;
+      transform: translateX(0);
     }
-    
-    @keyframes bgZoom {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.1); }
+  }
+  
+  .sidebar-description {
+    font-size: 1.1rem;
+    opacity: 0.95;
+    margin-bottom: var(--space-2xl);
+    line-height: 1.8;
+    animation: fadeInLeft 1s ease-out 0.4s both;
+  }
+  
+  .sidebar-features {
+    list-style: none;
+  }
+  
+  .sidebar-feature {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+    animation: fadeInLeft 1s ease-out both;
+  }
+  
+  .sidebar-feature:nth-child(1) { animation-delay: 0.6s; }
+  .sidebar-feature:nth-child(2) { animation-delay: 0.7s; }
+  .sidebar-feature:nth-child(3) { animation-delay: 0.8s; }
+  .sidebar-feature:nth-child(4) { animation-delay: 0.9s; }
+  
+  .feature-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+  
+  .feature-text {
+    font-size: 1rem;
+    opacity: 0.95;
+  }
+  
+  .auth-form-container {
+    padding: var(--space-2xl);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .form-header {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+  }
+  
+  .form-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary-dark);
+    margin-bottom: var(--space-sm);
+  }
+  
+  .form-subtitle {
+    color: var(--accent-secondary);
+    font-size: 1rem;
+  }
+  
+  .form-subtitle a {
+    color: var(--accent-primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition-smooth);
+  }
+  
+  .form-subtitle a:hover {
+    color: var(--accent-gold);
+  }
+  
+  .auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+  
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+  
+  .form-label {
+    font-weight: 600;
+    color: var(--primary-dark);
+    font-size: 0.95rem;
+  }
+  
+  .form-label .required {
+    color: var(--error);
+  }
+  
+  .form-input-wrapper {
+    position: relative;
+  }
+  
+  .form-input {
+    width: 100%;
+    padding: var(--space-md) var(--space-lg);
+    border: 2px solid rgba(37, 99, 235, 0.2);
+    border-radius: var(--radius-lg);
+    font-size: 1rem;
+    transition: var(--transition-smooth);
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .form-input:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  }
+  
+  .form-input.error {
+    border-color: var(--error);
+  }
+  
+  .input-icon {
+    position: absolute;
+    right: var(--space-md);
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--accent-secondary);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+  }
+  
+  .input-icon:hover {
+    color: var(--accent-primary);
+  }
+  
+  .error-message {
+    color: var(--error);
+    font-size: 0.85rem;
+    display: none;
+  }
+  
+  .error-message.show {
+    display: block;
+  }
+  
+  .form-checkbox {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+  
+  .form-checkbox input {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+  }
+  
+  .form-checkbox label {
+    font-size: 0.95rem;
+    color: var(--accent-secondary);
+    cursor: pointer;
+  }
+  
+  .form-checkbox a {
+    color: var(--accent-primary);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  
+  .form-checkbox a:hover {
+    color: var(--accent-gold);
+  }
+  
+  .submit-btn {
+    padding: var(--space-md) var(--space-xl);
+    background: var(--gradient-accent);
+    color: white;
+    border: none;
+    border-radius: var(--radius-lg);
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .submit-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+  }
+  
+  .submit-btn:hover::before {
+    width: 400px;
+    height: 400px;
+  }
+  
+  .submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .submit-btn:active {
+    transform: translateY(0);
+  }
+  
+  .submit-btn span {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin: var(--space-lg) 0;
+  }
+  
+  .divider-line {
+    flex: 1;
+    height: 1px;
+    background: rgba(37, 99, 235, 0.2);
+  }
+  
+  .divider-text {
+    color: var(--accent-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  
+  .social-login {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+  }
+  
+  .social-btn {
+    padding: var(--space-md);
+    border: 2px solid rgba(37, 99, 235, 0.2);
+    border-radius: var(--radius-lg);
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    font-weight: 600;
+    color: var(--primary-dark);
+  }
+  
+  .social-btn:hover {
+    border-color: var(--accent-primary);
+    background: rgba(37, 99, 235, 0.05);
+    transform: translateY(-2px);
+  }
+  
+  .social-btn i {
+    font-size: 1.2rem;
+  }
+  
+  .back-home {
+    position: fixed;
+    top: var(--space-xl);
+    left: var(--space-xl);
+    z-index: 10;
+  }
+  
+  .back-btn {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-lg);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition-smooth);
+  }
+  
+  .back-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateX(-5px);
+  }
+  
+  .password-strength {
+    height: 4px;
+    background: #e0e0e0;
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: var(--space-xs);
+  }
+  
+  .password-strength-bar {
+    height: 100%;
+    width: 0;
+    transition: var(--transition-smooth);
+  }
+  
+  .strength-weak { background: var(--error); width: 33%; }
+  .strength-medium { background: var(--warning); width: 66%; }
+  .strength-strong { background: var(--success); width: 100%; }
+  
+  /* Loading State */
+  .loading {
+    pointer-events: none;
+    opacity: 0.7;
+  }
+  
+  .loading .submit-btn::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    right: var(--space-lg);
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  @keyframes spin {
+    to { transform: translateY(-50%) rotate(360deg); }
+  }
+  
+  /* Success Message */
+  .success-message {
+    position: fixed;
+    top: var(--space-xl);
+    right: var(--space-xl);
+    background: var(--gradient-success);
+    color: white;
+    padding: var(--space-lg) var(--space-xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
+    display: none;
+    align-items: center;
+    gap: var(--space-md);
+    z-index: 1000;
+    animation: slideInRight 0.5s ease-out;
+  }
+  
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(100px);
     }
-    
-    body::after {
-      content: '';
-      position: absolute;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(212, 175, 55, 0.3) 0%, transparent 70%);
-      border-radius: 50%;
-      bottom: -300px;
-      left: -300px;
-      animation: glow 8s ease-in-out infinite;
+    to {
+      opacity: 1;
+      transform: translateX(0);
     }
-    
-    @keyframes glow {
-      0%, 100% { transform: scale(1) translate(0, 0); opacity: 0.3; }
-      50% { transform: scale(1.2) translate(20px, -20px); opacity: 0.5; }
-    }
-    
-    .particles {
-      position: absolute;
-      inset: 0;
-      overflow: hidden;
-      pointer-events: none;
-    }
-    
-    .particle {
-      position: absolute;
-      width: 4px;
-      height: 4px;
-      background: rgba(212, 175, 55, 0.6);
-      border-radius: 50%;
-      animation: float 20s linear infinite;
-    }
-    
-    @keyframes float {
-      0% { transform: translateY(100vh) translateX(0); opacity: 0; }
-      10% { opacity: 1; }
-      90% { opacity: 1; }
-      100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
-    }
-    
+  }
+  
+  .success-message.show {
+    display: flex;
+  }
+  
+  /* Responsive */
+  @media (max-width: 968px) {
     .auth-container {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      max-width: 650px;
+      grid-template-columns: 1fr;
+      max-width: 500px;
     }
     
-    .auth-card {
-      background: rgba(255, 255, 255, 0.98);
-      backdrop-filter: blur(20px);
-      border-radius: var(--radius-xl);
-      padding: 3rem;
-      box-shadow: var(--shadow-xl);
-      position: relative;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-    }
-    
-    .auth-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 5px;
-      background: var(--gradient-success);
-    }
-    
-    .progress-bar {
-      position: absolute;
-      top: 5px;
-      left: 0;
-      height: 4px;
-      background: var(--gradient-gold);
-      width: 0%;
-      transition: width 0.5s ease;
-      z-index: 10;
-    }
-    
-    .auth-header {
-      text-align: center;
-      margin-bottom: 2rem;
-      position: relative;
-      z-index: 1;
-    }
-    
-    .auth-logo {
-      width: 90px;
-      height: 90px;
-      background: var(--gradient-success);
-      border-radius: var(--radius-lg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3rem;
-      margin: 0 auto 1.5rem;
-      box-shadow: var(--shadow-lg);
-      animation: logoFloat 3s ease-in-out infinite;
-      position: relative;
-    }
-    
-    .auth-logo::before {
-      content: '';
-      position: absolute;
-      inset: -5px;
-      border-radius: var(--radius-lg);
-      background: linear-gradient(45deg, var(--success), var(--accent-gold), var(--success));
-      background-size: 200% 200%;
-      animation: gradientShift 3s ease infinite;
-      z-index: -1;
-      filter: blur(10px);
-      opacity: 0.7;
-    }
-    
-    @keyframes gradientShift {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-    }
-    
-    @keyframes logoFloat {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      25% { transform: translateY(-10px) rotate(-5deg); }
-      75% { transform: translateY(-10px) rotate(5deg); }
-    }
-    
-    .auth-title {
-      font-size: 2.2rem;
-      font-weight: 800;
-      color: var(--primary-dark);
-      margin-bottom: 0.5rem;
-      background: linear-gradient(135deg, var(--primary-dark), var(--success));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    
-    .auth-subtitle {
-      color: var(--accent-secondary);
-      font-size: 1rem;
-      line-height: 1.5;
-    }
-    
-    .benefits-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(56, 161, 105, 0.1);
-      color: var(--success);
-      padding: 0.5rem 1rem;
-      border-radius: 50px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-top: 1rem;
-      border: 1px solid rgba(56, 161, 105, 0.3);
-    }
-    
-    .form-steps {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 2rem;
-      position: relative;
-    }
-    
-    .form-steps::before {
-      content: '';
-      position: absolute;
-      top: 20px;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: rgba(37, 99, 235, 0.2);
-      z-index: 0;
-    }
-    
-    .step {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      position: relative;
-      z-index: 1;
-    }
-    
-    .step-number {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: rgba(37, 99, 235, 0.1);
-      color: var(--accent-secondary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      border: 2px solid rgba(37, 99, 235, 0.3);
-      transition: var(--transition-smooth);
-    }
-    
-    .step.active .step-number {
-      background: var(--gradient-accent);
-      color: white;
-      border-color: var(--accent-primary);
-      transform: scale(1.1);
-    }
-    
-    .step.completed .step-number {
-      background: var(--gradient-success);
-      color: white;
-      border-color: var(--success);
-    }
-    
-    .step-label {
-      font-size: 0.75rem;
-      color: var(--accent-secondary);
-      font-weight: 600;
-      text-align: center;
+    .auth-sidebar {
+      display: none;
     }
     
     .form-row {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    body {
+      padding: var(--space-md);
     }
     
-    .form-group {
-      margin-bottom: 1.5rem;
-      position: relative;
-      z-index: 1;
+    .auth-form-container {
+      padding: var(--space-lg);
     }
     
-    .form-label {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-weight: 600;
-      color: var(--primary-dark);
-      margin-bottom: 0.5rem;
-      font-size: 0.9rem;
-    }
-    
-    .form-label-required {
-      color: var(--error);
-      font-size: 0.8rem;
-    }
-    
-    .form-input-wrapper {
-      position: relative;
-    }
-    
-    .form-input, .form-select {
-      width: 100%;
-      padding: 1rem 1rem 1rem 3.5rem;
-      border: 2px solid rgba(37, 99, 235, 0.2);
-      border-radius: var(--radius-md);
-      font-size: 1rem;
-      transition: var(--transition-smooth);
-      font-family: 'Inter', sans-serif;
-      background: white;
-    }
-    
-    .form-input:focus, .form-select:focus {
-      outline: none;
-      border-color: var(--accent-primary);
-      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
-      transform: translateY(-2px);
-    }
-    
-    .form-input.error, .form-select.error {
-      border-color: var(--error);
-      animation: shake 0.5s;
-    }
-    
-    @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      25% { transform: translateX(-10px); }
-      75% { transform: translateX(10px); }
-    }
-    
-    .form-input.success, .form-select.success {
-      border-color: var(--success);
-    }
-    
-    .form-icon {
-      position: absolute;
-      left: 1.2rem;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--accent-secondary);
-      font-size: 1.1rem;
-      transition: var(--transition-smooth);
-    }
-    
-    .form-input:focus + .form-icon,
-    .form-select:focus + .form-icon {
-      color: var(--accent-primary);
-      transform: translateY(-50%) scale(1.1);
-    }
-    
-    .password-toggle {
-      position: absolute;
-      right: 1rem;
-      top: 50%;
-      transform: translateY(-50%);
-      background: none;
-      border: none;
-      color: var(--accent-secondary);
-      cursor: pointer;
-      font-size: 1.1rem;
-      padding: 0.5rem;
-      transition: var(--transition-smooth);
-    }
-    
-    .password-toggle:hover {
-      color: var(--accent-primary);
-    }
-    
-    .error-message {
-      color: var(--error);
-      font-size: 0.85rem;
-      margin-top: 0.5rem;
-      display: none;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    
-    .error-message.show {
-      display: flex;
-      animation: slideDown 0.3s ease;
-    }
-    
-    @keyframes slideDown {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    .success-message {
-      color: var(--success);
-      font-size: 0.85rem;
-      margin-top: 0.5rem;
-      display: none;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    
-    .success-message.show {
-      display: flex;
-      animation: slideDown 0.3s ease;
-    }
-    
-    .password-strength {
-      margin-top: 0.75rem;
-      display: none;
-    }
-    
-    .password-strength.show {
-      display: block;
-    }
-    
-    .strength-bar-container {
-      height: 6px;
-      background: rgba(37, 99, 235, 0.1);
-      border-radius: 3px;
-      overflow: hidden;
-      margin-bottom: 0.5rem;
-    }
-    
-    .strength-bar-fill {
-      height: 100%;
-      transition: var(--transition-smooth);
-      border-radius: 3px;
-    }
-    
-    .strength-weak { width: 33%; background: var(--error); }
-    .strength-medium { width: 66%; background: var(--warning); }
-    .strength-strong { width: 100%; background: var(--success); }
-    
-    .strength-text {
-      font-size: 0.85rem;
-      font-weight: 600;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    
-    .text-weak { color: var(--error); }
-    .text-medium { color: var(--warning); }
-    .text-strong { color: var(--success); }
-    
-    .password-requirements {
-      margin-top: 0.5rem;
-      padding: 0.75rem;
-      background: rgba(37, 99, 235, 0.05);
-      border-radius: var(--radius-md);
-      font-size: 0.85rem;
-    }
-    
-    .requirement {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 0.25rem;
-      color: var(--accent-secondary);
-    }
-    
-    .requirement.met {
-      color: var(--success);
-    }
-    
-    .requirement i {
-      font-size: 0.75rem;
-    }
-    
-    .plan-selection {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
-    
-    .plan-card {
-      border: 2px solid rgba(37, 99, 235, 0.2);
-      border-radius: var(--radius-lg);
-      padding: 1.5rem;
-      text-align: center;
-      cursor: pointer;
-      transition: var(--transition-smooth);
-      position: relative;
-      background: white;
-    }
-    
-    .plan-card:hover {
-      border-color: var(--accent-primary);
-      background: rgba(37, 99, 235, 0.02);
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-md);
-    }
-    
-    .plan-card.selected {
-      border-color: var(--accent-primary);
-      background: rgba(37, 99, 235, 0.05);
-      box-shadow: var(--shadow-lg);
-    }
-    
-    .plan-card.selected::after {
-      content: '✓';
-      position: absolute;
-      top: 0.75rem;
-      right: 0.75rem;
-      width: 28px;
-      height: 28px;
-      background: var(--accent-primary);
-      color: white;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 1rem;
-      box-shadow: var(--shadow-md);
-    }
-    
-    .plan-badge {
-      position: absolute;
-      top: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--gradient-gold);
-      color: var(--primary-dark);
-      padding: 0.25rem 0.75rem;
-      border-radius: 50px;
-      font-size: 0.7rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      display: none;
-    }
-    
-    .plan-card.recommended .plan-badge {
-      display: block;
-    }
-    
-    .plan-icon {
-      font-size: 2.5rem;
-      margin-bottom: 0.75rem;
-    }
-    
-    .plan-name {
-      font-weight: 700;
-      color: var(--primary-dark);
-      margin-bottom: 0.5rem;
-      font-size: 1.1rem;
-    }
-    
-    .plan-price {
-      color: var(--accent-primary);
-      font-weight: 700;
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-    }
-    
-    .plan-period {
-      color: var(--accent-secondary);
-      font-size: 0.85rem;
-      margin-bottom: 1rem;
-    }
-    
-    .plan-features {
-      list-style: none;
-      text-align: left;
-      font-size: 0.85rem;
-    }
-    
-    .plan-features li {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 0.5rem;
-      color: var(--accent-secondary);
-    }
-    
-    .plan-features i {
-      color: var(--success);
-      font-size: 0.75rem;
-    }
-    
-    .checkbox-wrapper {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.75rem;
-      margin-bottom: 1.5rem;
-    }
-    
-    .checkbox-wrapper input[type="checkbox"] {
-      width: 20px;
-      height: 20px;
-      margin-top: 0.25rem;
-      cursor: pointer;
-      accent-color: var(--accent-primary);
-    }
-    
-    .checkbox-wrapper label {
-      font-size: 0.9rem;
-      color: var(--accent-secondary);
-      cursor: pointer;
-      line-height: 1.5;
-      user-select: none;
-    }
-    
-    .checkbox-wrapper label a {
-      color: var(--accent-primary);
-      text-decoration: none;
-      font-weight: 600;
-      transition: var(--transition-smooth);
-    }
-    
-    .checkbox-wrapper label a:hover {
-      text-decoration: underline;
-      color: var(--accent-secondary);
-    }
-    
-    .btn-submit {
-      width: 100%;
-      padding: 1.2rem;
-      background: var(--gradient-success);
-      color: white;
-      border: none;
-      border-radius: var(--radius-md);
-      font-size: 1.05rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: var(--transition-smooth);
-      box-shadow: var(--shadow-md);
-      position: relative;
-      overflow: hidden;
-      z-index: 1;
-    }
-    
-    .btn-submit::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 0;
-      height: 0;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.3);
-      transform: translate(-50%, -50%);
-      transition: width 0.6s, height 0.6s;
-    }
-    
-    .btn-submit:hover::before {
-      width: 500px;
-      height: 500px;
-    }
-    
-    .btn-submit:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-lg);
-    }
-    
-    .btn-submit:active {
-      transform: translateY(-1px);
-    }
-    
-    .btn-submit:disabled {
-      opacity: 0.7;
-      cursor: not-allowed;
-      transform: none;
-    }
-    
-    .btn-submit span {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-    }
-    
-    .divider {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin: 2rem 0;
-      position: relative;
-      z-index: 1;
-    }
-    
-    .divider::before,
-    .divider::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.3), transparent);
-    }
-    
-    .divider span {
-      color: var(--accent-secondary);
-      font-size: 0.9rem;
-      font-weight: 600;
-      background: white;
-      padding: 0 0.5rem;
+    .form-title {
+      font-size: 1.75rem;
     }
     
     .social-login {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-      position: relative;
-      z-index: 1;
+      grid-template-columns: 1fr;
     }
     
-    .social-btn {
-      padding: 1rem;
-      border: 2px solid rgba(37, 99, 235, 0.2);
-      background: white;
-      border-radius: var(--radius-md);
-      cursor: pointer;
-      transition: var(--transition-smooth);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.75rem;
-      font-weight: 600;
-      color: var(--primary-dark);
-      font-size: 0.95rem;
+    .back-home {
+      top: var(--space-md);
+      left: var(--space-md);
     }
-    
-    .social-btn:hover {
-      border-color: var(--accent-primary);
-      background: rgba(37, 99, 235, 0.05);
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-md);
-    }
-    
-    .social-btn i {
-      font-size: 1.2rem;
-    }
-    
-    .auth-footer {
-      text-align: center;
-      margin-top: 2rem;
-      padding-top: 2rem;
-      border-top: 1px solid rgba(37, 99, 235, 0.1);
-      position: relative;
-      z-index: 1;
-    }
-    
-    .auth-footer p {
-      color: var(--accent-secondary);
-      font-size: 0.95rem;
-      margin-bottom: 1rem;
-    }
-    
-    .auth-footer a {
-      color: var(--accent-primary);
-      text-decoration: none;
-      font-weight: 700;
-      transition: var(--transition-smooth);
-    }
-    
-    .auth-footer a:hover {
-      color: var(--accent-secondary);
-    }
-    
-    .trust-badges {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-top: 1rem;
-      flex-wrap: wrap;
-    }
-    
-    .trust-badge {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--accent-secondary);
-      font-size: 0.85rem;
-    }
-    
-    .trust-badge i {
-      color: var(--success);
-    }
-    
-    .alert {
-      padding: 1rem 1.25rem;
-      border-radius: var(--radius-md);
-      margin-bottom: 1.5rem;
-      display: none;
-      align-items: center;
-      gap: 0.75rem;
-      font-size: 0.95rem;
-      animation: slideIn 0.3s ease;
-      position: relative;
-      z-index: 1;
-    }
-    
-    @keyframes slideIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    .alert.show {
-      display: flex;
-    }
-    
-    .alert-success {
-      background: rgba(56, 161, 105, 0.1);
-      color: var(--success);
-      border: 1px solid var(--success);
-      border-left: 4px solid var(--success);
-    }
-    
-    .alert-error {
-      background: rgba(229, 62, 62, 0.1);
-      color: var(--error);
-      border: 1px solid var(--error);
-      border-left: 4px solid var(--error);
-    }
-    
-    .alert-info {
-      background: rgba(49, 130, 206, 0.1);
-      color: var(--info);
-      border: 1px solid var(--info);
-      border-left: 4px solid var(--info);
-    }
-    
-    .alert-warning {
-      background: rgba(221, 107, 32, 0.1);
-      color: var(--warning);
-      border: 1px solid var(--warning);
-      border-left: 4px solid var(--warning);
-    }
-    
-    .alert i {
-      font-size: 1.2rem;
-    }
-    
-    .alert-close {
-      margin-left: auto;
-      background: none;
-      border: none;
-      color: inherit;
-      cursor: pointer;
-      font-size: 1.2rem;
-      padding: 0.25rem;
-      opacity: 0.7;
-      transition: var(--transition-smooth);
-    }
-    
-    .alert-close:hover {
-      opacity: 1;
-    }
-    
-    .loading-spinner {
-      display: inline-block;
-      width: 18px;
-      height: 18px;
-      border: 3px solid rgba(255, 255, 255, 0.3);
-      border-top-color: white;
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-    }
-    
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-    
-    @media (max-width: 768px) {
-      body {
-        padding: 1rem;
-      }
-      
-      .auth-card {
-        padding: 2rem;
-      }
-      
-      .auth-title {
-        font-size: 1.75rem;
-      }
-      
-      .auth-logo {
-        width: 70px;
-        height: 70px;
-        font-size: 2.5rem;
-      }
-      
-      .form-row {
-        grid-template-columns: 1fr;
-      }
-      
-      .plan-selection {
-        grid-template-columns: 1fr;
-      }
-      
-      .social-login {
-        grid-template-columns: 1fr;
-      }
-      
-      .trust-badges {
-        flex-direction: column;
-        gap: 0.75rem;
-      }
-      
-      .form-steps {
-        font-size: 0.85rem;
-      }
-      
-      .step-number {
-        width: 35px;
-        height: 35px;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
-  <!-- Animated Particles -->
-  <div class="particles" id="particles"></div>
-  
-  <div class="auth-container">
-    <div class="auth-card">
-      <div class="progress-bar" id="progressBar"></div>
+<!-- Back to Home -->
+<div class="back-home">
+  <a href="home.html" class="back-btn">
+    <i class="fas fa-arrow-left"></i>
+    <span>Back to Home</span>
+  </a>
+</div>
+
+<!-- Success Message -->
+<div class="success-message" id="successMessage">
+  <i class="fas fa-check-circle" style="font-size: 1.5rem;"></i>
+  <span>Account created successfully! Redirecting...</span>
+</div>
+
+<!-- Auth Container -->
+<div class="auth-container">
+  <!-- Sidebar -->
+  <div class="auth-sidebar">
+    <div class="sidebar-content">
+      <img src="https://cdn.grapesjs.com/workspaces/cmjdh0oo603xm12grpuiruk7p/assets/f6b95b3d-49d1-4e77-b952-49ed80c4befa__image-9-14-1404-ap-at-8.42-pm.png" alt="SES_MINE Logo" class="sidebar-logo">
       
-      <div class="auth-header">
-        <div class="auth-logo">🚀</div>
-        <h1 class="auth-title">Create Your Account</h1>
-        <p class="auth-subtitle">Join thousands of mining professionals worldwide</p>
-        <div class="benefits-badge">
-          <i class="fas fa-gift"></i>
-          <span>14-Day Free Trial • No Credit Card Required</span>
-        </div>
-      </div>
+      <h1 class="sidebar-title">Welcome to SES_MINE</h1>
+      <p class="sidebar-description">
+        Join thousands of mining professionals using our comprehensive platform for cost estimation, 
+        analytics, and project management.
+      </p>
       
-      <div class="form-steps">
-        <div class="step active" data-step="1">
-          <div class="step-number">1</div>
-          <div class="step-label">Personal Info</div>
-        </div>
-        <div class="step" data-step="2">
-          <div class="step-number">2</div>
-          <div class="step-label">Company Details</div>
-        </div>
-        <div class="step" data-step="3">
-          <div class="step-number">3</div>
-          <div class="step-label">Choose Plan</div>
-        </div>
-      </div>
-      
-      <div id="alertContainer"></div>
-      
-      <form id="signupForm">
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label">
-              <span>First Name</span>
-              <span class="form-label-required">* Required</span>
-            </label>
-            <div class="form-input-wrapper">
-              <input 
-                type="text" 
-                class="form-input" 
-                id="firstName" 
-                placeholder="John"
-                autocomplete="given-name"
-                required
-              >
-              <i class="fas fa-user form-icon"></i>
-            </div>
-            <div class="error-message" id="firstNameError">
-              <i class="fas fa-exclamation-circle"></i>
-              <span>First name is required</span>
-            </div>
-            <div class="success-message" id="firstNameSuccess">
-              <i class="fas fa-check-circle"></i>
-              <span>Looks good!</span>
-            </div>
+      <ul class="sidebar-features">
+        <li class="sidebar-feature">
+          <div class="feature-icon">
+            <i class="fas fa-check"></i>
           </div>
-          
-          <div class="form-group">
-            <label class="form-label">
-              <span>Last Name</span>
-              <span class="form-label-required">* Required</span>
-            </label>
-            <div class="form-input-wrapper">
-              <input 
-                type="text" 
-                class="form-input" 
-                id="lastName" 
-                placeholder="Doe"
-                autocomplete="family-name"
-                required
-              >
-              <i class="fas fa-user form-icon"></i>
-            </div>
-            <div class="error-message" id="lastNameError">
-              <i class="fas fa-exclamation-circle"></i>
-              <span>Last name is required</span>
-            </div>
-            <div class="success-message" id="lastNameSuccess">
-              <i class="fas fa-check-circle"></i>
-              <span>Looks good!</span>
-            </div>
+          <div class="feature-text">AACE-compliant cost estimation tools</div>
+        </li>
+        <li class="sidebar-feature">
+          <div class="feature-icon">
+            <i class="fas fa-check"></i>
           </div>
-        </div>
-        
-        <div class="form-group">
-          <label class="form-label">
-            <span>Email Address</span>
-            <span class="form-label-required">* Required</span>
-          </label>
-          <div class="form-input-wrapper">
-            <input 
-              type="email" 
-              class="form-input" 
-              id="signupEmail" 
-              placeholder="your.email@company.com"
-              autocomplete="email"
-              required
-            >
-            <i class="fas fa-envelope form-icon"></i>
+          <div class="feature-text">Real-time analytics and reporting</div>
+        </li>
+        <li class="sidebar-feature">
+          <div class="feature-icon">
+            <i class="fas fa-check"></i>
           </div>
-          <div class="error-message" id="emailError">
-            <i class="fas fa-exclamation-circle"></i>
-            <span>Please enter a valid email address</span>
+          <div class="feature-text">Comprehensive equipment database</div>
+        </li>
+        <li class="sidebar-feature">
+          <div class="feature-icon">
+            <i class="fas fa-check"></i>
           </div>
-          <div class="success-message" id="emailSuccess">
-            <i class="fas fa-check-circle"></i>
-            <span>Valid email format</span>
-          </div>
-        </div>
-        
-        <div class="form-group">
-          <label class="form-label">
-            <span>Company Name</span>
-            <span class="form-label-required">* Required</span>
-          </label>
-          <div class="form-input-wrapper">
-            <input 
-              type="text" 
-              class="form-input" 
-              id="company" 
-              placeholder="Your Company Ltd."
-              autocomplete="organization"
-              required
-            >
-            <i class="fas fa-building form-icon"></i>
-          </div>
-          <div class="error-message" id="companyError">
-            <i class="fas fa-exclamation-circle"></i>
-            <span>Company name is required</span>
-          </div>
-          <div class="success-message" id="companySuccess">
-            <i class="fas fa-check-circle"></i>
-            <span>Looks good!</span>
-          </div>
-        </div>
-        
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label">
-              <span>Job Title</span>
-              <span class="form-label-required">* Required</span>
-            </label>
-            <div class="form-input-wrapper">
-              <select class="form-select" id="jobTitle" required>
-                <option value="">Select your role</option>
-                <option value="engineer">Mining Engineer</option>
-                <option value="manager">Project Manager</option>
-                <option value="executive">Executive/Director</option>
-                <option value="analyst">Data Analyst</option>
-                <option value="consultant">Consultant</option>
-                <option value="geologist">Geologist</option>
-                <option value="technician">Technician</option>
-                <option value="other">Other</option>
-              </select>
-              <i class="fas fa-briefcase form-icon"></i>
-            </div>
-            <div class="error-message" id="jobTitleError">
-              <i class="fas fa-exclamation-circle"></i>
-              <span>Please select your job title</span>
-            </div>
-          </div>
-          
-          <div class="form-group">
-            <label class="form-label">
-              <span>Phone Number</span>
-              <span style="color: var(--accent-secondary); font-size: 0.8rem;">Optional</span>
-            </label>
-            <div class="form-input-wrapper">
-              <input 
-                type="tel" 
-                class="form-input" 
-                id="phone" 
-                placeholder="+1 (555) 000-0000"
-                autocomplete="tel"
-              >
-              <i class="fas fa-phone form-icon"></i>
-            </div>
-          </div>
-        </div>
-        
-        <div class="form-group">
-          <label class="form-label">
-            <span>Password</span>
-            <span class="form-label-required">* Required</span>
-          </label>
-          <div class="form-input-wrapper">
-            <input 
-              type="password" 
-              class="form-input" 
-              id="signupPassword" 
-              placeholder="Create a strong password"
-              autocomplete="new-password"
-              required
-            >
-            <i class="fas fa-lock form-icon"></i>
-            <button type="button" class="password-toggle" onclick="togglePassword('signupPassword', 'passwordToggleIcon')">
-              <i class="fas fa-eye" id="passwordToggleIcon"></i>
-            </button>
-          </div>
-          <div class="password-strength" id="passwordStrength">
-            <div class="strength-bar-container">
-              <div class="strength-bar-fill" id="strengthFill"></div>
-            </div>
-            <div class="strength-text" id="strengthText"></div>
-          </div>
-          <div class="password-requirements">
-            <div class="requirement" id="req-length">
-              <i class="fas fa-circle"></i>
-              <span>At least 8 characters</span>
-            </div>
-            <div class="requirement" id="req-uppercase">
-              <i class="fas fa-circle"></i>
-              <span>One uppercase letter</span>
-            </div>
-            <div class="requirement" id="req-number">
-              <i class="fas fa-circle"></i>
-              <span>One number</span>
-            </div>
-            <div class="requirement" id="req-special">
-              <i class="fas fa-circle"></i>
-              <span>One special character</span>
-            </div>
-          </div>
-          <div class="error-message" id="passwordError">
-            <i class="fas fa-exclamation-circle"></i>
-            <span>Password must meet all requirements</span>
-          </div>
-        </div>
-        
-        <div class="form-group">
-          <label class="form-label">
-            <span>Choose Your Plan</span>
-          </label>
-          <div class="plan-selection">
-            <div class="plan-card" data-plan="trial" onclick="selectPlan('trial')">
-              <div class="plan-icon">🎯</div>
-              <div class="plan-name">Trial</div>
-              <div class="plan-price">$0</div>
-              <div class="plan-period">14 days free</div>
-              <ul class="plan-features">
-                <li><i class="fas fa-check"></i> Engineering Hub</li>
-                <li><i class="fas fa-check"></i> Basic Analytics</li>
-                <li><i class="fas fa-check"></i> Email Support</li>
-              </ul>
-            </div>
-            <div class="plan-card recommended selected" data-plan="standard" onclick="selectPlan('standard')">
-              <div class="plan-badge">Most Popular</div>
-              <div class="plan-icon">⭐</div>
-              <div class="plan-name">Standard</div>
-              <div class="plan-price">$99</div>
-              <div class="plan-period">per month</div>
-              <ul class="plan-features">
-                <li><i class="fas fa-check"></i> 2 Core Platforms</li>
-                <li><i class="fas fa-check"></i> Advanced Analytics</li>
-                <li><i class="fas fa-check"></i> Priority Support</li>
-              </ul>
-            </div>
-            <div class="plan-card" data-plan="premium" onclick="selectPlan('premium')">
-              <div class="plan-icon">💎</div>
-              <div class="plan-name">Premium</div>
-              <div class="plan-price">$299</div>
-              <div class="plan-period">per month</div>
-              <ul class="plan-features">
-                <li><i class="fas fa-check"></i> All 6 Platforms</li>
-                <li><i class="fas fa-check"></i> Full Features</li>
-                <li><i class="fas fa-check"></i> 24/7 Support</li>
-              </ul>
-            </div>
-          </div>
-          <input type="hidden" id="selectedPlan" value="standard">
-        </div>
-        
-        <div class="checkbox-wrapper">
-          <input type="checkbox" id="agreeTerms" required>
-          <label for="agreeTerms">
-            I agree to the <a href="#" onclick="showModal('terms'); return false;">Terms of Service</a> and <a href="#" onclick="showModal('privacy'); return false;">Privacy Policy</a>
-          </label>
-        </div>
-        
-        <div class="checkbox-wrapper">
-          <input type="checkbox" id="newsletter" checked>
-          <label for="newsletter">
-            Send me updates about new features, industry insights, and special offers
-          </label>
-        </div>
-        
-        <button type="submit" class="btn-submit" id="signupBtn">
-          <span>
-            <i class="fas fa-rocket"></i>
-            Create Account & Start Free Trial
-          </span>
-        </button>
-      </form>
-      
-      <div class="divider">
-        <span>Or sign up with</span>
-      </div>
-      
-      <div class="social-login">
-        <button class="social-btn" onclick="socialSignup('google')">
-          <i class="fab fa-google"></i>
-          Google
-        </button>
-        <button class="social-btn" onclick="socialSignup('microsoft')">
-          <i class="fab fa-microsoft"></i>
-          Microsoft
-        </button>
-      </div>
-      
-      <div class="auth-footer">
-        <p>Already have an account? <a href="login.html">Sign in</a></p>
-        
-        <div class="trust-badges">
-          <div class="trust-badge">
-            <i class="fas fa-check-circle"></i>
-            <span>SOC 2 Certified</span>
-          </div>
-          <div class="trust-badge">
-            <i class="fas fa-check-circle"></i>
-            <span>GDPR Compliant</span>
-          </div>
-          <div class="trust-badge">
-            <i class="fas fa-check-circle"></i>
-            <span>ISO 27001</span>
-          </div>
-        </div>
-      </div>
+          <div class="feature-text">24/7 expert support</div>
+        </li>
+      </ul>
     </div>
   </div>
   
-  <script>
-    // Initialize EmailJS
-    (function() {
-      emailjs.init("vIsuy4VXOAFCLwx2c");
-    })();
+  <!-- Form Container -->
+  <div class="auth-form-container">
+    <div class="form-header">
+      <h2 class="form-title">Create Your Account</h2>
+      <p class="form-subtitle">
+        Already have an account? <a href="login.html">Sign in</a>
+      </p>
+    </div>
     
-    // Create animated particles
-    function createParticles() {
-      const particlesContainer = document.getElementById('particles');
-      for (let i = 0; i < 20; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.animationDelay = Math.random() * 20 + 's';
-        particle.style.animationDuration = (15 + Math.random() * 10) + 's';
-        particlesContainer.appendChild(particle);
-      }
-    }
-    createParticles();
-    
-    let selectedPlanValue = 'standard';
-    let currentStep = 1;
-    
-    // Update progress bar
-    function updateProgress() {
-      const progress = (currentStep / 3) * 100;
-      document.getElementById('progressBar').style.width = progress + '%';
-    }
-    
-    // Real-time field validation
-    const fields = ['firstName', 'lastName', 'signupEmail', 'company'];
-    fields.forEach(fieldId => {
-      const input = document.getElementById(fieldId);
-      input.addEventListener('input', function() {
-        validateField(fieldId);
-      });
-      input.addEventListener('blur', function() {
-        validateField(fieldId);
-      });
-    });
-    
-    function validateField(fieldId) {
-      const input = document.getElementById(fieldId);
-      const value = input.value.trim();
-      const errorEl = document.getElementById(fieldId + 'Error');
-      const successEl = document.getElementById(fieldId + 'Success');
-      
-      if (value.length === 0) {
-        input.classList.remove('success', 'error');
-        if (errorEl) errorEl.classList.remove('show');
-        if (successEl) successEl.classList.remove('show');
-        return false;
-      }
-      
-      let isValid = false;
-      
-      if (fieldId === 'signupEmail') {
-        isValid = validateEmail(value);
-      } else {
-        isValid = value.length >= 2;
-      }
-      
-      if (isValid) {
-        input.classList.remove('error');
-        input.classList.add('success');
-        if (errorEl) errorEl.classList.remove('show');
-        if (successEl) successEl.classList.add('show');
-      } else {
-        input.classList.remove('success');
-        input.classList.add('error');
-        if (successEl) successEl.classList.remove('show');
-        if (errorEl) errorEl.classList.add('show');
-      }
-      
-      return isValid;
-    }
-    
-    // Password strength checker
-    document.getElementById('signupPassword').addEventListener('input', function() {
-      const password = this.value;
-      const strengthContainer = document.getElementById('passwordStrength');
-      const strengthFill = document.getElementById('strengthFill');
-      const strengthText = document.getElementById('strengthText');
-      
-      if (password.length === 0) {
-        strengthContainer.classList.remove('show');
-        return;
-      }
-      
-      strengthContainer.classList.add('show');
-      
-      // Check requirements
-      const requirements = {
-        length: password.length >= 8,
-        uppercase: /[A-Z]/.test(password),
-        number: /\d/.test(password),
-        special: /[^a-zA-Z\d]/.test(password)
-      };
-      
-      // Update requirement indicators
-      Object.keys(requirements).forEach(req => {
-        const reqEl = document.getElementById('req-' + req);
-        if (requirements[req]) {
-          reqEl.classList.add('met');
-          reqEl.querySelector('i').className = 'fas fa-check-circle';
-        } else {
-          reqEl.classList.remove('met');
-          reqEl.querySelector('i').className = 'fas fa-circle';
-        }
-      });
-      
-      // Calculate strength
-      let strength = Object.values(requirements).filter(Boolean).length;
-      
-      strengthFill.className = 'strength-bar-fill';
-      strengthText.className = 'strength-text';
-      
-      if (strength <= 1) {
-        strengthFill.classList.add('strength-weak');
-        strengthText.classList.add('text-weak');
-        strengthText.innerHTML = '<span>Weak password</span><span>🔴</span>';
-      } else if (strength <= 2) {
-        strengthFill.classList.add('strength-medium');
-        strengthText.classList.add('text-medium');
-        strengthText.innerHTML = '<span>Medium strength</span><span>🟡</span>';
-      } else if (strength <= 3) {
-        strengthFill.classList.add('strength-medium');
-        strengthText.classList.add('text-medium');
-        strengthText.innerHTML = '<span>Good password</span><span>🟢</span>';
-      } else {
-        strengthFill.classList.add('strength-strong');
-        strengthText.classList.add('text-strong');
-        strengthText.innerHTML = '<span>Strong password</span><span>✅</span>';
-      }
-    });
-    
-    // Password toggle
-    function togglePassword(inputId, iconId) {
-      const passwordInput = document.getElementById(inputId);
-      const toggleIcon = document.getElementById(iconId);
-      
-      if (passwordInput.type === 'password') {
-        passwordInput.type = 'text';
-        toggleIcon.classList.remove('fa-eye');
-        toggleIcon.classList.add('fa-eye-slash');
-      } else {
-        passwordInput.type = 'password';
-        toggleIcon.classList.remove('fa-eye-slash');
-        toggleIcon.classList.add('fa-eye');
-      }
-    }
-    
-    // Plan selection
-    function selectPlan(plan) {
-      document.querySelectorAll('.plan-card').forEach(card => {
-        card.classList.remove('selected');
-      });
-      document.querySelector(`[data-plan="${plan}"]`).classList.add('selected');
-      document.getElementById('selectedPlan').value = plan;
-      selectedPlanValue = plan;
-      
-      currentStep = 3;
-      updateSteps();
-      updateProgress();
-    }
-    
-    function updateSteps() {
-      document.querySelectorAll('.step').forEach(step => {
-        const stepNum = parseInt(step.getAttribute('data-step'));
-        if (stepNum < currentStep) {
-          step.classList.add('completed');
-          step.classList.remove('active');
-        } else if (stepNum === currentStep) {
-          step.classList.add('active');
-          step.classList.remove('completed');
-        } else {
-          step.classList.remove('active', 'completed');
-        }
-      });
-    }
-    
-    // Form submission
-    document.getElementById('signupForm').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      
-      const firstName = document.getElementById('firstName').value.trim();
-      const lastName = document.getElementById('lastName').value.trim();
-      const email = document.getElementById('signupEmail').value.trim();
-      const company = document.getElementById('company').value.trim();
-      const jobTitle = document.getElementById('jobTitle').value;
-      const phone = document.getElementById('phone').value.trim();
-      const password = document.getElementById('signupPassword').value;
-      const agreeTerms = document.getElementById('agreeTerms').checked;
-      const newsletter = document.getElementById('newsletter').checked;
-      
-      // Validate all fields
-      if (!validateForm(firstName, lastName, email, company, jobTitle, password, agreeTerms)) {
-        return;
-      }
-      
-      // Show loading state
-      const signupBtn = document.getElementById('signupBtn');
-      signupBtn.disabled = true;
-      signupBtn.innerHTML = '<span><span class="loading-spinner"></span> Creating your account...</span>';
-      
-      // Simulate registration delay
-      setTimeout(() => {
-        registerUser(firstName, lastName, email, company, jobTitle, phone, password, selectedPlanValue, newsletter);
-      }, 2000);
-    });
-    
-    function validateForm(firstName, lastName, email, company, jobTitle, password, agreeTerms) {
-      let isValid = true;
-      
-      if (!firstName || firstName.length < 2) {
-        showFieldError('firstName');
-        isValid = false;
-      }
-      
-      if (!lastName || lastName.length < 2) {
-        showFieldError('lastName');
-        isValid = false;
-      }
-      
-      if (!validateEmail(email)) {
-        showFieldError('signupEmail');
-        isValid = false;
-      }
-      
-      if (!company || company.length < 2) {
-        showFieldError('company');
-        isValid = false;
-      }
-      
-      if (!jobTitle) {
-        showFieldError('jobTitle');
-        isValid = false;
-      }
-      
-      // Check password requirements
-      const passwordValid = password.length >= 8 && 
-                          /[A-Z]/.test(password) && 
-                          /\d/.test(password) && 
-                          /[^a-zA-Z\d]/.test(password);
-      
-      if (!passwordValid) {
-        showAlert('error', 'Please ensure your password meets all requirements.');
-        isValid = false;
-      }
-      
-      if (!agreeTerms) {
-        showAlert('error', 'Please agree to the Terms of Service and Privacy Policy to continue.');
-        isValid = false;
-      }
-      
-      return isValid;
-    }
-    
-    function registerUser(firstName, lastName, email, company, jobTitle, phone, password, plan, newsletter) {
-      // Determine access level based on plan
-      const accessLevels = {
-        trial: {
-          level: 'trial',
-          platforms: ['engineering-hub'],
-          duration: '14 days',
-          features: ['Basic Analytics', 'Email Support']
-        },
-        standard: {
-          level: 'standard',
-          platforms: ['engineering-hub', 'analytics-platform'],
-          duration: 'unlimited',
-          features: ['Advanced Analytics', 'Priority Support', 'API Access']
-        },
-        premium: {
-          level: 'premium',
-          platforms: ['engineering-hub', 'analytics-platform', 'economics-hub', 'innovation-technology-hub', 'procurement-hub', 'training-education-hub'],
-          duration: 'unlimited',
-          features: ['All Features', '24/7 Support', 'API Access', 'Custom Integrations', 'Dedicated Account Manager']
-        }
-      };
-      
-      const userAccess = accessLevels[plan];
-      const registrationId = 'REG_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-      
-      // Create user data
-      const userData = {
-        registrationId,
-        firstName,
-        lastName,
-        email,
-        company,
-        jobTitle,
-        phone: phone || 'Not provided',
-        plan,
-        accessLevel: userAccess.level,
-        platforms: userAccess.platforms,
-        features: userAccess.features,
-        registrationDate: new Date().toISOString(),
-        newsletter,
-        status: 'pending_approval',
-        approvalRequired: true
-      };
-      
-      // Store registration data
-      localStorage.setItem('sesmine_pending_registration', JSON.stringify(userData));
-      
-      // Send registration notification to admin
-      sendAdminNotification(userData);
-      
-      // Send welcome email to user
-      sendWelcomeEmail(userData);
-      
-      // Show success message
-      showAlert('success', `Thank you, ${firstName}! Your registration request has been submitted for approval.`);
-      
-      setTimeout(() => {
-        window.location.href = 'login.html?registration=pending';
-      }, 3000);
-    }
-    
-    function sendAdminNotification(userData) {
-      const adminTemplateParams = {
-        to_email: 'admin@sesmine.com', // Admin email
-        registration_id: userData.registrationId,
-        user_name: `${userData.firstName} ${userData.lastName}`,
-        user_email: userData.email,
-        company: userData.company,
-        job_title: userData.jobTitle,
-        phone: userData.phone,
-        plan: userData.plan.charAt(0).toUpperCase() + userData.plan.slice(1),
-        platforms: userData.platforms.join(', '),
-        registration_date: new Date(userData.registrationDate).toLocaleString(),
-        approval_link: `https://sesmine.com/admin-dashboard.html?action=approve&id=${userData.registrationId}`,
-        reject_link: `https://sesmine.com/admin-dashboard.html?action=reject&id=${userData.registrationId}`
-      };
-      
-      emailjs.send('service_v1tzk6t', 'template_admin_approval', adminTemplateParams)
-        .then(function(response) {
-          console.log('✅ Admin notification sent', response.status);
-        }, function(error) {
-          console.log('❌ Failed to send admin notification', error);
-        });
-    }
-    
-    function sendWelcomeEmail(userData) {
-      const platformsList = userData.platforms.map(p => 
-        p.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
-      ).join(', ');
-      
-      const userTemplateParams = {
-        to_email: userData.email,
-        to_name: `${userData.firstName} ${userData.lastName}`,
-        company: userData.company,
-        plan: userData.plan.charAt(0).toUpperCase() + userData.plan.slice(1),
-        platforms: platformsList,
-        features: userData.features.join(', '),
-        registration_id: userData.registrationId,
-        status_link: `https://sesmine.com/registration-status.html?id=${userData.registrationId}`
-      };
-      
-      emailjs.send('service_v1tzk6t', 'template_5rwnvg8', userTemplateParams)
-        .then(function(response) {
-          console.log('✅ Welcome email sent', response.status);
-        }, function(error) {
-          console.log('❌ Failed to send welcome email', error);
-        });
-    }
-    
-    function validateEmail(email) {
-      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      return re.test(email);
-    }
-    
-    function showFieldError(fieldId) {
-      const input = document.getElementById(fieldId);
-      const errorEl = document.getElementById(fieldId + 'Error');
-      
-      input.classList.add('error');
-      if (errorEl) {
-        errorEl.classList.add('show');
-        setTimeout(() => errorEl.classList.remove('show'), 5000);
-      }
-    }
-    
-    function showAlert(type, message) {
-      const alertContainer = document.getElementById('alertContainer');
-      const alertClass = type === 'success' ? 'alert-success' : 
-                        type === 'error' ? 'alert-error' : 
-                        type === 'warning' ? 'alert-warning' : 'alert-info';
-      const icon = type === 'success' ? 'fa-check-circle' : 
-                  type === 'error' ? 'fa-exclamation-circle' : 
-                  type === 'warning' ? 'fa-exclamation-triangle' : 'fa-info-circle';
-      
-      alertContainer.innerHTML = `
-        <div class="alert ${alertClass} show">
-          <i class="fas ${icon}"></i>
-          <span>${message}</span>
-          <button class="alert-close" onclick="this.parentElement.remove()">
-            <i class="fas fa-times"></i>
-          </button>
+    <form class="auth-form" id="signupForm">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">
+            First Name <span class="required">*</span>
+          </label>
+          <input type="text" class="form-input" id="firstName" placeholder="John" required>
+          <span class="error-message" id="firstNameError">Please enter your first name</span>
         </div>
-      `;
+        
+        <div class="form-group">
+          <label class="form-label">
+            Last Name <span class="required">*</span>
+          </label>
+          <input type="text" class="form-input" id="lastName" placeholder="Doe" required>
+          <span class="error-message" id="lastNameError">Please enter your last name</span>
+        </div>
+      </div>
       
+      <div class="form-group">
+        <label class="form-label">
+          Email Address <span class="required">*</span>
+        </label>
+        <input type="email" class="form-input" id="email" placeholder="john.doe@company.com" required>
+        <span class="error-message" id="emailError">Please enter a valid email address</span>
+      </div>
+      
+      <div class="form-group">
+        <label class="form-label">
+          Company Name <span class="required">*</span>
+        </label>
+        <input type="text" class="form-input" id="company" placeholder="Your Company" required>
+        <span class="error-message" id="companyError">Please enter your company name</span>
+      </div>
+      
+      <div class="form-group">
+        <label class="form-label">
+          Job Title <span class="required">*</span>
+        </label>
+        <input type="text" class="form-input" id="jobTitle" placeholder="Project Manager" required>
+        <span class="error-message" id="jobTitleError">Please enter your job title</span>
+      </div>
+      
+      <div class="form-group">
+        <label class="form-label">
+          Password <span class="required">*</span>
+        </label>
+        <div class="form-input-wrapper">
+          <input type="password" class="form-input" id="password" placeholder="••••••••" required>
+          <i class="fas fa-eye input-icon" id="togglePassword"></i>
+        </div>
+        <div class="password-strength">
+          <div class="password-strength-bar" id="passwordStrengthBar"></div>
+        </div>
+        <span class="error-message" id="passwordError">Password must be at least 8 characters</span>
+      </div>
+      
+      <div class="form-group">
+        <label class="form-label">
+          Confirm Password <span class="required">*</span>
+        </label>
+        <div class="form-input-wrapper">
+          <input type="password" class="form-input" id="confirmPassword" placeholder="••••••••" required>
+          <i class="fas fa-eye input-icon" id="toggleConfirmPassword"></i>
+        </div>
+        <span class="error-message" id="confirmPasswordError">Passwords do not match</span>
+      </div>
+      
+      <div class="form-checkbox">
+        <input type="checkbox" id="terms" required>
+        <label for="terms">
+          I agree to the <a href="#" onclick="alert('Terms of Service'); return false;">Terms of Service</a> 
+          and <a href="#" onclick="alert('Privacy Policy'); return false;">Privacy Policy</a>
+        </label>
+      </div>
+      
+      <button type="submit" class="submit-btn">
+        <span>Create Account</span>
+      </button>
+      
+      <div class="divider">
+        <div class="divider-line"></div>
+        <span class="divider-text">Or sign up with</span>
+        <div class="divider-line"></div>
+      </div>
+      
+      <div class="social-login">
+        <button type="button" class="social-btn" onclick="handleSocialLogin('Google')">
+          <i class="fab fa-google"></i>
+          <span>Google</span>
+        </button>
+        <button type="button" class="social-btn" onclick="handleSocialLogin('Microsoft')">
+          <i class="fab fa-microsoft"></i>
+          <span>Microsoft</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  // Toggle Password Visibility
+  document.getElementById('togglePassword').addEventListener('click', function() {
+    const passwordInput = document.getElementById('password');
+    const type = passwordInput.type === 'password' ? 'text' : 'password';
+    passwordInput.type = type;
+    this.classList.toggle('fa-eye');
+    this.classList.toggle('fa-eye-slash');
+  });
+  
+  document.getElementById('toggleConfirmPassword').addEventListener('click', function() {
+    const confirmPasswordInput = document.getElementById('confirmPassword');
+    const type = confirmPasswordInput.type === 'password' ? 'text' : 'password';
+    confirmPasswordInput.type = type;
+    this.classList.toggle('fa-eye');
+    this.classList.toggle('fa-eye-slash');
+  });
+  
+  // Password Strength Checker
+  document.getElementById('password').addEventListener('input', function() {
+    const password = this.value;
+    const strengthBar = document.getElementById('passwordStrengthBar');
+    
+    let strength = 0;
+    if (password.length >= 8) strength++;
+    if (password.match(/[a-z]/) && password.match(/[A-Z]/)) strength++;
+    if (password.match(/[0-9]/)) strength++;
+    if (password.match(/[^a-zA-Z0-9]/)) strength++;
+    
+    strengthBar.className = 'password-strength-bar';
+    if (strength === 1 || strength === 2) {
+      strengthBar.classList.add('strength-weak');
+    } else if (strength === 3) {
+      strengthBar.classList.add('strength-medium');
+    } else if (strength === 4) {
+      strengthBar.classList.add('strength-strong');
+    }
+  });
+  
+  // Form Validation
+  function validateForm() {
+    let isValid = true;
+    
+    // First Name
+    const firstName = document.getElementById('firstName');
+    const firstNameError = document.getElementById('firstNameError');
+    if (firstName.value.trim() === '') {
+      firstName.classList.add('error');
+      firstNameError.classList.add('show');
+      isValid = false;
+    } else {
+      firstName.classList.remove('error');
+      firstNameError.classList.remove('show');
+    }
+    
+    // Last Name
+    const lastName = document.getElementById('lastName');
+    const lastNameError = document.getElementById('lastNameError');
+    if (lastName.value.trim() === '') {
+      lastName.classList.add('error');
+      lastNameError.classList.add('show');
+      isValid = false;
+    } else {
+      lastName.classList.remove('error');
+      lastNameError.classList.remove('show');
+    }
+    
+    // Email
+    const email = document.getElementById('email');
+    const emailError = document.getElementById('emailError');
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email.value)) {
+      email.classList.add('error');
+      emailError.classList.add('show');
+      isValid = false;
+    } else {
+      email.classList.remove('error');
+      emailError.classList.remove('show');
+    }
+    
+    // Company
+    const company = document.getElementById('company');
+    const companyError = document.getElementById('companyError');
+    if (company.value.trim() === '') {
+      company.classList.add('error');
+      companyError.classList.add('show');
+      isValid = false;
+    } else {
+      company.classList.remove('error');
+      companyError.classList.remove('show');
+    }
+    
+    // Job Title
+    const jobTitle = document.getElementById('jobTitle');
+    const jobTitleError = document.getElementById('jobTitleError');
+    if (jobTitle.value.trim() === '') {
+      jobTitle.classList.add('error');
+      jobTitleError.classList.add('show');
+      isValid = false;
+    } else {
+      jobTitle.classList.remove('error');
+      jobTitleError.classList.remove('show');
+    }
+    
+    // Password
+    const password = document.getElementById('password');
+    const passwordError = document.getElementById('passwordError');
+    if (password.value.length < 8) {
+      password.classList.add('error');
+      passwordError.classList.add('show');
+      isValid = false;
+    } else {
+      password.classList.remove('error');
+      passwordError.classList.remove('show');
+    }
+    
+    // Confirm Password
+    const confirmPassword = document.getElementById('confirmPassword');
+    const confirmPasswordError = document.getElementById('confirmPasswordError');
+    if (confirmPassword.value !== password.value) {
+      confirmPassword.classList.add('error');
+      confirmPasswordError.classList.add('show');
+      isValid = false;
+    } else {
+      confirmPassword.classList.remove('error');
+      confirmPasswordError.classList.remove('show');
+    }
+    
+    // Terms
+    const terms = document.getElementById('terms');
+    if (!terms.checked) {
+      alert('Please agree to the Terms of Service and Privacy Policy');
+      isValid = false;
+    }
+    
+    return isValid;
+  }
+  
+  // Form Submission
+  document.getElementById('signupForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    if (validateForm()) {
+      // Add loading state
+      this.classList.add('loading');
+      
+      // Simulate API call
       setTimeout(() => {
-        const alert = alertContainer.querySelector('.alert');
-        if (alert) {
-          alert.style.opacity = '0';
-          setTimeout(() => alert.remove(), 300);
-        }
-      }, 10000);
+        // Show success message
+        document.getElementById('successMessage').classList.add('show');
+        
+        // Redirect to home after 2 seconds
+        setTimeout(() => {
+          window.location.href = 'home.html';
+        }, 2000);
+      }, 1500);
     }
-    
-    function resetSignupButton() {
-      const signupBtn = document.getElementById('signupBtn');
-      signupBtn.disabled = false;
-      signupBtn.innerHTML = '<span><i class="fas fa-rocket"></i> Create Account & Start Free Trial</span>';
-    }
-    
-    function socialSignup(provider) {
-      showAlert('info', `${provider.charAt(0).toUpperCase() + provider.slice(1)} Single Sign-On will be available soon!`);
-    }
-    
-    function showModal(type) {
-      if (type === 'terms') {
-        showAlert('info', 'Terms of Service modal will open here. This is a demo version.');
-      } else if (type === 'privacy') {
-        showAlert('info', 'Privacy Policy modal will open here. This is a demo version.');
-      }
-    }
-    
-    // Clear errors on input
-    document.querySelectorAll('.form-input, .form-select').forEach(input => {
-      input.addEventListener('input', function() {
-        this.classList.remove('error');
-        const errorId = this.id + 'Error';
-        const errorEl = document.getElementById(errorId);
-        if (errorEl) {
-          errorEl.classList.remove('show');
-        }
-      });
-    });
-    
-    // Track form progress
-    document.querySelectorAll('.form-input, .form-select').forEach(input => {
-      input.addEventListener('blur', function() {
-        if (this.value.trim()) {
-          if (currentStep === 1) {
-            currentStep = 2;
-            updateSteps();
-            updateProgress();
-          }
-        }
-      });
-    });
-    
-    console.log('🚀 Professional Registration System Initialized');
-    console.log('📧 EmailJS Integration Active');
-    console.log('🎯 Multi-tier Access Control Ready');
-    console.log('✅ Admin Approval Workflow Enabled');
-    console.log('💎 Plans: Trial, Standard, Premium');
-    console.log('');
-    console.log('Registration Flow:');
-    console.log('1. User submits registration');
-    console.log('2. Email sent to admin for approval');
-    console.log('3. Email sent to user with status link');
-    console.log('4. Admin approves/rejects from dashboard');
-    console.log('5. User receives approval notification');
-    console.log('6. User can login with approved account');
-  </script>
+  });
+  
+  // Social Login
+  function handleSocialLogin(provider) {
+    alert(`${provider} login integration coming soon!\n\nThis will connect to ${provider} OAuth for seamless authentication.`);
+  }
+  
+  // Console Message
+  console.log('%c🏔️ SES_MINE Signup Page', 'color: #d4af37; font-size: 20px; font-weight: bold;');
+  console.log('%c✅ Form validation active', 'color: #38a169; font-size: 14px;');
+  console.log('%c🔒 Secure authentication ready', 'color: #2563eb; font-size: 14px;');
+</script>
 </body>
 </html>

@@ -47,6 +47,10 @@
     box-sizing: border-box;
   }
   
+  html {
+    scroll-behavior: smooth;
+  }
+  
   body {
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
@@ -58,20 +62,21 @@
     justify-content: center;
     padding: var(--space-xl);
     position: relative;
-    overflow: hidden;
+    overflow-x: hidden;
   }
   
   body::before {
     content: '';
-    position: absolute;
+    position: fixed;
     inset: 0;
     background: url('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1200&q=80') center/cover;
     opacity: 0.1;
+    z-index: 0;
   }
   
   body::after {
     content: '';
-    position: absolute;
+    position: fixed;
     width: 800px;
     height: 800px;
     background: radial-gradient(circle, rgba(212, 175, 55, 0.2) 0%, transparent 70%);
@@ -79,6 +84,7 @@
     top: -400px;
     right: -400px;
     animation: glow 10s ease-in-out infinite;
+    z-index: 0;
   }
   
   @keyframes glow {
@@ -98,6 +104,7 @@
     position: relative;
     z-index: 1;
     animation: slideUp 0.6s ease-out;
+    max-height: 90vh;
   }
   
   @keyframes slideUp {
@@ -215,12 +222,39 @@
     padding: var(--space-2xl);
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
+    overflow-y: auto;
+    max-height: 90vh;
+    position: relative;
+  }
+  
+  /* Custom Scrollbar */
+  .auth-form-container::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .auth-form-container::-webkit-scrollbar-track {
+    background: rgba(37, 99, 235, 0.05);
+    border-radius: 10px;
+  }
+  
+  .auth-form-container::-webkit-scrollbar-thumb {
+    background: var(--gradient-accent);
+    border-radius: 10px;
+  }
+  
+  .auth-form-container::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-gold);
   }
   
   .form-header {
     text-align: center;
     margin-bottom: var(--space-2xl);
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 10;
+    padding: var(--space-md) 0;
   }
   
   .form-title {
@@ -250,6 +284,7 @@
     display: flex;
     flex-direction: column;
     gap: var(--space-lg);
+    padding-bottom: var(--space-2xl);
   }
   
   .form-row {
@@ -451,7 +486,7 @@
     position: fixed;
     top: var(--space-xl);
     left: var(--space-xl);
-    z-index: 10;
+    z-index: 100;
   }
   
   .back-btn {
@@ -491,6 +526,43 @@
   .strength-weak { background: var(--error); width: 33%; }
   .strength-medium { background: var(--warning); width: 66%; }
   .strength-strong { background: var(--success); width: 100%; }
+  
+  /* Scroll Indicator */
+  .scroll-indicator {
+    position: fixed;
+    bottom: var(--space-xl);
+    right: var(--space-xl);
+    width: 50px;
+    height: 50px;
+    background: var(--gradient-accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    box-shadow: var(--shadow-lg);
+    transition: var(--transition-smooth);
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .scroll-indicator.visible {
+    opacity: 1;
+    pointer-events: all;
+    animation: bounce 2s infinite;
+  }
+  
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  .scroll-indicator:hover {
+    transform: scale(1.1);
+    background: var(--gradient-gold);
+  }
   
   /* Loading State */
   .loading {
@@ -585,6 +657,13 @@
       top: var(--space-md);
       left: var(--space-md);
     }
+    
+    .scroll-indicator {
+      bottom: var(--space-md);
+      right: var(--space-md);
+      width: 45px;
+      height: 45px;
+    }
   }
 </style>
 </head>
@@ -595,6 +674,11 @@
     <i class="fas fa-arrow-left"></i>
     <span>Back to Home</span>
   </a>
+</div>
+
+<!-- Scroll Indicator -->
+<div class="scroll-indicator" id="scrollIndicator">
+  <i class="fas fa-arrow-up"></i>
 </div>
 
 <!-- Success Message -->
@@ -646,7 +730,7 @@
   </div>
   
   <!-- Form Container -->
-  <div class="auth-form-container">
+  <div class="auth-form-container" id="formContainer">
     <div class="form-header">
       <h2 class="form-title">Create Your Account</h2>
       <p class="form-subtitle">
@@ -699,6 +783,13 @@
       
       <div class="form-group">
         <label class="form-label">
+          Phone Number
+        </label>
+        <input type="tel" class="form-input" id="phone" placeholder="+1 (555) 123-4567">
+      </div>
+      
+      <div class="form-group">
+        <label class="form-label">
           Password <span class="required">*</span>
         </label>
         <div class="form-input-wrapper">
@@ -730,6 +821,13 @@
         </label>
       </div>
       
+      <div class="form-checkbox">
+        <input type="checkbox" id="newsletter">
+        <label for="newsletter">
+          Send me updates about new features and industry news
+        </label>
+      </div>
+      
       <button type="submit" class="submit-btn">
         <span>Create Account</span>
       </button>
@@ -755,6 +853,25 @@
 </div>
 
 <script>
+  // Scroll Indicator
+  const formContainer = document.getElementById('formContainer');
+  const scrollIndicator = document.getElementById('scrollIndicator');
+  
+  formContainer.addEventListener('scroll', function() {
+    if (this.scrollTop > 200) {
+      scrollIndicator.classList.add('visible');
+    } else {
+      scrollIndicator.classList.remove('visible');
+    }
+  });
+  
+  scrollIndicator.addEventListener('click', function() {
+    formContainer.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+  
   // Toggle Password Visibility
   document.getElementById('togglePassword').addEventListener('click', function() {
     const passwordInput = document.getElementById('password');
@@ -918,10 +1035,20 @@
     alert(`${provider} login integration coming soon!\n\nThis will connect to ${provider} OAuth for seamless authentication.`);
   }
   
+  // Smooth scroll on input focus
+  document.querySelectorAll('.form-input').forEach(input => {
+    input.addEventListener('focus', function() {
+      setTimeout(() => {
+        this.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 100);
+    });
+  });
+  
   // Console Message
-  console.log('%c🏔️ SES_MINE Signup Page', 'color: #d4af37; font-size: 20px; font-weight: bold;');
-  console.log('%c✅ Form validation active', 'color: #38a169; font-size: 14px;');
-  console.log('%c🔒 Secure authentication ready', 'color: #2563eb; font-size: 14px;');
+  console.log('%c🏔️ SES_MINE Signup Page with Scroll', 'color: #d4af37; font-size: 20px; font-weight: bold;');
+  console.log('%c✅ Scroll functionality active', 'color: #38a169; font-size: 14px;');
+  console.log('%c📜 Smooth scrolling enabled', 'color: #2563eb; font-size: 14px;');
+  console.log('%c⬆️ Scroll-to-top button ready', 'color: #9333ea; font-size: 14px;');
 </script>
 </body>
 </html>

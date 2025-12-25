@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | SESMine Platform</title>
+  <link rel="icon" type="image/png" href="https://cdn.grapesjs.com/workspaces/cmjdh0oo603xm12grpuiruk7p/assets/f6b95b3d-49d1-4e77-b952-49ed80c4befa__image-9-14-1404-ap-at-8.42-pm.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --primary-dark: #0b1a2e;
+      --primary-light: #f7f9fc;
+      --accent-primary: #2563eb;
+      --accent-gold: #d4af37;
+      --success: #38a169;
+      --warning: #dd6b20;
+      --error: #e53e3e;
+      --gradient-primary: linear-gradient(135deg, #0b1a2e 0%, #1a365d 100%);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+    }
+    
+    .dashboard-container {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      min-height: 100vh;
+    }
+    
+    /* Sidebar */
+    .sidebar {
+      background: var(--gradient-primary);
+      color: white;
+      padding: 2rem;
+      position: fixed;
+      width: 280px;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    
+    .sidebar-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .sidebar-header img {
+      height: 50px;
+      filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.4));
+    }
+    
+    .sidebar-header h2 {
+      font-size: 1.5rem;
+      font-weight: 900;
+    }
+    
+    .admin-info {
+      background: rgba(255,255,255,0.1);
+      padding: 1rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(10px);
+    }
+    
+    .admin-info h3 {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      color: var(--accent-gold);
+    }
+    
+    .admin-info p {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+    
+    .sidebar-nav {
+      list-style: none;
+    }
+    
+    .sidebar-nav li {
+      margin-bottom: 0.5rem;
+    }
+    
+    .sidebar-nav a {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      color: white;
+      text-decoration: none;
+      border-radius: 12px;
+      transition: all 0.3s;
+      font-weight: 500;
+    }
+    
+    .sidebar-nav a:hover,
+    .sidebar-nav a.active {
+      background: rgba(255,255,255,0.15);
+      transform: translateX(5px);
+    }
+    
+    .sidebar-nav a i {
+      width: 20px;
+      text-align: center;
+    }
+    
+    .notification-badge {
+      background: var(--error);
+      color: white;
+      padding: 0.2rem 0.5rem;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-left: auto;
+    }
+    
+    .logout-btn {
+      margin-top: 2rem;
+      padding: 1rem;
+      background: rgba(229, 62, 62, 0.2);
+      border: 2px solid rgba(229, 62, 62, 0.5);
+      color: white;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    
+    .logout-btn:hover {
+      background: rgba(229, 62, 62, 0.3);
+    }
+    
+    /* Main Content */
+    .main-content {
+      margin-left: 280px;
+      padding: 2rem;
+    }
+    
+    .top-bar {
+      background: white;
+      padding: 1.5rem 2rem;
+      border-radius: 20px;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .top-bar h1 {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--primary-dark);
+    }
+    
+    .top-bar-actions {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+    
+    .search-box {
+      position: relative;
+    }
+    
+    .search-box input {
+      padding: 0.75rem 1rem 0.75rem 3rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 50px;
+      width: 300px;
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .search-box i {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #999;
+    }
+    
+    /* Stats Cards */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .stat-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      transition: all 0.3s;
+    }
+    
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    }
+    
+    .stat-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    
+    .stat-card-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      color: white;
+    }
+    
+    .stat-card h3 {
+      font-size: 0.9rem;
+      color: #666;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    
+    .stat-card .number {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--primary-dark);
+    }
+    
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      background: white;
+      padding: 1rem;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    }
+    
+    .tab-btn {
+      padding: 1rem 2rem;
+      background: transparent;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1rem;
+      color: #666;
+      transition: all 0.3s;
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .tab-btn.active {
+      background: var(--gradient-primary);
+      color: white;
+    }
+    
+    .tab-btn:hover {
+      background: rgba(37, 99, 235, 0.1);
+    }
+    
+    /* Content Sections */
+    .content-section {
+      display: none;
+    }
+    
+    .content-section.active {
+      display: block;
+    }
+    
+    /* Request Cards */
+    .requests-grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+    
+    .request-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      transition: all 0.3s;
+    }
+    
+    .request-card:hover {
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    }
+    
+    .request-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+    }
+    
+    .request-info h3 {
+      font-size: 1.3rem;
+      color: var(--primary-dark);
+      margin-bottom: 0.5rem;
+      font-weight: 800;
+    }
+    
+    .request-info p {
+      color: #666;
+      font-size: 0.95rem;
+    }
+    
+    .request-status {
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+    
+    .status-pending {
+      background: #fef3c7;
+      color: #92400e;
+    }
+    
+    .status-approved {
+      background: #d1fae5;
+      color: #065f46;
+    }
+    
+    .status-rejected {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+    
+    .request-details {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding: 1.5rem;
+      background: var(--primary-light);
+      border-radius: 12px;
+    }
+    
+    .detail-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    
+    .detail-label {
+      font-size: 0.85rem;
+      color: #666;
+      font-weight: 600;
+    }
+    
+    .detail-value {
+      font-size: 1rem;
+      color: var(--primary-dark);
+      font-weight: 600;
+    }
+    
+    .request-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    
+    .btn {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+      font-family: 'Inter', sans-serif;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .btn-approve {
+      background: var(--success);
+      color: white;
+    }
+    
+    .btn-approve:hover {
+      background: #2f855a;
+      transform: translateY(-2px);
+    }
+    
+    .btn-reject {
+      background: var(--error);
+      color: white;
+    }
+    
+    .btn-reject:hover {
+      background: #c53030;
+      transform: translateY(-2px);
+    }
+    
+    .btn-view {
+      background: var(--accent-primary);
+      color: white;
+    }
+    
+    .btn-view:hover {
+      background: #1e40af;
+      transform: translateY(-2px);
+    }
+    
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.7);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    
+    .modal.show {
+      display: flex;
+    }
+    
+    .modal-content {
+      background: white;
+      border-radius: 30px;
+      padding: 3rem;
+      max-width: 600px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+    
+    .modal-header h2 {
+      font-size: 1.8rem;
+      font-weight: 900;
+    }
+    
+    .modal-close {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #f7f9fc;
+      border: none;
+      cursor: pointer;
+      font-size: 1.5rem;
+      color: #666;
+      transition: all 0.3s;
+    }
+    
+    .modal-close:hover {
+      background: #e2e8f0;
+      transform: rotate(90deg);
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+    
+    .form-group select,
+    .form-group input {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+    }
+    
+    .checkbox-group {
+      margin-bottom: 1rem;
+    }
+    
+    .checkbox-group label {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem;
+      background: var(--primary-light);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .checkbox-group label:hover {
+      background: #e2e8f0;
+    }
+    
+    .checkbox-group input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+    
+    .empty-state {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: #666;
+    }
+    
+    .empty-state i {
+      font-size: 4rem;
+      color: #e2e8f0;
+      margin-bottom: 1rem;
+    }
+    
+    .empty-state h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    @media (max-width: 968px) {
+      .dashboard-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .sidebar {
+        display: none;
+      }
+      
+      .main-content {
+        margin-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <img src="https://cdn.grapesjs.com/workspaces/cmjdh0oo603xm12grpuiruk7p/assets/f6b95b3d-49d1-4e77-b952-49ed80c4befa__image-9-14-1404-ap-at-8.42-pm.png" alt="SESMine">
+        <h2>SES_MINE</h2>
+      </div>
+      
+      <div class="admin-info">
+        <h3>Admin Dashboard</h3>
+        <p id="adminName">Administrator</p>
+      </div>
+      
+      <ul class="sidebar-nav">
+        <li>
+          <a href="#" class="active" data-tab="overview">
+            <i class="fas fa-chart-line"></i>
+            <span>Overview</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" data-tab="users">
+            <i class="fas fa-users"></i>
+            <span>User Management</span>
+            <span class="notification-badge" id="pendingUsersBadge">0</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" data-tab="access-requests">
+            <i class="fas fa-key"></i>
+            <span>Access Requests</span>
+            <span class="notification-badge" id="pendingRequestsBadge">0</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" data-tab="hub-requests">
+            <i class="fas fa-inbox"></i>
+            <span>Hub Requests</span>
+            <span class="notification-badge" id="hubRequestsBadge">0</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" data-tab="analytics">
+            <i class="fas fa-chart-bar"></i>
+            <span>Analytics</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" data-tab="settings">
+            <i class="fas fa-cog"></i>
+            <span>Settings</span>
+          </a>
+        </li>
+      </ul>
+      
+      <button class="logout-btn" onclick="logout()">
+        <i class="fas fa-sign-out-alt"></i>
+        Logout
+      </button>
+    </aside>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="top-bar">
+        <h1>Admin Dashboard</h1>
+        <div class="top-bar-actions">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search users, requests..." id="searchInput">
+          </div>
+        </div>
+      </div>
+      
+      <!-- Stats Cards -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <div class="stat-card-icon" style="background: linear-gradient(135deg, #2563eb, #1e40af);">
+              <i class="fas fa-users"></i>
+            </div>
+          </div>
+          <h3>Total Users</h3>
+          <div class="number" id="totalUsers">0</div>
+        </div>
+        
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <div class="stat-card-icon" style="background: linear-gradient(135deg, #dd6b20, #c05621);">
+              <i class="fas fa-clock"></i>
+            </div>
+          </div>
+          <h3>Pending Approvals</h3>
+          <div class="number" id="pendingApprovals">0</div>
+        </div>
+        
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <div class="stat-card-icon" style="background: linear-gradient(135deg, #38a169, #2f855a);">
+              <i class="fas fa-check-circle"></i>
+            </div>
+          </div>
+          <h3>Approved Users</h3>
+          <div class="number" id="approvedUsers">0</div>
+        </div>
+        
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <div class="stat-card-icon" style="background: linear-gradient(135deg, #9333ea, #7e22ce);">
+              <i class="fas fa-inbox"></i>
+            </div>
+          </div>
+          <h3>Hub Requests</h3>
+          <div class="number" id="totalHubRequests">0</div>
+        </div>
+      </div>
+      
+      <!-- Tabs -->
+      <div class="tabs">
+        <button class="tab-btn active" data-content="overview">Overview</button>
+        <button class="tab-btn" data-content="users">User Management</button>
+        <button class="tab-btn" data-content="access-requests">Access Requests</button>
+        <button class="tab-btn" data-content="hub-requests">Hub Requests</button>
+      </div>
+      
+      <!-- Overview Section -->
+      <div class="content-section active" id="overview">
+        <div class="requests-grid" id="overviewContent">
+          <!-- Recent activity will be loaded here -->
+        </div>
+      </div>
+      
+      <!-- User Management Section -->
+      <div class="content-section" id="users">
+        <div class="requests-grid" id="usersContent">
+          <!-- Users will be loaded here -->
+        </div>
+      </div>
+      
+      <!-- Access Requests Section -->
+      <div class="content-section" id="access-requests">
+        <div class="requests-grid" id="accessRequestsContent">
+          <!-- Access requests will be loaded here -->
+        </div>
+      </div>
+      
+      <!-- Hub Requests Section -->
+      <div class="content-section" id="hub-requests">
+        <div class="requests-grid" id="hubRequestsContent">
+          <!-- Hub requests will be loaded here -->
+        </div>
+      </div>
+    </main>
+  </div>
+  
+  <!-- Approval Modal -->
+  <div class="modal" id="approvalModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Approve User Access</h2>
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+      </div>
+      
+      <form id="approvalForm">
+        <input type="hidden" id="modalUserId">
+        
+        <div class="form-group">
+          <label>Access Level</label>
+          <select id="accessLevel" required>
+            <option value="">Select access level</option>
+            <option value="basic">Basic</option>
+            <option value="professional">Professional</option>
+            <option value="enterprise">Enterprise</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label>Username (Auto-generated)</label>
+          <input type="text" id="generatedUsername" readonly>
+        </div>
+        
+        <div class="form-group">
+          <label>Temporary Password</label>
+          <input type="text" id="tempPassword" readonly>
+        </div>
+        
+        <div class="form-group">
+          <label>Hub Access</label>
+          <div class="checkbox-group">
+            <label>
+              <input type="checkbox" name="hub" value="engineering">
+              Engineering Hub
+            </label>
+          </div>
+          <div class="checkbox-group">
+            <label>
+              <input type="checkbox" name="hub" value="economics">
+              Economics Hub
+            </label>
+          </div>
+          <div class="checkbox-group">
+            <label>
+              <input type="checkbox" name="hub" value="analytics">
+              Analytics Platform
+            </label>
+          </div>
+          <div class="checkbox-group">
+            <label>
+              <input type="checkbox" name="hub" value="procurement">
+              Procurement Hub
+            </label>
+          </div>
+          <div class="checkbox-group">
+            <label>
+              <input type="checkbox" name="hub" value="consulting">
+              Consulting Hub
+            </label>
+          </div>
+          <div class="checkbox-group">
+            <label>
+              <input type="checkbox" name="hub" value="innovation">
+              Innovation & Technology Hub
+            </label>
+          </div>
+        </div>
+        
+        <button type="submit" class="btn btn-approve" style="width: 100%;">
+          <i class="fas fa-check"></i> Approve & Send Credentials
+        </button>
+      </form>
+    </div>
+  </div>
+  
+  <script>
+    // Check admin authentication
+    const adminSession = JSON.parse(localStorage.getItem('adminSession'));
+    if (!adminSession) {
+      window.location.href = 'admin-login.html';
+    }
+    
+    // Load dashboard data
+    function loadDashboard() {
+      const users = JSON.parse(localStorage.getItem('users') || '[]');
+      const accessRequests = JSON.parse(localStorage.getItem('accessRequests') || '[]');
+      
+      // Update stats
+      document.getElementById('totalUsers').textContent = users.length;
+      document.getElementById('pendingApprovals').textContent = users.filter(u => u.status === 'pending').length;
+      document.getElementById('approvedUsers').textContent = users.filter(u => u.status === 'approved').length;
+      document.getElementById('totalHubRequests').textContent = accessRequests.length;
+      
+      // Update badges
+      document.getElementById('pendingUsersBadge').textContent = users.filter(u => u.status === 'pending').length;
+      document.getElementById('pendingRequestsBadge').textContent = users.filter(u => u.status === 'pending').length;
+      document.getElementById('hubRequestsBadge').textContent = accessRequests.filter(r => r.status === 'pending').length;
+      
+      // Load content
+      loadUsers();
+      loadAccessRequests();
+      loadHubRequests();
+      loadOverview();
+    }
+    
+    // Load users
+    function loadUsers() {
+      const users = JSON.parse(localStorage.getItem('users') || '[]');
+      const container = document.getElementById('usersContent');
+      
+      if (users.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <i class="fas fa-users"></i>
+            <h3>No Users Yet</h3>
+            <p>New user registrations will appear here</p>
+          </div>
+        `;
+        return;
+      }
+      
+      container.innerHTML = users.map(user => `
+        <div class="request-card">
+          <div class="request-header">
+            <div class="request-info">
+              <h3>${user.firstName} ${user.lastName}</h3>
+              <p>${user.email}</p>
+            </div>
+            <span class="request-status status-${user.status}">${user.status.toUpperCase()}</span>
+          </div>
+          
+          <div class="request-details">
+            <div class="detail-item">
+              <span class="detail-label">Company</span>
+              <span class="detail-value">${user.company}</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Position</span>
+              <span class="detail-value">${user.position}</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Sector</span>
+              <span class="detail-value">${user.sector}</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Registration Date</span>
+              <span class="detail-value">${new Date(user.registrationDate).toLocaleDateString()}</span>
+            </div>
+          </div>
+          
+          <div class="request-actions">
+            ${user.status === 'pending' ? `
+              <button class="btn btn-approve" onclick="openApprovalModal('${user.userId}')">
+                <i class="fas fa-check"></i> Approve
+              </button>
+              <button class="btn btn-reject" onclick="rejectUser('${user.userId}')">
+                <i class="fas fa-times"></i> Reject
+              </button>
+            ` : ''}
+            <button class="btn btn-view" onclick="viewUserDetails('${user.userId}')">
+              <i class="fas fa-eye"></i> View Details
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+    
+    // Load access requests
+    function loadAccessRequests() {
+      const requests = JSON.parse(localStorage.getItem('accessRequests') || '[]');
+      const container = document.getElementById('accessRequestsContent');
+      
+      if (requests.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <i class="fas fa-inbox"></i>
+            <h3>No Access Requests</h3>
+            <p>Access requests will appear here</p>
+          </div>
+        `;
+        return;
+      }
+      
+      container.innerHTML = requests.map(req => `
+        <div class="request-card">
+          <div class="request-header">
+            <div class="request-info">
+              <h3>${req.fullName}</h3>
+              <p>${req.email}</p>
+            </div>
+            <span class="request-status status-${req.status || 'pending'}">${(req.status || 'pending').toUpperCase()}</span>
+          </div>
+          
+          <div class="request-details">
+            <div class="detail-item">
+              <span class="detail-label">Company</span>
+              <span class="detail-value">${req.company}</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Position</span>
+              <span class="detail-value">${req.position}</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Access Level</span>
+              <span class="detail-value">${req.accessLevel}</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Request Date</span>
+              <span class="detail-value">${new Date(req.requestDate).toLocaleDateString()}</span>
+            </div>
+          </div>
+          
+          <div class="request-details">
+            <div class="detail-item" style="grid-column: 1 / -1;">
+              <span class="detail-label">Purpose</span>
+              <span class="detail-value">${req.purpose}</span>
+            </div>
+          </div>
+          
+          <div class="request-actions">
+            ${!req.status || req.status === 'pending' ? `
+              <button class="btn btn-approve" onclick="approveAccessRequest('${req.requestId}')">
+                <i class="fas fa-check"></i> Approve
+              </button>
+              <button class="btn btn-reject" onclick="rejectAccessRequest('${req.requestId}')">
+                <i class="fas fa-times"></i> Reject
+              </button>
+            ` : ''}
+          </div>
+        </div>
+      `).join('');
+    }
+    
+    // Load hub requests
+    function loadHubRequests() {
+      loadAccessRequests(); // Same as access requests for now
+    }
+    
+    // Load overview
+    function loadOverview() {
+      const users = JSON.parse(localStorage.getItem('users') || '[]');
+      const pendingUsers = users.filter(u => u.status === 'pending');
+      const container = document.getElementById('overviewContent');
+      
+      if (pendingUsers.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <i class="fas fa-check-circle"></i>
+            <h3>All Caught Up!</h3>
+            <p>No pending requests at the moment</p>
+          </div>
+        `;
+        return;
+      }
+      
+      container.innerHTML = `
+        <div class="request-card" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-left: 5px solid #f59e0b;">
+          <h3 style="margin-bottom: 1rem;"><i class="fas fa-exclamation-circle"></i> ${pendingUsers.length} Pending User Approval${pendingUsers.length > 1 ? 's' : ''}</h3>
+          <p style="color: #92400e; margin-bottom: 1rem;">You have users waiting for account approval. Please review and approve or reject their requests.</p>
+          <button class="btn btn-view" onclick="switchTab('users')">
+            <i class="fas fa-arrow-right"></i> Review Pending Users
+          </button>
+        </div>
+      `;
+    }
+    
+    // Open approval modal
+    function openApprovalModal(userId) {
+      const users = JSON.parse(localStorage.getItem('users') || '[]');
+      const user = users.find(u => u.userId === userId);
+      
+      if (!user) return;
+      
+      // Generate username and password
+      const username = (user.firstName.toLowerCase() + user.lastName.toLowerCase()).replace(/\s/g, '');
+      const tempPassword = 'SES' + Math.random().toString(36).substr(2, 8);
+      
+      document.getElementById('modalUserId').value = userId;
+      document.getElementById('generatedUsername').value = username;
+      document.getElementById('tempPassword').value = tempPassword;
+      
+      document.getElementById('approvalModal').classList.add('show');
+    }
+    
+    // Close modal
+    function closeModal() {
+      document.getElementById('approvalModal').classList.remove('show');
+    }
+    
+    // Approval form submission
+    document.getElementById('approvalForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const userId = document.getElementById('modalUserId').value;
+      const accessLevel = document.getElementById('accessLevel').value;
+      const username = document.getElementById('generatedUsername').value;
+      const password = document.getElementById('tempPassword').value;
+      
+      // Get selected hubs
+      const hubCheckboxes = document.querySelectorAll('input[name="hub"]:checked');
+      const hubsAccess = Array.from(hubCheckboxes).map(cb => cb.value);
+      
+      // Update user
+      let users = JSON.parse(localStorage.getItem('users') || '[]');
+      const userIndex = users.findIndex(u => u.userId === userId);
+      
+      if (userIndex !== -1) {
+        users[userIndex].status = 'approved';
+        users[userIndex].accessLevel = accessLevel;
+        users[userIndex].hubsAccess = hubsAccess;
+        users[userIndex].username = username;
+        users[userIndex].password = password;
+        users[userIndex].approvalDate = new Date().toISOString();
+        
+        localStorage.setItem('users', JSON.stringify(users));
+        
+        alert(`User approved successfully!\n\nUsername: ${username}\nPassword: ${password}\n\nCredentials have been sent to ${users[userIndex].email}`);
+        
+        closeModal();
+        loadDashboard();
+      }
+    });
+    
+    // Reject user
+    function rejectUser(userId) {
+      if (!confirm('Are you sure you want to reject this user?')) return;
+      
+      let users = JSON.parse(localStorage.getItem('users') || '[]');
+      const userIndex = users.findIndex(u => u.userId === userId);
+      
+      if (userIndex !== -1) {
+        users[userIndex].status = 'rejected';
+        users[userIndex].rejectionDate = new Date().toISOString();
+        
+        localStorage.setItem('users', JSON.stringify(users));
+        
+        alert('User rejected successfully.');
+        loadDashboard();
+      }
+    }
+    
+    // Approve access request
+    function approveAccessRequest(requestId) {
+      let requests = JSON.parse(localStorage.getItem('accessRequests') || '[]');
+      const requestIndex = requests.findIndex(r => r.requestId === requestId);
+      
+      if (requestIndex !== -1) {
+        requests[requestIndex].status = 'approved';
+        requests[requestIndex].approvalDate = new Date().toISOString();
+        
+        localStorage.setItem('accessRequests', JSON.stringify(requests));
+        
+        alert('Access request approved successfully!');
+        loadDashboard();
+      }
+    }
+    
+    // Reject access request
+    function rejectAccessRequest(requestId) {
+      if (!confirm('Are you sure you want to reject this request?')) return;
+      
+      let requests = JSON.parse(localStorage.getItem('accessRequests') || '[]');
+      const requestIndex = requests.findIndex(r => r.requestId === requestId);
+      
+      if (requestIndex !== -1) {
+        requests[requestIndex].status = 'rejected';
+        requests[requestIndex].rejectionDate = new Date().toISOString();
+        
+        localStorage.setItem('accessRequests', JSON.stringify(requests));
+        
+        alert('Access request rejected.');
+        loadDashboard();
+      }
+    }
+    
+    // View user details
+    function viewUserDetails(userId) {
+      const users = JSON.parse(localStorage.getItem('users') || '[]');
+      const user = users.find(u => u.userId === userId);
+      
+      if (user) {
+        alert(JSON.stringify(user, null, 2));
+      }
+    }
+    
+    // Tab switching
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const contentId = this.getAttribute('data-content');
+        switchTab(contentId);
+      });
+    });
+    
+    function switchTab(contentId) {
+      // Update tab buttons
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.getAttribute('data-content') === contentId) {
+          btn.classList.add('active');
+        }
+      });
+      
+      // Update content sections
+      document.querySelectorAll('.content-section').forEach(section => {
+        section.classList.remove('active');
+      });
+      document.getElementById(contentId).classList.add('active');
+      
+      // Update sidebar
+      document.querySelectorAll('.sidebar-nav a').forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('data-tab') === contentId) {
+          link.classList.add('active');
+        }
+      });
+    }
+    
+    // Sidebar navigation
+    document.querySelectorAll('.sidebar-nav a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const tab = this.getAttribute('data-tab');
+        switchTab(tab);
+      });
+    });
+    
+    // Logout
+    function logout() {
+      if (confirm('Are you sure you want to logout?')) {
+        localStorage.removeItem('adminSession');
+        window.location.href = 'admin-login.html';
+      }
+    }
+    
+    // Initialize dashboard
+    loadDashboard();
+    
+    // Refresh every 30 seconds
+    setInterval(loadDashboard, 30000);
+  </script>
+  
+</body>
+</html>

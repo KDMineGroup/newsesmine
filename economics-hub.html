@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Economics Hub | SESMine Platform</title>
+  <link rel="icon" type="image/png" href="https://cdn.grapesjs.com/workspaces/cmjdh0oo603xm12grpuiruk7p/assets/f6b95b3d-49d1-4e77-b952-49ed80c4befa__image-9-14-1404-ap-at-8.42-pm.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --primary-dark: #0b1a2e;
+      --primary-light: #f7f9fc;
+      --accent-primary: #10b981;
+      --accent-gold: #d4af37;
+      --success: #38a169;
+      --gradient-primary: linear-gradient(135deg, #10b981, #059669);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+    }
+    
+    .top-nav {
+      background: white;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .nav-container {
+      max-width: 1600px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    
+    .logo-section {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .logo-section img {
+      height: 40px;
+    }
+    
+    .logo-section h1 {
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: var(--primary-dark);
+    }
+    
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #666;
+      font-size: 0.95rem;
+    }
+    
+    .breadcrumb a {
+      color: var(--accent-primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    
+    .btn-back {
+      padding: 0.75rem 1.5rem;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      border: 2px solid #e2e8f0;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .btn-back:hover {
+      border-color: var(--accent-primary);
+      background: white;
+    }
+    
+    .hub-hero {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.95) 0%, rgba(5, 150, 105, 0.9) 100%),
+                  url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1920&q=80') center/cover;
+      padding: 4rem 2rem;
+      color: white;
+      text-align: center;
+    }
+    
+    .hub-hero-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .hub-icon-large {
+      width: 100px;
+      height: 100px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      margin: 0 auto 2rem;
+      backdrop-filter: blur(10px);
+      border: 3px solid rgba(255,255,255,0.3);
+    }
+    
+    .hub-hero h1 {
+      font-size: 3rem;
+      font-weight: 900;
+      margin-bottom: 1rem;
+    }
+    
+    .hub-hero p {
+      font-size: 1.3rem;
+      opacity: 0.95;
+    }
+    
+    .main-content {
+      max-width: 1600px;
+      margin: -50px auto 0;
+      padding: 0 2rem 4rem;
+      position: relative;
+      z-index: 10;
+    }
+    
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    
+    .tool-card {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 25px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    
+    .tool-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    }
+    
+    .tool-icon {
+      width: 70px;
+      height: 70px;
+      background: var(--gradient-primary);
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: white;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+    }
+    
+    .tool-card h3 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 1rem;
+    }
+    
+    .tool-card p {
+      color: #666;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+    
+    .tool-features {
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+    
+    .tool-features li {
+      padding: 0.5rem 0;
+      color: #555;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+    }
+    
+    .tool-features li i {
+      color: var(--success);
+    }
+    
+    .btn-tool {
+      width: 100%;
+      padding: 1rem;
+      background: var(--gradient-primary);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    
+    .btn-tool:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+    }
+    
+    .section {
+      background: white;
+      padding: 3rem;
+      border-radius: 25px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+    }
+    
+    .section h2 {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--primary-dark);
+      margin-bottom: 1.5rem;
+    }
+    
+    .section p {
+      color: #666;
+      line-height: 1.8;
+      font-size: 1.05rem;
+    }
+    
+    @media (max-width: 768px) {
+      .tools-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .hub-hero h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <nav class="top-nav">
+    <div class="nav-container">
+      <div class="nav-left">
+        <div class="logo-section">
+          <img src="https://cdn.grapesjs.com/workspaces/cmjdh0oo603xm12grpuiruk7p/assets/f6b95b3d-49d1-4e77-b952-49ed80c4befa__image-9-14-1404-ap-at-8.42-pm.png" alt="SESMine">
+          <h1>SES_MINE</h1>
+        </div>
+        <div class="breadcrumb">
+          <a href="home.html">Dashboard</a>
+          <i class="fas fa-chevron-right"></i>
+          <span>Economics Hub</span>
+        </div>
+      </div>
+      <a href="home.html" class="btn-back">
+        <i class="fas fa-arrow-left"></i> Back to Dashboard
+      </a>
+    </div>
+  </nav>
+  
+  <section class="hub-hero">
+    <div class="hub-hero-content">
+      <div class="hub-icon-large">
+        <i class="fas fa-chart-line"></i>
+      </div>
+      <h1>Economics Hub</h1>
+      <p>Financial modeling, NPV/IRR calculators, and investment optimization tools</p>
+    </div>
+  </section>
+  
+  <div class="main-content">
+    <div class="tools-grid">
+      <div class="tool-card" onclick="alert('NPV/IRR Calculator - Coming Soon!')">
+        <div class="tool-icon">
+          <i class="fas fa-percentage"></i>
+        </div>
+        <h3>NPV/IRR Calculator</h3>
+        <p>Advanced financial calculators for investment analysis and decision making</p>
+        <ul class="tool-features">
+          <li><i class="fas fa-check"></i> Net Present Value calculation</li>
+          <li><i class="fas fa-check"></i> Internal Rate of Return</li>
+          <li><i class="fas fa-check"></i> Sensitivity analysis</li>
+          <li><i class="fas fa-check"></i> Payback period</li>
+        </ul>
+        <button class="btn-tool">
+          <i class="fas fa-play"></i> Launch Calculator
+        </button>
+      </div>
+      
+      <div class="tool-card" onclick="alert('Cash Flow Modeler - Coming Soon!')">
+        <div class="tool-icon">
+          <i class="fas fa-money-bill-wave"></i>
+        </div>
+        <h3>Cash Flow Modeler</h3>
+        <p>Create detailed cash flow projections with multiple scenarios</p>
+        <ul class="tool-features">
+          <li><i class="fas fa-check"></i> Multi-year projections</li>
+          <li><i class="fas fa-check"></i> Scenario modeling</li>
+          <li><i class="fas fa-check"></i> Discount rate analysis</li>
+          <li><i class="fas fa-check"></i> Visual charts</li>
+        </ul>
+        <button class="btn-tool">
+          <i class="fas fa-play"></i> Create Model
+        </button>
+      </div>
+      
+      <div class="tool-card" onclick="alert('Risk Assessment - Coming Soon!')">
+        <div class="tool-icon">
+          <i class="fas fa-shield-alt"></i>
+        </div>
+        <h3>Risk Assessment Tool</h3>
+        <p>Monte Carlo simulations and comprehensive risk analysis</p>
+        <ul class="tool-features">
+          <li><i class="fas fa-check"></i> Monte Carlo simulation</li>
+          <li><i class="fas fa-check"></i> Risk matrices</li>
+          <li><i class="fas fa-check"></i> Probability analysis</li>
+          <li><i class="fas fa-check"></i> Risk mitigation plans</li>
+        </ul>
+        <button class="btn-tool">
+          <i class="fas fa-play"></i> Assess Risk
+        </button>
+      </div>
+      
+      <div class="tool-card" onclick="alert('Economic Scenarios - Coming Soon!')">
+        <div class="tool-icon">
+          <i class="fas fa-chart-area"></i>
+        </div>
+        <h3>Economic Scenarios</h3>
+        <p>Model different economic scenarios and commodity price variations</p>
+        <ul class="tool-features">
+          <li><i class="fas fa-check"></i> Commodity price modeling</li>
+          <li><i class="fas fa-check"></i> Economic indicators</li>
+          <li><i class="fas fa-check"></i> Market trends</li>
+          <li><i class="fas fa-check"></i> Scenario comparison</li>
+        </ul>
+        <button class="btn-tool">
+          <i class="fas fa-play"></i> Build Scenario
+        </button>
+      </div>
+      
+      <div class="tool-card" onclick="alert('Investment Optimizer - Coming Soon!')">
+        <div class="tool-icon">
+          <i class="fas fa-coins"></i>
+        </div>
+        <h3>Investment Optimizer</h3>
+        <p>Optimize capital allocation and investment strategies</p>
+        <ul class="tool-features">
+          <li><i class="fas fa-check"></i> Portfolio optimization</li>
+          <li><i class="fas fa-check"></i> Capital allocation</li>
+          <li><i class="fas fa-check"></i> ROI maximization</li>
+          <li><i class="fas fa-check"></i> AI recommendations</li>
+        </ul>
+        <button class="btn-tool">
+          <i class="fas fa-play"></i> Optimize Portfolio
+        </button>
+      </div>
+      
+      <div class="tool-card" onclick="alert('Financial Reports - Coming Soon!')">
+        <div class="tool-icon">
+          <i class="fas fa-file-invoice-dollar"></i>
+        </div>
+        <h3>Financial Reports</h3>
+        <p>Generate comprehensive financial reports and presentations</p>
+        <ul class="tool-features">
+          <li><i class="fas fa-check"></i> Custom templates</li>
+          <li><i class="fas fa-check"></i> Automated generation</li>
+          <li><i class="fas fa-check"></i> Export to PDF/Excel</li>
+          <li><i class="fas fa-check"></i> Stakeholder reports</li>
+        </ul>
+        <button class="btn-tool">
+          <i class="fas fa-play"></i> Generate Report
+        </button>
+      </div>
+    </div>
+    
+    <div class="section">
+      <h2>About Economics Hub</h2>
+      <p>The Economics Hub provides comprehensive financial modeling and analysis tools for mining projects. Our advanced calculators help you evaluate investment opportunities, assess risks, and optimize capital allocation decisions.</p>
+      <br>
+      <p>All tools are designed to meet industry standards and provide accurate financial projections. Use our Monte Carlo simulations for risk assessment, create detailed cash flow models, and generate professional financial reports for stakeholders.</p>
+    </div>
+  </div>
+  
+  <script>
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (!currentUser) {
+      window.location.href = 'login.html';
+    }
+    
+    const hubsAccess = currentUser.hubsAccess || [];
+    if (!hubsAccess.includes('economics')) {
+      alert('You do not have access to the Economics Hub.\n\nPlease request access from your dashboard.');
+      window.location.href = 'home.html';
+    }
+  </script>
+  
+</body>
+</html>

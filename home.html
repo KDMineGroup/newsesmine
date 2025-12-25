@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | SESMine Platform</title>
+  <link rel="icon" type="image/png" href="https://cdn.grapesjs.com/workspaces/cmjdh0oo603xm12grpuiruk7p/assets/f6b95b3d-49d1-4e77-b952-49ed80c4befa__image-9-14-1404-ap-at-8.42-pm.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --primary-dark: #0b1a2e;
+      --primary-light: #f7f9fc;
+      --accent-primary: #2563eb;
+      --accent-gold: #d4af37;
+      --success: #38a169;
+      --gradient-primary: linear-gradient(135deg, #0b1a2e 0%, #1a365d 100%);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+    }
+    
+    /* Top Navigation */
+    .top-nav {
+      background: white;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .nav-container {
+      max-width: 1600px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo-section {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .logo-section img {
+      height: 45px;
+    }
+    
+    .logo-section h1 {
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--primary-dark);
+    }
+    
+    .user-menu {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.75rem 1.5rem;
+      background: var(--primary-light);
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .user-info:hover {
+      background: #e2e8f0;
+    }
+    
+    .user-avatar {
+      width: 40px;
+      height: 40px;
+      background: var(--gradient-primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+    }
+    
+    .user-details h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+    
+    .user-details p {
+      font-size: 0.8rem;
+      color: #666;
+    }
+    
+    .btn-logout {
+      padding: 0.75rem 1.5rem;
+      background: var(--gradient-primary);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .btn-logout:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(11, 26, 46, 0.3);
+    }
+    
+    /* Main Container */
+    .main-container {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+    
+    /* Welcome Section */
+    .welcome-section {
+      background: var(--gradient-primary);
+      padding: 3rem;
+      border-radius: 30px;
+      color: white;
+      margin-bottom: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .welcome-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.2) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    
+    .welcome-content {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .welcome-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      font-weight: 900;
+    }
+    
+    .welcome-section p {
+      font-size: 1.2rem;
+      opacity: 0.95;
+      margin-bottom: 2rem;
+    }
+    
+    .access-badge {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background: rgba(212, 175, 55, 0.2);
+      border: 2px solid var(--accent-gold);
+      border-radius: 50px;
+      font-weight: 700;
+      color: var(--accent-gold);
+    }
+    
+    /* Quick Stats */
+    .quick-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    
+    .stat-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+      transition: all 0.3s;
+    }
+    
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 35px rgba(0,0,0,0.12);
+    }
+    
+    .stat-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      color: white;
+      margin-bottom: 1.5rem;
+    }
+    
+    .stat-card h3 {
+      font-size: 0.95rem;
+      color: #666;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+    
+    .stat-card .number {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--primary-dark);
+    }
+    
+    /* Hubs Grid */
+    .section-header {
+      margin-bottom: 2rem;
+    }
+    
+    .section-header h2 {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--primary-dark);
+      margin-bottom: 0.5rem;
+    }
+    
+    .section-header p {
+      color: #666;
+      font-size: 1.1rem;
+    }
+    
+    .hubs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    
+    .hub-card {
+      background: white;
+      border-radius: 25px;
+      overflow: hidden;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+      transition: all 0.3s;
+      position: relative;
+    }
+    
+    .hub-card.locked {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    
+    .hub-card:not(.locked):hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    }
+    
+    .hub-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    
+    .hub-content {
+      padding: 2rem;
+    }
+    
+    .hub-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+    
+    .hub-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      color: white;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    }
+    
+    .hub-status {
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+    
+    .status-active {
+      background: #d1fae5;
+      color: #065f46;
+    }
+    
+    .status-locked {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+    
+    .hub-card h3 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 0.75rem;
+    }
+    
+    .hub-card p {
+      color: #666;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    
+    .hub-actions {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .btn-hub {
+      flex: 1;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    
+    .btn-access {
+      background: var(--gradient-primary);
+      color: white;
+    }
+    
+    .btn-access:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(11, 26, 46, 0.3);
+    }
+    
+    .btn-request {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      border: 2px solid #e2e8f0;
+    }
+    
+    .btn-request:hover {
+      border-color: var(--accent-primary);
+      background: white;
+    }
+    
+    .lock-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255,255,255,0.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 2rem;
+      text-align: center;
+    }
+    
+    .lock-icon {
+      width: 80px;
+      height: 80px;
+      background: #fee2e2;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      color: #991b1b;
+    }
+    
+    .lock-overlay h4 {
+      font-size: 1.3rem;
+      color: var(--primary-dark);
+      margin-bottom: 0.5rem;
+    }
+    
+    .lock-overlay p {
+      color: #666;
+      margin-bottom: 1rem;
+    }
+    
+    /* Recent Activity */
+    .activity-section {
+      background: white;
+      padding: 2rem;
+      border-radius: 25px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+    }
+    
+    .activity-item {
+      display: flex;
+      gap: 1rem;
+      padding: 1.5rem;
+      border-bottom: 1px solid #e2e8f0;
+      transition: all 0.3s;
+    }
+    
+    .activity-item:last-child {
+      border-bottom: none;
+    }
+    
+    .activity-item:hover {
+      background: var(--primary-light);
+      border-radius: 12px;
+    }
+    
+    .activity-icon {
+      width: 50px;
+      height: 50px;
+      background: var(--primary-light);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      color: var(--accent-primary);
+      flex-shrink: 0;
+    }
+    
+    .activity-content h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 0.25rem;
+    }
+    
+    .activity-content p {
+      font-size: 0.9rem;
+      color: #666;
+    }
+    
+    @media (max-width: 768px) {
+      .hubs-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .user-details {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- Top Navigation -->
+  <nav class="top-nav">
+    <div class="nav-container">
+      <div class="logo-section">
+        <img src="https://cdn.grapesjs.com/workspaces/cmjdh0oo603xm12grpuiruk7p/assets/f6b95b3d-49d1-4e77-b952-49ed80c4befa__image-9-14-1404-ap-at-8.42-pm.png" alt="SESMine">
+        <h1>SES_MINE</h1>
+      </div>
+      
+      <div class="user-menu">
+        <div class="user-info">
+          <div class="user-avatar" id="userAvatar">JD</div>
+          <div class="user-details">
+            <h3 id="userName">John Doe</h3>
+            <p id="userEmail">john.doe@company.com</p>
+          </div>
+        </div>
+        <button class="btn-logout" onclick="logout()">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- Main Container -->
+  <div class="main-container">
+    <!-- Welcome Section -->
+    <div class="welcome-section">
+      <div class="welcome-content">
+        <h2>Welcome back, <span id="welcomeName">John</span>! 👋</h2>
+        <p>Access your mining intelligence tools and continue optimizing your operations.</p>
+        <span class="access-badge" id="accessBadge">
+          <i class="fas fa-crown"></i> PROFESSIONAL ACCESS
+        </span>
+      </div>
+    </div>
+    
+    <!-- Quick Stats -->
+    <div class="quick-stats">
+      <div class="stat-card">
+        <div class="stat-icon" style="background: linear-gradient(135deg, #2563eb, #1e40af);">
+          <i class="fas fa-key"></i>
+        </div>
+        <h3>Active Hubs</h3>
+        <div class="number" id="activeHubs">0</div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-icon" style="background: linear-gradient(135deg, #10b981, #059669);">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <h3>Projects</h3>
+        <div class="number">12</div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-icon" style="background: linear-gradient(135deg, #9333ea, #7e22ce);">
+          <i class="fas fa-clock"></i>
+        </div>
+        <h3>Hours Saved</h3>
+        <div class="number">248</div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-icon" style="background: linear-gradient(135deg, #d4af37, #b8941f);">
+          <i class="fas fa-dollar-sign"></i>
+        </div>
+        <h3>Cost Optimized</h3>
+        <div class="number">$2.4M</div>
+      </div>
+    </div>
+    
+    <!-- Your Hubs -->
+    <div class="section-header">
+      <h2>Your Hubs</h2>
+      <p>Access your authorized mining intelligence hubs</p>
+    </div>
+    
+    <div class="hubs-grid" id="hubsGrid">
+      <!-- Hubs will be loaded dynamically -->
+    </div>
+    
+    <!-- Recent Activity -->
+    <div class="section-header">
+      <h2>Recent Activity</h2>
+      <p>Your latest actions and updates</p>
+    </div>
+    
+    <div class="activity-section">
+      <div class="activity-item">
+        <div class="activity-icon">
+          <i class="fas fa-sign-in-alt"></i>
+        </div>
+        <div class="activity-content">
+          <h4>Logged In</h4>
+          <p id="loginTime">Just now</p>
+        </div>
+      </div>
+      
+      <div class="activity-item">
+        <div class="activity-icon">
+          <i class="fas fa-user-check"></i>
+        </div>
+        <div class="activity-content">
+          <h4>Account Approved</h4>
+          <p>Your account has been activated with full access</p>
+        </div>
+      </div>
+      
+      <div class="activity-item">
+        <div class="activity-icon">
+          <i class="fas fa-envelope"></i>
+        </div>
+        <div class="activity-content">
+          <h4>Welcome Email Sent</h4>
+          <p>Check your inbox for getting started guide</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // Check authentication
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (!currentUser) {
+      window.location.href = 'login.html';
+    }
+    
+    // Hub configurations
+    const hubConfigs = {
+      engineering: {
+        title: 'Engineering Hub',
+        description: 'AACE-compliant cost estimation tools and equipment databases',
+        icon: 'fa-hard-hat',
+        color: 'linear-gradient(135deg, #2563eb, #1e40af)',
+        image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&q=80',
+        url: 'engineering-hub.html'
+      },
+      economics: {
+        title: 'Economics Hub',
+        description: 'Financial modeling and NPV/IRR calculators',
+        icon: 'fa-chart-line',
+        color: 'linear-gradient(135deg, #10b981, #059669)',
+        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
+        url: 'economics-hub.html'
+      },
+      analytics: {
+        title: 'Analytics Platform',
+        description: 'Real-time dashboards and predictive analytics',
+        icon: 'fa-chart-bar',
+        color: 'linear-gradient(135deg, #9333ea, #7e22ce)',
+        image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
+        url: 'analytics-platform.html'
+      },
+      procurement: {
+        title: 'Procurement Hub',
+        description: 'Vendor management and RFQ systems',
+        icon: 'fa-shopping-cart',
+        color: 'linear-gradient(135deg, #f59e0b, #d97706)',
+        image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80',
+        url: 'procurement-hub.html'
+      },
+      consulting: {
+        title: 'Consulting Hub',
+        description: 'Expert consultants and feasibility studies',
+        icon: 'fa-users',
+        color: 'linear-gradient(135deg, #d4af37, #b8941f)',
+        image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80',
+        url: 'consulting-hub.html'
+      },
+      innovation: {
+        title: 'Innovation & Technology',
+        description: 'AI, automation, and emerging technologies',
+        icon: 'fa-lightbulb',
+        color: 'linear-gradient(135deg, #06b6d4, #0891b2)',
+        image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&q=80',
+        url: 'innovation-hub.html'
+      }
+    };
+    
+    // Load user data
+    function loadUserData() {
+      document.getElementById('userName').textContent = `${currentUser.firstName} ${currentUser.lastName}`;
+      document.getElementById('userEmail').textContent = currentUser.email;
+      document.getElementById('welcomeName').textContent = currentUser.firstName;
+      
+      // Set avatar initials
+      const initials = currentUser.firstName.charAt(0) + currentUser.lastName.charAt(0);
+      document.getElementById('userAvatar').textContent = initials;
+      
+      // Set access level badge
+      const accessLevel = currentUser.accessLevel || 'basic';
+      document.getElementById('accessBadge').innerHTML = `
+        <i class="fas fa-crown"></i> ${accessLevel.toUpperCase()} ACCESS
+      `;
+      
+      // Set login time
+      const loginTime = new Date(currentUser.loginTime);
+      document.getElementById('loginTime').textContent = formatTimeAgo(loginTime);
+    }
+    
+    // Load hubs
+    function loadHubs() {
+      const hubsAccess = currentUser.hubsAccess || [];
+      const hubsGrid = document.getElementById('hubsGrid');
+      
+      // Update active hubs count
+      document.getElementById('activeHubs').textContent = hubsAccess.length;
+      
+      // Create hub cards
+      hubsGrid.innerHTML = Object.keys(hubConfigs).map(hubKey => {
+        const hub = hubConfigs[hubKey];
+        const hasAccess = hubsAccess.includes(hubKey);
+        
+        return `
+          <div class="hub-card ${!hasAccess ? 'locked' : ''}">
+            <img src="${hub.image}" alt="${hub.title}" class="hub-image">
+            <div class="hub-content">
+              <div class="hub-header">
+                <div class="hub-icon" style="background: ${hub.color};">
+                  <i class="fas ${hub.icon}"></i>
+                </div>
+                <span class="hub-status ${hasAccess ? 'status-active' : 'status-locked'}">
+                  ${hasAccess ? 'ACTIVE' : 'LOCKED'}
+                </span>
+              </div>
+              <h3>${hub.title}</h3>
+              <p>${hub.description}</p>
+              <div class="hub-actions">
+                ${hasAccess ? `
+                  <button class="btn-hub btn-access" onclick="accessHub('${hub.url}')">
+                    <i class="fas fa-arrow-right"></i> Access Hub
+                  </button>
+                ` : `
+                  <button class="btn-hub btn-request" onclick="requestAccess('${hubKey}')">
+                    <i class="fas fa-lock"></i> Request Access
+                  </button>
+                `}
+              </div>
+            </div>
+            ${!hasAccess ? `
+              <div class="lock-overlay">
+                <div class="lock-icon">
+                  <i class="fas fa-lock"></i>
+                </div>
+                <h4>Access Required</h4>
+                <p>Request access to unlock this hub</p>
+                <button class="btn-hub btn-request" onclick="requestAccess('${hubKey}')">
+                  <i class="fas fa-paper-plane"></i> Request Access
+                </button>
+              </div>
+            ` : ''}
+          </div>
+        `;
+      }).join('');
+    }
+    
+    // Access hub
+    function accessHub(url) {
+      window.location.href = url;
+    }
+    
+    // Request access
+    function requestAccess(hubKey) {
+      const hub = hubConfigs[hubKey];
+      if (confirm(`Request access to ${hub.title}?\n\nYour request will be sent to the administrator for approval.`)) {
+        // Create access request
+        let requests = JSON.parse(localStorage.getItem('accessRequests') || '[]');
+        
+        const newRequest = {
+          requestId: 'REQ-' + Date.now(),
+          userId: currentUser.userId,
+          fullName: `${currentUser.firstName} ${currentUser.lastName}`,
+          email: currentUser.email,
+          company: currentUser.company || 'N/A',
+          position: currentUser.position || 'N/A',
+          hubName: hub.title,
+          hubKey: hubKey,
+          accessLevel: currentUser.accessLevel,
+          purpose: 'Additional hub access request',
+          requestDate: new Date().toISOString(),
+          status: 'pending'
+        };
+        
+        requests.push(newRequest);
+        localStorage.setItem('accessRequests', JSON.stringify(requests));
+        
+        alert('Access request submitted successfully!\n\nYou will be notified once your request is reviewed.');
+      }
+    }
+    
+    // Format time ago
+    function formatTimeAgo(date) {
+      const seconds = Math.floor((new Date() - date) / 1000);
+      
+      if (seconds < 60) return 'Just now';
+      if (seconds < 3600) return Math.floor(seconds / 60) + ' minutes ago';
+      if (seconds < 86400) return Math.floor(seconds / 3600) + ' hours ago';
+      return Math.floor(seconds / 86400) + ' days ago';
+    }
+    
+    // Logout
+    function logout() {
+      if (confirm('Are you sure you want to logout?')) {
+        localStorage.removeItem('currentUser');
+        window.location.href = 'login.html';
+      }
+    }
+    
+    // Initialize
+    loadUserData();
+    loadHubs();
+  </script>
+  
+</body>
+</html>

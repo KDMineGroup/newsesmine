@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In | SESMine Platform</title>
+  <link rel="icon" type="image/png" href="https://cdn.grapesjs.com/workspaces/cmjdh0oo603xm12grpuiruk7p/assets/f6b95b3d-49d1-4e77-b952-49ed80c4befa__image-9-14-1404-ap-at-8.42-pm.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --primary-dark: #0b1a2e;
+      --primary-light: #f7f9fc;
+      --accent-primary: #2563eb;
+      --accent-gold: #d4af37;
+      --success: #38a169;
+      --error: #e53e3e;
+      --warning: #dd6b20;
+      --gradient-primary: linear-gradient(135deg, #0b1a2e 0%, #1a365d 100%);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0b1a2e 0%, #1a365d 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    
+    .login-container {
+      max-width: 1100px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: white;
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 30px 100px rgba(0,0,0,0.3);
+    }
+    
+    .login-left {
+      background: linear-gradient(135deg, rgba(11, 26, 46, 0.95) 0%, rgba(26, 54, 93, 0.9) 100%),
+                  url('https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=800&q=80') center/cover;
+      padding: 4rem;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    .logo-section {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+    
+    .logo-section img {
+      height: 60px;
+      filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.4));
+    }
+    
+    .logo-section h1 {
+      font-size: 2rem;
+      font-weight: 900;
+    }
+    
+    .login-left h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      font-weight: 900;
+      line-height: 1.3;
+    }
+    
+    .login-left p {
+      font-size: 1.1rem;
+      opacity: 0.95;
+      line-height: 1.8;
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    
+    .stat-box {
+      text-align: center;
+      padding: 1.5rem;
+      background: rgba(255,255,255,0.1);
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+    }
+    
+    .stat-box h3 {
+      font-size: 2rem;
+      color: var(--accent-gold);
+      margin-bottom: 0.5rem;
+    }
+    
+    .stat-box p {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+    
+    .login-right {
+      padding: 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    .login-header {
+      margin-bottom: 2rem;
+    }
+    
+    .login-header h2 {
+      font-size: 2rem;
+      color: var(--primary-dark);
+      margin-bottom: 0.5rem;
+      font-weight: 900;
+    }
+    
+    .login-header p {
+      color: #666;
+      font-size: 1.05rem;
+    }
+    
+    .login-header p a {
+      color: var(--accent-primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    
+    .login-header p a:hover {
+      text-decoration: underline;
+    }
+    
+    .alert {
+      padding: 1rem;
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+      display: none;
+    }
+    
+    .alert.show {
+      display: block;
+      animation: slideIn 0.3s ease-out;
+    }
+    
+    .alert-success {
+      background: #d1fae5;
+      color: #065f46;
+      border: 2px solid #34d399;
+    }
+    
+    .alert-error {
+      background: #fee2e2;
+      color: #991b1b;
+      border: 2px solid #f87171;
+    }
+    
+    .alert-warning {
+      background: #fef3c7;
+      color: #92400e;
+      border: 2px solid #fbbf24;
+    }
+    
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--primary-dark);
+      font-size: 0.95rem;
+    }
+    
+    .input-wrapper {
+      position: relative;
+    }
+    
+    .input-wrapper i {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #999;
+    }
+    
+    .form-group input {
+      width: 100%;
+      padding: 1rem 1rem 1rem 3rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.3s;
+      background: #f7f9fc;
+    }
+    
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+      background: white;
+    }
+    
+    .password-toggle {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #999;
+      z-index: 10;
+    }
+    
+    .form-options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+    
+    .remember-me {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .remember-me input {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+    
+    .remember-me label {
+      font-size: 0.9rem;
+      color: #555;
+      cursor: pointer;
+    }
+    
+    .forgot-password {
+      color: var(--accent-primary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    
+    .forgot-password:hover {
+      text-decoration: underline;
+    }
+    
+    .btn-login {
+      width: 100%;
+      background: var(--gradient-primary);
+      color: white;
+      padding: 1.2rem;
+      border: none;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 10px 30px rgba(11, 26, 46, 0.3);
+    }
+    
+    .btn-login:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 40px rgba(11, 26, 46, 0.4);
+    }
+    
+    .btn-login:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+    
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #e2e8f0;
+    }
+    
+    .divider span {
+      color: #999;
+      font-size: 0.9rem;
+    }
+    
+    .social-login {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    
+    .social-btn {
+      padding: 1rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      background: white;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    
+    .social-btn:hover {
+      border-color: var(--accent-primary);
+      background: #f7f9fc;
+    }
+    
+    .admin-login-link {
+      text-align: center;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid #e2e8f0;
+    }
+    
+    .admin-login-link a {
+      color: var(--accent-gold);
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .admin-login-link a:hover {
+      text-decoration: underline;
+    }
+    
+    @media (max-width: 968px) {
+      .login-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .login-left {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="login-container">
+    <div class="login-left">
+      <div class="logo-section">
+        <img src="https://cdn.grapesjs.com/workspaces/cmjdh0oo603xm12grpuiruk7p/assets/f6b95b3d-49d1-4e77-b952-49ed80c4befa__image-9-14-1404-ap-at-8.42-pm.png" alt="SESMine">
+        <h1>SES_MINE</h1>
+      </div>
+      
+      <h2>Welcome Back to SESMine</h2>
+      <p>Access your mining intelligence platform and continue optimizing your operations with industry-leading tools and analytics.</p>
+      
+      <div class="stats-grid">
+        <div class="stat-box">
+          <h3>1,200+</h3>
+          <p>Active Users</p>
+        </div>
+        <div class="stat-box">
+          <h3>98%</h3>
+          <p>Accuracy Rate</p>
+        </div>
+        <div class="stat-box">
+          <h3>350+</h3>
+          <p>Projects</p>
+        </div>
+        <div class="stat-box">
+          <h3>24/7</h3>
+          <p>Support</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="login-right">
+      <div class="login-header">
+        <h2>Sign In</h2>
+        <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+      </div>
+      
+      <div class="alert alert-success" id="registeredAlert">
+        <i class="fas fa-check-circle"></i> <strong>Registration successful!</strong> Please wait for admin approval to access the platform.
+      </div>
+      
+      <div class="alert alert-warning" id="pendingAlert">
+        <i class="fas fa-clock"></i> <strong>Account Pending Approval</strong><br>Your account is awaiting admin approval. You'll receive an email once approved.
+      </div>
+      
+      <div class="alert alert-error" id="errorAlert">
+        <i class="fas fa-exclamation-circle"></i> <span id="errorMessage"></span>
+      </div>
+      
+      <form id="loginForm">
+        <div class="form-group">
+          <label>Username or Email</label>
+          <div class="input-wrapper">
+            <i class="fas fa-user"></i>
+            <input type="text" id="username" name="username" placeholder="Enter your username or email" required>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label>Password</label>
+          <div class="input-wrapper">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            <i class="fas fa-eye password-toggle" id="togglePassword"></i>
+          </div>
+        </div>
+        
+        <div class="form-options">
+          <div class="remember-me">
+            <input type="checkbox" id="remember" name="remember">
+            <label for="remember">Remember me</label>
+          </div>
+          <a href="#" class="forgot-password">Forgot password?</a>
+        </div>
+        
+        <button type="submit" class="btn-login" id="loginBtn">
+          <i class="fas fa-sign-in-alt"></i> Sign In
+        </button>
+      </form>
+      
+      <div class="divider">
+        <span>Or continue with</span>
+      </div>
+      
+      <div class="social-login">
+        <button class="social-btn" onclick="alert('Google login coming soon!')">
+          <i class="fab fa-google"></i> Google
+        </button>
+        <button class="social-btn" onclick="alert('LinkedIn login coming soon!')">
+          <i class="fab fa-linkedin"></i> LinkedIn
+        </button>
+      </div>
+      
+      <div class="admin-login-link">
+        <a href="admin-login.html">
+          <i class="fas fa-user-shield"></i> Admin Login
+        </a>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // Check if just registered
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('registered') === 'true') {
+      document.getElementById('registeredAlert').classList.add('show');
+    }
+    
+    // Password toggle
+    document.getElementById('togglePassword').addEventListener('click', function() {
+      const password = document.getElementById('password');
+      const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+      password.setAttribute('type', type);
+      this.classList.toggle('fa-eye');
+      this.classList.toggle('fa-eye-slash');
+    });
+    
+    // Login form submission
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const errorAlert = document.getElementById('errorAlert');
+      const errorMessage = document.getElementById('errorMessage');
+      const pendingAlert = document.getElementById('pendingAlert');
+      const loginBtn = document.getElementById('loginBtn');
+      
+      // Hide alerts
+      errorAlert.classList.remove('show');
+      pendingAlert.classList.remove('show');
+      document.getElementById('registeredAlert').classList.remove('show');
+      
+      // Get users from localStorage
+      const users = JSON.parse(localStorage.getItem('users') || '[]');
+      
+      // Find user
+      const user = users.find(u => 
+        (u.username === username || u.email === username) && u.password === password
+      );
+      
+      if (!user) {
+        errorMessage.textContent = 'Invalid username/email or password!';
+        errorAlert.classList.add('show');
+        return;
+      }
+      
+      // Check if account is approved
+      if (user.status === 'pending') {
+        pendingAlert.classList.add('show');
+        return;
+      }
+      
+      if (user.status === 'rejected') {
+        errorMessage.textContent = 'Your account has been rejected. Please contact support.';
+        errorAlert.classList.add('show');
+        return;
+      }
+      
+      // Login successful
+      const sessionData = {
+        userId: user.userId,
+        username: user.username,
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        accessLevel: user.accessLevel,
+        hubsAccess: user.hubsAccess,
+        loginTime: new Date().toISOString()
+      };
+      
+      localStorage.setItem('currentUser', JSON.stringify(sessionData));
+      
+      // Redirect to dashboard
+      window.location.href = 'home.html';
+    });
+  </script>
+  
+</body>
+</html>

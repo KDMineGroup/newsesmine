@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Innovation & Technology Hub | SESMine</title>
+  <link rel="icon" type="image/png" href="https://cdn.grapesjs.com/workspaces/cmjdh0oo603xm12grpuiruk7p/assets/f6b95b3d-49d1-4e77-b952-49ed80c4befa__image-9-14-1404-ap-at-8.42-pm.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --primary-dark: #0b1a2e;
+      --primary-light: #f7f9fc;
+      --accent-primary: #06b6d4;
+      --accent-gold: #d4af37;
+      --success: #38a169;
+      --gradient-primary: linear-gradient(135deg, #06b6d4, #0891b2);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+    }
+    
+    .top-nav {
+      background: white;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .nav-container {
+      max-width: 1600px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    
+    .logo-section {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .logo-section img {
+      height: 40px;
+    }
+    
+    .logo-section h1 {
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: var(--primary-dark);
+    }
+    
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #666;
+      font-size: 0.95rem;
+    }
+    
+    .breadcrumb a {
+      color: var(--accent-primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    
+    .btn-back {
+      padding: 0.75rem 1.5rem;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      border: 2px solid #e2e8f0;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .btn-back:hover {
+      border-color: var(--accent-primary);
+      background: white;
+    }
+    
+    .hub-hero {
+      background: linear-gradient(135deg, rgba(6, 182, 212, 0.95) 0%, rgba(8, 145, 178, 0.9) 100%),
+                  url('https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1920&q=80') center/cover;
+      padding: 4rem 2rem;
+      color: white;
+      text-align: center;
+    }
+    
+    .hub-hero-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .hub-icon-large {
+      width: 100px;
+      height: 100px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      margin: 0 auto 2rem;
+      backdrop-filter: blur(10px);
+      border: 3px solid rgba(255,255,255,0.3);
+    }
+    
+    .hub-hero h1 {
+      font-size: 3rem;
+      font-weight: 900;
+      margin-bottom: 1rem;
+    }
+    
+    .hub-hero p {
+      font-size: 1.3rem;
+      opacity: 0.95;
+    }
+    
+    .main-content {
+      max-width: 1600px;
+      margin: -50px auto 0;
+      padding: 0 2rem 4rem;
+      position: relative;
+      z-index: 10;
+    }
+    
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    
+    .tool-card {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 25px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+      transition: all 0.3s;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .tool-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100px;
+      height: 100px;
+      background: radial-gradient(circle, rgba(6, 182, 212, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    
+    .tool-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    }
+    
+    .tool-icon {
+      width: 70px;
+      height: 70px;
+      background: var(--gradient-primary);
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: white;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+      position: relative;
+      z-index: 1;
+    }
+    
+    .tool-card h3 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 1rem;
+    }
+    
+    .tool-card p {
+      color: #666;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+    
+    .tool-features {
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+    
+    .tool-features li {
+      padding: 0.5rem 0;
+      color: #555;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+    }
+    
+    .tool-features li i {
+      color: var(--success);
+    }
+    
+    .btn-tool {
+      width: 100%;
+      padding: 1rem;
+      background: var(--gradient-primary);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    
+    .btn-tool:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+    }
+    
+    .innovation-lab {
+      background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(8, 145, 178, 0.05) 100%);
+      padding: 4rem;
+      border-radius: 30px;
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+    
+    .innovation-lab h2 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--primary-dark);
+      margin-bottom: 1.5rem;
+    }
+    
+    .innovation-lab p {
+      font-size: 1.2rem;
+      color: #666;
+      max-width: 800px;
+      margin: 0 auto 2rem;
+      line-height: 1.8;
+    }
+    
+    .tech-badges {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    
+    .tech-badge {
+      padding: 0.75rem 1.5rem;
+      background: white;
+      border-radius: 50px;
+      font-weight: 700;
+      color: var(--accent-primary);
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .section {
+      background: white;
+      padding: 3rem;
+      border-radius: 25px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+    }
+    
+    .section h2 {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--primary-dark);
+      margin-bottom: 1.5rem;
+    }
+    
+    .section p {
+      color: #666;
+      line-height: 1.8;
+      font-size: 1.05rem;
+    }
+    
+    @media (max-width: 768px) {
+      .tools-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .hub-hero h1 {
+        font-size: 2rem;
+      }
+      
+      .tech-badges {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <nav class="top-nav">
+    <div class="nav-container">
+      <div class="nav-left">
+        <div class="logo-section">
+          <img src="https://cdn.grapesjs.com/workspaces/cmjdh0oo603xm12grpuiruk7p/assets/f6b95b3d-49d1-4e77-b952-49ed80c4befa__image-9-14-1404-ap-at-8.42-pm.png" alt="SESMine">
+          <h1>SES_MINE</h1>
+        </div>
+        <div class="breadcrumb">
+          <a href="home.html">Dashboard</a>
+          <i class="fas fa-chevron-right"></i>
+          <span>Innovation & Technology Hub</span>
+        </div>
+      </div>
+      <a href="home.html" class="btn-back">
+        <i class="fas fa-arrow-left"></i> Back to Dashboard
+      </a>
+    </div>
+  </nav>
+  
+  <section class="hub-hero">
+    <div class="hub-hero-content">
+      <div class="hub-icon-large">
+        <i class="fas fa-lightbulb"></i>
+      </div>
+      <h1>Innovation & Technology Hub</h1>
+      <p>AI, automation, IoT, and emerging technologies for modern mining</p>
+    </div>
+  </section>
+  
+  <div class="main-content">
+    <div class="tools-grid">
+      <div class="tool-card" onclick="alert('AI & Machine Learning - Coming Soon!')">
+        <div class="tool-icon">
+          <i class="fas fa-robot"></i>
+        </div>
+        <h3>AI & Machine Learning</h3>
+        <p>AI-powered tools for optimization and predictive maintenance</p>
+        <ul class="tool-features">
+          <li><i class="fas fa-check"></i> Predictive models</li>
+          <li><i class="fas fa-check"></i> Process optimization</li>
+          <li><i class="fas fa-check"></i> Anomaly detection</li>
+          <li><i class="fas fa-check"></i> Smart recommendations</li>
+        </ul>
+        <button class="btn-tool">
+          <i class="fas fa-play"></i> Explore AI Tools
+        </button>
+      </div>
+      
+      <div class="tool-card" onclick="alert('Automation Solutions - Coming Soon!')">
+        <div class="tool-icon">
+          <i class="fas fa-cogs"></i>
+        </div>
+        <h3>Automation Solutions</h3>
+        <p>Explore and implement automation technologies</p>
+        <ul class="tool-features">
+          <li><i class="fas fa-check"></i> Autonomous equipment</li>
+          <li><i class="fas fa-check"></i> Process automation</li>
+          <li><i class="fas fa-check"></i> Remote operations</li>
+          <li><i class="fas fa-check"></i> ROI calculators</li>
+        </ul>
+        <button class="btn-tool">
+          <i class="fas fa-play"></i> View Solutions
+        </button>
+      </div>
+      
+      <div class="tool-card" onclick="alert('IoT Integration - Coming Soon!')">
+        <div class="tool-icon">
+          <i class="fas fa-network-wired"></i>
+        </div>
+        <h3>IoT Integration</h3>
+        <p>Connect and monitor equipment with IoT sensors</p>
+        <ul class="tool-features">
+          <li><i class="fas fa-check"></i> Sensor networks</li>
+          <li><i class="fas fa-check"></i> Real-time monitoring</li>
+          <li><i class="fas fa-check"></i> Data collection</li>
+          <li><i class="fas fa-check"></i> Edge computing</li>
+        </ul>
+        <button class="btn-tool">
+          <i class="fas fa-play"></i> Connect IoT
+        </button>
+      </div>
+      
+      <div class="tool-card" onclick="alert('Digital Twins - Coming Soon!')">
+        <div class="tool-icon">
+          <i class="fas fa-cube"></i>
+        </div>
+        <h3>Digital Twins</h3>
+        <p>Create digital replicas of mining operations for simulation</p>
+        <ul class="tool-features">
+          <li><i class="fas fa-check"></i> 3D modeling</li>
+          <li><i class="fas fa-check"></i> Real-time sync</li>
+          <li><i class="fas fa-check"></i> Scenario testing</li>
+          <li><i class="fas fa-check"></i> Performance optimization</li>
+        </ul>
+        <button class="btn-tool">
+          <i class="fas fa-play"></i> Create Twin
+        </button>
+      </div>
+      
+      <div class="tool-card" onclick="alert('Innovation Lab - Coming Soon!')">
+        <div class="tool-icon">
+          <i class="fas fa-flask"></i>
+        </div>
+        <h3>Innovation Lab</h3>
+        <p>Test and pilot emerging technologies</p>
+        <ul class="tool-features">
+          <li><i class="fas fa-check"></i> Sandbox environment</li>
+          <li><i class="fas fa-check"></i> Technology pilots</li>
+          <li><i class="fas fa-check"></i> POC development</li>
+          <li><i class="fas fa-check"></i> Expert guidance</li>
+        </ul>
+        <button class="btn-tool">
+          <i class="fas fa-play"></i> Enter Lab
+        </button>
+      </div>
+      
+      <div class="tool-card" onclick="alert('Technology Roadmap - Coming Soon!')">
+        <div class="tool-icon">
+          <i class="fas fa-road"></i>
+        </div>
+        <h3>Technology Roadmap</h3>
+        <p>Plan and track technology adoption strategies</p>
+        <ul class="tool-features">
+          <li><i class="fas fa-check"></i> Strategic planning</li>
+          <li><i class="fas fa-check"></i> Implementation tracking</li>
+          <li><i class="fas fa-check"></i> ROI analysis</li>
+          <li><i class="fas fa-check"></i> Milestone management</li>
+        </ul>
+        <button class="btn-tool">
+          <i class="fas fa-play"></i> Build Roadmap
+        </button>
+      </div>
+    </div>
+    
+    <!-- Innovation Lab Section -->
+    <div class="innovation-lab">
+      <h2>🚀 Welcome to the Innovation Lab</h2>
+      <p>Experiment with cutting-edge technologies in a risk-free environment. Our innovation lab provides sandbox access to emerging technologies, allowing you to test and validate solutions before full-scale implementation.</p>
+      
+      <div class="tech-badges">
+        <div class="tech-badge">
+          <i class="fas fa-brain"></i> Machine Learning
+        </div>
+        <div class="tech-badge">
+          <i class="fas fa-microchip"></i> Edge Computing
+        </div>
+        <div class="tech-badge">
+          <i class="fas fa-cloud"></i> Cloud Integration
+        </div>
+        <div class="tech-badge">
+          <i class="fas fa-vr-cardboard"></i> AR/VR
+        </div>
+        <div class="tech-badge">
+          <i class="fas fa-satellite"></i> Satellite Imagery
+        </div>
+        <div class="tech-badge">
+          <i class="fas fa-drone"></i> Drone Technology
+        </div>
+      </div>
+    </div>
+    
+    <div class="section">
+      <h2>About Innovation & Technology Hub</h2>
+      <p>The Innovation & Technology Hub is your gateway to the future of mining. Explore AI-powered optimization, automation solutions, IoT integration, and digital twin technology. Our platform helps you stay ahead of the curve with emerging technologies.</p>
+      <br>
+      <p>Test new technologies in our innovation lab, build technology roadmaps, and connect with experts who can guide your digital transformation journey. From autonomous equipment to predictive maintenance, we provide the tools and expertise you need to modernize your operations.</p>
+    </div>
+  </div>
+  
+  <script>
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (!currentUser) {
+      window.location.href = 'login.html';
+    }
+    
+    const hubsAccess = currentUser.hubsAccess || [];
+    if (!hubsAccess.includes('innovation')) {
+      alert('You do not have access to the Innovation & Technology Hub.\n\nPlease request access from your dashboard.');
+      window.location.href = 'home.html';
+    }
+  </script>
+  
+</body>
+</html>

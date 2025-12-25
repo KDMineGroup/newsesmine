@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up | SESMine Platform</title>
+  <link rel="icon" type="image/png" href="https://cdn.grapesjs.com/workspaces/cmjdh0oo603xm12grpuiruk7p/assets/f6b95b3d-49d1-4e77-b952-49ed80c4befa__image-9-14-1404-ap-at-8.42-pm.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --primary-dark: #0b1a2e;
+      --primary-light: #f7f9fc;
+      --accent-primary: #2563eb;
+      --accent-gold: #d4af37;
+      --success: #38a169;
+      --error: #e53e3e;
+      --gradient-primary: linear-gradient(135deg, #0b1a2e 0%, #1a365d 100%);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0b1a2e 0%, #1a365d 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    
+    .signup-container {
+      max-width: 1200px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: white;
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 30px 100px rgba(0,0,0,0.3);
+    }
+    
+    .signup-left {
+      background: linear-gradient(135deg, rgba(11, 26, 46, 0.95) 0%, rgba(26, 54, 93, 0.9) 100%),
+                  url('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800&q=80') center/cover;
+      padding: 4rem;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    .logo-section {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+    
+    .logo-section img {
+      height: 60px;
+      filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.4));
+    }
+    
+    .logo-section h1 {
+      font-size: 2rem;
+      font-weight: 900;
+    }
+    
+    .signup-left h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      font-weight: 900;
+      line-height: 1.3;
+    }
+    
+    .signup-left p {
+      font-size: 1.1rem;
+      opacity: 0.95;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+    
+    .features-list {
+      list-style: none;
+      margin-top: 2rem;
+    }
+    
+    .features-list li {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      font-size: 1.05rem;
+    }
+    
+    .features-list i {
+      width: 40px;
+      height: 40px;
+      background: rgba(212, 175, 55, 0.2);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-gold);
+      font-size: 1.2rem;
+    }
+    
+    .signup-right {
+      padding: 4rem;
+      overflow-y: auto;
+      max-height: 90vh;
+    }
+    
+    .signup-header {
+      margin-bottom: 2rem;
+    }
+    
+    .signup-header h2 {
+      font-size: 2rem;
+      color: var(--primary-dark);
+      margin-bottom: 0.5rem;
+      font-weight: 900;
+    }
+    
+    .signup-header p {
+      color: #666;
+      font-size: 1.05rem;
+    }
+    
+    .signup-header p a {
+      color: var(--accent-primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    
+    .signup-header p a:hover {
+      text-decoration: underline;
+    }
+    
+    .form-section {
+      margin-bottom: 2rem;
+    }
+    
+    .form-section h3 {
+      font-size: 1.2rem;
+      color: var(--primary-dark);
+      margin-bottom: 1rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .form-section h3 i {
+      color: var(--accent-primary);
+    }
+    
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-group.full-width {
+      grid-column: 1 / -1;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--primary-dark);
+      font-size: 0.95rem;
+    }
+    
+    .form-group label span {
+      color: var(--error);
+    }
+    
+    .input-wrapper {
+      position: relative;
+    }
+    
+    .input-wrapper i {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #999;
+    }
+    
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 1rem 1rem 1rem 3rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.3s;
+      background: #f7f9fc;
+    }
+    
+    .form-group input:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+      background: white;
+    }
+    
+    .password-toggle {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #999;
+      z-index: 10;
+    }
+    
+    .password-strength {
+      margin-top: 0.5rem;
+      height: 4px;
+      background: #e2e8f0;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    
+    .password-strength-bar {
+      height: 100%;
+      width: 0%;
+      transition: all 0.3s;
+    }
+    
+    .strength-weak { background: #e53e3e; width: 33%; }
+    .strength-medium { background: #dd6b20; width: 66%; }
+    .strength-strong { background: #38a169; width: 100%; }
+    
+    .checkbox-group {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin: 1.5rem 0;
+    }
+    
+    .checkbox-group input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      margin-top: 0.2rem;
+      cursor: pointer;
+    }
+    
+    .checkbox-group label {
+      font-size: 0.95rem;
+      color: #555;
+      line-height: 1.6;
+    }
+    
+    .checkbox-group label a {
+      color: var(--accent-primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    
+    .btn-signup {
+      width: 100%;
+      background: var(--gradient-primary);
+      color: white;
+      padding: 1.2rem;
+      border: none;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 10px 30px rgba(11, 26, 46, 0.3);
+      margin-top: 1rem;
+    }
+    
+    .btn-signup:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 40px rgba(11, 26, 46, 0.4);
+    }
+    
+    .btn-signup:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+    
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #e2e8f0;
+    }
+    
+    .divider span {
+      color: #999;
+      font-size: 0.9rem;
+    }
+    
+    .social-signup {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    
+    .social-btn {
+      padding: 1rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      background: white;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    
+    .social-btn:hover {
+      border-color: var(--accent-primary);
+      background: #f7f9fc;
+    }
+    
+    .alert {
+      padding: 1rem;
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+      display: none;
+    }
+    
+    .alert.show {
+      display: block;
+      animation: slideIn 0.3s ease-out;
+    }
+    
+    .alert-success {
+      background: #d1fae5;
+      color: #065f46;
+      border: 2px solid #34d399;
+    }
+    
+    .alert-error {
+      background: #fee2e2;
+      color: #991b1b;
+      border: 2px solid #f87171;
+    }
+    
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @media (max-width: 968px) {
+      .signup-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .signup-left {
+        display: none;
+      }
+      
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="signup-container">
+    <div class="signup-left">
+      <div class="logo-section">
+        <img src="https://cdn.grapesjs.com/workspaces/cmjdh0oo603xm12grpuiruk7p/assets/f6b95b3d-49d1-4e77-b952-49ed80c4befa__image-9-14-1404-ap-at-8.42-pm.png" alt="SESMine">
+        <h1>SES_MINE</h1>
+      </div>
+      
+      <h2>Join 1,200+ Mining Professionals</h2>
+      <p>Transform your mining operations with industry-leading tools, analytics, and expert support.</p>
+      
+      <ul class="features-list">
+        <li>
+          <i class="fas fa-check-circle"></i>
+          <span>AACE-compliant cost estimation tools</span>
+        </li>
+        <li>
+          <i class="fas fa-check-circle"></i>
+          <span>Real-time analytics and dashboards</span>
+        </li>
+        <li>
+          <i class="fas fa-check-circle"></i>
+          <span>Expert consulting and support</span>
+        </li>
+        <li>
+          <i class="fas fa-check-circle"></i>
+          <span>Comprehensive equipment database</span>
+        </li>
+        <li>
+          <i class="fas fa-check-circle"></i>
+          <span>AI-powered optimization tools</span>
+        </li>
+      </ul>
+    </div>
+    
+    <div class="signup-right">
+      <div class="signup-header">
+        <h2>Create Your Account</h2>
+        <p>Already have an account? <a href="login.html">Sign in</a></p>
+      </div>
+      
+      <div class="alert alert-success" id="successAlert">
+        <i class="fas fa-check-circle"></i> <strong>Account created successfully!</strong> Redirecting to login...
+      </div>
+      
+      <div class="alert alert-error" id="errorAlert">
+        <i class="fas fa-exclamation-circle"></i> <span id="errorMessage"></span>
+      </div>
+      
+      <form id="signupForm">
+        <div class="form-section">
+          <h3><i class="fas fa-user"></i> Personal Information</h3>
+          <div class="form-grid">
+            <div class="form-group">
+              <label>First Name <span>*</span></label>
+              <div class="input-wrapper">
+                <i class="fas fa-user"></i>
+                <input type="text" id="firstName" name="firstName" placeholder="John" required>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label>Last Name <span>*</span></label>
+              <div class="input-wrapper">
+                <i class="fas fa-user"></i>
+                <input type="text" id="lastName" name="lastName" placeholder="Doe" required>
+              </div>
+            </div>
+            
+            <div class="form-group full-width">
+              <label>Email Address <span>*</span></label>
+              <div class="input-wrapper">
+                <i class="fas fa-envelope"></i>
+                <input type="email" id="email" name="email" placeholder="john.doe@company.com" required>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label>Phone Number</label>
+              <div class="input-wrapper">
+                <i class="fas fa-phone"></i>
+                <input type="tel" id="phone" name="phone" placeholder="+1 (555) 123-4567">
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label>Country <span>*</span></label>
+              <div class="input-wrapper">
+                <i class="fas fa-globe"></i>
+                <select id="country" name="country" required>
+                  <option value="">Select country</option>
+                  <option value="US">United States</option>
+                  <option value="CA">Canada</option>
+                  <option value="AU">Australia</option>
+                  <option value="UK">United Kingdom</option>
+                  <option value="ZA">South Africa</option>
+                  <option value="CL">Chile</option>
+                  <option value="PE">Peru</option>
+                  <option value="BR">Brazil</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="form-section">
+          <h3><i class="fas fa-briefcase"></i> Professional Information</h3>
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Company/Organization <span>*</span></label>
+              <div class="input-wrapper">
+                <i class="fas fa-building"></i>
+                <input type="text" id="company" name="company" placeholder="Mining Corp Ltd." required>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label>Position/Role <span>*</span></label>
+              <div class="input-wrapper">
+                <i class="fas fa-id-badge"></i>
+                <input type="text" id="position" name="position" placeholder="Mining Engineer" required>
+              </div>
+            </div>
+            
+            <div class="form-group full-width">
+              <label>Industry Sector <span>*</span></label>
+              <div class="input-wrapper">
+                <i class="fas fa-industry"></i>
+                <select id="sector" name="sector" required>
+                  <option value="">Select sector</option>
+                  <option value="gold">Gold Mining</option>
+                  <option value="copper">Copper Mining</option>
+                  <option value="coal">Coal Mining</option>
+                  <option value="iron">Iron Ore</option>
+                  <option value="diamonds">Diamonds</option>
+                  <option value="consulting">Mining Consulting</option>
+                  <option value="equipment">Equipment/Services</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="form-section">
+          <h3><i class="fas fa-lock"></i> Account Security</h3>
+          <div class="form-grid">
+            <div class="form-group full-width">
+              <label>Username <span>*</span></label>
+              <div class="input-wrapper">
+                <i class="fas fa-user-circle"></i>
+                <input type="text" id="username" name="username" placeholder="johndoe" required minlength="4">
+              </div>
+            </div>
+            
+            <div class="form-group full-width">
+              <label>Password <span>*</span></label>
+              <div class="input-wrapper">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="password" name="password" placeholder="Create a strong password" required minlength="8">
+                <i class="fas fa-eye password-toggle" id="togglePassword"></i>
+              </div>
+              <div class="password-strength">
+                <div class="password-strength-bar" id="strengthBar"></div>
+              </div>
+            </div>
+            
+            <div class="form-group full-width">
+              <label>Confirm Password <span>*</span></label>
+              <div class="input-wrapper">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter your password" required>
+                <i class="fas fa-eye password-toggle" id="toggleConfirmPassword"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="checkbox-group">
+          <input type="checkbox" id="terms" name="terms" required>
+          <label for="terms">
+            I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+          </label>
+        </div>
+        
+        <div class="checkbox-group">
+          <input type="checkbox" id="newsletter" name="newsletter">
+          <label for="newsletter">
+            Send me updates about new features and industry insights
+          </label>
+        </div>
+        
+        <button type="submit" class="btn-signup" id="submitBtn">
+          <i class="fas fa-user-plus"></i> Create Account
+        </button>
+      </form>
+      
+      <div class="divider">
+        <span>Or sign up with</span>
+      </div>
+      
+      <div class="social-signup">
+        <button class="social-btn" onclick="alert('Google signup coming soon!')">
+          <i class="fab fa-google"></i> Google
+        </button>
+        <button class="social-btn" onclick="alert('LinkedIn signup coming soon!')">
+          <i class="fab fa-linkedin"></i> LinkedIn
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // Password toggle
+    document.getElementById('togglePassword').addEventListener('click', function() {
+      const password = document.getElementById('password');
+      const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+      password.setAttribute('type', type);
+      this.classList.toggle('fa-eye');
+      this.classList.toggle('fa-eye-slash');
+    });
+    
+    document.getElementById('toggleConfirmPassword').addEventListener('click', function() {
+      const password = document.getElementById('confirmPassword');
+      const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+      password.setAttribute('type', type);
+      this.classList.toggle('fa-eye');
+      this.classList.toggle('fa-eye-slash');
+    });
+    
+    // Password strength checker
+    document.getElementById('password').addEventListener('input', function() {
+      const password = this.value;
+      const strengthBar = document.getElementById('strengthBar');
+      
+      let strength = 0;
+      if (password.length >= 8) strength++;
+      if (password.match(/[a-z]/) && password.match(/[A-Z]/)) strength++;
+      if (password.match(/[0-9]/)) strength++;
+      if (password.match(/[^a-zA-Z0-9]/)) strength++;
+      
+      strengthBar.className = 'password-strength-bar';
+      if (strength === 1 || strength === 2) {
+        strengthBar.classList.add('strength-weak');
+      } else if (strength === 3) {
+        strengthBar.classList.add('strength-medium');
+      } else if (strength >= 4) {
+        strengthBar.classList.add('strength-strong');
+      }
+    });
+    
+    // Form submission
+    document.getElementById('signupForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+      const errorAlert = document.getElementById('errorAlert');
+      const errorMessage = document.getElementById('errorMessage');
+      const successAlert = document.getElementById('successAlert');
+      const submitBtn = document.getElementById('submitBtn');
+      
+      // Hide alerts
+      errorAlert.classList.remove('show');
+      successAlert.classList.remove('show');
+      
+      // Validate passwords match
+      if (password !== confirmPassword) {
+        errorMessage.textContent = 'Passwords do not match!';
+        errorAlert.classList.add('show');
+        return;
+      }
+      
+      // Check if username already exists
+      const users = JSON.parse(localStorage.getItem('users') || '[]');
+      const username = document.getElementById('username').value;
+      const email = document.getElementById('email').value;
+      
+      if (users.find(u => u.username === username)) {
+        errorMessage.textContent = 'Username already exists!';
+        errorAlert.classList.add('show');
+        return;
+      }
+      
+      if (users.find(u => u.email === email)) {
+        errorMessage.textContent = 'Email already registered!';
+        errorAlert.classList.add('show');
+        return;
+      }
+      
+      // Create user object
+      const userData = {
+        userId: 'USER-' + Date.now(),
+        firstName: document.getElementById('firstName').value,
+        lastName: document.getElementById('lastName').value,
+        email: email,
+        phone: document.getElementById('phone').value,
+        country: document.getElementById('country').value,
+        company: document.getElementById('company').value,
+        position: document.getElementById('position').value,
+        sector: document.getElementById('sector').value,
+        username: username,
+        password: password, // In production, this should be hashed
+        registrationDate: new Date().toISOString(),
+        status: 'pending', // Admin needs to approve
+        accessLevel: 'none',
+        hubsAccess: [],
+        newsletter: document.getElementById('newsletter').checked
+      };
+      
+      // Save user
+      users.push(userData);
+      localStorage.setItem('users', JSON.stringify(users));
+      
+      // Create pending approval notification for admin
+      let adminNotifications = JSON.parse(localStorage.getItem('adminNotifications') || '[]');
+      adminNotifications.push({
+        type: 'new_user',
+        userId: userData.userId,
+        message: `New user registration: ${userData.firstName} ${userData.lastName} (${userData.email})`,
+        date: new Date().toISOString(),
+        read: false
+      });
+      localStorage.setItem('adminNotifications', JSON.stringify(adminNotifications));
+      
+      // Show success message
+      successAlert.classList.add('show');
+      submitBtn.disabled = true;
+      
+      // Redirect to login after 2 seconds
+      setTimeout(() => {
+        window.location.href = 'login.html?registered=true';
+      }, 2000);
+    });
+  </script>
+  
+</body>
+</html>

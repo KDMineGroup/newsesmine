@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Features | SESMine Platform</title>
+  <link rel="icon" type="image/png" href="https://cdn.grapesjs.com/workspaces/cmjdh0oo603xm12grpuiruk7p/assets/f6b95b3d-49d1-4e77-b952-49ed80c4befa__image-9-14-1404-ap-at-8.42-pm.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --primary-dark: #0b1a2e;
+      --primary-light: #f7f9fc;
+      --accent-primary: #2563eb;
+      --accent-gold: #d4af37;
+      --success: #38a169;
+      --gradient-primary: linear-gradient(135deg, #0b1a2e 0%, #1a365d 100%);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+    }
+    
+    /* Navigation */
+    .navbar {
+      background: rgba(11, 26, 46, 0.98);
+      backdrop-filter: blur(20px);
+      padding: 1rem 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.15);
+    }
+    
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      color: white;
+      font-size: 1.5rem;
+      font-weight: 800;
+      text-decoration: none;
+    }
+    
+    .logo img {
+      height: 50px;
+      filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+    
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+    }
+    
+    .nav-links a:hover {
+      color: var(--accent-gold);
+    }
+    
+    .btn-get-started {
+      background: var(--accent-gold);
+      color: var(--primary-dark);
+      padding: 0.75rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: all 0.3s;
+    }
+    
+    .btn-get-started:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+    }
+    
+    /* Hero */
+    .hero {
+      background: var(--gradient-primary);
+      padding: 150px 2rem 100px;
+      text-align: center;
+      color: white;
+    }
+    
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 900;
+      margin-bottom: 1.5rem;
+    }
+    
+    .hero p {
+      font-size: 1.3rem;
+      opacity: 0.95;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    /* Main Content */
+    .main-content {
+      max-width: 1400px;
+      margin: -50px auto 0;
+      padding: 0 2rem 5rem;
+      position: relative;
+      z-index: 10;
+    }
+    
+    /* Feature Categories */
+    .feature-category {
+      background: white;
+      padding: 4rem;
+      border-radius: 30px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+      margin-bottom: 3rem;
+    }
+    
+    .category-header {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 3px solid var(--primary-light);
+    }
+    
+    .category-icon {
+      width: 100px;
+      height: 100px;
+      border-radius: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: white;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    }
+    
+    .category-info h2 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--primary-dark);
+      margin-bottom: 0.5rem;
+    }
+    
+    .category-info p {
+      font-size: 1.2rem;
+      color: #666;
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    
+    .feature-item {
+      padding: 2rem;
+      background: var(--primary-light);
+      border-radius: 20px;
+      transition: all 0.3s;
+    }
+    
+    .feature-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    
+    .feature-icon {
+      width: 60px;
+      height: 60px;
+      background: white;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      color: var(--accent-primary);
+      margin-bottom: 1.5rem;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    }
+    
+    .feature-item h3 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 0.75rem;
+    }
+    
+    .feature-item p {
+      color: #666;
+      line-height: 1.8;
+    }
+    
+    /* CTA Section */
+    .cta-section {
+      background: var(--gradient-primary);
+      padding: 6rem 2rem;
+      text-align: center;
+      color: white;
+      border-radius: 30px;
+      margin-bottom: 3rem;
+    }
+    
+    .cta-section h2 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      margin-bottom: 1.5rem;
+    }
+    
+    .cta-section p {
+      font-size: 1.2rem;
+      margin-bottom: 2.5rem;
+      opacity: 0.95;
+    }
+    
+    .btn-cta {
+      background: var(--accent-gold);
+      color: var(--primary-dark);
+      padding: 1.2rem 3rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 1.1rem;
+      display: inline-block;
+      transition: all 0.3s;
+    }
+    
+    .btn-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(212, 175, 55, 0.4);
+    }
+    
+    /* Footer */
+    .footer {
+      background: var(--primary-dark);
+      color: white;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    
+    .footer p {
+      opacity: 0.8;
+    }
+    
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .nav-links {
+        display: none;
+      }
+      
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .category-header {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <img src="https://cdn.grapesjs.com/workspaces/cmjdh0oo603xm12grpuiruk7p/assets/f6b95b3d-49d1-4e77-b952-49ed80c4befa__image-9-14-1404-ap-at-8.42-pm.png" alt="SESMine">
+        <span>SES_MINE</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="features.html">Features</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="login.html">Sign In</a></li>
+        <li><a href="signup.html" class="btn-get-started">Get Started</a></li>
+      </ul>
+    </div>
+  </nav>
+  
+  <!-- Hero -->
+  <section class="hero">
+    <h1>Powerful Features for Modern Mining</h1>
+    <p>Comprehensive tools and services designed to optimize every aspect of your mining operations</p>
+  </section>
+  
+  <!-- Main Content -->
+  <div class="main-content">
+    
+    <!-- Engineering Features -->
+    <div class="feature-category">
+      <div class="category-header">
+        <div class="category-icon" style="background: linear-gradient(135deg, #2563eb, #1e40af);">
+          <i class="fas fa-hard-hat"></i>
+        </div>
+        <div class="category-info">
+          <h2>Engineering Tools</h2>
+          <p>AACE-compliant cost estimation and project management</p>
+        </div>
+      </div>
+      
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fas fa-calculator"></i>
+          </div>
+          <h3>Cost Estimation</h3>
+          <p>Advanced calculators following AACE International standards for accurate project costing</p>
+        </div>
+        
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fas fa-database"></i>
+          </div>
+          <h3>Equipment Database</h3>
+          <p>Comprehensive database with 5,000+ mining equipment entries and real-time pricing</p>
+        </div>
+        
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fas fa-sitemap"></i>
+          </div>
+          <h3>WBS Builder</h3>
+          <p>Create detailed work breakdown structures with hierarchical organization</p>
+        </div>
+        
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fas fa-file-alt"></i>
+          </div>
+          <h3>Project Templates</h3>
+          <p>Pre-built templates for various mining project types and scales</p>
+        </div>
+        
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fas fa-book"></i>
+          </div>
+          <h3>Technical Library</h3>
+          <p>Access to engineering standards, best practices, and industry guidelines</p>
+        </div>
+        
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <h3>Collaboration</h3>
+          <p>Real-time collaboration with team members and version control</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Economics Features -->
+    <div class="feature-category">
+      <div class="category-header">
+        <div class="category-icon" style="background: linear-gradient(135deg, #10b981, #059669);">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <div class="category-info">
+          <h2>Financial Modeling</h2>
+          <p>Advanced economic analysis and investment optimization</p>
+        </div>
+      </div>
+      
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fas fa-percentage"></i>
+          </div>
+          <h3>NPV/IRR Calculators</h3>
+          <p>Advanced financial calculators for investment analysis and decision making</p>
+        </div>
+        
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fas fa-money-bill-wave"></i>
+          </div>
+          <h3>Cash Flow Modeling</h3>
+          <p>Create detailed cash flow projections with sensitivity analysis</p>
+        </div>
+        
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3>Risk Assessment</h3>
+          <p>Monte Carlo simulations and comprehensive risk analysis frameworks</p>
+        </div>
+        
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fas fa-chart-area"></i>
+          </div>
+          <h3>Economic Scenarios</h3>
+          <p>Model different economic scenarios and commodity price variations</p>
+        </div>
+        
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fas fa-coins"></i>
+          </div>
+          <h3>Investment Optimization</h3>
+          <p>Optimize capital allocation and investment strategies</p>
+        </div>
+        
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fas fa-file-invoice-dollar"></i>
+          </div>
+          <h3>Financial Reports</h3>
+          <p>Generate comprehensive financial reports and presentations</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Analytics Features -->
+    <div class="feature-category">
+      <div class="category-header">
+        <div class="category-icon" style="background: linear-gradient(135deg, #9333ea, #7e22ce);">
+          <i class="fas fa-chart-bar"></i>
+        </div>
+        <div class="category-info">
+          <h2>Analytics & Intelligence</h2>
+          <p>Real-time data visualization and predictive analytics</p>
+        </div>
+      </div>
+      
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fas fa-tachometer-alt"></i>
+          </div>
+          <h3>Real-time Dashboards</h3>
+          <p>Interactive dashboards with live data updates and customizable widgets</p>
+        </div>
+        
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fas fa-brain"></i>
+          </div>
+          <h3>Predictive Analytics</h3>
+          <p>AI-powered predictions for production, costs, and maintenance</p>
+        </div>
+        
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fas fa-bullseye"></i>
+          </div>
+          <h3>Performance Metrics</h3>
+          <p>Track KPIs and performance indicators across all operations</p>
+        </div>
+        
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fas fa-chart-pie"></i>
+          </div>
+          <h3>Data Visualization</h3>
+          <p>Advanced charting and visualization tools for complex datasets</p>
+        </div>
+        
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fas fa-file-export"></i>
+          </div>
+          <h3>Custom Reports</h3>
+          <p>Build and schedule custom reports with automated distribution</p>
+        </div>
+        
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fas fa-plug"></i>
+          </div>
+          <h3>Data Integration</h3>
+          <p>Connect with external data sources via APIs and connectors</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Technology Features -->
+    <div class="feature-category">
+      <div class="category-header">
+        <div class="category-icon" style="background: linear-gradient(135deg, #06b6d4, #0891b2);">
+          <i class="fas fa-lightbulb"></i>
+        </div>
+        <div class="category-info">
+          <h2>Innovation & Technology</h2>
+          <p>Cutting-edge technologies for modern mining operations</p>
+        </div>
+      </div>
+      
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fas fa-robot"></i>
+          </div>
+          <h3>AI & Machine Learning</h3>
+          <p>AI-powered tools for optimization and predictive maintenance</p>
+        </div>
+        
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fas fa-cogs"></i>
+          </div>
+          <h3>Automation Solutions</h3>
+          <p>Explore and implement automation technologies</p>
+        </div>
+        
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fas fa-network-wired"></i>
+          </div>
+          <h3>IoT Integration</h3>
+          <p>Connect and monitor equipment with IoT sensors</p>
+        </div>
+        
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fas fa-cube"></i>
+          </div>
+          <h3>Digital Twins</h3>
+          <p>Create digital replicas of mining operations for simulation</p>
+        </div>
+        
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fas fa-flask"></i>
+          </div>
+          <h3>Innovation Lab</h3>
+          <p>Test and pilot emerging technologies</p>
+        </div>
+        
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fas fa-road"></i>
+          </div>
+          <h3>Technology Roadmap</h3>
+          <p>Plan and track technology adoption strategies</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- CTA -->
+    <div class="cta-section">
+      <h2>Ready to Transform Your Mining Operations?</h2>
+      <p>Join 1,200+ professionals using SESMine to optimize their mining projects</p>
+      <a href="signup.html" class="btn-cta">
+        <i class="fas fa-rocket"></i> Get Started Free
+      </a>
+    </div>
+    
+  </div>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2025 SESMine. All rights reserved.</p>
+  </footer>
+  
+</body>
+</html>

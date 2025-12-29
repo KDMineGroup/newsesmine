@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Latest mining industry news, insights, and trends from SESMine. Stay updated with technology, sustainability, and market developments.">
+<title>Mining Industry News & Insights - SESMine</title>
+
+<link rel="icon" type="image/png" href="https://cdn.grapesjs.com/workspaces/cmjdh0oo603xm12grpuiruk7p/assets/f6b95b3d-49d1-4e77-b952-49ed80c4befa__image-9-14-1404-ap-at-8.42-pm.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+  :root {
+    --primary-dark: #0b1a2e;
+    --primary-light: #f7f9fc;
+    --accent-primary: #2563eb;
+    --accent-secondary: #1e3a8a;
+    --accent-gold: #d4af37;
+    --success: #38a169;
+    --warning: #dd6b20;
+    --error: #e53e3e;
+    --gradient-primary: linear-gradient(135deg, #0b1a2e 0%, #1a365d 100%);
+    --gradient-accent: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  
+  /* Navigation */
+  .navbar {
+    background: rgba(11, 26, 46, 0.98);
+    backdrop-filter: blur(20px);
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.15);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+  }
+  
+  .nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+  
+  .logo:hover {
+    transform: scale(1.05);
+  }
+  
+  .logo img {
+    height: 50px;
+    width: auto;
+    filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    align-items: center;
+  }
+  
+  .nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    position: relative;
+  }
+  
+  .nav-links a.active {
+    color: var(--accent-gold);
+  }
+  
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--accent-gold);
+    transition: all 0.3s;
+    transform: translateX(-50%);
+  }
+  
+  .nav-links a:hover::after,
+  .nav-links a.active::after {
+    width: 80%;
+  }
+  
+  .nav-links a:hover {
+    color: var(--accent-gold);
+  }
+  
+  .btn-get-started {
+    background: var(--gradient-accent);
+    color: white;
+    padding: 0.75rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.3s;
+    box-shadow: 0 4px 20px rgba(37, 99, 235, 0.4);
+    border: 2px solid transparent;
+  }
+  
+  .btn-get-started:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(37, 99, 235, 0.5);
+    border-color: var(--accent-gold);
+  }
+
+  /* Page Header */
+  .page-header {
+    background: var(--gradient-primary);
+    padding: 150px 2rem 80px;
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 50%, rgba(37, 99, 235, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
+  }
+
+  .page-header-content {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .page-header h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #ffffff 0%, #d4af37 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .page-header p {
+    font-size: 1.3rem;
+    opacity: 0.95;
+    line-height: 1.8;
+  }
+
+  /* Filter Section */
+  .filter-section {
+    background: white;
+    padding: 2rem;
+    margin: -40px auto 3rem;
+    max-width: 1400px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 10;
+  }
+
+  .filter-container {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .filter-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .filter-item label {
+    font-weight: 600;
+    color: var(--primary-dark);
+  }
+
+  .filter-select {
+    padding: 0.75rem 1.5rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    background: white;
+  }
+
+  .filter-select:hover,
+  .filter-select:focus {
+    border-color: var(--accent-primary);
+    outline: none;
+  }
+
+  .search-box {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #f7f9fc;
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    border: 2px solid transparent;
+    transition: all 0.3s;
+  }
+
+  .search-box:focus-within {
+    border-color: var(--accent-primary);
+    background: white;
+  }
+
+  .search-box input {
+    border: none;
+    background: transparent;
+    font-size: 1rem;
+    outline: none;
+    width: 250px;
+  }
+
+  .search-box i {
+    color: #9ca3af;
+  }
+
+  /* News Container */
+  .news-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+  }
+
+  /* Featured News */
+  .featured-news {
+    margin-bottom: 5rem;
+  }
+
+  .featured-news h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: var(--primary-dark);
+    font-weight: 900;
+  }
+
+  .featured-card {
+    background: white;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    transition: all 0.4s;
+    cursor: pointer;
+  }
+
+  .featured-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.18);
+  }
+
+  .featured-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    min-height: 400px;
+  }
+
+  .featured-content {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .featured-meta {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .featured-category {
+    background: var(--gradient-accent);
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+
+  .featured-date {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #666;
+    font-weight: 500;
+  }
+
+  .featured-card h3 {
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary-dark);
+    font-weight: 800;
+    line-height: 1.3;
+  }
+
+  .featured-card p {
+    color: #666;
+    font-size: 1.15rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+
+  .read-more-btn {
+    background: var(--accent-gold);
+    color: var(--primary-dark);
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 800;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: all 0.3s;
+    align-self: flex-start;
+  }
+
+  .read-more-btn:hover {
+    transform: translateX(5px);
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+  }
+
+  /* News Grid */
+  .news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 2.5rem;
+    margin-bottom: 4rem;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+    margin-bottom: 2.5rem;
+    color: var(--primary-dark);
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-gold) 0%, transparent 100%);
+  }
+
+  .news-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    transition: all 0.4s;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .news-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  }
+
+  .news-image {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    transition: all 0.4s;
+  }
+
+  .news-card:hover .news-image {
+    transform: scale(1.08);
+  }
+
+  .news-content {
+    padding: 2rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .news-meta {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .news-date {
+    color: #666;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+  }
+
+  .news-category {
+    background: var(--gradient-accent);
+    color: white;
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  .category-technology {
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+  }
+
+  .category-sustainability {
+    background: linear-gradient(135deg, #10b981, #059669);
+  }
+
+  .category-automation {
+    background: linear-gradient(135deg, #9333ea, #7e22ce);
+  }
+
+  .category-market {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+  }
+
+  .category-safety {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+  }
+
+  .category-investment {
+    background: linear-gradient(135deg, #06b6d4, #0891b2);
+  }
+
+  .news-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: var(--primary-dark);
+    font-weight: 700;
+    line-height: 1.4;
+    flex: 1;
+  }
+
+  .news-card p {
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .news-link {
+    color: var(--accent-primary);
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s;
+    margin-top: auto;
+  }
+
+  .news-link:hover {
+    color: var(--accent-gold);
+    gap: 1rem;
+  }
+
+  /* Newsletter Section */
+  .newsletter-section {
+    background: var(--gradient-primary);
+    padding: 5rem 2rem;
+    margin: 4rem 0;
+    text-align: center;
+    color: white;
+  }
+
+  .newsletter-content {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .newsletter-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: 900;
+  }
+
+  .newsletter-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2.5rem;
+    opacity: 0.95;
+  }
+
+  .newsletter-form {
+    display: flex;
+    gap: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .newsletter-input {
+    flex: 1;
+    min-width: 300px;
+    padding: 1.2rem 1.5rem;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 50px;
+    font-size: 1rem;
+    background: rgba(255,255,255,0.1);
+    color: white;
+    backdrop-filter: blur(10px);
+  }
+
+  .newsletter-input::placeholder {
+    color: rgba(255,255,255,0.7);
+  }
+
+  .newsletter-input:focus {
+    outline: none;
+    border-color: var(--accent-gold);
+    background: rgba(255,255,255,0.15);
+  }
+
+  .newsletter-btn {
+    background: var(--accent-gold);
+    color: var(--primary-dark);
+    padding: 1.2rem 3rem;
+    border: none;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .newsletter-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+  }
+
+  /* Pagination */
+  .pagination {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 4rem 0;
+  }
+
+  .pagination-btn {
+    padding: 0.75rem 1.5rem;
+    border: 2px solid #e5e7eb;
+    background: white;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: var(--primary-dark);
+  }
+
+  .pagination-btn:hover,
+  .pagination-btn.active {
+    background: var(--accent-primary);
+    color: white;
+    border-color: var(--accent-primary);
+  }
+
+  /* Footer */
+  .footer {
+    background: var(--primary-dark);
+    color: white;
+    padding: 5rem 2rem 2rem;
+  }
+  
+  .footer-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 4rem;
+    margin-bottom: 3rem;
+  }
+  
+  .footer-section h3 {
+    margin-bottom: 1.5rem;
+    color: var(--accent-gold);
+    font-weight: 800;
+    font-size: 1.3rem;
+  }
+  
+  .footer-section ul {
+    list-style: none;
+  }
+  
+  .footer-section ul li {
+    margin-bottom: 1rem;
+  }
+  
+  .footer-section a {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    transition: all 0.3s;
+    display: inline-block;
+  }
+  
+  .footer-section a:hover {
+    color: var(--accent-gold);
+    transform: translateX(5px);
+  }
+  
+  .footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.6);
+  }
+  
+  .social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  
+  .social-links a {
+    width: 45px;
+    height: 45px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+  }
+  
+  .social-links a:hover {
+    background: var(--accent-gold);
+    transform: translateY(-5px);
+  }
+
+  /* Mobile Menu */
+  .mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  /* Responsive */
+  @media (max-width: 968px) {
+    .page-header h1 {
+      font-size: 2.5rem;
+    }
+
+    .featured-card {
+      grid-template-columns: 1fr;
+    }
+
+    .featured-image {
+      min-height: 300px;
+    }
+
+    .featured-content {
+      padding: 2rem;
+    }
+
+    .featured-card h3 {
+      font-size: 1.8rem;
+    }
+    
+    .mobile-menu-btn {
+      display: block;
+    }
+    
+    .nav-links {
+      display: none;
+    }
+    
+    .news-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .filter-container {
+      flex-direction: column;
+    }
+
+    .search-box input {
+      width: 100%;
+    }
+
+    .newsletter-form {
+      flex-direction: column;
+    }
+
+    .newsletter-input {
+      min-width: 100%;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="logo">
+      <img src="https://cdn.grapesjs.com/workspaces/cmjdh0oo603xm12grpuiruk7p/assets/f6b95b3d-49d1-4e77-b952-49ed80c4befa__image-9-14-1404-ap-at-8.42-pm.png" alt="SESMine">
+      <span>SES_MINE</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="features.html">Features</a></li>
+      <li><a href="news.html" class="active">News</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="login.html">Sign In</a></li>
+      <li><a href="signup.html" class="btn-get-started">Get Started</a></li>
+    </ul>
+    <button class="mobile-menu-btn">
+      <i class="fas fa-bars"></i>
+    </button>
+  </div>
+</nav>
+
+<!-- Page Header -->
+<section class="page-header">
+  <div class="page-header-content">
+    <h1>Mining Industry News & Insights</h1>
+    <p>Stay ahead with the latest developments, technologies, and market trends shaping the future of mining worldwide</p>
+  </div>
+</section>
+
+<!-- Filter Section -->
+<section class="filter-section">
+  <div class="filter-container">
+    <div class="filter-item">
+      <label for="category-filter"><i class="fas fa-filter"></i> Category:</label>
+      <select id="category-filter" class="filter-select">
+        <option value="all">All Categories</option>
+        <option value="technology">Technology</option>
+        <option value="sustainability">Sustainability</option>
+        <option value="automation">Automation</option>
+        <option value="market">Market Analysis</option>
+        <option value="safety">Safety</option>
+        <option value="investment">Investment</option>
+      </select>
+    </div>
+
+    <div class="filter-item">
+      <label for="date-filter"><i class="fas fa-calendar"></i> Date:</label>
+      <select id="date-filter" class="filter-select">
+        <option value="all">All Time</option>
+        <option value="today">Today</option>
+        <option value="week">This Week</option>
+        <option value="month">This Month</option>
+        <option value="year">This Year</option>
+      </select>
+    </div>
+
+    <div class="search-box">
+      <i class="fas fa-search"></i>
+      <input type="text" placeholder="Search news articles...">
+    </div>
+  </div>
+</section>
+
+<!-- News Container -->
+<div class="news-container">
+  
+  <!-- Featured News -->
+  <section class="featured-news">
+    <h2><i class="fas fa-star"></i> Featured Story</h2>
+    <div class="featured-card">
+      <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&q=80" alt="AI Revolution" class="featured-image">
+      <div class="featured-content">
+        <div class="featured-meta">
+          <span class="featured-category">Technology</span>
+          <span class="featured-date"><i class="far fa-calendar"></i> December 28, 2025</span>
+        </div>
+        <h3>AI Revolution Transforms Mining Cost Estimation Accuracy</h3>
+        <p>Artificial intelligence and machine learning algorithms are revolutionizing how mining companies estimate costs, with accuracy rates improving by over 40% in recent implementations. Leading mining corporations report significant reductions in budget overruns and improved project planning capabilities through AI-powered predictive analytics.</p>
+        <a href="#" class="read-more-btn">Read Full Story <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest News -->
+  <section>
+    <h2 class="section-title">Latest News</h2>
+    <div class="news-grid">
+      
+      <!-- News Article 1 -->
+      <div class="news-card">
+        <img src="https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=800&q=80" alt="Sustainable Mining" class="news-image">
+        <div class="news-content">
+          <div class="news-meta">
+            <span class="news-date"><i class="far fa-calendar"></i> Dec 27, 2025</span>
+            <span class="news-category category-sustainability">Sustainability</span>
+          </div>
+          <h3>Green Mining Initiatives Gain Global Momentum</h3>
+          <p>Major mining corporations commit to carbon-neutral operations by 2030, driving innovation in sustainable mining technologies and renewable energy integration across operations.</p>
+          <a href="#" class="news-link">Read More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- News Article 2 -->
+      <div class="news-card">
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80" alt="Automation" class="news-image">
+        <div class="news-content">
+          <div class="news-meta">
+            <span class="news-date"><i class="far fa-calendar"></i> Dec 26, 2025</span>
+            <span class="news-category category-automation">Automation</span>
+          </div>
+          <h3>Autonomous Mining Equipment Market Reaches $5B</h3>
+          <p>The global autonomous mining equipment market experiences unprecedented growth, with major investments in robotics and remote operation technologies transforming industry standards.</p>
+          <a href="#" class="news-link">Read More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- News Article 3 -->
+      <div class="news-card">
+        <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80" alt="Copper Demand" class="news-image">
+        <div class="news-content">
+          <div class="news-meta">
+            <span class="news-date"><i class="far fa-calendar"></i> Dec 25, 2025</span>
+            <span class="news-category category-market">Market Analysis</span>
+          </div>
+          <h3>Copper Prices Surge on EV Battery Demand</h3>
+          <p>Electric vehicle revolution drives unprecedented demand for copper, with prices reaching record highs and new mining projects accelerating globally to meet supply needs.</p>
+          <a href="#" class="news-link">Read More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- News Article 4 -->
+      <div class="news-card">
+        <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&q=80" alt="Safety Innovation" class="news-image">
+        <div class="news-content">
+          <div class="news-meta">
+            <span class="news-date"><i class="far fa-calendar"></i> Dec 24, 2025</span>
+            <span class="news-category category-safety">Safety</span>
+          </div>
+          <h3>IoT Sensors Reduce Mining Accidents by 60%</h3>
+          <p>Implementation of IoT-based safety monitoring systems shows dramatic reduction in workplace accidents across major mining operations worldwide, setting new industry benchmarks.</p>
+          <a href="#" class="news-link">Read More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- News Article 5 -->
+      <div class="news-card">
+        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80" alt="Investment" class="news-image">
+        <div class="news-content">
+          <div class="news-meta">
+            <span class="news-date"><i class="far fa-calendar"></i> Dec 23, 2025</span>
+            <span class="news-category category-investment">Investment</span>
+          </div>
+          <h3>$50B Investment Wave Hits Critical Minerals Sector</h3>
+          <p>Global investors pour billions into critical minerals mining projects, driven by clean energy transition and technology sector demands for rare earth elements.</p>
+          <a href="#" class="news-link">Read More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- News Article 6 -->
+      <div class="news-card">
+        <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&q=80" alt="Digital Transformation" class="news-image">
+        <div class="news-content">
+          <div class="news-meta">
+            <span class="news-date"><i class="far fa-calendar"></i> Dec 22, 2025</span>
+            <span class="news-category category-technology">Technology</span>
+          </div>
+          <h3>Digital Twins Transform Mine Planning Operations</h3>
+          <p>Advanced digital twin technology enables mining companies to simulate and optimize operations before implementation, reducing costs and improving efficiency by up to 35%.</p>
+          <a href="#" class="news-link">Read More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- News Article 7 -->
+      <div class="news-card">
+        <img src="https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=800&q=80" alt="Open Pit Mining" class="news-image">
+        <div class="news-content">
+          <div class="news-meta">
+            <span class="news-date"><i class="far fa-calendar"></i> Dec 21, 2025</span>
+            <span class="news-category category-technology">Technology</span>
+          </div>
+          <h3>Drone Technology Revolutionizes Mine Surveying</h3>
+          <p>Advanced drone systems with LiDAR and photogrammetry capabilities reduce surveying time by 80% while providing unprecedented accuracy in topographical mapping.</p>
+          <a href="#" class="news-link">Read More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- News Article 8 -->
+      <div class="news-card">
+        <img src="https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=800&q=80" alt="Water Management" class="news-image">
+        <div class="news-content">
+          <div class="news-meta">
+            <span class="news-date"><i class="far fa-calendar"></i> Dec 20, 2025</span>
+            <span class="news-category category-sustainability">Sustainability</span>
+          </div>
+          <h3>Innovative Water Recycling Systems Cut Usage 70%</h3>
+          <p>New closed-loop water management systems enable mining operations to dramatically reduce freshwater consumption while maintaining production efficiency.</p>
+          <a href="#" class="news-link">Read More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- News Article 9 -->
+      <div class="news-card">
+        <img src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?w=800&q=80" alt="Blockchain" class="news-image">
+        <div class="news-content">
+          <div class="news-meta">
+            <span class="news-date"><i class="far fa-calendar"></i> Dec 19, 2025</span>
+            <span class="news-category category-technology">Technology</span>
+          </div>
+          <h3>Blockchain Ensures Ethical Mineral Supply Chains</h3>
+          <p>Mining companies adopt blockchain technology to provide transparent tracking of minerals from extraction to end-user, ensuring ethical sourcing standards.</p>
+          <a href="#" class="news-link">Read More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- News Article 10 -->
+      <div class="news-card">
+        <img src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=800&q=80" alt="Lithium Mining" class="news-image">
+        <div class="news-content">
+          <div class="news-meta">
+            <span class="news-date"><i class="far fa-calendar"></i> Dec 18, 2025</span>
+            <span class="news-category category-market">Market Analysis</span>
+          </div>
+          <h3>Lithium Demand Triples as Battery Production Soars</h3>
+          <p>Global lithium market experiences explosive growth with battery manufacturers expanding capacity to meet electric vehicle and energy storage demands.</p>
+          <a href="#" class="news-link">Read More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- News Article 11 -->
+      <div class="news-card">
+        <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800&q=80" alt="Mining Equipment" class="news-image">
+        <div class="news-content">
+          <div class="news-meta">
+            <span class="news-date"><i class="far fa-calendar"></i> Dec 17, 2025</span>
+            <span class="news-category category-automation">Automation</span>
+          </div>
+          <h3>Electric Mining Trucks Enter Commercial Production</h3>
+          <p>Major equipment manufacturers launch fully electric haul trucks, promising 40% reduction in operating costs and zero emissions at mine sites.</p>
+          <a href="#" class="news-link">Read More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- News Article 12 -->
+      <div class="news-card">
+        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80" alt="Mining Consultation" class="news-image">
+        <div class="news-content">
+          <div class="news-meta">
+            <span class="news-date"><i class="far fa-calendar"></i> Dec 16, 2025</span>
+            <span class="news-category category-investment">Investment</span>
+          </div>
+          <h3>Mining M&A Activity Reaches Decade High</h3>
+          <p>Merger and acquisition activity in the mining sector surges as companies consolidate to achieve economies of scale and secure strategic mineral assets.</p>
+          <a href="#" class="news-link">Read More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Pagination -->
+  <div class="pagination">
+    <button class="pagination-btn active">1</button>
+    <button class="pagination-btn">2</button>
+    <button class="pagination-btn">3</button>
+    <button class="pagination-btn">4</button>
+    <button class="pagination-btn">5</button>
+    <button class="pagination-btn"><i class="fas fa-arrow-right"></i></button>
+  </div>
+
+</div>
+
+<!-- Newsletter Section -->
+<section class="newsletter-section">
+  <div class="newsletter-content">
+    <h2><i class="fas fa-envelope"></i> Subscribe to Our Newsletter</h2>
+    <p>Get the latest mining industry news, insights, and exclusive content delivered directly to your inbox every week.</p>
+    <form class="newsletter-form">
+      <input type="email" class="newsletter-input" placeholder="Enter your email address" required>
+      <button type="submit" class="newsletter-btn">Subscribe Now</button>
+    </form>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-section">
+      <h3>SES_MINE</h3>
+      <p>Smart Engineering Solutions for the global mining industry.</p>
+      <div class="social-links">
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer-section">
+      <h3>Platform</h3>
+      <ul>
+        <li><a href="engineering-hub.html">Engineering Hub</a></li>
+        <li><a href="economics-hub.html">Economics Hub</a></li>
+        <li><a href="analytics-platform.html">Analytics</a></li>
+        <li><a href="procurement-hub.html">Procurement</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h3>Company</h3>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="features.html">Features</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h3>Contact</h3>
+      <p><i class="fas fa-envelope"></i> info@sesmine.com</p>
+      <p><i class="fas fa-globe"></i> www.sesmine.com</p>
+      <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 SESMine. All rights reserved. | <a href="#" style="color: var(--accent-gold);">Privacy Policy</a> | <a href="#" style="color: var(--accent-gold);">Terms of Service</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

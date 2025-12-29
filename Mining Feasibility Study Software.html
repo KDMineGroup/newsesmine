@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mining Feasibility Study Software | Pre-Feasibility & Bankable Studies | SESMine</title>
+    <meta name="description" content="Complete mining feasibility study software for PFS, DFS, and bankable studies. AACE-compliant, automated NPV/IRR calculations, and professional reporting.">
+    <meta name="keywords" content="mining feasibility study software, feasibility study tools mining, pre-feasibility software, bankable feasibility study, mining project evaluation">
+    <link rel="canonical" href="https://www.sesmine.com/mining-feasibility-study-software.html">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .cta-header {
+            background: #ff6b35;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .cta-header:hover {
+            background: #ff8555;
+            transform: translateY(-2px);
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero .highlight {
+            color: #ffd54f;
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .btn-primary {
+            background: #ff6b35;
+            color: white;
+            padding: 18px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: inline-block;
+            margin: 10px;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(255,107,53,0.3);
+        }
+        
+        .btn-primary:hover {
+            background: #ff8555;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255,107,53,0.4);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: #1a237e;
+            padding: 18px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: inline-block;
+            margin: 10px;
+            transition: all 0.3s;
+        }
+        
+        .btn-secondary:hover {
+            background: #f0f0f0;
+            transform: translateY(-3px);
+        }
+        
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .badge {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .section {
+            padding: 80px 20px;
+        }
+        
+        .section-white {
+            background: white;
+        }
+        
+        .section-gray {
+            background: #f8f9fa;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #1a237e;
+            margin-bottom: 20px;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 60px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            color: #1a237e;
+            margin-bottom: 15px;
+        }
+        
+        .feature-list {
+            list-style: none;
+            margin-top: 15px;
+        }
+        
+        .feature-list li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #4caf50;
+            font-weight: bold;
+        }
+        
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .step {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: #1a237e;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+        
+        .step h3 {
+            color: #1a237e;
+            margin-bottom: 10px;
+        }
+        
+        .comparison-table {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.1);
+            margin-top: 40px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        thead {
+            background: #1a237e;
+            color: white;
+        }
+        
+        th, td {
+            padding: 20px;
+            text-align: left;
+        }
+        
+        tbody tr {
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tbody tr:hover {
+            background: #f5f5f5;
+        }
+        
+        .check {
+            color: #4caf50;
+            font-size: 1.5rem;
+        }
+        
+        .cross {
+            color: #f44336;
+            font-size: 1.5rem;
+        }
+        
+        .cta-section {
+            padding: 80px 20px;
+            background: #ff6b35;
+            color: white;
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            color: #ff6b35;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">⛏️ SESMine</a>
+            <a href="signup.html" class="cta-header">Start Free Trial</a>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <h1>Mining Feasibility Study Software<br><span class="highlight">From PFS to Bankable DFS</span></h1>
+            <p>Complete feasibility study solution with automated financial modeling, AACE-compliant cost estimation, and professional reporting</p>
+            
+            <div>
+                <a href="signup.html" class="btn-primary">🚀 Start Free Trial</a>
+                <a href="request-demo.html" class="btn-secondary">📊 View Demo</a>
+            </div>
+            
+            <div class="trust-badges">
+                <div class="badge">
+                    <span style="font-size: 2rem;">✓</span>
+                    <span>AACE Compliant</span>
+                </div>
+                <div class="badge">
+                    <span style="font-size: 2rem;">✓</span>
+                    <span>Bankable Reports</span>
+                </div>
+                <div class="badge">
+                    <span style="font-size: 2rem;">✓</span>
+                    <span>Automated NPV/IRR</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section section-white">
+        <div class="container">
+            <h2 class="section-title">Complete Feasibility Study Solution</h2>
+            <p class="section-subtitle">Everything you need from preliminary assessment to bankable feasibility study</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📋</div>
+                    <h3>Scoping Study (SS)</h3>
+                    <p>Rapid preliminary assessment for early-stage projects</p>
+                    <ul class="feature-list">
+                        <li>Quick cost estimation</li>
+                        <li>Resource evaluation</li>
+                        <li>Conceptual design</li>
+                        <li>Economic viability check</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Pre-Feasibility Study (PFS)</h3>
+                    <p>Detailed technical and economic analysis</p>
+                    <ul class="feature-list">
+                        <li>AACE Class 4 accuracy</li>
+                        <li>Mining method selection</li>
+                        <li>Process design</li>
+                        <li>Financial modeling</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <h3>Definitive Feasibility Study (DFS)</h3>
+                    <p>Bankable study for investment decisions</p>
+                    <ul class="feature-list">
+                        <li>AACE Class 3 accuracy</li>
+                        <li>Detailed engineering</li>
+                        <li>Risk analysis</li>
+                        <li>Investment-grade reports</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section section-gray">
+        <div class="container">
+            <h2 class="section-title">Powerful Features for Every Study Phase</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Automated Cost Estimation</h3>
+                    <ul class="feature-list">
+                        <li>CAPEX & OPEX calculations</li>
+                        <li>Equipment cost database</li>
+                        <li>Labor cost modeling</li>
+                        <li>Contingency analysis</li>
+                        <li>Escalation factors</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3>Financial Modeling</h3>
+                    <ul class="feature-list">
+                        <li>NPV/IRR calculations</li>
+                        <li>Cash flow analysis</li>
+                        <li>Payback period</li>
+                        <li>Sensitivity analysis</li>
+                        <li>Monte Carlo simulation</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">⚙️</div>
+                    <h3>Technical Analysis</h3>
+                    <ul class="feature-list">
+                        <li>Mine planning</li>
+                        <li>Production scheduling</li>
+                        <li>Equipment selection</li>
+                        <li>Process design</li>
+                        <li>Infrastructure planning</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📄</div>
+                    <h3>Professional Reporting</h3>
+                    <ul class="feature-list">
+                        <li>Bankable reports</li>
+                        <li>Executive summaries</li>
+                        <li>Technical appendices</li>
+                        <li>Custom templates</li>
+                        <li>Export to PDF/Excel</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Risk Management</h3>
+                    <ul class="feature-list">
+                        <li>Risk identification</li>
+                        <li>Probability analysis</li>
+                        <li>Impact assessment</li>
+                        <li>Mitigation strategies</li>
+                        <li>Contingency planning</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Scenario Analysis</h3>
+                    <ul class="feature-list">
+                        <li>Multiple scenarios</li>
+                        <li>What-if analysis</li>
+                        <li>Optimization tools</li>
+                        <li>Comparison reports</li>
+                        <li>Decision support</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section section-white">
+        <div class="container">
+            <h2 class="section-title">Simple 4-Step Process</h2>
+            <p class="section-subtitle">From data input to bankable report in hours, not months</p>
+            
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Input Project Data</h3>
+                    <p>Enter geological, technical, and economic parameters</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Configure Study</h3>
+                    <p>Select study type, accuracy class, and assumptions</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Run Analysis</h3>
+                    <p>Automated calculations, modeling, and optimization</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Generate Report</h3>
+                    <p>Professional, bankable feasibility study report</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section section-gray">
+        <div class="container">
+            <h2 class="section-title">Why Choose SESMine?</h2>
+            
+            <div class="comparison-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>SESMine</th>
+                            <th>Traditional Methods</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Study Completion Time</td>
+                            <td><span class="check">✓</span> Days to weeks</td>
+                            <td><span class="cross">✗</span> Months</td>
+                        </tr>
+                        <tr>
+                            <td>AACE Compliance</td>
+                            <td><span class="check">✓</span> Built-in</td>
+                            <td><span class="cross">✗</span> Manual</td>
+                        </tr>
+                        <tr>
+                            <td>Cost Accuracy</td>
+                            <td><span class="check">✓</span> ±10-15%</td>
+                            <td><span class="cross">✗</span> ±25-40%</td>
+                        </tr>
+                        <tr>
+                            <td>Automated Financial Models</td>
+                            <td><span class="check">✓</span> Yes</td>
+                            <td><span class="cross">✗</span> No</td>
+                        </tr>
+                        <tr>
+                            <td>Equipment Database</td>
+                            <td><span class="check">✓</span> 5000+ models</td>
+                            <td><span class="cross">✗</span> Manual research</td>
+                        </tr>
+                        <tr>
+                            <td>Scenario Analysis</td>
+                            <td><span class="check">✓</span> Unlimited</td>
+                            <td><span class="cross">✗</span> Limited</td>
+                        </tr>
+                        <tr>
+                            <td>Professional Reports</td>
+                            <td><span class="check">✓</span> Automated</td>
+                            <td><span class="cross">✗</span> Manual</td>
+                        </tr>
+                        <tr>
+                            <td>Cost</td>
+                            <td><span class="check">✓</span> $299/month</td>
+                            <td><span class="cross">✗</span> $50K-200K</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cta-section">
+        <div class="container">
+            <h2>Start Your Feasibility Study Today</h2>
+            <p>14-day free trial • No credit card required • Cancel anytime</p>
+            <div>
+                <a href="signup.html" class="btn-primary" style="background: white; color: #ff6b35;">Get Started Free</a>
+                <a href="request-demo.html" class="btn-secondary" style="border: 2px solid white;">Schedule Demo</a>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="footer-links">
+            <a href="features.html">Features</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="terms.html">Terms</a>
+        </div>
+        <p>&copy; 2025 SESMine. All rights reserved.</p>
+    </footer>
+</body>
+</html>

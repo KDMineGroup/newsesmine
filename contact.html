@@ -302,6 +302,12 @@
     box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
   }
 
+  .submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+
   /* Contact Info */
   .contact-info {
     display: flex;
@@ -376,6 +382,42 @@
   .social-links a:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(37, 99, 235, 0.4);
+  }
+
+  /* Success/Error Messages */
+  .message {
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    display: none;
+    animation: slideIn 0.3s ease;
+  }
+
+  .message.show {
+    display: block;
+  }
+
+  .message.success {
+    background: #d1fae5;
+    color: #065f46;
+    border: 2px solid #10b981;
+  }
+
+  .message.error {
+    background: #fee2e2;
+    color: #991b1b;
+    border: 2px solid #ef4444;
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   /* Mobile */
@@ -458,7 +500,16 @@
     <!-- Contact Form -->
     <div class="contact-form">
       <h2>Send Us a Message</h2>
-      <form action="/submit-contact" method="POST">
+      
+      <!-- Success/Error Messages -->
+      <div id="successMessage" class="message success">
+        <i class="fas fa-check-circle"></i> Thank you! Your message has been sent successfully. We'll get back to you soon.
+      </div>
+      <div id="errorMessage" class="message error">
+        <i class="fas fa-exclamation-circle"></i> <span id="errorText">Something went wrong. Please try again.</span>
+      </div>
+      
+      <form id="contactForm">
         
         <div class="form-group">
           <label for="name">Full Name *</label>
@@ -475,106 +526,178 @@
           <input type="tel" id="phone" name="phone" placeholder="+1 (555) 123-4567">
         </div>
 
-      <div class="form-group">
-        <label for="inquiry-type">Inquiry Type *</label>
-        <select id="inquiry-type" name="inquiry-type" required>
-          <option value="">Select an option</option>
-          <option value="demo">Request a Demo</option>
-          <option value="sales">Sales Inquiry</option>
-          <option value="support">Technical Support</option>
-          <option value="partnership">Partnership Opportunity</option>
-          <option value="general">General Question</option>
-        </select>
-      </div>
+        <div class="form-group">
+          <label for="inquiry-type">Inquiry Type *</label>
+          <select id="inquiry-type" name="inquiry_type" required>
+            <option value="">Select an option</option>
+            <option value="demo">Request a Demo</option>
+            <option value="sales">Sales Inquiry</option>
+            <option value="support">Technical Support</option>
+            <option value="partnership">Partnership Opportunity</option>
+            <option value="general">General Question</option>
+          </select>
+        </div>
 
-      <div class="form-group">
-        <label for="message">Message *</label>
-        <textarea id="message" name="message" required placeholder="Tell us how we can help you..."></textarea>
-      </div>
+        <div class="form-group">
+          <label for="message">Message *</label>
+          <textarea id="message" name="message" required placeholder="Tell us how we can help you..."></textarea>
+        </div>
 
-      <button type="submit" class="submit-btn">
-        <i class="fas fa-paper-plane"></i> Send Message
-      </button>
+        <button type="submit" class="submit-btn" id="submitBtn">
+          <i class="fas fa-paper-plane"></i> Send Message
+        </button>
 
-    </form>
-  </div>
-
-  <!-- Contact Info -->
-  <div class="contact-info">
-    
-    <div class="info-card">
-      <div class="info-icon">
-        <i class="fas fa-phone"></i>
-      </div>
-      <div class="info-content">
-        <h3>Phone</h3>
-        <p>Call us for immediate assistance</p>
-        <a href="tel:+15551234567">+1 (555) 123-4567</a>
-      </div>
+      </form>
     </div>
 
-    <div class="info-card">
-      <div class="info-icon">
-        <i class="fas fa-envelope"></i>
-      </div>
-      <div class="info-content">
-        <h3>Email</h3>
-        <p>Send us an email anytime</p>
-        <a href="mailto:info@sesmine.com">info@sesmine.com</a><br>
-        <a href="mailto:support@sesmine.com">support@sesmine.com</a>
-      </div>
-    </div>
-
-    <div class="info-card">
-      <div class="info-icon">
-        <i class="fas fa-clock"></i>
-      </div>
-      <div class="info-content">
-        <h3>Business Hours</h3>
-        <p>24/7 Support Available<br>
-        Monday - Friday: 8:00 AM - 6:00 PM EST<br>
-        Weekend Support: Available</p>
-      </div>
-    </div>
-
-    <div class="info-card">
-      <div class="info-icon">
-        <i class="fas fa-map-marker-alt"></i>
-      </div>
-      <div class="info-content">
-        <h3>Office Location</h3>
-        <p>Serving mining operations worldwide<br>
-        Global headquarters in the United States</p>
-      </div>
-    </div>
-
-    <div class="info-card">
-      <div class="info-icon">
-        <i class="fas fa-share-alt"></i>
-      </div>
-      <div class="info-content">
-        <h3>Follow Us</h3>
-        <p>Connect with us on social media</p>
-        <div class="social-links">
-          <a href="https://linkedin.com/company/sesmine" aria-label="LinkedIn" target="_blank">
-            <i class="fab fa-linkedin-in"></i>
-          </a>
-          <a href="https://twitter.com/sesmine" aria-label="Twitter" target="_blank">
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a href="https://facebook.com/sesmine" aria-label="Facebook" target="_blank">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-          <a href="https://youtube.com/sesmine" aria-label="YouTube" target="_blank">
-            <i class="fab fa-youtube"></i>
-          </a>
+    <!-- Contact Info -->
+    <div class="contact-info">
+      
+      <div class="info-card">
+        <div class="info-icon">
+          <i class="fas fa-phone"></i>
+        </div>
+        <div class="info-content">
+          <h3>Phone</h3>
+          <p>Call us for immediate assistance</p>
+          <a href="tel:+15551234567">+1 (555) 123-4567</a>
         </div>
       </div>
+
+      <div class="info-card">
+        <div class="info-icon">
+          <i class="fas fa-envelope"></i>
+        </div>
+        <div class="info-content">
+          <h3>Email</h3>
+          <p>Send us an email anytime</p>
+          <a href="mailto:info@sesmine.com">info@sesmine.com</a><br>
+          <a href="mailto:support@sesmine.com">support@sesmine.com</a>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-icon">
+          <i class="fas fa-clock"></i>
+        </div>
+        <div class="info-content">
+          <h3>Business Hours</h3>
+          <p>24/7 Support Available<br>
+          Monday - Friday: 8:00 AM - 6:00 PM EST<br>
+          Weekend Support: Available</p>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-icon">
+          <i class="fas fa-map-marker-alt"></i>
+        </div>
+        <div class="info-content">
+          <h3>Office Location</h3>
+          <p>Serving mining operations worldwide<br>
+          Global headquarters in the United States</p>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-icon">
+          <i class="fas fa-share-alt"></i>
+        </div>
+        <div class="info-content">
+          <h3>Follow Us</h3>
+          <p>Connect with us on social media</p>
+          <div class="social-links">
+            <a href="https://linkedin.com/company/sesmine" aria-label="LinkedIn" target="_blank">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://twitter.com/sesmine" aria-label="Twitter" target="_blank">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://facebook.com/sesmine" aria-label="Facebook" target="_blank">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://youtube.com/sesmine" aria-label="YouTube" target="_blank">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
     </div>
 
   </div>
-
-</div>
 </main>
+
+<!-- JavaScript for Form Submission -->
+<script>
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  
+  const submitBtn = document.getElementById('submitBtn');
+  const successMessage = document.getElementById('successMessage');
+  const errorMessage = document.getElementById('errorMessage');
+  const errorText = document.getElementById('errorText');
+  
+  // Hide previous messages
+  successMessage.classList.remove('show');
+  errorMessage.classList.remove('show');
+  
+  // Disable submit button
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+  
+  // Get form data
+  const formData = {
+    name: document.getElementById('name').value,
+    email: document.getElementById('email').value,
+    phone: document.getElementById('phone').value,
+    inquiry_type: document.getElementById('inquiry-type').value,
+    message: document.getElementById('message').value,
+    submitted_at: new Date().toISOString(),
+    status: 'new'
+  };
+  
+  try {
+    // Send to admin dashboard API
+    const response = await fetch('/api/contact-submissions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData)
+    });
+    
+    if (response.ok) {
+      // Show success message
+      successMessage.classList.add('show');
+      
+      // Reset form
+      document.getElementById('contactForm').reset();
+      
+      // Scroll to success message
+      successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      
+      // Optional: Redirect to admin dashboard after 2 seconds
+      // setTimeout(() => {
+      //   window.location.href = 'admin-dashboard.html';
+      // }, 2000);
+      
+    } else {
+      throw new Error('Server error');
+    }
+    
+  } catch (error) {
+    console.error('Error:', error);
+    errorText.textContent = 'Unable to send message. Please try again or email us directly at info@sesmine.com';
+    errorMessage.classList.add('show');
+    errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  } finally {
+    // Re-enable submit button
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+  }
+});
+</script>
+
 </body>
-</html> 
+</html>

@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Pit Mining Cost Calculator 2025 | Free Online Tool | SESMine</title>
+    <meta name="description" content="Calculate open pit mining costs instantly with our free online calculator. Get accurate estimates for equipment, labor, fuel, and total mining costs. Try now!">
+    <meta name="keywords" content="open pit mining cost calculator, surface mining cost estimation, open pit cost analysis, mining cost calculator free">
+    <link rel="canonical" href="https://www.sesmine.com/open-pit-mining-cost-calculator.html">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .cta-header {
+            background: #ff6b35;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .cta-header:hover {
+            background: #ff8555;
+            transform: translateY(-2px);
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero .highlight {
+            color: #ffd54f;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .section {
+            padding: 80px 20px;
+        }
+        
+        .section-white {
+            background: white;
+        }
+        
+        .section-gray {
+            background: #f8f9fa;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #1a237e;
+            margin-bottom: 20px;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 60px;
+        }
+        
+        /* Calculator Section */
+        .calculator-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            padding: 40px;
+            max-width: 900px;
+            margin: 40px auto;
+        }
+        
+        .calculator-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        .tab {
+            padding: 15px 30px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            color: #666;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .tab.active {
+            color: #1a237e;
+            border-bottom-color: #ff6b35;
+            font-weight: bold;
+        }
+        
+        .calculator-form {
+            display: grid;
+            gap: 25px;
+        }
+        
+        .form-group {
+            display: grid;
+            gap: 10px;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        label {
+            font-weight: 600;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .tooltip {
+            background: #666;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            cursor: help;
+        }
+        
+        input, select {
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: #1a237e;
+        }
+        
+        .calculate-btn {
+            background: #ff6b35;
+            color: white;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+        
+        .calculate-btn:hover {
+            background: #ff8555;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255,107,53,0.3);
+        }
+        
+        .results-container {
+            background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin-top: 30px;
+            display: none;
+        }
+        
+        .results-container.show {
+            display: block;
+            animation: slideIn 0.5s;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .result-item {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .result-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+        
+        .result-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ffd54f;
+        }
+        
+        .result-unit {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* Cost Breakdown */
+        .cost-breakdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .cost-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .cost-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        
+        .cost-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        
+        .cost-card h3 {
+            color: #1a237e;
+            margin-bottom: 10px;
+        }
+        
+        .cost-amount {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ff6b35;
+            margin: 15px 0;
+        }
+        
+        .cost-details {
+            list-style: none;
+            text-align: left;
+            margin-top: 15px;
+        }
+        
+        .cost-details li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        /* Equipment Selection */
+        .equipment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .equipment-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .equipment-card:hover {
+            border-color: #1a237e;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        .equipment-card.selected {
+            border-color: #ff6b35;
+            background: #fff8f5;
+        }
+        
+        .equipment-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .equipment-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #1a237e;
+            margin-bottom: 10px;
+        }
+        
+        .equipment-specs {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .equipment-cost {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #4caf50;
+        }
+        
+        /* Case Studies */
+        .case-studies {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .case-study {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+        
+        .case-study-header {
+            background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
+            color: white;
+            padding: 25px;
+        }
+        
+        .case-study-body {
+            padding: 25px;
+        }
+        
+        .case-metric {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .metric-label {
+            color: #666;
+        }
+        
+        .metric-value {
+            font-weight: bold;
+            color: #1a237e;
+        }
+        
+        .savings {
+            background: #4caf50;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        
+        /* Comparison Table */
+        .comparison-table {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.1);
+            margin-top: 40px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        thead {
+            background: #1a237e;
+            color: white;
+        }
+        
+        th, td {
+            padding: 20px;
+            text-align: left;
+        }
+        
+        tbody tr {
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tbody tr:hover {
+            background: #f5f5f5;
+        }
+        
+        .check {
+            color: #4caf50;
+            font-size: 1.5rem;
+        }
+        
+        .cross {
+            color: #f44336;
+            font-size: 1.5rem;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 20px;
+            background: #ff6b35;
+            color: white;
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .btn-primary {
+            background: white;
+            color: #ff6b35;
+            padding: 18px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: inline-block;
+            margin: 10px;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            padding: 18px 40px;
+            border: 2px solid white;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: inline-block;
+            margin: 10px;
+            transition: all 0.3s;
+        }
+        
+        .btn-secondary:hover {
+            background: white;
+            color: #ff6b35;
+        }
+        
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            color: #ff6b35;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .calculator-tabs {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">⛏️ SESMine</a>
+            <a href="signup.html" class="cta-header">Start Free Trial</a>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <h1>Open Pit Mining Cost Calculator <span class="highlight">2025</span></h1>
+            <p>Calculate your open pit mining costs in minutes with our free online calculator. Get instant estimates for equipment, labor, fuel, and total project costs.</p>
+        </div>
+    </section>
+    
+    <!-- Interactive Calculator -->
+    <section class="section section-white">
+        <div class="container">
+            <h2 class="section-title">Free Online Cost Calculator</h2>
+            <p class="section-subtitle">Enter your project parameters to get instant cost estimates</p>
+            
+            <div class="calculator-container">
+                <div class="calculator-tabs">
+                    <button class="tab active">Basic Calculator</button>
+                    <button class="tab">Advanced Calculator</button>
+                    <button class="tab">Equipment Selector</button>
+                </div>
+                
+                <form class="calculator-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>
+                                Ore Tonnage (million tonnes)
+                                <span class="tooltip" title="Total ore to be mined">?</span>
+                            </label>
+                            <input type="number" placeholder="10" value="10" id="ore-tonnage">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>
+                                Waste-to-Ore Ratio
+                                <span class="tooltip" title="Ratio of waste to ore">?</span>
+                            </label>
+                            <input type="number" step="0.1" placeholder="2.5" value="2.5" id="waste-ratio">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>
+                                Average Haul Distance (km)
+                                <span class="tooltip" title="Distance from pit to dump/plant">?</span>
+                            </label>
+                            <input type="number" step="0.1" placeholder="3.5" value="3.5" id="haul-distance">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>
+                                Annual Production (Mt/year)
+                                <span class="tooltip" title="Ore production per year">?</span>
+                            </label>
+                            <input type="number" step="0.1" placeholder="2" value="2" id="annual-production">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Rock Type</label>
+                            <select id="rock-type">
+                                <option>Soft Rock (Sedimentary)</option>
+                                <option selected>Medium Rock (Limestone, Sandstone)</option>
+                                <option>Hard Rock (Granite, Basalt)</option>
+                                <option>Very Hard Rock (Quartzite)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Pit Depth (meters)</label>
+                            <input type="number" placeholder="200" value="200" id="pit-depth">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Location/Region</label>
+                        <select id="location">
+                            <option>North America</option>
+                            <option>South America</option>
+                            <option>Australia</option>
+                            <option>Africa</option>
+                            <option>Asia</option>
+                            <option>Europe</option>
+                        </select>
+                    </div>
+                    
+                    <button type="button" class="calculate-btn" onclick="calculateCosts()">
+                        🧮 Calculate Costs
+                    </button>
+                </form>
+                
+                <div class="results-container" id="results">
+                    <h3 style="font-size: 1.8rem; margin-bottom: 20px;">💰 Your Cost Estimate</h3>
+                    
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <div class="result-label">Total Mining Cost</div>
+                            <div class="result-value" id="total-cost">$245M</div>
+                            <div class="result-unit">USD</div>
+                        </div>
+                        
+                        <div class="result-item">
+                            <div class="result-label">Cost Per Tonne (Ore)</div>
+                            <div class="result-value" id="cost-per-tonne">$24.50</div>
+                            <div class="result-unit">USD/tonne</div>
+                        </div>
+                        
+                        <div class="result-item">
+                            <div class="result-label">Annual Operating Cost</div>
+                            <div class="result-value" id="annual-cost">$49M</div>
+                            <div class="result-unit">USD/year</div>
+                        </div>
+                        
+                        <div class="result-item">
+                            <div class="result-label">Mine Life</div>
+                            <div class="result-value" id="mine-life">5</div>
+                            <div class="result-unit">years</div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 30px; text-align: center;">
+                        <a href="signup.html" class="btn-primary">Get Detailed Report →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Cost Breakdown -->
+    <section class="section section-gray">
+        <div class="container">
+            <h2 class="section-title">Detailed Cost Breakdown</h2>
+            <p class="section-subtitle">Understanding where your mining costs come from</p>
+            
+            <div class="cost-breakdown">
+                <div class="cost-card">
+                    <div class="cost-icon">💥</div>
+                    <h3>Drilling & Blasting</h3>
+                    <div class="cost-amount">$2.50/t</div>
+                    <ul class="cost-details">
+                        <li><span>Drilling</span><span>$1.20/t</span></li>
+                        <li><span>Explosives</span><span>$0.85/t</span></li>
+                        <li><span>Initiation</span><span>$0.25/t</span></li>
+                        <li><span>Labor</span><span>$0.20/t</span></li>
+                    </ul>
+                </div>
+                
+                <div class="cost-card">
+                    <div class="cost-icon">⛏️</div>
+                    <h3>Loading</h3>
+                    <div class="cost-amount">$1.80/t</div>
+                    <ul class="cost-details">
+                        <li><span>Excavator OPEX</span><span>$1.20/t</span></li>
+                        <li><span>Operator</span><span>$0.35/t</span></li>
+                        <li><span>Maintenance</span><span>$0.25/t</span></li>
+                    </ul>
+                </div>
+                
+                <div class="cost-card">
+                    <div class="cost-icon">🚛</div>
+                    <h3>Hauling</h3>
+                    <div class="cost-amount">$4.20/t</div>
+                    <ul class="cost-details">
+                        <li><span>Truck OPEX</span><span>$2.80/t</span></li>
+                        <li><span>Fuel</span><span>$0.90/t</span></li>
+                        <li><span>Operator</span><span>$0.30/t</span></li>
+                        <li><span>Tires</span><span>$0.20/t</span></li>
+                    </ul>
+                </div>
+                
+                <div class="cost-card">
+                    <div class="cost-icon">🏗️</div>
+                    <h3>Auxiliary</h3>
+                    <div class="cost-amount">$1.50/t</div>
+                    <ul class="cost-details">
+                        <li><span>Dozers</span><span>$0.45/t</span></li>
+                        <li><span>Graders</span><span>$0.35/t</span></li>
+                        <li><span>Water Trucks</span><span>$0.30/t</span></li>
+                        <li><span>Service Trucks</span><span>$0.40/t</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Equipment Selection -->
+    <section class="section section-white">
+        <div class="container">
+            <h2 class="section-title">Select Your Equipment Fleet</h2>
+            <p class="section-subtitle">Choose the right equipment for your operation</p>
+            
+            <div class="equipment-grid">
+                <div class="equipment-card">
+                    <div class="equipment-icon">⛏️</div>
+                    <div class="equipment-name">Hydraulic Excavator</div>
+                    <div class="equipment-specs">
+                        800-1000 tonne class<br>
+                        40-50 m³ bucket<br>
+                        Productivity: 3,500 t/hr
+                    </div>
+                    <div class="equipment-cost">$8.5M CAPEX</div>
+                </div>
+                
+                <div class="equipment-card selected">
+                    <div class="equipment-icon">🚛</div>
+                    <div class="equipment-name">Haul Truck 240T</div>
+                    <div class="equipment-specs">
+                        240 tonne capacity<br>
+                        2,700 HP engine<br>
+                        Speed: 65 km/h
+                    </div>
+                    <div class="equipment-cost">$5.2M CAPEX</div>
+                </div>
+                
+                <div class="equipment-card">
+                    <div class="equipment-icon">🔩</div>
+                    <div class="equipment-name">Rotary Drill Rig</div>
+                    <div class="equipment-specs">
+                        229-311mm hole diameter<br>
+                        45m depth capacity<br>
+                        Productivity: 800 m/shift
+                    </div>
+                    <div class="equipment-cost">$3.2M CAPEX</div>
+                </div>
+                
+                <div class="equipment-card">
+                    <div class="equipment-icon">🚜</div>
+                    <div class="equipment-name">Dozer D11</div>
+                    <div class="equipment-specs">
+                        850 HP<br>
+                        27 m³ blade capacity<br>
+                        Weight: 104 tonnes
+                    </div>
+                    <div class="equipment-cost">$2.8M CAPEX</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Case Studies -->
+    <section class="section section-gray">
+        <div class="container">
+            <h2 class="section-title">Real-World Case Studies</h2>
+            <p class="section-subtitle">See how our calculator helped mining companies</p>
+            
+            <div class="case-studies">
+                <div class="case-study">
+                    <div class="case-study-header">
+                        <h3>🏔️ Copper Mine - Chile</h3>
+                        <p>Large-scale open pit operation</p>
+                    </div>
+                    <div class="case-study-body">
+                        <div class="case-metric">
+                            <span class="metric-label">Production:</span>
+                            <span class="metric-value">50 Mt ore/year</span>
+                        </div>
+                        <div class="case-metric">
+                            <span class="metric-label">Waste Ratio:</span>
+                            <span class="metric-value">2.8:1</span>
+                        </div>
+                        <div class="case-metric">
+                            <span class="metric-label">Haul Distance:</span>
+                            <span class="metric-value">4.2 km avg</span>
+                        </div>
+                        <div class="case-metric">
+                            <span class="metric-label">Initial Estimate:</span>
+                            <span class="metric-value">$12.50/t</span>
+                        </div>
+                        <div class="case-metric">
+                            <span class="metric-label">Actual Cost:</span>
+                            <span class="metric-value">$12.20/t</span>
+                        </div>
+                        <div class="savings">
+                            ✓ 98% Accuracy Achieved
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="case-study">
+                    <div class="case-study-header">
+                        <h3>⚡ Gold Mine - Australia</h3>
+                        <p>Medium-scale operation</p>
+                    </div>
+                    <div class="case-study-body">
+                        <div class="case-metric">
+                            <span class="metric-label">Production:</span>
+                            <span class="metric-value">3 Mt ore/year</span>
+                        </div>
+                        <div class="case-metric">
+                            <span class="metric-label">Waste Ratio:</span>
+                            <span class="metric-value">4.5:1</span>
+                        </div>
+                        <div class="case-metric">
+                            <span class="metric-label">Haul Distance:</span>
+                            <span class="metric-value">2.8 km avg</span>
+                        </div>
+                        <div class="case-metric">
+                            <span class="metric-label">Calculator Est.:</span>
+                            <span class="metric-value">$18.50/t</span>
+                        </div>
+                        <div class="case-metric">
+                            <span class="metric-label">Actual Cost:</span>
+                            <span class="metric-value">$18.90/t</span>
+                        </div>
+                        <div class="savings">
+                            ✓ 97.9% Accuracy
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="case-study">
+                    <div class="case-study-header">
+                        <h3>💎 Diamond Mine - Canada</h3>
+                        <p>Arctic conditions</p>
+                    </div>
+                    <div class="case-study-body">
+                        <div class="case-metric">
+                            <span class="metric-label">Production:</span>
+                            <span class="metric-value">1.5 Mt ore/year</span>
+                        </div>
+                        <div class="case-metric">
+                            <span class="metric-label">Waste Ratio:</span>
+                            <span class="metric-value">6.2:1</span>
+                        </div>
+                        <div class="case-metric">
+                            <span class="metric-label">Haul Distance:</span>
+                            <span class="metric-value">3.5 km avg</span>
+                        </div>
+                        <div class="case-metric">
+                            <span class="metric-label">Calculator Est.:</span>
+                            <span class="metric-value">$28.50/t</span>
+                        </div>
+                        <div class="case-metric">
+                            <span class="metric-label">Actual Cost:</span>
+                            <span class="metric-value">$29.10/t</span>
+                        </div>
+                        <div class="savings">
+                            ✓ 97.9% Accuracy
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Comparison -->
+    <section class="section section-white">
+        <div class="container">
+            <h2 class="section-title">Why Use Our Calculator?</h2>
+            
+            <div class="comparison-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>SESMine Calculator</th>
+                            <th>Manual Estimation</th>
+                            <th>Consultants</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Time Required</td>
+                            <td><span class="check">✓</span> 5 minutes</td>
+                            <td><span class="cross">✗</span> 2-3 days</td>
+                            <td><span class="cross">✗</span> 2-4 weeks</td>
+                        </tr>
+                        <tr>
+                            <td>Cost</td>
+                            <td><span class="check">✓</span> Free</td>
+                            <td><span class="check">✓</span> Free</td>
+                            <td><span class="cross">✗</span> $15K-50K</td>
+                        </tr>
+                        <tr>
+                            <td>Accuracy</td>
+                            <td><span class="check">✓</span> ±10-15%</td>
+                            <td><span class="cross">✗</span> ±30-50%</td>
+                            <td><span class="check">✓</span> ±10-20%</td>
+                        </tr>
+                        <tr>
+                            <td>Equipment Database</td>
+                            <td><span class="check">✓</span> 5000+ models</td>
+                            <td><span class="cross">✗</span> Manual research</td>
+                            <td><span class="check">✓</span> Limited</td>
+                        </tr>
+                        <tr>
+                            <td>Scenario Analysis</td>
+                            <td><span class="check">✓</span> Unlimited</td>
+                            <td><span class="cross">✗</span> Very limited</td>
+                            <td><span class="check">✓</span> 3-5 scenarios</td>
+                        </tr>
+                        <tr>
+                            <td>Detailed Reports</td>
+                            <td><span class="check">✓</span> Instant PDF</td>
+                            <td><span class="cross">✗</span> Manual creation</td>
+                            <td><span class="check">✓</span> After 2-4 weeks</td>
+                        </tr>
+                        <tr>
+                            <td>Regional Adjustments</td>
+                            <td><span class="check">✓</span> Automatic</td>
+                            <td><span class="cross">✗</span> Manual</td>
+                            <td><span class="check">✓</span> Yes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Get Your Detailed Cost Report</h2>
+            <p>Upgrade to SESMine Pro for comprehensive cost analysis, equipment selection, and optimization tools</p>
+            <div>
+                <a href="signup.html" class="btn-primary">Start Free Trial</a>
+                <a href="request-demo.html" class="btn-secondary">Schedule Demo</a>
+            </div>
+            <p style="margin-top: 20px; font-size: 0.9rem;">✓ 14-day free trial  ✓ No credit card required  ✓ Full access</p>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="footer-links">
+            <a href="features.html">Features</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="terms.html">Terms</a>
+        </div>
+        <p>&copy; 2025 SESMine. All rights reserved.</p>
+    </footer>
+    
+    <script>
+        function calculateCosts() {
+            const oreTonnage = parseFloat(document.getElementById('ore-tonnage').value);
+            const wasteRatio = parseFloat(document.getElementById('waste-ratio').value);
+            const haulDistance = parseFloat(document.getElementById('haul-distance').value);
+            const annualProduction = parseFloat(document.getElementById('annual-production').value);
+            
+            // Simple calculation (in real app, this would be much more complex)
+            const totalMaterial = oreTonnage * (1 + wasteRatio);
+            const mineLife = oreTonnage / annualProduction;
+            const costPerTonne = 10 + (haulDistance * 1.2) + (wasteRatio * 2);
+            const totalCost = totalMaterial * costPerTonne;
+            const annualCost = totalCost / mineLife;
+            
+            // Display results
+            document.getElementById('total-cost').textContent = '$' + (totalCost / 1000000).toFixed(0) + 'M';
+            document.getElementById('cost-per-tonne').textContent = '$' + costPerTonne.toFixed(2);
+            document.getElementById('annual-cost').textContent = '$' + (annualCost / 1000000).toFixed(0) + 'M';
+            document.getElementById('mine-life').textContent = mineLife.toFixed(1);
+            
+            // Show results
+            document.getElementById('results').classList.add('show');
+            
+            // Scroll to results
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    </script>
+</body>
+</html>

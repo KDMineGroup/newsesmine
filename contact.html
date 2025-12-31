@@ -661,11 +661,11 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     phone: document.getElementById('phone').value,
     inquiry_type: document.getElementById('inquiry-type').value,
     message: document.getElementById('message').value,
-    to_email: 'admin@sesmine.com' // Admin email to receive notifications
+    to_email: 'info@sesmine.com' // Admin email to receive notifications
   };
   
   // Send email using EmailJS
-  emailjs.send('service_kiv8uen', 'template_bow4qhm', templateParams)
+  emailjs.send('service_v1tzk6t', 'template_5rwnvg8', templateParams)
     .then(function(response) {
       console.log('SUCCESS!', response.status, response.text);
       

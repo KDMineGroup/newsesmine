@@ -33,6 +33,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+<!-- EmailJS SDK -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script type="text/javascript">
+  (function(){
+    emailjs.init("u3dfoUdeOTtWSAjk_"); // Your public key
+  })();
+</script>
+
 <!-- LocalBusiness Schema -->
 <script type="application/ld+json">
 {
@@ -513,12 +521,12 @@
         
         <div class="form-group">
           <label for="name">Full Name *</label>
-          <input type="text" id="name" name="name" required placeholder="John Davidson">
+          <input type="text" id="name" name="from_name" required placeholder="John Davidson">
         </div>
 
         <div class="form-group">
           <label for="email">Email Address *</label>
-          <input type="email" id="email" name="email" required placeholder="john@company.com">
+          <input type="email" id="email" name="from_email" required placeholder="john@company.com">
         </div>
 
         <div class="form-group">
@@ -530,11 +538,11 @@
           <label for="inquiry-type">Inquiry Type *</label>
           <select id="inquiry-type" name="inquiry_type" required>
             <option value="">Select an option</option>
-            <option value="demo">Request a Demo</option>
-            <option value="sales">Sales Inquiry</option>
-            <option value="support">Technical Support</option>
-            <option value="partnership">Partnership Opportunity</option>
-            <option value="general">General Question</option>
+            <option value="Request a Demo">Request a Demo</option>
+            <option value="Sales Inquiry">Sales Inquiry</option>
+            <option value="Technical Support">Technical Support</option>
+            <option value="Partnership Opportunity">Partnership Opportunity</option>
+            <option value="General Question">General Question</option>
           </select>
         </div>
 
@@ -628,9 +636,9 @@
   </div>
 </main>
 
-<!-- JavaScript for Form Submission -->
+<!-- JavaScript for EmailJS Integration -->
 <script>
-document.getElementById('contactForm').addEventListener('submit', async function(e) {
+document.getElementById('contactForm').addEventListener('submit', function(e) {
   e.preventDefault();
   
   const submitBtn = document.getElementById('submitBtn');
@@ -647,27 +655,20 @@ document.getElementById('contactForm').addEventListener('submit', async function
   submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
   
   // Get form data
-  const formData = {
-    name: document.getElementById('name').value,
-    email: document.getElementById('email').value,
+  const templateParams = {
+    from_name: document.getElementById('name').value,
+    from_email: document.getElementById('email').value,
     phone: document.getElementById('phone').value,
     inquiry_type: document.getElementById('inquiry-type').value,
     message: document.getElementById('message').value,
-    submitted_at: new Date().toISOString(),
-    status: 'new'
+    to_email: 'admin@sesmine.com' // Admin email to receive notifications
   };
   
-  try {
-    // Send to admin dashboard API
-    const response = await fetch('/api/contact-submissions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData)
-    });
-    
-    if (response.ok) {
+  // Send email using EmailJS
+  emailjs.send('service_kiv8uen', 'template_bow4qhm', templateParams)
+    .then(function(response) {
+      console.log('SUCCESS!', response.status, response.text);
+      
       // Show success message
       successMessage.classList.add('show');
       
@@ -677,25 +678,22 @@ document.getElementById('contactForm').addEventListener('submit', async function
       // Scroll to success message
       successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
       
-      // Optional: Redirect to admin dashboard after 2 seconds
-      // setTimeout(() => {
-      //   window.location.href = 'admin-dashboard.html';
-      // }, 2000);
+      // Re-enable submit button
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
       
-    } else {
-      throw new Error('Server error');
-    }
-    
-  } catch (error) {
-    console.error('Error:', error);
-    errorText.textContent = 'Unable to send message. Please try again or email us directly at info@sesmine.com';
-    errorMessage.classList.add('show');
-    errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  } finally {
-    // Re-enable submit button
-    submitBtn.disabled = false;
-    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
-  }
+    }, function(error) {
+      console.error('FAILED...', error);
+      
+      // Show error message
+      errorText.textContent = 'Unable to send message. Please try again or email us directly at info@sesmine.com';
+      errorMessage.classList.add('show');
+      errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      
+      // Re-enable submit button
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+    });
 });
 </script>
 
